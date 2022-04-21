@@ -487,16 +487,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreebf3230843ede28b6fe45de5f5e37b4cec605a459targetblankbf32308a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/bf3230843ede28b6fe45de5f5e37b4cec605a459" target="_blank">bf32308</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreefb572321ae22b2dc4c353f2e7ea5d5f84946a4cctargetblankfb57232a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/fb572321ae22b2dc4c353f2e7ea5d5f84946a4cc" target="_blank">fb57232</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreebf3230843ede28b6fe45de5f5e37b4cec605a459targetblankbf32308a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreefb572321ae22b2dc4c353f2e7ea5d5f84946a4cctargetblankfb57232a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/bf3230843ede28b6fe45de5f5e37b4cec605a459" target="_blank">bf32308</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/fb572321ae22b2dc4c353f2e7ea5d5f84946a4cc" target="_blank">fb57232</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -506,9 +506,6 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    scripts/
-
-Untracked files:
-    Untracked:  data/dendroadaptamed_iv_mod13q1.csv
 
 </code></pre>
 <p>
@@ -552,6 +549,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/fb572321ae22b2dc4c353f2e7ea5d5f84946a4cc/analysis/scripts.Rmd" target="_blank">fb57232</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2022-04-21
+</td>
+<td>
+wflow_publish(“analysis/scripts.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/9a649dbca5bc20fd61301cd6604b8d5e51b54006/docs/scripts.html" target="_blank">9a649db</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2022-04-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/bf3230843ede28b6fe45de5f5e37b4cec605a459/analysis/scripts.Rmd" target="_blank">bf32308</a>
 </td>
 <td>
@@ -578,7 +609,7 @@ wflow_publish("analysis/*")
 <h2>Get Satellite data</h2>
 <p>Using Google Earth Engine code, we extracted spectral information for all the pixels covering the field plots. Several products were obtained.</p>
 <ul>
-<li>Temporal series of Vegetation Indexes NDVI and EVI from MOD13Q1. We used the following GEE code (see also this <a href="">link</a>) to get the EVI and NDVI data for each field plot. We obtained a total of XX values for each field plot (). The data were saved as <code>dendroadaptamed_iv_mod13q1.csv</code> (see <a href="dendroadaptamed_iv_mod13q1.csv">data/dendroadaptamed_iv_mod13q1.csv</a>)</li>
+<li>Temporal series of Vegetation Indexes NDVI and EVI from MOD13Q1. We used the following GEE code to get the EVI and NDVI data for each field plot. We obtained a total of XX values for each field plot (). The data were saved as <code>dendroadaptamed_iv_mod13q1.csv</code> (see <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_iv_mod13q1.csv">data/dendroadaptamed_iv_mod13q1.csv</a>)</li>
 </ul>
 <pre class="js"><code>var parcelas = ee.FeatureCollection(&quot;users/ajpelu/geoinfo_adaptamed_dendro&quot;);
 
