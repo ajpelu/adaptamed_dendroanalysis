@@ -1,0 +1,21 @@
+---
+title: "Data"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+# Data Sources
+
+## Satellite data 
+
+- We extracted temporal series of vegetation indexes as a surrogate of productivity. 
+
+- We used the MODIS product MOD13Q1 (temporal resolution: ; spatial resolution = 250 m). We used NDVI and EVI spectral index. 
+
+- For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot. 
+
+```{r}
+
+```
+

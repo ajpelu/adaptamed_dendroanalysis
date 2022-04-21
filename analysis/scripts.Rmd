@@ -1,0 +1,52 @@
+---
+title: "Scripts"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+# Scripts
+
+This page contains some of the scripts used in this project 
+
+## Get Satellite data
+Using Google Earth Engine code, we extracted spectral information for all the pixels covering the field plots. Several products were obtained.
+
+- Temporal series of Vegetation Indexes NDVI and EVI from MOD13Q1. We used the following GEE code (see also this [link]()) to get the EVI and NDVI data for each field plot. We obtained a total of XX values for each field plot (). The data were saved as `dendroadaptamed_iv_mod13q1.csv` (see [data/dendroadaptamed_iv_mod13q1.csv](dendroadaptamed_iv_mod13q1.csv))
+
+```{js, eval=FALSE, echo=TRUE}
+var parcelas = ee.FeatureCollection("users/ajpelu/geoinfo_adaptamed_dendro");
+
+// Define study period 
+var startdate = ee.Date('2000-01-01');
+var enddate = ee.Date('2021-12-31'); 
+
+//-------------------- Load MODIS MOD13Q1 
+// filter by date 
+// select bands: EVI, NDVI, DOY, SummaryQA
+var mod13 = ee.ImageCollection('MODIS/006/MOD13Q1')
+  .filterDate(startdate, enddate)
+  .select(['EVI', 'NDVI','DayOfYear']); 
+
+print(mod13);
+
+
+// Apply a function to every image of the collection (use .map()) 
+// Get value of each band b of each temporal image t of MODQ13Q1
+// for each of the coordinate provide in iv_malla_modis_qp
+var mydata = mod13.map(function(i) {
+  return i.reduceRegions(parcelas, 'first');
+});
+
+// TODO: Complete doc 
+var extract = ee.FeatureCollection(mydata.flatten());
+
+// Export table
+Export.table.toDrive({
+  collection: extract,
+  description: 'my_extract_data',
+  fileFormat: 'CSV',
+});
+
+```
+
