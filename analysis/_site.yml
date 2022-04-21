@@ -1,17 +1,24 @@
-name: "adaptamed_dendroanalysis"
+name: adaptamed_dendroanalysis
 output_dir: ../docs
 navbar:
-  title: "adaptamed_dendroanalysis"
+  title: Dendrochronological and Satellite data analysis for Life-Adpatamed
   left:
   - text: Home
     href: index.html
-  - text: About
-    href: about.html
+  - text: Data
+    href: data.html
+  - text: Scripts
+    href: scripts.html
   - text: License
     href: license.html
+  right:
+  - icon: fab fa-github
+    text: Source code
+    href: https://github.com/ajpelu/adaptamed_dendroanalysis
 output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    theme: cosmo
+    theme: flatly
+    code_folding: hide
     highlight: textmate
