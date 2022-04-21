@@ -12,7 +12,7 @@ This page contains some of the scripts used in this project
 ## Get Satellite data
 Using Google Earth Engine code, we extracted spectral information for all the pixels covering the field plots. Several products were obtained.
 
-- Temporal series of Vegetation Indexes NDVI and EVI from MOD13Q1. We used the following GEE code (see also this [link]()) to get the EVI and NDVI data for each field plot. We obtained a total of XX values for each field plot (). The data were saved as `dendroadaptamed_iv_mod13q1.csv` (see [data/dendroadaptamed_iv_mod13q1.csv](dendroadaptamed_iv_mod13q1.csv))
+- Temporal series of Vegetation Indexes NDVI and EVI from MOD13Q1. We used the following GEE code to get the EVI and NDVI data for each field plot. We obtained a total of XX values for each field plot (). The data were saved as `dendroadaptamed_iv_mod13q1.csv` (see [data/dendroadaptamed_iv_mod13q1.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_iv_mod13q1.csv))
 
 ```{js, eval=FALSE, echo=TRUE}
 var parcelas = ee.FeatureCollection("users/ajpelu/geoinfo_adaptamed_dendro");
