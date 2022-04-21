@@ -8,4 +8,17 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+En este repositorio vamos a ir incluyendo información sobre los análisis que realizamos para el trabajo. 
+
+# Raw data 
+
+Several data sources are used 
+
+1. Dendrochronological data
+2. Competence data
+3. Plot features 
+4. Satellite data  
+
+
+ 
+
