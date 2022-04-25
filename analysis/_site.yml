@@ -16,7 +16,8 @@ navbar:
     text: Source code
     href: https://github.com/ajpelu/adaptamed_dendroanalysis
 output:
-  workflowr::wflow_html:
+  bookdown::html_document2:
+    base_format: workflowr::wflow_html
     toc: yes
     toc_float: yes
     theme: flatly

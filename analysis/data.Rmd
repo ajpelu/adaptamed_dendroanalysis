@@ -9,13 +9,17 @@ editor_options:
 
 ## Satellite data 
 
+### Vegetation Indexes 
+
 - We extracted temporal series of vegetation indexes as a surrogate of productivity. 
 
-- We used the MODIS product MOD13Q1 (temporal resolution: ; spatial resolution = 250 m). We used NDVI and EVI spectral index. 
+- We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolution = 250 m). We used NDVI and EVI spectral index. 
 
 - For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot. 
 
-```{r}
+### Annual Net Primary Productivity 
 
-```
+- We extracted temporal series of yearly NPP from MODIS product MOD17A3HGF (temporal resolution: yearly; spatial resolution = 500 m). See [here](https://lpdaac.usgs.gov/products/mod17a3hgfv006/) for a description of the method to obtain the NPP. 
+
+
 
