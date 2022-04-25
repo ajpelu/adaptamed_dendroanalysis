@@ -1,0 +1,155 @@
+---
+title: "Temporal evolution of NPP from MODIS MOD17A3"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set( 
+                      warning=FALSE, message=FALSE)
+```
+
+# Aims
+
+- Prepare temporal series of yearly NPP for each field-plot, and then compute temporal trends
+
+```{r pkg}
+library(here)
+library(tidyverse)
+library(tidytext)
+library(Kendall)
+library(trend)
+library(kableExtra)
+library(DT)
+```
+
+
+# Prepare data 
+
+- Select data for Pinus field plot
+- Extract date of each image
+- Format NPP values (multiply for scale factor 0.0001; see this [link](https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD17A3HGF)) 
+
+```{r prepare-data}
+raw_npp <- read_csv(here::here("data/dendroadaptamed_npp_mod17a3_yearly.csv"))
+elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv")) 
+
+elev_cat <- elev_cat %>% 
+  mutate(elev_cat = fct_relevel(as.factor(elev_cat), c("low2","low","med","high"))) 
+
+
+# Filter only Pinus field plot 
+dnpp <- raw_npp %>%
+  filter(str_detect(Specie, "Pinu")) %>%
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         npp = Npp*0.0001) %>%
+  dplyr::select(date, lat, long, Specie, site_code, npp, npp_qc = Npp_QC) %>% 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) %>% 
+  inner_join(elev_cat)
+
+```
+
+
+# Summary data
+
+```{r}
+npp_summary <- dnpp %>% 
+  group_by(Specie,site_code, elev_cat) %>% 
+  summarise(mean = mean(npp, na.rm = TRUE), 
+            sd = sd(npp, na.rm = TRUE), 
+            se = sd/sqrt(length(npp)),
+            cv = sd/mean*100,
+            min = min(npp), 
+            max = max(npp)) 
+
+```
+
+```{r npp-summary}
+npp_summary %>% arrange(Specie, elev_cat) %>% 
+  # dplyr::select(elev_cat) %>% 
+  kbl(
+    digits = c(0,0,4,4,4,2,4,4),
+    caption = "Summary values of the yearly NPP (kg C m^-2^ year ^-1^) along the study period (2000-2021) for the study sites.") %>% 
+    kable_paper("hover", full_width = F)
+```
+
+
+```{r, plot-npp-avg, fig.cap="Comparison of average values of yearly NPP."}
+cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
+
+npp_summary %>% 
+  ggplot(aes(x=elev_cat, y=mean, fill=elev_cat, colour=elev_cat)) + 
+  geom_point(size=3) + 
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.3)+
+  ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
+  xlab("") + 
+  facet_grid(cols=vars(Specie), scales = "free_x", space = "free_x") +
+  scale_fill_manual(values=cols, name="") +
+  scale_colour_manual(values=cols, name="") + 
+  theme_bw() + 
+    theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face="italic")
+  )
+```
+
+
+# Compute Temporal trends
+
+We explored the temporal trends for the NPP annual average (Table \@ref(tab:mk-mean)) along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator.  
+
+```{r}
+mknpp <- dnpp %>% 
+  mutate(year = lubridate::year(date)) %>% 
+  ungroup() %>% 
+  group_by(site_code,Specie,elev_cat) %>% 
+  summarise(across(npp, ~MannKendall(.)$tau, .names ="{.col}_tau"),
+            across(npp, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
+            across(npp, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
+            across(npp, ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen")) %>% 
+  arrange(Specie, elev_cat)
+
+```
+
+
+Significant but weaker positive trends (p-value < 0.05) were observed for yearly NPP of the medium- and high-elevation sites of *P. sylvestris* (Table \@ref(tab:mk-mean)). 
+
+```{r plot-npp, fig.cap="Temporal evolution of year NPP."}
+cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
+
+dnpp %>% 
+  mutate(year = lubridate::year(date)) %>% 
+  ggplot(aes(x=year, y=npp, colour=elev_cat)) +
+  geom_line() + 
+  #geom_point() + 
+  facet_wrap(~Specie, ncol=2) +
+  scale_fill_manual(values=cols, name="") +
+  scale_colour_manual(values=cols, name="") +
+  ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
+  xlab("") + 
+  theme_bw() + 
+    theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face="italic")
+  )
+
+```
+
+
+```{r mk-mean}
+mknpp %>% 
+  kbl(
+    digits = c(0,0,4,4,4,4),
+    caption = "Mann-Kendall and Seil temporal trend test for yearly NPP") %>% 
+    kable_paper("hover", full_width = F)
+```
+
+
+
+
