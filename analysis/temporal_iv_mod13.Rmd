@@ -1,5 +1,5 @@
 ---
-title: "Temporal evolution of IV indexes from MODIS MOD13Q1"
+title: "Temporal evolution of IV indexes"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
@@ -21,6 +21,7 @@ library(Kendall)
 library(trend)
 library(kableExtra)
 library(DT)
+library(hydroTSM)
 ```
 
 
@@ -65,7 +66,9 @@ iv_yearly <- d %>%
             max = max(value),
             n = length(value)) %>% 
   mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) %>% 
-  inner_join(elev_cat)
+  inner_join(elev_cat) %>% 
+  mutate(season = as.factor("yearly")) %>% 
+  ungroup()
 ```
 
 # Summary data
@@ -128,7 +131,7 @@ iv_yearly %>%
 
 
 ```{r}
-mkevi <- iv_yearly %>% 
+mkevi_yearly <- iv_yearly %>% 
   filter(variable == "evi")  %>% 
   ungroup() %>% 
   group_by(site_code,Specie) %>% 
@@ -140,7 +143,7 @@ mkevi <- iv_yearly %>%
 ```
 
 ```{r mk-mean}
-mkevi %>% 
+mkevi_yearly %>% 
   dplyr::select(Specie, site_code, dplyr::starts_with("mean")) %>% rename_with(.cols=dplyr::starts_with("mean"),
             ~str_replace(., "mean_", "")) %>% 
   kbl(
@@ -151,7 +154,7 @@ mkevi %>%
 
 
 ```{r mk-sd}
-mkevi %>% 
+mkevi_yearly %>% 
   dplyr::select(site_code, dplyr::starts_with("sd")) %>% rename_with(.cols=dplyr::starts_with("sd"),
             ~str_replace(., "sd", "")) %>% 
   kbl(
@@ -161,6 +164,227 @@ mkevi %>%
 
 ```
 
+# Seasonal analysis 
+```{r}
+iv_season <- d %>% 
+  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt="seasons"))) %>% 
+  mutate(year=lubridate::year(date)) %>% 
+  dplyr::select(site_code, Specie, year, season, evi, ndvi) %>% 
+  pivot_longer(cols = c("ndvi", "evi"), 
+               names_to = 'variable', values_to = 'value') %>% 
+  group_by(site_code, Specie, year, season, variable) %>% 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) %>% 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) %>% 
+  inner_join(elev_cat) %>% 
+  ungroup()
 
+```
+
+
+```{r plot-evi-season, fig.cap="Temporal evolution of EVI seasonal mean."}
+
+bind_rows(iv_season, iv_yearly) %>% 
+  mutate(season = fct_relevel(season, c("yearly", "winter","spring","summer","autumm"))) %>% 
+  filter(variable == "evi") %>%  
+  ggplot(aes(x=year, y=mean, colour=elev_cat)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_cat), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_grid(Specie~season) +
+  scale_fill_manual(values=cols, name="") +
+  scale_colour_manual(values=cols, name="") + 
+  theme_bw() +
+  ylab("EVI seasonal mean") + xlab("") +
+  theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face="italic")
+  )
+```
+
+
+```{r}
+mkevi_season <- iv_season %>% 
+  filter(variable == "evi")  %>% 
+  ungroup() %>% 
+  group_by(site_code,Specie, season) %>% 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
+            across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen"))
+
+```
+
+
+```{r}
+mkevi_season %>% 
+  dplyr::select(Specie, site_code, season, dplyr::starts_with("mean")) %>% rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) %>% 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") %>% 
+    kable_paper("hover", full_width = F)
+```
+
+
+```{r}
+mkevi_season %>% 
+  dplyr::select(site_code, season, dplyr::starts_with("sd")) %>% rename_with(.cols=dplyr::starts_with("sd"),
+            ~str_replace(., "sd_", "")) %>% 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") %>% 
+    kable_paper("hover", full_width = F)
+
+```
+
+
+
+# Long-term NDVI (AVHRR)
+Vas por aquí 
+```{r}
+ndvi1km_raw <- read_csv(here::here("data/dendroadaptamed_ndvicsic1km.csv"))
+```
+
+
+```{r}
+ndvi1km_yearly <- ndvi1km_raw %>% 
+ mutate(year=lubridate::year(date)) %>% 
+  group_by(site_code, Specie, year, elev_cat) %>% 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi)) %>% 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. "), 
+         season = as.factor("yearly")) %>% 
+  ungroup()
+
+ndvi1km_season <- ndvi1km_raw %>% 
+  mutate(year=lubridate::year(date)) %>% 
+  mutate(season = 
+           as.factor(hydroTSM::time2season(date, 
+                                 out.fmt="seasons"))) %>% 
+           group_by(site_code, Specie, year, season, elev_cat) %>% 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi)) %>% 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) %>% 
+  ungroup()
+
+ndvi1km <- bind_rows(
+  ndvi1km_yearly, 
+  ndvi1km_season
+)
+```
+
+
+
+```{r ndvi-year, fig.cap="Temporal evolution of NDVI annual mean (dataset = AVHRR)"}
+
+ndvi1km %>%  
+  mutate(season2 = fct_relevel(season, c("yearly", "winter","spring","summer","autumm"))) %>%
+  ggplot(aes(x=year, y=mean, colour=elev_cat)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_cat), colour=NA, alpha=.2) +
+  geom_line() + 
+  facet_grid(Specie~season2) +
+  scale_fill_manual(values=cols, name="") +
+  scale_colour_manual(values=cols, name="") + 
+  theme_bw() +
+  ylab("NDVI seasonal mean") + xlab("") +
+  theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face="italic")
+  )
+```
+
+
+```{r}
+mkndvi1km <- ndvi1km %>% 
+  ungroup() %>% 
+  group_by(site_code,Specie, season) %>% 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
+            across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen"))
+
+```
+
+
+```{r}
+mkndvi1km %>% 
+  dplyr::select(Specie, site_code, season, dplyr::starts_with("mean")) %>% rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) %>% 
+  kbl(
+    digits = c(0,0,0,3,5,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for NDVI (1km)") %>% 
+    kable_paper("hover", full_width = F)
+```
+
+
+```{r}
+mkndvi1km %>% 
+  dplyr::select(site_code, season, dplyr::starts_with("sd")) %>% rename_with(.cols=dplyr::starts_with("sd"),
+            ~str_replace(., "sd_", "")) %>% 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for seasonal and annual NDVI standard deviation") %>% 
+    kable_paper("hover", full_width = F)
+
+```
+
+
+# Correlation NDVI AVHRR (1km) - MODIS (250m)
+
+```{r}
+# Select ndvi_modis
+ndvi_modis <- bind_rows(iv_yearly, iv_season) %>% 
+  filter(variable == "ndvi")  %>% 
+  dplyr::select(site_code, Specie, year, mean_modis = mean, sd_modis = sd, se_modis = se, elev_cat, season)
+
+ndvi_avhrr <- ndvi1km %>% 
+  dplyr::select(site_code, Specie, year, mean_avhrr = mean, sd_avhrr = sd, se_avhrr = se, elev_cat, season)
+
+ndvi_correla <- inner_join(
+  ndvi_modis, ndvi_avhrr) 
+
+ggpubr::ggscatter(ndvi_correla,
+    x = "mean_avhrr", y = "mean_modis",
+   color = "black", shape = 21, size = 1.5, 
+   facet.by = "season",
+   add = "reg.line",  
+   add.params = list(color = "blue", fill = "lightgray"), 
+   conf.int = TRUE, 
+   cor.coef = TRUE, 
+   cor.coeff.args = list(method = "pearson", 
+                         label.x = .5, label.y = .2, 
+                         label.sep = "\n"), 
+   xlab = "NDVI AVHRR 1km",
+   ylab = "NDVI MODIS 250m"
+   ) +
+  geom_abline(slope=1) + 
+  lims(x=c(0,1), y=c(0,1)) 
+```
 
 
