@@ -11,10 +11,10 @@
 
 
 
-<title>Temporal evolution of IV indexes from MODIS MOD13Q1</title>
+<title>Temporal evolution of IV indexes</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-3.5.1/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.5.1/jquery-3.5.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -36,7 +36,7 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
 <script src="site_libs/datatables-binding-0.17/datatables.js"></script>
 <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -86,6 +86,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -106,6 +107,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -334,7 +338,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -372,7 +376,7 @@ div.tocify {
 <div id="header">
 
 <div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
@@ -381,7 +385,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Temporal evolution of IV indexes from MODIS MOD13Q1</h1>
+<h1 class="title toc-ignore">Temporal evolution of IV indexes</h1>
 
 </div>
 
@@ -410,7 +414,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-04-25
+<strong>Last updated:</strong> 2022-05-16
 </p>
 <p>
 <strong>Checks:</strong>
@@ -538,20 +542,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea83c9c051639cd1be60f7618a92ed43fffac6a7atargetblanka83c9c0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree39caa1ab3c3385fdce787eff28d2043094aaf6e5targetblank39caa1aa">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a83c9c051639cd1be60f7618a92ed43fffac6a7a" target="_blank">a83c9c0</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/39caa1ab3c3385fdce787eff28d2043094aaf6e5" target="_blank">39caa1a</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea83c9c051639cd1be60f7618a92ed43fffac6a7atargetblanka83c9c0a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree39caa1ab3c3385fdce787eff28d2043094aaf6e5targetblank39caa1aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a83c9c051639cd1be60f7618a92ed43fffac6a7a" target="_blank">a83c9c0</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/39caa1ab3c3385fdce787eff28d2043094aaf6e5" target="_blank">39caa1a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -567,7 +571,10 @@ results were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    scripts/
+
+Unstaged changes:
+    Modified:   analysis/data.Rmd
+    Modified:   analysis/scripts.Rmd
 
 </code></pre>
 <p>
@@ -612,6 +619,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/39caa1ab3c3385fdce787eff28d2043094aaf6e5/analysis/temporal_iv_mod13.Rmd" target="_blank">39caa1a</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2022-05-16
+</td>
+<td>
+update analysis
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/a2a4353741c95787d8cb1d945601008caac4460f/docs/temporal_iv_mod13.html" target="_blank">a2a4353</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2022-04-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -663,7 +704,8 @@ library(tidyverse)
 library(Kendall)
 library(trend)
 library(kableExtra)
-library(DT)</code></pre>
+library(DT)
+library(hydroTSM)</code></pre>
 </div>
 <div id="prepare-data" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Prepare data</h1>
@@ -701,7 +743,9 @@ d &lt;- raw %&gt;%
             max = max(value),
             n = length(value)) %&gt;% 
   mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) %&gt;% 
-  inner_join(elev_cat)</code></pre>
+  inner_join(elev_cat) %&gt;% 
+  mutate(season = as.factor(&quot;yearly&quot;)) %&gt;% 
+  ungroup()</code></pre>
 </div>
 <div id="summary-data" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Summary data</h1>
@@ -790,7 +834,7 @@ ajpelu
 </table>
 </div>
 </div>
-<pre class="r"><code>mkevi &lt;- iv_yearly %&gt;% 
+<pre class="r"><code>mkevi_yearly &lt;- iv_yearly %&gt;% 
   filter(variable == &quot;evi&quot;)  %&gt;% 
   ungroup() %&gt;% 
   group_by(site_code,Specie) %&gt;% 
@@ -798,7 +842,7 @@ ajpelu
             across(mean:sd, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
             across(mean:sd, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
             across(mean:sd, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;))</code></pre>
-<pre class="r"><code>mkevi %&gt;% 
+<pre class="r"><code>mkevi_yearly %&gt;% 
   dplyr::select(Specie, site_code, dplyr::starts_with(&quot;mean&quot;)) %&gt;% rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
             ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) %&gt;% 
   kbl(
@@ -1054,7 +1098,7 @@ PISYL_PORTUGOS_M
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>mkevi %&gt;% 
+<pre class="r"><code>mkevi_yearly %&gt;% 
   dplyr::select(site_code, dplyr::starts_with(&quot;sd&quot;)) %&gt;% rename_with(.cols=dplyr::starts_with(&quot;sd&quot;),
             ~str_replace(., &quot;sd&quot;, &quot;&quot;)) %&gt;% 
   kbl(
@@ -1274,6 +1318,4873 @@ PISYL_PORTUGOS_M
 </tr>
 </tbody>
 </table>
+</div>
+<div id="seasonal-analysis" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Seasonal analysis</h1>
+<pre class="r"><code>iv_season &lt;- d %&gt;% 
+  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt=&quot;seasons&quot;))) %&gt;% 
+  mutate(year=lubridate::year(date)) %&gt;% 
+  dplyr::select(site_code, Specie, year, season, evi, ndvi) %&gt;% 
+  pivot_longer(cols = c(&quot;ndvi&quot;, &quot;evi&quot;), 
+               names_to = &#39;variable&#39;, values_to = &#39;value&#39;) %&gt;% 
+  group_by(site_code, Specie, year, season, variable) %&gt;% 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) %&gt;% 
+  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) %&gt;% 
+  inner_join(elev_cat) %&gt;% 
+  ungroup()</code></pre>
+<pre class="r"><code>bind_rows(iv_season, iv_yearly) %&gt;% 
+  mutate(season = fct_relevel(season, c(&quot;yearly&quot;, &quot;winter&quot;,&quot;spring&quot;,&quot;summer&quot;,&quot;autumm&quot;))) %&gt;% 
+  filter(variable == &quot;evi&quot;) %&gt;%  
+  ggplot(aes(x=year, y=mean, colour=elev_cat)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_cat), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_grid(Specie~season) +
+  scale_fill_manual(values=cols, name=&quot;&quot;) +
+  scale_colour_manual(values=cols, name=&quot;&quot;) + 
+  theme_bw() +
+  ylab(&quot;EVI seasonal mean&quot;) + xlab(&quot;&quot;) +
+  theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face=&quot;italic&quot;)
+  )</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:plot-evi-season"></span>
+<img src="figure/temporal_iv_mod13.Rmd/plot-evi-season-1.png" alt="Temporal evolution of EVI seasonal mean." width="672" />
+<p class="caption">
+Figure 5.1: Temporal evolution of EVI seasonal mean.
+</p>
+</div>
+<pre class="r"><code>mkevi_season &lt;- iv_season %&gt;% 
+  filter(variable == &quot;evi&quot;)  %&gt;% 
+  ungroup() %&gt;% 
+  group_by(site_code,Specie, season) %&gt;% 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names =&quot;{.col}_tau&quot;),
+            across(mean:sd, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;))</code></pre>
+<pre class="r"><code>mkevi_season %&gt;% 
+  dplyr::select(Specie, site_code, season, dplyr::starts_with(&quot;mean&quot;)) %&gt;% rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
+            ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) %&gt;% 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for EVI mean&quot;) %&gt;% 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-7">Table 5.1: </span>Mann-Kendall and Seil temporal trend test for EVI mean
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Specie
+</th>
+<th style="text-align:left;">
+site_code
+</th>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:right;">
+tau
+</th>
+<th style="text-align:right;">
+pvalue_mk
+</th>
+<th style="text-align:right;">
+senslope
+</th>
+<th style="text-align:right;">
+pvalue_sen
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.195
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+<td style="text-align:right;">
+-0.00091
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.039
+</td>
+<td style="text-align:right;">
+0.8215
+</td>
+<td style="text-align:right;">
+-0.00043
+</td>
+<td style="text-align:right;">
+0.8215
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.065
+</td>
+<td style="text-align:right;">
+0.6930
+</td>
+<td style="text-align:right;">
+-0.00055
+</td>
+<td style="text-align:right;">
+0.6930
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.126
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+<td style="text-align:right;">
+-0.00048
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.420
+</td>
+<td style="text-align:right;">
+0.0068
+</td>
+<td style="text-align:right;">
+0.00263
+</td>
+<td style="text-align:right;">
+0.0068
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.455
+</td>
+<td style="text-align:right;">
+0.0034
+</td>
+<td style="text-align:right;">
+0.00287
+</td>
+<td style="text-align:right;">
+0.0034
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.0321
+</td>
+<td style="text-align:right;">
+0.00170
+</td>
+<td style="text-align:right;">
+0.0321
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.108
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+<td style="text-align:right;">
+0.00056
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+<td style="text-align:right;">
+0.00066
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+<td style="text-align:right;">
+0.00033
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.048
+</td>
+<td style="text-align:right;">
+0.7780
+</td>
+<td style="text-align:right;">
+-0.00037
+</td>
+<td style="text-align:right;">
+0.7780
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.299
+</td>
+<td style="text-align:right;">
+0.0552
+</td>
+<td style="text-align:right;">
+-0.00229
+</td>
+<td style="text-align:right;">
+0.0552
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.108
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+<td style="text-align:right;">
+0.00043
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.117
+</td>
+<td style="text-align:right;">
+0.4635
+</td>
+<td style="text-align:right;">
+0.00060
+</td>
+<td style="text-align:right;">
+0.4635
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.316
+</td>
+<td style="text-align:right;">
+0.0423
+</td>
+<td style="text-align:right;">
+-0.00182
+</td>
+<td style="text-align:right;">
+0.0423
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.446
+</td>
+<td style="text-align:right;">
+0.0040
+</td>
+<td style="text-align:right;">
+0.00263
+</td>
+<td style="text-align:right;">
+0.0040
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.333
+</td>
+<td style="text-align:right;">
+0.0321
+</td>
+<td style="text-align:right;">
+0.00154
+</td>
+<td style="text-align:right;">
+0.0321
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.221
+</td>
+<td style="text-align:right;">
+0.1586
+</td>
+<td style="text-align:right;">
+0.00128
+</td>
+<td style="text-align:right;">
+0.1586
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.203
+</td>
+<td style="text-align:right;">
+0.1946
+</td>
+<td style="text-align:right;">
+0.00122
+</td>
+<td style="text-align:right;">
+0.1946
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.030
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+<td style="text-align:right;">
+-0.00012
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.160
+</td>
+<td style="text-align:right;">
+0.3100
+</td>
+<td style="text-align:right;">
+0.00065
+</td>
+<td style="text-align:right;">
+0.3100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+<td style="text-align:right;">
+0.3976
+</td>
+<td style="text-align:right;">
+0.00073
+</td>
+<td style="text-align:right;">
+0.3976
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.013
+</td>
+<td style="text-align:right;">
+0.9550
+</td>
+<td style="text-align:right;">
+-0.00008
+</td>
+<td style="text-align:right;">
+0.9550
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.039
+</td>
+<td style="text-align:right;">
+0.8215
+</td>
+<td style="text-align:right;">
+-0.00016
+</td>
+<td style="text-align:right;">
+0.8215
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+<td style="text-align:right;">
+0.00024
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.126
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+<td style="text-align:right;">
+0.00063
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.082
+</td>
+<td style="text-align:right;">
+0.6118
+</td>
+<td style="text-align:right;">
+-0.00043
+</td>
+<td style="text-align:right;">
+0.6118
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.299
+</td>
+<td style="text-align:right;">
+0.0552
+</td>
+<td style="text-align:right;">
+0.00094
+</td>
+<td style="text-align:right;">
+0.0552
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.221
+</td>
+<td style="text-align:right;">
+0.1586
+</td>
+<td style="text-align:right;">
+0.00107
+</td>
+<td style="text-align:right;">
+0.1586
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.255
+</td>
+<td style="text-align:right;">
+0.1019
+</td>
+<td style="text-align:right;">
+0.00090
+</td>
+<td style="text-align:right;">
+0.1019
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.156
+</td>
+<td style="text-align:right;">
+0.3235
+</td>
+<td style="text-align:right;">
+-0.00079
+</td>
+<td style="text-align:right;">
+0.3235
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.394
+</td>
+<td style="text-align:right;">
+0.0112
+</td>
+<td style="text-align:right;">
+0.00336
+</td>
+<td style="text-align:right;">
+0.0112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.411
+</td>
+<td style="text-align:right;">
+0.0080
+</td>
+<td style="text-align:right;">
+0.00214
+</td>
+<td style="text-align:right;">
+0.0080
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.238
+</td>
+<td style="text-align:right;">
+0.1278
+</td>
+<td style="text-align:right;">
+0.00158
+</td>
+<td style="text-align:right;">
+0.1278
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.463
+</td>
+<td style="text-align:right;">
+0.0028
+</td>
+<td style="text-align:right;">
+0.00691
+</td>
+<td style="text-align:right;">
+0.0028
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.117
+</td>
+<td style="text-align:right;">
+0.4635
+</td>
+<td style="text-align:right;">
+0.00053
+</td>
+<td style="text-align:right;">
+0.4635
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.195
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+<td style="text-align:right;">
+0.00064
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.074
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+<td style="text-align:right;">
+-0.00052
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.039
+</td>
+<td style="text-align:right;">
+0.8215
+</td>
+<td style="text-align:right;">
+-0.00014
+</td>
+<td style="text-align:right;">
+0.8215
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.307
+</td>
+<td style="text-align:right;">
+0.0484
+</td>
+<td style="text-align:right;">
+0.00195
+</td>
+<td style="text-align:right;">
+0.0484
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.307
+</td>
+<td style="text-align:right;">
+0.0484
+</td>
+<td style="text-align:right;">
+0.00093
+</td>
+<td style="text-align:right;">
+0.0484
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.264
+</td>
+<td style="text-align:right;">
+0.0907
+</td>
+<td style="text-align:right;">
+0.00110
+</td>
+<td style="text-align:right;">
+0.0907
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.238
+</td>
+<td style="text-align:right;">
+0.1278
+</td>
+<td style="text-align:right;">
+0.00130
+</td>
+<td style="text-align:right;">
+0.1278
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>mkevi_season %&gt;% 
+  dplyr::select(site_code, season, dplyr::starts_with(&quot;sd&quot;)) %&gt;% rename_with(.cols=dplyr::starts_with(&quot;sd&quot;),
+            ~str_replace(., &quot;sd_&quot;, &quot;&quot;)) %&gt;% 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for anual EVI standard deviation&quot;) %&gt;% 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-8">Table 5.2: </span>Mann-Kendall and Seil temporal trend test for anual EVI standard deviation
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Specie
+</th>
+<th style="text-align:left;">
+site_code
+</th>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:right;">
+tau
+</th>
+<th style="text-align:right;">
+pvalue_mk
+</th>
+<th style="text-align:right;">
+senslope
+</th>
+<th style="text-align:right;">
+pvalue_sen
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.229
+</td>
+<td style="text-align:right;">
+0.1426
+</td>
+<td style="text-align:right;">
+0.00029
+</td>
+<td style="text-align:right;">
+0.1426
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.056
+</td>
+<td style="text-align:right;">
+0.7351
+</td>
+<td style="text-align:right;">
+0.00011
+</td>
+<td style="text-align:right;">
+0.7351
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.299
+</td>
+<td style="text-align:right;">
+0.0552
+</td>
+<td style="text-align:right;">
+0.00036
+</td>
+<td style="text-align:right;">
+0.0552
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.169
+</td>
+<td style="text-align:right;">
+0.2839
+</td>
+<td style="text-align:right;">
+0.00032
+</td>
+<td style="text-align:right;">
+0.2839
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.195
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+<td style="text-align:right;">
+0.00044
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.152
+</td>
+<td style="text-align:right;">
+0.3377
+</td>
+<td style="text-align:right;">
+0.00076
+</td>
+<td style="text-align:right;">
+0.3377
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.091
+</td>
+<td style="text-align:right;">
+0.5728
+</td>
+<td style="text-align:right;">
+0.00021
+</td>
+<td style="text-align:right;">
+0.5728
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.186
+</td>
+<td style="text-align:right;">
+0.2363
+</td>
+<td style="text-align:right;">
+0.00056
+</td>
+<td style="text-align:right;">
+0.2363
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+<td style="text-align:right;">
+0.7780
+</td>
+<td style="text-align:right;">
+0.00020
+</td>
+<td style="text-align:right;">
+0.7780
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.177
+</td>
+<td style="text-align:right;">
+0.2594
+</td>
+<td style="text-align:right;">
+0.00047
+</td>
+<td style="text-align:right;">
+0.2594
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.030
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+<td style="text-align:right;">
+-0.00005
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.022
+</td>
+<td style="text-align:right;">
+0.9102
+</td>
+<td style="text-align:right;">
+-0.00007
+</td>
+<td style="text-align:right;">
+0.9102
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.126
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+<td style="text-align:right;">
+0.00026
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.325
+</td>
+<td style="text-align:right;">
+0.0369
+</td>
+<td style="text-align:right;">
+0.00102
+</td>
+<td style="text-align:right;">
+0.0369
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.169
+</td>
+<td style="text-align:right;">
+0.2839
+</td>
+<td style="text-align:right;">
+0.00026
+</td>
+<td style="text-align:right;">
+0.2839
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.022
+</td>
+<td style="text-align:right;">
+0.9102
+</td>
+<td style="text-align:right;">
+-0.00013
+</td>
+<td style="text-align:right;">
+0.9102
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.030
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+<td style="text-align:right;">
+-0.00013
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.00002
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.100
+</td>
+<td style="text-align:right;">
+0.5350
+</td>
+<td style="text-align:right;">
+-0.00020
+</td>
+<td style="text-align:right;">
+0.5350
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.290
+</td>
+<td style="text-align:right;">
+0.0627
+</td>
+<td style="text-align:right;">
+-0.00088
+</td>
+<td style="text-align:right;">
+0.0627
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.065
+</td>
+<td style="text-align:right;">
+0.6930
+</td>
+<td style="text-align:right;">
+0.00016
+</td>
+<td style="text-align:right;">
+0.6930
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+<td style="text-align:right;">
+0.00017
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.195
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+<td style="text-align:right;">
+-0.00050
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.221
+</td>
+<td style="text-align:right;">
+0.1586
+</td>
+<td style="text-align:right;">
+0.00045
+</td>
+<td style="text-align:right;">
+0.1586
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.169
+</td>
+<td style="text-align:right;">
+0.2839
+</td>
+<td style="text-align:right;">
+-0.00049
+</td>
+<td style="text-align:right;">
+0.2839
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.108
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+<td style="text-align:right;">
+-0.00013
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.273
+</td>
+<td style="text-align:right;">
+0.0804
+</td>
+<td style="text-align:right;">
+-0.00053
+</td>
+<td style="text-align:right;">
+0.0804
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.143
+</td>
+<td style="text-align:right;">
+0.3669
+</td>
+<td style="text-align:right;">
+-0.00038
+</td>
+<td style="text-align:right;">
+0.3669
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.126
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+<td style="text-align:right;">
+0.00019
+</td>
+<td style="text-align:right;">
+0.4298
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.117
+</td>
+<td style="text-align:right;">
+0.4635
+</td>
+<td style="text-align:right;">
+0.00020
+</td>
+<td style="text-align:right;">
+0.4635
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.108
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+<td style="text-align:right;">
+0.00017
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.134
+</td>
+<td style="text-align:right;">
+0.3976
+</td>
+<td style="text-align:right;">
+-0.00024
+</td>
+<td style="text-align:right;">
+0.3976
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.074
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+<td style="text-align:right;">
+-0.00035
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.082
+</td>
+<td style="text-align:right;">
+0.6118
+</td>
+<td style="text-align:right;">
+0.00040
+</td>
+<td style="text-align:right;">
+0.6118
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.108
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+<td style="text-align:right;">
+-0.00018
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.247
+</td>
+<td style="text-align:right;">
+0.1143
+</td>
+<td style="text-align:right;">
+-0.00210
+</td>
+<td style="text-align:right;">
+0.1143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.030
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+<td style="text-align:right;">
+-0.00010
+</td>
+<td style="text-align:right;">
+0.8656
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.195
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+<td style="text-align:right;">
+-0.00062
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.013
+</td>
+<td style="text-align:right;">
+0.9550
+</td>
+<td style="text-align:right;">
+-0.00005
+</td>
+<td style="text-align:right;">
+0.9550
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.108
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+<td style="text-align:right;">
+-0.00041
+</td>
+<td style="text-align:right;">
+0.4986
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.238
+</td>
+<td style="text-align:right;">
+0.1278
+</td>
+<td style="text-align:right;">
+-0.00094
+</td>
+<td style="text-align:right;">
+0.1278
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.048
+</td>
+<td style="text-align:right;">
+0.7780
+</td>
+<td style="text-align:right;">
+-0.00036
+</td>
+<td style="text-align:right;">
+0.7780
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+<td style="text-align:right;">
+0.00022
+</td>
+<td style="text-align:right;">
+0.6519
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.143
+</td>
+<td style="text-align:right;">
+0.3669
+</td>
+<td style="text-align:right;">
+-0.00058
+</td>
+<td style="text-align:right;">
+0.3669
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="long-term-ndvi-avhrr" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Long-term NDVI (AVHRR)</h1>
+<p>Vas por aquí</p>
+<pre class="r"><code>ndvi1km_raw &lt;- read_csv(here::here(&quot;data/dendroadaptamed_ndvicsic1km.csv&quot;))</code></pre>
+<pre class="r"><code>ndvi1km_yearly &lt;- ndvi1km_raw %&gt;% 
+ mutate(year=lubridate::year(date)) %&gt;% 
+  group_by(site_code, Specie, year, elev_cat) %&gt;% 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi)) %&gt;% 
+  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;), 
+         season = as.factor(&quot;yearly&quot;)) %&gt;% 
+  ungroup()
+
+ndvi1km_season &lt;- ndvi1km_raw %&gt;% 
+  mutate(year=lubridate::year(date)) %&gt;% 
+  mutate(season = 
+           as.factor(hydroTSM::time2season(date, 
+                                 out.fmt=&quot;seasons&quot;))) %&gt;% 
+           group_by(site_code, Specie, year, season, elev_cat) %&gt;% 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi)) %&gt;% 
+  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) %&gt;% 
+  ungroup()
+
+ndvi1km &lt;- bind_rows(
+  ndvi1km_yearly, 
+  ndvi1km_season
+)</code></pre>
+<pre class="r"><code>ndvi1km %&gt;%  
+  mutate(season2 = fct_relevel(season, c(&quot;yearly&quot;, &quot;winter&quot;,&quot;spring&quot;,&quot;summer&quot;,&quot;autumm&quot;))) %&gt;%
+  ggplot(aes(x=year, y=mean, colour=elev_cat)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_cat), colour=NA, alpha=.2) +
+  geom_line() + 
+  facet_grid(Specie~season2) +
+  scale_fill_manual(values=cols, name=&quot;&quot;) +
+  scale_colour_manual(values=cols, name=&quot;&quot;) + 
+  theme_bw() +
+  ylab(&quot;NDVI seasonal mean&quot;) + xlab(&quot;&quot;) +
+  theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face=&quot;italic&quot;)
+  )</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:ndvi-year"></span>
+<img src="figure/temporal_iv_mod13.Rmd/ndvi-year-1.png" alt="Temporal evolution of NDVI annual mean (dataset = AVHRR)" width="672" />
+<p class="caption">
+Figure 6.1: Temporal evolution of NDVI annual mean (dataset = AVHRR)
+</p>
+</div>
+<pre class="r"><code>mkndvi1km &lt;- ndvi1km %&gt;% 
+  ungroup() %&gt;% 
+  group_by(site_code,Specie, season) %&gt;% 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names =&quot;{.col}_tau&quot;),
+            across(mean:sd, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;))</code></pre>
+<pre class="r"><code>mkndvi1km %&gt;% 
+  dplyr::select(Specie, site_code, season, dplyr::starts_with(&quot;mean&quot;)) %&gt;% rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
+            ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) %&gt;% 
+  kbl(
+    digits = c(0,0,0,3,5,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for NDVI (1km)&quot;) %&gt;% 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-12">Table 6.1: </span>Mann-Kendall and Seil temporal trend test for NDVI (1km)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Specie
+</th>
+<th style="text-align:left;">
+site_code
+</th>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:right;">
+tau
+</th>
+<th style="text-align:right;">
+pvalue_mk
+</th>
+<th style="text-align:right;">
+senslope
+</th>
+<th style="text-align:right;">
+pvalue_sen
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.580
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00428
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.508
+</td>
+<td style="text-align:right;">
+0.00003
+</td>
+<td style="text-align:right;">
+0.00460
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.472
+</td>
+<td style="text-align:right;">
+0.00009
+</td>
+<td style="text-align:right;">
+0.00349
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.483
+</td>
+<td style="text-align:right;">
+0.00006
+</td>
+<td style="text-align:right;">
+0.00377
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.661
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00437
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.745
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00308
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.569
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00376
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.601
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00276
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.651
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00339
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.486
+</td>
+<td style="text-align:right;">
+0.00004
+</td>
+<td style="text-align:right;">
+0.00272
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.671
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00348
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.547
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+0.00347
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.633
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00361
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.586
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00362
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.654
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00368
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.691
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00298
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.569
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00337
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.561
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00293
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.551
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+0.00302
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.587
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00315
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.415
+</td>
+<td style="text-align:right;">
+0.00048
+</td>
+<td style="text-align:right;">
+0.00194
+</td>
+<td style="text-align:right;">
+0.0005
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.380
+</td>
+<td style="text-align:right;">
+0.00167
+</td>
+<td style="text-align:right;">
+0.00294
+</td>
+<td style="text-align:right;">
+0.0017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.162
+</td>
+<td style="text-align:right;">
+0.18214
+</td>
+<td style="text-align:right;">
+0.00072
+</td>
+<td style="text-align:right;">
+0.1821
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.433
+</td>
+<td style="text-align:right;">
+0.00033
+</td>
+<td style="text-align:right;">
+0.00192
+</td>
+<td style="text-align:right;">
+0.0003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.187
+</td>
+<td style="text-align:right;">
+0.11825
+</td>
+<td style="text-align:right;">
+0.00156
+</td>
+<td style="text-align:right;">
+0.1183
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.640
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00373
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.572
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00440
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.476
+</td>
+<td style="text-align:right;">
+0.00008
+</td>
+<td style="text-align:right;">
+0.00296
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.497
+</td>
+<td style="text-align:right;">
+0.00004
+</td>
+<td style="text-align:right;">
+0.00317
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.597
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00380
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.587
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00269
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.550
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+0.00365
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.504
+</td>
+<td style="text-align:right;">
+0.00003
+</td>
+<td style="text-align:right;">
+0.00245
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.561
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00323
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.341
+</td>
+<td style="text-align:right;">
+0.00412
+</td>
+<td style="text-align:right;">
+0.00225
+</td>
+<td style="text-align:right;">
+0.0041
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.714
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00394
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.590
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00445
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.608
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00304
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.615
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00372
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.667
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00390
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.597
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00241
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.383
+</td>
+<td style="text-align:right;">
+0.00151
+</td>
+<td style="text-align:right;">
+0.00199
+</td>
+<td style="text-align:right;">
+0.0015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.544
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+0.00284
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.462
+</td>
+<td style="text-align:right;">
+0.00013
+</td>
+<td style="text-align:right;">
+0.00213
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.432
+</td>
+<td style="text-align:right;">
+0.00028
+</td>
+<td style="text-align:right;">
+0.00284
+</td>
+<td style="text-align:right;">
+0.0003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.674
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00236
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.519
+</td>
+<td style="text-align:right;">
+0.00002
+</td>
+<td style="text-align:right;">
+0.00215
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.586
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00288
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.369
+</td>
+<td style="text-align:right;">
+0.00226
+</td>
+<td style="text-align:right;">
+0.00170
+</td>
+<td style="text-align:right;">
+0.0023
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.630
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00285
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.644
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+0.00258
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.512
+</td>
+<td style="text-align:right;">
+0.00002
+</td>
+<td style="text-align:right;">
+0.00231
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.544
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+0.00273
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.455
+</td>
+<td style="text-align:right;">
+0.00017
+</td>
+<td style="text-align:right;">
+0.00268
+</td>
+<td style="text-align:right;">
+0.0002
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.476
+</td>
+<td style="text-align:right;">
+0.00006
+</td>
+<td style="text-align:right;">
+0.00295
+</td>
+<td style="text-align:right;">
+0.0001
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>mkndvi1km %&gt;% 
+  dplyr::select(site_code, season, dplyr::starts_with(&quot;sd&quot;)) %&gt;% rename_with(.cols=dplyr::starts_with(&quot;sd&quot;),
+            ~str_replace(., &quot;sd_&quot;, &quot;&quot;)) %&gt;% 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for seasonal and annual NDVI standard deviation&quot;) %&gt;% 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-13">Table 6.2: </span>Mann-Kendall and Seil temporal trend test for seasonal and annual NDVI standard deviation
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Specie
+</th>
+<th style="text-align:left;">
+site_code
+</th>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:right;">
+tau
+</th>
+<th style="text-align:right;">
+pvalue_mk
+</th>
+<th style="text-align:right;">
+senslope
+</th>
+<th style="text-align:right;">
+pvalue_sen
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.032
+</td>
+<td style="text-align:right;">
+0.7982
+</td>
+<td style="text-align:right;">
+-0.00004
+</td>
+<td style="text-align:right;">
+0.7982
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.226
+</td>
+<td style="text-align:right;">
+0.0618
+</td>
+<td style="text-align:right;">
+-0.00041
+</td>
+<td style="text-align:right;">
+0.0618
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.009
+</td>
+<td style="text-align:right;">
+0.9527
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+0.9527
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.109
+</td>
+<td style="text-align:right;">
+0.3738
+</td>
+<td style="text-align:right;">
+-0.00014
+</td>
+<td style="text-align:right;">
+0.3738
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+PIHAL_NACIMIENTO
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.052
+</td>
+<td style="text-align:right;">
+0.6701
+</td>
+<td style="text-align:right;">
+0.00007
+</td>
+<td style="text-align:right;">
+0.6701
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.150
+</td>
+<td style="text-align:right;">
+0.2114
+</td>
+<td style="text-align:right;">
+0.00018
+</td>
+<td style="text-align:right;">
+0.2114
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.041
+</td>
+<td style="text-align:right;">
+0.7443
+</td>
+<td style="text-align:right;">
+0.00013
+</td>
+<td style="text-align:right;">
+0.7443
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+<td style="text-align:right;">
+0.8588
+</td>
+<td style="text-align:right;">
+0.00003
+</td>
+<td style="text-align:right;">
+0.8588
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.162
+</td>
+<td style="text-align:right;">
+0.1821
+</td>
+<td style="text-align:right;">
+0.00024
+</td>
+<td style="text-align:right;">
+0.1821
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.150
+</td>
+<td style="text-align:right;">
+0.2114
+</td>
+<td style="text-align:right;">
+0.00035
+</td>
+<td style="text-align:right;">
+0.2114
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.005
+</td>
+<td style="text-align:right;">
+0.9773
+</td>
+<td style="text-align:right;">
+-0.00001
+</td>
+<td style="text-align:right;">
+0.9773
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.016
+</td>
+<td style="text-align:right;">
+0.9056
+</td>
+<td style="text-align:right;">
+0.00003
+</td>
+<td style="text-align:right;">
+0.9056
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.212
+</td>
+<td style="text-align:right;">
+0.0802
+</td>
+<td style="text-align:right;">
+-0.00032
+</td>
+<td style="text-align:right;">
+0.0802
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.205
+</td>
+<td style="text-align:right;">
+0.0910
+</td>
+<td style="text-align:right;">
+0.00031
+</td>
+<td style="text-align:right;">
+0.0910
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.197
+</td>
+<td style="text-align:right;">
+0.0995
+</td>
+<td style="text-align:right;">
+0.00028
+</td>
+<td style="text-align:right;">
+0.0995
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.146
+</td>
+<td style="text-align:right;">
+0.2220
+</td>
+<td style="text-align:right;">
+0.00014
+</td>
+<td style="text-align:right;">
+0.2220
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.070
+</td>
+<td style="text-align:right;">
+0.5732
+</td>
+<td style="text-align:right;">
+0.00017
+</td>
+<td style="text-align:right;">
+0.5732
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.009
+</td>
+<td style="text-align:right;">
+0.9527
+</td>
+<td style="text-align:right;">
+-0.00001
+</td>
+<td style="text-align:right;">
+0.9527
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.266
+</td>
+<td style="text-align:right;">
+0.0282
+</td>
+<td style="text-align:right;">
+0.00041
+</td>
+<td style="text-align:right;">
+0.0282
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+PINIG_LANTEIRA_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.250
+</td>
+<td style="text-align:right;">
+0.0356
+</td>
+<td style="text-align:right;">
+0.00035
+</td>
+<td style="text-align:right;">
+0.0356
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.321
+</td>
+<td style="text-align:right;">
+0.0070
+</td>
+<td style="text-align:right;">
+0.00066
+</td>
+<td style="text-align:right;">
+0.0070
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.045
+</td>
+<td style="text-align:right;">
+0.7220
+</td>
+<td style="text-align:right;">
+0.00019
+</td>
+<td style="text-align:right;">
+0.7220
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.362
+</td>
+<td style="text-align:right;">
+0.0027
+</td>
+<td style="text-align:right;">
+0.00066
+</td>
+<td style="text-align:right;">
+0.0027
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.209
+</td>
+<td style="text-align:right;">
+0.0855
+</td>
+<td style="text-align:right;">
+0.00050
+</td>
+<td style="text-align:right;">
+0.0855
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.398
+</td>
+<td style="text-align:right;">
+0.0008
+</td>
+<td style="text-align:right;">
+0.00094
+</td>
+<td style="text-align:right;">
+0.0008
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.166
+</td>
+<td style="text-align:right;">
+0.1640
+</td>
+<td style="text-align:right;">
+0.00019
+</td>
+<td style="text-align:right;">
+0.1640
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.244
+</td>
+<td style="text-align:right;">
+0.0438
+</td>
+<td style="text-align:right;">
+0.00040
+</td>
+<td style="text-align:right;">
+0.0438
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.00002
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.184
+</td>
+<td style="text-align:right;">
+0.1305
+</td>
+<td style="text-align:right;">
+0.00038
+</td>
+<td style="text-align:right;">
+0.1305
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.281
+</td>
+<td style="text-align:right;">
+0.0184
+</td>
+<td style="text-align:right;">
+0.00042
+</td>
+<td style="text-align:right;">
+0.0184
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.069
+</td>
+<td style="text-align:right;">
+0.5700
+</td>
+<td style="text-align:right;">
+0.00013
+</td>
+<td style="text-align:right;">
+0.5700
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.027
+</td>
+<td style="text-align:right;">
+0.8356
+</td>
+<td style="text-align:right;">
+-0.00006
+</td>
+<td style="text-align:right;">
+0.8356
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.052
+</td>
+<td style="text-align:right;">
+0.6781
+</td>
+<td style="text-align:right;">
+0.00009
+</td>
+<td style="text-align:right;">
+0.6781
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+<td style="text-align:right;">
+0.3427
+</td>
+<td style="text-align:right;">
+0.00022
+</td>
+<td style="text-align:right;">
+0.3427
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_JEREZ_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.250
+</td>
+<td style="text-align:right;">
+0.0356
+</td>
+<td style="text-align:right;">
+0.00045
+</td>
+<td style="text-align:right;">
+0.0356
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.176
+</td>
+<td style="text-align:right;">
+0.1397
+</td>
+<td style="text-align:right;">
+-0.00027
+</td>
+<td style="text-align:right;">
+0.1397
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.098
+</td>
+<td style="text-align:right;">
+0.4234
+</td>
+<td style="text-align:right;">
+-0.00022
+</td>
+<td style="text-align:right;">
+0.4234
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.109
+</td>
+<td style="text-align:right;">
+0.3738
+</td>
+<td style="text-align:right;">
+-0.00015
+</td>
+<td style="text-align:right;">
+0.3738
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.020
+</td>
+<td style="text-align:right;">
+0.8821
+</td>
+<td style="text-align:right;">
+-0.00002
+</td>
+<td style="text-align:right;">
+0.8821
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+PIPIN_LANTEIRA_L2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.096
+</td>
+<td style="text-align:right;">
+0.4265
+</td>
+<td style="text-align:right;">
+-0.00018
+</td>
+<td style="text-align:right;">
+0.4265
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.076
+</td>
+<td style="text-align:right;">
+0.5321
+</td>
+<td style="text-align:right;">
+0.00026
+</td>
+<td style="text-align:right;">
+0.5321
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.287
+</td>
+<td style="text-align:right;">
+0.0177
+</td>
+<td style="text-align:right;">
+0.00050
+</td>
+<td style="text-align:right;">
+0.0177
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.137
+</td>
+<td style="text-align:right;">
+0.2599
+</td>
+<td style="text-align:right;">
+0.00032
+</td>
+<td style="text-align:right;">
+0.2599
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+<td style="text-align:right;">
+0.2726
+</td>
+<td style="text-align:right;">
+0.00019
+</td>
+<td style="text-align:right;">
+0.2726
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_H
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.066
+</td>
+<td style="text-align:right;">
+0.5894
+</td>
+<td style="text-align:right;">
+0.00021
+</td>
+<td style="text-align:right;">
+0.5894
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+-0.005
+</td>
+<td style="text-align:right;">
+0.9763
+</td>
+<td style="text-align:right;">
+-0.00001
+</td>
+<td style="text-align:right;">
+0.9763
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.144
+</td>
+<td style="text-align:right;">
+0.2356
+</td>
+<td style="text-align:right;">
+-0.00037
+</td>
+<td style="text-align:right;">
+0.2356
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.059
+</td>
+<td style="text-align:right;">
+0.6352
+</td>
+<td style="text-align:right;">
+0.00009
+</td>
+<td style="text-align:right;">
+0.6352
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_L
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.096
+</td>
+<td style="text-align:right;">
+0.4265
+</td>
+<td style="text-align:right;">
+0.00022
+</td>
+<td style="text-align:right;">
+0.4265
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.072
+</td>
+<td style="text-align:right;">
+0.5509
+</td>
+<td style="text-align:right;">
+0.00023
+</td>
+<td style="text-align:right;">
+0.5509
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+autumm
+</td>
+<td style="text-align:right;">
+0.116
+</td>
+<td style="text-align:right;">
+0.3427
+</td>
+<td style="text-align:right;">
+0.00015
+</td>
+<td style="text-align:right;">
+0.3427
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.027
+</td>
+<td style="text-align:right;">
+0.8356
+</td>
+<td style="text-align:right;">
+-0.00007
+</td>
+<td style="text-align:right;">
+0.8356
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.094
+</td>
+<td style="text-align:right;">
+0.4408
+</td>
+<td style="text-align:right;">
+0.00015
+</td>
+<td style="text-align:right;">
+0.4408
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+PISYL_PORTUGOS_M
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.143
+</td>
+<td style="text-align:right;">
+0.2329
+</td>
+<td style="text-align:right;">
+0.00041
+</td>
+<td style="text-align:right;">
+0.2329
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="correlation-ndvi-avhrr-1km---modis-250m" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Correlation NDVI AVHRR (1km) - MODIS (250m)</h1>
+<pre class="r"><code># Select ndvi_modis
+ndvi_modis &lt;- bind_rows(iv_yearly, iv_season) %&gt;% 
+  filter(variable == &quot;ndvi&quot;)  %&gt;% 
+  dplyr::select(site_code, Specie, year, mean_modis = mean, sd_modis = sd, se_modis = se, elev_cat, season)
+
+ndvi_avhrr &lt;- ndvi1km %&gt;% 
+  dplyr::select(site_code, Specie, year, mean_avhrr = mean, sd_avhrr = sd, se_avhrr = se, elev_cat, season)
+
+ndvi_correla &lt;- inner_join(
+  ndvi_modis, ndvi_avhrr) 
+
+ggpubr::ggscatter(ndvi_correla,
+    x = &quot;mean_avhrr&quot;, y = &quot;mean_modis&quot;,
+   color = &quot;black&quot;, shape = 21, size = 1.5, 
+   facet.by = &quot;season&quot;,
+   add = &quot;reg.line&quot;,  
+   add.params = list(color = &quot;blue&quot;, fill = &quot;lightgray&quot;), 
+   conf.int = TRUE, 
+   cor.coef = TRUE, 
+   cor.coeff.args = list(method = &quot;pearson&quot;, 
+                         label.x = .5, label.y = .2, 
+                         label.sep = &quot;\n&quot;), 
+   xlab = &quot;NDVI AVHRR 1km&quot;,
+   ylab = &quot;NDVI MODIS 250m&quot;
+   ) +
+  geom_abline(slope=1) + 
+  lims(x=c(0,1), y=c(0,1)) </code></pre>
+<p><img src="figure/temporal_iv_mod13.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1298,31 +6209,39 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DT_0.17          kableExtra_1.3.1 trend_1.1.4      Kendall_2.2     
- [5] forcats_0.5.1    stringr_1.4.0    dplyr_1.0.6      purrr_0.3.4     
- [9] readr_1.4.0      tidyr_1.1.3      tibble_3.1.2     ggplot2_3.3.5   
-[13] tidyverse_1.3.1  here_1.0.1       workflowr_1.7.0 
+ [1] hydroTSM_0.6-0   xts_0.12.1       zoo_1.8-8        DT_0.17         
+ [5] kableExtra_1.3.1 trend_1.1.4      Kendall_2.2      forcats_0.5.1   
+ [9] stringr_1.4.0    dplyr_1.0.6      purrr_0.3.4      readr_1.4.0     
+[13] tidyr_1.1.3      tibble_3.1.2     ggplot2_3.3.5    tidyverse_1.3.1 
+[17] here_1.0.1       workflowr_1.7.0 
 
 loaded via a namespace (and not attached):
- [1] httr_1.4.2        sass_0.3.1        jsonlite_1.7.2    viridisLite_0.4.0
- [5] modelr_0.1.8      bslib_0.2.4       assertthat_0.2.1  getPass_0.2-2    
- [9] highr_0.8         cellranger_1.1.0  yaml_2.2.1        pillar_1.6.1     
-[13] backports_1.2.1   glue_1.4.2        digest_0.6.27     promises_1.2.0.1 
-[17] rvest_1.0.0       colorspace_2.0-2  htmltools_0.5.2   httpuv_1.5.5     
-[21] pkgconfig_2.0.3   broom_0.7.9       haven_2.3.1       bookdown_0.21.6  
-[25] scales_1.1.1.9000 webshot_0.5.2     processx_3.5.1    whisker_0.4      
-[29] later_1.1.0.1     git2r_0.28.0      farver_2.1.0      generics_0.1.0   
-[33] ellipsis_0.3.2    withr_2.4.1       cli_2.5.0         magrittr_2.0.1   
-[37] crayon_1.4.1      readxl_1.3.1      evaluate_0.14     ps_1.5.0         
-[41] fs_1.5.0          fansi_0.4.2       xml2_1.3.2        tools_4.0.2      
-[45] hms_1.0.0         lifecycle_1.0.1   extraDistr_1.9.1  munsell_0.5.0    
-[49] reprex_2.0.0      callr_3.7.0       compiler_4.0.2    jquerylib_0.1.3  
-[53] rlang_0.4.12      grid_4.0.2        rstudioapi_0.13   htmlwidgets_1.5.3
-[57] crosstalk_1.1.1   labeling_0.4.2    rmarkdown_2.8     boot_1.3-26      
-[61] gtable_0.3.0      DBI_1.1.1         R6_2.5.1          lubridate_1.7.10 
-[65] knitr_1.31        fastmap_1.1.0     utf8_1.1.4        rprojroot_2.0.2  
-[69] stringi_1.7.4     Rcpp_1.0.7        vctrs_0.3.8       dbplyr_2.1.1     
-[73] tidyselect_1.1.1  xfun_0.23        </code></pre>
+  [1] colorspace_2.0-2  ggsignif_0.6.3    ellipsis_0.3.2    class_7.3-18     
+  [5] rio_0.5.16        rprojroot_2.0.2   fs_1.5.0          rstudioapi_0.13  
+  [9] proxy_0.4-26      ggpubr_0.4.0      farver_2.1.0      fansi_0.4.2      
+ [13] lubridate_1.7.10  xml2_1.3.2        splines_4.0.2     knitr_1.31       
+ [17] jsonlite_1.7.2    broom_0.7.9       dbplyr_2.1.1      compiler_4.0.2   
+ [21] httr_1.4.2        backports_1.2.1   Matrix_1.3-2      assertthat_0.2.1 
+ [25] fastmap_1.1.0     cli_2.5.0         later_1.1.0.1     htmltools_0.5.2  
+ [29] tools_4.0.2       gtable_0.3.0      glue_1.4.2        Rcpp_1.0.7       
+ [33] carData_3.0-4     cellranger_1.1.0  jquerylib_0.1.3   vctrs_0.3.8      
+ [37] nlme_3.1-152      crosstalk_1.1.1   xfun_0.30         ps_1.5.0         
+ [41] openxlsx_4.2.3    rvest_1.0.0       lifecycle_1.0.1   rstatix_0.6.0    
+ [45] getPass_0.2-2     scales_1.1.1.9000 gstat_2.0-7       hms_1.0.0        
+ [49] promises_1.2.0.1  yaml_2.2.1        curl_4.3          sass_0.4.1       
+ [53] reshape_0.8.8     stringi_1.7.4     highr_0.8         maptools_1.0-2   
+ [57] e1071_1.7-8       zip_2.1.1         boot_1.3-26       intervals_0.15.2 
+ [61] rlang_0.4.12      pkgconfig_2.0.3   evaluate_0.14     lattice_0.20-41  
+ [65] htmlwidgets_1.5.4 labeling_0.4.2    processx_3.5.1    tidyselect_1.1.1 
+ [69] plyr_1.8.6        magrittr_2.0.1    bookdown_0.21.6   R6_2.5.1         
+ [73] generics_0.1.0    automap_1.0-14    DBI_1.1.1         mgcv_1.8-33      
+ [77] pillar_1.6.1      haven_2.3.1       whisker_0.4       foreign_0.8-81   
+ [81] withr_2.4.1       abind_1.4-5       sp_1.4-5          spacetime_1.2-5  
+ [85] modelr_0.1.8      crayon_1.4.1      car_3.0-10        utf8_1.1.4       
+ [89] rmarkdown_2.14    grid_4.0.2        readxl_1.3.1      data.table_1.14.0
+ [93] FNN_1.1.3         callr_3.7.0       git2r_0.28.0      reprex_2.0.0     
+ [97] digest_0.6.27     webshot_0.5.2     httpuv_1.5.5      extraDistr_1.9.1 
+[101] munsell_0.5.0     viridisLite_0.4.0 bslib_0.3.1      </code></pre>
 </div>
 </div>
 
@@ -1383,6 +6302,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
