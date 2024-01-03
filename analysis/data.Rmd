@@ -1,25 +1,37 @@
 ---
 title: "Data"
 output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
 editor_options:
   chunk_output_type: console
 ---
 
 # Data Sources
 
+## Climatic data
+### SPEI
+
+- The Drought indices dataset for Spain was used through the https://monitordesequia.aemet.es/ [@VicenteSerranoetal2017HighResolution]
+
+- For each field site, we downloaded the time series using the web interface. It's not the most efficient way, but we don't want to download the entire `.nc` files and processing all (it's a time-consuming task and also used a lot of space). If we want to process a lot of localities, donwload the `.nc` files from https://monitordesequia.csic.es/historico 
+
+- In
+
+
 ## Satellite data 
 
 ### Vegetation Indexes 
 
-- We extracted temporal series of vegetation indexes as a surrogate of productivity. 
+- We extracted temporal series of vegetation indexes as a surrogate of productivity. Several data sources were used: 
 
-- We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolution = 250 m). We used NDVI and EVI spectral index. 
-
-- For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot. 
+  - MODIS. We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolution = 250 m). We used NDVI and EVI spectral index. For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot. 
+  
+  - AV     
 
 ### Annual Net Primary Productivity 
 
 - We extracted temporal series of yearly NPP from MODIS product MOD17A3HGF (temporal resolution: yearly; spatial resolution = 500 m). See [here](https://lpdaac.usgs.gov/products/mod17a3hgfv006/) for a description of the method to obtain the NPP. 
 
 
-
+## References

@@ -1,6 +1,8 @@
 ---
 title: "Scripts"
 output: workflowr::wflow_html
+bibliography: references.bib
+csl: ecology-letters.csl
 editor_options:
   chunk_output_type: console
 ---
@@ -24,21 +26,21 @@ This page contains some of the scripts used in this project
 
 Using Google Earth Engine, we extracted spectral information for all the pixels covering the field plots. Several products were obtained:
 
-- **Temporal series of Vegetation Indexes** NDVI and EVI from MOD13Q1. We used the following GEE code to get the EVI and NDVI data for each field plot. We obtained a total of 503 values for each field plot (2000-2021, 23 images per year, except 2000 year (only 20 images)). The data were saved as `dendroadaptamed_iv_mod13q1.csv` (see [data/dendroadaptamed_iv_mod13q1.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_iv_mod13q1.csv)). The temporal resolution was one image each 16 days (23 images per year), and the spatial resoultion was 250 m.  
+- **Temporal series of Vegetation Indexes** NDVI and EVI from MOD13Q1. We used the following GEE code to get the EVI and NDVI data for each field plot. We obtained a total of 503 values for each field plot (2000-2021, 23 images per year, except 2000 year (only 20 images)). The data were saved as `dendroadaptamed_iv_mod13q1.csv` (see [data/dendroadaptamed_iv_mod13q1.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_iv_mod13q1.csv)). The temporal resolution was one image each 16 days (23 images per year), and the spatial resolution was 250 m.  
 
 ```{js, eval=FALSE}
 var parcelas = ee.FeatureCollection("users/ajpelu/geoinfo_adaptamed_dendro");
 
 // Define study period 
 var startdate = ee.Date('2000-01-01');
-var enddate = ee.Date('2021-12-31'); 
+var enddate = ee.Date('2022-10-31'); 
 
 //-------------------- Load MODIS MOD13Q1 
 // filter by date 
 // select bands: EVI, NDVI, DOY, SummaryQA
 var mod13 = ee.ImageCollection('MODIS/006/MOD13Q1')
   .filterDate(startdate, enddate)
-  .select(['EVI', 'NDVI','DayOfYear']); 
+  .select(['EVI','NDVI','DayOfYear']); 
 
 print(mod13);
 
@@ -99,6 +101,8 @@ Export.table.toDrive({
 });
 ```
 
+- **Long-term series of NDVI**, using the *Sp_1km_NDVI* dataset. This dataset was derived from Atmospheric Administration–Advanced Very High Resolution Radiometer
+(NOAA–AVHRR) by @VicenteSerranoetal2020VegetationGreening. The temporal resolution was bi-weekly (24 data by year) and the spatial resolution was 1.1 km. The data are available in https://spainndvi.csic.es/, but we could not extract the data for our study site locations. Nevertherless, we used the [raw data](https://spainndvi.csic.es/nc) and this [repository](https://github.com/ncwebmapper/ncwebmapper). Then we write a custom [script](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/scripts/ndvi_csic.R) to downloaded the raw data in `.nc` format, prepare and extract the long-term series for our study sites. The data were saved as `dendroadaptamed_ndvicsic1km.csv` (see [data/dendroadaptamed_ndvicsic1km.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_ndvicsic1km.csv)). 
 
 ## Auxiliary
 
@@ -119,3 +123,4 @@ write_csv(elev_cat, "data/categories_elevation_site_code.csv")
 
 ```
 
+# References

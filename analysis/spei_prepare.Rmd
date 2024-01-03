@@ -1,0 +1,71 @@
+---
+title: "Prepare SPEI data"
+author: '[Antonio J. Pérez-Luque](https://github.com/ajpelu) <a href="https://orcid.org/0000-0002-1747-0469" target="orcid.widget">
+<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>'
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set( 
+                      warning=FALSE, message=FALSE)
+```
+
+
+## Prepare SPEI Data
+```{r}
+library(sf)
+library(tidyverse)
+library(purrr)
+```
+
+```{r}
+# read geoinfo to get site codes
+geo <- read_sf("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp")
+
+site_codes <- geo |> 
+  st_drop_geometry() |> 
+  dplyr::select(site_code, Y = lat, X = long) |> 
+  mutate(across(Y:X, ~ round(.x, 2))) |> 
+  mutate(X = as.numeric(sub("^0+", "", X))) |> # remove trailing zeros
+  mutate(Y = case_when(
+    site_code == "PISYL_PORTUGOS_L" ~ 36.95, 
+    TRUE ~ Y)) # this a small edit to match the spei files (two locations are very closed)
+
+
+# Read download files 
+files <- list.files("data/raw/spei", pattern = "*.csv", full.names = TRUE)
+
+# Custom function to read and merge data 
+
+read_spei <- function(x) {
+  coord <-   
+    basename(x) |> 
+    str_remove(".csv") |> 
+    str_remove("DATA_") 
+  
+  data <- read_csv(x) |> 
+    mutate(coord = coord) |> 
+    separate(coord, into = c("Y", "X"), sep = "_") |> 
+    mutate(across(.cols = c("X","Y"), 
+                  .fns = as.numeric))
+  return(data)
+}
+
+
+g <- files |> purrr::map_df(read_spei) 
+
+spei <- g |> 
+  inner_join(site_codes, by = c("X" = "X", "Y" = "Y")) |>
+  rename(date = DATA)
+
+write_csv(spei, file = "data/dendroadaptamed_spei.csv")
+```
+
+
+
+
+  
+
+
