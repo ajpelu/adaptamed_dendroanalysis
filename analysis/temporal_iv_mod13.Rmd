@@ -1,6 +1,8 @@
 ---
 title: "Temporal evolution of IV indexes"
 output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
 editor_options:
   chunk_output_type: console
 ---
@@ -44,8 +46,7 @@ d <- raw %>%
                         format = "%Y-%m-%d"),
          evi = EVI*0.0001,
          ndvi = NDVI*0.0001) %>%
-  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi, doy=DayOfYear)
-
+  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
 ```
 
 
@@ -79,7 +80,7 @@ nsize_years_gral <- d %>% group_by(site_code, Specie) %>% count() %>% dplyr::sel
 nsize_years <- d %>% mutate(year = lubridate::year(date)) %>%
   group_by(site_code, Specie, year) %>%
   count() %>% 
-  filter(site_code == "PIHAL_NACIMIENTO") %>% dplyr::select(n) %>% pull() %>% unique()
+  filter(site_code == "PIHAL_NACIMIENTO_L") %>% dplyr::select(n) %>% pull() %>% unique()
 
 ```
 
@@ -161,7 +162,6 @@ mkevi_yearly %>%
     digits = c(0,3,4,4,4),
     caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") %>% 
     kable_paper("hover", full_width = F)
-
 ```
 
 # Seasonal analysis 
@@ -386,5 +386,39 @@ ggpubr::ggscatter(ndvi_correla,
   geom_abline(slope=1) + 
   lims(x=c(0,1), y=c(0,1)) 
 ```
+
+## Sentinel 
+```{r}
+raw_s2 <- read_csv(here::here("data/dendroadaptamed_sentinel2.csv")) %>%
+  filter(str_detect(Specie, "Pinu")) %>%
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 8), "_", "-"),
+                        format = "%Y%m%d")) %>% 
+  inner_join(elev_cat)
+
+
+ndvi_s2 <- raw_s2 %>% 
+  dplyr::select(date, lat, long, Specie, site_code, ndvi=NDVI, elev_cat) %>% 
+  filter(!is.na(ndvi))
+
+evi_s2 <- raw_s2 %>% 
+  dplyr::select(date, lat, long, Specie, site_code, evi=EVI, elev_cat) %>% 
+  filter(!is.na(evi))
+
+
+ndvi_s2 %>% 
+  group_by(date, Specie, site_code, elev_cat) %>% 
+  summarise(mean = mean(ndvi), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi))) %>% 
+  ggplot(aes(x=date, y=mean, colour=elev_cat)) +
+  geom_line() + 
+  facet_wrap(~Specie, ncol=2) +
+  scale_fill_manual(values=cols, name="") +
+  scale_colour_manual(values=cols, name="") + 
+  theme_bw() 
+  
+```
+
+
 
 

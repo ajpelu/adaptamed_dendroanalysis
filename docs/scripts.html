@@ -72,6 +72,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -380,7 +402,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -390,7 +412,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -400,14 +422,14 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-04-25
+<strong>Last updated:</strong> 2022-05-02
 </p>
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-7
+6
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-0
+1
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -430,16 +452,21 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> up-to-date
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> uncommitted changes
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you
-know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes.
+To know which version of the R Markdown file created these
+results, you’ll want to first commit it to the Git repo. If
+you’re still working on the analysis, you can ignore this
+warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and
+build the HTML.</p>
 </div>
 </div>
 </div>
@@ -528,20 +555,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea83c9c051639cd1be60f7618a92ed43fffac6a7atargetblanka83c9c0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree9446edeec00fabecb4d5744b5d051726436a5872targetblank9446edea">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a83c9c051639cd1be60f7618a92ed43fffac6a7a" target="_blank">a83c9c0</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/9446edeec00fabecb4d5744b5d051726436a5872" target="_blank">9446ede</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea83c9c051639cd1be60f7618a92ed43fffac6a7atargetblanka83c9c0a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree9446edeec00fabecb4d5744b5d051726436a5872targetblank9446edea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a83c9c051639cd1be60f7618a92ed43fffac6a7a" target="_blank">a83c9c0</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/9446edeec00fabecb4d5744b5d051726436a5872" target="_blank">9446ede</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -557,7 +584,11 @@ results were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    scripts/
+
+Unstaged changes:
+    Modified:   analysis/data.Rmd
+    Modified:   analysis/scripts.Rmd
+    Modified:   analysis/temporal_iv_mod13.Rmd
 
 </code></pre>
 <p>
@@ -602,6 +633,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/a2a4353741c95787d8cb1d945601008caac4460f/docs/scripts.html" target="_blank">a2a4353</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2022-04-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -773,6 +821,10 @@ Export.table.toDrive({
   description: &#39;my_extract_data&#39;,
   fileFormat: &#39;CSV&#39;,
 });</code></pre>
+<ul>
+<li><strong>Long-term series of NDVI</strong>, using the <em>Sp_1km_NDVI</em> dataset. This dataset was derived from Atmospheric Administration–Advanced Very High Resolution Radiometer
+(NOAA–AVHRR) by <span class="citation">Vicente-Serrano <em>et al.</em> (2020)</span>. The temporal resolution was bi-weekly (24 data by year) and the spatial resolution was 1.1 km. The data are available in <a href="https://spainndvi.csic.es/" class="uri">https://spainndvi.csic.es/</a>, but we could not extract the data for our study site locations. Nevertherless, we used the <a href="https://spainndvi.csic.es/nc">raw data</a> and this <a href="https://github.com/ncwebmapper/ncwebmapper">repository</a>. Then we write a custom <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/scripts/ndvi_csic.R">script</a> to downloaded the raw data in <code>.nc</code> format, prepare and extract the long-term series for our study sites. The data were saved as <code>dendroadaptamed_ndvicsic1km.csv</code> (see <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_ndvicsic1km.csv">data/dendroadaptamed_ndvicsic1km.csv</a>).</li>
+</ul>
 </div>
 <div id="auxiliary" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Auxiliary</h2>
@@ -791,6 +843,15 @@ c(&quot;low&quot;,
 &quot;high&quot;, &quot;low&quot;, &quot;med&quot;))
 
 write_csv(elev_cat, &quot;data/categories_elevation_site_code.csv&quot;)</code></pre>
+</div>
+</div>
+<div id="references" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-VicenteSerranoetal2020VegetationGreening" class="csl-entry">
+Vicente-Serrano, S.M., Martín-Hernández, N., Reig, F., Azorin-Molina, C., Zabalza, J., Beguería, S., <em>et al.</em> (2020). Vegetation greening in <span>Spain</span> detected from long term data (1981<span></span>). <em>International Journal of Remote Sensing</em>, 41, 1709–1740.
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -837,7 +898,6 @@ loaded via a namespace (and not attached):
 [57] hms_1.0.0         processx_3.5.1    fastmap_1.1.0     yaml_2.2.1       
 [61] colorspace_2.0-2  rvest_1.0.0       knitr_1.31        haven_2.3.1      
 [65] sass_0.3.1       </code></pre>
-</div>
 </div>
 </div>
 
