@@ -10,14 +10,18 @@ editor_options:
 # Data Sources
 
 ## Climatic data
+
+### Daily data 
+
+- To characterize the climatic conditions at each of the sampling sites, we utilized high-resolution climatic maps (spatial resolution of 500 meters) sourced from the Andalusian Information Subsystem for Environmental Climatology, part of the Andalusian Environmental Information Network. These maps encompassed dialy averages of mean, minimum, and maximum temperatures, in addition to dialy cumulative rainfall data. These detailed maps were constructed by integrating data from over 200 meteorological stations. For each individual sampling site, we extracted temporal data series spanning from 1951 and 1971 for rainfall and temperature series respectively. 
+
 ### SPEI
 
 - The Drought indices dataset for Spain was used through the https://monitordesequia.aemet.es/ [@VicenteSerranoetal2017HighResolution]
 
 - For each field site, we downloaded the time series using the web interface. It's not the most efficient way, but we don't want to download the entire `.nc` files and processing all (it's a time-consuming task and also used a lot of space). If we want to process a lot of localities, donwload the `.nc` files from https://monitordesequia.csic.es/historico 
 
-- In
-
+-
 
 ## Satellite data 
 
