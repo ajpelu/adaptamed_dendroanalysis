@@ -530,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree674d2c63b7b1d93c684f7eabcf91a429cf81b1c6targetblank674d2c6a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4f806139ef1fdb813576e60ad823611137f28bdbtargetblank4f80613a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/674d2c63b7b1d93c684f7eabcf91a429cf81b1c6" target="_blank">674d2c6</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4f806139ef1fdb813576e60ad823611137f28bdb" target="_blank">4f80613</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree674d2c63b7b1d93c684f7eabcf91a429cf81b1c6targetblank674d2c6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4f806139ef1fdb813576e60ad823611137f28bdbtargetblank4f80613a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/674d2c63b7b1d93c684f7eabcf91a429cf81b1c6" target="_blank">674d2c6</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4f806139ef1fdb813576e60ad823611137f28bdb" target="_blank">4f80613</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -560,17 +560,21 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
+    Ignored:    data/geoinfo/.DS_Store
     Ignored:    data/raw/.DS_Store
 
 Untracked files:
+    Untracked:  analysis/climate_analysis.Rmd
     Untracked:  bootstraped_cor_spei.csv
     Untracked:  data/bootstraped_cor_spei.csv
-    Untracked:  data/dendroadaptamed_climate_daily.rds
-    Untracked:  data/raw/climate/
     Untracked:  output/plot_boostrap.png
 
 Unstaged changes:
     Modified:   analysis/spei_analysis.Rmd
+    Modified:   data/dendroadaptamed_climate_daily.rds
+    Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.dbf
+    Deleted:    data/geoinfo/geoinfo_dendro_adaptamed_pinus.qix
+    Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.qmd
 
 </code></pre>
 <p>
@@ -615,6 +619,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/4f806139ef1fdb813576e60ad823611137f28bdb/analysis/climate_prepare.Rmd" target="_blank">4f80613</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-08
+</td>
+<td>
+wflow_publish("analysis/climate_prepare.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/b94ff8fb4a40085602ddd717f0ddeb79282eace4/docs/climate_prepare.html" target="_blank">b94ff8f</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -726,7 +764,7 @@ df &lt;- mylist |&gt;
 geodf &lt;- terra::vect(geo_pinos) |&gt; as.data.frame() |&gt;
   rownames_to_column(var = &quot;ID&quot;) |&gt;
   mutate(ID = as.numeric(ID)) |&gt; 
-  dplyr::select(ID, site_code)
+  dplyr::select(ID, site_code, sp_code, elev_code)
 
 climate &lt;- df |&gt; inner_join(geodf)
 
