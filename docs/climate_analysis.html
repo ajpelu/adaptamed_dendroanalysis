@@ -414,7 +414,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -424,7 +424,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -439,9 +439,9 @@ Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidde
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-6
+7
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-1
+0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -464,21 +464,16 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> uncommitted changes
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git.
-To know which version of the R Markdown file created these
-results, you’ll want to first commit it to the Git repo. If
-you’re still working on the analysis, you can ignore this
-warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and
-build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -567,20 +562,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreee6bfb2583c0c11de5bd0a105b14c54914a00c724targetblanke6bfb25a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed2ad739a0655e67bf5805826ad0ee24ddb29c426targetblankd2ad739a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/e6bfb2583c0c11de5bd0a105b14c54914a00c724" target="_blank">e6bfb25</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d2ad739a0655e67bf5805826ad0ee24ddb29c426" target="_blank">d2ad739</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreee6bfb2583c0c11de5bd0a105b14c54914a00c724targetblanke6bfb25a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed2ad739a0655e67bf5805826ad0ee24ddb29c426targetblankd2ad739a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/e6bfb2583c0c11de5bd0a105b14c54914a00c724" target="_blank">e6bfb25</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d2ad739a0655e67bf5805826ad0ee24ddb29c426" target="_blank">d2ad739</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -600,23 +595,6 @@ Ignored files:
     Ignored:    data/geoinfo/.DS_Store
     Ignored:    data/raw/.DS_Store
 
-Untracked files:
-    Untracked:  analysis/climate_analysis.Rmd
-    Untracked:  bootstraped_cor_spei.csv
-    Untracked:  data/bootstraped_cor_spei.csv
-    Untracked:  data/geoinfo/geoinfo_dendro_adaptamed_pinus.qix
-    Untracked:  output/plot_boostrap.png
-    Untracked:  output/plot_climograma_nolow2.png
-    Untracked:  scripts/aux.R
-
-Unstaged changes:
-    Modified:   analysis/climate_prepare.Rmd
-    Modified:   analysis/index.Rmd
-    Deleted:    analysis/license.Rmd
-    Modified:   analysis/spei_analysis.Rmd
-    Modified:   data/dendroadaptamed_climate_daily.rds
-    Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.dbf
-
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in
@@ -630,10 +608,73 @@ changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made
+to the R Markdown (<code>analysis/climate_analysis.Rmd</code>) and HTML (<code>docs/climate_analysis.html</code>)
+files. If you’ve configured a remote Git repository (see
+<code>?wflow_git_remote</code>), click on the hyperlinks in the table below to
+view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/analysis/climate_analysis.Rmd" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+<td>
+update repo
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/climate_analysis.html" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+<td>
+update repo
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -644,6 +685,43 @@ There are no past versions. Publish this analysis with
 <li>Characterization of climate profile for each site</li>
 </ul>
 <p><img src="figure/climate_analysis.Rmd/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-6-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="differences-between-sites" class="section level2" number="0.2">
 <h2><span class="header-section-number">0.2</span> Differences between sites</h2>
@@ -655,10 +733,84 @@ There are no past versions. Publish this analysis with
 <div id="temporal-trends" class="section level4" number="0.2.1.1">
 <h4><span class="header-section-number">0.2.1.1</span> Temporal trends</h4>
 <ul>
-<li>Plot the temporal trends (todo: compute the temporal trends statistics?)
-<img src="figure/climate_analysis.Rmd/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;" /></li>
+<li><p>Plot the temporal trends (todo: compute the temporal trends statistics?)
+<img src="figure/climate_analysis.Rmd/unnamed-chunk-10-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
+<p>Past versions of unnamed-chunk-10-1.png</p>
+</button>
+</p>
+<div id="fig-unnamed-chunk-10-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-10-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></li>
 </ul>
 <p><img src="figure/climate_analysis.Rmd/unnamed-chunk-11-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-11-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bewteen-sites-comparison" class="section level4" number="0.2.1.2">
 <h4><span class="header-section-number">0.2.1.2</span> Bewteen sites comparison</h4>
@@ -666,29 +818,593 @@ There are no past versions. Publish this analysis with
 <li>Temperatures (ToDo ANOVA-2way or similar)</li>
 </ul>
 <p><img src="figure/climate_analysis.Rmd/unnamed-chunk-12-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
+Past versions of unnamed-chunk-12-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-12-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-12-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <ul>
 <li>Precipitation (ToDo ANOVA-2way or similar)</li>
 </ul>
 <p><img src="figure/climate_analysis.Rmd/unnamed-chunk-13-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
+Past versions of unnamed-chunk-13-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-13-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-13-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="seasonal" class="section level3" number="0.2.2">
 <h3><span class="header-section-number">0.2.2</span> Seasonal</h3>
 <ul>
-<li>Plot the temporal trends (todo: compute the temporal trends statistics?)
-<img src="figure/climate_analysis.Rmd/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-15-2.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-15-3.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-15-4.png" width="960" style="display: block; margin: auto;" /></li>
+<li><p>Plot the temporal trends (todo: compute the temporal trends statistics?)
+<img src="figure/climate_analysis.Rmd/unnamed-chunk-15-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
+<p>Past versions of unnamed-chunk-15-1.png</p>
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-15-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-15-2.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-2">
+<p>Past versions of unnamed-chunk-15-2.png</p>
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-15-2.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-15-3.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-3">
+<p>Past versions of unnamed-chunk-15-3.png</p>
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-15-3.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-15-4.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-4">
+<p>Past versions of unnamed-chunk-15-4.png</p>
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-15-4.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></li>
 </ul>
-<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-1.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-2.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-3.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-4.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
+Past versions of unnamed-chunk-16-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-16-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-2.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-2">
+Past versions of unnamed-chunk-16-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-16-2.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-3.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-3">
+Past versions of unnamed-chunk-16-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-16-3.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-16-4.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-4">
+Past versions of unnamed-chunk-16-4.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-16-4.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="bewteen-sites-comparison-1" class="section level4" number="0.2.2.1">
 <h4><span class="header-section-number">0.2.2.1</span> Bewteen sites comparison</h4>
 <ul>
 <li>Temperatures (ToDo ANOVA-2way or similar)</li>
 </ul>
-<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-1.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-2.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-3.png" width="960" style="display: block; margin: auto;" /><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-4.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-1">
+Past versions of unnamed-chunk-17-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-17-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-17-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-2.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-2">
+Past versions of unnamed-chunk-17-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-17-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-17-2.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-3.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-3">
+Past versions of unnamed-chunk-17-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-17-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-17-3.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-17-4.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-4">
+Past versions of unnamed-chunk-17-4.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-17-4" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-17-4.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <ul>
 <li>Precipitation (ToDo ANOVA-2way or similar)</li>
 </ul>
 <p><img src="figure/climate_analysis.Rmd/unnamed-chunk-18-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-1">
+Past versions of unnamed-chunk-18-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-18-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d2ad739a0655e67bf5805826ad0ee24ddb29c426/docs/figure/climate_analysis.Rmd/unnamed-chunk-18-1.png" target="_blank">d2ad739</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="tables" class="section level4" number="0.2.2.2">
 <h4><span class="header-section-number">0.2.2.2</span> Tables</h4>
