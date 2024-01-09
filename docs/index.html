@@ -9,12 +9,12 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Antonio J. Pérez-Luque  , Darío Martín-Benito  , Guillermo Gea-Izquierdo  " />
 
 
 <title>Home</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -29,15 +29,15 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -76,6 +76,7 @@ if (window.hljs) {
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -96,6 +97,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -153,11 +157,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -186,8 +194,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -195,16 +203,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -324,7 +325,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -362,7 +363,7 @@ div.tocify {
 <div id="header">
 
 <div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
@@ -372,6 +373,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Home</h1>
+<h4 class="author"><a href="https://github.com/ajpelu">Antonio J. Pérez-Luque</a> <a href="https://orcid.org/0000-0002-1747-0469" target="orcid.widget"> <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>, Darío Martín-Benito <a href="https://orcid.org/0000-0002-6738-3312" target="orcid.widget"> <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>, Guillermo Gea-Izquierdo <a href="https://orcid.org/0000-0003-0148-3721" target="orcid.widget"> <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a></h4>
 
 </div>
 
@@ -380,7 +382,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -390,7 +392,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -400,14 +402,14 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-04-25
+<strong>Last updated:</strong> 2024-01-09
 </p>
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-2
+1
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-0
+1
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -419,7 +421,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
 analysis was created with <a
   href="https://github.com/workflowr/workflowr">workflowr</a> (version
-1.7.0). The <em>Checks</em> tab describes the
+1.7.1). The <em>Checks</em> tab describes the
 reproducibility checks that were applied when the results were created.
 The <em>Past versions</em> tab lists the development history.
 </p>
@@ -430,36 +432,41 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
-<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> up-to-date
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> uncommitted changes
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you
-know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes.
+To know which version of the R Markdown file created these
+results, you’ll want to first commit it to the Git repo. If
+you’re still working on the analysis, you can ignore this
+warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and
+build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree571cefabd4d5e71221acf91eec4021944ba5bfb3targetblank571cefaa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreee6bfb2583c0c11de5bd0a105b14c54914a00c724targetblanke6bfb25a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/571cefabd4d5e71221acf91eec4021944ba5bfb3" target="_blank">571cefa</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/e6bfb2583c0c11de5bd0a105b14c54914a00c724" target="_blank">e6bfb25</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree571cefabd4d5e71221acf91eec4021944ba5bfb3targetblank571cefaa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreee6bfb2583c0c11de5bd0a105b14c54914a00c724targetblanke6bfb25a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/571cefabd4d5e71221acf91eec4021944ba5bfb3" target="_blank">571cefa</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/e6bfb2583c0c11de5bd0a105b14c54914a00c724" target="_blank">e6bfb25</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -475,7 +482,24 @@ results were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    scripts/
+    Ignored:    data/.DS_Store
+    Ignored:    data/geoinfo/.DS_Store
+    Ignored:    data/raw/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/climate_analysis.Rmd
+    Untracked:  bootstraped_cor_spei.csv
+    Untracked:  data/bootstraped_cor_spei.csv
+    Untracked:  data/geoinfo/geoinfo_dendro_adaptamed_pinus.qix
+    Untracked:  output/plot_boostrap.png
+    Untracked:  output/plot_climograma_nolow2.png
+    Untracked:  scripts/aux.R
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
+    Modified:   analysis/spei_analysis.Rmd
+    Modified:   data/dendroadaptamed_climate_daily.rds
+    Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.dbf
 
 </code></pre>
 <p>
@@ -522,6 +546,23 @@ Message
 <tbody>
 <tr>
 <td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/850a21ea19118ed3f39342a60d67b4519023c33e/docs/index.html" target="_blank">850a21e</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2022-04-25
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
 Rmd
 </td>
 <td>
@@ -534,7 +575,7 @@ ajpelu
 2022-04-25
 </td>
 <td>
-wflow_publish(“analysis/index.Rmd”)
+wflow_publish("analysis/index.Rmd")
 </td>
 </tr>
 <tr>
@@ -619,7 +660,7 @@ ajpelu
 2022-04-21
 </td>
 <td>
-wflow_publish(“analysis/index.Rmd”)
+wflow_publish("analysis/index.Rmd")
 </td>
 </tr>
 <tr>
@@ -654,8 +695,14 @@ Start workflowr project.
 <li><p>Explore the <a href="temporal_npp_mod17.html">temporal evolution of the NPP</a> (from MODIS) for each of the study sites.</p></li>
 </ul>
 </div>
-<div id="spatial-distribution-of-the-study-sites" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Spatial distribution of the study sites</h1>
+<div id="climate-conditions-of-the-sites" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Climate conditions of the sites</h1>
+<ul>
+<li><a href="climate_analysis.html">Temperature and Rainfall</a></li>
+</ul>
+</div>
+<div id="spatial-distribution-of-the-study-sites" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Spatial distribution of the study sites</h1>
 <ul>
 <li><a href="https://ajpelu.github.io/adaptamed_dendrospatial/">Here</a>, you can explore the spatial distribution of the study sites</li>
 </ul>
@@ -718,6 +765,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

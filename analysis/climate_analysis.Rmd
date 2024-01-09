@@ -1,0 +1,538 @@
+---
+title: "Climate characterization"
+output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10, fig.height = 7
+)
+```
+
+
+- Characterization of climate profile for each site
+
+```{r}
+library(tidyverse)
+library(purrr)
+library(multcompView)
+library(DT)
+
+source("scripts/aux.R")
+```
+
+```{r}
+climate <- readRDS("data/dendroadaptamed_climate_daily.rds")
+```
+
+
+```{r}
+d <- climate |> 
+  dplyr::select(-x,-y,-ID) |> 
+  mutate(date = lubridate::make_date(year=year, month=month, day = day),
+         yday = lubridate::yday(date)) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE)
+
+
+avg_daily <- d |> 
+  group_by(var, sp_elev, yday) |> 
+  summarise(
+    mean = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ) |> 
+  mutate(date = as.Date(yday, origin = "2015-01-01", tz = "UTC") - 1) |> # convert to date. Be carefully because in R, the date index starts at 0. 2015 as "simulated year"
+  ungroup() |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
+```
+
+
+```{r}
+
+# To get the scale factor needed for the secondary axis: max(15-days prec) / max(tmed) 
+max_tmed <- avg_daily |> filter(var == "tmed") |> summarise(max(mean))
+
+
+max_15prec <- avg_daily |>
+         filter(var == "prec") |>
+         mutate(m = lubridate::month(date)) |>
+         group_by(sp_elev, m) |>
+         summarise(mean = sum(mean)) |>
+         mutate(date = make_date(year = "2015", month = m, day = "15")) |> 
+  ungroup() |> 
+  summarise(max(mean))
+
+
+
+scale_factor <- max_15prec/max_tmed 
+scale_factor <- 4.41
+
+
+p <- ggplot(
+    data = 
+      (avg_daily |> filter(var == "tmed")), 
+      aes(x = date, y = mean*scale_factor)) + 
+  scale_x_date(date_breaks = "1 month", 
+               date_labels = "%b") + 
+  geom_bar(
+    data =
+      (avg_daily |>
+         filter(var == "prec") |>
+         mutate(m = lubridate::month(date)) |>
+         group_by(sp_elev, m) |>
+         summarise(mean = sum(mean)) |>
+         mutate(date = make_date(year = "2015", month = m, day = "15")) |> 
+         separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
+      ),
+      aes(y = mean), stat = "identity", fill = "blue"
+  ) +
+  geom_ribbon(aes(ymin = scale_factor*(mean - sd), ymax = scale_factor*(mean + sd)), fill = "grey70", alpha=.5) + 
+  geom_line() +
+  ggh4x::facet_grid2(sp_code~factor(elev_code, levels=c('low', 'low2', 'medium', 'high')), render_empty = FALSE) +
+  scale_y_continuous("Precipitation (mm)",
+                     sec.axis = sec_axis(~ ./scale_factor, name = "Mean Temperature (°C)")
+  ) + 
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank()
+  ) +
+  xlab("")
+
+```
+
+```{r}
+pnolow2 <- ggplot(
+    data = 
+      (avg_daily |> 
+         filter(elev_code != "low2") |> 
+           filter(var == "tmed")), 
+      aes(x = date, y = mean*scale_factor)) + 
+  scale_x_date(date_breaks = "1 month", 
+               date_labels = "%b") + 
+  geom_bar(
+    data =
+      (avg_daily |>
+         filter(var == "prec") |>
+         filter(elev_code != "low2") |> 
+         mutate(m = lubridate::month(date)) |>
+         group_by(sp_elev, m) |>
+         summarise(mean = sum(mean)) |>
+         mutate(date = make_date(year = "2015", month = m, day = "15")) |> 
+         separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
+      ),
+      aes(y = mean), stat = "identity", fill = "blue"
+  ) +
+  geom_ribbon(aes(ymin = scale_factor*(mean - sd), ymax = scale_factor*(mean + sd)), fill = "grey70", alpha=.5) + 
+  geom_line() +
+  ggh4x::facet_grid2(sp_code~factor(elev_code, levels=c('low','medium', 'high')), render_empty = FALSE) +
+  scale_y_continuous("Precipitation (mm)",
+                     sec.axis = sec_axis(~ ./scale_factor, name = "Mean Temperature (°C)")
+  ) + 
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(), 
+    strip.text = element_text(size = 14)
+  ) +
+  xlab("")
+
+# add ggtext with elevation 
+
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, elev) |> 
+  mutate(date = as.Date("2015-02-01"), 
+          mean = 100) |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  filter(sp_elev != "pinaster_low2")
+  
+  
+pnolow2 <- pnolow2 +
+  geom_text(data = geodf, aes(label = paste(elev, "m"), y = Inf), vjust = 1.5)
+
+
+ggsave(
+  pnolow2, 
+  file = "output/plot_climograma_nolow2.png",
+  dpi = 300,
+  width = 12, height = 10
+)
+```
+
+```{r}
+pnolow2
+```
+
+```{r, eval=FALSE}
+# If we want to incorporate the max and minimum data 
+p + 
+  geom_line(data = (avg_daily |> filter(var == "tmax")), 
+              aes(x = date, y = mean*yfactor), colour="red") +
+  geom_ribbon(data = (avg_daily |> filter(var == "tmax")),
+              aes(ymin = yfactor*(mean - sd), ymax = yfactor*(mean + sd)), 
+              fill = "red", alpha=.5) +
+  geom_line(data = (avg_daily |> filter(var == "tmin")), 
+              aes(x = date, y = mean*yfactor), colour="blue") +
+  geom_ribbon(data = (avg_daily |> filter(var == "tmin")),
+              aes(ymin = yfactor*(mean - sd), ymax = yfactor*(mean + sd)), 
+              fill = "blue", alpha=.5) 
+  
+```
+
+
+## Differences between sites 
+- For each variable we compute the annual and seasonal average temperatures and precipitation and then compare among sites. 
+
+```{r}
+date2season <- function(x) { 
+  
+  day_of_year <- lubridate::yday(x) 
+  winter <- which(day_of_year %in% c(1:80,356:366))
+  spring <- which(day_of_year %in% 81:172)
+  summer <- which(day_of_year %in% 173:264)
+  autumn <- which(day_of_year %in% 265:355)
+  
+  seasons <- rep(NA, length(x))
+  seasons[winter] <- "winter"
+  seasons[spring] <- "spring"
+  seasons[summer] <- "summer"
+  seasons[autumn] <- "autumn"
+  
+  return(seasons)
+  
+}
+
+
+d <- climate |> 
+  dplyr::select(-x,-y,-ID) |> 
+  mutate(date = lubridate::make_date(year=year, month=month, day = day),
+         yday = lubridate::yday(date)) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  mutate(season = date2season(date))
+```
+
+### Yearly
+```{r}
+avg_yearly <- bind_rows(
+  # temp 
+  d |>
+  filter(var != "prec") |> 
+  group_by(var, sp_elev, year) |> 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  d |>
+  filter(var == "prec") |> 
+  group_by(var, sp_elev, year) |> 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code))
+```
+
+#### Temporal trends
+- Plot the temporal trends (todo: compute the temporal trends statistics?)
+```{r}
+avg_yearly |> 
+  filter(var != "prec") |> 
+  filter(elev_code != "low2") |>
+  ggplot(aes(x = year, y = avg, colour=var)) +
+  geom_line() +
+  geom_line() +
+  facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(), 
+    strip.text = element_text(size = 14)
+  ) +
+  xlab("Year") +
+  ylab("Temperature (yearly average) (°C)") +
+  ylim(c(0,25)) + 
+  scale_colour_manual(values = colours_temp)
+```
+
+```{r}
+avg_yearly |> 
+  filter(var == "prec") |> 
+  filter(elev_code != "low2") |>
+  ggplot(aes(x = year, y = avg, colour=var)) +
+  geom_line() +
+  geom_line() +
+  facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(), 
+    strip.text = element_text(size = 14)
+  ) + 
+  geom_smooth(method = "lm", se=FALSE, linewidth=.5) + 
+  xlab("Year") +
+  ylab("Precipitation (yearly average) (mm)") 
+```
+
+#### Bewteen sites comparison
+- Temperatures (ToDo ANOVA-2way or similar)
+
+```{r}
+avg_yearly |> 
+  filter(var != "prec") |> 
+  ggplot(aes(x = factor(sp_code, 
+                        levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
+             y = avg, 
+             fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
+  geom_boxplot() + 
+  scale_fill_manual(values = colours_elev, name = "") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_blank()
+  ) +
+  xlab("") +
+  ylab("Annual temperature (°C)") +
+  facet_wrap(~var, ncol = 1, scales= "free_y")
+
+```
+
+- Precipitation (ToDo ANOVA-2way or similar)
+
+```{r}
+avg_yearly |> 
+  filter(var == "prec") |> 
+  ggplot(aes(x = factor(sp_code, 
+                        levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
+             y = avg, 
+             fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
+  geom_boxplot() + 
+  scale_fill_manual(values = colours_elev, name = "") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_blank()
+  ) +
+  xlab("") +
+  ylab("Rainfall (mm)") +
+  facet_wrap(~var, ncol = 1, scales= "free_y")
+
+```
+
+
+### Seasonal 
+
+```{r}
+avg_season <- bind_rows(
+  # temp 
+ d |>
+  filter(var != "prec") |> 
+  group_by(var, sp_elev, year, season) |> 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  d |>
+  filter(var == "prec") |> 
+  group_by(var, sp_elev, year, season) |> 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code))
+```
+
+- Plot the temporal trends (todo: compute the temporal trends statistics?)
+```{r}
+plot_temp_season <- function(x, season_var, ycaption) { 
+  x |> 
+  filter(var != "prec") |> 
+  filter(season == season_var) |> 
+  filter(elev_code != "low2") |>
+  ggplot(aes(x = year, y = avg, colour=var)) +
+  geom_line() +
+  geom_line() +
+  facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(), 
+    strip.text = element_text(size = 14)
+  ) +
+  xlab("Year") +
+  ylab(ycaption) +
+  scale_colour_manual(values = colours_temp)
+  
+  }
+
+plot_temp_season(avg_season, season_var = "spring", 
+                 ycaption = "Spring temperature (°C)") + ggtitle("Spring")
+
+plot_temp_season(avg_season, season_var = "summer", 
+                 ycaption = "Summer temperature (°C)") + ggtitle("Summer")
+
+plot_temp_season(avg_season, season_var = "autumn", 
+                 ycaption = "Autumn temperature (°C)") + ggtitle("Autumn")
+
+plot_temp_season(avg_season, season_var = "winter", 
+                 ycaption = "Winter temperature (°C)") + ggtitle("Winter") 
+
+```
+
+```{r}
+plot_prec_season <- function(x, season_var, ycaption, line_colour="#67a9cf") { 
+  x |> 
+  filter(var == "prec") |> 
+  filter(season == season_var) |> 
+  filter(elev_code != "low2") |>
+  ggplot(aes(x = year, y = avg, colour=var)) +
+  geom_line() +
+  facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+  theme_bw() +
+  theme(
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.x = element_blank(), 
+    strip.text = element_text(size = 14)
+  ) +
+  xlab("Year") +
+  ylab(ycaption) +
+  scale_colour_manual(values = line_colour)
+  
+}
+
+plot_prec_season(avg_season, season_var = "spring", 
+                 ycaption = "Spring rainfall (mm)") + ggtitle("Spring")
+
+plot_prec_season(avg_season, season_var = "summer", 
+                 ycaption = "Summer rainfall (mm)") + ggtitle("Summer")
+
+plot_prec_season(avg_season, season_var = "autumn", 
+                 ycaption = "Autumn rainfall (mm)") + ggtitle("Autumn")
+
+plot_prec_season(avg_season, season_var = "winter", 
+                 ycaption = "Winter rainfall (mm)") + ggtitle("Winter") 
+```
+
+
+#### Bewteen sites comparison
+- Temperatures (ToDo ANOVA-2way or similar)
+
+```{r}
+
+plot_compare_seasonal_temp <- function(x, season_var, ycaption){
+  x |> 
+    filter(var != "prec") |> 
+  filter(season == season_var) |> 
+  ggplot(aes(x = factor(sp_code, 
+                        levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
+             y = avg, 
+             fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
+  geom_boxplot() + 
+  scale_fill_manual(values = colours_elev, name = "") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_blank()
+  ) +
+  xlab("") +
+  ylab(ycaption) +
+  facet_wrap(~var, ncol = 1, scales= "free_y")
+}
+
+
+plot_compare_seasonal_temp(avg_season, season_var = "spring", 
+                 ycaption = "Spring temperature (°C)") + ggtitle("Spring")
+
+plot_compare_seasonal_temp(avg_season, season_var = "summer", 
+                 ycaption = "Summer temperature (°C)") + ggtitle("Summer")
+
+plot_compare_seasonal_temp(avg_season, season_var = "autumn", 
+                 ycaption = "Autumn temperature (°C)") + ggtitle("Autumn")
+
+plot_compare_seasonal_temp(avg_season, season_var = "winter", 
+                 ycaption = "Winter temperature (°C)") + ggtitle("Winter")
+
+```
+
+- Precipitation (ToDo ANOVA-2way or similar)
+
+```{r}
+avg_season |> 
+  filter(var == "prec") |> 
+  ggplot(aes(x = factor(sp_code, 
+                        levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
+             y = avg, 
+             fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
+  geom_boxplot() + 
+  scale_fill_manual(values = colours_elev, name = "") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_blank()
+  ) +
+  xlab("") +
+  ylab("Rainfall") +
+  facet_wrap(~season, ncol = 1, scales= "free_y")
+
+```
+
+
+
+#### Tables
+
+```{r}
+avg_all <- rbind(avg_season, 
+                 avg_yearly |> mutate(season = "yearly"))
+
+
+summary_table <- avg_all |> 
+  group_by(var, sp_code, elev_code, season) |> 
+  summarise(
+    mean= round(mean(avg, na.rm=TRUE),2),
+    sd = round(sd(avg, na.rm=TRUE),2),
+    se = round(sd/sqrt(length(avg)),2)
+  ) |> 
+  unite("v", c("mean", "se"), sep = " ± ") |> 
+  dplyr::select(-sd) |> 
+  pivot_wider(names_from = var, 
+              values_from = v)
+```
+
+```{r}
+summary_table |> 
+  DT::datatable(options =
+              list(
+                autoWidth = TRUE,
+                pageLength = 15), 
+            filter = list(position = 'top', clear = FALSE)
+            
+            )
+  
+```
+
+
+
+
+
+
+
+
