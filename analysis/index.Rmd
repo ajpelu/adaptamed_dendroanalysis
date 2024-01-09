@@ -1,6 +1,10 @@
 ---
 title: "Home"
 site: workflowr::wflow_site
+author: '[Antonio J. Pérez-Luque](https://github.com/ajpelu) <a href="https://orcid.org/0000-0002-1747-0469" target="orcid.widget">
+<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>, Darío Martín-Benito <a href="https://orcid.org/0000-0002-6738-3312" target="orcid.widget">
+<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>, Guillermo Gea-Izquierdo  <a href="https://orcid.org/0000-0003-0148-3721" target="orcid.widget">
+<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>'
 output:
   workflowr::wflow_html:
     toc: false
@@ -16,10 +20,13 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 
 - Explore the [temporal evolution of the NPP](temporal_npp_mod17.html) (from MODIS) for each of the study sites.
 
+# Climate conditions of the sites
+- [Temperature and Rainfall](climate_analysis.html)
 
 # Spatial distribution of the study sites 
 
 - [Here](https://ajpelu.github.io/adaptamed_dendrospatial/), you can explore the spatial distribution of the study sites 
+
 
 
  
