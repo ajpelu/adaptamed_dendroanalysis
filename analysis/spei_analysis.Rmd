@@ -1,8 +1,8 @@
 ---
 title: "Drought analysis"
-author: '[Antonio J. Pérez-Luque](https://github.com/ajpelu) <a href="https://orcid.org/0000-0002-1747-0469" target="orcid.widget">
-<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>'
 output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
 editor_options:
   chunk_output_type: console
 ---
@@ -18,14 +18,350 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Introduction 
+- Assessment of the drought indices using SPEI Data since. 
+- Two indices were used: SPEI-6 months and SPEI-12 months. Different temporal interval could be computed. According to [@VicenteSerranoetal2010MultiscalarDrought] short time scales are mainly related to soil-water content and river discharge in headwater areas, medium time scales are related to reservoir storages and discharge in the medium course of the rivers, and longtime scales are related to variations in groundwater storage.
 
 ```{r}
 library(tidyverse)
-
+library(purrr)
+library(confintr)
+library(patchwork)
 ```
+
 
 ```{r}
-spei_raw <- read_csv(file = "/data/dendroadaptamed_spei.csv")
+spei_raw <- read_csv(file = "data/dendroadaptamed_spei.csv")
+
+spei_data  <- spei_raw |> 
+  dplyr::select(date, 
+                spei01 = spei_1,
+                spei03 = spei_3,
+                spei06 = spei_6, 
+                spei09 = spei_9,
+                spei12 = spei_12,
+                spei24 = spei_24,
+                site_code) |> 
+  pivot_longer(cols = spei01:spei24, names_to = "spei") |> 
+  filter(!is.na(value))
+  
 ```
 
 
+## Questions 
+
+**Do the studied forest stands suffered similar drought conditions since 1960?**
+
+Our hypothesis are: 
+
+- There is not differences between forest stands located in a elevational gradient in the same area. 
+- The drought conditions were different among the forest stand located in contrasting slopes 
+
+
+## Analysis
+
+### Exploratory analysis 
+- Plot 
+
+### Correlation analysis
+
+- We performed a bootstrapped Pearson Correlation 
+
+To compare differences of drought conditions among forest stands, we performed Pearson correlation among temporal series of SPEI-06 with bootstrapped confidence intervals. 
+
+```{r}
+spei06 <- spei_data |> 
+  filter(spei == "spei06") |> 
+  na.omit() |> 
+  dplyr::select(date, value, site_code) |> 
+  pivot_wider(names_from = site_code, values_from = value) 
+```
+
+
+```{r}
+custom_bci <- function(data, site1, site2, nrep) {
+  result <- confintr::ci_cor(data[c(site1, site2)], 
+                             method = "spearman", 
+                             type = "bootstrap", R = nrep)
+
+  cor_value <- result$estimate[1]
+  ci <- result$interval
+  vars <- dimnames(result$estimate)
+
+  cor_df <- data.frame(
+    v1 = vars[[1]],
+    v2 = vars[[2]],
+    correlation = cor_value,
+    ci_lower = ci[1],
+    ci_upper = ci[2]
+  )
+  return(cor_df)
+}
+
+```
+
+
+```{r, eval=FALSE}
+
+# improve use possibly purr 
+set.seed(1234)
+
+sites <- unique(spei_raw$site_code) 
+
+# Create all possible pairs of sites
+sites_pairs <- combn(sites, 2, simplify = FALSE)
+
+sites_pairs1 <- sites_pairs[1:68]
+sites_pairs2 <- sites_pairs[70:78]
+
+column_pairs <- c(site_pairs1, sites_pairs2)
+
+# Apply custom function using purrr::map_df
+correlation_sites1 <- purrr::map_df(sites_pairs1, ~ custom_bci(spei06, .[[1]], .[[2]], nrep = 5000))
+
+correlation_sites2 <- purrr::map_df(sites_pairs2, ~ custom_bci(spei06, .[[1]], .[[2]], nrep = 5000))
+
+
+correlation_sites <- bind_rows(correlation_sites1, correlation_sites2)
+write_csv(correlation_sites, file = "data/bootstraped_cor_spei.csv")
+```
+
+
+
+```{r}
+correlation_sites |> 
+  unite("cors", v1:v2, remove = FALSE, sep = " vs ") |> 
+  ggplot(aes(x=cors, y=correlation)) + 
+ 
+  geom_linerange(aes(ymin = ci_lower, ymax = ci_upper)) + 
+  coord_flip() +
+  geom_point() + 
+  theme_minimal()
+```
+
+
+```{r}
+library(ggpmisc)
+library(cowplot)
+library(patchwork)
+sites_pairs <- combn(sites, 2, simplify = FALSE)
+
+sites_pairs1 <- sites_pairs[1:68]
+sites_pairs2 <- sites_pairs[70:78]
+
+column_pairs <- c(site_pairs1, sites_pairs2)
+
+
+
+
+plot_list <- list()
+ylab <- "SPEI-06"
+# Loop through each column pair
+for (i in 1:length(column_pairs)) {
+  column_pair <- column_pairs[[i]]
+  
+  # Select the relevant columns and pivot them longer
+  data <- spei06 %>%
+    select(date, column_pair) %>%
+    pivot_longer(-date)
+  
+  # Select the Boostrap correlation
+  bc <- final_result |> 
+  filter(v1 == column_pair[1]) |> 
+  filter(v2 == column_pair[2]) |> 
+  pull(correlation) |> round(3)
+  
+  # Create a ggplot line plot for the current column pair
+  plot <- ggplot(data, aes(date, y=value, group=name, colour=name)) +
+    geom_line() +
+    labs(title = paste0(
+      paste(column_pair[1], "-", column_pair[2]),
+      " (", bc, ")"), 
+      y = ylab, x ="") +
+    scale_color_manual(values=c("blue", "black")) +
+    theme_minimal() +
+    theme(
+      legend.position = "top", 
+      legend.title = element_blank()
+    )
+  
+  # Add the plot to the list
+  plot_list[[i]] <- plot
+}
+
+# Combine all individual plots using patchwork
+combined_plot <- wrap_plots(plotlist = plot_list, ncol = 8)
+
+# Display the combined plot
+# print(combined_plot)
+
+ggsave(
+  combined_plot, 
+  file = "output/plot_boostrap.png", 
+  dpi = 300, 
+  width = 30, height = 30
+)
+```
+
+
+
+
+Boostraped Pearson correlation between series (5000 repetitions) were carried out and are indicated in bracket. 
+
+### 
+
+
+```{r}
+spei_raw <- read_csv(file = "data/dendroadaptamed_spei.csv")
+
+s <- spei_raw |> 
+  dplyr::select(date, 
+                spei01 = spei_1,
+                spei03 = spei_3,
+                spei06 = spei_6, 
+                spei09 = spei_9,
+                spei12 = spei_12,
+                spei24 = spei_24,
+                site_code) |> 
+  pivot_longer(cols = spei01:spei_24, names_to = "spei") |> 
+  filter(!is.na(value))
+  
+```
+
+
+```{r}
+
+
+x_spei <- function(df, spei_var = "spei", 
+                   spei_indices, site_var, sites) { 
+  output <- df |> 
+    filter(get({{spei_var}}) %in% spei_indices) |> 
+    filter(get({{site_var}}) %in% sites)
+  return(output)
+  }
+
+fff <- x_spei(df = s,  
+       spei_indices = c("spei_06"), 
+       site_var = "site_code", 
+       sites = "PISYL_PORTUGOS_L")
+
+
+
+plot_spei <- function(df, 
+                      spei_var = "spei",
+                      spei_indices, 
+                      site_var, 
+                      sites, 
+                      value_var = "value",
+                      title = "",
+                      ...) {
+  
+  # Check if columns exist in the dataframe
+  if (!(spei_var %in% colnames(df) && site_var %in% colnames(df) && value_var %in% colnames(df))) {
+    stop("Columns specified do not exist in the dataframe.")
+  }
+  
+  spei_selected <- df %>%
+    filter({{spei_var}} %in% spei_indices,
+           {{site_var}} %in% sites,
+           !is.na({{value_var}})) %>%
+    mutate(
+      sign = ifelse({{value_var}} > 0, "pos", "neg"),
+      variable = recode({{spei_var}},
+                        "spei01" = "1-month",
+                        "spei03" = "3-month",
+                        "spei06" = "6-month",
+                        "spei09" = "9-month",
+                        "spei12" = "12-month",
+                        "spei24" = "24-month",
+                        "spei48" = "48-month"
+      )
+    )
+  
+  # p <- ggplot(data = spei_selected,
+  #             aes(x = .data[[date]],
+  #                 y = .data[[value_var]], 
+  #                 fill = .data[[sign]], 
+  #                 colour = .data[[sign]])) +
+  #   geom_bar(stat = "identity") +
+  #   facet_grid(.data[[site_var]] ~ .data[[variable]]) + 
+  #   scale_fill_manual(values = c("pos" = "lightblue", "neg" = "tomato")) +
+  #   scale_colour_manual(values = c("pos" = "lightblue", "neg" = "tomato")) +
+  #   theme_bw() +
+  #   labs(
+  #     title = title,
+  #     x = "",
+  #     y = "SPEI"
+  #   ) +
+  #   theme(
+  #     strip.background = element_rect(fill = "white"),
+  #     legend.position = "none",
+  #     ...
+  #   )
+  # 
+  return(spei_selected)
+}
+
+
+
+kk <- plot_spei(df = s, spei_indices = "spei_06", 
+                site_var = "site_code", sites = "PISYL_PORTUGOS_L")
+
+
+plot_spei <- function(df, 
+                      spei_var = "spei",
+                      spei_indices, 
+                      site_var, 
+                      sites,
+                      title, ...) {
+  
+  spei_selected <- df |>
+    filter(get({{spei_var}}) %in% spei_indices) |> 
+    filter(get({{site_var}}) %in% sites) |> 
+    # filter(!is.na({{value}})) |>
+    mutate(
+      sign = ifelse(.data[[value]] > 0, "pos", "neg"),
+      variable = recode({{spei_var}},
+                        "spei01" = "1-month",
+                        "spei03" = "3-month",
+                        "spei06" = "6-month",
+                        "spei09" = "9-month",
+                        "spei12" = "12-month",
+                        "spei24" = "24-month",
+                        "spei48" = "48-month"
+      )
+    )
+  # 
+  p <- ggplot(spei_selected,
+              aes(x = .data[[date]],
+                  y = .data[[value]], fill = .data[[sign]], colour = .data[[sign]])) +
+    geom_bar(stat = "identity") +
+    facet_grid(.data[[site_var]]~.data[[variable]]) +
+    scale_fill_manual(values = c("pos" = "lightblue", "neg" = "tomato")) +
+    scale_colour_manual(values = c("pos" = "lightblue", "neg" = "tomato")) +
+    theme_bw() +
+    labs(
+      title = title,
+      x = "",
+      y = "SPEI"
+    ) +
+    theme(
+      strip.background = element_rect(fill = "white"),
+      legend.position = "none"
+    )
+
+  return(spei_selected)
+}
+
+
+plot_spei(df = s, spei_indices = "spei_06", site_var = "site_code", sites = "PISYL_PORTUGOS_L")
+
+
+
+
+
+```
+
+
+
+# References 
