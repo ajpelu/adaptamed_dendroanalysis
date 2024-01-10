@@ -24,6 +24,8 @@ library(trend)
 library(kableExtra)
 library(DT)
 library(hydroTSM)
+source("scripts/aux.R")
+cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
 ```
 
 
@@ -35,28 +37,36 @@ library(hydroTSM)
 - Compute statistics (*mean*, *sd*, *se*, *cv*, ...) for each IV indexes groupping by year for each field-plot. 
 
 ```{r prepare-data}
-raw <- read_csv(here::here("data/dendroadaptamed_iv_mod13q1.csv"))
+raw <- read_csv(here::here("data/dendroadaptamed_iv_mod13q1_2024.csv"))
 elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv"))
 
 
 # Filter only Pinus field plot 
-d <- raw %>%
-  filter(str_detect(Specie, "Pinu")) %>%
+d_raw <- raw |>
+  #filter(str_detect(Specie, "Pinu")) |>
   mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
                         format = "%Y-%m-%d"),
          evi = EVI*0.0001,
-         ndvi = NDVI*0.0001) %>%
+         ndvi = NDVI*0.0001) |>
   dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
+
+
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, elev, site_code) |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) 
+
+d <- inner_join(d_raw, geodf)
 ```
 
 
 ```{r}
-iv_yearly <- d %>%
-  mutate(year=lubridate::year(date)) %>% 
-  dplyr::select(site_code, Specie, year, evi, ndvi) %>% 
+iv_yearly <- d |>
+  mutate(year=lubridate::year(date)) |> 
+  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |> 
   pivot_longer(cols = c("ndvi", "evi"), 
-               names_to = 'variable', values_to = 'value') %>% 
-  group_by(site_code, Specie, year, variable) %>% 
+               names_to = 'variable', values_to = 'value') |> 
+  group_by(site_code, Specie, year, sp_elev, variable) |> 
   summarise(mean = mean(value, na.rm = TRUE), 
             sd = sd(value, na.rm = TRUE), 
             se = sd/sqrt(length(value)),
@@ -65,22 +75,23 @@ iv_yearly <- d %>%
             sum = sum(value, na.rm=TRUE),
             min = min(value), 
             max = max(value),
-            n = length(value)) %>% 
-  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) %>% 
-  inner_join(elev_cat) %>% 
-  mutate(season = as.factor("yearly")) %>% 
-  ungroup()
+            n = length(value)) |> 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
+  inner_join(elev_cat) |> 
+  mutate(season = as.factor("yearly")) |> 
+  ungroup() |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
 ```
 
 # Summary data
 
 ```{r}
-nsize_years_gral <- d %>% group_by(site_code, Specie) %>% count() %>% dplyr::select(n) %>% pull() %>% unique()
+nsize_years_gral <- d_raw |> group_by(site_code, Specie) |> count() |> dplyr::select(n) |> pull() |> unique()
 
-nsize_years <- d %>% mutate(year = lubridate::year(date)) %>%
-  group_by(site_code, Specie, year) %>%
-  count() %>% 
-  filter(site_code == "PIHAL_NACIMIENTO_L") %>% dplyr::select(n) %>% pull() %>% unique()
+nsize_years <- d_raw |> mutate(year = lubridate::year(date)) |>
+  group_by(site_code, Specie, year) |>
+  count() |> 
+  filter(site_code == "PIHAL_NACIMIENTO_L") |> dplyr::select(n) |> pull() |> unique()
 
 ```
 
@@ -91,7 +102,7 @@ How many images are there in total and by year?:
 - All the years have `r max(nsize_years)` images except the year 2000 having `r min(nsize_years)` images. 
 
 ```{r, results="asis", echo=FALSE}
-d %>% group_by(site_code, Specie) %>% count() %>% 
+d |> group_by(Specie, elev_code) |> count() |> 
   DT::datatable(rownames = FALSE)
 
 cat("<table width=100%>", paste0("<caption>",
@@ -109,17 +120,16 @@ We explored the temporal trends for both the annual average (Table \@ref(tab:mk-
 Significant but weaker positive trends (p-value < 0.05) were observed for annual EVI mean of the high-elevation sites of *P. nigra* and *P. pinaster* (Table \@ref(tab:mk-mean)). The standard deviation decreased significantly along the study period for the PIPIN_JEREZ_M site, and positively and significant increased for PIHAL_NACIMIENTO site (Table \@ref(tab:mk-sd)). 
 
 ```{r plot-evi, fig.cap="Temporal evolution of EVI annual mean."}
-cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
 
-iv_yearly %>% 
-  filter(variable == "evi") %>%  
-  ggplot(aes(x=year, y=mean, colour=elev_cat)) +
-  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_cat), colour=NA, alpha=.2) +
+iv_yearly |> 
+  filter(variable == "evi") |>  
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
   geom_line() + 
   #geom_point() + 
   facet_wrap(~Specie, ncol=2) +
-  scale_fill_manual(values=cols, name="") +
-  scale_colour_manual(values=cols, name="") + 
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") + 
   theme_bw() +
   ylab("EVI annual mean") + xlab("") +
   theme(
@@ -132,10 +142,10 @@ iv_yearly %>%
 
 
 ```{r}
-mkevi_yearly <- iv_yearly %>% 
-  filter(variable == "evi")  %>% 
-  ungroup() %>% 
-  group_by(site_code,Specie) %>% 
+mkevi_yearly <- iv_yearly |> 
+  filter(variable == "evi")  |> 
+  ungroup() |> 
+  group_by(site_code, sp_elev, Specie, elev_code, sp_code) |> 
   summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
             across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
             across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
@@ -144,35 +154,36 @@ mkevi_yearly <- iv_yearly %>%
 ```
 
 ```{r mk-mean}
-mkevi_yearly %>% 
-  dplyr::select(Specie, site_code, dplyr::starts_with("mean")) %>% rename_with(.cols=dplyr::starts_with("mean"),
-            ~str_replace(., "mean_", "")) %>% 
+mkevi_yearly |> 
+  ungroup() |> 
+  dplyr::select(Specie, elev_code, dplyr::starts_with("mean")) |> rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) |> 
   kbl(
     digits = c(0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") %>% 
+    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") |> 
     kable_paper("hover", full_width = F)
 ```
 
 
-```{r mk-sd}
-mkevi_yearly %>% 
-  dplyr::select(site_code, dplyr::starts_with("sd")) %>% rename_with(.cols=dplyr::starts_with("sd"),
-            ~str_replace(., "sd", "")) %>% 
+```{r mk-sd, eval=FALSE}
+mkevi_yearly |> 
+  dplyr::select(site_code, dplyr::starts_with("sd")) |> rename_with(.cols=dplyr::starts_with("sd"),
+            ~str_replace(., "sd", "")) |> 
   kbl(
     digits = c(0,3,4,4,4),
-    caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") %>% 
+    caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") |> 
     kable_paper("hover", full_width = F)
 ```
 
 # Seasonal analysis 
 ```{r}
-iv_season <- d %>% 
-  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt="seasons"))) %>% 
-  mutate(year=lubridate::year(date)) %>% 
-  dplyr::select(site_code, Specie, year, season, evi, ndvi) %>% 
+iv_season <- d |> 
+  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt="seasons"))) |> 
+  mutate(year=lubridate::year(date)) |> 
+  dplyr::select(site_code, Specie, year, season, evi, ndvi) |> 
   pivot_longer(cols = c("ndvi", "evi"), 
-               names_to = 'variable', values_to = 'value') %>% 
-  group_by(site_code, Specie, year, season, variable) %>% 
+               names_to = 'variable', values_to = 'value') |> 
+  group_by(site_code, Specie, year, season, variable) |> 
   summarise(mean = mean(value, na.rm = TRUE), 
             sd = sd(value, na.rm = TRUE), 
             se = sd/sqrt(length(value)),
@@ -181,9 +192,9 @@ iv_season <- d %>%
             sum = sum(value, na.rm=TRUE),
             min = min(value), 
             max = max(value),
-            n = length(value)) %>% 
-  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) %>% 
-  inner_join(elev_cat) %>% 
+            n = length(value)) |> 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
+  inner_join(geodf) |> 
   ungroup()
 
 ```
@@ -191,16 +202,16 @@ iv_season <- d %>%
 
 ```{r plot-evi-season, fig.cap="Temporal evolution of EVI seasonal mean."}
 
-bind_rows(iv_season, iv_yearly) %>% 
-  mutate(season = fct_relevel(season, c("yearly", "winter","spring","summer","autumm"))) %>% 
-  filter(variable == "evi") %>%  
-  ggplot(aes(x=year, y=mean, colour=elev_cat)) +
-  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_cat), colour=NA, alpha=.2) +
+bind_rows(iv_season, iv_yearly) |> 
+  mutate(season = fct_relevel(season, c("yearly", "winter","spring","summer","autumm"))) |> 
+  filter(variable == "evi") |>  
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
   geom_line() + 
   #geom_point() + 
   facet_grid(Specie~season) +
-  scale_fill_manual(values=cols, name="") +
-  scale_colour_manual(values=cols, name="") + 
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") + 
   theme_bw() +
   ylab("EVI seasonal mean") + xlab("") +
   theme(
@@ -213,10 +224,10 @@ bind_rows(iv_season, iv_yearly) %>%
 
 
 ```{r}
-mkevi_season <- iv_season %>% 
-  filter(variable == "evi")  %>% 
-  ungroup() %>% 
-  group_by(site_code,Specie, season) %>% 
+mkevi_season <- iv_season |> 
+  filter(variable == "evi")  |> 
+  ungroup() |> 
+  group_by(site_code, Specie, sp_code, elev_code, season) |> 
   summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
             across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
             across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
@@ -226,40 +237,49 @@ mkevi_season <- iv_season %>%
 
 
 ```{r}
-mkevi_season %>% 
-  dplyr::select(Specie, site_code, season, dplyr::starts_with("mean")) %>% rename_with(.cols=dplyr::starts_with("mean"),
-            ~str_replace(., "mean_", "")) %>% 
+mkevi_season |> 
+  ungroup() |> 
+  dplyr::select(Specie, elev_code, season, dplyr::starts_with("mean")) |>
+  rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) |> 
   kbl(
     digits = c(0,0,0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") %>% 
+    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") |> 
     kable_paper("hover", full_width = F)
 ```
 
 
-```{r}
-mkevi_season %>% 
-  dplyr::select(site_code, season, dplyr::starts_with("sd")) %>% rename_with(.cols=dplyr::starts_with("sd"),
-            ~str_replace(., "sd_", "")) %>% 
+```{r, eval=FALSE}
+mkevi_season |> 
+  dplyr::select(site_code, season, dplyr::starts_with("sd")) |> rename_with(.cols=dplyr::starts_with("sd"),
+            ~str_replace(., "sd_", "")) |> 
   kbl(
     digits = c(0,0,0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") %>% 
+    caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") |> 
     kable_paper("hover", full_width = F)
 
 ```
+
+
+
+
 
 
 
 # Long-term NDVI (AVHRR)
-Vas por aquí 
+Vas por aquí !!! 
+
+
+
 ```{r}
 ndvi1km_raw <- read_csv(here::here("data/dendroadaptamed_ndvicsic1km.csv"))
 ```
 
 
 ```{r}
-ndvi1km_yearly <- ndvi1km_raw %>% 
- mutate(year=lubridate::year(date)) %>% 
-  group_by(site_code, Specie, year, elev_cat) %>% 
+ndvi1km_yearly <- ndvi1km_raw |> 
+ mutate(year=lubridate::year(date)) |> 
+  group_by(site_code, Specie, year, elev_cat) |> 
   summarise(mean = mean(ndvi, na.rm = TRUE), 
             sd = sd(ndvi, na.rm = TRUE), 
             se = sd/sqrt(length(ndvi)),
@@ -268,17 +288,17 @@ ndvi1km_yearly <- ndvi1km_raw %>%
             sum = sum(ndvi, na.rm=TRUE),
             min = min(ndvi), 
             max = max(ndvi),
-            n = length(ndvi)) %>% 
+            n = length(ndvi)) |> 
   mutate(Specie = str_replace_all(Specie, "Pinus_", "P. "), 
-         season = as.factor("yearly")) %>% 
+         season = as.factor("yearly")) |> 
   ungroup()
 
-ndvi1km_season <- ndvi1km_raw %>% 
-  mutate(year=lubridate::year(date)) %>% 
+ndvi1km_season <- ndvi1km_raw |> 
+  mutate(year=lubridate::year(date)) |> 
   mutate(season = 
            as.factor(hydroTSM::time2season(date, 
-                                 out.fmt="seasons"))) %>% 
-           group_by(site_code, Specie, year, season, elev_cat) %>% 
+                                 out.fmt="seasons"))) |> 
+           group_by(site_code, Specie, year, season, elev_cat) |> 
   summarise(mean = mean(ndvi, na.rm = TRUE), 
             sd = sd(ndvi, na.rm = TRUE), 
             se = sd/sqrt(length(ndvi)),
@@ -287,8 +307,8 @@ ndvi1km_season <- ndvi1km_raw %>%
             sum = sum(ndvi, na.rm=TRUE),
             min = min(ndvi), 
             max = max(ndvi),
-            n = length(ndvi)) %>% 
-  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) %>% 
+            n = length(ndvi)) |> 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
   ungroup()
 
 ndvi1km <- bind_rows(
@@ -301,8 +321,8 @@ ndvi1km <- bind_rows(
 
 ```{r ndvi-year, fig.cap="Temporal evolution of NDVI annual mean (dataset = AVHRR)"}
 
-ndvi1km %>%  
-  mutate(season2 = fct_relevel(season, c("yearly", "winter","spring","summer","autumm"))) %>%
+ndvi1km |>  
+  mutate(season2 = fct_relevel(season, c("yearly", "winter","spring","summer","autumm"))) |>
   ggplot(aes(x=year, y=mean, colour=elev_cat)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_cat), colour=NA, alpha=.2) +
   geom_line() + 
@@ -321,9 +341,9 @@ ndvi1km %>%
 
 
 ```{r}
-mkndvi1km <- ndvi1km %>% 
-  ungroup() %>% 
-  group_by(site_code,Specie, season) %>% 
+mkndvi1km <- ndvi1km |> 
+  ungroup() |> 
+  group_by(site_code,Specie, season) |> 
   summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
             across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
             across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
@@ -333,23 +353,23 @@ mkndvi1km <- ndvi1km %>%
 
 
 ```{r}
-mkndvi1km %>% 
-  dplyr::select(Specie, site_code, season, dplyr::starts_with("mean")) %>% rename_with(.cols=dplyr::starts_with("mean"),
-            ~str_replace(., "mean_", "")) %>% 
+mkndvi1km |> 
+  dplyr::select(Specie, site_code, season, dplyr::starts_with("mean")) |> rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) |> 
   kbl(
     digits = c(0,0,0,3,5,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for NDVI (1km)") %>% 
+    caption = "Mann-Kendall and Seil temporal trend test for NDVI (1km)") |> 
     kable_paper("hover", full_width = F)
 ```
 
 
 ```{r}
-mkndvi1km %>% 
-  dplyr::select(site_code, season, dplyr::starts_with("sd")) %>% rename_with(.cols=dplyr::starts_with("sd"),
-            ~str_replace(., "sd_", "")) %>% 
+mkndvi1km |> 
+  dplyr::select(site_code, season, dplyr::starts_with("sd")) |> rename_with(.cols=dplyr::starts_with("sd"),
+            ~str_replace(., "sd_", "")) |> 
   kbl(
     digits = c(0,0,0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for seasonal and annual NDVI standard deviation") %>% 
+    caption = "Mann-Kendall and Seil temporal trend test for seasonal and annual NDVI standard deviation") |> 
     kable_paper("hover", full_width = F)
 
 ```
@@ -359,11 +379,11 @@ mkndvi1km %>%
 
 ```{r}
 # Select ndvi_modis
-ndvi_modis <- bind_rows(iv_yearly, iv_season) %>% 
-  filter(variable == "ndvi")  %>% 
+ndvi_modis <- bind_rows(iv_yearly, iv_season) |> 
+  filter(variable == "ndvi")  |> 
   dplyr::select(site_code, Specie, year, mean_modis = mean, sd_modis = sd, se_modis = se, elev_cat, season)
 
-ndvi_avhrr <- ndvi1km %>% 
+ndvi_avhrr <- ndvi1km |> 
   dplyr::select(site_code, Specie, year, mean_avhrr = mean, sd_avhrr = sd, se_avhrr = se, elev_cat, season)
 
 ndvi_correla <- inner_join(
@@ -389,27 +409,27 @@ ggpubr::ggscatter(ndvi_correla,
 
 ## Sentinel 
 ```{r}
-raw_s2 <- read_csv(here::here("data/dendroadaptamed_sentinel2.csv")) %>%
-  filter(str_detect(Specie, "Pinu")) %>%
+raw_s2 <- read_csv(here::here("data/dendroadaptamed_sentinel2.csv")) |>
+  filter(str_detect(Specie, "Pinu")) |>
   mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 8), "_", "-"),
-                        format = "%Y%m%d")) %>% 
+                        format = "%Y%m%d")) |> 
   inner_join(elev_cat)
 
 
-ndvi_s2 <- raw_s2 %>% 
-  dplyr::select(date, lat, long, Specie, site_code, ndvi=NDVI, elev_cat) %>% 
+ndvi_s2 <- raw_s2 |> 
+  dplyr::select(date, lat, long, Specie, site_code, ndvi=NDVI, elev_cat) |> 
   filter(!is.na(ndvi))
 
-evi_s2 <- raw_s2 %>% 
-  dplyr::select(date, lat, long, Specie, site_code, evi=EVI, elev_cat) %>% 
+evi_s2 <- raw_s2 |> 
+  dplyr::select(date, lat, long, Specie, site_code, evi=EVI, elev_cat) |> 
   filter(!is.na(evi))
 
 
-ndvi_s2 %>% 
-  group_by(date, Specie, site_code, elev_cat) %>% 
+ndvi_s2 |> 
+  group_by(date, Specie, site_code, elev_cat) |> 
   summarise(mean = mean(ndvi), 
             sd = sd(ndvi, na.rm = TRUE), 
-            se = sd/sqrt(length(ndvi))) %>% 
+            se = sd/sqrt(length(ndvi))) |> 
   ggplot(aes(x=date, y=mean, colour=elev_cat)) +
   geom_line() + 
   facet_wrap(~Specie, ncol=2) +
