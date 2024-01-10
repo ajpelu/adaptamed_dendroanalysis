@@ -14,6 +14,13 @@ knitr::opts_chunk$set(
 
 - Prepare temporal series of yearly NPP for each field-plot, and then compute temporal trends
 
+- Data source: 
+  
+  - MODIS [MOD17A3HGF](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD17A3HGF)
+  - Spatial resolution: 500 m pixel
+  - The MOD17A3HGF V6.1 product provides information about annual Gross and Net Primary Productivity (GPP and NPP) at 500m pixel resolution. Annual NPP is derived from the sum of all 8-day Net Photosynthesis(PSN) products (MOD17A2H) from the given year. The PSN value is the difference of the Gross Primary Productivity (GPP) and the Maintenance Respiration (MR) (GPP-MR).
+  - Detailed info [here](https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf)
+
 ```{r pkg}
 library(here)
 library(tidyverse)
@@ -22,6 +29,8 @@ library(Kendall)
 library(trend)
 library(kableExtra)
 library(DT)
+
+source("scripts/aux.R")
 ```
 
 
@@ -79,7 +88,6 @@ npp_summary %>%
 
 
 ```{r, plot-npp-avg, fig.cap="Comparison of average values of yearly NPP."}
-cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
 
 npp_summary %>% 
   ggplot(aes(x=elev_cat, y=mean, fill=elev_cat, colour=elev_cat)) + 
@@ -88,8 +96,8 @@ npp_summary %>%
   ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
   xlab("") + 
   facet_grid(cols=vars(Specie), scales = "free_x", space = "free_x") +
-  scale_fill_manual(values=cols, name="") +
-  scale_colour_manual(values=cols, name="") + 
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") + 
   theme_bw() + 
     theme(
     panel.grid = element_blank(),
@@ -121,7 +129,6 @@ mknpp <- dnpp %>%
 Significant but weaker positive trends (p-value < 0.05) were observed for yearly NPP of the medium- and high-elevation sites of *P. sylvestris* (Table \@ref(tab:mk-mean)). 
 
 ```{r plot-npp, fig.cap="Temporal evolution of year NPP."}
-cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
 
 dnpp %>% 
   mutate(year = lubridate::year(date)) %>% 
@@ -129,8 +136,8 @@ dnpp %>%
   geom_line() + 
   #geom_point() + 
   facet_wrap(~Specie, ncol=2) +
-  scale_fill_manual(values=cols, name="") +
-  scale_colour_manual(values=cols, name="") +
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") +
   ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
   xlab("") + 
   theme_bw() + 
