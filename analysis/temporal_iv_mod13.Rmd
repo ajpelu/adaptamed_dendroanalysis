@@ -263,6 +263,36 @@ mkevi_season |>
 
 
 
+# Long-term high-spatial resolution Landsat (harmonized)
+
+```{r}
+landsat <- read_csv("data/dendroadaptamed_ndvi_landsat_harmonized.csv") |> 
+  rename(year = "system:time_start") |> 
+  mutate(year = as.numeric(str_remove(year, "Aug 1, "))) |> 
+  filter(year != 2023) |> 
+  pivot_longer(-year, names_to = "site_code", values_to = "ndvi_landsat") |> 
+  inner_join(geodf)
+```
+
+
+```{r}
+landsat |>
+  ggplot(aes(x = year, y = ndvi_landsat, colour = elev_code)) +
+  geom_line() +
+  geom_point(size = 1.5) +
+  theme_bw() +
+  ylab("Annual NDVI (Landast 30-m)") +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0)),
+    plot.background = element_rect(fill = "transparent"), 
+    legend.position = "bottom"
+  ) +
+    scale_colour_manual(values = colours_elev) +
+    scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") +
+  facet_wrap(~sp_code) 
+```
 
 
 
