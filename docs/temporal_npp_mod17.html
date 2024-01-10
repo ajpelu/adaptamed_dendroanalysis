@@ -530,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree50b3257a722ed05ca163984ccaee7eb111c42cd8targetblank50b3257a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef72505adf30ac758f94d9978eac8ae21b86337a7targetblankf72505aa">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/50b3257a722ed05ca163984ccaee7eb111c42cd8" target="_blank">50b3257</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f72505adf30ac758f94d9978eac8ae21b86337a7" target="_blank">f72505a</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree50b3257a722ed05ca163984ccaee7eb111c42cd8targetblank50b3257a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef72505adf30ac758f94d9978eac8ae21b86337a7targetblankf72505aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/50b3257a722ed05ca163984ccaee7eb111c42cd8" target="_blank">50b3257</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f72505adf30ac758f94d9978eac8ae21b86337a7" target="_blank">f72505a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -614,6 +614,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/f72505adf30ac758f94d9978eac8ae21b86337a7/analysis/temporal_npp_mod17.Rmd" target="_blank">f72505a</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+<td>
+wflow_publish("analysis/temporal_npp_mod17.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/12b23ef74fb3627cda95f34af2f389783c1bf5de/docs/temporal_npp_mod17.html" target="_blank">12b23ef</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -692,7 +726,14 @@ add analysis
 <div id="aims" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Aims</h1>
 <ul>
-<li>Prepare temporal series of yearly NPP for each field-plot, and then compute temporal trends</li>
+<li><p>Prepare temporal series of yearly NPP for each field-plot, and then compute temporal trends</p></li>
+<li><p>Data source:</p>
+<ul>
+<li>MODIS <a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD17A3HGF">MOD17A3HGF</a></li>
+<li>Spatial resolution: 500 m pixel</li>
+<li>The MOD17A3HGF V6.1 product provides information about annual Gross and Net Primary Productivity (GPP and NPP) at 500m pixel resolution. Annual NPP is derived from the sum of all 8-day Net Photosynthesis(PSN) products (MOD17A2H) from the given year. The PSN value is the difference of the Gross Primary Productivity (GPP) and the Maintenance Respiration (MR) (GPP-MR).</li>
+<li>Detailed info <a href="https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf">here</a></li>
+</ul></li>
 </ul>
 <pre class="r"><code>library(here)
 library(tidyverse)
@@ -700,7 +741,9 @@ library(tidytext)
 library(Kendall)
 library(trend)
 library(kableExtra)
-library(DT)</code></pre>
+library(DT)
+
+source(&quot;scripts/aux.R&quot;)</code></pre>
 </div>
 <div id="prepare-data" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Prepare data</h1>
@@ -1159,17 +1202,15 @@ high
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>cols &lt;- c(&quot;low&quot; = &quot;red&quot;, &quot;low2&quot; =&quot;orange&quot;, &quot;med&quot; = &quot;blue&quot;, &quot;high&quot; = &quot;darkgreen&quot;)
-
-npp_summary %&gt;% 
+<pre class="r"><code>npp_summary %&gt;% 
   ggplot(aes(x=elev_cat, y=mean, fill=elev_cat, colour=elev_cat)) + 
   geom_point(size=3) + 
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.3)+
   ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
   xlab(&quot;&quot;) + 
   facet_grid(cols=vars(Specie), scales = &quot;free_x&quot;, space = &quot;free_x&quot;) +
-  scale_fill_manual(values=cols, name=&quot;&quot;) +
-  scale_colour_manual(values=cols, name=&quot;&quot;) + 
+  scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
   theme_bw() + 
     theme(
     panel.grid = element_blank(),
@@ -1207,6 +1248,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/12b23ef74fb3627cda95f34af2f389783c1bf5de/docs/figure/temporal_npp_mod17.Rmd/plot-npp-avg-1.png" target="_blank">12b23ef</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/de037d3801aaeae43a553c6d4a45bc2e182b64e4/docs/figure/temporal_npp_mod17.Rmd/plot-npp-avg-1.png" target="_blank">de037d3</a>
 </td>
 <td>
@@ -1234,16 +1286,14 @@ ajpelu
             across(npp, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;)) %&gt;% 
   arrange(Specie, elev_cat)</code></pre>
 <p>Significant but weaker positive trends (p-value &lt; 0.05) were observed for yearly NPP of the medium- and high-elevation sites of <em>P. sylvestris</em> (Table <a href="#tab:mk-mean">4.1</a>).</p>
-<pre class="r"><code>cols &lt;- c(&quot;low&quot; = &quot;red&quot;, &quot;low2&quot; =&quot;orange&quot;, &quot;med&quot; = &quot;blue&quot;, &quot;high&quot; = &quot;darkgreen&quot;)
-
-dnpp %&gt;% 
+<pre class="r"><code>dnpp %&gt;% 
   mutate(year = lubridate::year(date)) %&gt;% 
   ggplot(aes(x=year, y=npp, colour=elev_cat)) +
   geom_line() + 
   #geom_point() + 
   facet_wrap(~Specie, ncol=2) +
-  scale_fill_manual(values=cols, name=&quot;&quot;) +
-  scale_colour_manual(values=cols, name=&quot;&quot;) +
+  scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  scale_colour_manual(values=colours_elev, name=&quot;&quot;) +
   ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
   xlab(&quot;&quot;) + 
   theme_bw() + 
@@ -1281,6 +1331,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/12b23ef74fb3627cda95f34af2f389783c1bf5de/docs/figure/temporal_npp_mod17.Rmd/plot-npp-1.png" target="_blank">12b23ef</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/de037d3801aaeae43a553c6d4a45bc2e182b64e4/docs/figure/temporal_npp_mod17.Rmd/plot-npp-1.png" target="_blank">de037d3</a>
