@@ -560,20 +560,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeeba6b3e4b045c884c9810867a6811cc5312ee326targetblankeba6b3ea">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed9c54e494cee6acd65579f8ad35e94e2d9932beatargetblankd9c54e4a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/eba6b3e4b045c884c9810867a6811cc5312ee326" target="_blank">eba6b3e</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d9c54e494cee6acd65579f8ad35e94e2d9932bea" target="_blank">d9c54e4</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeeba6b3e4b045c884c9810867a6811cc5312ee326targetblankeba6b3ea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed9c54e494cee6acd65579f8ad35e94e2d9932beatargetblankd9c54e4a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/eba6b3e4b045c884c9810867a6811cc5312ee326" target="_blank">eba6b3e</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d9c54e494cee6acd65579f8ad35e94e2d9932bea" target="_blank">d9c54e4</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -646,6 +646,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d9c54e494cee6acd65579f8ad35e94e2d9932bea/analysis/temporal_iv_mod13.Rmd" target="_blank">d9c54e4</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+<td>
+wflow_publish("analysis/temporal_iv_mod13.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/39892ddfffd1b8b7f304acd239274f83859ae856/docs/temporal_iv_mod13.html" target="_blank">39892dd</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -906,6 +940,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/39892ddfffd1b8b7f304acd239274f83859ae856/docs/figure/temporal_iv_mod13.Rmd/plot-evi-1.png" target="_blank">39892dd</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/de037d3801aaeae43a553c6d4a45bc2e182b64e4/docs/figure/temporal_iv_mod13.Rmd/plot-evi-1.png" target="_blank">de037d3</a>
@@ -1301,6 +1346,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/39892ddfffd1b8b7f304acd239274f83859ae856/docs/figure/temporal_iv_mod13.Rmd/plot-evi-season-1.png" target="_blank">39892dd</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/ef45d70d4c55906c57d01745b64a9fbd2d5ae87a/docs/figure/temporal_iv_mod13.Rmd/plot-evi-season-1.png" target="_blank">ef45d70</a>
@@ -2569,8 +2625,34 @@ winter
     caption = &quot;Mann-Kendall and Seil temporal trend test for anual EVI standard deviation&quot;) |&gt; 
     kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
 </div>
-<div id="long-term-ndvi-avhrr" class="section level1" number="6">
-<h1><span class="header-section-number">6</span> Long-term NDVI (AVHRR)</h1>
+<div id="long-term-high-spatial-resolution-landsat-harmonized" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Long-term high-spatial resolution Landsat (harmonized)</h1>
+<pre class="r"><code>landsat &lt;- read_csv(&quot;data/dendroadaptamed_ndvi_landsat_harmonized.csv&quot;) |&gt; 
+  rename(year = &quot;system:time_start&quot;) |&gt; 
+  mutate(year = as.numeric(str_remove(year, &quot;Aug 1, &quot;))) |&gt; 
+  filter(year != 2023) |&gt; 
+  pivot_longer(-year, names_to = &quot;site_code&quot;, values_to = &quot;ndvi_landsat&quot;) |&gt; 
+  inner_join(geodf)</code></pre>
+<pre class="r"><code>landsat |&gt;
+  ggplot(aes(x = year, y = ndvi_landsat, colour = elev_code)) +
+  geom_line() +
+  geom_point(size = 1.5) +
+  theme_bw() +
+  ylab(&quot;Annual NDVI (Landast 30-m)&quot;) +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0)),
+    plot.background = element_rect(fill = &quot;transparent&quot;), 
+    legend.position = &quot;bottom&quot;
+  ) +
+    scale_colour_manual(values = colours_elev) +
+    scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  scale_colour_manual(values=colours_elev, name=&quot;&quot;) +
+  facet_wrap(~sp_code) </code></pre>
+<p><img src="figure/temporal_iv_mod13.Rmd/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="long-term-ndvi-avhrr" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Long-term NDVI (AVHRR)</h1>
 <p>Vas por aquí !!!</p>
 <pre class="r"><code>ndvi1km_raw &lt;- read_csv(here::here(&quot;data/dendroadaptamed_ndvicsic1km.csv&quot;))</code></pre>
 <pre class="r"><code>ndvi1km_yearly &lt;- ndvi1km_raw |&gt; 
@@ -2630,7 +2712,7 @@ ndvi1km &lt;- bind_rows(
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ndvi-year"></span>
 <img src="figure/temporal_iv_mod13.Rmd/ndvi-year-1.png" alt="Temporal evolution of NDVI annual mean (dataset = AVHRR)" width="672" />
 <p class="caption">
-Figure 6.1: Temporal evolution of NDVI annual mean (dataset = AVHRR)
+Figure 7.1: Temporal evolution of NDVI annual mean (dataset = AVHRR)
 </p>
 </div>
 <p>
@@ -2655,6 +2737,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/39892ddfffd1b8b7f304acd239274f83859ae856/docs/figure/temporal_iv_mod13.Rmd/ndvi-year-1.png" target="_blank">39892dd</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/ef45d70d4c55906c57d01745b64a9fbd2d5ae87a/docs/figure/temporal_iv_mod13.Rmd/ndvi-year-1.png" target="_blank">ef45d70</a>
@@ -2686,7 +2779,7 @@ ajpelu
     kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-12">Table 6.1: </span>Mann-Kendall and Seil temporal trend test for NDVI (1km)
+<span id="tab:unnamed-chunk-14">Table 7.1: </span>Mann-Kendall and Seil temporal trend test for NDVI (1km)
 </caption>
 <thead>
 <tr>
@@ -3990,7 +4083,7 @@ winter
     kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-13">Table 6.2: </span>Mann-Kendall and Seil temporal trend test for seasonal and annual NDVI standard deviation
+<span id="tab:unnamed-chunk-15">Table 7.2: </span>Mann-Kendall and Seil temporal trend test for seasonal and annual NDVI standard deviation
 </caption>
 <thead>
 <tr>
@@ -5286,8 +5379,8 @@ winter
 </tbody>
 </table>
 </div>
-<div id="correlation-ndvi-avhrr-1km---modis-250m" class="section level1" number="7">
-<h1><span class="header-section-number">7</span> Correlation NDVI AVHRR (1km) - MODIS (250m)</h1>
+<div id="correlation-ndvi-avhrr-1km---modis-250m" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Correlation NDVI AVHRR (1km) - MODIS (250m)</h1>
 <pre class="r"><code># Select ndvi_modis
 ndvi_modis &lt;- bind_rows(iv_yearly, iv_season) |&gt; 
   filter(variable == &quot;ndvi&quot;)  |&gt; 
@@ -5315,46 +5408,9 @@ ggpubr::ggscatter(ndvi_correla,
    ) +
   geom_abline(slope=1) + 
   lims(x=c(0,1), y=c(0,1)) </code></pre>
-<p><img src="figure/temporal_iv_mod13.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
-Past versions of unnamed-chunk-14-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-14-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/ef45d70d4c55906c57d01745b64a9fbd2d5ae87a/docs/figure/temporal_iv_mod13.Rmd/unnamed-chunk-14-1.png" target="_blank">ef45d70</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2022-05-16
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="sentinel" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Sentinel</h2>
+<p><img src="figure/temporal_iv_mod13.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="sentinel" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Sentinel</h2>
 <pre class="r"><code>raw_s2 &lt;- read_csv(here::here(&quot;data/dendroadaptamed_sentinel2.csv&quot;)) |&gt;
   filter(str_detect(Specie, &quot;Pinu&quot;)) |&gt;
   mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 8), &quot;_&quot;, &quot;-&quot;),
@@ -5382,7 +5438,7 @@ ndvi_s2 |&gt;
   scale_fill_manual(values=cols, name=&quot;&quot;) +
   scale_colour_manual(values=cols, name=&quot;&quot;) + 
   theme_bw() </code></pre>
-<p><img src="figure/temporal_iv_mod13.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/temporal_iv_mod13.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="refs">
 
 </div>
