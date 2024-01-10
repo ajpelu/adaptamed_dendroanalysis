@@ -32,6 +32,7 @@ library(DT)
 - Format NPP values (multiply for scale factor 0.0001; see this [link](https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD17A3HGF)) 
 
 ```{r prepare-data}
+# raw_npp <- read_csv(here::here("data/dendroadaptamed_npp_mod17a3_yearly.csv"))
 raw_npp <- read_csv(here::here("data/dendroadaptamed_npp_mod17a3_yearly.csv"))
 elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv")) 
 
@@ -41,7 +42,7 @@ elev_cat <- elev_cat %>%
 
 # Filter only Pinus field plot 
 dnpp <- raw_npp %>%
-  filter(str_detect(Specie, "Pinu")) %>%
+  # filter(str_detect(Specie, "Pinu")) %>%
   mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
                         format = "%Y-%m-%d"),
          npp = Npp*0.0001) %>%
@@ -67,10 +68,11 @@ npp_summary <- dnpp %>%
 ```
 
 ```{r npp-summary}
-npp_summary %>% arrange(Specie, elev_cat) %>% 
+npp_summary %>% 
+  arrange(Specie, elev_cat) %>% 
   # dplyr::select(elev_cat) %>% 
   kbl(
-    digits = c(0,0,4,4,4,2,4,4),
+    digits = c(0,0,4,4,4,2,2,4,4),
     caption = "Summary values of the yearly NPP (kg C m^-2^ year ^-1^) along the study period (2000-2021) for the study sites.") %>% 
     kable_paper("hover", full_width = F)
 ```
@@ -145,7 +147,7 @@ dnpp %>%
 ```{r mk-mean}
 mknpp %>% 
   kbl(
-    digits = c(0,0,4,4,4,4),
+    digits = c(0,0,0,4,4,4,4),
     caption = "Mann-Kendall and Seil temporal trend test for yearly NPP") %>% 
     kable_paper("hover", full_width = F)
 ```
