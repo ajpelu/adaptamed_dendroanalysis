@@ -1,0 +1,14 @@
+ID,site_code,sp_code,elev_code,elev,slope,aspect,aspectFactor
+1,PIHAL_NACIMIENTO_M,halepensis,medium,1282,12.9,12.5,N
+2,PINIG_LANTEIRA_M,nigra,medium,1638,14.5,282.9,W
+3,PINIG_LANTEIRA_L2,nigra,low,1611,5.6,349.1,N
+4,PINIG_LANTEIRA_H,nigra,high,1834,16.8,295.6,NW
+5,PIPIN_LANTEIRA_L2,pinaster,low2,1494,21.5,41.9,NE
+6,PIPIN_JEREZ_L,pinaster,low,1374,12.3,350.4,N
+7,PIPIN_JEREZ_M,pinaster,medium,1623,15.2,154.3,SE
+8,PIPIN_JEREZ_H,pinaster,high,1779,14.3,73.4,E
+9,PISYL_PORTUGOS_L,sylvestris,low,1629,15.5,140.5,SE
+10,PISYL_PORTUGOS_M,sylvestris,medium,1743,21.9,210.6,SW
+11,PISYL_PORTUGOS_H,sylvestris,high,1999,14.8,161.7,S
+12,PIHAL_NACIMIENTO_L,halepensis,low,1022,24.4,0.1,N
+13,PIHAL_RAGUA_H,halepensis,high,1341,23.3,47.8,NE
