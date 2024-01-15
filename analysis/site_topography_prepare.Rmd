@@ -1,0 +1,240 @@
+---
+title: "Topography from sites"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+
+```{r pkg}
+library(tidyverse)
+library(sf)
+library(terra)
+library(DT)
+```
+
+```{r}
+# read geoinfo to get site codes
+geo <- st_read("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp", quiet=TRUE)
+geo <- vect(geo)
+
+geodf <- geo |> as.data.frame() |>
+  rownames_to_column(var = "ID") |>
+  mutate(ID = as.numeric(ID)) |> 
+  dplyr::select(ID, site_code, sp_code, elev_code)
+```
+
+
+```{r, eval=FALSE}
+# read mde high precission
+demsn <- rast("/Volumes/Backup/CARTOTECA_V2/MDEs/mde_sn_area_influencia.asc")
+
+# Set projection
+crs(demsn) <- "+proj=utm +zone=30 +ellps=WGS84 +datum=WGS84 +units=m +no_defs"
+
+# Get slope and aspect 
+slopesn10 <- terrain(demsn, v="slope", unit = 'degrees')
+aspectsn10 <- terrain(demsn, v="aspect", unit = 'degrees')
+
+elev <- terra::extract(demsn, geo, xy = TRUE)
+slope <- terra::extract(slopesn10, geo, xy = TRUE)
+aspect <- terra::extract(aspectsn10, geo, xy = TRUE)
+
+topo <- geodf |> 
+  inner_join(elev) |> 
+  inner_join(slope) |> 
+  inner_join(aspect) |> 
+  rename(elev = mde_sn_area_influencia) |> 
+  dplyr::select(-x,-y) |> 
+  mutate(elev = round(elev), 
+         slope = round(slope, 1), 
+         aspect = round(aspect, 1), 
+         aspectFactor = cut(aspect, 
+                            breaks= c(0,22.5, 67.5, 112.5, 157.5, 202.5, 247.5, 292.5, 337.5, 359.5), labels = c("N", "NE", "E", "SE", "S", "SW", "W", "NW","N")))
+
+write_csv(topo, file = "data/topo_sites.csv")
+```
+
+
+## Explore topography for sites
+
+```{r}
+topo <- read_csv("data/topo_sites.csv")
+
+topo |> DT::datatable(options =
+              list(
+                autoWidth = TRUE,
+                pageLength = 15), 
+            filter = list(position = 'top', clear = FALSE)
+            
+            )
+```
+
+## Compute distance among sites 
+
+```{r}
+geopinos <- st_read("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp", quiet=TRUE)
+
+# We have to get the same ID name as the st_distance ouput 
+points <- geodf$ID
+
+# Compute the distance matrix 
+point_distances <- st_distance(geopinos)
+
+# Create an empty dataframe to store the results
+distance_df <- data.frame(point1 = character(), 
+                          point2 = character(), 
+                          distance = numeric())
+
+# Loop through the points and populate the dataframe
+for (point1 in points) {
+  for (point2 in points) {
+    distance <- point_distances[point1, point2]
+
+    distance_df <- rbind(distance_df, 
+                         data.frame(point1 = point1, 
+                                    point2 = point2, 
+                                    distance = distance))
+  }
+}
+
+write_csv(distance_df, "data/distance_among_sites.csv")
+```
+
+```{r}
+g <- geodf |> dplyr::select(ID, site_code)
+
+distance_df |> 
+  mutate(distance = round(distance, 0)) |>
+  left_join(g, by = c("point1" = "ID")) |>
+  rename(point1_code = site_code) |>
+  left_join(g, by = c("point2" = "ID")) |>
+  rename(point2_code = site_code) |> 
+  relocate(point1_code, point2_code) |> 
+  dplyr::select(-point1, -point2) |> 
+  DT::datatable(options =
+              list(
+                autoWidth = TRUE,
+                pageLength = 13), 
+            filter = list(position = 'top', clear = FALSE)
+            )
+```
+
+
+```{r}
+min_distances <- distance_df |>
+  mutate(distance = as.numeric(distance)) |>
+  filter(distance > 0) |>
+  group_by(point1) |>
+  slice_min(order_by = distance, n = 1) |>
+  ungroup()
+
+min_distances_codes <- min_distances |>
+  left_join(g, by = c("point1" = "ID")) |>
+  rename(point1_code = site_code) |>
+  left_join(g, by = c("point2" = "ID")) |>
+  rename(point2_code = site_code)
+
+write_csv(min_distances_codes, "data/distance_among_sites_minimum.csv")
+```
+
+```{r}
+min_distances_codes |> 
+  mutate(distance = round(distance, 0)) |>
+  relocate(point1_code, point2_code) |> 
+  dplyr::select(-point1, -point2) |> 
+  DT::datatable(options =
+              list(
+                autoWidth = TRUE,
+                pageLength = 13), 
+            filter = list(position = 'top', clear = FALSE)
+            )
+```
+
+
+## Explore spatial dependency among sites
+
+- We want to explore the spatial distribution of the sites and the potential bias (spatial dependency) among the closest sites. 
+- We downloaded an image of MODIS MOD17A3HGF from [Earth data explorer](https://search.earthdata.nasa.gov/search)
+- Select the h17v05 tile (corresponding to our area of interest)
+- Plot to see each pixel (500 x 500 m) and then overlay the field sites
+
+```{r}
+# Read the hdf file 
+m <- terra::rast("data/raw/MOD17A3HGF.A2021001.h17v05.061.2022020140519.hdf") |> 
+  project("EPSG:23030")
+
+# select only a layer 
+npp <- m$Npp_500m
+
+# function to get bbox by sp 
+bbox_sp <- function(shapefile, sp) { 
+  out <- shapefile |> 
+    filter(sp_code %in% sp) |> 
+    st_transform(crs = 23030) |>
+    st_bbox() |> 
+    st_as_sfc() |> 
+    st_buffer(3000, joinStyle = "MITRE", mitreLimit = 500) 
+  return(out)
+  }
+
+# compute bbox
+nig <- bbox_sp(geopinos, c("nigra", "pinaster"))
+syl <- bbox_sp(geopinos, c("sylvestris"))
+hal <- bbox_sp(geopinos, c("halepensis"))
+
+# for annotations of plots 
+geopinos_t <- st_transform(geopinos, 23030) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) 
+geopinos_coords <- st_coordinates(geopinos_t)
+```
+
+### *P. nigra* and *P. pinaster*
+
+```{r}
+# nigra + pinaster 
+ras_nig <- terra::crop(npp, nig)
+pols_nig <- ras_nig |> terra::as.polygons(aggregate = FALSE)
+
+plot(ras_nig, main = "pinaster, nigra")
+plot(pols_nig, add=TRUE)
+plot(st_geometry(geopinos_t), add = TRUE, pch = 20, col = "blue")
+text(geopinos_coords[, "X"], geopinos_coords[, "Y"], labels = geopinos_t$sp_elev, col = "blue", cex = 0.8, adj = c(1.1, 1))
+```
+
+### *P. sylvestris*
+
+```{r}
+# sylvestris
+ras_syl <- terra::crop(npp, syl)
+pols_syl <- ras_syl |> terra::as.polygons(aggregate = FALSE)
+
+plot(ras_syl, main = "sylvestris")
+plot(pols_syl, add=TRUE)
+plot(st_geometry(geopinos_t), add = TRUE, pch = 20, col = "blue")
+text(geopinos_coords[, "X"], geopinos_coords[, "Y"], labels = geopinos_t$sp_elev, col = "blue", cex = 0.8, adj = c(1.1, 1))
+```
+
+### *P. sylvestris*
+
+```{r}
+# halepensis
+ras_hal <- terra::crop(npp, hal)
+pols_hal <- ras_hal |> terra::as.polygons(aggregate = FALSE)
+
+plot(ras_hal, main = "halepensis")
+plot(pols_hal, add=TRUE)
+plot(st_geometry(geopinos_t), add = TRUE, pch = 20, col = "blue")
+text(geopinos_coords[, "X"], geopinos_coords[, "Y"], labels = geopinos_t$sp_elev, col = "blue", cex = 0.8, adj = c(1.1, 1))
+```
+
+
+
+
+
+
+
