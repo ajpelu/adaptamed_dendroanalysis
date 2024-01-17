@@ -27,7 +27,10 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 
 - [Here](https://ajpelu.github.io/adaptamed_dendrospatial/), you can explore the spatial distribution of the study sites 
 
-
+# Data sources and preparation
+## Data preparation
+- [Site soil features](site_soil_prepare.html)
+- [Site topography](site_topography_prepare.html)
 
  
 
