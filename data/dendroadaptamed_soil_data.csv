@@ -1,0 +1,417 @@
+ID,value,layer,type,soil_var,res,site_code,sp_code,elev_code
+1,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.2903999984264374,fc25knn,Capacidad de Campo Subsuperficial,cc_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.2554999887943268,fc025knn,Capacidad de Campo Superficial,cc_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,20.630510330200195,ks25,Conductividad Hidraulica Saturada Subsuperficial,ks_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,57.313907623291016,ks,Conductividad Hidraulica Saturada Superficial,ks_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,1.384529948234558,da25final,Densidad Aparente Subsuperficial,da_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,1.2644953727722168,da025,Densidad Aparente Superficial,da_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,1.2654953002929688,mofinal,Materia Organica Subsuperficial,mo_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,2.4182357788085938,mofinal,Materia Organica Superficial,mo_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PINIG_LANTEIRA_H,nigra,high
+5,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PIPIN_JEREZ_L,pinaster,low
+7,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PIPIN_JEREZ_H,pinaster,high
+9,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,2.7799692153930664,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Subsuperficial,250,PIHAL_RAGUA_H,halepensis,high
+1,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PINIG_LANTEIRA_H,nigra,high
+5,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PIPIN_JEREZ_L,pinaster,low
+7,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PIPIN_JEREZ_H,pinaster,high
+9,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,8.589937210083008,ko_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Conductividad Saturada Aparente Superficial,250,PIHAL_RAGUA_H,halepensis,high
+1,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PINIG_LANTEIRA_H,nigra,high
+5,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PIPIN_JEREZ_L,pinaster,low
+7,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PIPIN_JEREZ_H,pinaster,high
+9,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,-0.11913000047206879,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Subsuperficial,250,PIHAL_RAGUA_H,halepensis,high
+1,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PINIG_LANTEIRA_H,nigra,high
+5,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PIPIN_JEREZ_L,pinaster,low
+7,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PIPIN_JEREZ_H,pinaster,high
+9,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,-0.7505499720573425,l_ok,Parámetros de conductividad hidráulica no saturada de Mualem,Parámetro de Tortuosidad Superficial,250,PIHAL_RAGUA_H,halepensis,high
+1,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PINIG_LANTEIRA_H,nigra,high
+5,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PIPIN_JEREZ_L,pinaster,low
+7,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PIPIN_JEREZ_H,pinaster,high
+9,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.04981956630945206,resi_ok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Subsuperficial,250,PIHAL_RAGUA_H,halepensis,high
+1,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PINIG_LANTEIRA_H,nigra,high
+5,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PIPIN_JEREZ_L,pinaster,low
+7,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PIPIN_JEREZ_H,pinaster,high
+9,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.038546252995729446,residualok,Parámetros de retención de van Genuchten,Contenido de Agua Residual Superficial,250,PIHAL_RAGUA_H,halepensis,high
+1,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PINIG_LANTEIRA_H,nigra,high
+5,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PIPIN_JEREZ_L,pinaster,low
+7,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PIPIN_JEREZ_H,pinaster,high
+9,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.4014645218849182,sat_ok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Subsuperficial,250,PIHAL_RAGUA_H,halepensis,high
+1,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PINIG_LANTEIRA_H,nigra,high
+5,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PIPIN_JEREZ_L,pinaster,low
+7,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PIPIN_JEREZ_H,pinaster,high
+9,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.4301386773586273,saturacionok,Parámetros de retención de van Genuchten,Contenido de Agua Saturación Superficial,250,PIHAL_RAGUA_H,halepensis,high
+1,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PINIG_LANTEIRA_H,nigra,high
+5,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PIPIN_JEREZ_L,pinaster,low
+7,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PIPIN_JEREZ_H,pinaster,high
+9,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,1.3481909036636353,n_ok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Subsuperficial,250,PIHAL_RAGUA_H,halepensis,high
+1,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PINIG_LANTEIRA_H,nigra,high
+5,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PIPIN_JEREZ_L,pinaster,low
+7,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PIPIN_JEREZ_H,pinaster,high
+9,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,1.2928987741470337,nok,Parámetros de retención de van Genuchten,Distribución Tamaños de Poros Superficial,250,PIHAL_RAGUA_H,halepensis,high
+1,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PINIG_LANTEIRA_H,nigra,high
+5,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PIPIN_JEREZ_L,pinaster,low
+7,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PIPIN_JEREZ_H,pinaster,high
+9,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.008298568427562714,alfa_ok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Subsuperficial,250,PIHAL_RAGUA_H,halepensis,high
+1,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PINIG_LANTEIRA_H,nigra,high
+5,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PIPIN_JEREZ_L,pinaster,low
+7,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PIPIN_JEREZ_H,pinaster,high
+9,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.016815245151519775,alfaok,Parámetros de retención de van Genuchten,Inverso Presión Entrada de Aire Superficial,250,PIHAL_RAGUA_H,halepensis,high
+1,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,7.209661483764648,ph3fin,pH Subsuperficial,ph_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,7.335792064666748,ph3,pH Superficial,ph_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,7.335792064666748,ph3,pH Superficial,ph_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,7.335792064666748,ph3,pH Superficial,ph_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,7.335792064666748,ph3,pH Superficial,ph_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,7.335792064666748,ph3,pH Superficial,ph_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,7.335792064666748,ph3,pH Superficial,ph_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,7.335792064666748,ph3,pH Superficial,ph_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,7.335792064666748,ph3,pH Superficial,ph_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,7.335792064666748,ph3,pH Superficial,ph_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,7.335792064666748,ph3,pH Superficial,ph_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,7.335792064666748,ph3,pH Superficial,ph_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,7.335792064666748,ph3,pH Superficial,ph_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,7.335792064666748,ph3,pH Superficial,ph_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,2,clasprof1,Profundidad del Suelo,prof_clases,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,2,clasprof1,Profundidad del Suelo,prof_clases,250,PINIG_LANTEIRA_M,nigra,medium
+3,2,clasprof1,Profundidad del Suelo,prof_clases,250,PINIG_LANTEIRA_L2,nigra,low
+4,2,clasprof1,Profundidad del Suelo,prof_clases,250,PINIG_LANTEIRA_H,nigra,high
+5,2,clasprof1,Profundidad del Suelo,prof_clases,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,2,clasprof1,Profundidad del Suelo,prof_clases,250,PIPIN_JEREZ_L,pinaster,low
+7,2,clasprof1,Profundidad del Suelo,prof_clases,250,PIPIN_JEREZ_M,pinaster,medium
+8,2,clasprof1,Profundidad del Suelo,prof_clases,250,PIPIN_JEREZ_H,pinaster,high
+9,2,clasprof1,Profundidad del Suelo,prof_clases,250,PISYL_PORTUGOS_L,sylvestris,low
+10,2,clasprof1,Profundidad del Suelo,prof_clases,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,2,clasprof1,Profundidad del Suelo,prof_clases,250,PISYL_PORTUGOS_H,sylvestris,high
+12,2,clasprof1,Profundidad del Suelo,prof_clases,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,2,clasprof1,Profundidad del Suelo,prof_clases,250,PIHAL_RAGUA_H,halepensis,high
+1,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.12030000239610672,wp25knn,Punto Marchitez Permanente Subsuperficial,pmp_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,0.10480000078678131,wp025knn,Punto Marchitez Permanente Superficial,pmp_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PINIG_LANTEIRA_M,nigra,medium
+3,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PINIG_LANTEIRA_L2,nigra,low
+4,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PINIG_LANTEIRA_H,nigra,high
+5,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PIPIN_JEREZ_L,pinaster,low
+7,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PIPIN_JEREZ_M,pinaster,medium
+8,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PIPIN_JEREZ_H,pinaster,high
+9,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PISYL_PORTUGOS_L,sylvestris,low
+10,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PISYL_PORTUGOS_H,sylvestris,high
+12,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,80.19999694824219,almacenknn,Retencion del Agua en el Suelo,retencion_all,250,PIHAL_RAGUA_H,halepensis,high
+1,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,22.53375816345215,clayfinal1,Textura Subsuperficial,arcilla_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,50.221134185791016,sandfinal1,Textura Subsuperficial,arena_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PINIG_LANTEIRA_M,nigra,medium
+3,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PINIG_LANTEIRA_L2,nigra,low
+4,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PINIG_LANTEIRA_H,nigra,high
+5,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PIPIN_JEREZ_L,pinaster,low
+7,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PIPIN_JEREZ_M,pinaster,medium
+8,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PIPIN_JEREZ_H,pinaster,high
+9,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PISYL_PORTUGOS_L,sylvestris,low
+10,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PISYL_PORTUGOS_H,sylvestris,high
+12,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,27.245107650756836,siltfinal1,Textura Subsuperficial,limo_sub,250,PIHAL_RAGUA_H,halepensis,high
+1,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,17.05872917175293,clayfinal,Textura Superficial,arcilla_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,56.371646881103516,sandfinal,Textura Superficial,arena_sup,250,PIHAL_RAGUA_H,halepensis,high
+1,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PIHAL_NACIMIENTO_M,halepensis,medium
+2,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PINIG_LANTEIRA_M,nigra,medium
+3,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PINIG_LANTEIRA_L2,nigra,low
+4,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PINIG_LANTEIRA_H,nigra,high
+5,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PIPIN_LANTEIRA_L2,pinaster,low2
+6,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PIPIN_JEREZ_L,pinaster,low
+7,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PIPIN_JEREZ_M,pinaster,medium
+8,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PIPIN_JEREZ_H,pinaster,high
+9,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PISYL_PORTUGOS_L,sylvestris,low
+10,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PISYL_PORTUGOS_M,sylvestris,medium
+11,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PISYL_PORTUGOS_H,sylvestris,high
+12,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PIHAL_NACIMIENTO_L,halepensis,low
+13,26.569623947143555,siltfinal,Textura Superficial,limo_sup,250,PIHAL_RAGUA_H,halepensis,high
