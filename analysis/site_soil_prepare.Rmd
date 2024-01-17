@@ -34,6 +34,10 @@ hdr_files <- list.files(soil_path,
                         pattern = "*hdr.adf", full.names = TRUE, 
                         recursive = TRUE)
 
+f <- hdr_files[1]
+remove_path = soil_path
+shapefile_to_extract = geo
+
 extractData <- function(f, shapefile_to_extract, remove_path, remove_pattern) { 
   
   r <- terra::rast(f)
@@ -56,15 +60,16 @@ extractData <- function(f, shapefile_to_extract, remove_path, remove_pattern) {
   
   result <- out |> 
     rename(value = !!layer_name) |> 
-    mutate(value = ifelse(is.factor(value), as.numeric(value), value)) |> 
+    mutate(value = as.numeric(value)) |> 
     mutate(layer = layer_name, 
            type = d$type, 
            soil_var = d$soil_var, 
            res = res(r)[1], 
            )
   
-  return(result)     
+  return(result) 
   }
+
 
 
 soil_features <- hdr_files |> purrr::map(~extractData(.x, shapefile_to_extract = geo, 
@@ -73,8 +78,44 @@ soil_features <- hdr_files |> purrr::map(~extractData(.x, shapefile_to_extract =
   bind_rows() |> 
   inner_join(geodf)
 
+
 write_csv(soil_features, "data/dendroadaptamed_soil_data.csv")
 ```
 
+
+```{r, eval=FALSE}
+soil_path <- "/Users/ajpelu/Downloads/Propiedades_Suelos_Andalucia"
+
+hdr_files <- list.files(soil_path,
+                        pattern = "*hdr.adf", full.names = TRUE, 
+                        recursive = TRUE)
+
+
+generate_tiff <- function(f, remove_path, remove_pattern, outpath) { 
+  
+  r <- terra::rast(f)
+  crs(r) <- "epsg:23030"
+  
+  names(r)
+  
+  # Get name and type 
+  d <- data.frame(f = f) |> 
+    mutate(raw_name = str_replace(f, pattern = paste0(remove_path, "/"), replacement = "")) |> 
+    mutate(raw_name = str_replace(raw_name, pattern = "/hdr.adf$", "")) |> 
+    separate(raw_name, into = c("type", "soil_var"), sep = "/") |> 
+    dplyr::select(-f)
+  
+  output_dir <- paste0(outpath, "/", str_replace_all(d$type, " ", "_"), "/", d$soil_var)
+  if (!dir.exists(output_dir)) {fs::dir_create(output_dir)}
+  
+  terra::writeRaster(r, filename = paste0(output_dir, "/", names(r), ".tiff"), overwrite = TRUE)
+  }
+
+
+hdr_files |> purrr::map(~generate_tiff(.x,  
+                                          remove_path = soil_path, 
+                                          remove_pattern = "/hdr.adf",
+                                          outpath = "/Users/ajpelu/Desktop/Propiedades_Suelos_Andalucia_tiff")) 
+```
 
 

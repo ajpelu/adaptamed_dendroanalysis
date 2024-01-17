@@ -1,0 +1,79 @@
+---
+title: "Soil features of the sampling sites"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(tidyverse)
+library(ggtern)
+library(patchwork)
+source("scripts/aux.R")
+```
+
+
+```{r}
+soil_fq <- read_csv("data/dendroadaptamed_soil_data.csv")
+```
+
+
+```{r}
+gsup <- soil_fq |> 
+  filter(type == "Textura Superficial") |> 
+  dplyr::select(-res, -layer, -type) |> 
+  pivot_wider(values_from = value, 
+              names_from = soil_var)
+
+plot_sup <- ggtern(data = gsup, 
+       aes(x = arena_sup, y = arcilla_sup, z = limo_sup, 
+           color = sp_code, fill = sp_code)) +
+  geom_point(size = 5, aes(shape = elev_code), alpha = 0.8) +
+  labs(yarrow = "Arcilla (%)", 
+                zarrow = "Limo (%)",
+                xarrow = "Arena (%)") +
+  theme_bw() +
+  ggplot2::xlab("") +
+  ggplot2::ylab("") +
+  ggtern::zlab("") +
+  theme_showarrows() +
+  theme_showgrid() +
+  scale_colour_manual(values = colours_sp, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Elevation") +
+  scale_shape_manual(values = shape_elev, name = "Species") +
+  ggtitle("Soil texture surface (25-30 cm)")
+
+plot_sup
+```
+
+```{r}
+gsub <- soil_fq |> 
+  filter(type == "Textura Subsuperficial") |> 
+  dplyr::select(-res, -layer, -type) |> 
+  pivot_wider(values_from = value, 
+              names_from = soil_var)
+
+
+plot_sub <- ggtern(data = gsub, 
+       aes(x = arena_sub, y = arcilla_sub, z = limo_sub, 
+           color = sp_code, fill = sp_code)) +
+  geom_point(size = 5, aes(shape = elev_code), alpha = 0.8) +
+  labs(yarrow = "Arcilla (%)", 
+                zarrow = "Limo (%)",
+                xarrow = "Arena (%)") +
+  theme_bw() +
+  ggplot2::xlab("") +
+  ggplot2::ylab("") +
+  ggtern::zlab("") +
+  theme_showarrows() +
+  theme_showgrid() +
+  scale_colour_manual(values = colours_sp, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Elevation") +
+  scale_shape_manual(values = shape_elev, name = "Species") +
+  ggtitle("Soil texture subsurface (>30 cm)")
+
+plot_sub 
+```
+
