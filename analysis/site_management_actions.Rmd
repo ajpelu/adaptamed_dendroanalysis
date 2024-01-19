@@ -1,0 +1,42 @@
+---
+title: "site_management_actions"
+
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+
+```{r pkg}
+library(tidyverse)
+library(sf)
+library(terra)
+library(DT)
+```
+
+
+## Explore age of afforestation 
+
+
+```{r}
+age <- xlsx::read.xlsx("data/raw/reforestation_age.xlsx", sheetIndex = 1)
+
+age |> dplyr::select(
+  sp, site_code = `NA.`, 
+  orto1956 = `X1956`,
+  orto1977_1978 = `X1977.1983..AND..1977.1978..YRIDA.`,
+  orto1984 = `X84.85`,
+  `Bonet; Mesa-Garrido` = edad_fbonet)|> 
+  DT::datatable(options =
+              list(
+                autoWidth = TRUE,
+                pageLength = 15), 
+            filter = list(position = 'top', clear = FALSE)
+            
+            )
+```
