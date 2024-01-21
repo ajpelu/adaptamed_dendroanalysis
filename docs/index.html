@@ -382,7 +382,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -392,7 +392,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -402,14 +402,14 @@ Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidde
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-19
+<strong>Last updated:</strong> 2024-01-21
 </p>
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-1
+2
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-1
+0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -432,41 +432,36 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> uncommitted changes
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes.
-To know which version of the R Markdown file created these
-results, you’ll want to first commit it to the Git repo. If
-you’re still working on the analysis, you can ignore this
-warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and
-build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree17b6017b244e109f5d1b72c41d003bde72c4c5aetargetblank17b6017a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4205504b9a836508febecad37ee5877dac4a8069targetblank4205504a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/17b6017b244e109f5d1b72c41d003bde72c4c5ae" target="_blank">17b6017</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4205504b9a836508febecad37ee5877dac4a8069" target="_blank">4205504</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree17b6017b244e109f5d1b72c41d003bde72c4c5aetargetblank17b6017a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4205504b9a836508febecad37ee5877dac4a8069targetblank4205504a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/17b6017b244e109f5d1b72c41d003bde72c4c5ae" target="_blank">17b6017</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4205504b9a836508febecad37ee5877dac4a8069" target="_blank">4205504</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -488,10 +483,12 @@ Ignored files:
     Ignored:    data/raw/.DS_Store
 
 Untracked files:
-    Untracked:  data/raw/~$reforestation_age.xlsx
+    Untracked:  data/dendroadaptamed_soil_lucdeme.csv
 
 Unstaged changes:
-    Modified:   analysis/index.Rmd
+    Deleted:    data/dendroadaptamed_soil_lucdemde.csv
+    Modified:   data/raw/reforestation_age.xlsx
+    Deleted:    data/raw/~$reforestation_age.xlsx
 
 </code></pre>
 <p>
@@ -536,6 +533,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/4205504b9a836508febecad37ee5877dac4a8069/analysis/index.Rmd" target="_blank">4205504</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-21
+</td>
+<td>
+wflow_publish("analysis/index.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/4f83880454dee9d948e4a890e00cdbe004b91b7e/analysis/index.Rmd" target="_blank">4f83880</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-21
+</td>
+<td>
+add age afforestation
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/4f83880454dee9d948e4a890e00cdbe004b91b7e/docs/index.html" target="_blank">4f83880</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-21
+</td>
+<td>
+add age afforestation
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -784,16 +832,19 @@ Start workflowr project.
 <li><a href="https://ajpelu.github.io/adaptamed_dendrospatial/">Here</a>, you can explore the spatial distribution of the study sites</li>
 </ul>
 </div>
-<div id="data-sources-and-preparation" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Data sources and preparation</h1>
-<div id="data-preparation" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> Data preparation</h2>
+<div id="site-features" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Site features:</h1>
 <ul>
-<li><a href="site_soil_prepare.html">Site soil features</a></li>
-<li><a href="site_topography_prepare.html">Site topography</a></li>
 <li><a href="site_management_actions.html">Site management actions</a></li>
+<li><a href="site_soil_analysis.html">Site soil features</a></li>
 </ul>
 </div>
+<div id="data-sources-and-preparation" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Data sources and preparation</h1>
+<ul>
+<li><a href="site_soil_prepare.html">Site soil</a></li>
+<li><a href="site_topography_prepare.html">Site topography</a></li>
+</ul>
 </div>
 
 
