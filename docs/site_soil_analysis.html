@@ -35,6 +35,18 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.31/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet" />
+<script src="site_libs/nouislider-7.0.10/jquery.nouislider.min.js"></script>
+<link href="site_libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
+<script src="site_libs/selectize-0.12.0/selectize.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -380,7 +392,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -390,7 +402,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -400,14 +412,14 @@ Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidde
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-17
+<strong>Last updated:</strong> 2024-01-21
 </p>
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-6
+7
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-1
+0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -430,21 +442,16 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> uncommitted changes
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git.
-To know which version of the R Markdown file created these
-results, you’ll want to first commit it to the Git repo. If
-you’re still working on the analysis, you can ignore this
-warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and
-build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -533,20 +540,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree03f40f37815e72967b366fa706ddd8bb85aa6e7ctargetblank03f40f3a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree80a6cf011e9998aa576e845712a714dd9b0596a0targetblank80a6cf0a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/03f40f37815e72967b366fa706ddd8bb85aa6e7c" target="_blank">03f40f3</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/80a6cf011e9998aa576e845712a714dd9b0596a0" target="_blank">80a6cf0</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree03f40f37815e72967b366fa706ddd8bb85aa6e7ctargetblank03f40f3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree80a6cf011e9998aa576e845712a714dd9b0596a0targetblank80a6cf0a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/03f40f37815e72967b366fa706ddd8bb85aa6e7c" target="_blank">03f40f3</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/80a6cf011e9998aa576e845712a714dd9b0596a0" target="_blank">80a6cf0</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -568,19 +575,12 @@ Ignored files:
     Ignored:    data/raw/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/site_soil_analysis.Rmd
-    Untracked:  data/dendroadaptamed_iv_mod13q1_2024.csv
-    Untracked:  data/dendroadaptamed_ndvi_landsat_harmonized.csv
-    Untracked:  data/geoinfo/Archive.zip
-    Untracked:  data/raw/reforestation_age.xlsx
-    Untracked:  data/raw/soil/
-    Untracked:  scripts/prepare_FeatureCollection_gee.R
+    Untracked:  data/dendroadaptamed_soil_lucdeme.csv
 
 Unstaged changes:
-    Modified:   analysis/site_soil_prepare.Rmd
-    Modified:   data/dendroadaptamed_npp_mod17a3_yearly.csv
-    Modified:   data/dendroadaptamed_soil_data.csv
-    Modified:   scripts/aux.R
+    Deleted:    data/dendroadaptamed_soil_lucdemde.csv
+    Modified:   data/raw/reforestation_age.xlsx
+    Deleted:    data/raw/~$reforestation_age.xlsx
 
 </code></pre>
 <p>
@@ -595,55 +595,123 @@ changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made
+to the R Markdown (<code>analysis/site_soil_analysis.Rmd</code>) and HTML (<code>docs/site_soil_analysis.html</code>)
+files. If you’ve configured a remote Git repository (see
+<code>?wflow_git_remote</code>), click on the hyperlinks in the table below to
+view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/80a6cf011e9998aa576e845712a714dd9b0596a0/analysis/site_soil_analysis.Rmd" target="_blank">80a6cf0</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-21
+</td>
+<td>
+wflow_publish("analysis/site_soil_analysis.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/c7f49fcb578728d86644f0191f3b83ca33283661/analysis/site_soil_analysis.Rmd" target="_blank">c7f49fc</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-17
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/c7f49fcb578728d86644f0191f3b83ca33283661/docs/site_soil_analysis.html" target="_blank">c7f49fc</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-17
+</td>
+<td>
+update
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
 </div>
 <div id="introduction" class="section level2" number="0.1">
 <h2><span class="header-section-number">0.1</span> Introduction</h2>
-<pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.4
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-<pre class="r"><code>library(ggtern)</code></pre>
-<pre><code>Registered S3 methods overwritten by &#39;ggtern&#39;:
-  method           from   
-  grid.draw.ggplot ggplot2
-  plot.ggplot      ggplot2
-  print.ggplot     ggplot2
---
-Remember to cite, run citation(package = &#39;ggtern&#39;) for further info.
---
-
-Attaching package: &#39;ggtern&#39;
-
-The following objects are masked from &#39;package:ggplot2&#39;:
-
-    aes, annotate, ggplot, ggplot_build, ggplot_gtable, ggplotGrob,
-    ggsave, layer_data, theme_bw, theme_classic, theme_dark,
-    theme_gray, theme_light, theme_linedraw, theme_minimal, theme_void</code></pre>
-<pre class="r"><code>library(patchwork)
-source(&quot;scripts/aux.R&quot;)</code></pre>
+<pre class="r"><code>library(tidyverse)
+library(ggtern)
+library(patchwork)
+source(&quot;scripts/aux.R&quot;)
+library(DT)</code></pre>
+<div id="soil-type" class="section level3" number="0.1.1">
+<h3><span class="header-section-number">0.1.1</span> Soil type</h3>
+<ul>
+<li>For each field site we show the soil types dominant and the inclussions.</li>
+</ul>
+<pre class="r"><code>soil_type &lt;- read_csv(&quot;data/dendroadaptamed_soil_lucdeme.csv&quot;)</code></pre>
+<pre class="r"><code>soil_type |&gt; 
+  dplyr::select(-site_code, -soil_type) |&gt; 
+  DT::datatable(options =
+              list(
+                autoWidth = TRUE,
+                pageLength = 15), 
+            filter = list(position = &#39;top&#39;, clear = FALSE)
+            )</code></pre>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-777d72eda9804f91afa2" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-777d72eda9804f91afa2">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td><\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13"],["halepensis","halepensis","halepensis","pinaster","pinaster","pinaster","pinaster","nigra","nigra","nigra","sylvestris","sylvestris","sylvestris"],["PIHAL_LOW","PIHAL_MED","PIHAL_HIGH","PIPIN_DEC","PIPIN_LOW","PIPIN_MED","PIPIN_HIGH","PINIG_LOW","PINIG_MED","PINIG_HIGH","PISYL_LOW","PISYL_MED","PISYL_HIGH"],["Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Fluvisoles éutricos y Cambisoles éutricos","Fluvisoles éutricos y Cambisoles éutricos","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Fluvisoles éutricos y Cambisoles éutricos","Fluvisoles éutricos y Cambisoles éutricos","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles","Cambisoles éutricos, Regosoles éutricos y Luvisoles crómicos con Litosoles"],["LPliRGeu/","LPliRGeu/LVcrPHle","RGeuRGle/LPli","RGeuRGle/CMeuLPliPHha","CMeuRGeu/LPliRGle","RGeu/CMeuPHleRGdy","CMeuRGeu/CMcrCMdyPHle","CMeuRGeu/LPliRGle","CMeuRGeu/LPliRGle","RGeuRGle/CMeuLPliPHha","RGeu/CMeuPHleRGdy","RGeu/CMeuPHleRGdy","PHle/CMeuUMle"],["LPliRGeu","LPliRGeu","RGeuRGle","RGeuRGle","CMeuRGeu","RGeu","CMeuRGeu","CMeuRGeu","CMeuRGeu","RGeuRGle","RGeu","RGeu","PHle"],[null,"LVcrPHle","LPli","CMeuLPliPHha","LPliRGle","CMeuPHleRGdy","CMcrCMdyPHle","LPliRGle","LPliRGle","CMeuLPliPHha","CMeuPHleRGdy","CMeuPHleRGdy","CMeuUMle"],["Leptosoles líticos","Leptosoles líticos","Regosoles eútricos","Regosoles eútricos","Cambisoles eútricos","Regosoles eútricos","Cambisoles eútricos","Cambisoles eútricos","Cambisoles eútricos","Regosoles eútricos","Regosoles eútricos","Regosoles eútricos","Phaeozems lépticos"],["Regosoles eútricos","Regosoles eútricos","Regosoles lépticos","Regosoles lépticos","Regosoles eútricos",null,"Regosoles eútricos","Regosoles eútricos","Regosoles eútricos","Regosoles lépticos","Cambisoles eútricos","Cambisoles eútricos","Cambisoles eútricos"],[null,"Luvisoles crómicos","Leptosoles líticos","Cambisoles eútricos","Leptosoles líticos","Cambisoles eútricos","Cambisoles crómicos","Leptosoles líticos","Leptosoles líticos","Cambisoles eútricos","Phaeozems lépticos","Phaeozems lépticos","Umbrisoles lépticos"],[null,"Phaeozems lépticos",null,"Leptosoles líticos","Regosoles lépticos","Phaeozems lépticos","Cambisoles dístricos","Regosoles lépticos","Regosoles lépticos","Leptosoles líticos","Regosoles dístricos","Regosoles dístricos",null],[null,null,null,"Phaeozems háplicos",null,"Regosoles dístricos","Phaeozems lépticos",null,null,"Phaeozems háplicos",null,null,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Specie<\/th>\n      <th>site<\/th>\n      <th>soil_name<\/th>\n      <th>lucdeme_codigo_fao<\/th>\n      <th>lucdeme_codigo_fao_dom<\/th>\n      <th>lucdeme_codigo_fao_in<\/th>\n      <th>lucdeme_nombre_fao_dom1<\/th>\n      <th>lucdeme_nombre_fao_dom2<\/th>\n      <th>lucdeme_nombre_fao_inc1<\/th>\n      <th>lucdeme_nombre_fao_inc2<\/th>\n      <th>lucdeme_nombre_fao_inc3<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"autoWidth":true,"pageLength":15,"columnDefs":[{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"Specie","targets":1},{"name":"site","targets":2},{"name":"soil_name","targets":3},{"name":"lucdeme_codigo_fao","targets":4},{"name":"lucdeme_codigo_fao_dom","targets":5},{"name":"lucdeme_codigo_fao_in","targets":6},{"name":"lucdeme_nombre_fao_dom1","targets":7},{"name":"lucdeme_nombre_fao_dom2","targets":8},{"name":"lucdeme_nombre_fao_inc1","targets":9},{"name":"lucdeme_nombre_fao_inc2","targets":10},{"name":"lucdeme_nombre_fao_inc3","targets":11}],"order":[],"orderClasses":false,"orderCellsTop":true,"lengthMenu":[10,15,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="physico-chemical-features" class="section level3" number="0.1.2">
+<h3><span class="header-section-number">0.1.2</span> Physico-Chemical features</h3>
+<div id="texture" class="section level4" number="0.1.2.1">
+<h4><span class="header-section-number">0.1.2.1</span> Texture</h4>
 <pre class="r"><code>soil_fq &lt;- read_csv(&quot;data/dendroadaptamed_soil_data.csv&quot;)</code></pre>
-<pre><code>Rows: 416 Columns: 9
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: &quot;,&quot;
-chr (6): layer, type, soil_var, site_code, sp_code, elev_code
-dbl (3): ID, value, res
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>gsup &lt;- soil_fq |&gt; 
   filter(type == &quot;Textura Superficial&quot;) |&gt; 
   dplyr::select(-res, -layer, -type) |&gt; 
@@ -666,10 +734,12 @@ plot_sup &lt;- ggtern(data = gsup,
   scale_colour_manual(values = colours_sp, name = &quot;Elevation&quot;) +
   scale_fill_manual(values = colours_sp, name = &quot;Elevation&quot;) +
   scale_shape_manual(values = shape_elev, name = &quot;Species&quot;) +
-  ggtitle(&quot;Soil texture surface (25-30 cm)&quot;)
+  ggtitle(&quot;Soil texture surface (25-30 cm)&quot;) +
+  tern_limits(T=0.3, L = 0.8, R=0.45)
+  
 
 plot_sup</code></pre>
-<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>gsub &lt;- soil_fq |&gt; 
   filter(type == &quot;Textura Subsuperficial&quot;) |&gt; 
   dplyr::select(-res, -layer, -type) |&gt; 
@@ -693,10 +763,11 @@ plot_sub &lt;- ggtern(data = gsub,
   scale_colour_manual(values = colours_sp, name = &quot;Elevation&quot;) +
   scale_fill_manual(values = colours_sp, name = &quot;Elevation&quot;) +
   scale_shape_manual(values = shape_elev, name = &quot;Species&quot;) +
-  ggtitle(&quot;Soil texture subsurface (&gt;30 cm)&quot;)
+  ggtitle(&quot;Soil texture subsurface (&gt;30 cm)&quot;) +
+  tern_limits(T=0.4, L = 0.75, R=0.5)
 
 plot_sub </code></pre>
-<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -721,31 +792,33 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] patchwork_1.1.3 ggtern_3.4.2    lubridate_1.9.3 forcats_1.0.0  
- [5] stringr_1.5.1   dplyr_1.1.4     purrr_1.0.2     readr_2.1.4    
- [9] tidyr_1.3.0     tibble_3.2.1    ggplot2_3.4.4   tidyverse_2.0.0
-[13] workflowr_1.7.1
+ [1] DT_0.31         patchwork_1.1.3 ggtern_3.4.2    lubridate_1.9.3
+ [5] forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4     purrr_1.0.2    
+ [9] readr_2.1.4     tidyr_1.3.0     tibble_3.2.1    ggplot2_3.4.4  
+[13] tidyverse_2.0.0 workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.11        lattice_0.22-5     getPass_0.2-4      ps_1.7.5          
- [5] rprojroot_2.0.4    digest_0.6.33      utf8_1.2.4         R6_2.5.1          
- [9] plyr_1.8.9         evaluate_0.23      highr_0.10         httr_1.4.7        
-[13] pillar_1.9.0       rlang_1.1.2        compositions_2.0-6 rstudioapi_0.15.0 
-[17] whisker_0.4.1      callr_3.7.3        jquerylib_0.1.4    hexbin_1.28.3     
-[21] rmarkdown_2.25     labeling_0.4.3     proto_1.0.0        bit_4.0.5         
-[25] munsell_0.5.0      compiler_4.2.3     httpuv_1.6.13      xfun_0.41         
-[29] pkgconfig_2.0.3    htmltools_0.5.7    tidyselect_1.2.0   tensorA_0.36.2.1  
-[33] gridExtra_2.3      bookdown_0.37      fansi_1.0.6        crayon_1.5.2      
-[37] tzdb_0.4.0         withr_2.5.2        later_1.3.2        MASS_7.3-60       
-[41] grid_4.2.3         bayesm_3.1-6       jsonlite_1.8.8     gtable_0.3.4      
-[45] lifecycle_1.0.4    git2r_0.33.0       magrittr_2.0.3     scales_1.3.0      
-[49] vroom_1.6.5        cli_3.6.2          stringi_1.8.3      cachem_1.0.8      
-[53] farver_2.1.1       fs_1.6.3           promises_1.2.1     robustbase_0.99-1 
-[57] bslib_0.6.1        generics_0.1.3     vctrs_0.6.5        latex2exp_0.9.6   
-[61] tools_4.2.3        bit64_4.0.5        glue_1.6.2         DEoptimR_1.1-3    
-[65] hms_1.1.3          parallel_4.2.3     processx_3.8.3     fastmap_1.1.1     
-[69] yaml_2.3.8         timechange_0.2.0   colorspace_2.1-0   knitr_1.45        
-[73] sass_0.4.8        </code></pre>
+ [1] httr_1.4.7         sass_0.4.8         bit64_4.0.5        vroom_1.6.5       
+ [5] jsonlite_1.8.8     bslib_0.6.1        getPass_0.2-4      highr_0.10        
+ [9] tensorA_0.36.2.1   yaml_2.3.8         robustbase_0.99-1  pillar_1.9.0      
+[13] lattice_0.22-5     glue_1.6.2         digest_0.6.33      promises_1.2.1    
+[17] colorspace_2.1-0   htmltools_0.5.7    httpuv_1.6.13      plyr_1.8.9        
+[21] pkgconfig_2.0.3    bookdown_0.37      scales_1.3.0       processx_3.8.3    
+[25] whisker_0.4.1      later_1.3.2        tzdb_0.4.0         timechange_0.2.0  
+[29] git2r_0.33.0       generics_0.1.3     farver_2.1.1       ellipsis_0.3.2    
+[33] cachem_1.0.8       withr_2.5.2        hexbin_1.28.3      cli_3.6.2         
+[37] proto_1.0.0        magrittr_2.0.3     crayon_1.5.2       evaluate_0.23     
+[41] ps_1.7.5           fs_1.6.3           fansi_1.0.6        MASS_7.3-60       
+[45] compositions_2.0-6 tools_4.2.3        hms_1.1.3          lifecycle_1.0.4   
+[49] munsell_0.5.0      callr_3.7.3        compiler_4.2.3     jquerylib_0.1.4   
+[53] rlang_1.1.2        grid_4.2.3         rstudioapi_0.15.0  htmlwidgets_1.6.4 
+[57] crosstalk_1.2.1    labeling_0.4.3     rmarkdown_2.25     gtable_0.3.4      
+[61] R6_2.5.1           bayesm_3.1-6       gridExtra_2.3      knitr_1.45        
+[65] fastmap_1.1.1      bit_4.0.5          utf8_1.2.4         rprojroot_2.0.4   
+[69] latex2exp_0.9.6    stringi_1.8.3      parallel_4.2.3     Rcpp_1.0.11       
+[73] vctrs_0.6.5        DEoptimR_1.1-3     tidyselect_1.2.0   xfun_0.41         </code></pre>
+</div>
+</div>
 </div>
 </div>
 
