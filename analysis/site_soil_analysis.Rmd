@@ -5,15 +5,45 @@ editor_options:
   chunk_output_type: console
 ---
 
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+
 ## Introduction
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)
 library(ggtern)
 library(patchwork)
 source("scripts/aux.R")
+library(DT)
 ```
 
+
+### Soil type 
+
+- For each field site we show the soil types dominant and the inclussions.
+
+```{r}
+soil_type <- read_csv("data/dendroadaptamed_soil_lucdeme.csv")
+```
+
+```{r}
+soil_type |> 
+  dplyr::select(-site_code, -soil_type) |> 
+  DT::datatable(options =
+              list(
+                autoWidth = TRUE,
+                pageLength = 15), 
+            filter = list(position = 'top', clear = FALSE)
+            )
+```
+
+
+### Physico-Chemical features  
+
+#### Texture 
 
 ```{r}
 soil_fq <- read_csv("data/dendroadaptamed_soil_data.csv")
@@ -43,7 +73,9 @@ plot_sup <- ggtern(data = gsup,
   scale_colour_manual(values = colours_sp, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Elevation") +
   scale_shape_manual(values = shape_elev, name = "Species") +
-  ggtitle("Soil texture surface (25-30 cm)")
+  ggtitle("Soil texture surface (25-30 cm)") +
+  tern_limits(T=0.3, L = 0.8, R=0.45)
+  
 
 plot_sup
 ```
@@ -72,7 +104,8 @@ plot_sub <- ggtern(data = gsub,
   scale_colour_manual(values = colours_sp, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Elevation") +
   scale_shape_manual(values = shape_elev, name = "Species") +
-  ggtitle("Soil texture subsurface (>30 cm)")
+  ggtitle("Soil texture subsurface (>30 cm)") +
+  tern_limits(T=0.4, L = 0.75, R=0.5)
 
 plot_sub 
 ```
