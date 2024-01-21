@@ -31,6 +31,7 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 ## Data preparation
 - [Site soil features](site_soil_prepare.html)
 - [Site topography](site_topography_prepare.html)
+- [Site management actions](site_management_actions.html)
 
  
 
