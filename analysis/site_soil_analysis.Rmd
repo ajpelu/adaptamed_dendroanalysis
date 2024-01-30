@@ -16,6 +16,7 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 library(tidyverse)
 library(ggtern)
 library(patchwork)
+library(tinytable)
 source("scripts/aux.R")
 library(DT)
 ```
@@ -74,7 +75,7 @@ plot_sup <- ggtern(data = gsup,
   scale_fill_manual(values = colours_sp, name = "Elevation") +
   scale_shape_manual(values = shape_elev, name = "Species") +
   ggtitle("Soil texture surface (25-30 cm)") +
-  tern_limits(T=0.3, L = 0.8, R=0.45)
+  tern_limits(T=0.4, L = 0.8, R=0.5)
   
 
 plot_sup
@@ -105,8 +106,153 @@ plot_sub <- ggtern(data = gsub,
   scale_fill_manual(values = colours_sp, name = "Elevation") +
   scale_shape_manual(values = shape_elev, name = "Species") +
   ggtitle("Soil texture subsurface (>30 cm)") +
-  tern_limits(T=0.4, L = 0.75, R=0.5)
+  tern_limits(T=0.4, L = 0.8, R=0.5) 
 
 plot_sub 
 ```
 
+```{r, eval=FALSE}
+combined_ggtern <- ggtern::grid.arrange(plot_sup, plot_sub, nrow = 1)
+
+ggsave(combined_ggtern, 
+       filename = "output/soil_ternary.jpg",
+       width = 10, height = 5)
+```
+
+
+### Other parameters
+
+```{r}
+fq_notextura <- soil_fq |> 
+  filter(soil_var %in% c("cc_sup", "cc_sub",
+             "pmp_sup", "pmp_sub", 
+             "retencion_all",
+             "da_sup", "da_sub", 
+             "ph_sup", "ph_sub",
+             "mo_sup", "mo_sub",
+             "ks_sup", "ks_sub", 
+             "Conductividad Saturada Aparente Superficial",
+             "Conductividad Saturada Aparente Subsuperficial", 
+             "Contenido de Agua Residual Superficial", 
+             "Contenido de Agua Residual Subsuperficial",
+             "Contenido de Agua Saturación Superficial",
+             "Contenido de Agua Saturación Subsuperficial"
+             ))
+
+
+d <- fq_notextura |> 
+  dplyr::select(sp_code, elev_code, value, soil_var) |> 
+  pivot_wider(values_from = value,
+              names_from = soil_var) |>
+  arrange(
+    factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), 
+    factor(elev_code, levels = c("low2", "low", "medium", "high"))) |> 
+  relocate(sp_code, elev_code,
+           cc_sup, cc_sub,
+           retencion_all,
+             pmp_sup, pmp_sub, 
+             da_sup, da_sub, 
+             ph_sup, ph_sub,
+             mo_sup, mo_sub,
+             ks_sup, ks_sub, 
+             `Conductividad Saturada Aparente Superficial`,
+             `Conductividad Saturada Aparente Subsuperficial`, 
+             `Contenido de Agua Residual Superficial`, 
+             `Contenido de Agua Residual Subsuperficial`,
+             `Contenido de Agua Saturación Superficial`,
+             `Contenido de Agua Saturación Subsuperficial`) 
+  
+
+           
+
+
+mitabla <- tt(d) |> 
+  dplyr::select(-sp_code) |> 
+  group_tt(
+    i = list(
+      "halepensis" = 1,
+      "pinaster" = 4, 
+      "nigra" = 8, 
+      "sylvestris" = 11
+    ),
+    j = list(
+      "Capacidad Campo (cm3/cm3)" = 2:3,
+      "Retención de agua (mm)" = 4,
+      "Punto de Marchitez Permanente (cm3/cm3)" = 5:6,
+      "Densidad aparente (gr/cm3)" = 7:8, 
+      "pH" = 9:10,
+      "M. Orgánica (%)" = 11:12,
+      "Conductividad Hidráulica Saturada (cm/día)" = 13:14, # ks 
+      "Conductividad Saturada Aparente (cm/día)" = 15:16, 
+      "Contenido de Agua Residual (cm3/cm3)" = 17:18, 
+      "Contenido de Agua Saturacion (cm3/cm3)" = 19:20
+      ) 
+  ) 
+
+mitabla
+``` 
+
+```{r}
+dicc_fq <- read_csv("data/raw/soil/dicc_fq.csv")
+
+f <- fq_notextura |> 
+  inner_join(dicc_fq) 
+  
+par_sup <- f |> 
+  filter(soil_var != "retencion_all") |> 
+  filter(deepth == "sup") |> 
+  ggplot(aes(x = factor(elev_code, levels = c("low2", "low", "medium", "high")),
+                        y = value, group = sp_code, colour = sp_code, fill = sp_code)) +
+  geom_point(aes(color = sp_code), size = 2, shape = 21) +
+  geom_line() +
+  facet_wrap(~soil_var_groupped, scales = "free") +
+  scale_colour_manual(values = colours_sp, name = "Pine species") + 
+  scale_fill_manual(values = colours_sp, name = "Pine species") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_blank()
+  ) +
+  xlab("") + ylab("") +
+  ggtitle("Superficial")
+
+par_sup
+```
+
+
+```{r}
+ggsave(par_sup, 
+       filename = "output/soil_fq_superficial.jpg",
+       width = 10, height = 10)
+```
+
+
+```{r}
+par_sub <- f |> 
+  filter(soil_var != "retencion_all") |> 
+  filter(deepth == "sub") |> 
+  ggplot(aes(x = factor(elev_code, levels = c("low2", "low", "medium", "high")),
+                        y = value, group = sp_code, colour = sp_code, fill = sp_code)) +
+  geom_point(aes(color = sp_code), size = 2, shape = 21) +
+  geom_line() +
+  facet_wrap(~soil_var_groupped, scales = "free") +
+  scale_colour_manual(values = colours_sp, name = "Pine species") + 
+  scale_fill_manual(values = colours_sp, name = "Pine species") +
+  theme_bw() +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_blank()
+  ) +
+  xlab("") + ylab("") +
+  ggtitle("Subsuperficial")
+
+par_sub 
+```
+
+
+```{r}
+ggsave(par_sub, 
+       filename = "output/soil_fq_subsuperficial.jpg",
+       width = 10, height = 10)
+```
+ 
