@@ -1,0 +1,75 @@
+---
+title: "Forest stand structure "
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+rawdata <- xlsx::read.xlsx(file = "data/db_dendroadaptamed.xlsx", sheetName = "tree_measurements") 
+
+# pi*r^2 = BA
+# dbh = 2r -> r = dbh/2
+# pi*(dbh/2)^2 = BA
+# pi*dbh^2/4 = BA
+# dbh is in cm, so pass to m 
+# BA = pi*dbh^2 / 40000
+
+data <- rawdata |> 
+  mutate(ba = (pi*(tree_dbh)^2)/40000) 
+
+plots <- xlsx::read.xlsx(file = "data/db_dendroadaptamed.xlsx", sheetName = "metadata_plots") |> 
+  dplyr::select(locality_code, radio_m)
+
+```
+
+
+
+```{r}
+ba <- data |> 
+  group_by(locality) |>
+  group_modify(~{ 
+    as.data.frame(
+      ba_plot(.x, ba_var = "ba", dist_var="tree_distance_m", fc=0.5))
+  }) 
+
+# Functions to compute the Basal Area and Basal Area corrected and tree density and tree density corrected 
+ba_plot<- function(x, ba_var, dist_var, ha = 10000, fc = 0.5){
+  basum <- sum(x[, ba_var])
+  radius_plot <- max(x[[dist_var]])
+  ba <- (basum*ha)/(pi*radius_plot^2)
+  bac <- (basum*ha)/((pi*radius_plot^2) + (0.5*radius_plot^2)/nrow(x))
+  ntrees <- nrow(x)
+  dentree <- (ntrees*ha)/(pi*radius_plot^2)
+  dentreec <- (ntrees*ha)/((pi*radius_plot^2) + (0.5*radius_plot^2)/nrow(x))
+  return(list(ba = ba, bac = bac, dentree = dentree, dentreec = dentreec))
+}
+
+
+
+mean_sd <- function(x) {
+    tibble(
+      mean = mean(x, na.rm = TRUE),
+      sd = sd(x, na.rm = TRUE)
+      )
+}
+
+data |>
+  reframe(across(tree_height:tree_dbh, mean_sd, .unpack = TRUE), .by = locality)
+
+
+
+
+
+```
+

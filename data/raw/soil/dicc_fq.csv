@@ -1,0 +1,20 @@
+soil_var,deepth,soil_var_groupped
+cc_sub,sub,Capacidad de Campo (cm3/cm3)
+cc_sup,sup,Capacidad de Campo (cm3/cm3)
+ks_sub,sub,Conductividad Hidraulica Saturada (cm/día)
+ks_sup,sup,Conductividad Hidraulica Saturada (cm/día)
+da_sub,sub,Densidad Aparente (gr/cm3)
+da_sup,sup,Densidad Aparente (gr/cm3)
+mo_sub,sub,Materia Orgánica (%)
+mo_sup,sup,Materia Orgánica (%)
+Conductividad Saturada Aparente Subsuperficial,sub,Conductividad Saturada Aparente (cm/día)
+Conductividad Saturada Aparente Superficial,sup,Conductividad Saturada Aparente (cm/día)
+Contenido de Agua Residual Subsuperficial,sub,Contenido de Agua Residual (cm3/cm3)
+Contenido de Agua Residual Superficial,sup,Contenido de Agua Residual (cm3/cm3)
+Contenido de Agua Saturación Subsuperficial,sub,Contenido de Agua Saturación (cm3/cm3)
+Contenido de Agua Saturación Superficial ,sup,Contenido de Agua Saturación (cm3/cm3)
+ph_sub,sub,ph
+ph_sup,sup,ph
+pmp_sub,sub,Punto de Marchitez Permanente (cm3/cm3)
+pmp_sup,sup,Punto de Marchitez Permanente (cm3/cm3)
+retencion_all,,Retención de agua (mm)

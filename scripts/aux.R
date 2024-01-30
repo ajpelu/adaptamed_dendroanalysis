@@ -4,9 +4,9 @@ colours_elev <- c("low" = "red", "low2" ="orange", "medium" = "blue", "high" = "
 
 colours_temp <- c("tmin" = "#a6bddb", "tmed" = "#67a9cf", "tmax" = "#016c59")
 
-colours_sp <- c("pinaster" = "yellow", "nigra" = "darkgreen", "halepensis" = "orange", "sylvestris" = "#67a9cf")
+colours_sp <- c("pinaster" = "#f9e900", "nigra" = "darkgreen", "halepensis" = "orange", "sylvestris" = "#67a9cf")
 
-# pinaster, "#ffffbf", "beige"
+# pinaster, "#ffffbf", "beige" or "#f9e900"
 # nigra, "#abdda4", "lightgreen"
 # halepensis, "orange", "orange"
 # sylvestris, "lightblue", "lightblue"
