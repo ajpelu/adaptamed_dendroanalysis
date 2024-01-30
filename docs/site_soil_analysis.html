@@ -412,7 +412,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-21
+<strong>Last updated:</strong> 2024-01-30
 </p>
 <p>
 <strong>Checks:</strong>
@@ -540,20 +540,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree80a6cf011e9998aa576e845712a714dd9b0596a0targetblank80a6cf0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree0acc07a97dd4b9461b572d7fdb65aa53a3075cd7targetblank0acc07aa">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/80a6cf011e9998aa576e845712a714dd9b0596a0" target="_blank">80a6cf0</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/0acc07a97dd4b9461b572d7fdb65aa53a3075cd7" target="_blank">0acc07a</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree80a6cf011e9998aa576e845712a714dd9b0596a0targetblank80a6cf0a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree0acc07a97dd4b9461b572d7fdb65aa53a3075cd7targetblank0acc07aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/80a6cf011e9998aa576e845712a714dd9b0596a0" target="_blank">80a6cf0</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/0acc07a97dd4b9461b572d7fdb65aa53a3075cd7" target="_blank">0acc07a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -575,12 +575,16 @@ Ignored files:
     Ignored:    data/raw/.DS_Store
 
 Untracked files:
-    Untracked:  data/dendroadaptamed_soil_lucdeme.csv
+    Untracked:  Rplot.jpeg
+    Untracked:  analysis/site_forest_structure.Rmd
+    Untracked:  data/db_dendroadaptamed.xlsx
+    Untracked:  data/raw/soil/dicc_fq.csv
+    Untracked:  output/soil_fq_subsuperficial.jpg
+    Untracked:  output/soil_fq_superficial.jpg
+    Untracked:  output/soil_ternary.jpg
 
 Unstaged changes:
-    Deleted:    data/dendroadaptamed_soil_lucdemde.csv
-    Modified:   data/raw/reforestation_age.xlsx
-    Deleted:    data/raw/~$reforestation_age.xlsx
+    Modified:   scripts/aux.R
 
 </code></pre>
 <p>
@@ -625,6 +629,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/0acc07a97dd4b9461b572d7fdb65aa53a3075cd7/analysis/site_soil_analysis.Rmd" target="_blank">0acc07a</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-30
+</td>
+<td>
+wflow_publish("analysis/site_soil_analysis.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/b944fde39efdd948a2b1bfb7e8d10e5e1a941c50/docs/site_soil_analysis.html" target="_blank">b944fde</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -688,6 +726,7 @@ update
 <pre class="r"><code>library(tidyverse)
 library(ggtern)
 library(patchwork)
+library(tinytable)
 source(&quot;scripts/aux.R&quot;)
 library(DT)</code></pre>
 <div id="soil-type" class="section level3" number="0.1.1">
@@ -735,11 +774,48 @@ plot_sup &lt;- ggtern(data = gsup,
   scale_fill_manual(values = colours_sp, name = &quot;Elevation&quot;) +
   scale_shape_manual(values = shape_elev, name = &quot;Species&quot;) +
   ggtitle(&quot;Soil texture surface (25-30 cm)&quot;) +
-  tern_limits(T=0.3, L = 0.8, R=0.45)
+  tern_limits(T=0.4, L = 0.8, R=0.5)
   
 
 plot_sup</code></pre>
 <p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
+Past versions of unnamed-chunk-5-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-5-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/b944fde39efdd948a2b1bfb7e8d10e5e1a941c50/docs/figure/site_soil_analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">b944fde</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-21
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>gsub &lt;- soil_fq |&gt; 
   filter(type == &quot;Textura Subsuperficial&quot;) |&gt; 
   dplyr::select(-res, -layer, -type) |&gt; 
@@ -764,10 +840,591 @@ plot_sub &lt;- ggtern(data = gsub,
   scale_fill_manual(values = colours_sp, name = &quot;Elevation&quot;) +
   scale_shape_manual(values = shape_elev, name = &quot;Species&quot;) +
   ggtitle(&quot;Soil texture subsurface (&gt;30 cm)&quot;) +
-  tern_limits(T=0.4, L = 0.75, R=0.5)
+  tern_limits(T=0.4, L = 0.8, R=0.5) 
 
 plot_sub </code></pre>
 <p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/b944fde39efdd948a2b1bfb7e8d10e5e1a941c50/docs/figure/site_soil_analysis.Rmd/unnamed-chunk-6-1.png" target="_blank">b944fde</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-21
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>combined_ggtern &lt;- ggtern::grid.arrange(plot_sup, plot_sub, nrow = 1)
+
+ggsave(combined_ggtern, 
+       filename = &quot;output/soil_ternary.jpg&quot;,
+       width = 10, height = 5)</code></pre>
+</div>
+</div>
+<div id="other-parameters" class="section level3" number="0.1.3">
+<h3><span class="header-section-number">0.1.3</span> Other parameters</h3>
+<pre class="r"><code>fq_notextura &lt;- soil_fq |&gt; 
+  filter(soil_var %in% c(&quot;cc_sup&quot;, &quot;cc_sub&quot;,
+             &quot;pmp_sup&quot;, &quot;pmp_sub&quot;, 
+             &quot;retencion_all&quot;,
+             &quot;da_sup&quot;, &quot;da_sub&quot;, 
+             &quot;ph_sup&quot;, &quot;ph_sub&quot;,
+             &quot;mo_sup&quot;, &quot;mo_sub&quot;,
+             &quot;ks_sup&quot;, &quot;ks_sub&quot;, 
+             &quot;Conductividad Saturada Aparente Superficial&quot;,
+             &quot;Conductividad Saturada Aparente Subsuperficial&quot;, 
+             &quot;Contenido de Agua Residual Superficial&quot;, 
+             &quot;Contenido de Agua Residual Subsuperficial&quot;,
+             &quot;Contenido de Agua Saturación Superficial&quot;,
+             &quot;Contenido de Agua Saturación Subsuperficial&quot;
+             ))
+
+
+d &lt;- fq_notextura |&gt; 
+  dplyr::select(sp_code, elev_code, value, soil_var) |&gt; 
+  pivot_wider(values_from = value,
+              names_from = soil_var) |&gt;
+  arrange(
+    factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;)), 
+    factor(elev_code, levels = c(&quot;low2&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;))) |&gt; 
+  relocate(sp_code, elev_code,
+           cc_sup, cc_sub,
+           retencion_all,
+             pmp_sup, pmp_sub, 
+             da_sup, da_sub, 
+             ph_sup, ph_sub,
+             mo_sup, mo_sub,
+             ks_sup, ks_sub, 
+             `Conductividad Saturada Aparente Superficial`,
+             `Conductividad Saturada Aparente Subsuperficial`, 
+             `Contenido de Agua Residual Superficial`, 
+             `Contenido de Agua Residual Subsuperficial`,
+             `Contenido de Agua Saturación Superficial`,
+             `Contenido de Agua Saturación Subsuperficial`) 
+  
+
+           
+
+
+mitabla &lt;- tt(d) |&gt; 
+  dplyr::select(-sp_code) |&gt; 
+  group_tt(
+    i = list(
+      &quot;halepensis&quot; = 1,
+      &quot;pinaster&quot; = 4, 
+      &quot;nigra&quot; = 8, 
+      &quot;sylvestris&quot; = 11
+    ),
+    j = list(
+      &quot;Capacidad Campo (cm3/cm3)&quot; = 2:3,
+      &quot;Retención de agua (mm)&quot; = 4,
+      &quot;Punto de Marchitez Permanente (cm3/cm3)&quot; = 5:6,
+      &quot;Densidad aparente (gr/cm3)&quot; = 7:8, 
+      &quot;pH&quot; = 9:10,
+      &quot;M. Orgánica (%)&quot; = 11:12,
+      &quot;Conductividad Hidráulica Saturada (cm/día)&quot; = 13:14, # ks 
+      &quot;Conductividad Saturada Aparente (cm/día)&quot; = 15:16, 
+      &quot;Contenido de Agua Residual (cm3/cm3)&quot; = 17:18, 
+      &quot;Contenido de Agua Saturacion (cm3/cm3)&quot; = 19:20
+      ) 
+  ) 
+
+mitabla</code></pre>
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinytable_nvdl836gkszuetx0wz85</title>
+    <style>
+.table td.tinytable_css_lfw8fs0wtfap1nbyxpnn, .table th.tinytable_css_lfw8fs0wtfap1nbyxpnn {   padding-left: 1em; }
+.table td.tinytable_css_cj1185lekw9me6e2w9ik, .table th.tinytable_css_cj1185lekw9me6e2w9ik {    text-align: center; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <table class="table" id="tinytable_nvdl836gkszuetx0wz85" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        <thead>
+<th scope="col" align="center" colspan=1> </th>
+<th scope="col" align="center" colspan=2>Capacidad Campo (cm3/cm3)</th>
+<th scope="col" align="center" colspan=1>Retención de agua (mm)</th>
+<th scope="col" align="center" colspan=2>Punto de Marchitez Permanente (cm3/cm3)</th>
+<th scope="col" align="center" colspan=2>Densidad aparente (gr/cm3)</th>
+<th scope="col" align="center" colspan=2>pH</th>
+<th scope="col" align="center" colspan=2>M. Orgánica (%)</th>
+<th scope="col" align="center" colspan=2>Conductividad Hidráulica Saturada (cm/día)</th>
+<th scope="col" align="center" colspan=2>Conductividad Saturada Aparente (cm/día)</th>
+<th scope="col" align="center" colspan=2>Contenido de Agua Residual (cm3/cm3)</th>
+<th scope="col" align="center" colspan=2>Contenido de Agua Saturacion (cm3/cm3)</th>
+<th scope="col" align="center" colspan=1> </th>
+        
+              <tr>
+                <th scope="col">elev_code</th>
+                <th scope="col">cc_sup</th>
+                <th scope="col">cc_sub</th>
+                <th scope="col">retencion_all</th>
+                <th scope="col">pmp_sup</th>
+                <th scope="col">pmp_sub</th>
+                <th scope="col">da_sup</th>
+                <th scope="col">da_sub</th>
+                <th scope="col">ph_sup</th>
+                <th scope="col">ph_sub</th>
+                <th scope="col">mo_sup</th>
+                <th scope="col">mo_sub</th>
+                <th scope="col">ks_sup</th>
+                <th scope="col">ks_sub</th>
+                <th scope="col">Conductividad Saturada Aparente Superficial</th>
+                <th scope="col">Conductividad Saturada Aparente Subsuperficial</th>
+                <th scope="col">Contenido de Agua Residual Superficial</th>
+                <th scope="col">Contenido de Agua Residual Subsuperficial</th>
+                <th scope="col">Contenido de Agua Saturación Superficial</th>
+                <th scope="col">Contenido de Agua Saturación Subsuperficial</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>low</td>
+                  <td>0.2352</td>
+                  <td>0.2909</td>
+                  <td> 76.600</td>
+                  <td>0.0928</td>
+                  <td>0.1269</td>
+                  <td>1.269954</td>
+                  <td>1.383121</td>
+                  <td>7.668468</td>
+                  <td>7.303313</td>
+                  <td>1.939734</td>
+                  <td>1.2440894</td>
+                  <td> 74.19250</td>
+                  <td>20.10759</td>
+                  <td>12.135564</td>
+                  <td> 3.066197</td>
+                  <td>0.03177945</td>
+                  <td>0.05237466</td>
+                  <td>0.4247590</td>
+                  <td>0.4044460</td>
+                </tr>
+                <tr>
+                  <td>medium</td>
+                  <td>0.2555</td>
+                  <td>0.2904</td>
+                  <td> 80.200</td>
+                  <td>0.1048</td>
+                  <td>0.1203</td>
+                  <td>1.264495</td>
+                  <td>1.384530</td>
+                  <td>7.335792</td>
+                  <td>7.209661</td>
+                  <td>2.418236</td>
+                  <td>1.2654953</td>
+                  <td> 57.31391</td>
+                  <td>20.63051</td>
+                  <td> 8.589937</td>
+                  <td> 2.779969</td>
+                  <td>0.03854625</td>
+                  <td>0.04981957</td>
+                  <td>0.4301387</td>
+                  <td>0.4014645</td>
+                </tr>
+                <tr>
+                  <td>high</td>
+                  <td>0.1927</td>
+                  <td>0.2135</td>
+                  <td>131.875</td>
+                  <td>0.0591</td>
+                  <td>0.0822</td>
+                  <td>1.359245</td>
+                  <td>1.399416</td>
+                  <td>6.993927</td>
+                  <td>6.896964</td>
+                  <td>1.780937</td>
+                  <td>1.2861661</td>
+                  <td> 82.09184</td>
+                  <td>56.72703</td>
+                  <td>15.671478</td>
+                  <td>11.961896</td>
+                  <td>0.01757198</td>
+                  <td>0.02803104</td>
+                  <td>0.3865830</td>
+                  <td>0.3852737</td>
+                </tr>
+                <tr>
+                  <td>low2</td>
+                  <td>0.2453</td>
+                  <td>0.2781</td>
+                  <td>166.650</td>
+                  <td>0.0911</td>
+                  <td>0.1073</td>
+                  <td>1.262387</td>
+                  <td>1.379855</td>
+                  <td>6.607013</td>
+                  <td>6.493077</td>
+                  <td>2.485796</td>
+                  <td>1.2684363</td>
+                  <td> 71.36742</td>
+                  <td>24.27113</td>
+                  <td> 9.441479</td>
+                  <td> 3.218326</td>
+                  <td>0.02971572</td>
+                  <td>0.04195773</td>
+                  <td>0.4203775</td>
+                  <td>0.3904978</td>
+                </tr>
+                <tr>
+                  <td>low</td>
+                  <td>0.2119</td>
+                  <td>0.2594</td>
+                  <td>144.525</td>
+                  <td>0.0895</td>
+                  <td>0.1075</td>
+                  <td>1.268494</td>
+                  <td>1.396948</td>
+                  <td>6.624420</td>
+                  <td>6.446069</td>
+                  <td>2.050878</td>
+                  <td>1.0815156</td>
+                  <td>108.47010</td>
+                  <td>31.62278</td>
+                  <td>21.243690</td>
+                  <td> 5.320347</td>
+                  <td>0.03221466</td>
+                  <td>0.04134001</td>
+                  <td>0.4359850</td>
+                  <td>0.3938811</td>
+                </tr>
+                <tr>
+                  <td>medium</td>
+                  <td>0.2371</td>
+                  <td>0.2478</td>
+                  <td>149.400</td>
+                  <td>0.0841</td>
+                  <td>0.0996</td>
+                  <td>1.259432</td>
+                  <td>1.394470</td>
+                  <td>6.416766</td>
+                  <td>6.225986</td>
+                  <td>2.713417</td>
+                  <td>1.1800796</td>
+                  <td> 81.81633</td>
+                  <td>36.92496</td>
+                  <td>10.925215</td>
+                  <td> 6.633917</td>
+                  <td>0.02685176</td>
+                  <td>0.03559806</td>
+                  <td>0.4233072</td>
+                  <td>0.3883589</td>
+                </tr>
+                <tr>
+                  <td>high</td>
+                  <td>0.2473</td>
+                  <td>0.2131</td>
+                  <td>142.250</td>
+                  <td>0.0893</td>
+                  <td>0.0761</td>
+                  <td>1.264271</td>
+                  <td>1.393240</td>
+                  <td>6.299239</td>
+                  <td>6.245099</td>
+                  <td>3.527763</td>
+                  <td>1.3305831</td>
+                  <td> 75.86475</td>
+                  <td>53.93739</td>
+                  <td> 8.877895</td>
+                  <td>11.040277</td>
+                  <td>0.02779238</td>
+                  <td>0.02495650</td>
+                  <td>0.4169812</td>
+                  <td>0.3797774</td>
+                </tr>
+                <tr>
+                  <td>low</td>
+                  <td>0.2402</td>
+                  <td>0.2789</td>
+                  <td>164.950</td>
+                  <td>0.0955</td>
+                  <td>0.1072</td>
+                  <td>1.264460</td>
+                  <td>1.378677</td>
+                  <td>6.602465</td>
+                  <td>6.446496</td>
+                  <td>2.364254</td>
+                  <td>1.3537753</td>
+                  <td> 65.00699</td>
+                  <td>24.13348</td>
+                  <td>10.782015</td>
+                  <td> 3.172123</td>
+                  <td>0.03302892</td>
+                  <td>0.04216831</td>
+                  <td>0.4222831</td>
+                  <td>0.3912886</td>
+                </tr>
+                <tr>
+                  <td>medium</td>
+                  <td>0.2412</td>
+                  <td>0.2869</td>
+                  <td>165.800</td>
+                  <td>0.0958</td>
+                  <td>0.1143</td>
+                  <td>1.267312</td>
+                  <td>1.378454</td>
+                  <td>6.550873</td>
+                  <td>6.446457</td>
+                  <td>2.168162</td>
+                  <td>1.3443940</td>
+                  <td> 63.32570</td>
+                  <td>21.71751</td>
+                  <td>10.526160</td>
+                  <td> 2.843937</td>
+                  <td>0.03385722</td>
+                  <td>0.04607116</td>
+                  <td>0.4238386</td>
+                  <td>0.3959163</td>
+                </tr>
+                <tr>
+                  <td>high</td>
+                  <td>0.2377</td>
+                  <td>0.2532</td>
+                  <td>155.525</td>
+                  <td>0.0911</td>
+                  <td>0.0947</td>
+                  <td>1.265238</td>
+                  <td>1.380649</td>
+                  <td>6.310666</td>
+                  <td>6.422645</td>
+                  <td>2.267043</td>
+                  <td>1.1975135</td>
+                  <td> 75.02570</td>
+                  <td>34.37083</td>
+                  <td>11.232075</td>
+                  <td> 5.260899</td>
+                  <td>0.02982803</td>
+                  <td>0.03301489</td>
+                  <td>0.4211034</td>
+                  <td>0.3803996</td>
+                </tr>
+                <tr>
+                  <td>low</td>
+                  <td>0.2462</td>
+                  <td>0.2101</td>
+                  <td> 72.425</td>
+                  <td>0.0872</td>
+                  <td>0.0794</td>
+                  <td>1.257917</td>
+                  <td>1.400322</td>
+                  <td>6.261298</td>
+                  <td>6.009807</td>
+                  <td>2.794637</td>
+                  <td>0.8565515</td>
+                  <td> 77.68909</td>
+                  <td>52.53637</td>
+                  <td> 9.091803</td>
+                  <td>11.856594</td>
+                  <td>0.02713254</td>
+                  <td>0.02700619</td>
+                  <td>0.4188220</td>
+                  <td>0.3786756</td>
+                </tr>
+                <tr>
+                  <td>medium</td>
+                  <td>0.2442</td>
+                  <td>0.2179</td>
+                  <td> 73.125</td>
+                  <td>0.0854</td>
+                  <td>0.0842</td>
+                  <td>1.253353</td>
+                  <td>1.398549</td>
+                  <td>6.183664</td>
+                  <td>5.927443</td>
+                  <td>3.146720</td>
+                  <td>0.8747722</td>
+                  <td> 80.82207</td>
+                  <td>48.47078</td>
+                  <td> 9.438000</td>
+                  <td>10.655161</td>
+                  <td>0.02640252</td>
+                  <td>0.02873299</td>
+                  <td>0.4204683</td>
+                  <td>0.3797774</td>
+                </tr>
+                <tr>
+                  <td>high</td>
+                  <td>0.2514</td>
+                  <td>0.2061</td>
+                  <td> 72.375</td>
+                  <td>0.0924</td>
+                  <td>0.0756</td>
+                  <td>1.251873</td>
+                  <td>1.401843</td>
+                  <td>5.981817</td>
+                  <td>5.653880</td>
+                  <td>3.263491</td>
+                  <td>0.8987743</td>
+                  <td> 73.47337</td>
+                  <td>55.92037</td>
+                  <td> 8.490632</td>
+                  <td>12.427393</td>
+                  <td>0.02937878</td>
+                  <td>0.02525132</td>
+                  <td>0.4194312</td>
+                  <td>0.3780274</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+    function styleCell_tinytable_0fhy9pbo2emqc1pj0fom(i, j, css_id) {
+      var table = document.getElementById("tinytable_nvdl836gkszuetx0wz85");
+      table.rows[i].cells[j].classList.add(css_id);
+    }
+    function insertSpanRow_35fcleif5lty7gql7lic(i, colspan, content) {
+      var table = document.getElementById('tinytable_nvdl836gkszuetx0wz85');
+      var newRow = table.insertRow(i);
+      var newCell = newRow.insertCell(0);
+      newCell.setAttribute("colspan", colspan);
+      // newCell.innerText = content;
+      // this may be unsafe, but innerText does not interpret <br>
+      newCell.innerHTML = content;
+    }
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(12, 21, 'sylvestris') });
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(9, 21, 'nigra') });
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(5, 21, 'pinaster') });
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(2, 21, 'halepensis') });
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(3, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(4, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(5, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(7, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(8, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(9, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(10, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(12, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(13, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(14, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(16, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(17, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(18, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(19, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(20, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(21, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(22, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 0, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 1, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 2, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 3, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 4, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 5, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 6, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 7, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 8, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 9, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 10, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 11, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 12, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 13, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 14, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 15, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 16, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 17, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 18, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 19, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 20, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+    </script>
+
+  </body>
+
+</html>
+<pre class="r"><code>dicc_fq &lt;- read_csv(&quot;data/raw/soil/dicc_fq.csv&quot;)
+
+f &lt;- fq_notextura |&gt; 
+  inner_join(dicc_fq) 
+  
+par_sup &lt;- f |&gt; 
+  filter(soil_var != &quot;retencion_all&quot;) |&gt; 
+  filter(deepth == &quot;sup&quot;) |&gt; 
+  ggplot(aes(x = factor(elev_code, levels = c(&quot;low2&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;)),
+                        y = value, group = sp_code, colour = sp_code, fill = sp_code)) +
+  geom_point(aes(color = sp_code), size = 2, shape = 21) +
+  geom_line() +
+  facet_wrap(~soil_var_groupped, scales = &quot;free&quot;) +
+  scale_colour_manual(values = colours_sp, name = &quot;Pine species&quot;) + 
+  scale_fill_manual(values = colours_sp, name = &quot;Pine species&quot;) +
+  theme_bw() +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    panel.grid = element_blank()
+  ) +
+  xlab(&quot;&quot;) + ylab(&quot;&quot;) +
+  ggtitle(&quot;Superficial&quot;)
+
+par_sup</code></pre>
+<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(par_sup, 
+       filename = &quot;output/soil_fq_superficial.jpg&quot;,
+       width = 10, height = 10)</code></pre>
+<pre class="r"><code>par_sub &lt;- f |&gt; 
+  filter(soil_var != &quot;retencion_all&quot;) |&gt; 
+  filter(deepth == &quot;sub&quot;) |&gt; 
+  ggplot(aes(x = factor(elev_code, levels = c(&quot;low2&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;)),
+                        y = value, group = sp_code, colour = sp_code, fill = sp_code)) +
+  geom_point(aes(color = sp_code), size = 2, shape = 21) +
+  geom_line() +
+  facet_wrap(~soil_var_groupped, scales = &quot;free&quot;) +
+  scale_colour_manual(values = colours_sp, name = &quot;Pine species&quot;) + 
+  scale_fill_manual(values = colours_sp, name = &quot;Pine species&quot;) +
+  theme_bw() +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    panel.grid = element_blank()
+  ) +
+  xlab(&quot;&quot;) + ylab(&quot;&quot;) +
+  ggtitle(&quot;Subsuperficial&quot;)
+
+par_sub </code></pre>
+<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ggsave(par_sub, 
+       filename = &quot;output/soil_fq_subsuperficial.jpg&quot;,
+       width = 10, height = 10)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -792,10 +1449,10 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DT_0.31         patchwork_1.1.3 ggtern_3.4.2    lubridate_1.9.3
- [5] forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4     purrr_1.0.2    
- [9] readr_2.1.4     tidyr_1.3.0     tibble_3.2.1    ggplot2_3.4.4  
-[13] tidyverse_2.0.0 workflowr_1.7.1
+ [1] DT_0.31         tinytable_0.0.1 patchwork_1.1.3 ggtern_3.4.2   
+ [5] lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4    
+ [9] purrr_1.0.2     readr_2.1.4     tidyr_1.3.0     tibble_3.2.1   
+[13] ggplot2_3.4.4   tidyverse_2.0.0 workflowr_1.7.1
 
 loaded via a namespace (and not attached):
  [1] httr_1.4.7         sass_0.4.8         bit64_4.0.5        vroom_1.6.5       
@@ -805,7 +1462,7 @@ loaded via a namespace (and not attached):
 [17] colorspace_2.1-0   htmltools_0.5.7    httpuv_1.6.13      plyr_1.8.9        
 [21] pkgconfig_2.0.3    bookdown_0.37      scales_1.3.0       processx_3.8.3    
 [25] whisker_0.4.1      later_1.3.2        tzdb_0.4.0         timechange_0.2.0  
-[29] git2r_0.33.0       generics_0.1.3     farver_2.1.1       ellipsis_0.3.2    
+[29] git2r_0.33.0       farver_2.1.1       generics_0.1.3     ellipsis_0.3.2    
 [33] cachem_1.0.8       withr_2.5.2        hexbin_1.28.3      cli_3.6.2         
 [37] proto_1.0.0        magrittr_2.0.3     crayon_1.5.2       evaluate_0.23     
 [41] ps_1.7.5           fs_1.6.3           fansi_1.0.6        MASS_7.3-60       
@@ -817,7 +1474,6 @@ loaded via a namespace (and not attached):
 [65] fastmap_1.1.1      bit_4.0.5          utf8_1.2.4         rprojroot_2.0.4   
 [69] latex2exp_0.9.6    stringi_1.8.3      parallel_4.2.3     Rcpp_1.0.11       
 [73] vctrs_0.6.5        DEoptimR_1.1-3     tidyselect_1.2.0   xfun_0.41         </code></pre>
-</div>
 </div>
 </div>
 </div>
