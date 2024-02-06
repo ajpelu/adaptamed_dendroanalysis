@@ -1,0 +1,42 @@
+---
+title: "pruebas"
+author: "ajpelu"
+date: "2024-02-06"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r}
+library(tidyverse)
+library(ggimage)
+source("scripts/aux.R")
+```
+
+
+```{r}
+d <- read.csv("/Users/ajpelu/Downloads/variation_abi.csv", sep = ",", dec = ",")
+
+soc <- read_csv("data/")
+
+pinus_icons <- data.frame(
+  sp_code = c("halepensis", "pinaster", "nigra", "sylvestris"),
+  image = c("data/image_pinus/hal.png",
+            "data/image_pinus/pin.png",
+            "data/image_pinus/nigra.png",
+            "data/image_pinus/syl.png"))
+
+
+
+dd <- d |> inner_join(pinus_icons)
+
+dd |> 
+  ggplot(aes(x=elev, y = per_abi_gradient, fill=sp_code, colour = sp_code)) +
+  geom_image(aes(image = image), size = .1)
+
+
+
+```
+

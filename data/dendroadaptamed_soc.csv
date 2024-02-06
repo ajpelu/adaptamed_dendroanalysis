@@ -1,0 +1,14 @@
+site_code,sp_code,elev_code,soc_stock_ton_ha
+PIHAL_NACIMIENTO_L,halepensis,low,36
+PIHAL_NACIMIENTO_M,halepensis,medium,46
+PIHAL_RAGUA_H,halepensis,high,42
+PIPIN_LANTEIRA_L2,pinaster,low2,44
+PIPIN_JEREZ_L,pinaster,low,51
+PIPIN_JEREZ_M,pinaster,medium,56
+PIPIN_JEREZ_H,pinaster,high,52
+PINIG_LANTEIRA_L2,nigra,low,48
+PINIG_LANTEIRA_M,nigra,medium,57
+PINIG_LANTEIRA_H,nigra,high,54
+PISYL_PORTUGOS_L,sylvestris,low,51
+PISYL_PORTUGOS_M,sylvestris,medium,58
+PISYL_PORTUGOS_H,sylvestris,high,61

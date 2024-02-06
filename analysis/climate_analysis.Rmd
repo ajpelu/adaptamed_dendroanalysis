@@ -247,6 +247,153 @@ avg_yearly <- bind_rows(
          elev_code = as.factor(elev_code))
 ```
 
+
+#### Climate characteristic of the sites 
+
+- By sps
+```{r}
+aux <- avg_yearly |> 
+  filter(var %in% c("tmed", "prec")) |> 
+  dplyr::select(-sd, -se) |> 
+  pivot_wider(names_from = var, values_from = avg)
+
+
+
+temp_prec_sp <- aux |> 
+  ggplot(aes(y=tmed, x = prec, colour = sp_code, 
+             shape=elev_code)) +
+  geom_point(size = 1.7, alpha = .8) + 
+  facet_wrap(~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), nrow = 1) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  xlab("Annual precipitation (mm)") + 
+  ylab("Average annual mean temperature (ºC)") +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(), 
+        strip.text = element_text(face = "italic"), 
+        strip.background = element_rect(fill = "white")) +
+  scale_x_continuous(limits = c(0,2000))
+
+ggsave(
+  temp_prec_sp, 
+  file = "output/climate_temp_prec_sp.png",
+  dpi = 300,
+  width = 8, height = 4
+)
+```
+
+```{r}
+temp_prec_sp
+```
+
+
+```{r}
+temp_prec_sp_elev  <- aux |> 
+  ggplot(aes(y=tmed, x = prec, colour = sp_code, 
+             shape=elev_code)) +
+  geom_point(size = 1.5, alpha = .8) + 
+  facet_grid(factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")) ~ factor(elev_code, levels=c('low2', 'low','medium', 'high'))) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  xlab("Annual precipitation (mm)") + 
+  ylab("Average annual mean temperature (ºC)") +
+  theme_bw() +
+  theme(legend.position = "none", 
+        panel.grid.minor = element_blank(), 
+        strip.text = element_text(face = "italic"), 
+        strip.background = element_rect(fill = "white")) +
+  scale_x_continuous(limits = c(0,2000))
+
+ggsave(
+  temp_prec_sp_elev, 
+  file = "output/climate_temp_prec_sp_elev.png",
+  dpi = 300,
+  width = 6, height = 6
+)
+```
+
+```{r}
+
+lower_ci <- function(mean, se, n, conf_level = 0.95){
+  lower_ci <- mean - qt(1 - ((1 - conf_level) / 2), n - 1) * se
+  return(lower_ci)
+}
+
+upper_ci <- function(mean, se, n, conf_level = 0.95){
+  upper_ci <- mean + qt(1 - ((1 - conf_level) / 2), n - 1) * se
+  return(upper_ci)
+}
+
+aux_avg <- aux |> 
+  pivot_longer(tmed:prec, names_to = "var") |>  
+  group_by(sp_code, elev_code, sp_elev, var) |> 
+  summarise(
+    mean = mean(value, na.rm = TRUE), 
+    sd = sd(value, na.rm = TRUE), 
+    se = sd / sqrt(length(value)), 
+    n = length(value)
+  ) |> 
+  pivot_wider(values_from = c(mean, sd, se, n), names_from = var)
+
+head(aux_avg)
+
+aux_avg1 <- aux_avg |> 
+  mutate(lower_prec = lower_ci(mean = mean_prec, se = se_prec, n = n_prec), 
+         upper_prec = upper_ci(mean = mean_prec, se = se_prec, n = n_prec), 
+         lower_tmed = lower_ci(mean = mean_tmed, se = se_tmed, n = n_tmed),
+         upper_tmed = upper_ci(mean = mean_tmed, se = se_tmed, n = n_tmed),
+         )
+
+ggplot(data = aux, 
+       aes(y = tmed, x = prec, colour = sp_code)) +
+  geom_point(aes(shape = elev_code, fill=sp_code), size = 1.4, alpha = .2) +
+  geom_errorbar(
+    data = aux_avg1, aes(y = mean_tmed,
+                        ymin = lower_tmed,
+                        ymax = upper_tmed, 
+                        x = mean_prec)) +
+  geom_errorbarh(
+    data = aux_avg1, aes(x = mean_prec, 
+                         xmin = lower_prec, 
+                         xmax = upper_prec, 
+                        y = mean_tmed)) +
+  geom_point(data = aux_avg, 
+             aes(x = mean_prec, y = mean_tmed, shape = elev_code, fill = sp_code),
+             size = 2.5, color = "black") +  # Set color to "black" for border
+  scale_colour_manual(values = colours_sp, name = "Species",
+                      guide = guide_legend(label.theme = element_text(face = "italic"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") + 
+  scale_fill_manual(values = colours_sp, name = "Species", 
+                    guide = guide_legend(label.theme = element_text(face = "italic"))) + 
+  xlab("Annual precipitation (mm)") + 
+  ylab("Average annual mean temperature (ºC)") +
+  theme_bw() +
+  guides(
+    fill = guide_legend(title = "Species", 
+                        override.aes = list(shape = 19, color = colours_sp)),
+    shape = guide_legend(override.aes = list(color = "black", fill = "white"))
+  ) 
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+```{r}
+temp_prec_sp_elev 
+```
+
+
+
+
 #### Temporal trends
 - Plot the temporal trends (todo: compute the temporal trends statistics?)
 ```{r}
