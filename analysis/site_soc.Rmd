@@ -1,0 +1,81 @@
+---
+title: "Soil Organic Carbon"
+output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+```{r pkg}
+library(tidyverse)
+library(sf)
+library(terra)
+library(tinytable)
+```
+
+# Introduction 
+Soil organic carbon (*SOC*) is the main component of soil organic matter, being of vital importance for many soil processes. For instance,  SOC content correlates positively with soil fertility, playing a key role determining the physical, chemical and biological qualities of a soil [@Victoriaetal2012BenefitsSoil].  
+
+To estimate SOC we used the [SoilGrid database](https://soilgrids.org/) that provides digital maps of different soil variables at a spatial resolution of 250 m [@Hengletal2017SoilGrids250mGlobal; @Poggioetal2021SoilGridsProducing], built from a global database of soil profiles (WoSIS, World Soil Information Service)[@Batjesetal2017WoSISProviding; @Batjesetal2020StandardisedSoil]. 
+
+
+```{r, eval=FALSE, echo=FALSE}
+# Several ways to download 
+# Using soilgrids.org (limitation for a 2x2 degree tile)
+# TO explore the tiles see the shapefile here: https://files.isric.org/soilgrids/latest/data/soc/ 
+# 
+p <- st_read("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") 
+st_bbox(p)
+# use the following in the web:
+# lat: -3.4 to -2.6
+# long: 36.9 to 37.2
+# generated url: 
+# https://maps.isric.org/mapserv?map=/map/ocs.map&SERVICE=WCS&VERSION=2.0.1&REQUEST=GetCoverage&COVERAGEID=ocs_0-30cm_mean&FORMAT=image/tiff&SUBSET=long(-3.4000,-2.6000)&SUBSET=lat(36.9000,37.2000)&SUBSETTINGCRS=http://www.opengis.net/def/crs/EPSG/0/4326&OUTPUTCRS=http://www.opengis.net/def/crs/EPSG/0/4326
+```
+
+## Extract data 
+
+For each site we extracted the Soil Organic Carbon stock from 0-30 cm deepth (ton/ha)
+
+```{r}
+# read geoinfo to get site codes
+geo <- st_read("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp", quiet=TRUE)
+geo <- vect(geo)
+
+geodf <- geo |> as.data.frame() |>
+  rownames_to_column(var = "ID") |>
+  mutate(ID = as.numeric(ID)) |> 
+  dplyr::select(ID, site_code, sp_code, elev_code)
+
+soc <- terra::rast("data/raw/soc_stock_ton_ha.tif")
+
+soc_sites <- as.data.frame(terra::extract(soc, geo, bind = TRUE)) |> 
+  dplyr::select(site_code, sp_code, elev_code, soc_stock_ton_ha) |> 
+  arrange(
+    factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), 
+    factor(elev_code, levels = c("low2", "low", "medium", "high")))
+  
+```
+
+```{r}
+soc_sites |> 
+   dplyr::select(-sp_code) |> 
+  rename('Soil Organic Content stock (ton ha$^{-1}$)' = soc_stock_ton_ha) |> 
+  tt() |> 
+  group_tt(
+    i = list(
+      "halepensis" = 1,
+      "pinaster" = 4, 
+      "nigra" = 8, 
+      "sylvestris" = 11
+    ))
+```
+
+
+# References 
+
