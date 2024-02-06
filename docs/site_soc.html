@@ -550,20 +550,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeca14418de5873ee2bccfe3fd55171b31143ad7e9targetblankca14418a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree3a1e3507769dfd9165c42088d8a0d0496083faf3targetblank3a1e350a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ca14418de5873ee2bccfe3fd55171b31143ad7e9" target="_blank">ca14418</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/3a1e3507769dfd9165c42088d8a0d0496083faf3" target="_blank">3a1e350</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeca14418de5873ee2bccfe3fd55171b31143ad7e9targetblankca14418a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree3a1e3507769dfd9165c42088d8a0d0496083faf3targetblank3a1e350a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ca14418de5873ee2bccfe3fd55171b31143ad7e9" target="_blank">ca14418</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/3a1e3507769dfd9165c42088d8a0d0496083faf3" target="_blank">3a1e350</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -585,6 +585,7 @@ Ignored files:
     Ignored:    data/raw/.DS_Store
 
 Untracked files:
+    Untracked:  data/dendroadaptamed_soc.csv
     Untracked:  data/geoinfo/sn_enp.cpg
     Untracked:  data/geoinfo/sn_enp.dbf
     Untracked:  data/geoinfo/sn_enp.prj
@@ -648,6 +649,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/3a1e3507769dfd9165c42088d8a0d0496083faf3/analysis/site_soc.Rmd" target="_blank">3a1e350</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-06
+</td>
+<td>
+wflow_publish("analysis/site_soc.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/67753dbced72b9141cf503cfa299dba83971df1a/docs/site_soc.html" target="_blank">67753db</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/ca14418de5873ee2bccfe3fd55171b31143ad7e9/analysis/site_soc.Rmd" target="_blank">ca14418</a>
 </td>
 <td>
@@ -693,7 +728,9 @@ soc_sites &lt;- as.data.frame(terra::extract(soc, geo, bind = TRUE)) |&gt;
   dplyr::select(site_code, sp_code, elev_code, soc_stock_ton_ha) |&gt; 
   arrange(
     factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;)), 
-    factor(elev_code, levels = c(&quot;low2&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;)))</code></pre>
+    factor(elev_code, levels = c(&quot;low2&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;)))
+
+write_csv(soc_sites, &quot;data/dendroadaptamed_soc.csv&quot;)</code></pre>
 <pre class="r"><code>soc_sites |&gt; 
    dplyr::select(-sp_code) |&gt; 
   rename(&#39;Soil Organic Content stock (ton ha$^{-1}$)&#39; = soc_stock_ton_ha) |&gt; 
@@ -909,18 +946,19 @@ loaded via a namespace (and not attached):
  [5] rprojroot_2.0.4    digest_0.6.33      utf8_1.2.4         R6_2.5.1          
  [9] evaluate_0.23      e1071_1.7-14       httr_1.4.7         pillar_1.9.0      
 [13] rlang_1.1.2        rstudioapi_0.15.0  whisker_0.4.1      callr_3.7.3       
-[17] jquerylib_0.1.4    rmarkdown_2.25     munsell_0.5.0      proxy_0.4-27      
-[21] compiler_4.2.3     httpuv_1.6.13      xfun_0.41          pkgconfig_2.0.3   
-[25] htmltools_0.5.7    tidyselect_1.2.0   bookdown_0.37      codetools_0.2-19  
-[29] fansi_1.0.6        tzdb_0.4.0         withr_2.5.2        later_1.3.2       
-[33] grid_4.2.3         jsonlite_1.8.8     gtable_0.3.4       lifecycle_1.0.4   
-[37] DBI_1.2.0          git2r_0.33.0       magrittr_2.0.3     units_0.8-5       
-[41] scales_1.3.0       KernSmooth_2.23-22 cli_3.6.2          stringi_1.8.3     
-[45] cachem_1.0.8       fs_1.6.3           promises_1.2.1     bslib_0.6.1       
-[49] generics_0.1.3     vctrs_0.6.5        tools_4.2.3        glue_1.6.2        
-[53] hms_1.1.3          processx_3.8.3     fastmap_1.1.1      yaml_2.3.8        
-[57] timechange_0.2.0   colorspace_2.1-0   classInt_0.4-10    knitr_1.45        
-[61] sass_0.4.8        </code></pre>
+[17] jquerylib_0.1.4    rmarkdown_2.25     bit_4.0.5          munsell_0.5.0     
+[21] proxy_0.4-27       compiler_4.2.3     httpuv_1.6.13      xfun_0.41         
+[25] pkgconfig_2.0.3    htmltools_0.5.7    tidyselect_1.2.0   bookdown_0.37     
+[29] codetools_0.2-19   fansi_1.0.6        crayon_1.5.2       tzdb_0.4.0        
+[33] withr_2.5.2        later_1.3.2        grid_4.2.3         jsonlite_1.8.8    
+[37] gtable_0.3.4       lifecycle_1.0.4    DBI_1.2.0          git2r_0.33.0      
+[41] magrittr_2.0.3     units_0.8-5        scales_1.3.0       KernSmooth_2.23-22
+[45] vroom_1.6.5        cli_3.6.2          stringi_1.8.3      cachem_1.0.8      
+[49] fs_1.6.3           promises_1.2.1     bslib_0.6.1        generics_0.1.3    
+[53] vctrs_0.6.5        tools_4.2.3        bit64_4.0.5        glue_1.6.2        
+[57] hms_1.1.3          parallel_4.2.3     processx_3.8.3     fastmap_1.1.1     
+[61] yaml_2.3.8         timechange_0.2.0   colorspace_2.1-0   classInt_0.4-10   
+[65] knitr_1.45         sass_0.4.8        </code></pre>
 </div>
 </div>
 
