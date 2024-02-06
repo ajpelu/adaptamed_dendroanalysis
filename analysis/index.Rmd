@@ -31,6 +31,7 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 
 - [Site management actions](site_management_actions.html)
 - [Site soil features](site_soil_analysis.html)
+- [Site soil organic content](site_soc.html)
 
 # Data sources and preparation
 
