@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Soil Organic Carbon</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Dendrochronological and Satellite data analysis for Life-Adpatamed</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="data.html">Data</a>
+</li>
+<li>
+  <a href="scripts.html">Scripts</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ajpelu/adaptamed_dendroanalysis">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Soil Organic Carbon</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks">
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-02-06
+</p>
+<p>
+<strong>Checks:</strong>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+7
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+0
+</p>
+<p>
+<strong>Knit directory:</strong>
+<code>adaptamed_dendroanalysis/</code>
+<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the
+reproducibility checks that were applied when the results were created.
+The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Environment:</strong> empty
+</a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global
+environment can affect the analysis in your R Markdown file in unknown ways.
+For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220407code">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Seed:</strong> <code>set.seed(20220407)</code>
+</a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220407code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220407)</code> was run prior to running the code in the R Markdown file.
+Setting a seed ensures that any results that rely on randomness, e.g.
+subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Session information:</strong> recorded
+</a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is
+critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Cache:</strong> none
+</a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident
+that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>File paths:</strong> relative
+</a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project
+makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeca14418de5873ee2bccfe3fd55171b31143ad7e9targetblankca14418a">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ca14418de5873ee2bccfe3fd55171b31143ad7e9" target="_blank">ca14418</a>
+</a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeca14418de5873ee2bccfe3fd55171b31143ad7e9targetblankca14418a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and
+connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ca14418de5873ee2bccfe3fd55171b31143ad7e9" target="_blank">ca14418</a>.
+See the <em>Past versions</em> tab to see a history of the changes made to the
+R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the
+analysis have been committed to Git prior to generating the results (you can
+use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only
+checks the R Markdown file, but you know if there are other scripts or data
+files that it depends on. Below is the status of the Git repository when the
+results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
+    Ignored:    data/geoinfo/.DS_Store
+    Ignored:    data/raw/.DS_Store
+
+Untracked files:
+    Untracked:  data/geoinfo/sn_enp.cpg
+    Untracked:  data/geoinfo/sn_enp.dbf
+    Untracked:  data/geoinfo/sn_enp.prj
+    Untracked:  data/geoinfo/sn_enp.qpj
+    Untracked:  data/geoinfo/sn_enp.shp
+    Untracked:  data/geoinfo/sn_enp.shx
+    Untracked:  data/raw/soc_stock_ton_ha.tif
+    Untracked:  output/climate_temp_prec_sp.png
+    Untracked:  output/climate_temp_prec_sp_elev.png
+
+Unstaged changes:
+    Modified:   analysis/climate_analysis.Rmd
+    Modified:   analysis/references.bib
+    Modified:   scripts/aux.R
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in
+this status report because it is ok for generated content to have uncommitted
+changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made
+to the R Markdown (<code>analysis/site_soc.Rmd</code>) and HTML (<code>docs/site_soc.html</code>)
+files. If you’ve configured a remote Git repository (see
+<code>?wflow_git_remote</code>), click on the hyperlinks in the table below to
+view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/ca14418de5873ee2bccfe3fd55171b31143ad7e9/analysis/site_soc.Rmd" target="_blank">ca14418</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-06
+</td>
+<td>
+wflow_publish("analysis/site_soc.Rmd")
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<pre class="r"><code>library(tidyverse)
+library(sf)
+library(terra)
+library(tinytable)</code></pre>
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>Soil organic carbon (<em>SOC</em>) is the main component of soil organic matter, being of vital importance for many soil processes. For instance, SOC content correlates positively with soil fertility, playing a key role determining the physical, chemical and biological qualities of a soil <span class="citation">(Victoria et al. 2012)</span>.</p>
+<p>To estimate SOC we used the <a href="https://soilgrids.org/">SoilGrid database</a> that provides digital maps of different soil variables at a spatial resolution of 250 m <span class="citation">(Hengl et al. 2017; Poggio et al. 2021)</span>, built from a global database of soil profiles (WoSIS, World Soil Information Service)<span class="citation">(Batjes et al. 2017; Batjes, Ribeiro, and van Oostrum 2020)</span>.</p>
+<div id="extract-data" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Extract data</h2>
+<p>For each site we extracted the Soil Organic Carbon stock from 0-30 cm deepth (ton/ha)</p>
+<pre class="r"><code># read geoinfo to get site codes
+geo &lt;- st_read(&quot;data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp&quot;, quiet=TRUE)
+geo &lt;- vect(geo)
+
+geodf &lt;- geo |&gt; as.data.frame() |&gt;
+  rownames_to_column(var = &quot;ID&quot;) |&gt;
+  mutate(ID = as.numeric(ID)) |&gt; 
+  dplyr::select(ID, site_code, sp_code, elev_code)
+
+soc &lt;- terra::rast(&quot;data/raw/soc_stock_ton_ha.tif&quot;)
+
+soc_sites &lt;- as.data.frame(terra::extract(soc, geo, bind = TRUE)) |&gt; 
+  dplyr::select(site_code, sp_code, elev_code, soc_stock_ton_ha) |&gt; 
+  arrange(
+    factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;)), 
+    factor(elev_code, levels = c(&quot;low2&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;)))</code></pre>
+<pre class="r"><code>soc_sites |&gt; 
+   dplyr::select(-sp_code) |&gt; 
+  rename(&#39;Soil Organic Content stock (ton ha$^{-1}$)&#39; = soc_stock_ton_ha) |&gt; 
+  tt() |&gt; 
+  group_tt(
+    i = list(
+      &quot;halepensis&quot; = 1,
+      &quot;pinaster&quot; = 4, 
+      &quot;nigra&quot; = 8, 
+      &quot;sylvestris&quot; = 11
+    ))</code></pre>
+<!DOCTYPE html> 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tinytable_nvdl836gkszuetx0wz85</title>
+    <style>
+.table td.tinytable_css_lfw8fs0wtfap1nbyxpnn, .table th.tinytable_css_lfw8fs0wtfap1nbyxpnn {   padding-left: 1em; }
+.table td.tinytable_css_cj1185lekw9me6e2w9ik, .table th.tinytable_css_cj1185lekw9me6e2w9ik {    text-align: center; }
+    </style>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+    </script>
+  </head>
+
+  <body>
+    <div class="container">
+      <table class="table" id="tinytable_nvdl836gkszuetx0wz85" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+        <thead>
+        
+              <tr>
+                <th scope="col">site_code</th>
+                <th scope="col">elev_code</th>
+                <th scope="col">Soil Organic Content stock (ton ha$^{-1}$)</th>
+              </tr>
+        </thead>
+        
+        <tbody>
+                <tr>
+                  <td>PIHAL_NACIMIENTO_L</td>
+                  <td>low</td>
+                  <td>36</td>
+                </tr>
+                <tr>
+                  <td>PIHAL_NACIMIENTO_M</td>
+                  <td>medium</td>
+                  <td>46</td>
+                </tr>
+                <tr>
+                  <td>PIHAL_RAGUA_H</td>
+                  <td>high</td>
+                  <td>42</td>
+                </tr>
+                <tr>
+                  <td>PIPIN_LANTEIRA_L2</td>
+                  <td>low2</td>
+                  <td>44</td>
+                </tr>
+                <tr>
+                  <td>PIPIN_JEREZ_L</td>
+                  <td>low</td>
+                  <td>51</td>
+                </tr>
+                <tr>
+                  <td>PIPIN_JEREZ_M</td>
+                  <td>medium</td>
+                  <td>56</td>
+                </tr>
+                <tr>
+                  <td>PIPIN_JEREZ_H</td>
+                  <td>high</td>
+                  <td>52</td>
+                </tr>
+                <tr>
+                  <td>PINIG_LANTEIRA_L2</td>
+                  <td>low</td>
+                  <td>48</td>
+                </tr>
+                <tr>
+                  <td>PINIG_LANTEIRA_M</td>
+                  <td>medium</td>
+                  <td>57</td>
+                </tr>
+                <tr>
+                  <td>PINIG_LANTEIRA_H</td>
+                  <td>high</td>
+                  <td>54</td>
+                </tr>
+                <tr>
+                  <td>PISYL_PORTUGOS_L</td>
+                  <td>low</td>
+                  <td>51</td>
+                </tr>
+                <tr>
+                  <td>PISYL_PORTUGOS_M</td>
+                  <td>medium</td>
+                  <td>58</td>
+                </tr>
+                <tr>
+                  <td>PISYL_PORTUGOS_H</td>
+                  <td>high</td>
+                  <td>61</td>
+                </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+    function styleCell_tinytable_0fhy9pbo2emqc1pj0fom(i, j, css_id) {
+      var table = document.getElementById("tinytable_nvdl836gkszuetx0wz85");
+      table.rows[i].cells[j].classList.add(css_id);
+    }
+    function insertSpanRow_35fcleif5lty7gql7lic(i, colspan, content) {
+      var table = document.getElementById('tinytable_nvdl836gkszuetx0wz85');
+      var newRow = table.insertRow(i);
+      var newCell = newRow.insertCell(0);
+      newCell.setAttribute("colspan", colspan);
+      // newCell.innerText = content;
+      // this may be unsafe, but innerText does not interpret <br>
+      newCell.innerHTML = content;
+    }
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(11, 3, 'sylvestris') });
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(8, 3, 'nigra') });
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(4, 3, 'pinaster') });
+window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(1, 3, 'halepensis') });
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(2, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(3, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(4, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(6, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(7, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(8, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(9, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(11, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(12, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(13, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(15, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(16, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(17, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(18, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(19, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(20, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(21, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(-1, 0, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(-1, 1, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(-1, 2, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+    </script>
+
+  </body>
+
+</html>
+</div>
+</div>
+<div id="references" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> References</h1>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Batjesetal2020StandardisedSoil" class="csl-entry">
+Batjes, Niels H., Eloi Ribeiro, and Ad van Oostrum. 2020. <span>“Standardised Soil Profile Data to Support Global Mapping and Modelling (<span>WoSIS</span> Snapshot 2019).”</span> <em>Earth System Science Data</em> 12 (1): 299–320. <a href="https://doi.org/10.5194/essd-12-299-2020">https://doi.org/10.5194/essd-12-299-2020</a>.
+</div>
+<div id="ref-Batjesetal2017WoSISProviding" class="csl-entry">
+Batjes, Niels H., Eloi Ribeiro, Ad van Oostrum, Johan Leenaars, Tom Hengl, and Jorge Mendes de Jesus. 2017. <span>“<span>WoSIS</span>: Providing Standardised Soil Profile Data for the World.”</span> <em>Earth System Science Data</em> 9 (1): 1–14. <a href="https://doi.org/10.5194/essd-9-1-2017">https://doi.org/10.5194/essd-9-1-2017</a>.
+</div>
+<div id="ref-Hengletal2017SoilGrids250mGlobal" class="csl-entry">
+Hengl, Tomislav, Jorge Mendes de Jesus, Gerard B. M. Heuvelink, Maria Ruiperez Gonzalez, Milan Kilibarda, Aleksandar Blagotić, Wei Shangguan, et al. 2017. <span>“<span>SoilGrids250m</span>: <span>Global</span> Gridded Soil Information Based on Machine Learning.”</span> <em>PLOS ONE</em> 12 (2): e0169748. <a href="https://doi.org/10.1371/journal.pone.0169748">https://doi.org/10.1371/journal.pone.0169748</a>.
+</div>
+<div id="ref-Poggioetal2021SoilGridsProducing" class="csl-entry">
+Poggio, Laura, Luis M. De Sousa, Niels H. Batjes, Gerard B. M. Heuvelink, Bas Kempen, Eloi Ribeiro, and David Rossiter. 2021. <span>“<span>SoilGrids</span> 2.0: Producing Soil Information for the Globe with Quantified Spatial Uncertainty.”</span> <em>SOIL</em> 7 (1): 217–40. <a href="https://doi.org/10.5194/soil-7-217-2021">https://doi.org/10.5194/soil-7-217-2021</a>.
+</div>
+<div id="ref-Victoriaetal2012BenefitsSoil" class="csl-entry">
+Victoria, Reynaldo, Steven Banwart, Helania Black, J Ingram, H Joosten, E Milne, E Noellemeyer, and Y Baskin. 2012. <span>“The Benefits of Soil Carbon.”</span> In <em><span>UNEP Year Book</span>. <span>Emerging</span> Issues in Our Global Environment</em>, 19–34. <span>United Nations Environment Programme</span>.
+</div>
+</div>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur ... 10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] tinytable_0.0.1 terra_1.7-65    sf_1.0-15       lubridate_1.9.3
+ [5] forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4     purrr_1.0.2    
+ [9] readr_2.1.4     tidyr_1.3.0     tibble_3.2.1    ggplot2_3.4.4  
+[13] tidyverse_2.0.0 workflowr_1.7.1
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.11        getPass_0.2-4      class_7.3-22       ps_1.7.5          
+ [5] rprojroot_2.0.4    digest_0.6.33      utf8_1.2.4         R6_2.5.1          
+ [9] evaluate_0.23      e1071_1.7-14       httr_1.4.7         pillar_1.9.0      
+[13] rlang_1.1.2        rstudioapi_0.15.0  whisker_0.4.1      callr_3.7.3       
+[17] jquerylib_0.1.4    rmarkdown_2.25     munsell_0.5.0      proxy_0.4-27      
+[21] compiler_4.2.3     httpuv_1.6.13      xfun_0.41          pkgconfig_2.0.3   
+[25] htmltools_0.5.7    tidyselect_1.2.0   bookdown_0.37      codetools_0.2-19  
+[29] fansi_1.0.6        tzdb_0.4.0         withr_2.5.2        later_1.3.2       
+[33] grid_4.2.3         jsonlite_1.8.8     gtable_0.3.4       lifecycle_1.0.4   
+[37] DBI_1.2.0          git2r_0.33.0       magrittr_2.0.3     units_0.8-5       
+[41] scales_1.3.0       KernSmooth_2.23-22 cli_3.6.2          stringi_1.8.3     
+[45] cachem_1.0.8       fs_1.6.3           promises_1.2.1     bslib_0.6.1       
+[49] generics_0.1.3     vctrs_0.6.5        tools_4.2.3        glue_1.6.2        
+[53] hms_1.1.3          processx_3.8.3     fastmap_1.1.1      yaml_2.3.8        
+[57] timechange_0.2.0   colorspace_2.1-0   classInt_0.4-10    knitr_1.45        
+[61] sass_0.4.8        </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
