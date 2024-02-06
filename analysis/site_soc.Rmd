@@ -59,7 +59,8 @@ soc_sites <- as.data.frame(terra::extract(soc, geo, bind = TRUE)) |>
   arrange(
     factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), 
     factor(elev_code, levels = c("low2", "low", "medium", "high")))
-  
+
+write_csv(soc_sites, "data/dendroadaptamed_soc.csv")
 ```
 
 ```{r}
