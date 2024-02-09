@@ -3,7 +3,7 @@ title: "Home"
 site: workflowr::wflow_site
 author: '[Antonio J. Pérez-Luque](https://github.com/ajpelu) <a href="https://orcid.org/0000-0002-1747-0469" target="orcid.widget">
 <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>, Darío Martín-Benito <a href="https://orcid.org/0000-0002-6738-3312" target="orcid.widget">
-<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>, Guillermo Gea-Izquierdo  <a href="https://orcid.org/0000-0003-0148-3721" target="orcid.widget">
+<img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>, Regino Zamora, Guillermo Gea-Izquierdo  <a href="https://orcid.org/0000-0003-0148-3721" target="orcid.widget">
 <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a>'
 output:
   workflowr::wflow_html:
@@ -39,5 +39,6 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 - [Site topography](site_topography_prepare.html)
 
 
- 
+# Figures
+- [Climate features of site](figure_clima_sites.html)
 
