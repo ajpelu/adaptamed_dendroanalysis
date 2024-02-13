@@ -9,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Antonio J. Pérez-Luque  " />
 
 
 <title>Prepare Climate data</title>
@@ -373,7 +372,6 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Prepare Climate data</h1>
-<h4 class="author"><a href="https://github.com/ajpelu">Antonio J. Pérez-Luque</a> <a href="https://orcid.org/0000-0002-1747-0469" target="orcid.widget"> <img alt="ORCID logo" src="https://info.orcid.org/wp-content/uploads/2019/11/orcid_16x16.png" width="16" height="16" /></a></h4>
 
 </div>
 
@@ -402,7 +400,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-08
+<strong>Last updated:</strong> 2024-02-13
 </p>
 <p>
 <strong>Checks:</strong>
@@ -530,20 +528,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4f806139ef1fdb813576e60ad823611137f28bdbtargetblank4f80613a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree319d58db14c3674caeab9c9e5e2640fa97f0ef7ctargetblank319d58da">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4f806139ef1fdb813576e60ad823611137f28bdb" target="_blank">4f80613</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/319d58db14c3674caeab9c9e5e2640fa97f0ef7c" target="_blank">319d58d</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4f806139ef1fdb813576e60ad823611137f28bdbtargetblank4f80613a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree319d58db14c3674caeab9c9e5e2640fa97f0ef7ctargetblank319d58da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4f806139ef1fdb813576e60ad823611137f28bdb" target="_blank">4f80613</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/319d58db14c3674caeab9c9e5e2640fa97f0ef7c" target="_blank">319d58d</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -557,24 +555,50 @@ results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
     Ignored:    data/geoinfo/.DS_Store
+    Ignored:    data/image_pinus/.DS_Store
     Ignored:    data/raw/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/climate_analysis.Rmd
-    Untracked:  bootstraped_cor_spei.csv
-    Untracked:  data/bootstraped_cor_spei.csv
-    Untracked:  output/plot_boostrap.png
+    Untracked:  Untitled.R
+    Untracked:  analysis/borrar.R
+    Untracked:  analysis/compile_database.Rmd
+    Untracked:  analysis/figura_bai.Rmd
+    Untracked:  analysis/figura_mapa.Rmd
+    Untracked:  data/abi/
+    Untracked:  data/bai/
+    Untracked:  data/codes_files_dendro.csv
+    Untracked:  data/dendroadaptamed_abi.csv
+    Untracked:  data/dendroadaptamed_bai.csv
+    Untracked:  data/dendroadaptamed_climate_avg_yearly.csv
+    Untracked:  data/dendroadaptamed_climate_season.rds
+    Untracked:  data/geoinfo/sn_wdpa.dbf
+    Untracked:  data/geoinfo/sn_wdpa.prj
+    Untracked:  data/geoinfo/sn_wdpa.shp
+    Untracked:  data/geoinfo/sn_wdpa.shx
+    Untracked:  data/image_pinus/compose_pines.png
+    Untracked:  data/image_pinus/halepensis.png
+    Untracked:  data/image_pinus/pinaster.png
+    Untracked:  data/image_pinus/pinus_juntos.png
+    Untracked:  data/image_pinus/sylvestris.png
+    Untracked:  data/raw/remote_sensing/
+    Untracked:  data/rw/
+    Untracked:  output/plot_abi.png
+    Untracked:  output/plot_clima.png
+    Untracked:  output/test_abi.jpg
 
 Unstaged changes:
-    Modified:   analysis/spei_analysis.Rmd
-    Modified:   data/dendroadaptamed_climate_daily.rds
-    Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.dbf
-    Deleted:    data/geoinfo/geoinfo_dendro_adaptamed_pinus.qix
-    Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.qmd
+    Modified:   analysis/climate_analysis.Rmd
+    Modified:   analysis/pruebas.rmd
+    Modified:   data/dendroadaptamed_npp_mod17a3_yearly.csv
+    Deleted:    data/image_pinus/hal.png
+    Modified:   data/image_pinus/nigra.png
+    Deleted:    data/image_pinus/pin.png
+    Deleted:    data/image_pinus/syl.png
 
 </code></pre>
 <p>
@@ -619,6 +643,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/319d58db14c3674caeab9c9e5e2640fa97f0ef7c/analysis/climate_prepare.Rmd" target="_blank">319d58d</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-13
+</td>
+<td>
+wflow_publish("analysis/climate_prepare.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d7f05efb23e22d76aa6684c7240ff19b44655562/analysis/climate_prepare.Rmd" target="_blank">d7f05ef</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-09
+</td>
+<td>
+remove author
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/20e09095c20fd90d71dc0e47457c19abf091f3c5/docs/climate_prepare.html" target="_blank">20e0909</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -681,6 +756,8 @@ wflow_publish("analysis/climate_prepare.Rmd")
 library(sf)
 library(terra)
 library(purrr)</code></pre>
+<div id="prepare-daily-data" class="section level3" number="0.0.1">
+<h3><span class="header-section-number">0.0.1</span> Prepare daily data</h3>
 <pre class="r"><code># Create a custom function to extract the data
 extract_climate_data &lt;- function(shapefile, raster_folder_path) {
 
@@ -769,6 +846,149 @@ geodf &lt;- terra::vect(geo_pinos) |&gt; as.data.frame() |&gt;
 climate &lt;- df |&gt; inner_join(geodf)
 
 saveRDS(climate, &quot;data/dendroadaptamed_climate_daily.rds&quot;)</code></pre>
+</div>
+<div id="compute-the-yearly-and-season-data" class="section level3" number="0.0.2">
+<h3><span class="header-section-number">0.0.2</span> Compute the yearly and season data</h3>
+<p>First, we compute the day of the year as a numeric value. Then, we apply a function called <code>date2season</code>, which categorizes each day into one of the four seasons according to the following distribution:</p>
+<ul>
+<li>winter for days 1 to 80 and days 356 to 366,</li>
+<li>spring for days 81 to 172,</li>
+<li>summer for days 173 to 264,</li>
+<li>autumn for days 265 to 355.</li>
+</ul>
+<pre class="r"><code>climate_daily &lt;- readRDS(&quot;data/dendroadaptamed_climate_daily.rds&quot;) |&gt; 
+  dplyr::select(-x,-y,-ID) |&gt; 
+  mutate(date = lubridate::make_date(year=year, month=month, day = day),
+         yday = lubridate::yday(date)) |&gt; 
+  unite(&quot;sp_elev&quot;, c(sp_code, elev_code), remove = FALSE)</code></pre>
+<pre class="r"><code>date2season &lt;- function(x) { 
+  
+  day_of_year &lt;- lubridate::yday(x) 
+  winter &lt;- which(day_of_year %in% c(1:80,356:366))
+  spring &lt;- which(day_of_year %in% 81:172)
+  summer &lt;- which(day_of_year %in% 173:264)
+  autumn &lt;- which(day_of_year %in% 265:355)
+  
+  seasons &lt;- rep(NA, length(x))
+  seasons[winter] &lt;- &quot;winter&quot;
+  seasons[spring] &lt;- &quot;spring&quot;
+  seasons[summer] &lt;- &quot;summer&quot;
+  seasons[autumn] &lt;- &quot;autumn&quot;
+  
+  return(seasons)
+  
+}</code></pre>
+<ul>
+<li>Compute the season and the hydrological year (added as variables)</li>
+</ul>
+<pre class="r"><code>climate &lt;- climate_daily |&gt; 
+  mutate(season = date2season(date)) |&gt; 
+  mutate(month_names = strftime(date, &#39;%b&#39;)) |&gt; 
+  mutate(
+    hydro_month = case_when(
+      month &gt;= 10 ~ (month - 9), 
+      TRUE ~ month + 3), 
+    hydro_year = case_when(
+      month &gt;= 10 ~ (year + 1), 
+      TRUE ~ year), 
+    name_m = case_when(
+      month &gt;= 10 ~ paste0(month_names, &quot;_pre&quot;), 
+      TRUE ~ month_names
+    ))</code></pre>
+<ul>
+<li>Compute the average values by year</li>
+</ul>
+<pre class="r"><code>avg_yearly &lt;- bind_rows(
+  # temp 
+  climate |&gt;
+  filter(var != &quot;prec&quot;) |&gt; 
+  group_by(var, sp_elev, year) |&gt; 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  climate |&gt;
+  filter(var == &quot;prec&quot;) |&gt; 
+  group_by(var, sp_elev, year) |&gt; 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |&gt; separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE) |&gt; 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code), 
+         season = &quot;yearly&quot;)</code></pre>
+<ul>
+<li>Compute the average values by hydrological year (<span class="math inline">\(Oct_{t-1} \sim Sep_{t+1}\)</span>).</li>
+</ul>
+<pre class="r"><code>avg_hidroyearly &lt;- bind_rows(
+  # temp 
+  climate |&gt;
+  filter(var != &quot;prec&quot;) |&gt; 
+  group_by(var, sp_elev, hydro_year) |&gt; 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  climate |&gt;
+  filter(var == &quot;prec&quot;) |&gt; 
+  group_by(var, sp_elev, hydro_year) |&gt; 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |&gt; separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE) |&gt; 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code), 
+         season = &quot;hydro year&quot;) |&gt; 
+  rename(year = hydro_year)</code></pre>
+<ul>
+<li>Compute the average values by season</li>
+</ul>
+<pre class="r"><code>avg_season &lt;- bind_rows(
+  # temp 
+ climate |&gt;
+  filter(var != &quot;prec&quot;) |&gt; 
+  group_by(var, sp_elev, year, season) |&gt; 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  climate |&gt;
+  filter(var == &quot;prec&quot;) |&gt; 
+  group_by(var, sp_elev, year, season) |&gt; 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |&gt; separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE) |&gt; 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code))</code></pre>
+<ul>
+<li>Join all the data, and store them as <code>data/dendroadaptamed_climate_season.rds</code></li>
+</ul>
+<pre class="r"><code>climate_avg &lt;- 
+  bind_rows(avg_yearly, 
+            avg_hidroyearly, 
+            avg_season)
+
+
+saveRDS(climate_avg, &quot;data/dendroadaptamed_climate_season.rds&quot;)</code></pre>
+<pre class="r"><code>climate_avg |&gt; group_by(sp_elev, var, season) |&gt; 
+  summarise(min = min(year), max = max(year), n = length(year)) |&gt; 
+  unite(col = &quot;range&quot;, min:max, sep = &quot;-&quot;) |&gt; 
+  mutate(range = paste0(&quot;(&quot;, range, &quot;)&quot;)) |&gt; 
+  unite(col = &quot;s&quot;, n:range, sep = &quot; &quot;) |&gt; 
+  pivot_wider(values_from = s, names_from = season)</code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -815,6 +1035,7 @@ loaded via a namespace (and not attached):
 [53] hms_1.1.3          processx_3.8.3     fastmap_1.1.1      yaml_2.3.8        
 [57] timechange_0.2.0   colorspace_2.1-0   classInt_0.4-10    knitr_1.45        
 [61] sass_0.4.8        </code></pre>
+</div>
 </div>
 
 
