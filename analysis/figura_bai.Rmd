@@ -1,0 +1,179 @@
+---
+title: "Figure: BAI"
+output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10, fig.height = 7
+)
+```
+
+
+```{r}
+library(tidyverse)
+
+source("scripts/aux.R")
+```
+
+
+```{r}
+codes_files <- read_csv("data/codes_files_dendro.csv")
+files <- list.files("data/abi", full.names = TRUE)
+
+
+custom_read_abi <- function(x) { 
+  fnm <- gsub(pattern = ".csv", "" , basename(x))
+  
+  sp_elev <- codes_files |> 
+    filter(abi_name %in% fnm)
+  
+  out <- read_csv(x) |> 
+    mutate(abi_name = fnm) |> 
+    inner_join(sp_elev) |> 
+    dplyr::select(year = year1, IBT_ag_m2, sp_code, elev_code)
+                
+  return(out)
+  }
+
+
+abi <- files |> purrr::map(custom_read_abi) |> bind_rows()
+
+```
+
+
+
+```{r}
+abi_plot <- abi |> 
+  ggplot(aes(x = year, y = IBT_ag_m2, group = elev_code, colour = elev_code)) +
+  geom_line() +
+ #geom_point(aes(shape = elev_code, fill = elev_code), size = 1.4) + 
+  facet_wrap(~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), nrow = 1) + 
+  scale_x_continuous(limits = c(1950, 2020), breaks = seq(1950, 2020, by=10)) + 
+  scale_y_continuous(breaks = seq(0,600, by = 100)) + 
+  scale_colour_manual(values = colours_elev, name = "") +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    strip.text = element_text(face = "italic"),
+    strip.background = element_blank()
+  ) + 
+  ylab(bquote("ABI (g C m"^"2"~"year"^{-1}~")")) 
+  # ylab(expression("ABI (g C m"^"2"~"year"^"-1"~")"))
+  # scale_shape_manual(values = shape_elev, name = "Elevation") +
+  # scale_fill_manual(values = colours_elev, name = "Elevation") +
+  #   guides(
+  #   fill = "none")
+  
+
+
+```
+
+
+
+
+```{r}
+avg_yearly <- read_csv("data/dendroadaptamed_climate_avg_yearly.csv")
+
+```
+
+
+
+
+```{r}
+annotation_custom2 <- 
+function (grob, xmin = -Inf, xmax = Inf, ymin = -Inf, ymax = Inf, data){
+  layer(data = data, stat = StatIdentity, position = PositionIdentity, 
+        geom = ggplot2:::GeomCustomAnn,
+        inherit.aes = TRUE, params = list(grob = grob, 
+                                          xmin = xmin, xmax = xmax, 
+                                          ymin = ymin, ymax = ymax))}
+```
+
+
+
+```{r}
+
+image_df<- data.frame(
+  sp_code = c("halepensis", "pinaster", "nigra", "pinaster"), 
+  path = c("data/image_pinus/halepensis.png",
+           "data/image_pinus/pinaster.png",
+           "data/image_pinus/nigra.png",
+           "data/image_pinus/sylvestris.png"))
+
+
+image_paths <- c("image1.png", "image2.png", "image3.png", "image4.png")
+
+images <- list.files("data/image_pinus", full.names = TRUE) 
+image_paths <- images[c(2:4,6)]
+
+
+img1 <- readPNG("data/image_pinus/halepensis.png")
+
+a1 = annotation_custom2(rasterGrob(img1, interpolate=TRUE), xmin=7, xmax=8, ymin=3.75, ymax=4.5, data = abi |> filter(sp_code == "halepensis"))
+                        
+                        
+a2 = annotation_custom2(rasterGrob(img2, interpolate=TRUE), xmin=7, xmax=8, ymin=3.75, ymax=4.5, data=iris[51,])
+a3 = annotation_custom2(rasterGrob(img3, interpolate=TRUE), xmin=7, xmax=8, ymin=3.75, ymax=4.5, data=iris[101,])
+
+abi_plot + a1 
+
+
+
+```
+
+
+
+
+
+
+```{r}
+tmed <- avg_yearly |> 
+  filter(var == "tmed") |> 
+  dplyr::select(sp_elev, sp_code, elev_code, year, tmed = annual_value)
+
+tmin <- avg_yearly |> 
+  filter(var == "tmin") |> 
+  dplyr::select(sp_elev, sp_code, elev_code, year, tmin = annual_value)
+
+tmax <- avg_yearly |> 
+  filter(var == "tmax") |> 
+  dplyr::select(sp_elev, sp_code, elev_code, year, tmax = annual_value)
+
+prec <- avg_yearly |> 
+  filter(var == "prec") |> 
+  dplyr::select(sp_elev, sp_code, elev_code, year, prec = annual_value)
+
+
+
+
+
+abi_tmed <- abi |> inner_join(tmed)
+ggplot(abi_tmed, aes(x=tmed, y = IBT_ag_m2)) +
+  geom_point()
+
+abi_tmin <- abi |> inner_join(tmin)
+ggplot(abi_tmin, aes(x=tmin, y = IBT_ag_m2)) +
+  geom_point()
+
+abi_tmax <- abi |> inner_join(tmax)
+ggplot(abi_tmax, aes(x=tmax, y = IBT_ag_m2)) +
+  geom_point()
+
+abi_prec <- abi |> inner_join(prec)
+ggplot(abi_prec, aes(x=prec, y = IBT_ag_m2)) +
+  geom_point() +
+  geom_smooth() +
+  facet_wrap(~sp_code, scales = "free_y")
+
+```
+

@@ -1,0 +1,103 @@
+---
+title: "compile_database"
+author: "ajpelu"
+date: "2024-02-13"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10, fig.height = 7
+)
+```
+
+
+```{r}
+library(tidyverse)
+```
+
+
+## Introduction
+
+## Tree ring Data 
+### ABI data
+
+```{r}
+codes_files <- read_csv("data/codes_files_dendro.csv")
+files_abi <- list.files("data/abi", full.names = TRUE)
+
+
+custom_read_abi <- function(x) { 
+  fnm <- gsub(pattern = ".csv", "" , basename(x))
+  
+  sp_elev <- codes_files |> 
+    filter(abi_name %in% fnm)
+  
+  out <- read_csv(x) |> 
+    mutate(abi_name = fnm) |> 
+    inner_join(sp_elev) |> 
+    dplyr::select(year = year1, IBT_ag_m2, sp_code, elev_code)
+                
+  return(out)
+  }
+
+
+abi <- files_abi |> purrr::map(custom_read_abi) |> bind_rows() 
+
+write_csv(abi, "data/dendroadaptamed_abi.csv")
+```
+
+
+### BAI data 
+
+```{r}
+files_bai <- list.files("data/bai", full.names = TRUE)
+
+custom_read_bai <- function(x) { 
+  fnm <- gsub(pattern = ".csv", "" , basename(x))
+  
+  sp_elev <- codes_files |> 
+    filter(bai_name %in% fnm)
+  
+  out <- read_csv(x) |> 
+    mutate(bai_name = fnm) |> 
+    inner_join(sp_elev) |> 
+    dplyr::select(year, BAI, BAIserror, sp_code, elev_code)
+                
+  return(out)
+  }
+
+
+bai <- files_bai |> purrr::map(custom_read_bai) |> bind_rows() 
+
+write_csv(bai, "data/dendroadaptamed_bai.csv")
+```
+
+
+## Remote Sensing Data
+
+### NPP 
+- NPP data original as $kg ~ C ~ m^2 ~ year^{-1}$ but with a scale factor of 0.0001, so to transform to $g ~ C ~ m^2 ~ year^{-1}$ apply 0.1
+
+- Npp_QC: quality control (percentage)
+
+```{r prepare-data}
+raw_npp <- read_csv(here::here("data/raw/remote_sensing/npp_mod17a3_yearly.csv"))
+
+npp <- raw_npp |> 
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         npp = Npp*0.1) |> 
+  mutate(sp_code = str_replace_all(Specie, "Pinus_", "")) |> 
+  mutate(year = lubridate::year(date)) |> 
+  dplyr::select(year, sp_code, elev_code, npp, npp_qc = Npp_QC) 
+
+write_csv(bai, "data/dendroadaptamed_npp_mod17a3_yearly.csv")
+```
+

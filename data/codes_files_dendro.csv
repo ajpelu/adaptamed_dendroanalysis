@@ -1,0 +1,14 @@
+abi_name,sp_code,elev_code,bai_name,rw_name
+1BIO_PIHA,halepensis,medium,1BAI_PIHA,1RW_PIHA
+2BIO_PIPI_low,pinaster,low,2BAI_PIPI_low,2RW_PIPI_low
+3BIO_PIPI_low2,pinaster,low2,3BAI_PIPI_low2,3RW_PIPI_low2
+4BIO_PIPI_high,pinaster,medium,4BAI_PIPI_med,4RW_PIPI_med
+5BIO_PIPI_high,pinaster,high,5BAI_PIPI_high,5RW_PIPI_high
+6BIO_PINI_low2,nigra,low,6BAI_PINI_low2,6RW_PINI_low2
+7BIO_PINI_low,nigra,medium,7BAI_PINI_low,7RW_PINI_low
+8BIO_PINI_high,nigra,high,8BAI_PINI_high,8RW_PINI_high
+9BIO_PISY_low,sylvestris,low,9BAI_PISY_low,9RW_PISY_low
+10BIO_PISY_med,sylvestris,medium,10BAI_PISY_med,10RW_PISY_med
+11BIO_PISY_high,sylvestris,high,11BAI_PISY_high,11RW_PISY_high
+12BIO_PIHA_low,halepensis,low,12BAI_PIHA_low,12RW_PIHA_low
+13BIO_PIHA_high,halepensis,high,13BAI_PIHA_high,13RW_PIHA_high

@@ -229,22 +229,24 @@ avg_yearly <- bind_rows(
   filter(var != "prec") |> 
   group_by(var, sp_elev, year) |> 
   summarise(
-    avg = mean(value, na.rm=TRUE),
-    sd = sd(value, na.rm=TRUE),
-    se = sd/sqrt(length(value))
+    annual_value = mean(value, na.rm=TRUE),
+    annual_sd = sd(value, na.rm=TRUE),
+    annual_se = annual_sd/sqrt(length(value))
   ),
   # prec
   d |>
   filter(var == "prec") |> 
   group_by(var, sp_elev, year) |> 
   summarise(
-    avg = sum(value, na.rm=TRUE),
-    sd = NA,
-    se = NA
+    annual_value = sum(value, na.rm=TRUE),
+    annual_sd = NA,
+    annual_se = NA
   )
 ) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
   mutate(sp_code = as.factor(sp_code), 
          elev_code = as.factor(elev_code))
+
+write_csv(avg_yearly, "data/dendroadaptamed_climate_avg_yearly.csv")
 ```
 
 
@@ -253,11 +255,10 @@ avg_yearly <- bind_rows(
 - By sps
 ```{r}
 aux <- avg_yearly |> 
-  filter(var %in% c("tmed", "prec")) |> 
-  dplyr::select(-sd, -se) |> 
-  pivot_wider(names_from = var, values_from = avg)
+  dplyr::select(-annual_sd, -annual_se) |> 
+  pivot_wider(names_from = var, values_from = annual_value)
 
-
+# aparecen NAs porque no hay datos de temp para los años 1951 a 1971 
 
 temp_prec_sp <- aux |> 
   ggplot(aes(y=tmed, x = prec, colour = sp_code, 
@@ -312,87 +313,10 @@ ggsave(
 )
 ```
 
-```{r}
-
-lower_ci <- function(mean, se, n, conf_level = 0.95){
-  lower_ci <- mean - qt(1 - ((1 - conf_level) / 2), n - 1) * se
-  return(lower_ci)
-}
-
-upper_ci <- function(mean, se, n, conf_level = 0.95){
-  upper_ci <- mean + qt(1 - ((1 - conf_level) / 2), n - 1) * se
-  return(upper_ci)
-}
-
-aux_avg <- aux |> 
-  pivot_longer(tmed:prec, names_to = "var") |>  
-  group_by(sp_code, elev_code, sp_elev, var) |> 
-  summarise(
-    mean = mean(value, na.rm = TRUE), 
-    sd = sd(value, na.rm = TRUE), 
-    se = sd / sqrt(length(value)), 
-    n = length(value)
-  ) |> 
-  pivot_wider(values_from = c(mean, sd, se, n), names_from = var)
-
-head(aux_avg)
-
-aux_avg1 <- aux_avg |> 
-  mutate(lower_prec = lower_ci(mean = mean_prec, se = se_prec, n = n_prec), 
-         upper_prec = upper_ci(mean = mean_prec, se = se_prec, n = n_prec), 
-         lower_tmed = lower_ci(mean = mean_tmed, se = se_tmed, n = n_tmed),
-         upper_tmed = upper_ci(mean = mean_tmed, se = se_tmed, n = n_tmed),
-         )
-
-ggplot(data = aux, 
-       aes(y = tmed, x = prec, colour = sp_code)) +
-  geom_point(aes(shape = elev_code, fill=sp_code), size = 1.4, alpha = .2) +
-  geom_errorbar(
-    data = aux_avg1, aes(y = mean_tmed,
-                        ymin = lower_tmed,
-                        ymax = upper_tmed, 
-                        x = mean_prec)) +
-  geom_errorbarh(
-    data = aux_avg1, aes(x = mean_prec, 
-                         xmin = lower_prec, 
-                         xmax = upper_prec, 
-                        y = mean_tmed)) +
-  geom_point(data = aux_avg, 
-             aes(x = mean_prec, y = mean_tmed, shape = elev_code, fill = sp_code),
-             size = 2.5, color = "black") +  # Set color to "black" for border
-  scale_colour_manual(values = colours_sp, name = "Species",
-                      guide = guide_legend(label.theme = element_text(face = "italic"))) +
-  scale_shape_manual(values = shape_elev, name = "Elevation") + 
-  scale_fill_manual(values = colours_sp, name = "Species", 
-                    guide = guide_legend(label.theme = element_text(face = "italic"))) + 
-  xlab("Annual precipitation (mm)") + 
-  ylab("Average annual mean temperature (ºC)") +
-  theme_bw() +
-  guides(
-    fill = guide_legend(title = "Species", 
-                        override.aes = list(shape = 19, color = colours_sp)),
-    shape = guide_legend(override.aes = list(color = "black", fill = "white"))
-  ) 
-
-
-
-
-
-```
-
-
-
-
-
-
-
 
 ```{r}
 temp_prec_sp_elev 
 ```
-
-
-
 
 #### Temporal trends
 - Plot the temporal trends (todo: compute the temporal trends statistics?)

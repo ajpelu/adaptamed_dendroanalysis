@@ -1,0 +1,168 @@
+---
+title: "Figure: Mapa"
+output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10, fig.height = 7
+)
+```
+
+
+```{r}
+library(tidyverse)
+library(sf)
+library(mapdata)
+library(ggspatial)
+library(mapSpain)
+library(geodata)
+library(scales)
+library(wdpar)
+
+
+source("scripts/aux.R")
+```
+
+```{r, eval=FALSE}
+## SN boundary 
+protected_spain <- wdpa_fetch(
+  "Spain", wait = TRUE, download_dir = rappdirs::user_data_dir("wdpar")
+)
+
+sn <- protected_spain |> filter(WDPAID == 555549110) 
+
+st_write(sn, "data/geoinfo/sn_wdpa.shp")
+```
+
+```{r}
+geo <- st_read( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) 
+
+bbox <- st_as_sfc(st_bbox(geo))
+
+world <- map_data("world")
+
+sn <- st_read("data/geoinfo/sn_wdpa.shp")
+```
+
+
+```{r}
+map_europa <- ggplot() +
+  geom_polygon(data = world, aes( x= long, y = lat, group = group),
+               fill = "grey80",
+               color = "white") +
+  geom_sf(data=bbox, fill = "blue", color = "blue") + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    axis.line = element_blank(),
+    axis.title = element_blank()
+  ) +
+  coord_sf(xlim = c(-10, 6),
+                  ylim = c(34, 47)) +
+  annotate("text", x = 2, y = 45, label = "bold(France)", size = 6, color = "white", parse = TRUE) +
+  annotate("text", x = -4, y = 40, label = "bold(Spain)", size = 6, color = "white", parse = TRUE) +
+  annotate("text", x = -4.5, y = 34, label = "bold(Morocco)", size = 6, color = "white", parse = TRUE) 
+```
+
+
+```{r}
+andalucia <- mapSpain::esp_get_ccaa("Andalucia", epsg = 4326, resolution = 1) 
+
+# get elevation 
+elev_raw <- elevation_30s(country = "ESP", path = "/Users/ajpelu/Downloads/")
+names(elev_raw) <- "elevation"
+
+# remove values < 0 
+elev <- elev_raw |> 
+  mutate(elevation = pmax(0, elevation)) |> 
+  crop(andalucia, mask = TRUE) 
+
+# Generate hillshade 
+slope <- terrain(elev, "slope", unit = "radians")
+aspect <- terrain(elev, "aspect", unit = "radians")
+hill <- shade(slope, aspect, 30, 45)
+
+
+### Crop by SN bbox 
+sn_bbox <- st_as_sfc(st_bbox(sn))
+
+elev_sn <- elev_raw |> 
+  mutate(elevation = pmax(0, elevation)) |> 
+  crop(sn_bbox, mask = TRUE) 
+
+slope_sn <- terrain(elev_sn, "slope", unit = "radians")
+aspect_sn <- terrain(elev_sn, "aspect", unit = "radians")
+hill_sn <- shade(slope_sn, aspect_sn, 30, 45)
+
+
+
+
+
+
+
+# Hillshading palette
+pal_greys <- hcl.colors(1000, "Grays")
+
+# Index of color by cell
+index <- hill_sn |> 
+  mutate(index_col = scales::rescale(hillshade, to = c(1, length(pal_greys)))) %>%
+  mutate(index_col = round(index_col)) %>%
+  pull(index_col)
+
+vector_cols <- pal_greys[index]
+
+# Need to avoid resampling
+# and dont use aes
+
+# Base hill plot
+hill_plot <- ggplot() +
+  geom_spatraster(
+    data = hill_sn, fill = vector_cols, maxcell = Inf,
+    alpha = 1
+  )
+
+hill_plot
+
+
+```
+
+
+```{r}
+
+custom_wms <- esp_make_provider(
+  id = "an_id_for_caching",
+  q = "https://www.juntadeandalucia.es/medioambiente/mapwms/REDIAM_mapa_sombras_acimut_315?",
+  service = "WMS",
+  version = "1.3.0",
+  layers = "mapa_sombras_2_315"
+)
+
+
+
+oo <- st_transform(sn_bbox,25830)
+
+
+
+
+tile <- esp_getTiles(sn_bbox, custom_wms)
+
+
+ggplot() +
+  geom_spatraster_rgb(data = tile) 
+
+
+
+```
+
+
+

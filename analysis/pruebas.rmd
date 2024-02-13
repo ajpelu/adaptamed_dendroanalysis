@@ -19,22 +19,38 @@ source("scripts/aux.R")
 ```{r}
 d <- read.csv("/Users/ajpelu/Downloads/variation_abi.csv", sep = ",", dec = ",")
 
-soc <- read_csv("data/")
+soc <- read_csv("data/dendroadaptamed_soc.csv")
 
 pinus_icons <- data.frame(
   sp_code = c("halepensis", "pinaster", "nigra", "sylvestris"),
-  image = c("data/image_pinus/hal.png",
-            "data/image_pinus/pin.png",
+  image = c("data/image_pinus/halepensis.png",
+            "data/image_pinus/pinaster.png",
             "data/image_pinus/nigra.png",
-            "data/image_pinus/syl.png"))
+            "data/image_pinus/sylvestris.png"))
 
 
 
-dd <- d |> inner_join(pinus_icons)
+dd <- d |> inner_join(pinus_icons) |> inner_join(soc)
 
-dd |> 
-  ggplot(aes(x=elev, y = per_abi_gradient, fill=sp_code, colour = sp_code)) +
-  geom_image(aes(image = image), size = .1)
+juego_abi <- dd |> 
+  ggplot(aes(y= per_abi_gradient, x = elev, fill=sp_code, colour = sp_code)) +
+  geom_hline(yintercept = 0, colour = "gray50") +
+  # geom_point(aes(size = soc_stock_ton_ha)) +
+  scale_fill_manual(values = colours_sp) + 
+  scale_colour_manual(values = colours_sp) + 
+  theme_bw() + 
+  geom_image(aes(image = image, size = I(soc_stock_ton_ha/500))) +
+  scale_x_continuous(limits = c(800, 2200)) + 
+  scale_y_continuous(limits = c(-100, 250)) + 
+  xlab("Elevation (m)") +
+  ylab(expression(paste(Delta, " ABI (%)")))
+
+# uso I como una interpolación. https://github.com/GuangchuangYu/ggimage/issues/6 
+  
+ggsave(juego_abi, 
+       filename = "output/test_abi.jpg",
+       width = 8, height = 8)
+
 
 
 
