@@ -17,6 +17,7 @@ library(terra)
 library(purrr)
 ```
 
+### Prepare daily data 
 
 ```{r}
 # Create a custom function to extract the data
@@ -115,5 +116,182 @@ climate <- df |> inner_join(geodf)
 
 saveRDS(climate, "data/dendroadaptamed_climate_daily.rds")
 ```
+
+### Compute the yearly and season data 
+
+First, we compute the day of the year as a numeric value. Then, we apply a function called `date2season`, which categorizes each day into one of the four seasons according to the following distribution: 
+
+- winter for days 1 to 80 and days 356 to 366, 
+- spring for days 81 to 172, 
+- summer for days 173 to 264, 
+- autumn for days 265 to 355.
+
+```{r}
+climate_daily <- readRDS("data/dendroadaptamed_climate_daily.rds") |> 
+  dplyr::select(-x,-y,-ID) |> 
+  mutate(date = lubridate::make_date(year=year, month=month, day = day),
+         yday = lubridate::yday(date)) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE)
+
+```
+
+
+```{r}
+date2season <- function(x) { 
+  
+  day_of_year <- lubridate::yday(x) 
+  winter <- which(day_of_year %in% c(1:80,356:366))
+  spring <- which(day_of_year %in% 81:172)
+  summer <- which(day_of_year %in% 173:264)
+  autumn <- which(day_of_year %in% 265:355)
+  
+  seasons <- rep(NA, length(x))
+  seasons[winter] <- "winter"
+  seasons[spring] <- "spring"
+  seasons[summer] <- "summer"
+  seasons[autumn] <- "autumn"
+  
+  return(seasons)
+  
+}
+
+```
+
+- Compute the season and the hydrological year (added as variables)
+
+```{r}
+climate <- climate_daily |> 
+  mutate(season = date2season(date)) |> 
+  mutate(month_names = strftime(date, '%b')) |> 
+  mutate(
+    hydro_month = case_when(
+      month >= 10 ~ (month - 9), 
+      TRUE ~ month + 3), 
+    hydro_year = case_when(
+      month >= 10 ~ (year + 1), 
+      TRUE ~ year), 
+    name_m = case_when(
+      month >= 10 ~ paste0(month_names, "_pre"), 
+      TRUE ~ month_names
+    ))
+
+```
+
+
+- Compute the average values by year 
+
+```{r}
+avg_yearly <- bind_rows(
+  # temp 
+  climate |>
+  filter(var != "prec") |> 
+  group_by(var, sp_elev, year) |> 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  climate |>
+  filter(var == "prec") |> 
+  group_by(var, sp_elev, year) |> 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code), 
+         season = "yearly")
+
+```
+
+
+- Compute the average values by hydrological year ($Oct_{t-1} \sim Sep_{t+1}$). 
+
+
+```{r}
+avg_hidroyearly <- bind_rows(
+  # temp 
+  climate |>
+  filter(var != "prec") |> 
+  group_by(var, sp_elev, hydro_year) |> 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  climate |>
+  filter(var == "prec") |> 
+  group_by(var, sp_elev, hydro_year) |> 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code), 
+         season = "hydro year") |> 
+  rename(year = hydro_year)
+```
+
+- Compute the average values by season 
+
+```{r}
+avg_season <- bind_rows(
+  # temp 
+ climate |>
+  filter(var != "prec") |> 
+  group_by(var, sp_elev, year, season) |> 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  climate |>
+  filter(var == "prec") |> 
+  group_by(var, sp_elev, year, season) |> 
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code))
+```
+
+- Join all the data, and store them as `data/dendroadaptamed_climate_season.rds`
+
+
+```{r}
+climate_avg <- 
+  bind_rows(avg_yearly, 
+            avg_hidroyearly, 
+            avg_season)
+
+
+saveRDS(climate_avg, "data/dendroadaptamed_climate_season.rds")
+```
+
+
+```{r, eval=FALSE}
+climate_avg |> group_by(sp_elev, var, season) |> 
+  summarise(min = min(year), max = max(year), n = length(year)) |> 
+  unite(col = "range", min:max, sep = "-") |> 
+  mutate(range = paste0("(", range, ")")) |> 
+  unite(col = "s", n:range, sep = " ") |> 
+  pivot_wider(values_from = s, names_from = season)
+```
+
+
+
+
+
+
 
 
