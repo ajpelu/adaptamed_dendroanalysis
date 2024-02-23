@@ -1,0 +1,2805 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Temporal evolution of IV indexes</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="site_libs/viz-1.8.2/viz.js"></script>
+<link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+<script src="site_libs/grViz-binding-1.0.10/grViz.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Dendrochronological and Satellite data analysis for Life-Adpatamed</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="data.html">Data</a>
+</li>
+<li>
+  <a href="scripts.html">Scripts</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ajpelu/adaptamed_dendroanalysis">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Temporal evolution of IV indexes</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks">
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-02-23
+</p>
+<p>
+<strong>Checks:</strong>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+7
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+0
+</p>
+<p>
+<strong>Knit directory:</strong>
+<code>adaptamed_dendroanalysis/</code>
+<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the
+reproducibility checks that were applied when the results were created.
+The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Environment:</strong> empty
+</a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global
+environment can affect the analysis in your R Markdown file in unknown ways.
+For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220407code">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Seed:</strong> <code>set.seed(20220407)</code>
+</a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220407code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220407)</code> was run prior to running the code in the R Markdown file.
+Setting a seed ensures that any results that rely on randomness, e.g.
+subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Session information:</strong> recorded
+</a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is
+critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Cache:</strong> none
+</a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident
+that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>File paths:</strong> relative
+</a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project
+makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree66615d10a921d9f7c6c52530587f96b7dd69b3abtargetblank66615d1a">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/66615d10a921d9f7c6c52530587f96b7dd69b3ab" target="_blank">66615d1</a>
+</a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree66615d10a921d9f7c6c52530587f96b7dd69b3abtargetblank66615d1a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and
+connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/66615d10a921d9f7c6c52530587f96b7dd69b3ab" target="_blank">66615d1</a>.
+See the <em>Past versions</em> tab to see a history of the changes made to the
+R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the
+analysis have been committed to Git prior to generating the results (you can
+use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only
+checks the R Markdown file, but you know if there are other scripts or data
+files that it depends on. Below is the status of the Git repository when the
+results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/.DS_Store
+    Ignored:    data/geoinfo/.DS_Store
+    Ignored:    data/image_pinus/.DS_Store
+    Ignored:    data/raw/.DS_Store
+
+Untracked files:
+    Untracked:  data/dendroadaptamed_iv_landsat.csv
+    Untracked:  data/dendroadaptamed_iv_landsat_trend.csv
+    Untracked:  data/dendroadaptamed_iv_modis.csv
+    Untracked:  data/dendroadaptamed_iv_modis_trend.csv
+    Untracked:  data/raw/remote_sensing/iv_landsat_c02.csv
+    Untracked:  data/raw/remote_sensing/iv_mod13q1.csv
+    Untracked:  data/raw/remote_sensing/ndvicsic1km.csv
+    Untracked:  data/raw/remote_sensing/sentinel2.csv
+    Untracked:  output/climate_diagram.png
+    Untracked:  output/climate_diagram_nolow2.png
+    Untracked:  output/iv_landsat_trend.jpg
+    Untracked:  output/iv_modis_trend.png
+
+Unstaged changes:
+    Modified:   analysis/climate_analysis.Rmd
+    Modified:   analysis/figure_clima_sites.Rmd
+    Deleted:    analysis/temporal_iv_mod13.Rmd
+    Deleted:    data/dendroadaptamed_iv_mod13q1.csv
+    Deleted:    data/dendroadaptamed_iv_mod13q1_2024.csv
+    Modified:   output/climate_temp_prec_sp.png
+    Modified:   output/climate_temp_prec_sp_elev.png
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in
+this status report because it is ok for generated content to have uncommitted
+changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made
+to the R Markdown (<code>analysis/remote_sensing_iv.Rmd</code>) and HTML (<code>docs/remote_sensing_iv.html</code>)
+files. If you’ve configured a remote Git repository (see
+<code>?wflow_git_remote</code>), click on the hyperlinks in the table below to
+view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/66615d10a921d9f7c6c52530587f96b7dd69b3ab/analysis/remote_sensing_iv.Rmd" target="_blank">66615d1</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+<td>
+wflow_publish(c("analysis/index.Rmd", "analysis/remote_sensing_iv.Rmd"))
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="aims" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Aims</h1>
+<ul>
+<li>Prepare temporal series of IV for each field-plot</li>
+</ul>
+<pre class="r"><code>library(here)
+library(tidyverse)
+library(Kendall)
+library(trend)
+library(kableExtra)
+library(DT)
+library(hydroTSM)
+library(DiagrammeR)
+source(&quot;scripts/aux.R&quot;)
+cols &lt;- c(&quot;low&quot; = &quot;red&quot;, &quot;low2&quot; =&quot;orange&quot;, &quot;med&quot; = &quot;blue&quot;, &quot;high&quot; = &quot;darkgreen&quot;)</code></pre>
+</div>
+<div id="modis-data" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> MODIS data</h1>
+<div id="prepare-data" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Prepare data</h2>
+<ul>
+<li>Select data for <em>Pinus</em> field plot</li>
+<li>Extract date of each image</li>
+<li>Format NDVI and EVI values (multiply for scale factor 0.0001; see this <a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD13Q1">link</a>)</li>
+<li>Compute statistics (<em>mean</em>, <em>sd</em>, <em>se</em>, <em>cv</em>, …) for each IV indexes grouping by year for each field-plot.</li>
+</ul>
+<pre class="r"><code>raw &lt;- read_csv(here::here(&quot;data/raw/remote_sensing/iv_mod13q1.csv&quot;))
+elev_cat &lt;- read_csv(here::here(&quot;data/categories_elevation_site_code.csv&quot;))
+
+
+# Filter only Pinus field plot 
+d_raw &lt;- raw |&gt;
+  #filter(str_detect(Specie, &quot;Pinu&quot;)) |&gt;
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), &quot;_&quot;, &quot;-&quot;),
+                        format = &quot;%Y-%m-%d&quot;),
+         evi = EVI*0.0001,
+         ndvi = NDVI*0.0001) |&gt;
+  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
+
+
+geodf &lt;- terra::vect( &quot;data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp&quot;) |&gt; as.data.frame() |&gt;
+  unite(&quot;sp_elev&quot;, c(sp_code, elev_code), remove = FALSE) |&gt; 
+  dplyr::select(sp_elev, elev, site_code) |&gt; 
+  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE) 
+
+d &lt;- inner_join(d_raw, geodf)</code></pre>
+<pre class="r"><code>iv_yearly &lt;- d |&gt;
+  mutate(year=lubridate::year(date)) |&gt; 
+  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |&gt; 
+  pivot_longer(cols = c(&quot;ndvi&quot;, &quot;evi&quot;), 
+               names_to = &#39;variable&#39;, values_to = &#39;value&#39;) |&gt; 
+  group_by(site_code, Specie, year, sp_elev, variable) |&gt; 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |&gt; 
+  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) |&gt; 
+  inner_join(elev_cat) |&gt; 
+  mutate(season = as.factor(&quot;yearly&quot;)) |&gt; 
+  ungroup() |&gt; 
+  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE)</code></pre>
+<div id="summary-data" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Summary data</h3>
+<pre class="r"><code>nsize_years_gral &lt;- d_raw |&gt; group_by(site_code, Specie) |&gt; count() |&gt; dplyr::select(n) |&gt; pull() |&gt; unique()
+
+nsize_years &lt;- d_raw |&gt; mutate(year = lubridate::year(date)) |&gt;
+  group_by(site_code, Specie, year) |&gt;
+  count() |&gt; 
+  filter(site_code == &quot;PIHAL_NACIMIENTO_L&quot;) |&gt; dplyr::select(n) |&gt; pull() |&gt; unique()</code></pre>
+<p>How many images are there in total and by year?:</p>
+<ul>
+<li><p>For each site there are a total of 522 images.</p></li>
+<li><p>All the years have 23 images except the year 2000 having 19 images.</p></li>
+</ul>
+</div>
+</div>
+<div id="compute-temporal-trends" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Compute Temporal trends</h2>
+<p>We explored the temporal trends for both the annual average (Table <a href="#tab:mk-mean">2.1</a>) and also the standard deviation of the EVI along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen’s slope estimator.</p>
+<p>Significant but weaker positive trends (p-value &lt; 0.05) were observed for annual EVI mean of the high-elevation sites of <em>P. nigra</em> and <em>P. pinaster</em> (Table <a href="#tab:mk-mean">2.1</a>).</p>
+<pre class="r"><code>mkevi_yearly &lt;- iv_yearly |&gt; 
+  filter(variable == &quot;evi&quot;)  |&gt; 
+  ungroup() |&gt; 
+  group_by(site_code, sp_elev, Specie, elev_code, sp_code, season) |&gt; 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names =&quot;{.col}_tau&quot;),
+            across(mean:sd, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;))</code></pre>
+<pre class="r"><code>iv_yearly |&gt; 
+  filter(variable == &quot;evi&quot;) |&gt;  
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_wrap(~factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;)), nrow=1) +
+  scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
+  theme_bw() +
+  ylab(&quot;EVI annual mean (MODIS)&quot;) + xlab(&quot;&quot;) +
+  theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face=&quot;italic&quot;)
+  )</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-evi"></span>
+<img src="figure/remote_sensing_iv.Rmd/plot-evi-1.png" alt="Temporal evolution of EVI annual mean." width="768" />
+<p class="caption">
+Figure 2.1: Temporal evolution of EVI annual mean.
+</p>
+</div>
+<pre class="r"><code>mkevi_yearly |&gt; 
+  ungroup() |&gt; 
+  dplyr::select(Specie, elev_code, dplyr::starts_with(&quot;mean&quot;)) |&gt; rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
+            ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) |&gt; 
+  kbl(
+    digits = c(0,3,4,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for EVI mean&quot;) |&gt; 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:mk-mean">Table 2.1: </span>Mann-Kendall and Seil temporal trend test for EVI mean
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Specie
+</th>
+<th style="text-align:left;">
+elev_code
+</th>
+<th style="text-align:right;">
+tau
+</th>
+<th style="text-align:right;">
+pvalue_mk
+</th>
+<th style="text-align:right;">
+senslope
+</th>
+<th style="text-align:right;">
+pvalue_sen
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+-0.0119
+</td>
+<td style="text-align:right;">
+0.95787
+</td>
+<td style="text-align:right;">
+-0.0001
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+-0.1304
+</td>
+<td style="text-align:right;">
+0.39804
+</td>
+<td style="text-align:right;">
+-0.0006
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+-0.1067
+</td>
+<td style="text-align:right;">
+0.49229
+</td>
+<td style="text-align:right;">
+-0.0005
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+0.4387
+</td>
+<td style="text-align:right;">
+0.00367
+</td>
+<td style="text-align:right;">
+0.0018
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+-0.0830
+</td>
+<td style="text-align:right;">
+0.59735
+</td>
+<td style="text-align:right;">
+-0.0005
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+-0.1146
+</td>
+<td style="text-align:right;">
+0.45961
+</td>
+<td style="text-align:right;">
+-0.0003
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+0.2885
+</td>
+<td style="text-align:right;">
+0.05723
+</td>
+<td style="text-align:right;">
+0.0013
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+0.0356
+</td>
+<td style="text-align:right;">
+0.83267
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+-0.0435
+</td>
+<td style="text-align:right;">
+0.79170
+</td>
+<td style="text-align:right;">
+-0.0001
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low2
+</td>
+<td style="text-align:right;">
+0.0751
+</td>
+<td style="text-align:right;">
+0.63451
+</td>
+<td style="text-align:right;">
+0.0003
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+0.4545
+</td>
+<td style="text-align:right;">
+0.00261
+</td>
+<td style="text-align:right;">
+0.0032
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+-0.0040
+</td>
+<td style="text-align:right;">
+1.00000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+0.3360
+</td>
+<td style="text-align:right;">
+0.02652
+</td>
+<td style="text-align:right;">
+0.0008
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>mkevi_yearly |&gt; 
+  dplyr::select(site_code, dplyr::starts_with(&quot;sd&quot;)) |&gt; rename_with(.cols=dplyr::starts_with(&quot;sd&quot;),
+            ~str_replace(., &quot;sd&quot;, &quot;&quot;)) |&gt; 
+  kbl(
+    digits = c(0,3,4,4,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for anual EVI standard deviation&quot;) |&gt; 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<ul>
+<li>We also computed the seasonal trends for the EVI index (Table <a href="#tab:mk-season">2.2</a>)</li>
+</ul>
+<pre class="r"><code>iv_season &lt;- d |&gt; 
+  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt=&quot;seasons&quot;))) |&gt; 
+  mutate(year=lubridate::year(date)) |&gt; 
+  dplyr::select(site_code, Specie, year, season, evi, ndvi) |&gt; 
+  pivot_longer(cols = c(&quot;ndvi&quot;, &quot;evi&quot;), 
+               names_to = &#39;variable&#39;, values_to = &#39;value&#39;) |&gt; 
+  group_by(site_code, Specie, year, season, variable) |&gt; 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |&gt; 
+  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) |&gt; 
+  inner_join(geodf) |&gt; 
+  ungroup() |&gt; 
+  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE)</code></pre>
+<pre class="r"><code>mkevi_season &lt;- iv_season |&gt; 
+  filter(variable == &quot;evi&quot;)  |&gt; 
+  ungroup() |&gt; 
+  group_by(site_code, Specie, sp_code, elev_code, season, sp_elev) |&gt; 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names =&quot;{.col}_tau&quot;),
+            across(mean:sd, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;))</code></pre>
+<pre class="r"><code>mkevi_season |&gt; 
+  ungroup() |&gt; 
+  dplyr::select(Specie, elev_code, season, dplyr::starts_with(&quot;mean&quot;)) |&gt;
+  rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
+            ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) |&gt; 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for EVI mean&quot;) |&gt; 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:mk-season">Table 2.2: </span>Mann-Kendall and Seil temporal trend test for EVI mean
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Specie
+</th>
+<th style="text-align:left;">
+elev_code
+</th>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:right;">
+tau
+</th>
+<th style="text-align:right;">
+pvalue_mk
+</th>
+<th style="text-align:right;">
+senslope
+</th>
+<th style="text-align:right;">
+pvalue_sen
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.00007
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.123
+</td>
+<td style="text-align:right;">
+0.4282
+</td>
+<td style="text-align:right;">
+-0.00082
+</td>
+<td style="text-align:right;">
+0.4282
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+0.6726
+</td>
+<td style="text-align:right;">
+0.00025
+</td>
+<td style="text-align:right;">
+0.6726
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.036
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+<td style="text-align:right;">
+-0.00015
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+-0.225
+</td>
+<td style="text-align:right;">
+0.1391
+</td>
+<td style="text-align:right;">
+-0.00091
+</td>
+<td style="text-align:right;">
+0.1391
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.099
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+<td style="text-align:right;">
+-0.00072
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.099
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+<td style="text-align:right;">
+-0.00057
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.194
+</td>
+<td style="text-align:right;">
+0.2049
+</td>
+<td style="text-align:right;">
+-0.00099
+</td>
+<td style="text-align:right;">
+0.2049
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.123
+</td>
+<td style="text-align:right;">
+0.4282
+</td>
+<td style="text-align:right;">
+0.00021
+</td>
+<td style="text-align:right;">
+0.4282
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.154
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+<td style="text-align:right;">
+-0.00076
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.115
+</td>
+<td style="text-align:right;">
+0.4596
+</td>
+<td style="text-align:right;">
+-0.00034
+</td>
+<td style="text-align:right;">
+0.4596
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.241
+</td>
+<td style="text-align:right;">
+0.1131
+</td>
+<td style="text-align:right;">
+-0.00110
+</td>
+<td style="text-align:right;">
+0.1131
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.462
+</td>
+<td style="text-align:right;">
+0.0022
+</td>
+<td style="text-align:right;">
+0.00297
+</td>
+<td style="text-align:right;">
+0.0022
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.494
+</td>
+<td style="text-align:right;">
+0.0011
+</td>
+<td style="text-align:right;">
+0.00313
+</td>
+<td style="text-align:right;">
+0.0011
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.383
+</td>
+<td style="text-align:right;">
+0.0112
+</td>
+<td style="text-align:right;">
+0.00189
+</td>
+<td style="text-align:right;">
+0.0112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.154
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+<td style="text-align:right;">
+0.00072
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.138
+</td>
+<td style="text-align:right;">
+0.3692
+</td>
+<td style="text-align:right;">
+0.00119
+</td>
+<td style="text-align:right;">
+0.3692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+<td style="text-align:right;">
+0.00004
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.352
+</td>
+<td style="text-align:right;">
+0.0201
+</td>
+<td style="text-align:right;">
+-0.00245
+</td>
+<td style="text-align:right;">
+0.0201
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.162
+</td>
+<td style="text-align:right;">
+0.2908
+</td>
+<td style="text-align:right;">
+0.00075
+</td>
+<td style="text-align:right;">
+0.2908
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.051
+</td>
+<td style="text-align:right;">
+0.7513
+</td>
+<td style="text-align:right;">
+0.00029
+</td>
+<td style="text-align:right;">
+0.7513
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+-0.00004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.344
+</td>
+<td style="text-align:right;">
+0.0231
+</td>
+<td style="text-align:right;">
+-0.00182
+</td>
+<td style="text-align:right;">
+0.0231
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.455
+</td>
+<td style="text-align:right;">
+0.0026
+</td>
+<td style="text-align:right;">
+0.00249
+</td>
+<td style="text-align:right;">
+0.0026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.289
+</td>
+<td style="text-align:right;">
+0.0572
+</td>
+<td style="text-align:right;">
+0.00136
+</td>
+<td style="text-align:right;">
+0.0572
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.241
+</td>
+<td style="text-align:right;">
+0.1131
+</td>
+<td style="text-align:right;">
+0.00135
+</td>
+<td style="text-align:right;">
+0.1131
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.146
+</td>
+<td style="text-align:right;">
+0.3417
+</td>
+<td style="text-align:right;">
+0.00078
+</td>
+<td style="text-align:right;">
+0.3417
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.012
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+<td style="text-align:right;">
+0.00010
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.091
+</td>
+<td style="text-align:right;">
+0.5612
+</td>
+<td style="text-align:right;">
+0.00051
+</td>
+<td style="text-align:right;">
+0.5612
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+0.6726
+</td>
+<td style="text-align:right;">
+0.00047
+</td>
+<td style="text-align:right;">
+0.6726
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.075
+</td>
+<td style="text-align:right;">
+0.6345
+</td>
+<td style="text-align:right;">
+-0.00038
+</td>
+<td style="text-align:right;">
+0.6345
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+-0.107
+</td>
+<td style="text-align:right;">
+0.4923
+</td>
+<td style="text-align:right;">
+-0.00042
+</td>
+<td style="text-align:right;">
+0.4923
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+<td style="text-align:right;">
+0.00011
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+<td style="text-align:right;">
+0.00005
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.146
+</td>
+<td style="text-align:right;">
+0.3417
+</td>
+<td style="text-align:right;">
+-0.00060
+</td>
+<td style="text-align:right;">
+0.3417
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low2
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.352
+</td>
+<td style="text-align:right;">
+0.0201
+</td>
+<td style="text-align:right;">
+0.00106
+</td>
+<td style="text-align:right;">
+0.0201
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low2
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.146
+</td>
+<td style="text-align:right;">
+0.3417
+</td>
+<td style="text-align:right;">
+0.00076
+</td>
+<td style="text-align:right;">
+0.3417
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low2
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.241
+</td>
+<td style="text-align:right;">
+0.1131
+</td>
+<td style="text-align:right;">
+0.00078
+</td>
+<td style="text-align:right;">
+0.1131
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. pinaster
+</td>
+<td style="text-align:left;">
+low2
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.214
+</td>
+<td style="text-align:right;">
+0.1614
+</td>
+<td style="text-align:right;">
+-0.00122
+</td>
+<td style="text-align:right;">
+0.1614
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.352
+</td>
+<td style="text-align:right;">
+0.0201
+</td>
+<td style="text-align:right;">
+0.00303
+</td>
+<td style="text-align:right;">
+0.0201
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.304
+</td>
+<td style="text-align:right;">
+0.0447
+</td>
+<td style="text-align:right;">
+0.00182
+</td>
+<td style="text-align:right;">
+0.0447
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.273
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+<td style="text-align:right;">
+0.00167
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.478
+</td>
+<td style="text-align:right;">
+0.0015
+</td>
+<td style="text-align:right;">
+0.00673
+</td>
+<td style="text-align:right;">
+0.0015
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.138
+</td>
+<td style="text-align:right;">
+0.3692
+</td>
+<td style="text-align:right;">
+0.00069
+</td>
+<td style="text-align:right;">
+0.3692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.091
+</td>
+<td style="text-align:right;">
+0.5612
+</td>
+<td style="text-align:right;">
+0.00038
+</td>
+<td style="text-align:right;">
+0.5612
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.154
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+<td style="text-align:right;">
+-0.00088
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.115
+</td>
+<td style="text-align:right;">
+0.4596
+</td>
+<td style="text-align:right;">
+-0.00033
+</td>
+<td style="text-align:right;">
+0.4596
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.257
+</td>
+<td style="text-align:right;">
+0.0910
+</td>
+<td style="text-align:right;">
+0.00131
+</td>
+<td style="text-align:right;">
+0.0910
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.336
+</td>
+<td style="text-align:right;">
+0.0265
+</td>
+<td style="text-align:right;">
+0.00082
+</td>
+<td style="text-align:right;">
+0.0265
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.162
+</td>
+<td style="text-align:right;">
+0.2908
+</td>
+<td style="text-align:right;">
+0.00052
+</td>
+<td style="text-align:right;">
+0.2908
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.186
+</td>
+<td style="text-align:right;">
+0.2244
+</td>
+<td style="text-align:right;">
+0.00107
+</td>
+<td style="text-align:right;">
+0.2244
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>mkevi_season |&gt; 
+  dplyr::select(site_code, season, dplyr::starts_with(&quot;sd&quot;)) |&gt; rename_with(.cols=dplyr::starts_with(&quot;sd&quot;),
+            ~str_replace(., &quot;sd_&quot;, &quot;&quot;)) |&gt; 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for anual EVI standard deviation&quot;) |&gt; 
+    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+<pre class="r"><code>mk &lt;- bind_rows(mkevi_season, mkevi_yearly) |&gt; 
+  mutate(ypos = 
+           case_when(
+             elev_code == &quot;low&quot; ~ 0.4,
+             elev_code == &quot;low2&quot; ~ 0.35,
+             elev_code == &quot;medium&quot; ~ 0.45,
+             elev_code == &quot;high&quot; ~ 0.5), 
+         p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
+               cutpoints = c(0,  .001,.01,.05, 1),
+               symbols = c(&quot;***&quot;,&quot;**&quot;,&quot;*&quot;,&quot;&quot;))) |&gt; 
+  mutate(taulabel = paste(expression(tau), &quot;==&quot;, paste0(&#39;&quot;&#39;, round(mean_tau, 2), p_value_string, &#39;&quot;&#39;)))</code></pre>
+<pre class="r"><code>plot_iv_modis &lt;- bind_rows(iv_season, iv_yearly) |&gt; 
+  mutate(season = fct_relevel(season, c(&quot;yearly&quot;, &quot;winter&quot;,&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;))) |&gt; 
+  filter(variable == &quot;evi&quot;) |&gt;  
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_grid(season~
+    factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;))) +
+  scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
+  theme_bw() +
+  ylab(&quot;EVI seasonal mean&quot;) + xlab(&quot;&quot;) +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text.x = element_text(face=&quot;italic&quot;)
+  ) +
+  geom_text(x = 2002, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = &quot;left&quot;)
+
+plot_iv_modis</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-evi-season"></span>
+<img src="figure/remote_sensing_iv.Rmd/plot-evi-season-1.png" alt="Temporal evolution of EVI (MODIS) seasonal mean." width="768" />
+<p class="caption">
+Figure 2.2: Temporal evolution of EVI (MODIS) seasonal mean.
+</p>
+</div>
+<pre class="r"><code>ggsave(
+  plot_iv_modis, 
+  file = &quot;output/iv_modis_trend.png&quot;,
+  dpi = 300,
+  width = 12, height = 12
+)</code></pre>
+<pre class="r"><code>write_csv(mk, &quot;data/dendroadaptamed_iv_modis_trend.csv&quot;)
+write_csv(bind_rows(iv_season, iv_yearly), &quot;data/dendroadaptamed_iv_modis.csv&quot;)</code></pre>
+</div>
+</div>
+<div id="long-term-high-spatial-resolution-landsat-harmonized" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Long-term high-spatial resolution Landsat (harmonized)</h1>
+<pre class="r"><code>landsat &lt;- read_csv(&quot;data/raw/remote_sensing/iv_landsat_c02.csv&quot;) |&gt; 
+  rename(evi = EVI, ndvi = NDVI, site_code = label, image = `system:index`) |&gt; 
+  dplyr::select(-`.geo`) |&gt; 
+  mutate(date = as.Date(as.character(date), format=&quot;%Y%m%d&quot;)) |&gt; 
+  mutate(year = lubridate::year(date), 
+         month = lubridate::month(date)) |&gt; 
+  filter(year != 2023) |&gt; 
+  inner_join(geodf)</code></pre>
+<pre class="r"><code>evilandsat &lt;- landsat |&gt; 
+  filter(!is.na(evi)) |&gt; 
+  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
+  summarise(mean = mean(evi, na.rm = TRUE), 
+            sd = sd(evi, na.rm = TRUE), 
+            se = sd/sqrt(length(evi)),
+            cv = sd/mean*100,
+            median = median(evi, na.rm=TRUE),
+            sum = sum(evi, na.rm=TRUE),
+            min = min(evi), 
+            max = max(evi),
+            n = length(evi))
+
+ndvilandsat &lt;- landsat |&gt; 
+  filter(!is.na(ndvi)) |&gt; 
+  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi))
+
+iv_landsat &lt;- bind_rows(
+  (ndvilandsat |&gt; mutate(iv = &quot;ndvi&quot;)), 
+  (evilandsat |&gt; mutate(iv = &quot;evi&quot;)))</code></pre>
+<pre class="r"><code># compare NDVI - EVI
+iv_landsat |&gt;
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_line(aes(linetype = iv)) +
+  geom_point(size = 1.5) +
+  theme_bw() +
+  ylab(&quot;Annual IV (Landast 30-m)&quot;) +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0)),
+    plot.background = element_rect(fill = &quot;transparent&quot;), 
+    legend.position = &quot;bottom&quot;
+  ) +
+    scale_colour_manual(values = colours_elev) +
+    scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  facet_wrap(~sp_code) </code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-compare-landsat"></span>
+<img src="figure/remote_sensing_iv.Rmd/plot-compare-landsat-1.png" alt="Comparison of Landsat EVI and NDVI annual series" width="768" />
+<p class="caption">
+Figure 3.1: Comparison of Landsat EVI and NDVI annual series
+</p>
+</div>
+<pre class="r"><code>mkevi_landsat &lt;- iv_landsat |&gt; 
+  filter(iv == &quot;evi&quot;)  |&gt; 
+  ungroup() |&gt; 
+  group_by(sp_code, elev_code, sp_elev)|&gt; 
+  summarise(across(c(mean), ~MannKendall(.)$tau, .names =&quot;{.col}_tau&quot;),
+            across(c(mean), ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
+            across(c(mean), ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
+            across(c(mean), ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;)) |&gt; 
+  mutate(ypos = 
+           case_when(
+             elev_code == &quot;low&quot; ~ 0.45,
+             elev_code == &quot;low2&quot; ~ 0.425,
+             elev_code == &quot;medium&quot; ~ 0.475,
+             elev_code == &quot;high&quot; ~ 0.5), 
+         p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
+               cutpoints = c(0,  .001,.01,.05, 1),
+               symbols = c(&quot;***&quot;,&quot;**&quot;,&quot;*&quot;,&quot;&quot;))) |&gt; 
+  mutate(taulabel = paste(expression(tau), &quot;==&quot;, paste0(&#39;&quot;&#39;, round(mean_tau, 2), p_value_string, &#39;&quot;&#39;)))</code></pre>
+<pre class="r"><code>plot_iv_landsat &lt;- iv_landsat |&gt;
+  filter(iv == &quot;evi&quot;) |&gt; 
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
+  geom_line() +
+  geom_point() +
+  theme_bw() +
+  ylab(&quot;Annual EVI (Landast 30-m)&quot;) +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0), 
+                              face = &quot;italic&quot;),
+    plot.background = element_rect(fill = &quot;transparent&quot;), 
+    legend.position = &quot;bottom&quot;
+  ) +
+    scale_colour_manual(values = colours_elev, name = &quot;&quot;) +
+    scale_fill_manual(values = colours_elev, name=&quot;&quot;) + 
+  facet_wrap(~factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;)), nrow = 1) +
+  geom_text(x = 1990, aes(y = ypos, label = taulabel), data = mkevi_landsat, parse = TRUE, show.legend = FALSE, hjust = &quot;left&quot;)
+
+plot_iv_landsat</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-evi-landsat"></span>
+<img src="figure/remote_sensing_iv.Rmd/plot-evi-landsat-1.png" alt="Temporal evolution of EVI (Landsat) mean." width="768" />
+<p class="caption">
+Figure 3.2: Temporal evolution of EVI (Landsat) mean.
+</p>
+</div>
+<pre class="r"><code>ggsave(
+  plot_iv_landsat, 
+  file = &quot;output/iv_landsat_trend.jpg&quot;,
+  dpi = 300,
+  width = 16, height = 4
+)</code></pre>
+<pre class="r"><code>write_csv(mkevi_landsat, &quot;data/dendroadaptamed_iv_landsat_trend.csv&quot;)
+write_csv(iv_landsat, &quot;data/dendroadaptamed_iv_landsat.csv&quot;)</code></pre>
+</div>
+<div id="compare-iv-modis-and-landsat" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Compare IV Modis and Landsat</h1>
+<ul>
+<li>We want to explore the value of the Landast IVs (30 m) and the MODIS IVs (250 m)</li>
+<li>The MODIS contains a coarse spatial resolution, but the series is more consistent (similar image numbers for each of the site studied). Landsat covers a long period (since 1985), but a lot of images were filtered out (due to quality issues: e.g. clouds, etc), so greater sample size differences were found among studied sites (<em>i.e.</em> very different number of images used to compute the annual IV average).</li>
+</ul>
+<pre class="r"><code>compare_iv &lt;- bind_rows(
+  iv_landsat |&gt; dplyr::select(
+    iv, mean, sp_code, sp_elev, mean, year, se, elev_code) |&gt; 
+    mutate(remote = &quot;landast&quot;),
+  iv_yearly |&gt; dplyr::select(
+    iv = variable, sp_code, sp_elev, mean, year, se, elev_code) |&gt; 
+    mutate(remote = &quot;modis&quot;)
+) |&gt; 
+  filter(year &gt; 1999) |&gt; 
+  pivot_wider(names_from = c(remote, iv), 
+              values_from = c(mean,se))</code></pre>
+<pre class="r"><code>rmse_evi &lt;- Metrics::rmse(compare_iv$mean_landast_evi, compare_iv$mean_modis_evi)
+rmsenorm_evi &lt;- rmse_evi / (max(compare_iv$mean_landast_evi) - min(compare_iv$mean_landast_evi)) * 100
+
+compare_iv |&gt; 
+  ggplot(aes(x=mean_landast_evi, y = mean_modis_evi, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  geom_errorbarh(aes(xmax = mean_landast_evi + se_landast_evi,
+                     xmin = mean_landast_evi - se_landast_evi)) +
+  geom_errorbar(aes(ymax = mean_modis_evi + se_modis_evi,
+                     ymin = mean_modis_evi - se_modis_evi)) +
+  geom_abline(slope = 1) +
+  scale_x_continuous(limits = c(0.1,.5)) +
+  scale_y_continuous(limits = c(0.1,.5)) +
+  scale_colour_manual(values = colours_sp, name = &quot;Species&quot;) +
+  scale_shape_manual(values = shape_elev, name = &quot;Elevation&quot;) +
+  scale_fill_manual(values = colours_sp, name = &quot;Species&quot;) + 
+  theme_bw() +
+  theme(
+    legend.position = c(.9,0.2), 
+    legend.background = element_blank(), 
+    panel.grid = element_blank()
+  ) +
+  xlab(&quot;Landsat (30 m)&quot;) +
+  ylab(&quot;MODIS (250 m)&quot;) +
+  ggtitle(&quot;EVI&quot;) +
+  annotate(&quot;text&quot;,
+    x = 0.1, y = .5,
+    label = paste0(
+        &quot;RMSE[norm.]~&#39;=&#39;~&quot;,
+        round(rmsenorm_evi, 2), &quot;~&#39;%&#39;&quot;
+      ),
+    colour = &quot;black&quot;,
+    size = 14 / .pt,
+    hjust = 0, 
+    parse = TRUE
+  ) </code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:landsat-modis-evi"></span>
+<img src="figure/remote_sensing_iv.Rmd/landsat-modis-evi-1.png" alt="Comparison between EVI values from Landsat and MODIS" width="576" />
+<p class="caption">
+Figure 4.1: Comparison between EVI values from Landsat and MODIS
+</p>
+</div>
+<pre class="r"><code>rmse_ndvi &lt;- Metrics::rmse(compare_iv$mean_landast_ndvi, compare_iv$mean_modis_ndvi)
+rmsenorm_ndvi &lt;- rmse_evi / (max(compare_iv$mean_landast_ndvi) - min(compare_iv$mean_landast_ndvi)) * 100
+
+compare_iv |&gt; 
+  ggplot(aes(x=mean_landast_ndvi, y = mean_modis_ndvi, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  geom_errorbarh(aes(xmax = mean_landast_ndvi + se_landast_ndvi,
+                     xmin = mean_landast_ndvi - se_landast_ndvi)) +
+  geom_errorbar(aes(ymax = mean_modis_ndvi + se_modis_ndvi,
+                     ymin = mean_modis_ndvi - se_modis_ndvi)) +
+  geom_abline(slope = 1) +
+  scale_x_continuous(limits = c(0.2,.8)) +
+  scale_y_continuous(limits = c(0.2,.8)) +
+  scale_colour_manual(values = colours_sp, name = &quot;Species&quot;) +
+  scale_shape_manual(values = shape_elev, name = &quot;Elevation&quot;) +
+  scale_fill_manual(values = colours_sp, name = &quot;Species&quot;) + 
+  theme_bw() +
+  theme(
+    legend.position = c(.9,0.2), 
+    legend.background = element_blank(), 
+    panel.grid = element_blank()
+  ) +
+  xlab(&quot;Landsat (30 m)&quot;) +
+  ylab(&quot;MODIS (250 m)&quot;) +
+  ggtitle(&quot;NDVI&quot;) +
+  annotate(&quot;text&quot;,
+    x = 0.2, y = .8,
+    label = paste0(
+        &quot;RMSE[norm.]~&#39;=&#39;~&quot;,
+        round(rmsenorm_ndvi, 2), &quot;~&#39;%&#39;&quot;
+      ),
+    colour = &quot;black&quot;,
+    size = 14 / .pt,
+    hjust = 0, 
+    parse = TRUE
+  ) </code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:landsat-modis-ndvi"></span>
+<img src="figure/remote_sensing_iv.Rmd/landsat-modis-ndvi-1.png" alt="Comparison between NDVI values from Landsat and MODIS" width="576" />
+<p class="caption">
+Figure 4.2: Comparison between NDVI values from Landsat and MODIS
+</p>
+</div>
+</div>
+<div id="workflow" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Workflow</h1>
+<div id="htmlwidget-777d72eda9804f91afa2" style="width:672px;height:900px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-777d72eda9804f91afa2">{"x":{"diagram":"\n  digraph {\n  graph [overlap = true, fontsize = 10]\n\n  node [shape = box, fontname = Helvetica]\n    modis[label = \"MODIS MOD13Q1\"]\n    landsat[label = \"Landsat C02\"]\n    iv_landsat[label = \"IVs Landsat\"]\n    iv_modis[label = \"IVs MODIS\"]\n    evi_modis[label = \"EVI modis\"]\n    evi_landsat[label = \"EVI landsat\"]\n    \n\n  node [shape = parallelogram]\n    seasonal[label = \"Seasonal\n values\"]\n    yearly[label = \"Annual\n values\"]\n    trend[label = \"Trend \n Mann-Kendall\n Sen-Slope\"]\n    extract_landsat[label = \"extract\"]\n    extract_modis[label = \"extract\"]\n    iv[label = \"compute \nIVs\"]\n    harmonize[label = \"harmonize \n landsat missions\"]\n    filter[label = \"Quality \nfilters\"]\n    \n   subgraph cluster_gee {\n\t\tcolor=black \n\t\tlabel = \"GEE\"\n\t\tnode [style=filled,color=white]\n\t\t\n\t\tmodis -> extract_modis -> iv -> iv_modis\n\t\tlandsat -> harmonize -> filter -> extract_landsat -> iv -> iv_landsat\n\t\t\n\t} \n    \n    subgraph cluster_r {\n\t\tcolor=black \n\t\tlabel = \"R\"\n\t\tnode [style=filled,color=white]\n\t\t\n\tiv_modis -> seasonal -> trend\n\tiv_modis -> yearly \n\tiv_landsat -> yearly -> trend\n\t\n\tyearly -> evi_modis\n\tyearly -> evi_landsat\n\t\n\tseasonal -> evi_landsat\n\t\n\tevi_modis -> evi_landsat -> evi_modis\n\t\t\n\t}\n} \n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="refs">
+
+</div>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.2.3 (2023-03-15)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Big Sur ... 10.16
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] DiagrammeR_1.0.10 hydroTSM_0.7-0    zoo_1.8-12        DT_0.31          
+ [5] kableExtra_1.3.4  trend_1.1.6       Kendall_2.2.1     lubridate_1.9.3  
+ [9] forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4       purrr_1.0.2      
+[13] readr_2.1.4       tidyr_1.3.0       tibble_3.2.1      ggplot2_3.4.4    
+[17] tidyverse_2.0.0   here_1.0.1        workflowr_1.7.1  
+
+loaded via a namespace (and not attached):
+ [1] fs_1.6.3           xts_0.13.1         bit64_4.0.5        webshot_0.5.5     
+ [5] RColorBrewer_1.1-3 httr_1.4.7         rprojroot_2.0.4    tools_4.2.3       
+ [9] bslib_0.6.1        utf8_1.2.4         R6_2.5.1           KernSmooth_2.23-22
+[13] colorspace_2.1-0   withr_2.5.2        tidyselect_1.2.0   processx_3.8.3    
+[17] bit_4.0.5          compiler_4.2.3     git2r_0.33.0       textshaping_0.3.7 
+[21] cli_3.6.2          rvest_1.0.3        xml2_1.3.6         labeling_0.4.3    
+[25] bookdown_0.37      sass_0.4.8         scales_1.3.0       classInt_0.4-10   
+[29] callr_3.7.3        proxy_0.4-27       systemfonts_1.0.5  digest_0.6.33     
+[33] rmarkdown_2.25     svglite_2.1.3      extraDistr_1.10.0  pkgconfig_2.0.3   
+[37] htmltools_0.5.7    highr_0.10         fastmap_1.1.1      htmlwidgets_1.6.4 
+[41] rlang_1.1.2        rstudioapi_0.15.0  farver_2.1.1       visNetwork_2.1.2  
+[45] jquerylib_0.1.4    generics_0.1.3     jsonlite_1.8.8     vroom_1.6.5       
+[49] magrittr_2.0.3     Rcpp_1.0.11        munsell_0.5.0      fansi_1.0.6       
+[53] lifecycle_1.0.4    terra_1.7-65       Metrics_0.1.4      stringi_1.8.3     
+[57] whisker_0.4.1      yaml_2.3.8         grid_4.2.3         parallel_4.2.3    
+[61] promises_1.2.1     crayon_1.5.2       lattice_0.22-5     hms_1.1.3         
+[65] knitr_1.45         ps_1.7.5           pillar_1.9.0       boot_1.3-28.1     
+[69] codetools_0.2-19   glue_1.6.2         evaluate_0.23      getPass_0.2-4     
+[73] vctrs_0.6.5        tzdb_0.4.0         httpuv_1.6.13      gtable_0.3.4      
+[77] cachem_1.0.8       xfun_0.41          e1071_1.7-14       later_1.3.2       
+[81] ragg_1.2.7         class_7.3-22       viridisLite_0.4.2  timechange_0.2.0  
+[85] ellipsis_0.3.2    </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
