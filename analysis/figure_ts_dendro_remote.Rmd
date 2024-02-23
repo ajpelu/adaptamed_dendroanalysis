@@ -1,0 +1,121 @@
+---
+title: "Figure: Time series Dendrochronology and Remote Sensing"
+output: workflowr::wflow_html
+bibliography: references.bib
+cls: ecology-letters.csl
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10, fig.height = 7
+)
+```
+
+
+```{r}
+library(tidyverse)
+
+source("scripts/aux.R")
+```
+
+```{r}
+abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
+  rename(mean = IBT_ag_m2) |> 
+  mutate(se = NA, sd = NA, variable = "abi")
+
+npp <- read_csv("data/dendroadaptamed_npp_mod17a3_yearly.csv") |> 
+  rename(mean = npp) |> 
+  mutate(se = NA, sd = NA, variable = "npp") |> 
+  dplyr::select(-npp_qc)
+
+evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
+  filter(iv == "evi") |> 
+  dplyr::select(year, sp_code, elev_code, mean, sd, se) |> 
+  mutate(variable = "evi_landsat")
+
+evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |> 
+  filter(variable == "evi") |> 
+  filter(season == "yearly") |> 
+  dplyr::select(year, sp_code, elev_code, mean, sd, se) |> 
+  mutate(variable = "evi_modis")
+
+
+df <- bind_rows(
+  abi, evi_landsat, evi_modis, npp
+)
+```
+
+
+
+```{r}
+
+to_label <- as_labeller(c(
+ "evi_landsat" = "Annual~EVI[Landsat]", 
+ "npp" = "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+ "abi" = "ABI~(g~C~m^2~year^{-1})"
+), default = label_parsed)
+
+
+fig_ts <- df |> 
+  filter(variable != "evi_modis") |>
+  mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
+  ggplot(aes(x = year, y = mean, group = elev_code, colour = elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
+  geom_line() +
+  facet_grid(variable~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), 
+             scales = "free_y", 
+             switch = "y", 
+             labeller = labeller(variable = to_label)) + 
+  scale_colour_manual(values = colours_elev, name = "") +
+  scale_fill_manual(values = colours_elev, name="") + 
+  theme_bw() +
+  ylab("") +  xlab("") + 
+  theme(
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    strip.text.x = element_text(face = "italic", size = 10),
+    strip.text.y = element_text(face = "bold", size = 10),
+    strip.background = element_blank(),
+    strip.placement = "outside", 
+    legend.position = "bottom"
+  ) +
+  scale_x_continuous(limits = c(1980, 2021), breaks = seq(1950, 2020, by = 10), 
+                     sec.axis = dup_axis()) +
+  scale_y_continuous(sec.axis = dup_axis())
+
+```
+
+```{r}
+ggsave(
+  fig_ts, 
+  file = "output/plot_ts_dendro_remote.png",
+  dpi = 300,
+  width = 12, height = 8
+)
+```
+
+```{r}
+abi_npp<- df |> filter(variable %in% c("abi", "npp")) |> 
+  pivot_wider(values_from = mean, names_from = variable)
+
+
+abi_npp |> ggplot(aes(x=abi, y = npp, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  geom_abline(slope = 1) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  scale_x_continuous(limits = c(0,1000)) +
+  scale_y_continuous(limits = c(0,1000)) 
+
+
+```
+
+
