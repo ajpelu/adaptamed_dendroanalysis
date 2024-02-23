@@ -98,6 +98,6 @@ npp <- raw_npp |>
   mutate(year = lubridate::year(date)) |> 
   dplyr::select(year, sp_code, elev_code, npp, npp_qc = Npp_QC) 
 
-write_csv(bai, "data/dendroadaptamed_npp_mod17a3_yearly.csv")
+write_csv(npp, "data/dendroadaptamed_npp_mod17a3_yearly.csv")
 ```
 
