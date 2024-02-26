@@ -17,7 +17,7 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 # Remote Sensing
 
 - Explore the [temporal evolution of the EVI](remote_sensing_iv.html) (vegetation index) temporal series for each of the study sites. 
-- Explore the [temporal evolution of the NPP](temporal_npp_mod17.html) (from MODIS) for each of the study sites.
+- Explore the [temporal evolution of the NPP](remote_sensing_npp.html) (from MODIS) for each of the study sites.
 
 # Climate conditions of the sites
 - [Temperature and Rainfall](climate_analysis.html)
