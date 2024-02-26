@@ -29,10 +29,10 @@ abi <- read_csv("data/dendroadaptamed_abi.csv") |>
   rename(mean = IBT_ag_m2) |> 
   mutate(se = NA, sd = NA, variable = "abi")
 
-npp <- read_csv("data/dendroadaptamed_npp_mod17a3_yearly.csv") |> 
+npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |> 
   rename(mean = npp) |> 
-  mutate(se = NA, sd = NA, variable = "npp") |> 
-  dplyr::select(-npp_qc)
+  mutate(se = NA, sd = NA, variable = "npp", year = lubridate::year(date)) |> 
+  dplyr::select(-npp_qc, -sp_elev, -date)
 
 evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
   filter(iv == "evi") |> 
@@ -51,6 +51,39 @@ df <- bind_rows(
 )
 ```
 
+```{r}
+mk_evi_landsat <- read_csv("data/dendroadaptamed_iv_modis_trend.csv") |> 
+  filter(season == "yearly") |> 
+  dplyr::select(sp_code, elev_code, sp_elev, tau = mean_tau, pvalue_mk = mean_pvalue_mk,  senslope = mean_senslope, pvalue_sen= mean_pvalue_sen, ypos, p_value_string, taulabel) |> 
+   mutate(variable = "evi_landsat")
+  
+mk_npp <- read_csv("data/dendroadaptamed_npp_modis_trend.csv") |> 
+  rename(tau = npp_tau, 
+         pvalue_mk = npp_pvalue_mk,
+         senslope = npp_senslope,
+         pvalue_sen = npp_pvalue_sen) |> 
+  mutate(variable = "npp") |> 
+  mutate(ypos2 = case_when(
+    ypos == 1000 ~ 800, 
+    ypos == 1025 ~ 900, 
+    ypos == 1050 ~ 1000, 
+    ypos == 1075 ~ 1075)) |> 
+  dplyr::select(-ypos) |> rename(ypos = ypos2)
+
+
+mk_abi <- abi |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  group_by(sp_elev, sp_code, elev_code) |> 
+  count() |> 
+  dplyr::select(-n) |> 
+  mutate(tau = NA, pvalue_mk =NA, senslope = NA, pvalue_sen = NA, 
+         ypos =NA, p_value_string = NA, taulabel = NA,
+         variable = "abi")
+
+mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |> 
+  mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
+   mutate(elev_code = fct_relevel(elev_code, "low2","low", "medium", "high")) 
+```
 
 
 ```{r}
@@ -65,6 +98,7 @@ to_label <- as_labeller(c(
 fig_ts <- df |> 
   filter(variable != "evi_modis") |>
   mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low2","low", "medium", "high")) |> 
   ggplot(aes(x = year, y = mean, group = elev_code, colour = elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
   geom_line() +
@@ -87,7 +121,8 @@ fig_ts <- df |>
   ) +
   scale_x_continuous(limits = c(1980, 2021), breaks = seq(1950, 2020, by = 10), 
                      sec.axis = dup_axis()) +
-  scale_y_continuous(sec.axis = dup_axis())
+  scale_y_continuous(sec.axis = dup_axis()) +
+  geom_text(x = 1980, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = "left")
 
 ```
 
@@ -100,20 +135,73 @@ ggsave(
 )
 ```
 
+
+
+
+
+
+
+
+
 ```{r}
+
+label_landsat <- "Annual~EVI[Landsat]"
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_abi <- "ABI~(g~C~m^2~year^{-1})"
+
+
 abi_npp<- df |> filter(variable %in% c("abi", "npp")) |> 
   pivot_wider(values_from = mean, names_from = variable)
 
+lm_abi_npp <- lm(npp ~ abi, data=abi_npp)
 
-abi_npp |> ggplot(aes(x=abi, y = npp, colour = sp_code)) + 
+abi_npp |> 
+  filter(year > 1999) |> 
+  ggplot(aes(x=abi, y = npp, colour = sp_code)) + 
   geom_point(aes(shape = elev_code, fill = sp_code)) +
   geom_abline(slope = 1) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() 
+
+
+
+
+abi_evi <- df |> 
+  filter(variable %in% c("abi", "evi_landsat")) |> 
+  dplyr::select(-se, -sd) |> 
+  pivot_wider(values_from = mean, names_from = variable) 
+
+lm_abi <- lm(evi_landsat ~ abi, data=abi_evi)
+
+abi_evi |> 
+  filter(year > 1999) |> 
+  ggplot(aes(x=abi, y = evi_landsat)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code, colour = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
   theme_bw() +
-  scale_x_continuous(limits = c(0,1000)) +
-  scale_y_continuous(limits = c(0,1000)) 
+  scale_x_continuous(limits = c(0,500)) + 
+  scale_y_continuous(limits = c(0,.5)) +
+  # geom_abline(slope = coef(lm_abi)[["abi"]], 
+  #             intercept = coef(lm_abi)[["(Intercept)"]]) +
+  geom_abline(slope = 0.001, colour = "gray") + 
+  theme(
+    panel.grid = element_blank(), 
+    legend.background = element_blank(),
+    legend.position = c(.8,.35)
+  ) +
+  xlab(parse(text=label_abi)) +
+  ylab(parse(text=label_landsat)) 
+
+
+ # stat_cor(label.y = .48, 
+ #           aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~"))) +
+ #  ggpubr::stat_regline_equation(label.x = 50, label.y = 0.45,
+ #                                formula = y ~ x)
+ #  
 
 
 ```
