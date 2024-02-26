@@ -1,6 +1,6 @@
 
 # colours
-colours_elev <- c("low" = "red", "low2" ="orange", "medium" = "blue", "high" = "darkgreen")
+colours_elev <- c("low" = "red", "low-D" ="orange", "medium" = "blue", "high" = "darkgreen")
 
 colours_temp <- c("tmin" = "#a6bddb", "tmed" = "#67a9cf", "tmax" = "#016c59")
 
@@ -17,6 +17,6 @@ colours_sp <- c("halepensis" = "#c1666b",
 # sylvestris, "lightblue", "lightblue"
 
 # shape
-shape_elev <- c("low" = 16, "low2" = 18, "medium" = 15, "high" = 17)
-shape_elev <- c("low" = 21, "low2" = 25, "medium" = 22, "high" = 24)
+# shape_elev <- c("low" = 16, "low2" = 18, "medium" = 15, "high" = 17)
+shape_elev <- c("low" = 21, "low-D" = 25, "medium" = 22, "high" = 24)
 
