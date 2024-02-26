@@ -49,8 +49,10 @@ evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |>
 
 
 df <- bind_rows(
-  abi, evi_landsat, evi_modis, npp
-)
+  abi, evi_landsat, evi_modis, npp) |> 
+  mutate(elev_code = fct_recode(elev_code, `low-D` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high"))
+
 ```
 
 ```{r}
@@ -84,7 +86,8 @@ mk_abi <- abi |>
 
 mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |> 
   mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
-   mutate(elev_code = fct_relevel(elev_code, "low2","low", "medium", "high")) 
+  mutate(elev_code = fct_recode(elev_code, `low-D` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high"))
 ```
 
 
@@ -99,7 +102,7 @@ to_label <- as_labeller(c(
 fig_ts <- df |> 
   filter(variable != "evi_modis") |>
   mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low2","low", "medium", "high")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high")) |> 
   ggplot(aes(x = year, y = mean, group = elev_code, colour = elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
   geom_line() +
@@ -144,7 +147,6 @@ ggsave(
 
 ## Comparisons among variables
 ```{r, fig.height=5, fig.width=5}
-
 label_landsat <- "Annual~EVI[Landsat]"
 label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
 label_abi <- "ABI~(g~C~m^2~year^{-1})"
@@ -198,10 +200,25 @@ abi_evi |>
   theme(
     panel.grid = element_blank(), 
     legend.background = element_blank(),
-    legend.position = c(.8,.35)
+    legend.position = c(0.6,0.15)
   ) +
   xlab(parse(text=label_abi)) +
-  ylab(parse(text=label_landsat)) 
+  ylab(parse(text=label_landsat)) +
+  guides(
+    shape = guide_legend(
+      title = "Elevation", 
+      title.position = "top", 
+      label.position = "right", 
+      nrow = 1
+    ),
+    colour = guide_legend(
+      title = "Species", 
+      title.position = "top", 
+      label.position = "right", 
+      nrow = 1
+    ),
+    fill = "none" # Remove the fill legend
+  )
 
 
  # stat_cor(label.y = .48, 
