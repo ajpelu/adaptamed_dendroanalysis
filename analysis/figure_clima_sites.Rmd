@@ -29,7 +29,9 @@ source("scripts/aux.R")
 ```
 
 ```{r}
-avg_yearly <- read_csv("data/dendroadaptamed_climate_avg_yearly.csv")
+avg_yearly <- read_csv("data/dendroadaptamed_climate_avg_yearly.csv") |> 
+  mutate(elev_code = fct_recode(elev_code, `low-D` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high"))
 
 geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
   unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
@@ -155,7 +157,7 @@ fig_clima <- ggplot(aux, aes(y = tmed, x = prec, colour = sp_code)) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") +
-  scale_x_continuous(limits = c(0, 2000), breaks = seq(0, 2000, 250)) +
+  scale_x_continuous(limits = c(0, 1750), breaks = seq(0, 1750, 250)) +
   xlab("Annual precipitation (mm)") +
   ylab("Average annual mean temperature (ºC)") +
   theme_bw() +
@@ -168,12 +170,12 @@ fig_clima <- ggplot(aux, aes(y = tmed, x = prec, colour = sp_code)) +
     color = "none",
     shape = guide_legend(override.aes = list(color = "black", fill = "white"))) +
   annotation_custom(
-  grid::rasterGrob(img_pines), xmin = 700, xmax = 2000, ymin = 13, ymax = 16
+  grid::rasterGrob(img_pines), xmin = 750, xmax = 1750, ymin = 13, ymax = 16
 ) + 
-  annotate("text", x=900, y=12.7, label= "italic(halepensis)", parse = TRUE) +
-  annotate("text", x=1250, y=12.7, label= "italic(pinaster)", parse = TRUE) +
-  annotate("text", x=1550, y=12.7, label= "italic(nigra)", parse = TRUE) +
-  annotate("text", x=1870, y=12.7, label= "italic(sylvestris)", parse = TRUE)
+  annotate("text", x=850, y=13, label= "italic(halepensis)", parse = TRUE, size = 3.5) +
+  annotate("text", x=1150, y=13, label= "italic(pinaster)", parse = TRUE, size = 3.5) +
+  annotate("text", x=1450, y=13, label= "italic(nigra)", parse = TRUE, size = 3.5) +
+  annotate("text", x=1700, y=13, label= "italic(sylvestris)", parse = TRUE, size = 3.5)
 
 fig_clima
 ```
