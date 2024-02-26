@@ -24,6 +24,8 @@ library(tidyverse)
 source("scripts/aux.R")
 ```
 
+## Figure 2
+
 ```{r}
 abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
   rename(mean = IBT_ag_m2) |> 
@@ -86,8 +88,7 @@ mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |>
 ```
 
 
-```{r}
-
+```{r, fig.height=9, fig.width=12}
 to_label <- as_labeller(c(
  "evi_landsat" = "Annual~EVI[Landsat]", 
  "npp" = "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
@@ -124,7 +125,11 @@ fig_ts <- df |>
   scale_y_continuous(sec.axis = dup_axis()) +
   geom_text(x = 1980, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = "left")
 
+
+fig_ts
 ```
+
+
 
 ```{r}
 ggsave(
@@ -137,13 +142,8 @@ ggsave(
 
 
 
-
-
-
-
-
-
-```{r}
+## Comparisons among variables
+```{r, fig.height=5, fig.width=5}
 
 label_landsat <- "Annual~EVI[Landsat]"
 label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
@@ -163,7 +163,14 @@ abi_npp |>
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
-  theme_bw() 
+  theme_bw() + 
+    theme(
+    panel.grid = element_blank(), 
+    legend.background = element_blank(),
+    legend.position = c(.8,.35)
+  ) +
+  xlab(parse(text=label_abi)) +
+  ylab(parse(text=label_npp)) 
 
 
 
