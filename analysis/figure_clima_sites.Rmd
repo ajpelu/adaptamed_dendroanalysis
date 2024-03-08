@@ -164,7 +164,8 @@ fig_clima <- ggplot(aux, aes(y = tmed, x = prec, colour = sp_code)) +
   theme(
     panel.grid = element_blank(),
     legend.position = c(0.1, 0.15),
-    legend.background = element_blank()) +
+    legend.background = element_blank()
+    ) +
   guides(
     fill = "none",
     color = "none",
@@ -186,10 +187,70 @@ ggsave(
   fig_clima, 
   file = "output/plot_clima.png",
   dpi = 300,
-  width = 6, height = 6
+  width = 9.5, height = 10,
+  units = "cm"
 )
 ```
 
 
+```{r}
+
+fig_clima_en_mapa <- ggplot(aux, aes(y = tmed, x = prec, colour = sp_code)) +
+  geom_point(aes(shape = elev_code, fill = sp_code), size = 1.2, alpha = .4) +
+  geom_errorbar(
+    data = aux_avg1, aes(
+      y = tmed,
+      ymin = lower_tmed,
+      ymax = upper_tmed,
+      x = prec), colour = "black", linewidth = .6) +
+  geom_errorbarh(
+    data = aux_avg1, aes(
+      xmin = lower_prec,
+      xmax = upper_prec,
+      y = tmed), colour = "black",
+    linewidth = .6) +
+   geom_point(
+    data = aux_avg1,
+    aes(x = prec, y = tmed, shape = elev_code, fill = sp_code),
+    size = 2, color = "black", stroke = .4) + # Set color to "black" for border
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") +
+  scale_x_continuous(limits = c(0, 1750), breaks = seq(0, 1750, 250)) +
+  xlab("Annual precipitation (mm)") +
+  ylab("Average annual mean temperature (ºC)") +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = c(0.15, 0.10),
+    legend.background = element_blank(),
+    legend.text = element_text(size = 6),
+    legend.key.size = unit(.2, "cm"),
+    axis.title = element_text(size = 10), 
+    axis.text = element_text(size = 8)
+    ) +
+  guides(
+    fill = "none",
+    color = "none",
+    shape = guide_legend(override.aes = list(color = "black", fill = "white", size = 1.5))) +
+  annotation_custom(
+  grid::rasterGrob(img_pines), xmin = 750, xmax = 1750, ymin = 13, ymax = 16)
+ 
+#   annotate("text", x=850, y=13, label= "italic(halepensis)", parse = TRUE, size = 3.5) +
+#   annotate("text", x=1150, y=13, label= "italic(pinaster)", parse = TRUE, size = 3.5) +
+#   annotate("text", x=1450, y=13, label= "italic(nigra)", parse = TRUE, size = 3.5) +
+#   annotate("text", x=1700, y=13, label= "italic(sylvestris)", parse = TRUE, size = 3.5)
+
+
+
+ggsave(
+  fig_clima_en_mapa, 
+  file = "output/plot_clima_en_mapa.png",
+  dpi = 300,
+  width = 9.5, height = 10,
+  units = "cm"
+)
+
+```
 
 
