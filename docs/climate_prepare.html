@@ -528,20 +528,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree214e4ec4448ba255a9102494697f31be7b97d740targetblank214e4eca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree37debda5a3c564a7bf5a383ea24a88558f0bd929targetblank37debdaa">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/214e4ec4448ba255a9102494697f31be7b97d740" target="_blank">214e4ec</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/37debda5a3c564a7bf5a383ea24a88558f0bd929" target="_blank">37debda</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree214e4ec4448ba255a9102494697f31be7b97d740targetblank214e4eca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree37debda5a3c564a7bf5a383ea24a88558f0bd929targetblank37debdaa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/214e4ec4448ba255a9102494697f31be7b97d740" target="_blank">214e4ec</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/37debda5a3c564a7bf5a383ea24a88558f0bd929" target="_blank">37debda</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -565,7 +565,6 @@ Ignored files:
 
 Untracked files:
     Untracked:  analysis/spei_compute.Rmd
-    Untracked:  data/dendroadaptamed_climate_monthly.rds
     Untracked:  data/geoinfo/grids/
     Untracked:  data/geoinfo/grids_check.qgz
     Untracked:  data/image_grids/
@@ -575,6 +574,7 @@ Untracked files:
 Unstaged changes:
     Deleted:    Rplot.jpeg
     Modified:   analysis/remote_sensing_npp.Rmd
+    Modified:   data/dendroadaptamed_climate_monthly.rds
 
 </code></pre>
 <p>
@@ -619,6 +619,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/37debda5a3c564a7bf5a383ea24a88558f0bd929/analysis/climate_prepare.Rmd" target="_blank">37debda</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-03-11
+</td>
+<td>
+wflow_publish("analysis/climate_prepare.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/8f83bbff9705fd2098cea8c8426d770bfed3d3bf/docs/climate_prepare.html" target="_blank">8f83bbf</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-03-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1004,7 +1038,7 @@ saveRDS(climate_avg, &quot;data/dendroadaptamed_climate_season.rds&quot;)</code>
 <h3><span class="header-section-number">0.0.3</span> Compute the monthly data</h3>
 <pre class="r"><code>avg_monthly &lt;- bind_rows(
   # temp 
- climate |&gt;
+  climate |&gt;
   filter(var != &quot;prec&quot;) |&gt; 
   group_by(var, sp_elev, month_yr = cut(date, breaks = &quot;1 month&quot;), year, month) |&gt; 
   summarise(
@@ -1014,7 +1048,7 @@ saveRDS(climate_avg, &quot;data/dendroadaptamed_climate_season.rds&quot;)</code>
   ),
   # prec
   climate |&gt;
-  filter(var != &quot;prec&quot;) |&gt; 
+  filter(var == &quot;prec&quot;) |&gt; 
   group_by(var, sp_elev, month_yr = cut(date, breaks = &quot;1 month&quot;), year, month) |&gt;  
   summarise(
     avg = sum(value, na.rm=TRUE),
