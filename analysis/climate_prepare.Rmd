@@ -289,7 +289,34 @@ climate_avg |> group_by(sp_elev, var, season) |>
 ```
 
 
+### Compute the monthly data 
 
+```{r}
+avg_monthly <- bind_rows(
+  # temp 
+ climate |>
+  filter(var != "prec") |> 
+  group_by(var, sp_elev, month_yr = cut(date, breaks = "1 month"), year, month) |> 
+  summarise(
+    avg = mean(value, na.rm=TRUE),
+    sd = sd(value, na.rm=TRUE),
+    se = sd/sqrt(length(value))
+  ),
+  # prec
+  climate |>
+  filter(var != "prec") |> 
+  group_by(var, sp_elev, month_yr = cut(date, breaks = "1 month"), year, month) |>  
+  summarise(
+    avg = sum(value, na.rm=TRUE),
+    sd = NA,
+    se = NA
+  )
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  mutate(sp_code = as.factor(sp_code), 
+         elev_code = as.factor(elev_code))
+
+saveRDS(avg_monthly, "data/dendroadaptamed_climate_monthly.rds")
+```
 
 
 
