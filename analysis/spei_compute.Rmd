@@ -1,0 +1,81 @@
+---
+title: "Compute SPEI using climatic data"
+date: "2024-02-11"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+```{r, message=FALSE}
+library(tidyverse)
+library(sf)
+library(SPEI)
+```
+
+- Read monthly climate data 
+
+```{r, results = 'hide'}
+raw_climate <- readRDS("data/dendroadaptamed_climate_monthly.rds") 
+
+geo <- st_read("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> 
+  st_drop_geometry() |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, lat, long) 
+
+raw_climate  <- raw_climate  |> inner_join(geo, by="sp_elev")
+```
+
+## Compute SPEI 
+
+- Compute PET using Thornthwaite 
+- Generate a custom function
+
+```{r, echo=TRUE}
+compute_spei <- function(df, sp_elev_sel, spei_scales){
+  ## compute pet 
+  aux <- df |>
+    filter(sp_elev == {{sp_elev_sel}}) |> 
+    filter(var %in% c("tmed", "prec")) |> 
+    dplyr::select(sp_elev, month_yr, year, month, lat, avg, var) |>
+    pivot_wider(names_from = var, values_from = avg) |> 
+    filter(!is.na(tmed)) |> 
+    as.data.frame()
+  
+  mylat <- unique(aux$lat)
+  
+  ## compute climate balance 
+  aux <- aux |> 
+    mutate(pet = thornthwaite(Tave = tmed, lat = mylat)) |> 
+    rowwise() |> 
+    mutate(climate_balance = prec - pet)
+  
+  ## time series for SPEI 
+  ## compute spei 
+  ts_aux <- ts(aux$climate_balance, freq = 12, start=c(min(aux$year), min(aux$month)))
+  for (spei_scale in spei_scales) {
+    speivar <- paste0("spei", sprintf("%02d",spei_scale))
+    spei_aux <- spei(ts_aux, scale = spei_scale)
+    aux$spei <- spei_aux$fitted
+    names(aux)[names(aux) %in% c('spei')] <- speivar
+  }
+  
+  out <- aux |> 
+    dplyr::select(sp_elev, month_yr, year, 
+                  month, pet, climate_balance,
+                  starts_with("spei"))
+  return(out)
+}
+```
+
+```{r, results = 'hide'}
+spei_df <- map(unique(unique(raw_climate$sp_elev)), 
+              ~compute_spei(raw_climate, .x, spei_scales = c(1, 3, 6, 9, 12))) |> 
+  bind_rows()
+
+write_csv(spei_df, "data/dendroadaptamed_spei_climate.csv")
+
+```
+
+
