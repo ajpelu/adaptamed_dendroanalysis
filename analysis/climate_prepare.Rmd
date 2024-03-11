@@ -294,7 +294,7 @@ climate_avg |> group_by(sp_elev, var, season) |>
 ```{r}
 avg_monthly <- bind_rows(
   # temp 
- climate |>
+  climate |>
   filter(var != "prec") |> 
   group_by(var, sp_elev, month_yr = cut(date, breaks = "1 month"), year, month) |> 
   summarise(
@@ -304,7 +304,7 @@ avg_monthly <- bind_rows(
   ),
   # prec
   climate |>
-  filter(var != "prec") |> 
+  filter(var == "prec") |> 
   group_by(var, sp_elev, month_yr = cut(date, breaks = "1 month"), year, month) |>  
   summarise(
     avg = sum(value, na.rm=TRUE),
