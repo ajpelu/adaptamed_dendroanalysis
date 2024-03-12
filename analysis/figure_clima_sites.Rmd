@@ -36,7 +36,9 @@ avg_yearly <- read_csv("data/dendroadaptamed_climate_avg_yearly.csv") |>
 geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
   unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
   dplyr::select(sp_elev, elev) |> 
-  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+  mutate(elev_code = fct_recode(elev_code, `low-D` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high"))
   
 ```
 
