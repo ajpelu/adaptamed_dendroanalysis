@@ -115,6 +115,14 @@ geodf <- terra::vect(geo_pinos) |> as.data.frame() |>
 climate <- df |> inner_join(geodf)
 
 saveRDS(climate, "data/dendroadaptamed_climate_daily.rds")
+
+## esto es por un error 
+# climate <- readRDS("data/dendroadaptamed_climate_daily.rds") |> 
+#   mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low-D")) |>
+#   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
+# 
+# saveRDS(climate, "data/dendroadaptamed_climate_daily.rds")
+
 ```
 
 ### Compute the yearly and season data 
@@ -131,10 +139,9 @@ climate_daily <- readRDS("data/dendroadaptamed_climate_daily.rds") |>
   dplyr::select(-x,-y,-ID) |> 
   mutate(date = lubridate::make_date(year=year, month=month, day = day),
          yday = lubridate::yday(date)) |> 
-  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  # mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   unite("sp_elev", c(sp_code, elev_code), remove = FALSE)
-
 ```
 
 
