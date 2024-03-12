@@ -131,6 +131,8 @@ climate_daily <- readRDS("data/dendroadaptamed_climate_daily.rds") |>
   dplyr::select(-x,-y,-ID) |> 
   mutate(date = lubridate::make_date(year=year, month=month, day = day),
          yday = lubridate::yday(date)) |> 
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   unite("sp_elev", c(sp_code, elev_code), remove = FALSE)
 
 ```
@@ -200,7 +202,7 @@ avg_yearly <- bind_rows(
     sd = NA,
     se = NA
   )
-) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep="_") |> 
   mutate(sp_code = as.factor(sp_code), 
          elev_code = as.factor(elev_code), 
          season = "yearly")
@@ -231,7 +233,7 @@ avg_hidroyearly <- bind_rows(
     sd = NA,
     se = NA
   )
-) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_") |> 
   mutate(sp_code = as.factor(sp_code), 
          elev_code = as.factor(elev_code), 
          season = "hydro year") |> 
@@ -260,7 +262,7 @@ avg_season <- bind_rows(
     sd = NA,
     se = NA
   )
-) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_")  |> 
   mutate(sp_code = as.factor(sp_code), 
          elev_code = as.factor(elev_code))
 ```
@@ -311,7 +313,7 @@ avg_monthly <- bind_rows(
     sd = NA,
     se = NA
   )
-) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_")  |> 
   mutate(sp_code = as.factor(sp_code), 
          elev_code = as.factor(elev_code))
 
