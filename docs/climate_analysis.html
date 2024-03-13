@@ -35,6 +35,8 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -402,7 +404,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -412,7 +414,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -422,14 +424,14 @@ Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidde
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-02-14
+<strong>Last updated:</strong> 2024-03-13
 </p>
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-6
+7
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-1
+0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -452,21 +454,16 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> uncommitted changes
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes.
-To know which version of the R Markdown file created these
-results, you’ll want to first commit it to the Git repo. If
-you’re still working on the analysis, you can ignore this
-warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and
-build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -555,20 +552,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree22785a5ed505e50e9ae12d0e69c509a87c83e9e1targetblank22785a5a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree9b9d54e337b2db9dc3380f26e8d0be8e94e98bcdtargetblank9b9d54ea">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/22785a5ed505e50e9ae12d0e69c509a87c83e9e1" target="_blank">22785a5</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/9b9d54e337b2db9dc3380f26e8d0be8e94e98bcd" target="_blank">9b9d54e</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree22785a5ed505e50e9ae12d0e69c509a87c83e9e1targetblank22785a5a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree9b9d54e337b2db9dc3380f26e8d0be8e94e98bcdtargetblank9b9d54ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/22785a5ed505e50e9ae12d0e69c509a87c83e9e1" target="_blank">22785a5</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/9b9d54e337b2db9dc3380f26e8d0be8e94e98bcd" target="_blank">9b9d54e</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -587,16 +584,20 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/.DS_Store
     Ignored:    data/geoinfo/.DS_Store
+    Ignored:    data/geoinfo/grids/
     Ignored:    data/image_pinus/.DS_Store
     Ignored:    data/raw/.DS_Store
 
 Untracked files:
-    Untracked:  output/climate_diagram.png
-    Untracked:  output/climate_diagram_nolow2.png
+    Untracked:  data/image_grids/
+    Untracked:  data/raw/remote_sensing/mod17a3_yearly_c61_gpp_npp.csv
+    Untracked:  scripts/modis17a3hgf_validation.csv
 
 Unstaged changes:
-    Modified:   analysis/climate_analysis.Rmd
-    Modified:   analysis/figure_clima_sites.Rmd
+    Modified:   output/climate_diagram.png
+    Modified:   output/climate_temp_prec_sp.png
+    Modified:   output/climate_temp_prec_sp_elev.png
+    Modified:   scripts/aux.R
 
 </code></pre>
 <p>
@@ -641,6 +642,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/9b9d54e337b2db9dc3380f26e8d0be8e94e98bcd/analysis/climate_analysis.Rmd" target="_blank">9b9d54e</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-03-13
+</td>
+<td>
+wflow_publish("analysis/climate_analysis.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/97149e00c247a8732b2ed2eb742ff3467e7e040e/analysis/climate_analysis.Rmd" target="_blank">97149e0</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+<td>
+clean repo and compute ivs
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/97149e00c247a8732b2ed2eb742ff3467e7e040e/docs/climate_analysis.html" target="_blank">97149e0</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+<td>
+clean repo and compute ivs
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -748,14 +800,88 @@ update repo
 Figure 1.1: Climate diagrams for the study sites.
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-climate-diagram-all-1">
+Past versions of climate-diagram-all-1.png
+</button>
+</p>
+<div id="fig-climate-diagram-all-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/97149e00c247a8732b2ed2eb742ff3467e7e040e/docs/figure/climate_analysis.Rmd/climate-diagram-all-1.png" target="_blank">97149e0</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:climate-diagram-nolow2"></span>
 <img src="figure/climate_analysis.Rmd/climate-diagram-nolow2-1.png" alt="Climate diagrams for the study sites except the low2 plot (P. pinaster)." width="960" />
 <p class="caption">
 Figure 1.2: Climate diagrams for the study sites except the low2 plot (P. pinaster).
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-climate-diagram-nolow2-1">
+Past versions of climate-diagram-nolow2-1.png
+</button>
+</p>
+<div id="fig-climate-diagram-nolow2-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/97149e00c247a8732b2ed2eb742ff3467e7e040e/docs/figure/climate_analysis.Rmd/climate-diagram-nolow2-1.png" target="_blank">97149e0</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <ul>
-<li>Anohther variant could be to include the max and minimum data <a href="#fig:climate-diagram-minmax">1.3</a>).</li>
+<li>Anohther variant could be to include the max and minimum data (Figure <a href="#fig:climate-diagram-minmax">1.3</a>).</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:climate-diagram-minmax"></span>
 <img src="figure/climate_analysis.Rmd/climate-diagram-minmax-1.png" alt="Climate diagrams for the study sites except" width="960" />
@@ -763,10 +889,1383 @@ Figure 1.2: Climate diagrams for the study sites except the low2 plot (P. pinast
 Figure 1.3: Climate diagrams for the study sites except
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-climate-diagram-minmax-1">
+Past versions of climate-diagram-minmax-1.png
+</button>
+</p>
+<div id="fig-climate-diagram-minmax-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/97149e00c247a8732b2ed2eb742ff3467e7e040e/docs/figure/climate_analysis.Rmd/climate-diagram-minmax-1.png" target="_blank">97149e0</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="differences-among-sites" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Differences among sites</h2>
 <p>We explore the differences among sites yearly and seasonally. For this, we load the season and yearly data (see <a href="climate_prepare.html">preparation of climate data</a>)</p>
+<div id="climate-characteristic-of-the-sites" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Climate characteristic of the sites</h3>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-4-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="figure/climate_analysis.Rmd/unnamed-chunk-5-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="comparisons-among-sites" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Comparisons among sites</h3>
+<ul>
+<li>Compute statistical comparisons among sites for <code>tmed</code> and <code>prec</code>.</li>
+<li>We compared the differences among elev, among sps and also within sps.</li>
+</ul>
+<div id="tmed" class="section level4" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Tmed</h4>
+<ul>
+<li>we applied a parametric tests (anova)</li>
+</ul>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-8">Table 1.1: </span>Posthoc differences among species for Tmed
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+sp_code
+</th>
+<th style="text-align:left;">
+elev_code
+</th>
+<th style="text-align:right;">
+emmean
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
+<th style="text-align:left;">
+.group
+</th>
+<th style="text-align:left;">
+pvalue
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+14.73
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+14.37
+</td>
+<td style="text-align:right;">
+15.10
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+13.47
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+13.10
+</td>
+<td style="text-align:right;">
+13.83
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+12.69
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+12.33
+</td>
+<td style="text-align:right;">
+13.06
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+12.66
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+12.30
+</td>
+<td style="text-align:right;">
+13.03
+</td>
+<td style="text-align:left;">
+d
+</td>
+<td style="text-align:left;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+11.55
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+11.18
+</td>
+<td style="text-align:right;">
+11.91
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+10.48
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+10.12
+</td>
+<td style="text-align:right;">
+10.85
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+12.12
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+11.76
+</td>
+<td style="text-align:right;">
+12.49
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+11.35
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+10.99
+</td>
+<td style="text-align:right;">
+11.72
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+11.01
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+10.64
+</td>
+<td style="text-align:right;">
+11.37
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+10.52
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+10.15
+</td>
+<td style="text-align:right;">
+10.88
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.081
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+10.90
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+10.53
+</td>
+<td style="text-align:right;">
+11.26
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+10.70
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+10.33
+</td>
+<td style="text-align:right;">
+11.06
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+9.06
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+8.70
+</td>
+<td style="text-align:right;">
+9.43
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.609
+</td>
+</tr>
+</tbody>
+</table>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-10">Table 1.2: </span>Posthoc differences among species for Annual Rainfall
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+sp_code
+</th>
+<th style="text-align:left;">
+elev_code
+</th>
+<th style="text-align:right;">
+emmean
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
+<th style="text-align:left;">
+.group
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+242.28
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+171.43
+</td>
+<td style="text-align:right;">
+313.14
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+243.52
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+172.67
+</td>
+<td style="text-align:right;">
+314.37
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+327.76
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+256.91
+</td>
+<td style="text-align:right;">
+398.62
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+0.017
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+364.48
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+293.63
+</td>
+<td style="text-align:right;">
+435.33
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+376.32
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+305.47
+</td>
+<td style="text-align:right;">
+447.17
+</td>
+<td style="text-align:left;">
+ab
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+408.90
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+338.05
+</td>
+<td style="text-align:right;">
+479.75
+</td>
+<td style="text-align:left;">
+ab
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+452.45
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+381.59
+</td>
+<td style="text-align:right;">
+523.30
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:right;">
+0.862
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+378.30
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+307.45
+</td>
+<td style="text-align:right;">
+449.16
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+381.91
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+311.05
+</td>
+<td style="text-align:right;">
+452.76
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+393.93
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+323.08
+</td>
+<td style="text-align:right;">
+464.79
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+648.62
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+577.77
+</td>
+<td style="text-align:right;">
+719.47
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+649.54
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+578.69
+</td>
+<td style="text-align:right;">
+720.40
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+649.76
+</td>
+<td style="text-align:right;">
+21.46
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+578.91
+</td>
+<td style="text-align:right;">
+720.62
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:right;">
+1.000
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>By elevation</li>
+</ul>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-12">Table 1.3: </span>Posthoc differences among elevation (not considering species) for Annual Rainfall and Tmed
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+var
+</th>
+<th style="text-align:left;">
+elev_code
+</th>
+<th style="text-align:right;">
+emmean
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
+<th style="text-align:left;">
+.group
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+10.69
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+10.51
+</td>
+<td style="text-align:right;">
+10.87
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+11.68
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+11.50
+</td>
+<td style="text-align:right;">
+11.86
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+12.41
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+663
+</td>
+<td style="text-align:right;">
+12.23
+</td>
+<td style="text-align:right;">
+12.59
+</td>
+<td style="text-align:left;">
+c
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+411.38
+</td>
+<td style="text-align:right;">
+10.73
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+375.96
+</td>
+<td style="text-align:right;">
+446.81
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+421.02
+</td>
+<td style="text-align:right;">
+10.73
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+385.60
+</td>
+<td style="text-align:right;">
+456.45
+</td>
+<td style="text-align:left;">
+ab
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+455.92
+</td>
+<td style="text-align:right;">
+10.73
+</td>
+<td style="text-align:right;">
+923
+</td>
+<td style="text-align:right;">
+420.50
+</td>
+<td style="text-align:right;">
+491.35
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>By species</li>
+</ul>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-14">Table 1.4: </span>Posthoc differences among species (not considering elevation) for Annual Rainfall and Tmed
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+var
+</th>
+<th style="text-align:left;">
+sp_code
+</th>
+<th style="text-align:right;">
+emmean
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
+<th style="text-align:left;">
+.group
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:right;">
+10.22
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+612
+</td>
+<td style="text-align:right;">
+10.01
+</td>
+<td style="text-align:right;">
+10.43
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:right;">
+10.96
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+612
+</td>
+<td style="text-align:right;">
+10.75
+</td>
+<td style="text-align:right;">
+11.17
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:right;">
+11.56
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+612
+</td>
+<td style="text-align:right;">
+11.35
+</td>
+<td style="text-align:right;">
+11.77
+</td>
+<td style="text-align:left;">
+c
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tmed
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:right;">
+13.63
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+612
+</td>
+<td style="text-align:right;">
+13.42
+</td>
+<td style="text-align:right;">
+13.84
+</td>
+<td style="text-align:left;">
+d
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:right;">
+271.19
+</td>
+<td style="text-align:right;">
+12.56
+</td>
+<td style="text-align:right;">
+852
+</td>
+<td style="text-align:right;">
+229.71
+</td>
+<td style="text-align:right;">
+312.66
+</td>
+<td style="text-align:left;">
+a
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:right;">
+384.71
+</td>
+<td style="text-align:right;">
+12.56
+</td>
+<td style="text-align:right;">
+852
+</td>
+<td style="text-align:right;">
+343.24
+</td>
+<td style="text-align:right;">
+426.19
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:right;">
+412.56
+</td>
+<td style="text-align:right;">
+12.56
+</td>
+<td style="text-align:right;">
+852
+</td>
+<td style="text-align:right;">
+371.08
+</td>
+<td style="text-align:right;">
+454.03
+</td>
+<td style="text-align:left;">
+b
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Prec
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:right;">
+649.31
+</td>
+<td style="text-align:right;">
+12.56
+</td>
+<td style="text-align:right;">
+852
+</td>
+<td style="text-align:right;">
+607.83
+</td>
+<td style="text-align:right;">
+690.79
+</td>
+<td style="text-align:left;">
+c
+</td>
+</tr>
+</tbody>
+</table>
 <div id="refs">
 
 </div>
@@ -793,28 +2292,36 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DT_0.31            multcompView_0.1-9 lubridate_1.9.3    forcats_1.0.0     
- [5] stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2        readr_2.1.4       
- [9] tidyr_1.3.0        tibble_3.2.1       ggplot2_3.4.4      tidyverse_2.0.0   
-[13] workflowr_1.7.1   
+ [1] emmeans_1.9.0      kableExtra_1.3.4   modelbased_0.8.6   parameters_0.21.3 
+ [5] DT_0.31            multcompView_0.1-9 lubridate_1.9.3    forcats_1.0.0     
+ [9] stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2        readr_2.1.4       
+[13] tidyr_1.3.0        tibble_3.2.1       ggplot2_3.4.4      tidyverse_2.0.0   
+[17] workflowr_1.7.1   
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.11       getPass_0.2-4     ps_1.7.5          rprojroot_2.0.4  
- [5] digest_0.6.33     utf8_1.2.4        R6_2.5.1          evaluate_0.23    
- [9] highr_0.10        httr_1.4.7        pillar_1.9.0      rlang_1.1.2      
-[13] rstudioapi_0.15.0 whisker_0.4.1     callr_3.7.3       jquerylib_0.1.4  
-[17] rmarkdown_2.25    textshaping_0.3.7 labeling_0.4.3    htmlwidgets_1.6.4
-[21] munsell_0.5.0     compiler_4.2.3    httpuv_1.6.13     xfun_0.41        
-[25] pkgconfig_2.0.3   systemfonts_1.0.5 htmltools_0.5.7   tidyselect_1.2.0 
-[29] bookdown_0.37     codetools_0.2-19  ggh4x_0.2.7       fansi_1.0.6      
-[33] tzdb_0.4.0        withr_2.5.2       later_1.3.2       grid_4.2.3       
-[37] jsonlite_1.8.8    gtable_0.3.4      lifecycle_1.0.4   git2r_0.33.0     
-[41] magrittr_2.0.3    scales_1.3.0      cli_3.6.2         stringi_1.8.3    
-[45] cachem_1.0.8      farver_2.1.1      fs_1.6.3          promises_1.2.1   
-[49] bslib_0.6.1       ragg_1.2.7        generics_0.1.3    vctrs_0.6.5      
-[53] tools_4.2.3       glue_1.6.2        hms_1.1.3         processx_3.8.3   
-[57] fastmap_1.1.1     yaml_2.3.8        timechange_0.2.0  colorspace_2.1-0 
-[61] terra_1.7-65      knitr_1.45        sass_0.4.8       </code></pre>
+ [1] fs_1.6.3           insight_0.19.7     webshot_0.5.5      httr_1.4.7        
+ [5] rprojroot_2.0.4    tools_4.2.3        bslib_0.6.1        utf8_1.2.4        
+ [9] R6_2.5.1           colorspace_2.1-0   withr_2.5.2        tidyselect_1.2.0  
+[13] processx_3.8.3     compiler_4.2.3     git2r_0.33.0       textshaping_0.3.7 
+[17] cli_3.6.2          rvest_1.0.3        xml2_1.3.6         sandwich_3.1-0    
+[21] labeling_0.4.3     bookdown_0.37      bayestestR_0.13.1  sass_0.4.8        
+[25] scales_1.3.0       mvtnorm_1.2-4      callr_3.7.3        systemfonts_1.0.5 
+[29] digest_0.6.33      rmarkdown_2.25     svglite_2.1.3      pkgconfig_2.0.3   
+[33] htmltools_0.5.7    highr_0.10         fastmap_1.1.1      htmlwidgets_1.6.4 
+[37] rlang_1.1.2        rstudioapi_0.15.0  farver_2.1.1       ggh4x_0.2.7       
+[41] jquerylib_0.1.4    generics_0.1.3     zoo_1.8-12         jsonlite_1.8.8    
+[45] magrittr_2.0.3     Matrix_1.6-4       Rcpp_1.0.11        munsell_0.5.0     
+[49] fansi_1.0.6        lifecycle_1.0.4    terra_1.7-65       stringi_1.8.3     
+[53] multcomp_1.4-25    whisker_0.4.1      yaml_2.3.8         MASS_7.3-60       
+[57] grid_4.2.3         promises_1.2.1     lattice_0.22-5     splines_4.2.3     
+[61] hms_1.1.3          knitr_1.45         ps_1.7.5           pillar_1.9.0      
+[65] estimability_1.4.1 codetools_0.2-19   glue_1.6.2         evaluate_0.23     
+[69] getPass_0.2-4      vctrs_0.6.5        tzdb_0.4.0         httpuv_1.6.13     
+[73] gtable_0.3.4       datawizard_0.9.1   cachem_1.0.8       xfun_0.41         
+[77] xtable_1.8-4       coda_0.19-4        later_1.3.2        ragg_1.2.7        
+[81] survival_3.5-7     viridisLite_0.4.2  timechange_0.2.0   TH.data_1.1-2     </code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
