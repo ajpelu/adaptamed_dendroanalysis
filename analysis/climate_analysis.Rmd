@@ -29,6 +29,7 @@ library(DT)
 library(parameters)
 library(modelbased)
 library(kableExtra)
+library(emmeans)
 
 source("scripts/aux.R")
 ```
@@ -57,18 +58,20 @@ avg_daily <- climate |>
   ) |> 
   mutate(date = as.Date(yday, origin = "2015-01-01", tz = "UTC") - 1) |> # convert to date. Be carefully because in R, the date index starts at 0. 2015 as "simulated year"
   ungroup() |> 
-  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_")
 ```
 
 ```{r}
 # For add text with elevation 
 geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> 
   as.data.frame() |>
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |>
   unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
   dplyr::select(sp_elev, elev) |> 
   mutate(date = as.Date("2015-02-01"), 
           mean = 100) |> 
-  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_")
 
 ```
 
@@ -119,7 +122,7 @@ climate_diagram <- ggplot(
          group_by(sp_elev, m) |>
          summarise(mean = sum(mean)) |>
          mutate(date = make_date(year = "2015", month = m, day = "15")) |> 
-         separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
+         separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_")
       ),
       aes(y = mean, fill = sp_code), stat = "identity"
   ) +
@@ -127,7 +130,7 @@ climate_diagram <- ggplot(
                   ymax = scale_factor*(mean + sd), 
                   fill = sp_code), alpha=.5) + 
   geom_line() +
-  ggh4x::facet_grid2(sp_code~factor(elev_code, levels=c('low', 'low2', 'medium', 'high')), 
+  ggh4x::facet_grid2(sp_code~factor(elev_code, levels=c('low', 'low-Dec', 'medium', 'high')), 
                      render_empty = FALSE) +
   scale_y_continuous("Precipitation (mm)",
                      sec.axis = sec_axis(~ ./scale_factor, name = "Mean Temperature (°C)")
@@ -152,7 +155,7 @@ climate_diagram
 
 ```{r climate-diagram-nolow2,  fig.cap="Climate diagrams for the study sites except the low2 plot (P. pinaster)."}
 climate_diagram_nolow2 <- ggplot(
-    data = (avg_daily |> filter(elev_code != "low2") |> filter(var == "tmed")), 
+    data = (avg_daily |> filter(elev_code != "low-Dec") |> filter(var == "tmed")), 
       aes(x = date, y = mean*scale_factor)
     ) + 
   scale_x_date(date_breaks = "1 month", date_labels = "%b") + 
@@ -160,12 +163,12 @@ climate_diagram_nolow2 <- ggplot(
     data =
       (avg_daily |>
          filter(var == "prec") |>
-         filter(elev_code != "low2") |> 
+         filter(elev_code != "low-Dec") |> 
          mutate(m = lubridate::month(date)) |>
          group_by(sp_elev, m) |>
          summarise(mean = sum(mean)) |>
          mutate(date = make_date(year = "2015", month = m, day = "15")) |> 
-         separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
+         separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_")
       ),
       aes(y = mean, fill = sp_code), stat = "identity"
   ) +
@@ -178,7 +181,7 @@ climate_diagram_nolow2 <- ggplot(
   theme_bw() + 
   theme_climate_diagram() + 
   xlab("") + 
-  geom_text(data = (geodf |> filter(elev_code != "low2")), 
+  geom_text(data = (geodf |> filter(elev_code != "low-Dec")), 
             aes(label = paste(elev, "m"), y = Inf), vjust = 1.5) +
   scale_fill_manual(values = colours_sp, name = "Species", guide = "none") 
 
@@ -259,7 +262,7 @@ temp_prec_sp_elev  <- aux |>
   ggplot(aes(y=tmed, x = prec, colour = sp_code, 
              shape=elev_code)) +
   geom_point(size = 1.5, alpha = .8) + 
-  facet_grid(factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")) ~ factor(elev_code, levels=c('low2', 'low','medium', 'high'))) +
+  facet_grid(factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")) ~ factor(elev_code, levels=c('low-Dec', 'low','medium', 'high'))) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   xlab("Annual precipitation (mm)") + 
@@ -291,18 +294,6 @@ temp_prec_sp_elev
 - we applied a parametric tests (anova)
 
 ```{r}
-tmed_yearly <- avg_seasonally_raw |> filter(season == "yearly") |> filter(var == "tmed")
-
-lm_tmed<- lm(avg ~ sp_code*elev_code, data = tmed_yearly) 
-# performance::check_model(lm_tmed)
-# performance::check_distribution(lm_tmed)
-
-lm_tmed2 <- lm(avg ~ sp_code*elev_code, 
-               data = (tmed_yearly2 |> filter(elev_code != "low2"))) 
-
-
-alpha <- 0.001
-
 # Function to generate comparisons and perform letter-based grouping
 generate_comparisons <- function(model, sp_code = NULL, elev_code = NULL, alpha = 0.001) {
   emm <- emmeans(model, pairwise ~ sp_code * elev_code, adjust = "bonferroni", alpha = alpha,
@@ -315,550 +306,405 @@ generate_comparisons <- function(model, sp_code = NULL, elev_code = NULL, alpha 
     mutate(p_value = p_values[match(.group, cld_df$.group)])
   return(result_df)
 }
-
-means_letters_tmed <- bind_rows(
-  generate_comparisons(lm_tmed, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
-  generate_comparisons(lm_tmed, sp_code = "pinaster", elev_code = c("low", "low2", "medium", "high")),
-  generate_comparisons(lm_tmed, sp_code = "nigra", elev_code = c("low", "medium", "high")),
-  generate_comparisons(lm_tmed, sp_code = "sylvestris", elev_code = c("low", "medium", "high")),
-   (emmeans(lm_tmed, specs = pairwise~elev_code) |> 
-      multcomp::cld(Letters=letters, level=1-alpha) |> mutate(sp_code = "") |> 
-      relocate(sp_code, .after = elev_code)),
-  (emmeans(lm_tmed2, specs = pairwise~sp_code) |> 
-     multcomp::cld(Letters=letters, level=1-alpha) |> 
-     mutate(elev_code = "") |> 
-     relocate(elev_code, .before = sp_code))
-) |>  as.data.frame() |> 
-  rename(letter = `.group`)
-
 ```
+
 
 
 ```{r}
-# eme 
-model <- lm_tmed 
-# generate_compi <- emmeans(model, 
-#                           specs = paipairwise ~ sp_code * elev_code, 
-#                           at = list(sp_code = "halepensis", elev_code = elev_code))
+tmed_yearly <- avg_seasonally_raw |> filter(season == "yearly") |> filter(var == "tmed")
+alpha <- 0.001
+lm_tmed<- lm(avg ~ sp_code*elev_code, data = tmed_yearly) 
 
-emm <- emmeans(model, pairwise ~ sp_code * elev_code, adjust = "bonferroni", alpha = alpha,
-                 at = list(sp_code = "halepensis", elev_code = c("low", "medium", "high")))
-
-letras <- multcomp::cld(emm, Letters=letters, level=1-alpha)
-  
-
-emm$emmeans
-emm$contrasts
-
-
-
+means_letters_tmed <- bind_rows(
+  generate_comparisons(lm_tmed, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_tmed, sp_code = "pinaster", elev_code = c("low", "low-Dec", "medium", "high")),
+  generate_comparisons(lm_tmed, sp_code = "nigra", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_tmed, sp_code = "sylvestris", elev_code = c("low", "medium", "high"))
+)
 ```
 
-
-
-```{r tmed-post}
+```{r}
 means_letters_tmed  |> 
-  kbl(digits = c(0,0,2,2,0,2,2,0), 
+  mutate(pvalue = ifelse(p_value < 0.0001, "<0.0001", round(p_value, 3))) |> 
+  dplyr::select(-p_value) |> 
+  arrange(sp_code, elev_code) |> 
+  kbl(digits = c(0,0,2,2,0,2,2,5,0), 
       caption = "Posthoc differences among species for Tmed") |> 
     kable_paper("hover", full_width = F)
 ```
 
 
-
-We found differences among species (Table \@ref(tab:tmed-post-sp)) and along the elevation (Table \@ref(tab:tmed-post-elev)). Temperature conditions are not different between the low2 and low, and also between low2 and mediumn elevations considering all the data. 
-
-
-
 ```{r}
-# Function to generate comparisons and perform letter-based grouping with p-values
-generate_comparisons <- function(model, sp_code = NULL, elev_code = NULL, alpha = 0.001) {
-  emm <- emmeans(model, pairwise ~ sp_code * elev_code, adjust = "bonferroni", alpha = alpha,
-                 at = list(sp_code = sp_code, elev_code = elev_code))
-  cld_df <- multcomp::cld(emm, Letters = letters, level = 1 - alpha)
-  p_values <- summary(emm, infer = TRUE)$contrasts$'p.value'
-  result_df <- cld_df %>% 
-    mutate(p_value = p_values[match(.group, cld_df$.group)])
-  return(result_df)
-}
-# Example usage
-generate_comparisons(lm_tmed, sp_code = "halepensis", elev_code = c("low", "medium", "high"))
+prec_yearly <- avg_seasonally_raw |> filter(season == "yearly") |> filter(var == "prec")
+alpha <- 0.001
+lm_prec <- lm(avg ~ sp_code*elev_code, data = prec_yearly) 
 
-
-generate_comparisons <- function(model, sp_code = NULL, elev_code = NULL, alpha = 0.001) {
-  emm <- emmeans(model, pairwise ~ sp_code * elev_code, adjust = "bonferroni", alpha = alpha,
-                 at = list(sp_code = sp_code, elev_code = elev_code))
-  cld_df <- multcomp::cld(emm, Letters = letters, level = 1 - alpha)
-  p_values <- summary(emm, infer = TRUE)$contrasts$'p.value'
-  result_df <- cld_df %>% 
-    mutate(p_value = p_values[match(.group, cld_df$.group)])
-  return(result_df)
-}
-# Example usage
-generate_comparisons(lm_tmed, sp_code = "halepensis", elev_code = c("low", "medium", "high"))
-
-
-
+means_letters_prec <- bind_rows(
+  generate_comparisons(lm_prec, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_prec, sp_code = "pinaster", elev_code = c("low", "low-Dec", "medium", "high")),
+  generate_comparisons(lm_prec, sp_code = "nigra", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_prec, sp_code = "sylvestris", elev_code = c("low", "medium", "high"))
+)
 ```
 
-
-```{r tmed-post-elev}
-TukeyHSD(aov_tmed, which = "elev_code")$elev_code |> 
-  kbl(digits = c(0,3,3,3,4), 
-      caption = "Posthoc differences among elevation for Tmed") |> 
-  kable_paper("hover", full_width = F)
-```
-
-
-
 ```{r}
-library(multcomp)
-library(multcompView)
-
-ph_tmed_sp <- glht(aov_tmed, linfct = mcp(sp_code = "Tukey"))
-old.par <- par(mai=c(1.5,2,1,1))
-plot(confint(ph_tmed_sp))
-
-cld(ph_tmed_sp)
-```
-
-
-```{r}
-
-emmeans(lm_tmed, specs=~elev_code*sp_code)
-
-a <- emmip(lm_tmed, elev_code~sp_code)
-
-```
-
-
-
-```{r}
-ph_tmed_elev <- glht(aov_tmed, linfct = mcp(elev_code = "Tukey"))
-old.par <- par(mai=c(1.5,2,1,1))
-plot(confint(ph_tmed_elev))
-
-cld(ph_tmed_elev)
-```
-
-
-ph_tmed_sp <- glht(aov_tmed, linfct = mcp(sp_code = "Tukey"))
-old.par <- par(mai=c(1.5,2,1,1))
-plot(confint(ph_tmed_sp))
-
-cld(ph_tmed_sp)
-
-
-
-
-
-```{r}
-library(emmeans)
-tabla_postHoc <- function(modelo){
-  posthoc <- emmeans(modelo, ~ sp_code * elev_code)
-  contrast(posthoc, "consec", simple = "each", combine = TRUE,
-           adjust = "tukey") |> 
-  kbl(digits = 4) |> 
+means_letters_prec  |> 
+  mutate(pvalue = ifelse(p_value < 0.0001, "<0.0001", round(p_value, 3))) |> 
+  dplyr::select(-p_value) |> 
+  kbl(digits = c(0,0,2,2,0,2,2,0,3), 
+      caption = "Posthoc differences among species for Annual Rainfall") |> 
     kable_paper("hover", full_width = F)
-}
-
-tabla_postHoc(aov_tmed)
-
-emmeans(tmed_aov, avg ~ sp_code)
-
 ```
 
-
+- By elevation
 
 
 ```{r}
-posthoc <- model_emmeans(lm_tmed, at = c("sp_code", "elev_code")) |> 
-  pairs()
-parameters::parameters(posthoc)
-```
-
-
-report::report(tmed_aov)
-
-parameters::parameters(tmed_aov)
-
-
-modelbased::model_emmeans(tmed_aov, at = c("sp_code")) |> pairs()
-parameters::parameters(posthoc)
-
-
-
-estimate_contrasts(tmed_aov, contrast = c("sp_code"), length=2)
-contrasts
-
-
-# Not normal 
-plot(aov_tmed_yearly, which = 2)
-car::qqPlot(aov_tmed_yearly$residuals)
-
-library(modelbased)
-
-
-model <- aov(avg ~ sp_code*elev_code, data = tmed_yearly) 
-m <- estimate_contrasts(model)
-
-
-aov_prec <- aov(annual_value ~ sp_code*elev_code, data = prec) 
-
-https://www.datanovia.com/en/blog/how-to-add-p-values-onto-a-grouped-ggplot-using-the-ggpubr-r-package/ 
-```
-
-
-
-
-```{r}
-stat.test <- tmin_yearly |> 
-  group_by(sp_code) |> 
-  t_test(avg ~ elev_code) %>%
-  adjust_pvalue(method = "bonferroni") %>%
-  add_significance("p.adj")
-stat.test
-
-bxp <- ggboxplot(
-  tmin_yearly, x = "sp_code", y = "avg", 
-  color = "elev_code"
-  )
-
-# Add p-values onto the box plots
-stat.test <- stat.test %>%
-  add_xy_position(x = "sp_code", dodge = 0.8)
-bxp + stat_pvalue_manual(
-  stat.test,  label = "p.adj", tip.length = 0, remove.bracket = TRUE
-  )
-
-# Add 10% spaces between the p-value labels and the plot border
-bxp + stat_pvalue_manual(
-  stat.test,  label = "p", tip.length = 0
-  ) +
-  scale_y_continuous(expand = expansion(mult = c(0, 0.1)))
-
-
-
-```
-
-
-
-
-
-```{r}
-
-
-avg_yearly |> 
-  # filter(var != "prec") |> 
-  ggplot(aes(x = factor(sp_code, 
-                        levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
-             y = avg, 
-             fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
-  geom_boxplot() + 
-  scale_fill_manual(values = colours_elev, name = "") +
-  theme_bw() +
-  theme(
-    legend.position = "bottom",
-    panel.grid = element_blank()
-  ) +
-  xlab("") + 
-  facet_wrap(~var, ncol = 1, scales= "free_y") 
-
-
-
-library(emmeans)
-library(multcomp)
-
-
-mod_yearly <- aov()
-
-```
-
-
-
-
-
-
-
-
-
-
-
-VAS POR AQUI MELÓN 
-#### Temporal trends
-- Plot the temporal trends (todo: compute the temporal trends statistics?)
-```{r}
-avg_yearly |> 
-  filter(var != "prec") |> 
-  filter(elev_code != "low2") |>
-  ggplot(aes(x = year, y = avg, colour=var)) +
-  geom_line() +
-  geom_line() +
-  facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
-  theme_bw() +
-  theme(
-    panel.grid.minor.x = element_blank(),
-    panel.grid.major.x = element_blank(), 
-    strip.text = element_text(size = 14)
-  ) +
-  xlab("Year") +
-  ylab("Temperature (yearly average) (°C)") +
-  ylim(c(0,25)) + 
-  scale_colour_manual(values = colours_temp)
-```
-
-```{r}
-avg_yearly |> 
-  filter(var == "prec") |> 
-  filter(elev_code != "low2") |>
-  ggplot(aes(x = year, y = avg, colour=var)) +
-  geom_line() +
-  geom_line() +
-  facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
-  theme_bw() +
-  theme(
-    panel.grid.minor.x = element_blank(),
-    panel.grid.major.x = element_blank(), 
-    strip.text = element_text(size = 14)
-  ) + 
-  geom_smooth(method = "lm", se=FALSE, linewidth=.5) + 
-  xlab("Year") +
-  ylab("Precipitation (yearly average) (mm)") 
-```
-
-### Bewteen sites comparison
-
-
-
-
-
-### Seasonal 
-
-```{r}
-avg_season <- bind_rows(
-  # temp 
-  d |>
-    filter(var != "prec") |> 
-    group_by(var, sp_elev, year, season) |> 
-    summarise(
-      avg = mean(value, na.rm=TRUE),
-      sd = sd(value, na.rm=TRUE),
-      se = sd/sqrt(length(value))
-    ),
-  # prec
-  d |>
-    filter(var == "prec") |> 
-    group_by(var, sp_elev, year, season) |> 
-    summarise(
-      avg = sum(value, na.rm=TRUE),
-      sd = NA,
-      se = NA
-    )
-) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
-  mutate(sp_code = as.factor(sp_code), 
-         elev_code = as.factor(elev_code))
-```
-
-- Plot the temporal trends (todo: compute the temporal trends statistics?)
-```{r}
-plot_temp_season <- function(x, season_var, ycaption) { 
-  x |> 
-    filter(var != "prec") |> 
-    filter(season == season_var) |> 
-    filter(elev_code != "low2") |>
-    ggplot(aes(x = year, y = avg, colour=var)) +
-    geom_line() +
-    geom_line() +
-    facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
-    theme_bw() +
-    theme(
-      panel.grid.minor.x = element_blank(),
-      panel.grid.major.x = element_blank(), 
-      strip.text = element_text(size = 14)
-    ) +
-    xlab("Year") +
-    ylab(ycaption) +
-    scale_colour_manual(values = colours_temp)
-  
-}
-
-plot_temp_season(avg_season, season_var = "spring", 
-                 ycaption = "Spring temperature (°C)") + ggtitle("Spring")
-
-plot_temp_season(avg_season, season_var = "summer", 
-                 ycaption = "Summer temperature (°C)") + ggtitle("Summer")
-
-plot_temp_season(avg_season, season_var = "autumn", 
-                 ycaption = "Autumn temperature (°C)") + ggtitle("Autumn")
-
-plot_temp_season(avg_season, season_var = "winter", 
-                 ycaption = "Winter temperature (°C)") + ggtitle("Winter") 
+by_elevation <- bind_rows(
+(emmeans(lm_tmed, specs = pairwise~elev_code) |> 
+      multcomp::cld(Letters=letters, level=1-alpha) |> 
+  mutate(var = "Tmed") |>
+    relocate(var, .before = elev_code)),
+(emmeans(lm_prec, specs = pairwise~elev_code) |> 
+      multcomp::cld(Letters=letters, level=1-alpha) |> 
+  mutate(var = "Prec") |>
+    relocate(var, .before = elev_code))
+)
 
 ```
 
 ```{r}
-plot_prec_season <- function(x, season_var, ycaption, line_colour="#67a9cf") { 
-  x |> 
-    filter(var == "prec") |> 
-    filter(season == season_var) |> 
-    filter(elev_code != "low2") |>
-    ggplot(aes(x = year, y = avg, colour=var)) +
-    geom_line() +
-    facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
-    theme_bw() +
-    theme(
-      panel.grid.minor.x = element_blank(),
-      panel.grid.major.x = element_blank(), 
-      strip.text = element_text(size = 14)
-    ) +
-    xlab("Year") +
-    ylab(ycaption) +
-    scale_colour_manual(values = line_colour)
-  
-}
-
-plot_prec_season(avg_season, season_var = "spring", 
-                 ycaption = "Spring rainfall (mm)") + ggtitle("Spring")
-
-plot_prec_season(avg_season, season_var = "summer", 
-                 ycaption = "Summer rainfall (mm)") + ggtitle("Summer")
-
-plot_prec_season(avg_season, season_var = "autumn", 
-                 ycaption = "Autumn rainfall (mm)") + ggtitle("Autumn")
-
-plot_prec_season(avg_season, season_var = "winter", 
-                 ycaption = "Winter rainfall (mm)") + ggtitle("Winter") 
+by_elevation  |> 
+  kbl(digits = c(0,0,2,2,0,2,2,5,0), 
+      caption = "Posthoc differences among elevation (not considering species) for Annual Rainfall and Tmed") |> 
+    kable_paper("hover", full_width = F)
 ```
 
 
-#### Bewteen sites comparison
-- Temperatures (ToDo ANOVA-2way or similar)
+- By species 
 
 ```{r}
+lm_tmed2 <- lm(avg ~ sp_code * elev_code,
+  data = (tmed_yearly |> filter(elev_code != "low-Dec"))
+)
 
-plot_compare_seasonal_temp <- function(x, season_var, ycaption){
-  x |> 
-    filter(var != "prec") |> 
-    filter(season == season_var) |> 
-    ggplot(aes(x = factor(sp_code, 
-                          levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
-               y = avg, 
-               fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
-    geom_boxplot() + 
-    scale_fill_manual(values = colours_elev, name = "") +
-    theme_bw() +
-    theme(
-      legend.position = "bottom",
-      panel.grid = element_blank()
-    ) +
-    xlab("") +
-    ylab(ycaption) +
-    facet_wrap(~var, ncol = 1, scales= "free_y")
-}
+lm_prec2 <- lm(avg ~ sp_code * elev_code,
+  data = (prec_yearly |> filter(elev_code != "low-Dec"))
+)
 
-
-plot_compare_seasonal_temp(avg_season, season_var = "spring", 
-                           ycaption = "Spring temperature (°C)") + ggtitle("Spring")
-
-plot_compare_seasonal_temp(avg_season, season_var = "summer", 
-                           ycaption = "Summer temperature (°C)") + ggtitle("Summer")
-
-plot_compare_seasonal_temp(avg_season, season_var = "autumn", 
-                           ycaption = "Autumn temperature (°C)") + ggtitle("Autumn")
-
-plot_compare_seasonal_temp(avg_season, season_var = "winter", 
-                           ycaption = "Winter temperature (°C)") + ggtitle("Winter")
-
-```
-
-- Precipitation (ToDo ANOVA-2way or similar)
-
-```{r}
-avg_season |> 
-  filter(var == "prec") |> 
-  ggplot(aes(x = factor(sp_code, 
-                        levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
-             y = avg, 
-             fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
-  geom_boxplot() + 
-  scale_fill_manual(values = colours_elev, name = "") +
-  theme_bw() +
-  theme(
-    legend.position = "bottom",
-    panel.grid = element_blank()
-  ) +
-  xlab("") +
-  ylab("Rainfall") +
-  facet_wrap(~season, ncol = 1, scales= "free_y")
-
-```
-
-
-
-#### Tables
-
-```{r}
-avg_all <- rbind(avg_season, 
-                 avg_yearly |> mutate(season = "yearly"))
-
-
-summary_table <- avg_all |> 
-  group_by(var, sp_code, elev_code, season) |> 
-  summarise(
-    mean= round(mean(avg, na.rm=TRUE),2),
-    sd = round(sd(avg, na.rm=TRUE),2),
-    se = round(sd/sqrt(length(avg)),2)
-  ) |> 
-  unite("v", c("mean", "se"), sep = " ± ") |> 
-  dplyr::select(-sd) |> 
-  pivot_wider(names_from = var, 
-              values_from = v)
+by_sp <- bind_rows(
+  (emmeans(lm_tmed2, specs = pairwise ~ sp_code) |>
+    multcomp::cld(Letters = letters, level = 1 - alpha) |>
+    mutate(var = "Tmed") |>
+    relocate(var, .before = sp_code)),
+  (emmeans(lm_prec2, specs = pairwise ~ sp_code) |>
+    multcomp::cld(Letters = letters, level = 1 - alpha) |>
+    mutate(var = "Prec") |>
+    relocate(var, .before = sp_code))
+)
 ```
 
 ```{r}
-summary_table |> 
-  DT::datatable(options =
-                  list(
-                    autoWidth = TRUE,
-                    pageLength = 15), 
-                filter = list(position = 'top', clear = FALSE)
-                
-  )
-
+by_sp  |> 
+  kbl(digits = c(0,0,2,2,0,2,2,5,0), 
+      caption = "Posthoc differences among species (not considering elevation) for Annual Rainfall and Tmed") |> 
+    kable_paper("hover", full_width = F)
 ```
 
 
 
-```{r}
-head(avg_yearly)
-
-prec <- avg_yearly |> filter(var == "prec")
-
-aov_prec <- aov(avg ~ sp_code*elev_code, data = prec) 
-
-plot(aov_prec, which = 2)
-
-car::qqPlot(aov_prec$residuals)
-
-library(rstatix)
 
 
-aov_prec <- aov(annual_value ~ sp_code*elev_code, data = prec) 
-aov_tmed <- 
 
-|> tukey_hsd()
 
-gg |> filter(str_detect(group1, "halepensis")) |> 
-  filter(str_detect(group2, "halepensis"))
 
-plot(predictorEffect(aov_prec))
 
-plot(allEffects(aov_prec))
-with(prec, 
-interaction.plot(elev_code, sp_code, annual_value))
+
+```{r, eval=FALSE, echo=FALSE}
+
+# 
+# 
+# 
+# VAS POR AQUI MELÓN 
+# #### Temporal trends
+# - Plot the temporal trends (todo: compute the temporal trends statistics?)
+# ```{r}
+# avg_seasonally_raw |> 
+#   filter(season == "yearly") |> 
+# 
+# 
+# avg_yearly |> 
+#   filter(var != "prec") |> 
+#   filter(elev_code != "low2") |>
+#   ggplot(aes(x = year, y = avg, colour=var)) +
+#   geom_line() +
+#   geom_line() +
+#   facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+#   theme_bw() +
+#   theme(
+#     panel.grid.minor.x = element_blank(),
+#     panel.grid.major.x = element_blank(), 
+#     strip.text = element_text(size = 14)
+#   ) +
+#   xlab("Year") +
+#   ylab("Temperature (yearly average) (°C)") +
+#   ylim(c(0,25)) + 
+#   scale_colour_manual(values = colours_temp)
+# ```
+# 
+# ```{r}
+# avg_yearly |> 
+#   filter(var == "prec") |> 
+#   filter(elev_code != "low2") |>
+#   ggplot(aes(x = year, y = avg, colour=var)) +
+#   geom_line() +
+#   geom_line() +
+#   facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+#   theme_bw() +
+#   theme(
+#     panel.grid.minor.x = element_blank(),
+#     panel.grid.major.x = element_blank(), 
+#     strip.text = element_text(size = 14)
+#   ) + 
+#   geom_smooth(method = "lm", se=FALSE, linewidth=.5) + 
+#   xlab("Year") +
+#   ylab("Precipitation (yearly average) (mm)") 
+# ```
+# 
+# ### Bewteen sites comparison
+# 
+# 
+# 
+# 
+# 
+# ### Seasonal 
+# 
+# ```{r}
+# avg_season <- bind_rows(
+#   # temp 
+#   d |>
+#     filter(var != "prec") |> 
+#     group_by(var, sp_elev, year, season) |> 
+#     summarise(
+#       avg = mean(value, na.rm=TRUE),
+#       sd = sd(value, na.rm=TRUE),
+#       se = sd/sqrt(length(value))
+#     ),
+#   # prec
+#   d |>
+#     filter(var == "prec") |> 
+#     group_by(var, sp_elev, year, season) |> 
+#     summarise(
+#       avg = sum(value, na.rm=TRUE),
+#       sd = NA,
+#       se = NA
+#     )
+# ) |> separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |> 
+#   mutate(sp_code = as.factor(sp_code), 
+#          elev_code = as.factor(elev_code))
+# ```
+# 
+# - Plot the temporal trends (todo: compute the temporal trends statistics?)
+# ```{r}
+# plot_temp_season <- function(x, season_var, ycaption) { 
+#   x |> 
+#     filter(var != "prec") |> 
+#     filter(season == season_var) |> 
+#     filter(elev_code != "low2") |>
+#     ggplot(aes(x = year, y = avg, colour=var)) +
+#     geom_line() +
+#     geom_line() +
+#     facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+#     theme_bw() +
+#     theme(
+#       panel.grid.minor.x = element_blank(),
+#       panel.grid.major.x = element_blank(), 
+#       strip.text = element_text(size = 14)
+#     ) +
+#     xlab("Year") +
+#     ylab(ycaption) +
+#     scale_colour_manual(values = colours_temp)
+#   
+# }
+# 
+# plot_temp_season(avg_season, season_var = "spring", 
+#                  ycaption = "Spring temperature (°C)") + ggtitle("Spring")
+# 
+# plot_temp_season(avg_season, season_var = "summer", 
+#                  ycaption = "Summer temperature (°C)") + ggtitle("Summer")
+# 
+# plot_temp_season(avg_season, season_var = "autumn", 
+#                  ycaption = "Autumn temperature (°C)") + ggtitle("Autumn")
+# 
+# plot_temp_season(avg_season, season_var = "winter", 
+#                  ycaption = "Winter temperature (°C)") + ggtitle("Winter") 
+# 
+# ```
+# 
+# ```{r}
+# plot_prec_season <- function(x, season_var, ycaption, line_colour="#67a9cf") { 
+#   x |> 
+#     filter(var == "prec") |> 
+#     filter(season == season_var) |> 
+#     filter(elev_code != "low2") |>
+#     ggplot(aes(x = year, y = avg, colour=var)) +
+#     geom_line() +
+#     facet_grid(sp_code~factor(elev_code, levels=c('low','medium', 'high'))) +
+#     theme_bw() +
+#     theme(
+#       panel.grid.minor.x = element_blank(),
+#       panel.grid.major.x = element_blank(), 
+#       strip.text = element_text(size = 14)
+#     ) +
+#     xlab("Year") +
+#     ylab(ycaption) +
+#     scale_colour_manual(values = line_colour)
+#   
+# }
+# 
+# plot_prec_season(avg_season, season_var = "spring", 
+#                  ycaption = "Spring rainfall (mm)") + ggtitle("Spring")
+# 
+# plot_prec_season(avg_season, season_var = "summer", 
+#                  ycaption = "Summer rainfall (mm)") + ggtitle("Summer")
+# 
+# plot_prec_season(avg_season, season_var = "autumn", 
+#                  ycaption = "Autumn rainfall (mm)") + ggtitle("Autumn")
+# 
+# plot_prec_season(avg_season, season_var = "winter", 
+#                  ycaption = "Winter rainfall (mm)") + ggtitle("Winter") 
+# ```
+# 
+# 
+# #### Bewteen sites comparison
+# - Temperatures (ToDo ANOVA-2way or similar)
+# 
+# ```{r}
+# 
+# plot_compare_seasonal_temp <- function(x, season_var, ycaption){
+#   x |> 
+#     filter(var != "prec") |> 
+#     filter(season == season_var) |> 
+#     ggplot(aes(x = factor(sp_code, 
+#                           levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
+#                y = avg, 
+#                fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
+#     geom_boxplot() + 
+#     scale_fill_manual(values = colours_elev, name = "") +
+#     theme_bw() +
+#     theme(
+#       legend.position = "bottom",
+#       panel.grid = element_blank()
+#     ) +
+#     xlab("") +
+#     ylab(ycaption) +
+#     facet_wrap(~var, ncol = 1, scales= "free_y")
+# }
+# 
+# 
+# plot_compare_seasonal_temp(avg_season, season_var = "spring", 
+#                            ycaption = "Spring temperature (°C)") + ggtitle("Spring")
+# 
+# plot_compare_seasonal_temp(avg_season, season_var = "summer", 
+#                            ycaption = "Summer temperature (°C)") + ggtitle("Summer")
+# 
+# plot_compare_seasonal_temp(avg_season, season_var = "autumn", 
+#                            ycaption = "Autumn temperature (°C)") + ggtitle("Autumn")
+# 
+# plot_compare_seasonal_temp(avg_season, season_var = "winter", 
+#                            ycaption = "Winter temperature (°C)") + ggtitle("Winter")
+# 
+# ```
+# 
+# - Precipitation (ToDo ANOVA-2way or similar)
+# 
+# ```{r}
+# avg_season |> 
+#   filter(var == "prec") |> 
+#   ggplot(aes(x = factor(sp_code, 
+#                         levels = c("halepensis", "pinaster", "nigra", "sylvestris")),
+#              y = avg, 
+#              fill = factor(elev_code, levels = c("low2", "low", "medium", "high")))) +
+#   geom_boxplot() + 
+#   scale_fill_manual(values = colours_elev, name = "") +
+#   theme_bw() +
+#   theme(
+#     legend.position = "bottom",
+#     panel.grid = element_blank()
+#   ) +
+#   xlab("") +
+#   ylab("Rainfall") +
+#   facet_wrap(~season, ncol = 1, scales= "free_y")
+# 
+# ```
+# 
+# 
+# 
+# #### Tables
+# 
+# ```{r}
+# avg_all <- rbind(avg_season, 
+#                  avg_yearly |> mutate(season = "yearly"))
+# 
+# 
+# summary_table <- avg_all |> 
+#   group_by(var, sp_code, elev_code, season) |> 
+#   summarise(
+#     mean= round(mean(avg, na.rm=TRUE),2),
+#     sd = round(sd(avg, na.rm=TRUE),2),
+#     se = round(sd/sqrt(length(avg)),2)
+#   ) |> 
+#   unite("v", c("mean", "se"), sep = " ± ") |> 
+#   dplyr::select(-sd) |> 
+#   pivot_wider(names_from = var, 
+#               values_from = v)
+# ```
+# 
+# ```{r}
+# summary_table |> 
+#   DT::datatable(options =
+#                   list(
+#                     autoWidth = TRUE,
+#                     pageLength = 15), 
+#                 filter = list(position = 'top', clear = FALSE)
+#                 
+#   )
+# 
+# ```
+# 
+# 
+# 
+# ```{r}
+# head(avg_yearly)
+# 
+# prec <- avg_yearly |> filter(var == "prec")
+# 
+# aov_prec <- aov(avg ~ sp_code*elev_code, data = prec) 
+# 
+# plot(aov_prec, which = 2)
+# 
+# car::qqPlot(aov_prec$residuals)
+# 
+# library(rstatix)
+# 
+# 
+# aov_prec <- aov(annual_value ~ sp_code*elev_code, data = prec) 
+# aov_tmed <- 
+# 
+# |> tukey_hsd()
+# 
+# gg |> filter(str_detect(group1, "halepensis")) |> 
+#   filter(str_detect(group2, "halepensis"))
+# 
+# plot(predictorEffect(aov_prec))
+# 
+# plot(allEffects(aov_prec))
+# with(prec, 
+# interaction.plot(elev_code, sp_code, annual_value))
+# ```
+# gg
+
 ```
-gg
-
-
 
 
 
