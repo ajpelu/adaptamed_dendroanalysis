@@ -28,8 +28,9 @@ source("scripts/aux.R")
 cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
 ```
 
-## MODIS data 
+# MODIS data 
 
+## IV
 ```{r prepare-data}
 raw <- read_csv(here::here("data/raw/remote_sensing/comparisons/iv_mod13q1.csv"))
 elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv"))
@@ -309,6 +310,7 @@ npp |>
     theme_bw()
 ```
 
+
 ### Conclusion 
 - Uso los datos de las nuevas posiciones. Para ello los preproceso y los guardo: 
 ```{r}
@@ -339,6 +341,158 @@ write_csv(iv_raw, here::here("data/raw/remote_sensing/iv_mod13q1_c61.csv"))
 - Para NPP no cambia de pixel: halepensis_medium
 - NPP cambia el pixel pero no la NPP en el halepensis_low
 - cambia el pixel y el NPP para syl_high 
+
+# IV Landsat 
+
+```{r}
+landsat <- read_csv("data/raw/remote_sensing/comparisons/old_iv_landsat_c02.csv") |> 
+  rename(evi = EVI, ndvi = NDVI, site_code = label, image = `system:index`) |> 
+  dplyr::select(-`.geo`) |> 
+  mutate(date = as.Date(as.character(date), format="%Y%m%d")) |> 
+  mutate(year = lubridate::year(date), 
+         month = lubridate::month(date)) |> 
+  filter(year != 2023) |> 
+  inner_join(geodf)
+
+evilandsat <- landsat |> 
+  filter(!is.na(evi)) |> 
+  group_by(sp_elev, sp_code, elev_code, year) |> 
+  summarise(mean = mean(evi, na.rm = TRUE), 
+            sd = sd(evi, na.rm = TRUE), 
+            se = sd/sqrt(length(evi)),
+            cv = sd/mean*100,
+            median = median(evi, na.rm=TRUE),
+            sum = sum(evi, na.rm=TRUE),
+            min = min(evi), 
+            max = max(evi),
+            n = length(evi))
+
+ndvilandsat <- landsat |> 
+  filter(!is.na(ndvi)) |> 
+  group_by(sp_elev, sp_code, elev_code, year) |> 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi))
+
+iv_landsat <- bind_rows(
+  (ndvilandsat |> mutate(iv = "ndvi")), 
+  (evilandsat |> mutate(iv = "evi")))
+
+
+plot_iv_landsat <- iv_landsat |>
+  filter(iv == "evi") |> 
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
+  geom_line() +
+  geom_point() +
+  theme_bw() +
+  ylab("Annual EVI (Landast 30-m)") +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0), 
+                              face = "italic"),
+    plot.background = element_rect(fill = "transparent"), 
+    legend.position = "bottom"
+  ) +
+    scale_colour_manual(values = colours_elev, name = "") +
+    scale_fill_manual(values = colours_elev, name="") + 
+  facet_wrap(~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), nrow = 1) +
+  ggtitle("old")
+
+plot_iv_landsat
+
+
+
+```
+
+```{r}
+
+landsat2 <- read_csv("data/raw/remote_sensing/comparisons/iv_landsat_c02_modify.csv") |> 
+  rename(evi = EVI, ndvi = NDVI, image = `system:index`) |> 
+  dplyr::select(image, evi, ndvi, date, site_code) |> 
+  mutate(date = as.Date(as.character(date), format="%Y%m%d")) |> 
+  mutate(year = lubridate::year(date), 
+         month = lubridate::month(date)) |> 
+  filter(year != 2023) |> 
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify")) |> 
+  # dplyr::select(-elev_code, -Specie, -site_name, -sp_code, -LAI, -elev, -pies, ) |> 
+  inner_join(geodf, by = "site_code")
+
+evilandsat2 <- landsat2 |> 
+  filter(!is.na(evi)) |> 
+  group_by(sp_elev, sp_code, elev_code, year) |> 
+  summarise(mean = mean(evi, na.rm = TRUE), 
+            sd = sd(evi, na.rm = TRUE), 
+            se = sd/sqrt(length(evi)),
+            cv = sd/mean*100,
+            median = median(evi, na.rm=TRUE),
+            sum = sum(evi, na.rm=TRUE),
+            min = min(evi), 
+            max = max(evi),
+            n = length(evi))
+
+ndvilandsat2 <- landsat2 |> 
+  filter(!is.na(ndvi)) |> 
+  group_by(sp_elev, sp_code, elev_code, year) |> 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi))
+
+iv_landsat2 <- bind_rows(
+  (ndvilandsat2 |> mutate(iv = "ndvi")), 
+  (evilandsat2 |> mutate(iv = "evi")))
+
+
+plot_iv_landsat2 <- iv_landsat2 |>
+  filter(iv == "evi") |> 
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
+  geom_line() +
+  geom_point() +
+  theme_bw() +
+  ylab("Annual EVI (Landast 30-m)") +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0), 
+                              face = "italic"),
+    plot.background = element_rect(fill = "transparent"), 
+    legend.position = "bottom"
+  ) +
+    scale_colour_manual(values = colours_elev, name = "") +
+    scale_fill_manual(values = colours_elev, name="") + 
+  facet_wrap(~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), nrow = 1) +
+  ggtitle("modify")
+
+plot_iv_landsat2
+
+
+```
+
+- Uso los datos de las nuevas posiciones. Para ello los preproceso y los guardo: 
+```{r}
+raw_landsat  <- read_csv("data/raw/remote_sensing/comparisons/iv_landsat_c02_modify.csv") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify"))
+
+write_csv(raw_landsat, here::here("data/raw/remote_sensing/iv_landsat_c02.csv")) 
+```
 
 
 
