@@ -1,0 +1,344 @@
+---
+title: "Comparar datos satelite (pixeles adyacentes)"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set( 
+                      warning=FALSE, message=FALSE)
+```
+
+# Objetivos
+
+- Comparar series de datos con pixeles originales y con pixeles adjacentes en tres casos: PIHAL_NACIMIENTO_L, PIHAL_NACIMIENTO_M, PISYL_PORTUGOS_H. 
+
+
+```{r pkg}
+library(here)
+library(tidyverse)
+library(Kendall)
+library(trend)
+library(kableExtra)
+library(DT)
+library(hydroTSM)
+library(DiagrammeR)
+source("scripts/aux.R")
+cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
+```
+
+## MODIS data 
+
+```{r prepare-data}
+raw <- read_csv(here::here("data/raw/remote_sensing/comparisons/iv_mod13q1.csv"))
+elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv"))
+
+# Filter only Pinus field plot 
+d_raw <- raw |>
+  #filter(str_detect(Specie, "Pinu")) |>
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         evi = EVI*0.0001,
+         ndvi = NDVI*0.0001) |>
+  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
+
+
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
+  mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  )) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, elev, site_code) |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_") 
+
+d <- inner_join(d_raw, geodf)
+```
+
+
+```{r}
+raw2 <- read_csv(here::here("data/raw/remote_sensing/comparisons/modify_mod13q1_iv_c61.csv"))
+
+d_raw2 <- raw2|>
+  #filter(str_detect(Specie, "Pinu")) |>
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         evi = EVI*0.0001,
+         ndvi = NDVI*0.0001) |>
+  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi) |> 
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify"))
+
+d2 <- inner_join(d_raw2, geodf)
+```
+
+```{r}
+iv_yearly <- d |>
+  mutate(year=lubridate::year(date)) |> 
+  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |> 
+  pivot_longer(cols = c("ndvi", "evi"), 
+               names_to = 'variable', values_to = 'value') |> 
+  group_by(site_code, Specie, year, sp_elev, variable) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |> 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
+  inner_join(elev_cat) |> 
+  mutate(season = as.factor("yearly")) |> 
+  ungroup() |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_")
+```
+
+```{r}
+iv_yearly2 <- d2 |>
+  mutate(year=lubridate::year(date)) |> 
+  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |> 
+  pivot_longer(cols = c("ndvi", "evi"), 
+               names_to = 'variable', values_to = 'value') |> 
+  group_by(site_code, Specie, year, sp_elev, variable) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |> 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
+  inner_join(elev_cat) |> 
+  mutate(season = as.factor("yearly")) |> 
+  ungroup() |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), sep = "_", remove = FALSE)
+```
+
+
+```{r}
+mkevi_yearly <- iv_yearly |> 
+  filter(variable == "evi")  |> 
+  ungroup() |> 
+  group_by(site_code, sp_elev, Specie, elev_code, sp_code, season) |> 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
+            across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen"))
+
+```
+
+```{r}
+mkevi_yearly2 <- iv_yearly2 |> 
+  filter(variable == "evi")  |> 
+  ungroup() |> 
+  group_by(site_code, sp_elev, Specie, elev_code, sp_code, season) |> 
+  summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
+            across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
+            across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
+            across(mean:sd, ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen"))
+```
+
+
+```{r}
+ivy <- bind_rows(
+  (iv_yearly |> mutate(set = "old")),
+  (iv_yearly2 |> mutate(set = "modify")) 
+)
+
+ivy |> 
+  filter(variable == "evi") |>  
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_grid(set~factor(Specie, levels = c("P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris"))) +
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") + 
+  theme_bw() +
+  ylab("EVI annual mean (MODIS)") + xlab("") +
+  theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face="italic")
+  )
+```
+
+```{r}
+colours_modify <- c("old" = "blue", "modify" ="orange")
+ivy |> 
+  filter(variable == "evi") |>  
+  ggplot(aes(x=year, y=mean, group=set, colour=set, fill=set)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=set), colour=NA, alpha=.2) +
+  geom_line() + 
+  facet_wrap(~sp_elev) + 
+  scale_fill_manual(values=colours_modify, name="") +
+  scale_colour_manual(values=colours_modify, name="") + 
+    theme_bw()
+```
+
+
+## NPP 
+
+```{r}
+raw_npp <- read_csv(here::here("data/raw/remote_sensing/comparisons/old_mod17a3_yearly_c61_gpp_npp.csv")) |> 
+    mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  ))
+# elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv")) 
+
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
+  mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  )) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, elev, site_code) |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_") 
+
+
+d <- inner_join(raw_npp, geodf) |> 
+  mutate(elev_code = fct_relevel(as.factor(elev_code), c("low-Dec","low","medium","high"))) 
+
+
+dnpp <- d |>
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         npp = Npp*0.0001*1000) |>
+  dplyr::select(date, elev_code, sp_code, sp_elev, gpp = Gpp, npp = Npp, npp_qc = Npp_QC) 
+```
+
+
+```{r}
+dnpp |> 
+  mutate(year = lubridate::year(date)) |> 
+  ggplot(aes(x=year, y=npp, colour=elev_code)) +
+  geom_line() + 
+  #geom_point() + 
+  facet_wrap(~(factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris"))),
+             nrow = 1) +
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") +
+  ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
+  xlab("") + 
+  theme_bw() + 
+    theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face="italic")
+  ) 
+```
+
+
+```{r}
+raw_npp2 <- read_csv(here::here("data/raw/remote_sensing/comparisons/modify_mod17a3_yearly_c61_gpp_npp.csv")) |>
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify")) |> 
+    mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  ))
+# elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv")) 
+
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
+  mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  )) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, elev, site_code) |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE, sep = "_") 
+
+
+d2 <- inner_join(raw_npp2, geodf) |> 
+  mutate(elev_code = fct_relevel(as.factor(elev_code), c("low-Dec","low","medium","high"))) 
+
+
+dnpp2 <- d2 |>
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         npp = Npp*0.0001*1000) |>
+  dplyr::select(date, elev_code, sp_code, sp_elev, gpp = Gpp, npp = Npp, npp_qc = Npp_QC) 
+```
+
+```{r}
+dnpp2 |> 
+  mutate(year = lubridate::year(date)) |> 
+  ggplot(aes(x=year, y=npp, colour=elev_code)) +
+  geom_line() + 
+  #geom_point() + 
+  facet_wrap(~(factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris"))),
+             nrow = 1) +
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") +
+  ylab(expression(NPP~(kg~C~m^{-2}~year^{-1}))) + 
+  xlab("") + 
+  theme_bw() + 
+    theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face="italic")
+  ) 
+```
+
+```{r}
+npp <- bind_rows(
+  (dnpp |> mutate(set = "old")),
+  (dnpp2 |> mutate(set = "modify")) 
+)
+
+colours_modify <- c("old" = "blue", "modify" ="orange")
+npp |> 
+  ggplot(aes(x=date, y=npp, group=set, colour=set, fill=set)) +
+  geom_line() + 
+  facet_wrap(~sp_elev) + 
+  scale_fill_manual(values=colours_modify, name="") +
+  scale_colour_manual(values=colours_modify, name="") + 
+    theme_bw()
+```
+
+### Conclusion 
+- Uso los datos de las nuevas posiciones. Para ello los preproceso y los guardo: 
+```{r}
+raw2 <- read_csv(here::here("data/raw/remote_sensing/comparisons/modify_mod13q1_iv_c61.csv"))
+
+iv_raw  <- raw2 |>
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify"))
+
+
+npp_raw <- read_csv(here::here("data/raw/remote_sensing/comparisons/modify_mod17a3_yearly_c61_gpp_npp.csv")) |>
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify")) |> 
+    mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  ))
+
+
+write_csv(npp_raw, here::here("data/raw/remote_sensing/npp_mod17a3_yearly_c61.csv")) 
+write_csv(iv_raw, here::here("data/raw/remote_sensing/iv_mod13q1_c61.csv")) 
+```
+
+- Para NPP no cambia de pixel: halepensis_medium
+- NPP cambia el pixel pero no la NPP en el halepensis_low
+- cambia el pixel y el NPP para syl_high 
+
+
+
