@@ -528,20 +528,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreefe25584fbb573f06d7a0eed5aea8d085656b87cbtargetblankfe25584a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeb9ef34d4a06e2a7d61ec165253fa27c6177383batargetblankb9ef34da">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/fe25584fbb573f06d7a0eed5aea8d085656b87cb" target="_blank">fe25584</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/b9ef34d4a06e2a7d61ec165253fa27c6177383ba" target="_blank">b9ef34d</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreefe25584fbb573f06d7a0eed5aea8d085656b87cbtargetblankfe25584a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeb9ef34d4a06e2a7d61ec165253fa27c6177383batargetblankb9ef34da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/fe25584fbb573f06d7a0eed5aea8d085656b87cb" target="_blank">fe25584</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/b9ef34d4a06e2a7d61ec165253fa27c6177383ba" target="_blank">b9ef34d</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -563,6 +563,7 @@ Ignored files:
 
 Untracked files:
     Untracked:  analysis/figura_npp_etp.Rmd
+    Untracked:  analysis/general_scheme.Rmd
     Untracked:  data/geoinfo/Archive2.zip
     Untracked:  data/geoinfo/modify_points.csv
     Untracked:  data/geoinfo/modify_points.qmd
@@ -573,6 +574,7 @@ Untracked files:
     Untracked:  data/geoinfo/modify_position_points_modis.shp
     Untracked:  data/geoinfo/modify_position_points_modis.shx
     Untracked:  data/image_grids/
+    Untracked:  data/levels_site.csv
     Untracked:  data/raw/remote_sensing/comparisons/
     Untracked:  data/raw/remote_sensing/iv_mod13q1_c61.csv
     Untracked:  data/raw/remote_sensing/npp_mod17a3_yearly_c61.csv
@@ -580,6 +582,7 @@ Untracked files:
 
 Unstaged changes:
     Modified:   analysis/climate_analysis.Rmd
+    Modified:   analysis/compile_database.Rmd
     Modified:   analysis/figure_ts_dendro_remote.Rmd
     Modified:   analysis/remote_sensing_iv.Rmd
     Modified:   analysis/scripts.Rmd
@@ -609,10 +612,12 @@ Unstaged changes:
     Modified:   data/bai/7BAI_PINI_low.csv
     Modified:   data/bai/8BAI_PINI_high.csv
     Modified:   data/bai/9BAI_PISY_low.csv
+    Modified:   data/dendroadaptamed_iv_modis.csv
     Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.dbf
     Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.qix
     Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp
     Modified:   data/geoinfo/geoinfo_dendro_adaptamed_pinus.shx
+    Modified:   data/raw/remote_sensing/iv_landsat_c02.csv
     Deleted:    data/raw/remote_sensing/iv_mod13q1.csv
     Modified:   data/rw/10RW_PISY_med.csv
     Modified:   data/rw/11RW_PISY_high.csv
@@ -677,6 +682,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/b9ef34d4a06e2a7d61ec165253fa27c6177383ba/analysis/remote_sensing_modify_comparison.Rmd" target="_blank">b9ef34d</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-09
+</td>
+<td>
+wflow_publish("analysis/remote_sensing_modify_comparison.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/a4809ab164accf50cb00a924a1abbe6cb7f0bb73/docs/remote_sensing_modify_comparison.html" target="_blank">a4809ab</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/fe25584fbb573f06d7a0eed5aea8d085656b87cb/analysis/remote_sensing_modify_comparison.Rmd" target="_blank">fe25584</a>
 </td>
 <td>
@@ -711,8 +750,11 @@ library(hydroTSM)
 library(DiagrammeR)
 source(&quot;scripts/aux.R&quot;)
 cols &lt;- c(&quot;low&quot; = &quot;red&quot;, &quot;low2&quot; =&quot;orange&quot;, &quot;med&quot; = &quot;blue&quot;, &quot;high&quot; = &quot;darkgreen&quot;)</code></pre>
-<div id="modis-data" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> MODIS data</h2>
+</div>
+<div id="modis-data" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> MODIS data</h1>
+<div id="iv" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> IV</h2>
 <pre class="r"><code>raw &lt;- read_csv(here::here(&quot;data/raw/remote_sensing/comparisons/iv_mod13q1.csv&quot;))
 elev_cat &lt;- read_csv(here::here(&quot;data/categories_elevation_site_code.csv&quot;))
 
@@ -830,6 +872,43 @@ ivy |&gt;
     strip.text = element_text(face=&quot;italic&quot;)
   )</code></pre>
 <p><img src="figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
+Past versions of unnamed-chunk-6-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-6-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a4809ab164accf50cb00a924a1abbe6cb7f0bb73/docs/figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-6-1.png" target="_blank">a4809ab</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>colours_modify &lt;- c(&quot;old&quot; = &quot;blue&quot;, &quot;modify&quot; =&quot;orange&quot;)
 ivy |&gt; 
   filter(variable == &quot;evi&quot;) |&gt;  
@@ -841,9 +920,46 @@ ivy |&gt;
   scale_colour_manual(values=colours_modify, name=&quot;&quot;) + 
     theme_bw()</code></pre>
 <p><img src="figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
+Past versions of unnamed-chunk-7-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-7-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a4809ab164accf50cb00a924a1abbe6cb7f0bb73/docs/figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-7-1.png" target="_blank">a4809ab</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-09
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="npp" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> NPP</h2>
+</div>
+</div>
+<div id="npp" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> NPP</h2>
 <pre class="r"><code>raw_npp &lt;- read_csv(here::here(&quot;data/raw/remote_sensing/comparisons/old_mod17a3_yearly_c61_gpp_npp.csv&quot;)) |&gt; 
     mutate(elev_code = case_when(
     elev_code == &quot;low2&quot; ~ &quot;low-Dec&quot;, 
@@ -889,6 +1005,43 @@ dnpp &lt;- d |&gt;
     strip.text = element_text(face=&quot;italic&quot;)
   ) </code></pre>
 <p><img src="figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
+Past versions of unnamed-chunk-9-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-9-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a4809ab164accf50cb00a924a1abbe6cb7f0bb73/docs/figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-9-1.png" target="_blank">a4809ab</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>raw_npp2 &lt;- read_csv(here::here(&quot;data/raw/remote_sensing/comparisons/modify_mod17a3_yearly_c61_gpp_npp.csv&quot;)) |&gt;
   filter(site_code != &quot;PIHAL_NACIMIENTO_L&quot;) |&gt; 
   filter(site_code != &quot;PIHAL_NACIMIENTO_M&quot;) |&gt; 
@@ -938,6 +1091,43 @@ dnpp2 &lt;- d2 |&gt;
     strip.text = element_text(face=&quot;italic&quot;)
   ) </code></pre>
 <p><img src="figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a4809ab164accf50cb00a924a1abbe6cb7f0bb73/docs/figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-11-1.png" target="_blank">a4809ab</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>npp &lt;- bind_rows(
   (dnpp |&gt; mutate(set = &quot;old&quot;)),
   (dnpp2 |&gt; mutate(set = &quot;modify&quot;)) 
@@ -952,8 +1142,45 @@ npp |&gt;
   scale_colour_manual(values=colours_modify, name=&quot;&quot;) + 
     theme_bw()</code></pre>
 <p><img src="figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
-<div id="conclusion" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Conclusion</h3>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
+Past versions of unnamed-chunk-12-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-12-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a4809ab164accf50cb00a924a1abbe6cb7f0bb73/docs/figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-12-1.png" target="_blank">a4809ab</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-09
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="conclusion" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Conclusion</h3>
 <ul>
 <li>Uso los datos de las nuevas posiciones. Para ello los preproceso y los guardo:</li>
 </ul>
@@ -984,6 +1211,150 @@ write_csv(iv_raw, here::here(&quot;data/raw/remote_sensing/iv_mod13q1_c61.csv&qu
 <li>NPP cambia el pixel pero no la NPP en el halepensis_low</li>
 <li>cambia el pixel y el NPP para syl_high</li>
 </ul>
+</div>
+</div>
+</div>
+<div id="iv-landsat" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> IV Landsat</h1>
+<pre class="r"><code>landsat &lt;- read_csv(&quot;data/raw/remote_sensing/comparisons/old_iv_landsat_c02.csv&quot;) |&gt; 
+  rename(evi = EVI, ndvi = NDVI, site_code = label, image = `system:index`) |&gt; 
+  dplyr::select(-`.geo`) |&gt; 
+  mutate(date = as.Date(as.character(date), format=&quot;%Y%m%d&quot;)) |&gt; 
+  mutate(year = lubridate::year(date), 
+         month = lubridate::month(date)) |&gt; 
+  filter(year != 2023) |&gt; 
+  inner_join(geodf)
+
+evilandsat &lt;- landsat |&gt; 
+  filter(!is.na(evi)) |&gt; 
+  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
+  summarise(mean = mean(evi, na.rm = TRUE), 
+            sd = sd(evi, na.rm = TRUE), 
+            se = sd/sqrt(length(evi)),
+            cv = sd/mean*100,
+            median = median(evi, na.rm=TRUE),
+            sum = sum(evi, na.rm=TRUE),
+            min = min(evi), 
+            max = max(evi),
+            n = length(evi))
+
+ndvilandsat &lt;- landsat |&gt; 
+  filter(!is.na(ndvi)) |&gt; 
+  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi))
+
+iv_landsat &lt;- bind_rows(
+  (ndvilandsat |&gt; mutate(iv = &quot;ndvi&quot;)), 
+  (evilandsat |&gt; mutate(iv = &quot;evi&quot;)))
+
+
+plot_iv_landsat &lt;- iv_landsat |&gt;
+  filter(iv == &quot;evi&quot;) |&gt; 
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
+  geom_line() +
+  geom_point() +
+  theme_bw() +
+  ylab(&quot;Annual EVI (Landast 30-m)&quot;) +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0), 
+                              face = &quot;italic&quot;),
+    plot.background = element_rect(fill = &quot;transparent&quot;), 
+    legend.position = &quot;bottom&quot;
+  ) +
+    scale_colour_manual(values = colours_elev, name = &quot;&quot;) +
+    scale_fill_manual(values = colours_elev, name=&quot;&quot;) + 
+  facet_wrap(~factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;)), nrow = 1) +
+  ggtitle(&quot;old&quot;)
+
+plot_iv_landsat</code></pre>
+<p><img src="figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>landsat2 &lt;- read_csv(&quot;data/raw/remote_sensing/comparisons/iv_landsat_c02_modify.csv&quot;) |&gt; 
+  rename(evi = EVI, ndvi = NDVI, image = `system:index`) |&gt; 
+  dplyr::select(image, evi, ndvi, date, site_code) |&gt; 
+  mutate(date = as.Date(as.character(date), format=&quot;%Y%m%d&quot;)) |&gt; 
+  mutate(year = lubridate::year(date), 
+         month = lubridate::month(date)) |&gt; 
+  filter(year != 2023) |&gt; 
+  filter(site_code != &quot;PIHAL_NACIMIENTO_L&quot;) |&gt; 
+  filter(site_code != &quot;PIHAL_NACIMIENTO_M&quot;) |&gt; 
+  filter(site_code != &quot;PISYL_PORTUGOS_H&quot;) |&gt; 
+  mutate(site_code = str_remove(site_code, &quot;modify&quot;)) |&gt; 
+  # dplyr::select(-elev_code, -Specie, -site_name, -sp_code, -LAI, -elev, -pies, ) |&gt; 
+  inner_join(geodf, by = &quot;site_code&quot;)
+
+evilandsat2 &lt;- landsat2 |&gt; 
+  filter(!is.na(evi)) |&gt; 
+  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
+  summarise(mean = mean(evi, na.rm = TRUE), 
+            sd = sd(evi, na.rm = TRUE), 
+            se = sd/sqrt(length(evi)),
+            cv = sd/mean*100,
+            median = median(evi, na.rm=TRUE),
+            sum = sum(evi, na.rm=TRUE),
+            min = min(evi), 
+            max = max(evi),
+            n = length(evi))
+
+ndvilandsat2 &lt;- landsat2 |&gt; 
+  filter(!is.na(ndvi)) |&gt; 
+  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi))
+
+iv_landsat2 &lt;- bind_rows(
+  (ndvilandsat2 |&gt; mutate(iv = &quot;ndvi&quot;)), 
+  (evilandsat2 |&gt; mutate(iv = &quot;evi&quot;)))
+
+
+plot_iv_landsat2 &lt;- iv_landsat2 |&gt;
+  filter(iv == &quot;evi&quot;) |&gt; 
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
+  geom_line() +
+  geom_point() +
+  theme_bw() +
+  ylab(&quot;Annual EVI (Landast 30-m)&quot;) +
+  theme(
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0), 
+                              face = &quot;italic&quot;),
+    plot.background = element_rect(fill = &quot;transparent&quot;), 
+    legend.position = &quot;bottom&quot;
+  ) +
+    scale_colour_manual(values = colours_elev, name = &quot;&quot;) +
+    scale_fill_manual(values = colours_elev, name=&quot;&quot;) + 
+  facet_wrap(~factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;)), nrow = 1) +
+  ggtitle(&quot;modify&quot;)
+
+plot_iv_landsat2</code></pre>
+<p><img src="figure/remote_sensing_modify_comparison.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Uso los datos de las nuevas posiciones. Para ello los preproceso y los guardo:</li>
+</ul>
+<pre class="r"><code>raw_landsat  &lt;- read_csv(&quot;data/raw/remote_sensing/comparisons/iv_landsat_c02_modify.csv&quot;) |&gt; 
+  filter(site_code != &quot;PIHAL_NACIMIENTO_L&quot;) |&gt; 
+  filter(site_code != &quot;PIHAL_NACIMIENTO_M&quot;) |&gt; 
+  filter(site_code != &quot;PISYL_PORTUGOS_H&quot;) |&gt; 
+  mutate(site_code = str_remove(site_code, &quot;modify&quot;))
+
+write_csv(raw_landsat, here::here(&quot;data/raw/remote_sensing/iv_landsat_c02.csv&quot;)) </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1038,8 +1409,6 @@ loaded via a namespace (and not attached):
 [69] extraDistr_1.10.0  httpuv_1.6.15      bslib_0.7.0        class_7.3-22      
 [73] Rcpp_1.0.12        svglite_2.1.3      whisker_0.4.1      xfun_0.43         
 [77] fs_1.6.3           getPass_0.2-4      pkgconfig_2.0.3   </code></pre>
-</div>
-</div>
 </div>
 </div>
 
