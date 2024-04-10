@@ -50,8 +50,8 @@ evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |>
 
 df <- bind_rows(
   abi, evi_landsat, evi_modis, npp) |> 
-  mutate(elev_code = fct_recode(elev_code, `low-D` = "low2")) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high"))
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
 
 ```
 
@@ -86,8 +86,8 @@ mk_abi <- abi |>
 
 mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |> 
   mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
-  mutate(elev_code = fct_recode(elev_code, `low-D` = "low2")) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high"))
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
 ```
 
 
@@ -102,7 +102,7 @@ to_label <- as_labeller(c(
 fig_ts <- df |> 
   filter(variable != "evi_modis") |>
   mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-D","low", "medium", "high")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   ggplot(aes(x = year, y = mean, group = elev_code, colour = elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
   geom_line() +
@@ -147,21 +147,25 @@ ggsave(
 
 ## Comparisons among variables
 ```{r, fig.height=5, fig.width=5}
+## Revisar 
 label_landsat <- "Annual~EVI[Landsat]"
 label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
 label_abi <- "ABI~(g~C~m^2~year^{-1})"
 
 
-abi_npp<- df |> filter(variable %in% c("abi", "npp")) |> 
-  pivot_wider(values_from = mean, names_from = variable)
+abi_npp <- df |> filter(variable %in% c("abi", "npp")) |> 
+  pivot_wider(values_from = mean, names_from = variable) |> 
+  filter(year > 1999) |> 
+  filter(!is.na(abi)) |> 
+  filter(!is.na(npp))
+
 
 lm_abi_npp <- lm(npp ~ abi, data=abi_npp)
 
 abi_npp |> 
   filter(year > 1999) |> 
-  ggplot(aes(x=abi, y = npp, colour = sp_code)) + 
+  ggplot(aes(x=npp, y = abi, colour = sp_code)) + 
   geom_point(aes(shape = elev_code, fill = sp_code)) +
-  geom_abline(slope = 1) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
@@ -169,12 +173,39 @@ abi_npp |>
     theme(
     panel.grid = element_blank(), 
     legend.background = element_blank(),
-    legend.position = c(.8,.35)
+    legend.position = c(.1,.7)
   ) +
-  xlab(parse(text=label_abi)) +
-  ylab(parse(text=label_npp)) 
+  ylab(parse(text=label_abi)) +
+  xlab(parse(text=label_npp)) 
 
-
+# 
+# model <- lm(abi ~ npp, data = abi_npp)
+# segmented_model <- segmented(model, seg.Z = ~npp)
+# 
+# seg_preds <- as.vector(predict(segmented_model))
+# seg_res <- abi_npp$abi - seg_preds
+# 
+# 
+# abi_npp <- abi_npp |> 
+#   rowwise() |> 
+#   mutate(seg_preds = predict(segmented_model))
+# 
+# 
+# # Plot the original data with the fitted model
+# plot(
+#   abi_npp$npp, abi_npp$abi,
+#   main = "Piecewise Regression Fit",
+#   xlab = "Independent Variable (x)",
+#   ylab = "Dependent Variable (y)",
+#   col = "blue"
+# )
+# lines(abi_npp$npp, seg_preds,col = "red", lwd = 2)
+# 
+# 
+# 
+# ggg <- data.frame(npp = abi_npp$npp, 
+#                   abi = abi_npp$abi)
+# ggg$seg = seg_preds
 
 
 abi_evi <- df |> 
@@ -186,21 +217,21 @@ lm_abi <- lm(evi_landsat ~ abi, data=abi_evi)
 
 abi_evi |> 
   filter(year > 1999) |> 
-  ggplot(aes(x=abi, y = evi_landsat)) + 
+  ggplot(aes(x=evi_landsat, y = abi)) + 
   geom_point(aes(shape = elev_code, fill = sp_code, colour = sp_code)) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
   theme_bw() +
-  scale_x_continuous(limits = c(0,500)) + 
-  scale_y_continuous(limits = c(0,.5)) +
+  scale_y_continuous(limits = c(0,500)) + 
+  scale_x_continuous(limits = c(0,.5)) +
   # geom_abline(slope = coef(lm_abi)[["abi"]], 
   #             intercept = coef(lm_abi)[["(Intercept)"]]) +
-  geom_abline(slope = 0.001, colour = "gray") + 
+  # geom_abline(slope = 0.001, colour = "gray") + 
   theme(
     panel.grid = element_blank(), 
     legend.background = element_blank(),
-    legend.position = c(0.6,0.15)
+    legend.position = c(0.3,0.8)
   ) +
   xlab(parse(text=label_abi)) +
   ylab(parse(text=label_landsat)) +
@@ -218,8 +249,8 @@ abi_evi |>
       nrow = 1
     ),
     fill = "none" # Remove the fill legend
-  )
-
+  ) +
+   geom_smooth(method = "lm", aes(fill = sp_code, colour = sp_code), se=FALSE) 
 
  # stat_cor(label.y = .48, 
  #           aes(label = paste(..rr.label.., ..p.label.., sep = "~`,`~"))) +
@@ -230,4 +261,38 @@ abi_evi |>
 
 ```
 
+
+```{r}
+npp_evi <- df |> 
+  filter(variable %in% c("npp", "evi_landsat")) |> 
+  dplyr::select(-se, -sd) |> 
+  pivot_wider(values_from = mean, names_from = variable) 
+
+
+init <- as.data.frame(t(getInitial(npp ~ SSlogis(evi_landsat, Asym, xmid, scal), data = npp_evi)))
+
+
+
+npp_evi |> 
+  ggplot(aes(x=evi_landsat, y = npp)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code, colour = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    legend.background = element_blank(),
+  ) +
+  ylab(parse(text=label_npp)) +
+  xlab(parse(text=label_landsat)) +
+  geom_smooth(method = "lm", aes(fill = sp_code, colour = sp_code), se=FALSE, size =.7) +
+  geom_smooth(method = "nls", 
+              aes(), 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              se =  FALSE, # this is important 
+              method.args =list(start=init,
+                                control=nls.control(maxiter=1000)), 
+              colour = "black")
+```
 

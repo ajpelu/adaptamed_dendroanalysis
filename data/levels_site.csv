@@ -1,0 +1,14 @@
+sp_elev,sp_code,elev_code,elev,site_code,Specie
+nigra_medium,nigra,medium,1646,PINIG_LANTEIRA_M,P. nigra
+nigra_low,nigra,low,1585,PINIG_LANTEIRA_L2,P. nigra
+nigra_high,nigra,high,1810,PINIG_LANTEIRA_H,P. nigra
+pinaster_low-Dec,pinaster,low-Dec,1433,PIPIN_LANTEIRA_L2,P. pinaster
+pinaster_low,pinaster,low,1353,PIPIN_JEREZ_L,P. pinaster
+pinaster_medium,pinaster,medium,1605,PIPIN_JEREZ_M,P. pinaster
+pinaster_high,pinaster,high,1770,PIPIN_JEREZ_H,P. pinaster
+sylvestris_low,sylvestris,low,1633,PISYL_PORTUGOS_L,P. sylvestris
+sylvestris_medium,sylvestris,medium,1748,PISYL_PORTUGOS_M,P. sylvestris
+halepensis_high,halepensis,high,1359,PIHAL_RAGUA_H,P. halepensis
+halepensis_medium,halepensis,medium,1212,PIHAL_NACIMIENTO_M,P. halepensis
+halepensis_low,halepensis,low,974,PIHAL_NACIMIENTO_L,P. halepensis
+sylvestris_high,sylvestris,high,2000,PISYL_PORTUGOS_H,P. sylvestris

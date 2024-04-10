@@ -289,8 +289,6 @@ temp_prec_sp_elev
 
 - Compute statistical comparisons among sites for `tmed` and `prec`.
 - We compared the differences among elev, among sps and also within sps. 
-
-#### Tmed
 - we applied a parametric tests (anova)
 
 ```{r}
@@ -411,6 +409,26 @@ by_sp  |>
     kable_paper("hover", full_width = F)
 ```
 
+
+```{r}
+library(ggpubr)
+
+tmed_yearly |> 
+  filter(elev_code != "low-Dec") |> 
+  ggplot(aes(x=factor(elev_code, levels=c('low', 'low-Dec', 'medium', 'high')), y = avg)) +
+  geom_violin() +
+  geom_jitter()
+
+ 
+
+ggboxplot(tmed_yearly, x = "elev_code", y = "avg", add = "jitter")
+
+
+p <- ggboxplot(df, x = "dose", y = "len",
+                color = "dose", palette =c("#00AFBB", "#E7B800", "#FC4E07"),
+                add = "jitter", shape = "dose")
+ p
+```
 
 
 

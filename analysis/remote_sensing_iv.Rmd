@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 ```
 
 # Aims
-- Prepare temporal series of IV for each field-plot 
+- Compute trends of IV from MODIS and LANDSAT
 
 ```{r pkg}
 library(here)
@@ -22,105 +22,24 @@ library(Kendall)
 library(trend)
 library(kableExtra)
 library(DT)
-library(hydroTSM)
 library(DiagrammeR)
 source("scripts/aux.R")
 cols <- c("low" = "red", "low2" ="orange", "med" = "blue", "high" = "darkgreen")
 ```
 
 # MODIS data 
-## Prepare data 
-
-- Select data for *Pinus* field plot
-- Extract date of each image
-- Format NDVI and EVI values (multiply for scale factor 0.0001; see this [link](https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD13Q1)) 
-- Compute statistics (*mean*, *sd*, *se*, *cv*, ...) for each IV indexes grouping by year for each field-plot. 
-
-```{r prepare-data}
-raw <- read_csv(here::here("data/raw/remote_sensing/iv_mod13q1.csv"))
-elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv"))
-
-
-# Filter only Pinus field plot 
-d_raw <- raw |>
-  #filter(str_detect(Specie, "Pinu")) |>
-  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
-                        format = "%Y-%m-%d"),
-         evi = EVI*0.0001,
-         ndvi = NDVI*0.0001) |>
-  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
-
-
-geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
-  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
-  dplyr::select(sp_elev, elev, site_code) |> 
-  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) 
-
-d <- inner_join(d_raw, geodf)
-```
-
 
 ```{r}
-iv_yearly <- d |>
-  mutate(year=lubridate::year(date)) |> 
-  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |> 
-  pivot_longer(cols = c("ndvi", "evi"), 
-               names_to = 'variable', values_to = 'value') |> 
-  group_by(site_code, Specie, year, sp_elev, variable) |> 
-  summarise(mean = mean(value, na.rm = TRUE), 
-            sd = sd(value, na.rm = TRUE), 
-            se = sd/sqrt(length(value)),
-            cv = sd/mean*100,
-            median = median(value, na.rm=TRUE),
-            sum = sum(value, na.rm=TRUE),
-            min = min(value), 
-            max = max(value),
-            n = length(value)) |> 
-  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
-  inner_join(elev_cat) |> 
-  mutate(season = as.factor("yearly")) |> 
-  ungroup() |> 
-  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
-```
-
-### Summary data
-
-```{r}
-nsize_years_gral <- d_raw |> group_by(site_code, Specie) |> count() |> dplyr::select(n) |> pull() |> unique()
-
-nsize_years <- d_raw |> mutate(year = lubridate::year(date)) |>
-  group_by(site_code, Specie, year) |>
-  count() |> 
-  filter(site_code == "PIHAL_NACIMIENTO_L") |> dplyr::select(n) |> pull() |> unique()
-
-```
-
-How many images are there in total and by year?: 
-
-- For each site there are a total of `r nsize_years_gral` images. 
-
-- All the years have `r max(nsize_years)` images except the year 2000 having `r min(nsize_years)` images. 
-
-```{r, eval=FALSE, results="asis", echo=FALSE}
-d |> group_by(Specie, elev_code) |> count() |> 
-  DT::datatable(rownames = FALSE)
-
-cat("<table width=100%>", paste0("<caption>",
-                      "(#tab:mytab)",
-                      #"caption",
-                      "Sample size (images number) for each field plot.",
-                      "</caption>"),
-                      "</table>", sep ="\n")
+iv_modis <- read_csv("data/dendroadaptamed_iv_modis.csv")
 ```
 
 ## Compute Temporal trends
 
-We explored the temporal trends for both the annual average (Table \@ref(tab:mk-mean)) and also the standard deviation of the EVI along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator. 
+We explored the temporal trends for both the seasonal averages (Table \@ref(tab:mk-season-table)) and also the standard deviation of the EVI along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator. 
 
-Significant but weaker positive trends (p-value < 0.05) were observed for annual EVI mean of the high-elevation sites of *P. nigra* and *P. pinaster* (Table \@ref(tab:mk-mean)). 
 
-```{r}
-mkevi_yearly <- iv_yearly |> 
+```{r mk-season}
+mkevi <- iv_modis |> 
   filter(variable == "evi")  |> 
   ungroup() |> 
   group_by(site_code, sp_elev, Specie, elev_code, sp_code, season) |> 
@@ -131,10 +50,44 @@ mkevi_yearly <- iv_yearly |>
 
 ```
 
+```{r mk-season-table}
+mkevi |> 
+  ungroup() |> 
+  dplyr::select(Specie,  elev_code, season, dplyr::starts_with("mean")) |>
+  rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) |> 
+  kbl(
+    digits = c(0,0,0,3,4,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") |> 
+    kable_paper("hover", full_width = F) |> 
+  column_spec(4:5, bold = ifelse(mkevi$mean_pvalue_mk < 0.05, TRUE, FALSE)) |> 
+  collapse_rows(columns = 1:2)
+```
 
-```{r plot-evi, fig.cap="Temporal evolution of EVI annual mean.", fig.width=8}
-iv_yearly |> 
-  filter(variable == "evi") |>  
+
+```{r}
+mk <- mkevi |> 
+  mutate(ypos = 
+           case_when(
+             elev_code == "low" ~ 0.43,
+             elev_code == "low-Dec" ~ 0.4,
+             elev_code == "medium" ~ 0.46,
+             elev_code == "high" ~ 0.49), 
+         p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
+               cutpoints = c(0,  .001,.01,.05, 1),
+               symbols = c("***","**","*",""))) |> 
+  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 2), p_value_string, '"'))) 
+```
+
+
+
+```{r plot-evi}
+#| fig.cap: "Temporal evolution of EVI annual mean."
+#| fig.width: 8
+
+iv_modis |> 
+  filter(variable == "evi") |> 
+  filter(season == "yearly") |> 
   ggplot(aes(x=year, y=mean, colour=elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
   geom_line() + 
@@ -149,124 +102,32 @@ iv_yearly |>
     # panel.grid.major.x = element_blank(),
     strip.background = element_rect(fill=NA), 
     strip.text = element_text(face="italic")
-  )
-```
+  ) + 
+  geom_text(x = 2002, aes(y = ypos, 
+                          label = taulabel), 
+            data = (mk |> filter(season == "yearly")), 
+            parse = TRUE, show.legend = FALSE, hjust = "left")
 
 
-
-```{r mk-mean}
-mkevi_yearly |> 
-  ungroup() |> 
-  dplyr::select(Specie, elev_code, dplyr::starts_with("mean")) |> rename_with(.cols=dplyr::starts_with("mean"),
-            ~str_replace(., "mean_", "")) |> 
-  kbl(
-    digits = c(0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") |> 
-    kable_paper("hover", full_width = F)
-```
-
-
-```{r mk-sd, eval=FALSE}
-mkevi_yearly |> 
-  dplyr::select(site_code, dplyr::starts_with("sd")) |> rename_with(.cols=dplyr::starts_with("sd"),
-            ~str_replace(., "sd", "")) |> 
-  kbl(
-    digits = c(0,3,4,4,4),
-    caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") |> 
-    kable_paper("hover", full_width = F)
-```
-
-- We also computed the seasonal trends for the EVI index (Table \@ref(tab:mk-season))
-
-```{r}
-iv_season <- d |> 
-  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt="seasons"))) |> 
-  mutate(year=lubridate::year(date)) |> 
-  dplyr::select(site_code, Specie, year, season, evi, ndvi) |> 
-  pivot_longer(cols = c("ndvi", "evi"), 
-               names_to = 'variable', values_to = 'value') |> 
-  group_by(site_code, Specie, year, season, variable) |> 
-  summarise(mean = mean(value, na.rm = TRUE), 
-            sd = sd(value, na.rm = TRUE), 
-            se = sd/sqrt(length(value)),
-            cv = sd/mean*100,
-            median = median(value, na.rm=TRUE),
-            sum = sum(value, na.rm=TRUE),
-            min = min(value), 
-            max = max(value),
-            n = length(value)) |> 
-  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
-  inner_join(geodf) |> 
-  ungroup() |> 
-  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
-
-```
-
-
-```{r}
-mkevi_season <- iv_season |> 
-  filter(variable == "evi")  |> 
-  ungroup() |> 
-  group_by(site_code, Specie, sp_code, elev_code, season, sp_elev) |> 
-  summarise(across(mean:sd, ~MannKendall(.)$tau, .names ="{.col}_tau"),
-            across(mean:sd, ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
-            across(mean:sd, ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
-            across(mean:sd, ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen"))
-
-```
-
-
-```{r mk-season}
-mkevi_season |> 
-  ungroup() |> 
-  dplyr::select(Specie, elev_code, season, dplyr::starts_with("mean")) |>
-  rename_with(.cols=dplyr::starts_with("mean"),
-            ~str_replace(., "mean_", "")) |> 
-  kbl(
-    digits = c(0,0,0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") |> 
-    kable_paper("hover", full_width = F)
-```
-
-
-```{r, eval=FALSE}
-mkevi_season |> 
-  dplyr::select(site_code, season, dplyr::starts_with("sd")) |> rename_with(.cols=dplyr::starts_with("sd"),
-            ~str_replace(., "sd_", "")) |> 
-  kbl(
-    digits = c(0,0,0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for anual EVI standard deviation") |> 
-    kable_paper("hover", full_width = F)
 
 ```
 
 
 
-```{r}
-mk <- bind_rows(mkevi_season, mkevi_yearly) |> 
-  mutate(ypos = 
-           case_when(
-             elev_code == "low" ~ 0.4,
-             elev_code == "low2" ~ 0.35,
-             elev_code == "medium" ~ 0.45,
-             elev_code == "high" ~ 0.5), 
-         p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
-               cutpoints = c(0,  .001,.01,.05, 1),
-               symbols = c("***","**","*",""))) |> 
-  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 2), p_value_string, '"')))
+```{r plot-evi-season}
+#| fig.cap: "Temporal evolution of EVI (MODIS) seasonal mean."
+#| fig.width: 8
+#| fig.height: 10
 
-```
-
-
-```{r plot-evi-season, fig.cap="Temporal evolution of EVI (MODIS) seasonal mean.", fig.width=8, fig.height=10}
-plot_iv_modis <- bind_rows(iv_season, iv_yearly) |> 
-  mutate(season = fct_relevel(season, c("yearly", "winter","spring","summer","autumn"))) |> 
+plot_iv_modis_all_season <-
+  iv_modis |> 
+  mutate(elev_code = fct_relevel(elev_code, c("high","medium","low", "low-Dec"))) |> 
   filter(variable == "evi") |>  
   ggplot(aes(x=year, y=mean, colour=elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
   geom_line() + 
   #geom_point() + 
-  facet_grid(season~
+  facet_grid(fct_relevel(season, c("yearly", "winter","spring","summer","autumn"))~
     factor(Specie, levels = c("P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris"))) +
   scale_fill_manual(values=colours_elev, name="") +
   scale_colour_manual(values=colours_elev, name="") + 
@@ -281,12 +142,54 @@ plot_iv_modis <- bind_rows(iv_season, iv_yearly) |>
   ) +
   geom_text(x = 2002, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = "left")
 
-plot_iv_modis
-
+plot_iv_modis_all_season 
 
 ggsave(
-  plot_iv_modis, 
-  file = "output/iv_modis_trend.png",
+  plot_iv_modis_all_season , 
+  file = "output/iv_modis_trend_all_season.png",
+  dpi = 300,
+  width = 12, height = 12
+)
+```
+
+
+
+```{r}
+#| fig.cap: "Temporal evolution of yearly, winter and summer EVI (MODIS)."
+#| fig.width: 8
+#| fig.height: 10
+
+plot_iv_modis_yearwintersummer <-
+  iv_modis |> 
+  filter(season %in% c("yearly", "winter", "summer")) |> 
+  mutate(elev_code = fct_relevel(elev_code, c("high","medium","low", "low-Dec"))) |> 
+  filter(variable == "evi") |>  
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_grid(fct_relevel(season, c("yearly", "winter","summer"))~
+    factor(Specie, levels = c("P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris"))) +
+  scale_fill_manual(values=colours_elev, name="") +
+  scale_colour_manual(values=colours_elev, name="") + 
+  theme_bw() +
+  ylab("EVI seasonal mean") + xlab("") +
+  theme(
+    legend.position = "bottom",
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text.x = element_text(face="italic")
+  ) +
+  geom_text(x = 2002, aes(y = ypos, label = taulabel), 
+            data = (mk |>  filter(season %in% c("yearly", "winter", "summer"))), 
+            parse = TRUE, show.legend = FALSE, hjust = "left")
+
+plot_iv_modis_yearwintersummer
+
+ggsave(
+  plot_iv_modis_yearwintersummer, 
+  file = "output/iv_modis_trend_selected_season.png",
   dpi = 300,
   width = 12, height = 12
 )
@@ -294,55 +197,13 @@ ggsave(
 
 ```{r}
 write_csv(mk, "data/dendroadaptamed_iv_modis_trend.csv")
-write_csv(bind_rows(iv_season, iv_yearly), "data/dendroadaptamed_iv_modis.csv")
 ```
 
 
-
-# Long-term high-spatial resolution Landsat (harmonized)
-
-```{r}
-landsat <- read_csv("data/raw/remote_sensing/iv_landsat_c02.csv") |> 
-  rename(evi = EVI, ndvi = NDVI, site_code = label, image = `system:index`) |> 
-  dplyr::select(-`.geo`) |> 
-  mutate(date = as.Date(as.character(date), format="%Y%m%d")) |> 
-  mutate(year = lubridate::year(date), 
-         month = lubridate::month(date)) |> 
-  filter(year != 2023) |> 
-  inner_join(geodf)
-
-```
+# Landsat Data 
 
 ```{r}
-evilandsat <- landsat |> 
-  filter(!is.na(evi)) |> 
-  group_by(sp_elev, sp_code, elev_code, year) |> 
-  summarise(mean = mean(evi, na.rm = TRUE), 
-            sd = sd(evi, na.rm = TRUE), 
-            se = sd/sqrt(length(evi)),
-            cv = sd/mean*100,
-            median = median(evi, na.rm=TRUE),
-            sum = sum(evi, na.rm=TRUE),
-            min = min(evi), 
-            max = max(evi),
-            n = length(evi))
-
-ndvilandsat <- landsat |> 
-  filter(!is.na(ndvi)) |> 
-  group_by(sp_elev, sp_code, elev_code, year) |> 
-  summarise(mean = mean(ndvi, na.rm = TRUE), 
-            sd = sd(ndvi, na.rm = TRUE), 
-            se = sd/sqrt(length(ndvi)),
-            cv = sd/mean*100,
-            median = median(ndvi, na.rm=TRUE),
-            sum = sum(ndvi, na.rm=TRUE),
-            min = min(ndvi), 
-            max = max(ndvi),
-            n = length(ndvi))
-
-iv_landsat <- bind_rows(
-  (ndvilandsat |> mutate(iv = "ndvi")), 
-  (evilandsat |> mutate(iv = "evi")))
+iv_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") 
 ```
 
 
@@ -378,15 +239,43 @@ mkevi_landsat <- iv_landsat |>
   mutate(ypos = 
            case_when(
              elev_code == "low" ~ 0.45,
-             elev_code == "low2" ~ 0.425,
+             elev_code == "low-Dec" ~ 0.425,
              elev_code == "medium" ~ 0.475,
              elev_code == "high" ~ 0.5), 
          p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
                symbols = c("***","**","*",""))) |> 
-  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 2), p_value_string, '"')))
+  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 2), p_value_string, '"'))) |> 
+  mutate(
+    Specie = paste0("P. ", sp_code)
+  )
   
 ```
+
+```{r}
+mkevi_landsat |> 
+  ungroup() |> 
+  dplyr::select(Specie,  elev_code, dplyr::starts_with("mean")) |>
+  rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) |> 
+  kbl(
+    digits = c(0,0,3,3,4,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for EVI mean (Landsat)") |> 
+    kable_paper("hover", full_width = F) |> 
+  column_spec(3:4, bold = ifelse(mkevi_landsat$mean_pvalue_mk < 0.05, TRUE, FALSE)) |> 
+  collapse_rows(columns = 1:2)
+```
+
+```{r}
+write_csv(mkevi_landsat, "data/dendroadaptamed_iv_landsat_trend.csv")
+```
+
+
+### Vas por aqui MELON 
+
+
+
+
 
 
 ```{r plot-evi-landsat, fig.cap="Temporal evolution of EVI (Landsat) mean.", fig.width=8, fig.height=6}
@@ -423,10 +312,6 @@ ggsave(
 ```
 
 
-```{r}
-write_csv(mkevi_landsat, "data/dendroadaptamed_iv_landsat_trend.csv")
-write_csv(iv_landsat, "data/dendroadaptamed_iv_landsat.csv")
-```
 
 
 # Compare IV Modis and Landsat 
@@ -745,3 +630,77 @@ ndvi_s2 |>
 
 
 
+
+
+
+```{r borrar}
+#| eval: false
+
+# BORRAR 
+raw <- read_csv(here::here("data/raw/remote_sensing/iv_mod13q1.csv"))
+elev_cat <- read_csv(here::here("data/categories_elevation_site_code.csv"))
+
+
+# Filter only Pinus field plot 
+d_raw <- raw |>
+  #filter(str_detect(Specie, "Pinu")) |>
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         evi = EVI*0.0001,
+         ndvi = NDVI*0.0001) |>
+  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
+
+
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, elev, site_code) |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) 
+
+d <- inner_join(d_raw, geodf)
+
+iv_yearly <- d |>
+  mutate(year=lubridate::year(date)) |> 
+  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |> 
+  pivot_longer(cols = c("ndvi", "evi"), 
+               names_to = 'variable', values_to = 'value') |> 
+  group_by(site_code, Specie, year, sp_elev, variable) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |> 
+  mutate(Specie = str_replace_all(Specie, "Pinus_", "P. ")) |> 
+  inner_join(elev_cat) |> 
+  mutate(season = as.factor("yearly")) |> 
+  ungroup() |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE)
+
+nsize_years_gral <- d_raw |> group_by(site_code, Specie) |> count() |> dplyr::select(n) |> pull() |> unique()
+
+nsize_years <- d_raw |> mutate(year = lubridate::year(date)) |>
+  group_by(site_code, Specie, year) |>
+  count() |> 
+  filter(site_code == "PIHAL_NACIMIENTO_L") |> dplyr::select(n) |> pull() |> unique()
+
+
+
+How many images are there in total and by year?: 
+
+- For each site there are a total of `r nsize_years_gral` images. 
+
+- All the years have `r max(nsize_years)` images except the year 2000 having `r min(nsize_years)` images. 
+
+d |> group_by(Specie, elev_code) |> count() |> 
+  DT::datatable(rownames = FALSE)
+
+cat("<table width=100%>", paste0("<caption>",
+                      "(#tab:mytab)",
+                      #"caption",
+                      "Sample size (images number) for each field plot.",
+                      "</caption>"),
+                      "</table>", sep ="\n")
+```

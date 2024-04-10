@@ -1,7 +1,5 @@
 ---
-title: "compile_database"
-author: "ajpelu"
-date: "2024-02-13"
+title: "Compile database"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
@@ -20,10 +18,212 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(tidyverse)
+library(here)
+library(tidyverse)
+library(kableExtra)
+library(DT)
+library(hydroTSM)
+library(DiagrammeR)
+source("scripts/aux.R")
 ```
 
 
-## Introduction
+# Introduction
+
+# Levels 
+
+```{r, eval=FALSE}
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> 
+  as.data.frame() |>
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify")) |> 
+  mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  )) |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  dplyr::select(sp_elev, elev, site_code) |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), sep = "_", remove = FALSE) |> 
+  mutate(
+    Specie = paste0("P. ", sp_code)
+  )
+
+write_csv(geodf, "data/levels_site.csv")
+```
+
+```{r}
+#| results: asis
+#| echo: FALSE
+
+geodf <- read_csv("data/levels_site.csv")
+geodf |> DT::datatable(rownames = FALSE)
+```
+
+
+# Remote Sensing Data
+
+## IV 
+
+### IV Modis 
+
+- Features of MOD13Q1: pixel size = 250; temporal range = 2000 to 2021; 23 images per year
+- Prepare data:
+  
+    - Select data for *Pinus* field plot
+    - Extract date of each image
+    - Format NDVI and EVI values (multiply for scale factor 0.0001; see this [link](https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD13Q1)) 
+
+First, we generated a dataset with the following fields: 
+
+```{r}
+# Read raw data 
+raw <- read_csv(here::here("data/raw/remote_sensing/iv_mod13q1_c61.csv"))
+
+d_raw <- raw |>
+  #filter(str_detect(Specie, "Pinu")) |>
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         evi = EVI*0.0001,
+         ndvi = NDVI*0.0001) |> 
+  dplyr::select(date, lat, long, site_code, evi, ndvi)
+
+d <- inner_join(d_raw, geodf)
+```
+
+```{r}
+#| echo: true
+names(d)
+```
+
+Then, we compute 
+- Compute statistics (*mean*, *sd*, *se*, *cv*, ...) for each IV indexes grouping by year/season for each field-plot. 
+- We need to group by season and by year. 
+
+```{r}
+iv_yearly <- d |>
+  mutate(year=lubridate::year(date)) |> 
+  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |> 
+  pivot_longer(cols = c("ndvi", "evi"), 
+               names_to = 'variable', values_to = 'value') |> 
+  group_by(site_code, Specie, year, sp_elev, variable) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |> 
+  mutate(season = as.factor("yearly")) |> 
+  ungroup() |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), sep = "_", remove = FALSE)
+```
+
+
+```{r}
+iv_season <- d |> 
+  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt="seasons"))) |> 
+  mutate(year=lubridate::year(date)) |> 
+  dplyr::select(site_code, Specie, year, season, evi, ndvi, sp_elev) |> 
+  pivot_longer(cols = c("ndvi", "evi"), 
+               names_to = 'variable', values_to = 'value') |> 
+  group_by(site_code, Specie, year, sp_elev, season, variable) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |> 
+  ungroup() |> 
+  separate(sp_elev, into = c("sp_code", "elev_code"), sep = "_", remove = FALSE)
+```
+
+```{r}
+write_csv(bind_rows(iv_season, iv_yearly), "data/dendroadaptamed_iv_modis.csv")
+```
+
+### Landsat 
+
+
+
+```{r}
+landsat <- read_csv("data/raw/remote_sensing/iv_landsat_c02.csv") |> 
+  rename(evi = EVI, ndvi = NDVI, image = `system:index`) |> 
+  dplyr::select(image, evi, ndvi, date, site_code) |> 
+  mutate(date = as.Date(as.character(date), format="%Y%m%d")) |> 
+  mutate(year = lubridate::year(date), 
+         month = lubridate::month(date)) |> 
+  filter(year != 2023) |> 
+  inner_join(geodf, by = "site_code")
+
+evilandsat <- landsat |> 
+  filter(!is.na(evi)) |> 
+  group_by(sp_elev, sp_code, elev_code, year) |> 
+  summarise(mean = mean(evi, na.rm = TRUE), 
+            sd = sd(evi, na.rm = TRUE), 
+            se = sd/sqrt(length(evi)),
+            cv = sd/mean*100,
+            median = median(evi, na.rm=TRUE),
+            sum = sum(evi, na.rm=TRUE),
+            min = min(evi), 
+            max = max(evi),
+            n = length(evi))
+
+ndvilandsat <- landsat |> 
+  filter(!is.na(ndvi)) |> 
+  group_by(sp_elev, sp_code, elev_code, year) |> 
+  summarise(mean = mean(ndvi, na.rm = TRUE), 
+            sd = sd(ndvi, na.rm = TRUE), 
+            se = sd/sqrt(length(ndvi)),
+            cv = sd/mean*100,
+            median = median(ndvi, na.rm=TRUE),
+            sum = sum(ndvi, na.rm=TRUE),
+            min = min(ndvi), 
+            max = max(ndvi),
+            n = length(ndvi))
+
+iv_landsat <- bind_rows(
+  (ndvilandsat |> mutate(iv = "ndvi")), 
+  (evilandsat |> mutate(iv = "evi")))
+
+```
+
+
+```{r}
+write_csv(iv_landsat, "data/dendroadaptamed_iv_landsat.csv")
+```
+
+
+
+
+
+### NPP 
+- NPP data original as $kg ~ C ~ m^2 ~ year^{-1}$ but with a scale factor of 0.0001, so to transform to $g ~ C ~ m^2 ~ year^{-1}$ apply 0.1
+
+- Npp_QC: quality control (percentage)
+
+```{r prepare-data}
+raw_npp <- read_csv(here::here("data/raw/remote_sensing/npp_mod17a3_yearly.csv"))
+
+npp <- raw_npp |> 
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
+                        format = "%Y-%m-%d"),
+         npp = Npp*0.1) |> 
+  mutate(sp_code = str_replace_all(Specie, "Pinus_", "")) |> 
+  mutate(year = lubridate::year(date)) |> 
+  dplyr::select(year, sp_code, elev_code, npp, npp_qc = Npp_QC) 
+
+write_csv(npp, "data/dendroadaptamed_npp_mod17a3_yearly.csv")
+```
+
+
+
 
 ## Tree ring Data 
 ### ABI data
@@ -79,25 +279,4 @@ bai <- files_bai |> purrr::map(custom_read_bai) |> bind_rows()
 write_csv(bai, "data/dendroadaptamed_bai.csv")
 ```
 
-
-## Remote Sensing Data
-
-### NPP 
-- NPP data original as $kg ~ C ~ m^2 ~ year^{-1}$ but with a scale factor of 0.0001, so to transform to $g ~ C ~ m^2 ~ year^{-1}$ apply 0.1
-
-- Npp_QC: quality control (percentage)
-
-```{r prepare-data}
-raw_npp <- read_csv(here::here("data/raw/remote_sensing/npp_mod17a3_yearly.csv"))
-
-npp <- raw_npp |> 
-  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
-                        format = "%Y-%m-%d"),
-         npp = Npp*0.1) |> 
-  mutate(sp_code = str_replace_all(Specie, "Pinus_", "")) |> 
-  mutate(year = lubridate::year(date)) |> 
-  dplyr::select(year, sp_code, elev_code, npp, npp_qc = Npp_QC) 
-
-write_csv(npp, "data/dendroadaptamed_npp_mod17a3_yearly.csv")
-```
 

@@ -1,0 +1,346 @@
+---
+title: "Figure NPP ETP"
+date: "2024-03-24"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+## Introduction
+
+```{r, message=FALSE}
+library(tidyverse)
+library(sf)
+library(SPEI)
+source("scripts/aux.R")
+
+raw_climate_yearly <- readRDS("data/dendroadaptamed_climate_season.rds")
+
+raw_climate_monthly <- readRDS("data/dendroadaptamed_climate_monthly.rds")
+
+
+geo <- st_read("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> 
+  st_drop_geometry() |> 
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
+  filter(str_detect(site_code, "modify", negate = TRUE)) |> 
+  dplyr::select(sp_elev, lat, long) |> 
+  mutate(sp_elev = ifelse(sp_elev == "pinaster_low2", "pinaster_low-Dec", sp_elev))
+
+raw_climate_monthly <- raw_climate_monthly |> inner_join(geo, by="sp_elev")
+raw_climate_yearly <- raw_climate_yearly |> inner_join(geo, by="sp_elev")
+
+
+df_climate_yearly <- raw_climate_yearly |> 
+  filter(season == "yearly") |> 
+  filter(var %in% c("tmed", "prec")) |> 
+  dplyr::select(sp_elev, year, avg, var) |>
+  pivot_wider(names_from = var, values_from = avg) |> 
+  as.data.frame()
+  
+
+df_climate_monthly <- raw_climate_monthly |> 
+  filter(var %in% c("tmed", "prec")) |> 
+  dplyr::select(sp_elev, year, lat, month, avg, var) |>
+  pivot_wider(names_from = var, values_from = avg) |> 
+  as.data.frame() 
+
+
+
+compute_pet_vars <- function(data, sp_elev_sel){
+
+  aux <- data |> 
+    dplyr::filter(sp_elev == {{sp_elev_sel}}) |> 
+    filter(!is.na(tmed)) |> 
+    as.data.frame()
+  
+  mylat <- unique(aux$lat)
+  
+  out <- aux |> 
+    mutate(monthly_pet = thornthwaite(Tave = tmed, lat = mylat)) |> 
+    group_by(sp_elev, year) |> 
+    summarise(pet = sum(monthly_pet))
+  
+  return(out)
+} 
+
+data <- df_climate_monthly
+sp_elev_sel <- "halepensis_high"
+
+  
+  
+  |>
+    rowwise() |> 
+    mutate(p_minus_pet = prec - pet) |> 
+    mutate(ratio_p_pet = prec/pet)
+  
+
+
+pe <- map(unique(unique(df_climate_monthly$sp_elev)), 
+              ~compute_pet_vars(df_climate_monthly, .x)) |> 
+  bind_rows() 
+
+pe <- inner_join(pe, df_climate_yearly) |> 
+    rowwise() |> 
+    mutate(p_minus_pet = prec - pet) |> 
+    mutate(ratio_p_pet = prec/pet)
+
+```
+
+
+```{r}
+abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
+  rename(mean = IBT_ag_m2) |> 
+  mutate(se = NA, sd = NA, variable = "abi")
+
+npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |> 
+  rename(mean = npp) |> 
+  mutate(se = NA, sd = NA, variable = "npp", year = lubridate::year(date)) |> 
+  dplyr::select(-npp_qc, -sp_elev, -date)
+
+evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
+  filter(iv == "evi") |> 
+  dplyr::select(year, sp_code, elev_code, mean, sd, se) |> 
+  mutate(variable = "evi_landsat")
+
+evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |> 
+  filter(variable == "evi") |> 
+  filter(season == "yearly") |> 
+  dplyr::select(year, sp_code, elev_code, mean, sd, se) |> 
+  mutate(variable = "evi_modis")
+
+
+df_index <- bind_rows(
+  abi, evi_landsat, evi_modis, npp) |> 
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  unite("sp_elev", c("sp_code", "elev_code"), sep = "_", remove = FALSE)
+```
+
+```{r}
+label_landsat <- "Annual~EVI[Landsat]"
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_abi <- "ABI~(g~C~m^2~year^{-1})"
+label_pmius <- "P-PET"
+label_pratio <- "P/PET"
+```
+
+## ABI 
+```{r}
+df_abi <- df_index |> filter(variable == "abi") |> 
+  inner_join(pe) |> 
+  filter(year > 1990)
+
+df_abi |> 
+  ggplot(aes(x=prec, y = mean, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .7) + 
+  geom_smooth(aes(colour = NULL, fill= NULL, shape = NULL), 
+              method = "nls", 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              se =  FALSE, # this is important 
+              method.args =list(start=list(Asym=191,xmid=231,scal=114),
+                                control=nls.control(maxiter=1000)), 
+              size = 1.5, 
+              colour = "black") +
+  ylab(parse(text=label_abi)) +
+  xlab(parse(text=label_pmius)) 
+
+
+# getInitial(mean ~ SSlogis(p_minus_pet, Asym, xmid, scal), data = df_abi)
+# m1 <- nls(mean~Asym/(1+exp(-(p_minus_pet-xmid)/scal)), data=df_abi, 
+#           start=list(Asym=191,xmid=231,scal=114))
+
+
+
+
+
+
+
+init <- as.data.frame(t(getInitial(mean ~ SSlogis(p_minus_pet, Asym, xmid, scal), data = df_abi)))
+
+df_abi |> 
+  ggplot(aes(x=p_minus_pet, y = mean, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .7) + 
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              se =  FALSE, # this is important 
+              method.args =list(start=init,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "black") +
+  ylab(parse(text=label_abi)) +
+  xlab(parse(text=label_pmius)) 
+
+# geom_smooth(method = "nls", 
+#               formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+#               se =  FALSE, # this is important 
+#               method.args =list(start=init,
+#                                 control=nls.control(maxiter=1000)))
+# 
+# 
+# fit_2 <- nls2(mean~Asym/(1+exp(-(ratio_p_pet-xmid)/scal)),
+#               data = df_abi, 
+#               start = init,
+#               algorithm = "brute-force",
+#               control = list(maxiter = 10000)
+# )
+# 
+# ff <- nls(mean~Asym/(1+exp(-(ratio_p_pet-xmid)/scal)),
+#               data = df_abi, 
+#               start = as.list(coef(fit_2)))
+# 
+# 
+# p_abi_ratio + geom_smooth(method = "nls", 
+#               formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+#               se =  FALSE, # this is important 
+#               method.args =list(
+#                                 start = as.list(coef(ff)), 
+#                                 control=nls.control(maxiter=1000)))
+# 
+
+
+# 
+# df_abi |> 
+#   ggplot(aes(x=ratio_p_pet, y = mean)) + 
+#   geom_point() + 
+#   geom_smooth(method = "nls", 
+#               formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+#               se =  FALSE, # this is important 
+#               method.args =list(start=as.list(coef(ff)),
+#                                 control=nls.control(maxiter=1000)))
+
+
+```
+
+
+
+
+## NPP MODIS 
+```{r}
+df_npp <- df_index |> filter(variable == "npp") |> 
+  inner_join(pe)
+
+
+init <- as.data.frame(t(getInitial(mean ~ SSlogis(prec, Asym, xmid, scal), data = df_npp)))
+
+
+df_npp |> 
+  ggplot(aes(x=tmed, y = mean, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .7) + 
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              se =  FALSE, # this is important 
+              method.args =list(start=init,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "black") +
+  ylab(parse(text=label_npp)) +
+  xlab(parse(text=label_pmius))
+  
+
+init <- as.data.frame(t(getInitial(mean ~ SSlogis(ratio_p_pet, Asym, xmid, scal), data = df_npp)))
+
+df_npp |> 
+  ggplot(aes(x=ratio_p_pet, y = mean, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .7) + 
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              se =  FALSE, # this is important 
+              method.args =list(start=init,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "black") +
+  ylab(parse(text=label_npp)) +
+  xlab(parse(text=label_pratio))
+
+
+
+
+
+
+```
+
+
+
+## EVI Landsat 
+```{r}
+df_evi_landsat <- df_index |> filter(variable == "evi_landsat") |> 
+  inner_join(pe)
+
+
+init <- as.data.frame(t(getInitial(mean ~ SSlogis(tmed, Asym, xmid, scal), data = df_evi_landsat)))
+
+
+
+df_evi_landsat |> 
+  ggplot(aes(x=tmed, y = mean, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .7) + 
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              se =  FALSE, # this is important 
+              method.args =list(start=init,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "black") +
+  ylab(parse(text=label_landsat)) +
+  xlab(parse(text=label_pmius))
+
+
+
+init <- as.data.frame(t(getInitial(mean ~ SSlogis(ratio_p_pet, Asym, xmid, scal), data = df_evi_landsat)))
+
+
+df_evi_landsat |> 
+  ggplot(aes(x=ratio_p_pet, y = mean, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .7) + 
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              se =  FALSE, # this is important 
+              method.args =list(start=init,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "black") +
+  ylab(parse(text=label_landsat)) +
+  xlab(parse(text=label_pratio))
+
+
+```
+
+
+
+
+

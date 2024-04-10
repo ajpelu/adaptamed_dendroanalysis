@@ -20,16 +20,18 @@ library(tidyverse)
 
 # Scripts
 
-This page contains some of the scripts used in this project 
+This page contains some of the auxiliary and/or external scripts used in this project 
 
 ## Get Satellite data
 
 Using Google Earth Engine, we extracted spectral information for all the pixels covering the field plots. Several products were obtained:
 
-- **Temporal series of Vegetation Indexes** NDVI and EVI from MOD13Q1. We used the following GEE code to get the EVI and NDVI data for each field plot. We obtained a total of 503 values for each field plot (2000-2021, 23 images per year, except 2000 year (only 20 images)). The data were saved as `dendroadaptamed_iv_mod13q1.csv` (see [data/dendroadaptamed_iv_mod13q1.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_iv_mod13q1.csv)). The temporal resolution was one image each 16 days (23 images per year), and the spatial resolution was 250 m.  
+- **Temporal series of Vegetation Indexes** NDVI and EVI from MOD13Q1. (MODIS Collection 6.1) We used the following GEE code to get the EVI and NDVI data for each field plot. We obtained a total of 503 values for each field plot (2000-2021, 23 images per year, except 2000 year (only 20 images)). The data were saved as `mod13q1_iv_c61.csv` (see [/data/raw/remote_sensing/mod13q1_iv_c61.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/raw/remote_sensing/mod13q1_iv_c61.csv)). The temporal resolution was one image each 16 days (23 images per year), and the spatial resolution was 250 m.  
+
 
 ```{js, eval=FALSE}
-var parcelas = ee.FeatureCollection("users/ajpelu/geoinfo_adaptamed_dendro");
+var parcelas_old = ee.FeatureCollection("projects/ee-ajpelu/assets/geo_pinos_dendro_adaptamed");
+var parcelas = ee.FeatureCollection("projects/ee-ajpelu/assets/geo_pinos_dendro_adaptamed_mod");
 
 // Define study period 
 var startdate = ee.Date('2000-01-01');
@@ -38,11 +40,11 @@ var enddate = ee.Date('2022-10-31');
 //-------------------- Load MODIS MOD13Q1 
 // filter by date 
 // select bands: EVI, NDVI, DOY, SummaryQA
-var mod13 = ee.ImageCollection('MODIS/006/MOD13Q1')
+var mod13 = ee.ImageCollection('MODIS/061/MOD13Q1')
   .filterDate(startdate, enddate)
-  .select(['EVI','NDVI','DayOfYear']); 
+  .select(['EVI', 'NDVI']); 
 
-print(mod13);
+print(mod13); 
 
 
 // Apply a function to every image of the collection (use .map()) 
@@ -64,21 +66,21 @@ Export.table.toDrive({
 
 ```
 
-- **Temporal series of NPP** from MOD17A3. We used the following GEE code to get the annual NPP data for each field plot. We obtained a total of 22 values for each field plot (2000-2021; 1 value per year). The data were saved as `dendroadaptamed_npp_mod17a3_yearly.csv` (see [data/dendroadaptamed_npp_mod17a3_yearly.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_npp_mod17a3_yearly.csv)). Temporal resolution was yearly; Spatial resolution was 500 m. See [here](https://lpdaac.usgs.gov/products/mod17a3hgfv006/) for a description of the method to obtain the NPP. 
+- **Temporal series of NPP and GPP** from MOD17A3. We used the following GEE code to get the annual NPP and GPP data for each field plot. We obtained a total of 22 values for each field plot (2000-2021; 1 value per year). The data were saved as `dendroadaptamed_npp_mod17a3_yearly.csv` (see [data/dendroadaptamed_npp_mod17a3_yearly.csv](https://github.com/ajpelu/adaptamed_dendroanalysis/blob/master/data/dendroadaptamed_npp_mod17a3_yearly.csv)). Temporal resolution was yearly; Spatial resolution was 500 m. See [here](https://lpdaac.usgs.gov/products/mod17a3hgfv006/) for a description of the method to obtain the NPP. 
 
 ```{js, eval=FALSE}
 var parcelas = ee.FeatureCollection("users/ajpelu/geoinfo_adaptamed_dendro");
 
 // Define study period 
 var startdate = ee.Date('2000-01-01');
-var enddate = ee.Date('2021-12-31'); 
+var enddate = ee.Date('2023-10-31'); 
 
 //-------------------- Load MODIS MOD17A3HGF.006 
 // filter by date 
 // select bands: Npp, Npp_QC
-var modNpp = ee.ImageCollection('MODIS/006/MOD17A3HGF')
+var modNpp = ee.ImageCollection('MODIS/061/MOD17A3HGF')
   .filterDate(startdate, enddate)
-  .select(['Npp', 'Npp_QC']); 
+  .select(['Gpp','Npp', 'Npp_QC']); 
 
 print(modNpp);
 
@@ -99,6 +101,7 @@ Export.table.toDrive({
   description: 'my_extract_data',
   fileFormat: 'CSV',
 });
+
 ```
 
 - **Long-term series of NDVI**, using the *Sp_1km_NDVI* dataset. This dataset was derived from Atmospheric Administration–Advanced Very High Resolution Radiometer
