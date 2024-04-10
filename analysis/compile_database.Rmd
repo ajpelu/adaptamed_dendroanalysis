@@ -150,8 +150,6 @@ write_csv(bind_rows(iv_season, iv_yearly), "data/dendroadaptamed_iv_modis.csv")
 
 ### Landsat 
 
-
-
 ```{r}
 landsat <- read_csv("data/raw/remote_sensing/iv_landsat_c02.csv") |> 
   rename(evi = EVI, ndvi = NDVI, image = `system:index`) |> 
