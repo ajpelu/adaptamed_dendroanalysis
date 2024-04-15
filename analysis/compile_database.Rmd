@@ -223,12 +223,6 @@ write_csv(npp, "data/dendroadaptamed_npp_mod17a3_yearly_c61.csv")
 ```
 
 
-
-
-
-
-
-
 ## Tree ring Data 
 ### ABI data
 
@@ -252,7 +246,13 @@ custom_read_abi <- function(x) {
   }
 
 
-abi <- files_abi |> purrr::map(custom_read_abi) |> bind_rows() 
+abi <- files_abi |> 
+  purrr::map(custom_read_abi) |> 
+  bind_rows() 
+
+abi <- abi |> 
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+   unite("sp_elev", c("sp_code", "elev_code"), sep = "_", remove = FALSE)
 
 write_csv(abi, "data/dendroadaptamed_abi.csv")
 ```
@@ -282,5 +282,4 @@ bai <- files_bai |> purrr::map(custom_read_bai) |> bind_rows()
 
 write_csv(bai, "data/dendroadaptamed_bai.csv")
 ```
-
 
