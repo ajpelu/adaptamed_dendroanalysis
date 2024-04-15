@@ -402,7 +402,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-02-26
+<strong>Last updated:</strong> 2024-04-15
 </p>
 <p>
 <strong>Checks:</strong>
@@ -530,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree65f21a142e48a765f53d258cedf2733a7e112a18targetblank65f21a1a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeef12a0bdebc0e2b7e3aba85de172cb5560f10702targetblankef12a0ba">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/65f21a142e48a765f53d258cedf2733a7e112a18" target="_blank">65f21a1</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ef12a0bdebc0e2b7e3aba85de172cb5560f10702" target="_blank">ef12a0b</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree65f21a142e48a765f53d258cedf2733a7e112a18targetblank65f21a1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeef12a0bdebc0e2b7e3aba85de172cb5560f10702targetblankef12a0ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/65f21a142e48a765f53d258cedf2733a7e112a18" target="_blank">65f21a1</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ef12a0bdebc0e2b7e3aba85de172cb5560f10702" target="_blank">ef12a0b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -557,17 +557,18 @@ results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    data/.DS_Store
-    Ignored:    data/geoinfo/.DS_Store
-    Ignored:    data/image_pinus/.DS_Store
+    Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/remote_sensing/old/
+
+Untracked files:
+    Untracked:  analysis/figura_compara_evi_npp.Rmd
 
 Unstaged changes:
-    Modified:   analysis/figure_ts_dendro_remote.Rmd
-    Modified:   output/plot_ts_dendro_remote.png
+    Modified:   data/dendroadaptamed_npp_modis.csv
+    Modified:   data/dendroadaptamed_npp_modis_trend.csv
 
 </code></pre>
 <p>
@@ -617,6 +618,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/ef12a0bdebc0e2b7e3aba85de172cb5560f10702/analysis/remote_sensing_npp.Rmd" target="_blank">ef12a0b</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-15
+</td>
+<td>
+compute with the new data
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/0df3e55b91336f06b6bf6bec7f3d6e679c607e11/docs/remote_sensing_npp.html" target="_blank">0df3e55</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/65f21a142e48a765f53d258cedf2733a7e112a18/analysis/remote_sensing_npp.Rmd" target="_blank">65f21a1</a>
 </td>
 <td>
@@ -657,40 +692,10 @@ library(kableExtra)
 library(DT)
 
 source(&quot;scripts/aux.R&quot;)</code></pre>
-</div>
-<div id="prepare-data" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Prepare data</h1>
-<ul>
-<li>Select data for Pinus field plot</li>
-<li>Extract date of each image</li>
-<li>Format NPP values (multiply for scale factor 0.0001; see this <a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD17A3HGF">link</a>)</li>
-</ul>
-<pre class="r"><code># raw_npp &lt;- read_csv(here::here(&quot;data/dendroadaptamed_npp_mod17a3_yearly.csv&quot;))
-raw_npp &lt;- read_csv(here::here(&quot;data/raw/remote_sensing/npp_mod17a3_yearly.csv&quot;))
-# elev_cat &lt;- read_csv(here::here(&quot;data/categories_elevation_site_code.csv&quot;)) 
-
-geodf &lt;- terra::vect( &quot;data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp&quot;) |&gt; as.data.frame() |&gt;
-  unite(&quot;sp_elev&quot;, c(sp_code, elev_code), remove = FALSE) |&gt; 
-  dplyr::select(sp_elev, elev, site_code) |&gt; 
-  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE) 
-
-d &lt;- inner_join(raw_npp, geodf) |&gt; 
-  mutate(elev_code = fct_relevel(as.factor(elev_code), c(&quot;low2&quot;,&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;))) 
-
-
-# elev_cat &lt;- elev_cat |&gt; 
-#   mutate(elev_cat = fct_relevel(as.factor(elev_cat), c(&quot;low2&quot;,&quot;low&quot;,&quot;med&quot;,&quot;high&quot;))) 
-
-dnpp &lt;- d |&gt;
-  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), &quot;_&quot;, &quot;-&quot;),
-                        format = &quot;%Y-%m-%d&quot;),
-         npp = Npp*0.0001*1000) |&gt;
-  dplyr::select(date, elev_code, sp_code, sp_elev, npp, npp_qc = Npp_QC) </code></pre>
-</div>
-<div id="summary-data" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Summary data</h1>
+<pre class="r"><code>dnpp &lt;- read_csv(&quot;data/dendroadaptamed_npp_mod17a3_yearly_c61.csv&quot;) |&gt; filter(year &lt;= 2022)</code></pre>
 <pre class="r"><code>npp_summary &lt;- dnpp |&gt; 
-  group_by(sp_code, elev_code, sp_elev) |&gt; 
+  mutate(elev_code = fct_relevel(elev_code, c(&quot;high&quot;,&quot;medium&quot;,&quot;low&quot;, &quot;low-Dec&quot;))) |&gt; 
+  group_by(Specie, elev_code, sp_elev) |&gt; 
   summarise(mean = mean(npp, na.rm = TRUE), 
             sd = sd(npp, na.rm = TRUE), 
             se = sd/sqrt(length(npp)),
@@ -698,25 +703,25 @@ dnpp &lt;- d |&gt;
             min = min(npp), 
             max = max(npp)) </code></pre>
 <pre class="r"><code>npp_summary |&gt; 
-  arrange(sp_code, elev_code) |&gt; 
+  dplyr::select(-sp_elev) |&gt; 
+  arrange(Specie, elev_code) |&gt; 
   kbl(
     digits = c(0,0,0,2,2,2,2,2,2),
-    caption = &quot;Summary values of the yearly NPP (g C m^-2^ year ^-1^) along the study period (2000-2021) for the study sites.&quot;) |&gt; 
+    caption = &quot;Summary values of the yearly NPP (g C m^-2^ year ^-1^) along the study period (2000-2021) for the study sites.&quot;, parse = TRUE) |&gt; 
+    column_spec(1, italic = TRUE) |&gt; 
+  collapse_rows(columns = 1:2) |&gt; 
     kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:npp-summary">Table 3.1: </span>Summary values of the yearly NPP (g C m<sup>-2</sup> year <sup>-1</sup>) along the study period (2000-2021) for the study sites.
+<span id="tab:npp-summary">Table 1.1: </span>Summary values of the yearly NPP (g C m<sup>-2</sup> year <sup>-1</sup>) along the study period (2000-2021) for the study sites.
 </caption>
 <thead>
 <tr>
 <th style="text-align:left;">
-sp_code
+Specie
 </th>
 <th style="text-align:left;">
 elev_code
-</th>
-<th style="text-align:left;">
-sp_elev
 </th>
 <th style="text-align:right;">
 mean
@@ -740,391 +745,326 @@ max
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-halepensis
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. halepensis
 </td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+510
+</td>
+<td style="text-align:right;">
+59.91
+</td>
+<td style="text-align:right;">
+12.77
+</td>
+<td style="text-align:right;">
+11.75
+</td>
+<td style="text-align:right;">
+423.0
+</td>
+<td style="text-align:right;">
+643.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+637
+</td>
+<td style="text-align:right;">
+56.99
+</td>
+<td style="text-align:right;">
+12.15
+</td>
+<td style="text-align:right;">
+8.94
+</td>
+<td style="text-align:right;">
+546.6
+</td>
+<td style="text-align:right;">
+760.3
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 low
 </td>
-<td style="text-align:left;">
-halepensis_low
+<td style="text-align:right;">
+292
 </td>
 <td style="text-align:right;">
-292.95
+56.25
 </td>
 <td style="text-align:right;">
-56.82
+11.99
 </td>
 <td style="text-align:right;">
-12.11
+19.28
 </td>
 <td style="text-align:right;">
-19.39
-</td>
-<td style="text-align:right;">
-166.8
+163.5
 </td>
 <td style="text-align:right;">
 406.6
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-halepensis
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-halepensis_medium
-</td>
-<td style="text-align:right;">
-642.83
-</td>
-<td style="text-align:right;">
-57.11
-</td>
-<td style="text-align:right;">
-12.17
-</td>
-<td style="text-align:right;">
-8.88
-</td>
-<td style="text-align:right;">
-548.1
-</td>
-<td style="text-align:right;">
-763.7
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-halepensis
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. nigra
 </td>
 <td style="text-align:left;">
 high
 </td>
-<td style="text-align:left;">
-halepensis_high
+<td style="text-align:right;">
+720
 </td>
 <td style="text-align:right;">
-514.07
+71.86
 </td>
 <td style="text-align:right;">
-57.97
+15.32
 </td>
 <td style="text-align:right;">
-12.36
+9.98
 </td>
 <td style="text-align:right;">
-11.28
+555.0
 </td>
 <td style="text-align:right;">
-426.7
-</td>
-<td style="text-align:right;">
-633.7
+835.5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-nigra
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-nigra_low
-</td>
-<td style="text-align:right;">
-696.05
-</td>
-<td style="text-align:right;">
-68.38
-</td>
-<td style="text-align:right;">
-14.58
-</td>
-<td style="text-align:right;">
-9.82
-</td>
-<td style="text-align:right;">
-528.3
-</td>
-<td style="text-align:right;">
-795.3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-nigra
-</td>
 <td style="text-align:left;">
 medium
 </td>
-<td style="text-align:left;">
-nigra_medium
+<td style="text-align:right;">
+719
 </td>
 <td style="text-align:right;">
-724.69
+70.08
 </td>
 <td style="text-align:right;">
-68.83
+14.94
 </td>
 <td style="text-align:right;">
-14.67
+9.75
 </td>
 <td style="text-align:right;">
-9.50
+552.1
 </td>
 <td style="text-align:right;">
-553.8
-</td>
-<td style="text-align:right;">
-826.5
+823.2
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-nigra
+low
+</td>
+<td style="text-align:right;">
+690
+</td>
+<td style="text-align:right;">
+68.05
+</td>
+<td style="text-align:right;">
+14.51
+</td>
+<td style="text-align:right;">
+9.86
+</td>
+<td style="text-align:right;">
+537.5
+</td>
+<td style="text-align:right;">
+782.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="4">
+P. pinaster
 </td>
 <td style="text-align:left;">
 high
 </td>
-<td style="text-align:left;">
-nigra_high
+<td style="text-align:right;">
+741
 </td>
 <td style="text-align:right;">
-721.93
+68.33
 </td>
 <td style="text-align:right;">
-71.94
+14.57
 </td>
 <td style="text-align:right;">
-15.34
+9.22
 </td>
 <td style="text-align:right;">
-9.97
+587.3
 </td>
 <td style="text-align:right;">
-554.2
-</td>
-<td style="text-align:right;">
-838.6
+846.4
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-pinaster
-</td>
-<td style="text-align:left;">
-low2
-</td>
-<td style="text-align:left;">
-pinaster_low2
-</td>
-<td style="text-align:right;">
-585.37
-</td>
-<td style="text-align:right;">
-61.68
-</td>
-<td style="text-align:right;">
-13.15
-</td>
-<td style="text-align:right;">
-10.54
-</td>
-<td style="text-align:right;">
-499.9
-</td>
-<td style="text-align:right;">
-725.0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-pinaster
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-pinaster_low
-</td>
-<td style="text-align:right;">
-652.77
-</td>
-<td style="text-align:right;">
-66.85
-</td>
-<td style="text-align:right;">
-14.25
-</td>
-<td style="text-align:right;">
-10.24
-</td>
-<td style="text-align:right;">
-546.1
-</td>
-<td style="text-align:right;">
-794.1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-pinaster
-</td>
 <td style="text-align:left;">
 medium
 </td>
-<td style="text-align:left;">
-pinaster_medium
+<td style="text-align:right;">
+759
 </td>
 <td style="text-align:right;">
-760.57
+77.94
 </td>
 <td style="text-align:right;">
-79.26
+16.62
 </td>
 <td style="text-align:right;">
-16.90
+10.26
 </td>
 <td style="text-align:right;">
-10.42
+603.3
 </td>
 <td style="text-align:right;">
-584.6
-</td>
-<td style="text-align:right;">
-901.3
+896.5
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-pinaster
+low
+</td>
+<td style="text-align:right;">
+651
+</td>
+<td style="text-align:right;">
+68.52
+</td>
+<td style="text-align:right;">
+14.61
+</td>
+<td style="text-align:right;">
+10.53
+</td>
+<td style="text-align:right;">
+538.3
+</td>
+<td style="text-align:right;">
+788.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+580
+</td>
+<td style="text-align:right;">
+60.30
+</td>
+<td style="text-align:right;">
+12.86
+</td>
+<td style="text-align:right;">
+10.39
+</td>
+<td style="text-align:right;">
+498.9
+</td>
+<td style="text-align:right;">
+720.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. sylvestris
 </td>
 <td style="text-align:left;">
 high
 </td>
-<td style="text-align:left;">
-pinaster_high
+<td style="text-align:right;">
+637
 </td>
 <td style="text-align:right;">
-743.92
+69.31
 </td>
 <td style="text-align:right;">
-66.17
+14.78
 </td>
 <td style="text-align:right;">
-14.11
+10.88
 </td>
 <td style="text-align:right;">
-8.89
+520.4
 </td>
 <td style="text-align:right;">
-590.3
-</td>
-<td style="text-align:right;">
-846.7
+785.8
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-sylvestris
+medium
 </td>
+<td style="text-align:right;">
+845
+</td>
+<td style="text-align:right;">
+51.02
+</td>
+<td style="text-align:right;">
+10.88
+</td>
+<td style="text-align:right;">
+6.04
+</td>
+<td style="text-align:right;">
+727.7
+</td>
+<td style="text-align:right;">
+934.6
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 low
 </td>
-<td style="text-align:left;">
-sylvestris_low
+<td style="text-align:right;">
+913
 </td>
 <td style="text-align:right;">
-917.31
+68.46
 </td>
 <td style="text-align:right;">
-68.75
-</td>
-<td style="text-align:right;">
-14.66
+14.60
 </td>
 <td style="text-align:right;">
 7.49
 </td>
 <td style="text-align:right;">
-759.7
+753.2
 </td>
 <td style="text-align:right;">
-1036.9
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-sylvestris
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-sylvestris_medium
-</td>
-<td style="text-align:right;">
-848.56
-</td>
-<td style="text-align:right;">
-52.02
-</td>
-<td style="text-align:right;">
-11.09
-</td>
-<td style="text-align:right;">
-6.13
-</td>
-<td style="text-align:right;">
-733.2
-</td>
-<td style="text-align:right;">
-942.6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-sylvestris
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-sylvestris_high
-</td>
-<td style="text-align:right;">
-708.90
-</td>
-<td style="text-align:right;">
-60.15
-</td>
-<td style="text-align:right;">
-12.82
-</td>
-<td style="text-align:right;">
-8.48
-</td>
-<td style="text-align:right;">
-616.6
-</td>
-<td style="text-align:right;">
-804.6
+1031.8
 </td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>npp_summary |&gt; 
+  mutate(elev_code = fct_relevel(elev_code, c(&quot;low-Dec&quot;,&quot;low&quot;,&quot;medium&quot;,&quot;high&quot;))) |&gt; 
   ggplot(aes(x=elev_code, y=mean, fill=elev_code, colour=elev_code)) + 
   geom_point(size=3) + 
   geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.3)+
   ylab(expression(NPP~(g~C~m^{-2}~year^{-1}))) + 
   xlab(&quot;&quot;) + 
-  facet_grid(cols=vars(factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;))), scales = &quot;free_x&quot;, space = &quot;free_x&quot;) +
+  facet_grid(cols=vars(factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;))), scales = &quot;free_x&quot;, space = &quot;free_x&quot;) +
   scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
   scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
   theme_bw() + 
@@ -1135,55 +1075,91 @@ sylvestris_high
     strip.text = element_text(face=&quot;italic&quot;)
   )</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-npp-avg"></span>
-<img src="figure/remote_sensing_npp.Rmd/plot-npp-avg-1.png" alt="Comparison of average values of yearly NPP." width="672" />
+<img src="figure/remote_sensing_npp.Rmd/plot-npp-avg-1.png" alt="Comparison of average values of yearly NPP." width="1152" />
 <p class="caption">
-Figure 3.1: Comparison of average values of yearly NPP.
+Figure 1.1: Comparison of average values of yearly NPP.
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-npp-avg-1">
+Past versions of plot-npp-avg-1.png
+</button>
+</p>
+<div id="fig-plot-npp-avg-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/0df3e55b91336f06b6bf6bec7f3d6e679c607e11/docs/figure/remote_sensing_npp.Rmd/plot-npp-avg-1.png" target="_blank">0df3e55</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-26
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="compute-temporal-trends" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Compute Temporal trends</h1>
-<p>We explored the temporal trends for the NPP annual average (Table <a href="#tab:mk-mean">4.1</a>) along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen’s slope estimator.</p>
+</div>
+</div>
+<div id="compute-temporal-trends" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Compute Temporal trends</h1>
+<p>We explored the temporal trends for the NPP annual average (Table <a href="#tab:mk-mean">2.1</a>) along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen’s slope estimator.</p>
 <pre class="r"><code>mknpp &lt;- dnpp |&gt; 
-  mutate(year = lubridate::year(date)) |&gt; 
   ungroup() |&gt; 
-  group_by(sp_code, elev_code, sp_elev) |&gt; 
+  group_by(Specie, elev_code, sp_elev, sp_code) |&gt; 
   summarise(across(npp, ~MannKendall(.)$tau, .names =&quot;{.col}_tau&quot;),
             across(npp, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
             across(npp, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
             across(npp, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;)) |&gt; 
-  arrange(sp_code, elev_code) |&gt; 
+  arrange(Specie, elev_code) |&gt; 
   mutate(ypos = 
            case_when(
              elev_code == &quot;low&quot; ~ 1025,
-             elev_code == &quot;low2&quot; ~ 1000,
+             elev_code == &quot;low-Dec&quot; ~ 1000,
              elev_code == &quot;medium&quot; ~ 1050,
              elev_code == &quot;high&quot; ~ 1075), 
          p_value_string = symnum(npp_pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
                symbols = c(&quot;***&quot;,&quot;**&quot;,&quot;*&quot;,&quot;&quot;))) |&gt; 
   mutate(taulabel = paste(expression(tau), &quot;==&quot;, paste0(&#39;&quot;&#39;, round(npp_tau, 2), p_value_string, &#39;&quot;&#39;)))</code></pre>
-<p>Significant but weaker positive trends (p-value &lt; 0.05) were observed for yearly NPP of the medium- and high-elevation sites of <em>P. sylvestris</em> (Table <a href="#tab:mk-mean">4.1</a>).</p>
 <pre class="r"><code>mknpp |&gt; 
-  dplyr::select(-ypos, -p_value_string, -taulabel) |&gt; 
+  ungroup() |&gt; 
+  dplyr::select(-ypos, -p_value_string, -taulabel, -sp_code, -sp_elev) |&gt; 
   kbl(
-    digits = c(0,0,0,4,4,4,4),
+    digits = c(0,0,3,4,5,4),
     caption = &quot;Mann-Kendall and Seil temporal trend test for yearly NPP&quot;) |&gt; 
+    column_spec(3.4, bold = ifelse(mknpp$npp_pvalue_mk &lt; 0.05, TRUE, FALSE)) |&gt; 
+  column_spec(1, italic = TRUE) |&gt; 
+  collapse_rows(columns = 1:2) |&gt; 
     kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:mk-mean">Table 4.1: </span>Mann-Kendall and Seil temporal trend test for yearly NPP
+<span id="tab:mk-mean">Table 2.1: </span>Mann-Kendall and Seil temporal trend test for yearly NPP
 </caption>
 <thead>
 <tr>
 <th style="text-align:left;">
-sp_code
+Specie
 </th>
 <th style="text-align:left;">
 elev_code
-</th>
-<th style="text-align:left;">
-sp_elev
 </th>
 <th style="text-align:right;">
 npp_tau
@@ -1201,92 +1177,37 @@ npp_pvalue_sen
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-halepensis
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-halepensis_low
-</td>
-<td style="text-align:right;">
--0.0043
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
--0.1000
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-halepensis
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-halepensis_medium
-</td>
-<td style="text-align:right;">
--0.0043
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-<td style="text-align:right;">
--0.0786
-</td>
-<td style="text-align:right;">
-1.0000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-halepensis
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. halepensis
 </td>
 <td style="text-align:left;">
 high
 </td>
-<td style="text-align:left;">
-halepensis_high
+<td style="text-align:right;">
+-0.203
 </td>
 <td style="text-align:right;">
--0.0303
+0.1946
 </td>
 <td style="text-align:right;">
-0.8656
+-2.73500
 </td>
 <td style="text-align:right;">
--0.3944
-</td>
-<td style="text-align:right;">
-0.8656
+0.1946
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-nigra
-</td>
-<td style="text-align:left;">
 low
 </td>
-<td style="text-align:left;">
-nigra_low
-</td>
 <td style="text-align:right;">
-0.1255
+-0.126
 </td>
 <td style="text-align:right;">
 0.4298
 </td>
 <td style="text-align:right;">
-1.3222
+-0.94375
 </td>
 <td style="text-align:right;">
 0.4298
@@ -1294,114 +1215,90 @@ nigra_low
 </tr>
 <tr>
 <td style="text-align:left;">
-nigra
-</td>
-<td style="text-align:left;">
 medium
 </td>
-<td style="text-align:left;">
-nigra_medium
+<td style="text-align:right;">
+-0.117
 </td>
 <td style="text-align:right;">
-0.0303
+0.4635
 </td>
 <td style="text-align:right;">
-0.8656
+-1.18182
 </td>
 <td style="text-align:right;">
-0.8000
-</td>
-<td style="text-align:right;">
-0.8656
+0.4635
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-nigra
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. nigra
 </td>
 <td style="text-align:left;">
 high
 </td>
-<td style="text-align:left;">
-nigra_high
+<td style="text-align:right;">
+0.039
 </td>
 <td style="text-align:right;">
-0.1515
+0.8215
 </td>
 <td style="text-align:right;">
-0.3377
+0.91538
 </td>
 <td style="text-align:right;">
-2.2765
-</td>
-<td style="text-align:right;">
-0.3377
+0.8215
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-pinaster
-</td>
-<td style="text-align:left;">
-low2
-</td>
-<td style="text-align:left;">
-pinaster_low2
-</td>
-<td style="text-align:right;">
-0.1515
-</td>
-<td style="text-align:right;">
-0.3377
-</td>
-<td style="text-align:right;">
-2.2944
-</td>
-<td style="text-align:right;">
-0.3377
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-pinaster
-</td>
 <td style="text-align:left;">
 low
 </td>
-<td style="text-align:left;">
-pinaster_low
+<td style="text-align:right;">
+-0.022
 </td>
 <td style="text-align:right;">
-0.1169
+0.9102
 </td>
 <td style="text-align:right;">
-0.4635
+-0.42000
 </td>
 <td style="text-align:right;">
-1.9667
-</td>
-<td style="text-align:right;">
-0.4635
+0.9102
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-pinaster
-</td>
-<td style="text-align:left;">
 medium
 </td>
-<td style="text-align:left;">
-pinaster_medium
+<td style="text-align:right;">
+-0.095
 </td>
 <td style="text-align:right;">
-0.0130
+0.5536
+</td>
+<td style="text-align:right;">
+-1.22000
+</td>
+<td style="text-align:right;">
+0.5536
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="4">
+P. pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+-0.013
 </td>
 <td style="text-align:right;">
 0.9550
 </td>
 <td style="text-align:right;">
-0.1333
+-0.15000
 </td>
 <td style="text-align:right;">
 0.9550
@@ -1409,104 +1306,116 @@ pinaster_medium
 </tr>
 <tr>
 <td style="text-align:left;">
-pinaster
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-pinaster_high
-</td>
-<td style="text-align:right;">
-0.0563
-</td>
-<td style="text-align:right;">
-0.7351
-</td>
-<td style="text-align:right;">
-1.6842
-</td>
-<td style="text-align:right;">
-0.7351
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-sylvestris
-</td>
-<td style="text-align:left;">
 low
 </td>
-<td style="text-align:left;">
-sylvestris_low
+<td style="text-align:right;">
+-0.048
 </td>
 <td style="text-align:right;">
-0.2554
+0.7780
 </td>
 <td style="text-align:right;">
-0.1019
+-0.90000
 </td>
 <td style="text-align:right;">
-4.0500
-</td>
-<td style="text-align:right;">
-0.1019
+0.7780
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-sylvestris
+low-Dec
 </td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+-0.10000
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 medium
 </td>
-<td style="text-align:left;">
-sylvestris_medium
+<td style="text-align:right;">
+-0.108
 </td>
 <td style="text-align:right;">
-0.3905
+0.4986
 </td>
 <td style="text-align:right;">
-0.0121
+-1.65000
 </td>
 <td style="text-align:right;">
-4.2750
-</td>
-<td style="text-align:right;">
-0.0121
+0.4986
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-sylvestris
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. sylvestris
 </td>
 <td style="text-align:left;">
 high
 </td>
+<td style="text-align:right;">
+-0.229
+</td>
+<td style="text-align:right;">
+0.1426
+</td>
+<td style="text-align:right;">
+-3.90000
+</td>
+<td style="text-align:right;">
+0.1426
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
-sylvestris_high
+low
 </td>
 <td style="text-align:right;">
-0.3593
+0.082
 </td>
 <td style="text-align:right;">
-0.0208
+0.6118
 </td>
 <td style="text-align:right;">
-5.8375
+1.16875
 </td>
 <td style="text-align:right;">
-0.0208
+0.6118
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+0.195
+</td>
+<td style="text-align:right;">
+0.2147
+</td>
+<td style="text-align:right;">
+2.20000
+</td>
+<td style="text-align:right;">
+0.2147
 </td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>dnpp |&gt; 
-  mutate(year = lubridate::year(date)) |&gt; 
   ggplot(aes(x=year, y=npp, colour=elev_code)) +
   geom_line() + 
   #geom_point() + 
-  facet_wrap(~(factor(sp_code, levels = c(&quot;halepensis&quot;, &quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;))),
+  facet_wrap(~(factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;))),
              nrow = 1) +
   scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
   scale_colour_manual(values=colours_elev, name=&quot;&quot;) +
@@ -1521,10 +1430,47 @@ sylvestris_high
   ) +
   geom_text(x = 2002, aes(y = ypos, label = taulabel), data = mknpp, parse = TRUE, show.legend = FALSE, hjust = &quot;left&quot;)</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-npp"></span>
-<img src="figure/remote_sensing_npp.Rmd/plot-npp-1.png" alt="Temporal evolution of year NPP." width="672" />
+<img src="figure/remote_sensing_npp.Rmd/plot-npp-1.png" alt="Temporal evolution of year NPP." width="1152" />
 <p class="caption">
-Figure 4.1: Temporal evolution of year NPP.
+Figure 2.1: Temporal evolution of year NPP.
 </p>
+</div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-npp-1">
+Past versions of plot-npp-1.png
+</button>
+</p>
+<div id="fig-plot-npp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/0df3e55b91336f06b6bf6bec7f3d6e679c607e11/docs/figure/remote_sensing_npp.Rmd/plot-npp-1.png" target="_blank">0df3e55</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-26
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <pre class="r"><code>write_csv(mknpp, &quot;data/dendroadaptamed_npp_modis_trend.csv&quot;)
 write_csv(dnpp, &quot;data/dendroadaptamed_npp_modis.csv&quot;)</code></pre>
@@ -1537,48 +1483,50 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.3 (2023-03-15)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur ... 10.16
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DT_0.31          kableExtra_1.3.4 trend_1.1.6      Kendall_2.2.1   
+ [1] DT_0.32          kableExtra_1.4.0 trend_1.1.6      Kendall_2.2.1   
  [5] tidytext_0.4.1   lubridate_1.9.3  forcats_1.0.0    stringr_1.5.1   
- [9] dplyr_1.1.4      purrr_1.0.2      readr_2.1.4      tidyr_1.3.0     
-[13] tibble_3.2.1     ggplot2_3.4.4    tidyverse_2.0.0  here_1.0.1      
+ [9] dplyr_1.1.4      purrr_1.0.2      readr_2.1.5      tidyr_1.3.1     
+[13] tibble_3.2.1     ggplot2_3.5.0    tidyverse_2.0.0  here_1.0.1      
 [17] workflowr_1.7.1 
 
 loaded via a namespace (and not attached):
- [1] fs_1.6.3          bit64_4.0.5       webshot_0.5.5     httr_1.4.7       
- [5] rprojroot_2.0.4   SnowballC_0.7.1   tools_4.2.3       bslib_0.6.1      
- [9] utf8_1.2.4        R6_2.5.1          colorspace_2.1-0  withr_2.5.2      
-[13] tidyselect_1.2.0  processx_3.8.3    bit_4.0.5         compiler_4.2.3   
-[17] git2r_0.33.0      cli_3.6.2         rvest_1.0.3       xml2_1.3.6       
-[21] labeling_0.4.3    bookdown_0.37     sass_0.4.8        scales_1.3.0     
-[25] callr_3.7.3       systemfonts_1.0.5 digest_0.6.33     rmarkdown_2.25   
-[29] svglite_2.1.3     extraDistr_1.10.0 pkgconfig_2.0.3   htmltools_0.5.7  
-[33] fastmap_1.1.1     highr_0.10        htmlwidgets_1.6.4 rlang_1.1.2      
-[37] rstudioapi_0.15.0 jquerylib_0.1.4   generics_0.1.3    farver_2.1.1     
-[41] jsonlite_1.8.8    vroom_1.6.5       tokenizers_0.3.0  magrittr_2.0.3   
-[45] Matrix_1.6-4      Rcpp_1.0.11       munsell_0.5.0     fansi_1.0.6      
-[49] lifecycle_1.0.4   terra_1.7-65      stringi_1.8.3     whisker_0.4.1    
-[53] yaml_2.3.8        grid_4.2.3        parallel_4.2.3    promises_1.2.1   
-[57] crayon_1.5.2      lattice_0.22-5    hms_1.1.3         knitr_1.45       
-[61] ps_1.7.5          pillar_1.9.0      boot_1.3-28.1     codetools_0.2-19 
-[65] glue_1.6.2        evaluate_0.23     getPass_0.2-4     vctrs_0.6.5      
-[69] tzdb_0.4.0        httpuv_1.6.13     gtable_0.3.4      cachem_1.0.8     
-[73] xfun_0.41         janeaustenr_1.0.0 later_1.3.2       viridisLite_0.4.2
-[77] timechange_0.2.0 </code></pre>
+ [1] gtable_0.3.4      xfun_0.43         bslib_0.7.0       htmlwidgets_1.6.4
+ [5] processx_3.8.4    lattice_0.22-5    callr_3.7.6       tzdb_0.4.0       
+ [9] vctrs_0.6.5       tools_4.3.3       ps_1.7.6          generics_0.1.3   
+[13] parallel_4.3.3    fansi_1.0.6       highr_0.10        janeaustenr_1.0.0
+[17] pkgconfig_2.0.3   tokenizers_0.3.0  Matrix_1.6-5      lifecycle_1.0.4  
+[21] farver_2.1.1      compiler_4.3.3    git2r_0.33.0      munsell_0.5.0    
+[25] getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8   SnowballC_0.7.1  
+[29] sass_0.4.9        yaml_2.3.8        crayon_1.5.2      later_1.3.2      
+[33] pillar_1.9.0      jquerylib_0.1.4   whisker_0.4.1     cachem_1.0.8     
+[37] boot_1.3-29       tidyselect_1.2.1  digest_0.6.35     stringi_1.8.3    
+[41] bookdown_0.38     labeling_0.4.3    rprojroot_2.0.4   fastmap_1.1.1    
+[45] grid_4.3.3        colorspace_2.1-0  cli_3.6.2         magrittr_2.0.3   
+[49] utf8_1.2.4        withr_3.0.0       scales_1.3.0      promises_1.2.1   
+[53] bit64_4.0.5       timechange_0.3.0  extraDistr_1.10.0 rmarkdown_2.26   
+[57] httr_1.4.7        bit_4.0.5         hms_1.1.3         evaluate_0.23    
+[61] knitr_1.45        viridisLite_0.4.2 rlang_1.1.3       Rcpp_1.0.12      
+[65] glue_1.7.0        xml2_1.3.6        vroom_1.6.5       svglite_2.1.3    
+[69] rstudioapi_0.16.0 jsonlite_1.8.8    R6_2.5.1          systemfonts_1.0.6
+[73] fs_1.6.3         </code></pre>
 </div>
 </div>
 
