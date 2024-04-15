@@ -58,9 +58,10 @@ mkevi |>
             ~str_replace(., "mean_", "")) |> 
   kbl(
     digits = c(0,0,0,3,4,5,4),
-    caption = "Mann-Kendall and Seil temporal trend test for EVI mean") |> 
+    caption = "Mann-Kendall and Seil temporal trend test for EVI mean (MODIS)") |> 
     kable_paper("hover", full_width = F) |> 
   column_spec(4:5, bold = ifelse(mkevi$mean_pvalue_mk < 0.05, TRUE, FALSE)) |> 
+  column_spec(1, italic = TRUE) |> 
   collapse_rows(columns = 1:2)
 ```
 
@@ -108,8 +109,6 @@ iv_modis |>
             data = (mk |> filter(season == "yearly")), 
             parse = TRUE, show.legend = FALSE, hjust = "left")
 
-
-
 ```
 
 
@@ -132,7 +131,7 @@ plot_iv_modis_all_season <-
   scale_fill_manual(values=colours_elev, name="") +
   scale_colour_manual(values=colours_elev, name="") + 
   theme_bw() +
-  ylab("EVI seasonal mean") + xlab("") +
+  ylab("EVI seasonal mean (MODIS)") + xlab("") +
   theme(
     legend.position = "bottom",
     panel.grid = element_blank(),
@@ -173,7 +172,7 @@ plot_iv_modis_yearwintersummer <-
   scale_fill_manual(values=colours_elev, name="") +
   scale_colour_manual(values=colours_elev, name="") + 
   theme_bw() +
-  ylab("EVI seasonal mean") + xlab("") +
+  ylab("EVI seasonal mean (MODIS)") + xlab("") +
   theme(
     legend.position = "bottom",
     panel.grid = element_blank(),
@@ -208,7 +207,10 @@ iv_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv")
 
 
 
-```{r plot-compare-landsat, fig.cap="Comparison of Landsat EVI and NDVI annual series", fig.width=8}
+```{r plot-compare-landsat}
+#| fig.cap: "Comparison of Landsat EVI and NDVI annual series"
+#| fig.width: 8
+
 # compare NDVI - EVI
 iv_landsat |>
   ggplot(aes(x = year, y = mean, colour = elev_code)) +
@@ -238,10 +240,10 @@ mkevi_landsat <- iv_landsat |>
             across(c(mean), ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen")) |> 
   mutate(ypos = 
            case_when(
-             elev_code == "low" ~ 0.45,
-             elev_code == "low-Dec" ~ 0.425,
-             elev_code == "medium" ~ 0.475,
-             elev_code == "high" ~ 0.5), 
+             elev_code == "low" ~ 0.43,
+             elev_code == "low-Dec" ~ 0.4,
+             elev_code == "medium" ~ 0.46,
+             elev_code == "high" ~ 0.49), 
          p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
                symbols = c("***","**","*",""))) |> 
@@ -263,6 +265,7 @@ mkevi_landsat |>
     caption = "Mann-Kendall and Seil temporal trend test for EVI mean (Landsat)") |> 
     kable_paper("hover", full_width = F) |> 
   column_spec(3:4, bold = ifelse(mkevi_landsat$mean_pvalue_mk < 0.05, TRUE, FALSE)) |> 
+   column_spec(1, italic = TRUE) |> 
   collapse_rows(columns = 1:2)
 ```
 
@@ -271,14 +274,11 @@ write_csv(mkevi_landsat, "data/dendroadaptamed_iv_landsat_trend.csv")
 ```
 
 
-### Vas por aqui MELON 
+```{r plot-evi-landsat}
+#| fig.cap: "Temporal evolution of EVI (Landsat) mean"
+#| fig.width: 8
+#| fig.height: 6  
 
-
-
-
-
-
-```{r plot-evi-landsat, fig.cap="Temporal evolution of EVI (Landsat) mean.", fig.width=8, fig.height=6}
 plot_iv_landsat <- iv_landsat |>
   filter(iv == "evi") |> 
   ggplot(aes(x = year, y = mean, colour = elev_code)) +
@@ -307,8 +307,6 @@ ggsave(
   dpi = 300,
   width = 16, height = 4
 )
-
-
 ```
 
 
@@ -323,7 +321,9 @@ compare_iv <- bind_rows(
   iv_landsat |> dplyr::select(
     iv, mean, sp_code, sp_elev, mean, year, se, elev_code) |> 
     mutate(remote = "landast"),
-  iv_yearly |> dplyr::select(
+  iv_modis |> 
+    filter(season == "yearly") |> 
+    dplyr::select(
     iv = variable, sp_code, sp_elev, mean, year, se, elev_code) |> 
     mutate(remote = "modis")
 ) |> 
@@ -335,13 +335,20 @@ compare_iv <- bind_rows(
 
 
 
-```{r landsat-modis-evi, fig.cap="Comparison between EVI values from Landsat and MODIS", fig.width=6, fig.height=6}
+```{r landsat-modis-evi}
+#| fig.cap: "Comparison between EVI values from Landsat and MODIS" 
+#| fig.width: 6
+#| fig.height: 6  
+
 rmse_evi <- Metrics::rmse(compare_iv$mean_landast_evi, compare_iv$mean_modis_evi)
 rmsenorm_evi <- rmse_evi / (max(compare_iv$mean_landast_evi) - min(compare_iv$mean_landast_evi)) * 100
 
 compare_iv |> 
-  ggplot(aes(x=mean_landast_evi, y = mean_modis_evi, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  mutate(elev_code = fct_relevel(elev_code, c("high","medium","low", "low-Dec"))) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  mutate(Specie = fct_relevel(Specie, "P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris")) |> 
+  ggplot(aes(x=mean_landast_evi, y = mean_modis_evi, colour = Specie)) + 
+  geom_point(aes(shape = elev_code, fill = Specie)) +
   geom_errorbarh(aes(xmax = mean_landast_evi + se_landast_evi,
                      xmin = mean_landast_evi - se_landast_evi)) +
   geom_errorbar(aes(ymax = mean_modis_evi + se_modis_evi,
@@ -349,9 +356,11 @@ compare_iv |>
   geom_abline(slope = 1) +
   scale_x_continuous(limits = c(0.1,.5)) +
   scale_y_continuous(limits = c(0.1,.5)) +
-  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
-  scale_fill_manual(values = colours_sp, name = "Species") + 
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
   theme_bw() +
   theme(
     legend.position = c(.9,0.2), 
@@ -373,17 +382,23 @@ compare_iv |>
     parse = TRUE
   ) 
 
-
 ```
 
-```{r landsat-modis-ndvi, fig.cap="Comparison between NDVI values from Landsat and MODIS", fig.width=6, fig.height=6}
+```{r landsat-modis-ndvi}
+#| fig.cap: "Comparison between NDVI values from Landsat and MODIS" 
+#| fig.width: 6
+#| fig.height: 6  
+
 
 rmse_ndvi <- Metrics::rmse(compare_iv$mean_landast_ndvi, compare_iv$mean_modis_ndvi)
 rmsenorm_ndvi <- rmse_evi / (max(compare_iv$mean_landast_ndvi) - min(compare_iv$mean_landast_ndvi)) * 100
 
 compare_iv |> 
-  ggplot(aes(x=mean_landast_ndvi, y = mean_modis_ndvi, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  mutate(elev_code = fct_relevel(elev_code, c("high","medium","low", "low-Dec"))) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  mutate(Specie = fct_relevel(Specie, "P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris")) |> 
+  ggplot(aes(x=mean_landast_ndvi, y = mean_modis_ndvi, colour = Specie)) + 
+  geom_point(aes(shape = elev_code, fill = Specie)) +
   geom_errorbarh(aes(xmax = mean_landast_ndvi + se_landast_ndvi,
                      xmin = mean_landast_ndvi - se_landast_ndvi)) +
   geom_errorbar(aes(ymax = mean_modis_ndvi + se_modis_ndvi,
@@ -391,9 +406,11 @@ compare_iv |>
   geom_abline(slope = 1) +
   scale_x_continuous(limits = c(0.2,.8)) +
   scale_y_continuous(limits = c(0.2,.8)) +
-  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
-  scale_fill_manual(values = colours_sp, name = "Species") + 
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
   theme_bw() +
   theme(
     legend.position = c(.9,0.2), 
