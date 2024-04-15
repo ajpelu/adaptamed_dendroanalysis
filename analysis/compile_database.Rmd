@@ -8,7 +8,7 @@ editor_options:
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(
-  echo = FALSE,
+  echo = TRUE,
   warning = FALSE,
   message = FALSE,
   fig.width = 10, fig.height = 7
@@ -97,7 +97,8 @@ d <- inner_join(d_raw, geodf)
 names(d)
 ```
 
-Then, we compute 
+Then: 
+
 - Compute statistics (*mean*, *sd*, *se*, *cv*, ...) for each IV indexes grouping by year/season for each field-plot. 
 - We need to group by season and by year. 
 
@@ -199,26 +200,31 @@ write_csv(iv_landsat, "data/dendroadaptamed_iv_landsat.csv")
 
 
 
-
-
 ### NPP 
-- NPP data original as $kg ~ C ~ m^2 ~ year^{-1}$ but with a scale factor of 0.0001, so to transform to $g ~ C ~ m^2 ~ year^{-1}$ apply 0.1
+- NPP data original as $kg ~ C ~ m^2 ~ year^{-1}$ but with a scale factor of 0.0001, so to transform to $g ~ C ~ m^2 ~ year^{-1}$ apply 0.1 (0.0001*1000) 
 
 - Npp_QC: quality control (percentage)
 
 ```{r prepare-data}
-raw_npp <- read_csv(here::here("data/raw/remote_sensing/npp_mod17a3_yearly.csv"))
+raw_npp <- read_csv(here::here("data/raw/remote_sensing/npp_mod17a3_yearly_c61.csv"))
 
 npp <- raw_npp |> 
   mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), "_", "-"),
                         format = "%Y-%m-%d"),
-         npp = Npp*0.1) |> 
+         npp = Npp*0.1, 
+         gpp = Gpp*0.1) |> 
   mutate(sp_code = str_replace_all(Specie, "Pinus_", "")) |> 
   mutate(year = lubridate::year(date)) |> 
-  dplyr::select(year, sp_code, elev_code, npp, npp_qc = Npp_QC) 
+  dplyr::select(year, npp, npp_qc = Npp_QC, gpp, site_code) |> 
+  inner_join(geodf, by = "site_code")
 
-write_csv(npp, "data/dendroadaptamed_npp_mod17a3_yearly.csv")
+write_csv(npp, "data/dendroadaptamed_npp_mod17a3_yearly_c61.csv")
+
 ```
+
+
+
+
 
 
 
