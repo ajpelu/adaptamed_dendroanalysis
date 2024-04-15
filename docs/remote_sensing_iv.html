@@ -40,7 +40,7 @@
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <script src="site_libs/viz-1.8.2/viz.js"></script>
 <link href="site_libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
-<script src="site_libs/grViz-binding-1.0.10/grViz.js"></script>
+<script src="site_libs/grViz-binding-1.0.11/grViz.js"></script>
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -428,7 +428,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-02-23
+<strong>Last updated:</strong> 2024-04-15
 </p>
 <p>
 <strong>Checks:</strong>
@@ -556,20 +556,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree66615d10a921d9f7c6c52530587f96b7dd69b3abtargetblank66615d1a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed145a948a561ee2719a230b408825927c20f1164targetblankd145a94a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/66615d10a921d9f7c6c52530587f96b7dd69b3ab" target="_blank">66615d1</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d145a948a561ee2719a230b408825927c20f1164" target="_blank">d145a94</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree66615d10a921d9f7c6c52530587f96b7dd69b3abtargetblank66615d1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed145a948a561ee2719a230b408825927c20f1164targetblankd145a94a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/66615d10a921d9f7c6c52530587f96b7dd69b3ab" target="_blank">66615d1</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d145a948a561ee2719a230b408825927c20f1164" target="_blank">d145a94</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -583,36 +583,23 @@ results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    data/.DS_Store
-    Ignored:    data/geoinfo/.DS_Store
-    Ignored:    data/image_pinus/.DS_Store
+    Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/remote_sensing/old/
 
 Untracked files:
-    Untracked:  data/dendroadaptamed_iv_landsat.csv
-    Untracked:  data/dendroadaptamed_iv_landsat_trend.csv
-    Untracked:  data/dendroadaptamed_iv_modis.csv
-    Untracked:  data/dendroadaptamed_iv_modis_trend.csv
-    Untracked:  data/raw/remote_sensing/iv_landsat_c02.csv
-    Untracked:  data/raw/remote_sensing/iv_mod13q1.csv
-    Untracked:  data/raw/remote_sensing/ndvicsic1km.csv
-    Untracked:  data/raw/remote_sensing/sentinel2.csv
-    Untracked:  output/climate_diagram.png
-    Untracked:  output/climate_diagram_nolow2.png
-    Untracked:  output/iv_landsat_trend.jpg
-    Untracked:  output/iv_modis_trend.png
+    Untracked:  analysis/figura_compara_evi_npp.Rmd
+    Untracked:  output/iv_modis_trend_all_season.png
+    Untracked:  output/iv_modis_trend_selected_season.png
 
 Unstaged changes:
-    Modified:   analysis/climate_analysis.Rmd
-    Modified:   analysis/figure_clima_sites.Rmd
-    Deleted:    analysis/temporal_iv_mod13.Rmd
-    Deleted:    data/dendroadaptamed_iv_mod13q1.csv
-    Deleted:    data/dendroadaptamed_iv_mod13q1_2024.csv
-    Modified:   output/climate_temp_prec_sp.png
-    Modified:   output/climate_temp_prec_sp_elev.png
+    Modified:   analysis/compile_database.Rmd
+    Modified:   data/dendroadaptamed_iv_landsat_trend.csv
+    Modified:   data/dendroadaptamed_iv_modis_trend.csv
+    Modified:   output/iv_landsat_trend.jpg
+    Modified:   scripts/aux.R
 
 </code></pre>
 <p>
@@ -662,6 +649,57 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d145a948a561ee2719a230b408825927c20f1164/analysis/remote_sensing_iv.Rmd" target="_blank">d145a94</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-15
+</td>
+<td>
+wflow_publish("analysis/remote_sensing_iv.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/3e6e8d12deeb694277a73c2aa33dd8a199ef936e/analysis/remote_sensing_iv.Rmd" target="_blank">3e6e8d1</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-10
+</td>
+<td>
+update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/2f84c8949d08c77b7af126e86696ad6232e62453/docs/remote_sensing_iv.html" target="_blank">2f84c89</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/66615d10a921d9f7c6c52530587f96b7dd69b3ab/analysis/remote_sensing_iv.Rmd" target="_blank">66615d1</a>
 </td>
 <td>
@@ -684,7 +722,7 @@ wflow_publish(c("analysis/index.Rmd", "analysis/remote_sensing_iv.Rmd"))
 <div id="aims" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Aims</h1>
 <ul>
-<li>Prepare temporal series of IV for each field-plot</li>
+<li>Compute trends of IV from MODIS and LANDSAT</li>
 </ul>
 <pre class="r"><code>library(here)
 library(tidyverse)
@@ -692,81 +730,17 @@ library(Kendall)
 library(trend)
 library(kableExtra)
 library(DT)
-library(hydroTSM)
 library(DiagrammeR)
 source(&quot;scripts/aux.R&quot;)
 cols &lt;- c(&quot;low&quot; = &quot;red&quot;, &quot;low2&quot; =&quot;orange&quot;, &quot;med&quot; = &quot;blue&quot;, &quot;high&quot; = &quot;darkgreen&quot;)</code></pre>
 </div>
 <div id="modis-data" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> MODIS data</h1>
-<div id="prepare-data" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Prepare data</h2>
-<ul>
-<li>Select data for <em>Pinus</em> field plot</li>
-<li>Extract date of each image</li>
-<li>Format NDVI and EVI values (multiply for scale factor 0.0001; see this <a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_006_MOD13Q1">link</a>)</li>
-<li>Compute statistics (<em>mean</em>, <em>sd</em>, <em>se</em>, <em>cv</em>, …) for each IV indexes grouping by year for each field-plot.</li>
-</ul>
-<pre class="r"><code>raw &lt;- read_csv(here::here(&quot;data/raw/remote_sensing/iv_mod13q1.csv&quot;))
-elev_cat &lt;- read_csv(here::here(&quot;data/categories_elevation_site_code.csv&quot;))
-
-
-# Filter only Pinus field plot 
-d_raw &lt;- raw |&gt;
-  #filter(str_detect(Specie, &quot;Pinu&quot;)) |&gt;
-  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), &quot;_&quot;, &quot;-&quot;),
-                        format = &quot;%Y-%m-%d&quot;),
-         evi = EVI*0.0001,
-         ndvi = NDVI*0.0001) |&gt;
-  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
-
-
-geodf &lt;- terra::vect( &quot;data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp&quot;) |&gt; as.data.frame() |&gt;
-  unite(&quot;sp_elev&quot;, c(sp_code, elev_code), remove = FALSE) |&gt; 
-  dplyr::select(sp_elev, elev, site_code) |&gt; 
-  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE) 
-
-d &lt;- inner_join(d_raw, geodf)</code></pre>
-<pre class="r"><code>iv_yearly &lt;- d |&gt;
-  mutate(year=lubridate::year(date)) |&gt; 
-  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |&gt; 
-  pivot_longer(cols = c(&quot;ndvi&quot;, &quot;evi&quot;), 
-               names_to = &#39;variable&#39;, values_to = &#39;value&#39;) |&gt; 
-  group_by(site_code, Specie, year, sp_elev, variable) |&gt; 
-  summarise(mean = mean(value, na.rm = TRUE), 
-            sd = sd(value, na.rm = TRUE), 
-            se = sd/sqrt(length(value)),
-            cv = sd/mean*100,
-            median = median(value, na.rm=TRUE),
-            sum = sum(value, na.rm=TRUE),
-            min = min(value), 
-            max = max(value),
-            n = length(value)) |&gt; 
-  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) |&gt; 
-  inner_join(elev_cat) |&gt; 
-  mutate(season = as.factor(&quot;yearly&quot;)) |&gt; 
-  ungroup() |&gt; 
-  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE)</code></pre>
-<div id="summary-data" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Summary data</h3>
-<pre class="r"><code>nsize_years_gral &lt;- d_raw |&gt; group_by(site_code, Specie) |&gt; count() |&gt; dplyr::select(n) |&gt; pull() |&gt; unique()
-
-nsize_years &lt;- d_raw |&gt; mutate(year = lubridate::year(date)) |&gt;
-  group_by(site_code, Specie, year) |&gt;
-  count() |&gt; 
-  filter(site_code == &quot;PIHAL_NACIMIENTO_L&quot;) |&gt; dplyr::select(n) |&gt; pull() |&gt; unique()</code></pre>
-<p>How many images are there in total and by year?:</p>
-<ul>
-<li><p>For each site there are a total of 522 images.</p></li>
-<li><p>All the years have 23 images except the year 2000 having 19 images.</p></li>
-</ul>
-</div>
-</div>
-<div id="compute-temporal-trends" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Compute Temporal trends</h2>
-<p>We explored the temporal trends for both the annual average (Table <a href="#tab:mk-mean">2.1</a>) and also the standard deviation of the EVI along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen’s slope estimator.</p>
-<p>Significant but weaker positive trends (p-value &lt; 0.05) were observed for annual EVI mean of the high-elevation sites of <em>P. nigra</em> and <em>P. pinaster</em> (Table <a href="#tab:mk-mean">2.1</a>).</p>
-<pre class="r"><code>mkevi_yearly &lt;- iv_yearly |&gt; 
+<pre class="r"><code>iv_modis &lt;- read_csv(&quot;data/dendroadaptamed_iv_modis.csv&quot;)</code></pre>
+<div id="compute-temporal-trends" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Compute Temporal trends</h2>
+<p>We explored the temporal trends for both the seasonal averages (Table <a href="#tab:mk-season-table">2.1</a>) and also the standard deviation of the EVI along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen’s slope estimator.</p>
+<pre class="r"><code>mkevi &lt;- iv_modis |&gt; 
   filter(variable == &quot;evi&quot;)  |&gt; 
   ungroup() |&gt; 
   group_by(site_code, sp_elev, Specie, elev_code, sp_code, season) |&gt; 
@@ -774,376 +748,21 @@ nsize_years &lt;- d_raw |&gt; mutate(year = lubridate::year(date)) |&gt;
             across(mean:sd, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
             across(mean:sd, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
             across(mean:sd, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;))</code></pre>
-<pre class="r"><code>iv_yearly |&gt; 
-  filter(variable == &quot;evi&quot;) |&gt;  
-  ggplot(aes(x=year, y=mean, colour=elev_code)) +
-  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
-  geom_line() + 
-  #geom_point() + 
-  facet_wrap(~factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;)), nrow=1) +
-  scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
-  scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
-  theme_bw() +
-  ylab(&quot;EVI annual mean (MODIS)&quot;) + xlab(&quot;&quot;) +
-  theme(
-    panel.grid = element_blank(),
-    # panel.grid.major.x = element_blank(),
-    strip.background = element_rect(fill=NA), 
-    strip.text = element_text(face=&quot;italic&quot;)
-  )</code></pre>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-evi"></span>
-<img src="figure/remote_sensing_iv.Rmd/plot-evi-1.png" alt="Temporal evolution of EVI annual mean." width="768" />
-<p class="caption">
-Figure 2.1: Temporal evolution of EVI annual mean.
-</p>
-</div>
-<pre class="r"><code>mkevi_yearly |&gt; 
+<pre class="r"><code>mkevi |&gt; 
   ungroup() |&gt; 
-  dplyr::select(Specie, elev_code, dplyr::starts_with(&quot;mean&quot;)) |&gt; rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
-            ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) |&gt; 
-  kbl(
-    digits = c(0,3,4,5,4),
-    caption = &quot;Mann-Kendall and Seil temporal trend test for EVI mean&quot;) |&gt; 
-    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
-<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-<span id="tab:mk-mean">Table 2.1: </span>Mann-Kendall and Seil temporal trend test for EVI mean
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-Specie
-</th>
-<th style="text-align:left;">
-elev_code
-</th>
-<th style="text-align:right;">
-tau
-</th>
-<th style="text-align:right;">
-pvalue_mk
-</th>
-<th style="text-align:right;">
-senslope
-</th>
-<th style="text-align:right;">
-pvalue_sen
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:right;">
--0.0119
-</td>
-<td style="text-align:right;">
-0.95787
-</td>
-<td style="text-align:right;">
--0.0001
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:right;">
--0.1304
-</td>
-<td style="text-align:right;">
-0.39804
-</td>
-<td style="text-align:right;">
--0.0006
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:right;">
--0.1067
-</td>
-<td style="text-align:right;">
-0.49229
-</td>
-<td style="text-align:right;">
--0.0005
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:right;">
-0.4387
-</td>
-<td style="text-align:right;">
-0.00367
-</td>
-<td style="text-align:right;">
-0.0018
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:right;">
--0.0830
-</td>
-<td style="text-align:right;">
-0.59735
-</td>
-<td style="text-align:right;">
--0.0005
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:right;">
--0.1146
-</td>
-<td style="text-align:right;">
-0.45961
-</td>
-<td style="text-align:right;">
--0.0003
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:right;">
-0.2885
-</td>
-<td style="text-align:right;">
-0.05723
-</td>
-<td style="text-align:right;">
-0.0013
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:right;">
-0.0356
-</td>
-<td style="text-align:right;">
-0.83267
-</td>
-<td style="text-align:right;">
-0.0000
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:right;">
--0.0435
-</td>
-<td style="text-align:right;">
-0.79170
-</td>
-<td style="text-align:right;">
--0.0001
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low2
-</td>
-<td style="text-align:right;">
-0.0751
-</td>
-<td style="text-align:right;">
-0.63451
-</td>
-<td style="text-align:right;">
-0.0003
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:right;">
-0.4545
-</td>
-<td style="text-align:right;">
-0.00261
-</td>
-<td style="text-align:right;">
-0.0032
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:right;">
--0.0040
-</td>
-<td style="text-align:right;">
-1.00000
-</td>
-<td style="text-align:right;">
-0.0000
-</td>
-<td style="text-align:right;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:right;">
-0.3360
-</td>
-<td style="text-align:right;">
-0.02652
-</td>
-<td style="text-align:right;">
-0.0008
-</td>
-<td style="text-align:right;">
-0
-</td>
-</tr>
-</tbody>
-</table>
-<pre class="r"><code>mkevi_yearly |&gt; 
-  dplyr::select(site_code, dplyr::starts_with(&quot;sd&quot;)) |&gt; rename_with(.cols=dplyr::starts_with(&quot;sd&quot;),
-            ~str_replace(., &quot;sd&quot;, &quot;&quot;)) |&gt; 
-  kbl(
-    digits = c(0,3,4,4,4),
-    caption = &quot;Mann-Kendall and Seil temporal trend test for anual EVI standard deviation&quot;) |&gt; 
-    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
-<ul>
-<li>We also computed the seasonal trends for the EVI index (Table <a href="#tab:mk-season">2.2</a>)</li>
-</ul>
-<pre class="r"><code>iv_season &lt;- d |&gt; 
-  mutate(season = as.factor(hydroTSM::time2season(date, out.fmt=&quot;seasons&quot;))) |&gt; 
-  mutate(year=lubridate::year(date)) |&gt; 
-  dplyr::select(site_code, Specie, year, season, evi, ndvi) |&gt; 
-  pivot_longer(cols = c(&quot;ndvi&quot;, &quot;evi&quot;), 
-               names_to = &#39;variable&#39;, values_to = &#39;value&#39;) |&gt; 
-  group_by(site_code, Specie, year, season, variable) |&gt; 
-  summarise(mean = mean(value, na.rm = TRUE), 
-            sd = sd(value, na.rm = TRUE), 
-            se = sd/sqrt(length(value)),
-            cv = sd/mean*100,
-            median = median(value, na.rm=TRUE),
-            sum = sum(value, na.rm=TRUE),
-            min = min(value), 
-            max = max(value),
-            n = length(value)) |&gt; 
-  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) |&gt; 
-  inner_join(geodf) |&gt; 
-  ungroup() |&gt; 
-  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE)</code></pre>
-<pre class="r"><code>mkevi_season &lt;- iv_season |&gt; 
-  filter(variable == &quot;evi&quot;)  |&gt; 
-  ungroup() |&gt; 
-  group_by(site_code, Specie, sp_code, elev_code, season, sp_elev) |&gt; 
-  summarise(across(mean:sd, ~MannKendall(.)$tau, .names =&quot;{.col}_tau&quot;),
-            across(mean:sd, ~MannKendall(.)$sl, .names =&quot;{.col}_pvalue_mk&quot;),
-            across(mean:sd, ~trend::sens.slope(.)$estimate, .names =&quot;{.col}_senslope&quot;),
-            across(mean:sd, ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;))</code></pre>
-<pre class="r"><code>mkevi_season |&gt; 
-  ungroup() |&gt; 
-  dplyr::select(Specie, elev_code, season, dplyr::starts_with(&quot;mean&quot;)) |&gt;
+  dplyr::select(Specie,  elev_code, season, dplyr::starts_with(&quot;mean&quot;)) |&gt;
   rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
             ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) |&gt; 
   kbl(
     digits = c(0,0,0,3,4,5,4),
-    caption = &quot;Mann-Kendall and Seil temporal trend test for EVI mean&quot;) |&gt; 
-    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
+    caption = &quot;Mann-Kendall and Seil temporal trend test for EVI mean (MODIS)&quot;) |&gt; 
+    kable_paper(&quot;hover&quot;, full_width = F) |&gt; 
+  column_spec(4:5, bold = ifelse(mkevi$mean_pvalue_mk &lt; 0.05, TRUE, FALSE)) |&gt; 
+  column_spec(1, italic = TRUE) |&gt; 
+  collapse_rows(columns = 1:2)</code></pre>
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:mk-season">Table 2.2: </span>Mann-Kendall and Seil temporal trend test for EVI mean
+<span id="tab:mk-season-table">Table 2.1: </span>Mann-Kendall and Seil temporal trend test for EVI mean (MODIS)
 </caption>
 <thead>
 <tr>
@@ -1172,518 +791,46 @@ pvalue_sen
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="15">
 P. halepensis
 </td>
-<td style="text-align:left;">
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
 low
 </td>
 <td style="text-align:left;">
 autumn
 </td>
 <td style="text-align:right;">
-0.004
+-0.075
 </td>
 <td style="text-align:right;">
-1.0000
+0.6345
 </td>
 <td style="text-align:right;">
-0.00007
+-0.00044
 </td>
 <td style="text-align:right;">
-1.0000
+0.6345
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-low
-</td>
 <td style="text-align:left;">
 spring
 </td>
 <td style="text-align:right;">
--0.123
+-0.230
 </td>
 <td style="text-align:right;">
-0.4282
+0.1321
 </td>
 <td style="text-align:right;">
--0.00082
+-0.00113
 </td>
 <td style="text-align:right;">
-0.4282
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
-0.067
-</td>
-<td style="text-align:right;">
-0.6726
-</td>
-<td style="text-align:right;">
-0.00025
-</td>
-<td style="text-align:right;">
-0.6726
+0.1321
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-winter
-</td>
-<td style="text-align:right;">
--0.036
-</td>
-<td style="text-align:right;">
-0.8327
-</td>
-<td style="text-align:right;">
--0.00015
-</td>
-<td style="text-align:right;">
-0.8327
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-autumn
-</td>
-<td style="text-align:right;">
--0.225
-</td>
-<td style="text-align:right;">
-0.1391
-</td>
-<td style="text-align:right;">
--0.00091
-</td>
-<td style="text-align:right;">
-0.1391
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
--0.099
-</td>
-<td style="text-align:right;">
-0.5262
-</td>
-<td style="text-align:right;">
--0.00072
-</td>
-<td style="text-align:right;">
-0.5262
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
--0.099
-</td>
-<td style="text-align:right;">
-0.5262
-</td>
-<td style="text-align:right;">
--0.00057
-</td>
-<td style="text-align:right;">
-0.5262
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-winter
-</td>
-<td style="text-align:right;">
--0.194
-</td>
-<td style="text-align:right;">
-0.2049
-</td>
-<td style="text-align:right;">
--0.00099
-</td>
-<td style="text-align:right;">
-0.2049
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-autumn
-</td>
-<td style="text-align:right;">
-0.123
-</td>
-<td style="text-align:right;">
-0.4282
-</td>
-<td style="text-align:right;">
-0.00021
-</td>
-<td style="text-align:right;">
-0.4282
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
--0.154
-</td>
-<td style="text-align:right;">
-0.3156
-</td>
-<td style="text-align:right;">
--0.00076
-</td>
-<td style="text-align:right;">
-0.3156
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
--0.115
-</td>
-<td style="text-align:right;">
-0.4596
-</td>
-<td style="text-align:right;">
--0.00034
-</td>
-<td style="text-align:right;">
-0.4596
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. halepensis
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-winter
-</td>
-<td style="text-align:right;">
--0.241
-</td>
-<td style="text-align:right;">
-0.1131
-</td>
-<td style="text-align:right;">
--0.00110
-</td>
-<td style="text-align:right;">
-0.1131
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-autumn
-</td>
-<td style="text-align:right;">
-0.462
-</td>
-<td style="text-align:right;">
-0.0022
-</td>
-<td style="text-align:right;">
-0.00297
-</td>
-<td style="text-align:right;">
-0.0022
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
-0.494
-</td>
-<td style="text-align:right;">
-0.0011
-</td>
-<td style="text-align:right;">
-0.00313
-</td>
-<td style="text-align:right;">
-0.0011
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
-0.383
-</td>
-<td style="text-align:right;">
-0.0112
-</td>
-<td style="text-align:right;">
-0.00189
-</td>
-<td style="text-align:right;">
-0.0112
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-winter
-</td>
-<td style="text-align:right;">
-0.154
-</td>
-<td style="text-align:right;">
-0.3156
-</td>
-<td style="text-align:right;">
-0.00072
-</td>
-<td style="text-align:right;">
-0.3156
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-autumn
-</td>
-<td style="text-align:right;">
-0.138
-</td>
-<td style="text-align:right;">
-0.3692
-</td>
-<td style="text-align:right;">
-0.00119
-</td>
-<td style="text-align:right;">
-0.3692
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
-0.012
-</td>
-<td style="text-align:right;">
-0.9579
-</td>
-<td style="text-align:right;">
-0.00001
-</td>
-<td style="text-align:right;">
-0.9579
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
-0.012
-</td>
-<td style="text-align:right;">
-0.9579
-</td>
-<td style="text-align:right;">
-0.00004
-</td>
-<td style="text-align:right;">
-0.9579
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-winter
-</td>
-<td style="text-align:right;">
--0.352
-</td>
-<td style="text-align:right;">
-0.0201
-</td>
-<td style="text-align:right;">
--0.00245
-</td>
-<td style="text-align:right;">
-0.0201
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-autumn
-</td>
-<td style="text-align:right;">
-0.162
-</td>
-<td style="text-align:right;">
-0.2908
-</td>
-<td style="text-align:right;">
-0.00075
-</td>
-<td style="text-align:right;">
-0.2908
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
-0.051
-</td>
-<td style="text-align:right;">
-0.7513
-</td>
-<td style="text-align:right;">
-0.00029
-</td>
-<td style="text-align:right;">
-0.7513
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-medium
-</td>
 <td style="text-align:left;">
 summer
 </td>
@@ -1694,7 +841,7 @@ summer
 1.0000
 </td>
 <td style="text-align:right;">
--0.00004
+-0.00002
 </td>
 <td style="text-align:right;">
 1.0000
@@ -1702,289 +849,44 @@ summer
 </tr>
 <tr>
 <td style="text-align:left;">
-P. nigra
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
 winter
 </td>
 <td style="text-align:right;">
--0.344
+-0.154
 </td>
 <td style="text-align:right;">
-0.0231
+0.3156
 </td>
 <td style="text-align:right;">
--0.00182
+-0.00090
 </td>
 <td style="text-align:right;">
-0.0231
+0.3156
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-autumn
+yearly
 </td>
 <td style="text-align:right;">
-0.455
+-0.130
 </td>
 <td style="text-align:right;">
-0.0026
+0.3980
 </td>
 <td style="text-align:right;">
-0.00249
+-0.00064
 </td>
 <td style="text-align:right;">
-0.0026
+0.3980
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
-0.289
-</td>
-<td style="text-align:right;">
-0.0572
-</td>
-<td style="text-align:right;">
-0.00136
-</td>
-<td style="text-align:right;">
-0.0572
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
-0.241
-</td>
-<td style="text-align:right;">
-0.1131
-</td>
-<td style="text-align:right;">
-0.00135
-</td>
-<td style="text-align:right;">
-0.1131
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-high
-</td>
-<td style="text-align:left;">
-winter
-</td>
-<td style="text-align:right;">
-0.146
-</td>
-<td style="text-align:right;">
-0.3417
-</td>
-<td style="text-align:right;">
-0.00078
-</td>
-<td style="text-align:right;">
-0.3417
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-autumn
-</td>
-<td style="text-align:right;">
-0.012
-</td>
-<td style="text-align:right;">
-0.9579
-</td>
-<td style="text-align:right;">
-0.00010
-</td>
-<td style="text-align:right;">
-0.9579
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
-0.091
-</td>
-<td style="text-align:right;">
-0.5612
-</td>
-<td style="text-align:right;">
-0.00051
-</td>
-<td style="text-align:right;">
-0.5612
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
-0.067
-</td>
-<td style="text-align:right;">
-0.6726
-</td>
-<td style="text-align:right;">
-0.00047
-</td>
-<td style="text-align:right;">
-0.6726
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
-winter
-</td>
-<td style="text-align:right;">
--0.075
-</td>
-<td style="text-align:right;">
-0.6345
-</td>
-<td style="text-align:right;">
--0.00038
-</td>
-<td style="text-align:right;">
-0.6345
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
 medium
 </td>
 <td style="text-align:left;">
 autumn
-</td>
-<td style="text-align:right;">
--0.107
-</td>
-<td style="text-align:right;">
-0.4923
-</td>
-<td style="text-align:right;">
--0.00042
-</td>
-<td style="text-align:right;">
-0.4923
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-spring
-</td>
-<td style="text-align:right;">
-0.028
-</td>
-<td style="text-align:right;">
-0.8741
-</td>
-<td style="text-align:right;">
-0.00011
-</td>
-<td style="text-align:right;">
-0.8741
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-summer
-</td>
-<td style="text-align:right;">
-0.028
-</td>
-<td style="text-align:right;">
-0.8741
-</td>
-<td style="text-align:right;">
-0.00005
-</td>
-<td style="text-align:right;">
-0.8741
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-medium
-</td>
-<td style="text-align:left;">
-winter
 </td>
 <td style="text-align:right;">
 -0.146
@@ -2001,266 +903,376 @@ winter
 </tr>
 <tr>
 <td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low2
-</td>
-<td style="text-align:left;">
-autumn
-</td>
-<td style="text-align:right;">
-0.352
-</td>
-<td style="text-align:right;">
-0.0201
-</td>
-<td style="text-align:right;">
-0.00106
-</td>
-<td style="text-align:right;">
-0.0201
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low2
-</td>
-<td style="text-align:left;">
 spring
 </td>
 <td style="text-align:right;">
-0.146
+-0.225
 </td>
 <td style="text-align:right;">
-0.3417
+0.1391
 </td>
 <td style="text-align:right;">
-0.00076
+-0.00109
 </td>
 <td style="text-align:right;">
-0.3417
+0.1391
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low2
-</td>
 <td style="text-align:left;">
 summer
 </td>
 <td style="text-align:right;">
-0.241
+-0.194
 </td>
 <td style="text-align:right;">
-0.1131
+0.2049
 </td>
 <td style="text-align:right;">
-0.00078
+-0.00055
 </td>
 <td style="text-align:right;">
-0.1131
+0.2049
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. pinaster
-</td>
-<td style="text-align:left;">
-low2
-</td>
 <td style="text-align:left;">
 winter
 </td>
 <td style="text-align:right;">
--0.214
+-0.186
 </td>
 <td style="text-align:right;">
-0.1614
+0.2244
 </td>
 <td style="text-align:right;">
--0.00122
+-0.00056
 </td>
 <td style="text-align:right;">
-0.1614
+0.2244
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-P. sylvestris
+yearly
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;">
+-0.202
+</td>
+<td style="text-align:right;">
+0.1867
+</td>
+<td style="text-align:right;">
+-0.00070
+</td>
+<td style="text-align:right;">
+0.1867
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="10">
 high
 </td>
 <td style="text-align:left;">
 autumn
 </td>
 <td style="text-align:right;">
-0.352
+-0.020
 </td>
 <td style="text-align:right;">
-0.0201
+0.9159
 </td>
 <td style="text-align:right;">
-0.00303
+-0.00005
 </td>
 <td style="text-align:right;">
-0.0201
+0.9159
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-high
-</td>
 <td style="text-align:left;">
 spring
 </td>
 <td style="text-align:right;">
-0.304
+-0.249
 </td>
 <td style="text-align:right;">
-0.0447
+0.1015
 </td>
 <td style="text-align:right;">
-0.00182
+-0.00115
 </td>
 <td style="text-align:right;">
-0.0447
+0.1015
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-high
-</td>
 <td style="text-align:left;">
 summer
 </td>
 <td style="text-align:right;">
-0.273
+-0.130
 </td>
 <td style="text-align:right;">
-0.0725
+0.3980
 </td>
 <td style="text-align:right;">
-0.00167
+-0.00042
 </td>
 <td style="text-align:right;">
-0.0725
+0.3980
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-P. sylvestris
+winter
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.320
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0346
+</td>
+<td style="text-align:right;">
+-0.00099
+</td>
+<td style="text-align:right;">
+0.0346
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.178
+</td>
+<td style="text-align:right;">
+0.2452
+</td>
+<td style="text-align:right;">
+-0.00054
+</td>
+<td style="text-align:right;">
+0.2452
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="15">
+P. nigra
 </td>
 <td style="text-align:left;">
-high
+autumn
 </td>
+<td style="text-align:right;font-weight: bold;">
+0.494
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0011
+</td>
+<td style="text-align:right;">
+0.00233
+</td>
+<td style="text-align:right;">
+0.0011
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.388
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0104
+</td>
+<td style="text-align:right;">
+0.00223
+</td>
+<td style="text-align:right;">
+0.0104
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.391
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0096
+</td>
+<td style="text-align:right;">
+0.00183
+</td>
+<td style="text-align:right;">
+0.0096
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 winter
 </td>
 <td style="text-align:right;">
-0.478
+-0.036
 </td>
 <td style="text-align:right;">
-0.0015
+0.8327
 </td>
 <td style="text-align:right;">
-0.00673
+-0.00008
 </td>
 <td style="text-align:right;">
-0.0015
+0.8327
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-P. sylvestris
+yearly
 </td>
-<td style="text-align:left;">
+<td style="text-align:right;font-weight: bold;">
+0.399
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0083
+</td>
+<td style="text-align:right;">
+0.00172
+</td>
+<td style="text-align:right;">
+0.0083
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
 low
 </td>
 <td style="text-align:left;">
 autumn
 </td>
 <td style="text-align:right;">
-0.138
+0.178
 </td>
 <td style="text-align:right;">
-0.3692
+0.2452
 </td>
 <td style="text-align:right;">
-0.00069
+0.00103
 </td>
 <td style="text-align:right;">
-0.3692
+0.2452
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-low
-</td>
 <td style="text-align:left;">
 spring
 </td>
 <td style="text-align:right;">
-0.091
+-0.075
 </td>
 <td style="text-align:right;">
-0.5612
+0.6345
 </td>
 <td style="text-align:right;">
-0.00038
+-0.00035
 </td>
 <td style="text-align:right;">
-0.5612
+0.6345
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-low
-</td>
 <td style="text-align:left;">
 summer
 </td>
 <td style="text-align:right;">
--0.154
+0.051
 </td>
 <td style="text-align:right;">
-0.3156
+0.7513
 </td>
 <td style="text-align:right;">
--0.00088
+0.00011
 </td>
 <td style="text-align:right;">
-0.3156
+0.7513
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-low
-</td>
-<td style="text-align:left;">
 winter
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.447
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0031
+</td>
+<td style="text-align:right;">
+-0.00299
+</td>
+<td style="text-align:right;">
+0.0031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.194
+</td>
+<td style="text-align:right;">
+0.2049
+</td>
+<td style="text-align:right;">
+-0.00053
+</td>
+<td style="text-align:right;">
+0.2049
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+medium
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.099
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+<td style="text-align:right;">
+0.00052
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+-0.00002
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
 </td>
 <td style="text-align:right;">
 -0.115
@@ -2269,7 +1281,7 @@ winter
 0.4596
 </td>
 <td style="text-align:right;">
--0.00033
+-0.00048
 </td>
 <td style="text-align:right;">
 0.4596
@@ -2277,68 +1289,283 @@ winter
 </tr>
 <tr>
 <td style="text-align:left;">
-P. sylvestris
+winter
+</td>
+<td style="text-align:right;font-weight: bold;">
+-0.304
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0447
+</td>
+<td style="text-align:right;">
+-0.00179
+</td>
+<td style="text-align:right;">
+0.0447
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.138
+</td>
+<td style="text-align:right;">
+0.3692
+</td>
+<td style="text-align:right;">
+-0.00046
+</td>
+<td style="text-align:right;">
+0.3692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="20">
+P. pinaster
+</td>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+high
 </td>
 <td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.265
+</td>
+<td style="text-align:right;">
+0.0813
+</td>
+<td style="text-align:right;">
+0.00144
+</td>
+<td style="text-align:right;">
+0.0813
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.225
+</td>
+<td style="text-align:right;">
+0.1391
+</td>
+<td style="text-align:right;">
+0.00107
+</td>
+<td style="text-align:right;">
+0.1391
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.170
+</td>
+<td style="text-align:right;">
+0.2673
+</td>
+<td style="text-align:right;">
+0.00102
+</td>
+<td style="text-align:right;">
+0.2673
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.119
+</td>
+<td style="text-align:right;">
+0.4436
+</td>
+<td style="text-align:right;">
+0.00094
+</td>
+<td style="text-align:right;">
+0.4436
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+0.209
+</td>
+<td style="text-align:right;">
+0.1696
+</td>
+<td style="text-align:right;">
+0.00095
+</td>
+<td style="text-align:right;">
+0.1696
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+low
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+-0.028
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+<td style="text-align:right;">
+-0.00036
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.036
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+<td style="text-align:right;">
+0.00022
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.036
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+<td style="text-align:right;">
+-0.00030
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.036
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+<td style="text-align:right;">
+-0.00021
+</td>
+<td style="text-align:right;">
+0.8327
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
 medium
 </td>
 <td style="text-align:left;">
 autumn
 </td>
 <td style="text-align:right;">
-0.257
+-0.186
 </td>
 <td style="text-align:right;">
-0.0910
+0.2244
 </td>
 <td style="text-align:right;">
-0.00131
+-0.00075
 </td>
 <td style="text-align:right;">
-0.0910
+0.2244
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-medium
-</td>
 <td style="text-align:left;">
 spring
 </td>
 <td style="text-align:right;">
-0.336
+-0.123
 </td>
 <td style="text-align:right;">
-0.0265
+0.4282
 </td>
 <td style="text-align:right;">
-0.00082
+-0.00038
 </td>
 <td style="text-align:right;">
-0.0265
+0.4282
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-P. sylvestris
-</td>
-<td style="text-align:left;">
-medium
-</td>
 <td style="text-align:left;">
 summer
 </td>
 <td style="text-align:right;">
-0.162
+-0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+-0.00001
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.162
 </td>
 <td style="text-align:right;">
 0.2908
 </td>
 <td style="text-align:right;">
-0.00052
+-0.00080
 </td>
 <td style="text-align:right;">
 0.2908
@@ -2346,60 +1573,468 @@ summer
 </tr>
 <tr>
 <td style="text-align:left;">
-P. sylvestris
+yearly
+</td>
+<td style="text-align:right;">
+-0.099
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+<td style="text-align:right;">
+-0.00047
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+low-Dec
 </td>
 <td style="text-align:left;">
-medium
+autumn
 </td>
+<td style="text-align:right;">
+0.273
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+<td style="text-align:right;">
+0.00068
+</td>
+<td style="text-align:right;">
+0.0725
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+-0.00003
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+<td style="text-align:right;">
+0.00010
+</td>
+<td style="text-align:right;">
+0.8741
+</td>
+</tr>
+<tr>
 <td style="text-align:left;">
 winter
 </td>
 <td style="text-align:right;">
-0.186
+-0.202
 </td>
 <td style="text-align:right;">
-0.2244
+0.1867
 </td>
 <td style="text-align:right;">
-0.00107
+-0.00102
 </td>
 <td style="text-align:right;">
-0.2244
+0.1867
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.012
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+<td style="text-align:right;">
+-0.00004
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="15">
+P. sylvestris
+</td>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+high
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.067
+</td>
+<td style="text-align:right;">
+0.6726
+</td>
+<td style="text-align:right;">
+0.00100
+</td>
+<td style="text-align:right;">
+0.6726
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.154
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+<td style="text-align:right;">
+0.00195
+</td>
+<td style="text-align:right;">
+0.3156
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.217
+</td>
+<td style="text-align:right;">
+0.1538
+</td>
+<td style="text-align:right;">
+0.00125
+</td>
+<td style="text-align:right;">
+0.1538
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.383
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0112
+</td>
+<td style="text-align:right;">
+0.00511
+</td>
+<td style="text-align:right;">
+0.0112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.375
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0130
+</td>
+<td style="text-align:right;">
+0.00267
+</td>
+<td style="text-align:right;">
+0.0130
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+low
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+-0.004
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+<td style="text-align:right;">
+-0.00001
+</td>
+<td style="text-align:right;">
+1.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+-0.012
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+<td style="text-align:right;">
+-0.00004
+</td>
+<td style="text-align:right;">
+0.9579
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+-0.099
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+<td style="text-align:right;">
+-0.00038
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+-0.099
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+<td style="text-align:right;">
+-0.00092
+</td>
+<td style="text-align:right;">
+0.5262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;">
+-0.083
+</td>
+<td style="text-align:right;">
+0.5974
+</td>
+<td style="text-align:right;">
+-0.00045
+</td>
+<td style="text-align:right;">
+0.5974
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: middle !important;" rowspan="5">
+medium
+</td>
+<td style="text-align:left;">
+autumn
+</td>
+<td style="text-align:right;">
+0.265
+</td>
+<td style="text-align:right;">
+0.0813
+</td>
+<td style="text-align:right;">
+0.00122
+</td>
+<td style="text-align:right;">
+0.0813
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spring
+</td>
+<td style="text-align:right;">
+0.281
+</td>
+<td style="text-align:right;">
+0.0645
+</td>
+<td style="text-align:right;">
+0.00146
+</td>
+<td style="text-align:right;">
+0.0645
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+summer
+</td>
+<td style="text-align:right;">
+0.194
+</td>
+<td style="text-align:right;">
+0.2049
+</td>
+<td style="text-align:right;">
+0.00113
+</td>
+<td style="text-align:right;">
+0.2049
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winter
+</td>
+<td style="text-align:right;">
+0.091
+</td>
+<td style="text-align:right;">
+0.5612
+</td>
+<td style="text-align:right;">
+0.00025
+</td>
+<td style="text-align:right;">
+0.5612
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+yearly
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.312
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.0394
+</td>
+<td style="text-align:right;">
+0.00111
+</td>
+<td style="text-align:right;">
+0.0394
 </td>
 </tr>
 </tbody>
 </table>
-<pre class="r"><code>mkevi_season |&gt; 
-  dplyr::select(site_code, season, dplyr::starts_with(&quot;sd&quot;)) |&gt; rename_with(.cols=dplyr::starts_with(&quot;sd&quot;),
-            ~str_replace(., &quot;sd_&quot;, &quot;&quot;)) |&gt; 
-  kbl(
-    digits = c(0,0,0,3,4,5,4),
-    caption = &quot;Mann-Kendall and Seil temporal trend test for anual EVI standard deviation&quot;) |&gt; 
-    kable_paper(&quot;hover&quot;, full_width = F)</code></pre>
-<pre class="r"><code>mk &lt;- bind_rows(mkevi_season, mkevi_yearly) |&gt; 
+<pre class="r"><code>mk &lt;- mkevi |&gt; 
   mutate(ypos = 
            case_when(
-             elev_code == &quot;low&quot; ~ 0.4,
-             elev_code == &quot;low2&quot; ~ 0.35,
-             elev_code == &quot;medium&quot; ~ 0.45,
-             elev_code == &quot;high&quot; ~ 0.5), 
+             elev_code == &quot;low&quot; ~ 0.43,
+             elev_code == &quot;low-Dec&quot; ~ 0.4,
+             elev_code == &quot;medium&quot; ~ 0.46,
+             elev_code == &quot;high&quot; ~ 0.49), 
          p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
                symbols = c(&quot;***&quot;,&quot;**&quot;,&quot;*&quot;,&quot;&quot;))) |&gt; 
-  mutate(taulabel = paste(expression(tau), &quot;==&quot;, paste0(&#39;&quot;&#39;, round(mean_tau, 2), p_value_string, &#39;&quot;&#39;)))</code></pre>
-<pre class="r"><code>plot_iv_modis &lt;- bind_rows(iv_season, iv_yearly) |&gt; 
-  mutate(season = fct_relevel(season, c(&quot;yearly&quot;, &quot;winter&quot;,&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;))) |&gt; 
+  mutate(taulabel = paste(expression(tau), &quot;==&quot;, paste0(&#39;&quot;&#39;, round(mean_tau, 2), p_value_string, &#39;&quot;&#39;))) </code></pre>
+<pre class="r"><code>iv_modis |&gt; 
+  filter(variable == &quot;evi&quot;) |&gt; 
+  filter(season == &quot;yearly&quot;) |&gt; 
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_wrap(~factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;)), nrow=1) +
+  scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
+  theme_bw() +
+  ylab(&quot;EVI annual mean (MODIS)&quot;) + xlab(&quot;&quot;) +
+  theme(
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text = element_text(face=&quot;italic&quot;)
+  ) + 
+  geom_text(x = 2002, aes(y = ypos, 
+                          label = taulabel), 
+            data = (mk |&gt; filter(season == &quot;yearly&quot;)), 
+            parse = TRUE, show.legend = FALSE, hjust = &quot;left&quot;)</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-evi"></span>
+<img src="figure/remote_sensing_iv.Rmd/plot-evi-1.png" alt="Temporal evolution of EVI annual mean." width="768" />
+<p class="caption">
+Figure 2.1: Temporal evolution of EVI annual mean.
+</p>
+</div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-evi-1">
+Past versions of plot-evi-1.png
+</button>
+</p>
+<div id="fig-plot-evi-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2f84c8949d08c77b7af126e86696ad6232e62453/docs/figure/remote_sensing_iv.Rmd/plot-evi-1.png" target="_blank">2f84c89</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>plot_iv_modis_all_season &lt;-
+  iv_modis |&gt; 
+  mutate(elev_code = fct_relevel(elev_code, c(&quot;high&quot;,&quot;medium&quot;,&quot;low&quot;, &quot;low-Dec&quot;))) |&gt; 
   filter(variable == &quot;evi&quot;) |&gt;  
   ggplot(aes(x=year, y=mean, colour=elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
   geom_line() + 
   #geom_point() + 
-  facet_grid(season~
+  facet_grid(fct_relevel(season, c(&quot;yearly&quot;, &quot;winter&quot;,&quot;spring&quot;,&quot;summer&quot;,&quot;autumn&quot;))~
     factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;))) +
   scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
   scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
   theme_bw() +
-  ylab(&quot;EVI seasonal mean&quot;) + xlab(&quot;&quot;) +
+  ylab(&quot;EVI seasonal mean (MODIS)&quot;) + xlab(&quot;&quot;) +
   theme(
     legend.position = &quot;bottom&quot;,
     panel.grid = element_blank(),
@@ -2409,62 +2044,101 @@ winter
   ) +
   geom_text(x = 2002, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = &quot;left&quot;)
 
-plot_iv_modis</code></pre>
+plot_iv_modis_all_season </code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-evi-season"></span>
 <img src="figure/remote_sensing_iv.Rmd/plot-evi-season-1.png" alt="Temporal evolution of EVI (MODIS) seasonal mean." width="768" />
 <p class="caption">
 Figure 2.2: Temporal evolution of EVI (MODIS) seasonal mean.
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-evi-season-1">
+Past versions of plot-evi-season-1.png
+</button>
+</p>
+<div id="fig-plot-evi-season-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2f84c8949d08c77b7af126e86696ad6232e62453/docs/figure/remote_sensing_iv.Rmd/plot-evi-season-1.png" target="_blank">2f84c89</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>ggsave(
-  plot_iv_modis, 
-  file = &quot;output/iv_modis_trend.png&quot;,
+  plot_iv_modis_all_season , 
+  file = &quot;output/iv_modis_trend_all_season.png&quot;,
   dpi = 300,
   width = 12, height = 12
 )</code></pre>
-<pre class="r"><code>write_csv(mk, &quot;data/dendroadaptamed_iv_modis_trend.csv&quot;)
-write_csv(bind_rows(iv_season, iv_yearly), &quot;data/dendroadaptamed_iv_modis.csv&quot;)</code></pre>
+<pre class="r"><code>plot_iv_modis_yearwintersummer &lt;-
+  iv_modis |&gt; 
+  filter(season %in% c(&quot;yearly&quot;, &quot;winter&quot;, &quot;summer&quot;)) |&gt; 
+  mutate(elev_code = fct_relevel(elev_code, c(&quot;high&quot;,&quot;medium&quot;,&quot;low&quot;, &quot;low-Dec&quot;))) |&gt; 
+  filter(variable == &quot;evi&quot;) |&gt;  
+  ggplot(aes(x=year, y=mean, colour=elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) +
+  geom_line() + 
+  #geom_point() + 
+  facet_grid(fct_relevel(season, c(&quot;yearly&quot;, &quot;winter&quot;,&quot;summer&quot;))~
+    factor(Specie, levels = c(&quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;))) +
+  scale_fill_manual(values=colours_elev, name=&quot;&quot;) +
+  scale_colour_manual(values=colours_elev, name=&quot;&quot;) + 
+  theme_bw() +
+  ylab(&quot;EVI seasonal mean (MODIS)&quot;) + xlab(&quot;&quot;) +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    panel.grid = element_blank(),
+    # panel.grid.major.x = element_blank(),
+    strip.background = element_rect(fill=NA), 
+    strip.text.x = element_text(face=&quot;italic&quot;)
+  ) +
+  geom_text(x = 2002, aes(y = ypos, label = taulabel), 
+            data = (mk |&gt;  filter(season %in% c(&quot;yearly&quot;, &quot;winter&quot;, &quot;summer&quot;))), 
+            parse = TRUE, show.legend = FALSE, hjust = &quot;left&quot;)
+
+plot_iv_modis_yearwintersummer</code></pre>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-3"></span>
+<img src="figure/remote_sensing_iv.Rmd/unnamed-chunk-3-1.png" alt="Temporal evolution of yearly, winter and summer EVI (MODIS)." width="768" />
+<p class="caption">
+Figure 2.3: Temporal evolution of yearly, winter and summer EVI (MODIS).
+</p>
+</div>
+<pre class="r"><code>ggsave(
+  plot_iv_modis_yearwintersummer, 
+  file = &quot;output/iv_modis_trend_selected_season.png&quot;,
+  dpi = 300,
+  width = 12, height = 12
+)</code></pre>
+<pre class="r"><code>write_csv(mk, &quot;data/dendroadaptamed_iv_modis_trend.csv&quot;)</code></pre>
 </div>
 </div>
-<div id="long-term-high-spatial-resolution-landsat-harmonized" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Long-term high-spatial resolution Landsat (harmonized)</h1>
-<pre class="r"><code>landsat &lt;- read_csv(&quot;data/raw/remote_sensing/iv_landsat_c02.csv&quot;) |&gt; 
-  rename(evi = EVI, ndvi = NDVI, site_code = label, image = `system:index`) |&gt; 
-  dplyr::select(-`.geo`) |&gt; 
-  mutate(date = as.Date(as.character(date), format=&quot;%Y%m%d&quot;)) |&gt; 
-  mutate(year = lubridate::year(date), 
-         month = lubridate::month(date)) |&gt; 
-  filter(year != 2023) |&gt; 
-  inner_join(geodf)</code></pre>
-<pre class="r"><code>evilandsat &lt;- landsat |&gt; 
-  filter(!is.na(evi)) |&gt; 
-  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
-  summarise(mean = mean(evi, na.rm = TRUE), 
-            sd = sd(evi, na.rm = TRUE), 
-            se = sd/sqrt(length(evi)),
-            cv = sd/mean*100,
-            median = median(evi, na.rm=TRUE),
-            sum = sum(evi, na.rm=TRUE),
-            min = min(evi), 
-            max = max(evi),
-            n = length(evi))
-
-ndvilandsat &lt;- landsat |&gt; 
-  filter(!is.na(ndvi)) |&gt; 
-  group_by(sp_elev, sp_code, elev_code, year) |&gt; 
-  summarise(mean = mean(ndvi, na.rm = TRUE), 
-            sd = sd(ndvi, na.rm = TRUE), 
-            se = sd/sqrt(length(ndvi)),
-            cv = sd/mean*100,
-            median = median(ndvi, na.rm=TRUE),
-            sum = sum(ndvi, na.rm=TRUE),
-            min = min(ndvi), 
-            max = max(ndvi),
-            n = length(ndvi))
-
-iv_landsat &lt;- bind_rows(
-  (ndvilandsat |&gt; mutate(iv = &quot;ndvi&quot;)), 
-  (evilandsat |&gt; mutate(iv = &quot;evi&quot;)))</code></pre>
+<div id="landsat-data" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Landsat Data</h1>
+<pre class="r"><code>iv_landsat &lt;- read_csv(&quot;data/dendroadaptamed_iv_landsat.csv&quot;) </code></pre>
 <pre class="r"><code># compare NDVI - EVI
 iv_landsat |&gt;
   ggplot(aes(x = year, y = mean, colour = elev_code)) +
@@ -2487,6 +2161,43 @@ iv_landsat |&gt;
 Figure 3.1: Comparison of Landsat EVI and NDVI annual series
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-compare-landsat-1">
+Past versions of plot-compare-landsat-1.png
+</button>
+</p>
+<div id="fig-plot-compare-landsat-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2f84c8949d08c77b7af126e86696ad6232e62453/docs/figure/remote_sensing_iv.Rmd/plot-compare-landsat-1.png" target="_blank">2f84c89</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>mkevi_landsat &lt;- iv_landsat |&gt; 
   filter(iv == &quot;evi&quot;)  |&gt; 
   ungroup() |&gt; 
@@ -2497,14 +2208,292 @@ Figure 3.1: Comparison of Landsat EVI and NDVI annual series
             across(c(mean), ~trend::sens.slope(.)$p.value, .names =&quot;{.col}_pvalue_sen&quot;)) |&gt; 
   mutate(ypos = 
            case_when(
-             elev_code == &quot;low&quot; ~ 0.45,
-             elev_code == &quot;low2&quot; ~ 0.425,
-             elev_code == &quot;medium&quot; ~ 0.475,
-             elev_code == &quot;high&quot; ~ 0.5), 
+             elev_code == &quot;low&quot; ~ 0.43,
+             elev_code == &quot;low-Dec&quot; ~ 0.4,
+             elev_code == &quot;medium&quot; ~ 0.46,
+             elev_code == &quot;high&quot; ~ 0.49), 
          p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
                symbols = c(&quot;***&quot;,&quot;**&quot;,&quot;*&quot;,&quot;&quot;))) |&gt; 
-  mutate(taulabel = paste(expression(tau), &quot;==&quot;, paste0(&#39;&quot;&#39;, round(mean_tau, 2), p_value_string, &#39;&quot;&#39;)))</code></pre>
+  mutate(taulabel = paste(expression(tau), &quot;==&quot;, paste0(&#39;&quot;&#39;, round(mean_tau, 2), p_value_string, &#39;&quot;&#39;))) |&gt; 
+  mutate(
+    Specie = paste0(&quot;P. &quot;, sp_code)
+  )</code></pre>
+<pre class="r"><code>mkevi_landsat |&gt; 
+  ungroup() |&gt; 
+  dplyr::select(Specie,  elev_code, dplyr::starts_with(&quot;mean&quot;)) |&gt;
+  rename_with(.cols=dplyr::starts_with(&quot;mean&quot;),
+            ~str_replace(., &quot;mean_&quot;, &quot;&quot;)) |&gt; 
+  kbl(
+    digits = c(0,0,3,3,4,5,4),
+    caption = &quot;Mann-Kendall and Seil temporal trend test for EVI mean (Landsat)&quot;) |&gt; 
+    kable_paper(&quot;hover&quot;, full_width = F) |&gt; 
+  column_spec(3:4, bold = ifelse(mkevi_landsat$mean_pvalue_mk &lt; 0.05, TRUE, FALSE)) |&gt; 
+   column_spec(1, italic = TRUE) |&gt; 
+  collapse_rows(columns = 1:2)</code></pre>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-7">Table 3.1: </span>Mann-Kendall and Seil temporal trend test for EVI mean (Landsat)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Specie
+</th>
+<th style="text-align:left;">
+elev_code
+</th>
+<th style="text-align:right;">
+tau
+</th>
+<th style="text-align:right;">
+pvalue_mk
+</th>
+<th style="text-align:right;">
+senslope
+</th>
+<th style="text-align:right;">
+pvalue_sen
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.246
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.033
+</td>
+<td style="text-align:right;">
+0.0008
+</td>
+<td style="text-align:right;">
+0.03302
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+0.078
+</td>
+<td style="text-align:right;">
+0.505
+</td>
+<td style="text-align:right;">
+0.0002
+</td>
+<td style="text-align:right;">
+0.50476
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.321
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.005
+</td>
+<td style="text-align:right;">
+0.0013
+</td>
+<td style="text-align:right;">
+0.00534
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.727
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0026
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.366
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.001
+</td>
+<td style="text-align:right;">
+0.0013
+</td>
+<td style="text-align:right;">
+0.00148
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.498
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0014
+</td>
+<td style="text-align:right;">
+0.00001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="4">
+P. pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.610
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0043
+</td>
+<td style="text-align:right;">
+0.00000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.396
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.001
+</td>
+<td style="text-align:right;">
+0.0018
+</td>
+<td style="text-align:right;">
+0.00058
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.474
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.000
+</td>
+<td style="text-align:right;">
+0.0016
+</td>
+<td style="text-align:right;">
+0.00004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.303
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.009
+</td>
+<td style="text-align:right;">
+0.0013
+</td>
+<td style="text-align:right;">
+0.00857
+</td>
+</tr>
+<tr>
+<td style="text-align:left;font-style: italic;vertical-align: middle !important;" rowspan="3">
+P. sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.288
+</td>
+<td style="text-align:right;font-weight: bold;">
+0.012
+</td>
+<td style="text-align:right;">
+0.0009
+</td>
+<td style="text-align:right;">
+0.01249
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.990
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.98956
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+0.198
+</td>
+<td style="text-align:right;">
+0.087
+</td>
+<td style="text-align:right;">
+0.0007
+</td>
+<td style="text-align:right;">
+0.08665
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>write_csv(mkevi_landsat, &quot;data/dendroadaptamed_iv_landsat_trend.csv&quot;)</code></pre>
 <pre class="r"><code>plot_iv_landsat &lt;- iv_landsat |&gt;
   filter(iv == &quot;evi&quot;) |&gt; 
   ggplot(aes(x = year, y = mean, colour = elev_code)) +
@@ -2527,10 +2516,47 @@ Figure 3.1: Comparison of Landsat EVI and NDVI annual series
 
 plot_iv_landsat</code></pre>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:plot-evi-landsat"></span>
-<img src="figure/remote_sensing_iv.Rmd/plot-evi-landsat-1.png" alt="Temporal evolution of EVI (Landsat) mean." width="768" />
+<img src="figure/remote_sensing_iv.Rmd/plot-evi-landsat-1.png" alt="Temporal evolution of EVI (Landsat) mean" width="768" />
 <p class="caption">
-Figure 3.2: Temporal evolution of EVI (Landsat) mean.
+Figure 3.2: Temporal evolution of EVI (Landsat) mean
 </p>
+</div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-plot-evi-landsat-1">
+Past versions of plot-evi-landsat-1.png
+</button>
+</p>
+<div id="fig-plot-evi-landsat-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2f84c8949d08c77b7af126e86696ad6232e62453/docs/figure/remote_sensing_iv.Rmd/plot-evi-landsat-1.png" target="_blank">2f84c89</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <pre class="r"><code>ggsave(
   plot_iv_landsat, 
@@ -2538,8 +2564,6 @@ Figure 3.2: Temporal evolution of EVI (Landsat) mean.
   dpi = 300,
   width = 16, height = 4
 )</code></pre>
-<pre class="r"><code>write_csv(mkevi_landsat, &quot;data/dendroadaptamed_iv_landsat_trend.csv&quot;)
-write_csv(iv_landsat, &quot;data/dendroadaptamed_iv_landsat.csv&quot;)</code></pre>
 </div>
 <div id="compare-iv-modis-and-landsat" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Compare IV Modis and Landsat</h1>
@@ -2551,7 +2575,9 @@ write_csv(iv_landsat, &quot;data/dendroadaptamed_iv_landsat.csv&quot;)</code></p
   iv_landsat |&gt; dplyr::select(
     iv, mean, sp_code, sp_elev, mean, year, se, elev_code) |&gt; 
     mutate(remote = &quot;landast&quot;),
-  iv_yearly |&gt; dplyr::select(
+  iv_modis |&gt; 
+    filter(season == &quot;yearly&quot;) |&gt; 
+    dplyr::select(
     iv = variable, sp_code, sp_elev, mean, year, se, elev_code) |&gt; 
     mutate(remote = &quot;modis&quot;)
 ) |&gt; 
@@ -2562,8 +2588,11 @@ write_csv(iv_landsat, &quot;data/dendroadaptamed_iv_landsat.csv&quot;)</code></p
 rmsenorm_evi &lt;- rmse_evi / (max(compare_iv$mean_landast_evi) - min(compare_iv$mean_landast_evi)) * 100
 
 compare_iv |&gt; 
-  ggplot(aes(x=mean_landast_evi, y = mean_modis_evi, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  mutate(elev_code = fct_relevel(elev_code, c(&quot;high&quot;,&quot;medium&quot;,&quot;low&quot;, &quot;low-Dec&quot;))) |&gt; 
+  mutate(Specie = paste0(&quot;P. &quot;, sp_code)) |&gt; 
+  mutate(Specie = fct_relevel(Specie, &quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;)) |&gt; 
+  ggplot(aes(x=mean_landast_evi, y = mean_modis_evi, colour = Specie)) + 
+  geom_point(aes(shape = elev_code, fill = Specie)) +
   geom_errorbarh(aes(xmax = mean_landast_evi + se_landast_evi,
                      xmin = mean_landast_evi - se_landast_evi)) +
   geom_errorbar(aes(ymax = mean_modis_evi + se_modis_evi,
@@ -2571,9 +2600,11 @@ compare_iv |&gt;
   geom_abline(slope = 1) +
   scale_x_continuous(limits = c(0.1,.5)) +
   scale_y_continuous(limits = c(0.1,.5)) +
-  scale_colour_manual(values = colours_sp, name = &quot;Species&quot;) +
+  scale_colour_manual(values = colours_Specie, name = &quot;Species&quot;,
+                      labels = expression(italic(&quot;P. halepensis&quot;), italic(&quot;P. pinaster&quot;), italic(&quot;P. nigra&quot;), italic(&quot;P. sylvestris&quot;))) +
   scale_shape_manual(values = shape_elev, name = &quot;Elevation&quot;) +
-  scale_fill_manual(values = colours_sp, name = &quot;Species&quot;) + 
+  scale_fill_manual(values = colours_Specie, name = &quot;Species&quot;,
+                    labels = expression(italic(&quot;P. halepensis&quot;), italic(&quot;P. pinaster&quot;), italic(&quot;P. nigra&quot;), italic(&quot;P. sylvestris&quot;))) + 
   theme_bw() +
   theme(
     legend.position = c(.9,0.2), 
@@ -2600,12 +2631,52 @@ compare_iv |&gt;
 Figure 4.1: Comparison between EVI values from Landsat and MODIS
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-landsat-modis-evi-1">
+Past versions of landsat-modis-evi-1.png
+</button>
+</p>
+<div id="fig-landsat-modis-evi-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2f84c8949d08c77b7af126e86696ad6232e62453/docs/figure/remote_sensing_iv.Rmd/landsat-modis-evi-1.png" target="_blank">2f84c89</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>rmse_ndvi &lt;- Metrics::rmse(compare_iv$mean_landast_ndvi, compare_iv$mean_modis_ndvi)
 rmsenorm_ndvi &lt;- rmse_evi / (max(compare_iv$mean_landast_ndvi) - min(compare_iv$mean_landast_ndvi)) * 100
 
 compare_iv |&gt; 
-  ggplot(aes(x=mean_landast_ndvi, y = mean_modis_ndvi, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  mutate(elev_code = fct_relevel(elev_code, c(&quot;high&quot;,&quot;medium&quot;,&quot;low&quot;, &quot;low-Dec&quot;))) |&gt; 
+  mutate(Specie = paste0(&quot;P. &quot;, sp_code)) |&gt; 
+  mutate(Specie = fct_relevel(Specie, &quot;P. halepensis&quot;, &quot;P. pinaster&quot;, &quot;P. nigra&quot;, &quot;P. sylvestris&quot;)) |&gt; 
+  ggplot(aes(x=mean_landast_ndvi, y = mean_modis_ndvi, colour = Specie)) + 
+  geom_point(aes(shape = elev_code, fill = Specie)) +
   geom_errorbarh(aes(xmax = mean_landast_ndvi + se_landast_ndvi,
                      xmin = mean_landast_ndvi - se_landast_ndvi)) +
   geom_errorbar(aes(ymax = mean_modis_ndvi + se_modis_ndvi,
@@ -2613,9 +2684,11 @@ compare_iv |&gt;
   geom_abline(slope = 1) +
   scale_x_continuous(limits = c(0.2,.8)) +
   scale_y_continuous(limits = c(0.2,.8)) +
-  scale_colour_manual(values = colours_sp, name = &quot;Species&quot;) +
+  scale_colour_manual(values = colours_Specie, name = &quot;Species&quot;,
+                      labels = expression(italic(&quot;P. halepensis&quot;), italic(&quot;P. pinaster&quot;), italic(&quot;P. nigra&quot;), italic(&quot;P. sylvestris&quot;))) +
   scale_shape_manual(values = shape_elev, name = &quot;Elevation&quot;) +
-  scale_fill_manual(values = colours_sp, name = &quot;Species&quot;) + 
+  scale_fill_manual(values = colours_Specie, name = &quot;Species&quot;,
+                    labels = expression(italic(&quot;P. halepensis&quot;), italic(&quot;P. pinaster&quot;), italic(&quot;P. nigra&quot;), italic(&quot;P. sylvestris&quot;))) + 
   theme_bw() +
   theme(
     legend.position = c(.9,0.2), 
@@ -2642,11 +2715,115 @@ compare_iv |&gt;
 Figure 4.2: Comparison between NDVI values from Landsat and MODIS
 </p>
 </div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-landsat-modis-ndvi-1">
+Past versions of landsat-modis-ndvi-1.png
+</button>
+</p>
+<div id="fig-landsat-modis-ndvi-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2f84c8949d08c77b7af126e86696ad6232e62453/docs/figure/remote_sensing_iv.Rmd/landsat-modis-ndvi-1.png" target="_blank">2f84c89</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="workflow" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> Workflow</h1>
 <div id="htmlwidget-777d72eda9804f91afa2" style="width:672px;height:900px;" class="grViz html-widget"></div>
 <script type="application/json" data-for="htmlwidget-777d72eda9804f91afa2">{"x":{"diagram":"\n  digraph {\n  graph [overlap = true, fontsize = 10]\n\n  node [shape = box, fontname = Helvetica]\n    modis[label = \"MODIS MOD13Q1\"]\n    landsat[label = \"Landsat C02\"]\n    iv_landsat[label = \"IVs Landsat\"]\n    iv_modis[label = \"IVs MODIS\"]\n    evi_modis[label = \"EVI modis\"]\n    evi_landsat[label = \"EVI landsat\"]\n    \n\n  node [shape = parallelogram]\n    seasonal[label = \"Seasonal\n values\"]\n    yearly[label = \"Annual\n values\"]\n    trend[label = \"Trend \n Mann-Kendall\n Sen-Slope\"]\n    extract_landsat[label = \"extract\"]\n    extract_modis[label = \"extract\"]\n    iv[label = \"compute \nIVs\"]\n    harmonize[label = \"harmonize \n landsat missions\"]\n    filter[label = \"Quality \nfilters\"]\n    \n   subgraph cluster_gee {\n\t\tcolor=black \n\t\tlabel = \"GEE\"\n\t\tnode [style=filled,color=white]\n\t\t\n\t\tmodis -> extract_modis -> iv -> iv_modis\n\t\tlandsat -> harmonize -> filter -> extract_landsat -> iv -> iv_landsat\n\t\t\n\t} \n    \n    subgraph cluster_r {\n\t\tcolor=black \n\t\tlabel = \"R\"\n\t\tnode [style=filled,color=white]\n\t\t\n\tiv_modis -> seasonal -> trend\n\tiv_modis -> yearly \n\tiv_landsat -> yearly -> trend\n\t\n\tyearly -> evi_modis\n\tyearly -> evi_landsat\n\t\n\tseasonal -> evi_landsat\n\t\n\tevi_modis -> evi_landsat -> evi_modis\n\t\t\n\t}\n} \n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code># BORRAR 
+raw &lt;- read_csv(here::here(&quot;data/raw/remote_sensing/iv_mod13q1.csv&quot;))
+elev_cat &lt;- read_csv(here::here(&quot;data/categories_elevation_site_code.csv&quot;))
+
+
+# Filter only Pinus field plot 
+d_raw &lt;- raw |&gt;
+  #filter(str_detect(Specie, &quot;Pinu&quot;)) |&gt;
+  mutate(date = as.Date(str_replace_all(substr(`system:index`, 1, 10), &quot;_&quot;, &quot;-&quot;),
+                        format = &quot;%Y-%m-%d&quot;),
+         evi = EVI*0.0001,
+         ndvi = NDVI*0.0001) |&gt;
+  dplyr::select(date, lat, long, Specie, site_code, evi, ndvi)
+
+
+geodf &lt;- terra::vect( &quot;data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp&quot;) |&gt; as.data.frame() |&gt;
+  unite(&quot;sp_elev&quot;, c(sp_code, elev_code), remove = FALSE) |&gt; 
+  dplyr::select(sp_elev, elev, site_code) |&gt; 
+  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE) 
+
+d &lt;- inner_join(d_raw, geodf)
+
+iv_yearly &lt;- d |&gt;
+  mutate(year=lubridate::year(date)) |&gt; 
+  dplyr::select(site_code, Specie, year, evi, ndvi, sp_elev) |&gt; 
+  pivot_longer(cols = c(&quot;ndvi&quot;, &quot;evi&quot;), 
+               names_to = &#39;variable&#39;, values_to = &#39;value&#39;) |&gt; 
+  group_by(site_code, Specie, year, sp_elev, variable) |&gt; 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value)),
+            cv = sd/mean*100,
+            median = median(value, na.rm=TRUE),
+            sum = sum(value, na.rm=TRUE),
+            min = min(value), 
+            max = max(value),
+            n = length(value)) |&gt; 
+  mutate(Specie = str_replace_all(Specie, &quot;Pinus_&quot;, &quot;P. &quot;)) |&gt; 
+  inner_join(elev_cat) |&gt; 
+  mutate(season = as.factor(&quot;yearly&quot;)) |&gt; 
+  ungroup() |&gt; 
+  separate(sp_elev, into = c(&quot;sp_code&quot;, &quot;elev_code&quot;), remove = FALSE)
+
+nsize_years_gral &lt;- d_raw |&gt; group_by(site_code, Specie) |&gt; count() |&gt; dplyr::select(n) |&gt; pull() |&gt; unique()
+
+nsize_years &lt;- d_raw |&gt; mutate(year = lubridate::year(date)) |&gt;
+  group_by(site_code, Specie, year) |&gt;
+  count() |&gt; 
+  filter(site_code == &quot;PIHAL_NACIMIENTO_L&quot;) |&gt; dplyr::select(n) |&gt; pull() |&gt; unique()
+
+
+
+How many images are there in total and by year?: 
+
+- For each site there are a total of `r nsize_years_gral` images. 
+
+- All the years have `r max(nsize_years)` images except the year 2000 having `r min(nsize_years)` images. 
+
+d |&gt; group_by(Specie, elev_code) |&gt; count() |&gt; 
+  DT::datatable(rownames = FALSE)
+
+cat(&quot;&lt;table width=100%&gt;&quot;, paste0(&quot;&lt;caption&gt;&quot;,
+                      &quot;(#tab:mytab)&quot;,
+                      #&quot;caption&quot;,
+                      &quot;Sample size (images number) for each field plot.&quot;,
+                      &quot;&lt;/caption&gt;&quot;),
+                      &quot;&lt;/table&gt;&quot;, sep =&quot;\n&quot;)</code></pre>
 <div id="refs">
 
 </div>
@@ -2659,50 +2836,50 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.3 (2023-03-15)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur ... 10.16
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DiagrammeR_1.0.10 hydroTSM_0.7-0    zoo_1.8-12        DT_0.31          
- [5] kableExtra_1.3.4  trend_1.1.6       Kendall_2.2.1     lubridate_1.9.3  
- [9] forcats_1.0.0     stringr_1.5.1     dplyr_1.1.4       purrr_1.0.2      
-[13] readr_2.1.4       tidyr_1.3.0       tibble_3.2.1      ggplot2_3.4.4    
-[17] tidyverse_2.0.0   here_1.0.1        workflowr_1.7.1  
+ [1] DiagrammeR_1.0.11 DT_0.32           kableExtra_1.4.0  trend_1.1.6      
+ [5] Kendall_2.2.1     lubridate_1.9.3   forcats_1.0.0     stringr_1.5.1    
+ [9] dplyr_1.1.4       purrr_1.0.2       readr_2.1.5       tidyr_1.3.1      
+[13] tibble_3.2.1      ggplot2_3.5.0     tidyverse_2.0.0   here_1.0.1       
+[17] workflowr_1.7.1  
 
 loaded via a namespace (and not attached):
- [1] fs_1.6.3           xts_0.13.1         bit64_4.0.5        webshot_0.5.5     
- [5] RColorBrewer_1.1-3 httr_1.4.7         rprojroot_2.0.4    tools_4.2.3       
- [9] bslib_0.6.1        utf8_1.2.4         R6_2.5.1           KernSmooth_2.23-22
-[13] colorspace_2.1-0   withr_2.5.2        tidyselect_1.2.0   processx_3.8.3    
-[17] bit_4.0.5          compiler_4.2.3     git2r_0.33.0       textshaping_0.3.7 
-[21] cli_3.6.2          rvest_1.0.3        xml2_1.3.6         labeling_0.4.3    
-[25] bookdown_0.37      sass_0.4.8         scales_1.3.0       classInt_0.4-10   
-[29] callr_3.7.3        proxy_0.4-27       systemfonts_1.0.5  digest_0.6.33     
-[33] rmarkdown_2.25     svglite_2.1.3      extraDistr_1.10.0  pkgconfig_2.0.3   
-[37] htmltools_0.5.7    highr_0.10         fastmap_1.1.1      htmlwidgets_1.6.4 
-[41] rlang_1.1.2        rstudioapi_0.15.0  farver_2.1.1       visNetwork_2.1.2  
-[45] jquerylib_0.1.4    generics_0.1.3     jsonlite_1.8.8     vroom_1.6.5       
-[49] magrittr_2.0.3     Rcpp_1.0.11        munsell_0.5.0      fansi_1.0.6       
-[53] lifecycle_1.0.4    terra_1.7-65       Metrics_0.1.4      stringi_1.8.3     
-[57] whisker_0.4.1      yaml_2.3.8         grid_4.2.3         parallel_4.2.3    
-[61] promises_1.2.1     crayon_1.5.2       lattice_0.22-5     hms_1.1.3         
-[65] knitr_1.45         ps_1.7.5           pillar_1.9.0       boot_1.3-28.1     
-[69] codetools_0.2-19   glue_1.6.2         evaluate_0.23      getPass_0.2-4     
-[73] vctrs_0.6.5        tzdb_0.4.0         httpuv_1.6.13      gtable_0.3.4      
-[77] cachem_1.0.8       xfun_0.41          e1071_1.7-14       later_1.3.2       
-[81] ragg_1.2.7         class_7.3-22       viridisLite_0.4.2  timechange_0.2.0  
-[85] ellipsis_0.3.2    </code></pre>
+ [1] gtable_0.3.4       xfun_0.43          bslib_0.7.0        visNetwork_2.1.2  
+ [5] htmlwidgets_1.6.4  processx_3.8.4     callr_3.7.6        tzdb_0.4.0        
+ [9] vctrs_0.6.5        tools_4.3.3        ps_1.7.6           generics_0.1.3    
+[13] parallel_4.3.3     fansi_1.0.6        highr_0.10         pkgconfig_2.0.3   
+[17] RColorBrewer_1.1-3 lifecycle_1.0.4    farver_2.1.1       compiler_4.3.3    
+[21] git2r_0.33.0       textshaping_0.3.7  munsell_0.5.0      getPass_0.2-4     
+[25] httpuv_1.6.15      htmltools_0.5.8    sass_0.4.9         yaml_2.3.8        
+[29] crayon_1.5.2       later_1.3.2        pillar_1.9.0       jquerylib_0.1.4   
+[33] whisker_0.4.1      cachem_1.0.8       boot_1.3-29        Metrics_0.1.4     
+[37] tidyselect_1.2.1   digest_0.6.35      stringi_1.8.3      bookdown_0.38     
+[41] labeling_0.4.3     rprojroot_2.0.4    fastmap_1.1.1      grid_4.3.3        
+[45] colorspace_2.1-0   cli_3.6.2          magrittr_2.0.3     utf8_1.2.4        
+[49] withr_3.0.0        scales_1.3.0       promises_1.2.1     bit64_4.0.5       
+[53] timechange_0.3.0   rmarkdown_2.26     httr_1.4.7         extraDistr_1.10.0 
+[57] bit_4.0.5          ragg_1.3.0         hms_1.1.3          evaluate_0.23     
+[61] knitr_1.45         viridisLite_0.4.2  rlang_1.1.3        Rcpp_1.0.12       
+[65] glue_1.7.0         xml2_1.3.6         vroom_1.6.5        svglite_2.1.3     
+[69] rstudioapi_0.16.0  jsonlite_1.8.8     R6_2.5.1           systemfonts_1.0.6 
+[73] fs_1.6.3          </code></pre>
 </div>
 </div>
 
