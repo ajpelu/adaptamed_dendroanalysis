@@ -11,6 +11,12 @@ colours_sp <- c("halepensis" = "#c1666b",
                 "sylvestris" = "#006494")
 
 
+colours_Specie <- c("P. halepensis" = "#c1666b",
+                "P. pinaster" = "#ecb42e",
+                "P. nigra" = "#43ba85",
+                "P. sylvestris" = "#006494")
+
+
 # pinaster, "#ffffbf", "beige" or "#f9e900"
 # nigra, "#abdda4", "lightgreen"
 # halepensis, "orange", "orange"
