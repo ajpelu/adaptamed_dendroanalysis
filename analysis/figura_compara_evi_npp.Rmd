@@ -1,0 +1,215 @@
+---
+title: "figura_compara_evi_npp"
+output: workflowr::wflow_html
+---
+
+## Introduction
+
+```{r pkg}
+library(here)
+library(tidyverse)
+source("scripts/aux.R")
+```
+
+
+
+```{r}
+iv_modis <- read_csv("data/dendroadaptamed_iv_modis.csv")
+iv_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") 
+npp_modis <- read_csv("data/dendroadaptamed_npp_modis.csv")
+```
+
+
+
+- We want to explore the value of the Landast IVs (30 m) and the MODIS IVs (250 m)
+- The MODIS contains a coarse spatial resolution, but the series is more consistent (similar image numbers for each of the site studied). Landsat covers a long period (since 1985), but a lot of images were filtered out (due to quality issues: e.g. clouds, etc), so greater sample size differences were found among studied sites (*i.e.* very different number of images used to compute the annual IV average). 
+
+```{r}
+compare_iv <- bind_rows(
+  (iv_landsat |> dplyr::select(
+    iv, mean, sp_code, sp_elev, mean, year, se, elev_code) |> 
+    mutate(remote = "landast")),
+  (iv_modis |> 
+    filter(season == "yearly") |> 
+    dplyr::select(
+    iv = variable, sp_code, sp_elev, mean, year, se, elev_code) |> 
+    mutate(remote = "modis"))
+) |> 
+  filter(year > 1999) |> 
+  pivot_wider(names_from = c(remote, iv), 
+              values_from = c(mean,se))
+
+
+d <- compare_iv |> 
+  left_join(
+    (npp_modis |> dplyr::select(year, sp_code, sp_elev, elev_code, mean_modis_npp = npp))) |> 
+  mutate(se_modis_npp = NULL)
+
+```
+
+
+
+```{r landsat-modis-evi}
+#| fig.cap: "Comparison between EVI values from Landsat and MODIS" 
+#| fig.width: 6
+#| fig.height: 6  
+
+rmse_evi <- Metrics::rmse(compare_iv$mean_landast_evi, compare_iv$mean_modis_evi)
+rmsenorm_evi <- rmse_evi / (max(compare_iv$mean_landast_evi) - min(compare_iv$mean_landast_evi)) * 100
+
+d |> 
+  mutate(elev_code = fct_relevel(elev_code, c("high","medium","low", "low-Dec"))) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  mutate(Specie = fct_relevel(Specie, "P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris")) |> 
+  ggplot(aes(x=mean_landast_evi, y = mean_modis_evi, colour = Specie)) + 
+  geom_point(aes(shape = elev_code, fill = Specie)) +
+  geom_errorbarh(aes(xmax = mean_landast_evi + se_landast_evi,
+                     xmin = mean_landast_evi - se_landast_evi)) +
+  geom_errorbar(aes(ymax = mean_modis_evi + se_modis_evi,
+                     ymin = mean_modis_evi - se_modis_evi)) +
+  geom_abline(slope = 1) +
+  scale_x_continuous(limits = c(0.1,.5)) +
+  scale_y_continuous(limits = c(0.1,.5)) +
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
+  theme_bw() +
+  theme(
+    legend.position = c(.9,0.2), 
+    legend.background = element_blank(), 
+    panel.grid = element_blank()
+  ) +
+  xlab("Landsat (30 m)") +
+  ylab("MODIS (250 m)") +
+  ggtitle("EVI") +
+  annotate("text",
+    x = 0.1, y = .5,
+    label = paste0(
+        "RMSE[norm.]~'='~",
+        round(rmsenorm_evi, 2), "~'%'"
+      ),
+    colour = "black",
+    size = 14 / .pt,
+    hjust = 0, 
+    parse = TRUE
+  ) 
+
+```
+
+
+```{r}
+
+# rmse_evi <- Metrics::rmse(compare_iv$mean_landast_evi, compare_iv$mean_modis_evi)
+# rmsenorm_evi <- rmse_evi / (max(compare_iv$mean_landast_evi) - min(compare_iv$mean_landast_evi)) * 100
+
+d |> 
+  mutate(elev_code = fct_relevel(elev_code, c("high","medium","low", "low-Dec"))) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  mutate(Specie = fct_relevel(Specie, "P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris")) |> 
+  ggplot(aes(y=mean_modis_evi, x = mean_modis_npp, colour = Specie)) + 
+  geom_errorbar(aes(ymax = mean_modis_evi + se_modis_evi,
+                     ymin = mean_modis_evi - se_modis_evi)) +
+  geom_point(aes(shape = elev_code, fill = Specie)) +
+  #scale_x_continuous(limits = c(0.1,.5)) +
+  #scale_y_continuous(limits = c(0.1,.5)) +
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
+  theme_bw() +
+  theme(
+    legend.position = "bottom", 
+    legend.background = element_blank(), 
+    panel.grid = element_blank()
+  ) +
+  xlab("EVI Landsat (30 m)") +
+  ylab("NPP MODIS") 
+
+
+```
+
+
+
+```{r}
+
+aux <- d |> 
+  mutate(elev_code = fct_relevel(elev_code, c("high","medium","low", "low-Dec"))) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  mutate(Specie = fct_relevel(Specie, "P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris")) |> 
+  dplyr::select(-ends_with("ndvi")) |> 
+  relocate(Specie, .after = "elev_code") 
+
+
+g <- bind_rows(
+(aux |> dplyr::select(-contains("se_")) |> pivot_longer(names_to = "remote", values_to = "value", 
+                                                     mean_landast_evi:mean_modis_npp) |> 
+  mutate(variable = "mean") |> 
+  mutate(remote = str_remove(remote, "mean_"))), 
+(aux |> dplyr::select(-contains("mean_")) |> pivot_longer(names_to = "remote", values_to = "value", 
+                                                     se_landast_evi:se_modis_evi) |> 
+  mutate(variable = "se") |> 
+  mutate(remote = str_remove(remote, "se_"))
+)) |> 
+  pivot_wider(values_from = value, 
+              names_from = variable)
+
+merged_df <- g |> 
+  filter(remote != "modis_npp") |> 
+  left_join(
+    (g |> filter(remote == "modis_npp") |> rename(npp = mean) |> dplyr::select(-remote, -se)),
+    by = c("sp_code", "year", "elev_code", "sp_elev", "Specie")) |>
+  
+  
+  
+  
+
+
+
+```
+
+```{r}
+
+init <- as.data.frame(t(getInitial(mean ~ SSlogis(npp, Asym, xmid, scal), data = merged_df)))
+
+merged_df |> 
+  ggplot(aes(x=npp, y = mean, colour = Specie)) + 
+  geom_errorbarh(aes(xmax = mean + se,
+                     xmin = mean + se)) +
+  geom_point(aes(shape = elev_code, fill = Specie)) +
+  #scale_x_continuous(limits = c(0.1,.5)) +
+  #scale_y_continuous(limits = c(0.1,.5)) +
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
+  theme_bw() +
+  theme(
+    legend.position = "bottom", 
+    legend.background = element_blank(), 
+    panel.grid = element_blank()
+  ) + facet_wrap(~remote) + 
+  geom_smooth(method = "lm", se=FALSE) + 
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              method.args =list(start=init,
+                                control=nls.control(maxiter=1000)),
+              se =  FALSE, # this is important
+              size = 1.1, 
+              colour = "black") + 
+  ylab("EVI annual mean") + 
+  xlab(expression(NPP~(kg~C~m^{-2}~year^{-1})))  
+  
+```
+
+
+
+
+
+
+
+
