@@ -402,7 +402,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-02-26
+<strong>Last updated:</strong> 2024-05-03
 </p>
 <p>
 <strong>Checks:</strong>
@@ -448,20 +448,20 @@ know the exact version of the code that produced these results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreebbee7ebe44f99cf44122a7f3aad386e4cc1fd334targetblankbbee7eba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea9ccd9a601a254a39cb0e791463d39d44730964dtargetblanka9ccd9aa">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/bbee7ebe44f99cf44122a7f3aad386e4cc1fd334" target="_blank">bbee7eb</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a9ccd9a601a254a39cb0e791463d39d44730964d" target="_blank">a9ccd9a</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreebbee7ebe44f99cf44122a7f3aad386e4cc1fd334targetblankbbee7eba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea9ccd9a601a254a39cb0e791463d39d44730964dtargetblanka9ccd9aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/bbee7ebe44f99cf44122a7f3aad386e4cc1fd334" target="_blank">bbee7eb</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a9ccd9a601a254a39cb0e791463d39d44730964d" target="_blank">a9ccd9a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -475,13 +475,24 @@ results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    data/.DS_Store
-    Ignored:    data/geoinfo/.DS_Store
-    Ignored:    data/image_pinus/.DS_Store
+    Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/remote_sensing/old/
+
+Untracked files:
+    Untracked:  output/abi_npp_by_site.png
+    Untracked:  output/alocation.png
+    Untracked:  output/alocation_by_sp.png
+    Untracked:  output/alocation_by_sp_ellipses.png
+    Untracked:  output/alocation_by_sp_ellipses_annotate.png
+    Untracked:  output/alocation_inversa.png
+    Untracked:  scripts/functions.R
+
+Unstaged changes:
+    Modified:   analysis/spei_compute.Rmd
+    Modified:   data/dendroadaptamed_spei_climate.csv
 
 </code></pre>
 <p>
@@ -526,6 +537,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a9ccd9a601a254a39cb0e791463d39d44730964d/analysis/index.Rmd" target="_blank">a9ccd9a</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-05-03
+</td>
+<td>
+wflow_publish("analysis/index.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/1172f51a0a4a82c5696a5d2c40e1a9e1cfe500c4/docs/index.html" target="_blank">1172f51</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-02-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1015,6 +1060,8 @@ Start workflowr project.
 <ul>
 <li><a href="figure_clima_sites.html">Climate features of site</a></li>
 <li><a href="figure_ts_dendro_remote.html">Temporal evolution ABI, EVI and NPP</a></li>
+<li><a href="figura_npp_etp.html">ABI, NPP, EVI vs. climate</a></li>
+<li><a href="figure_abi_npp.html">ABI vs NPP</a></li>
 </ul>
 </div>
 
