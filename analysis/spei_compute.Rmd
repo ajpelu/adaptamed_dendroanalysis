@@ -21,6 +21,14 @@ raw_climate <- readRDS("data/dendroadaptamed_climate_monthly.rds")
 
 geo <- st_read("data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> 
   st_drop_geometry() |> 
+  filter(site_code != "PIHAL_NACIMIENTO_L") |> 
+  filter(site_code != "PIHAL_NACIMIENTO_M") |> 
+  filter(site_code != "PISYL_PORTUGOS_H") |> 
+  mutate(site_code = str_remove(site_code, "modify")) |> 
+    mutate(elev_code = case_when(
+    elev_code == "low2" ~ "low-Dec", 
+    TRUE ~ elev_code
+  )) |> 
   unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
   dplyr::select(sp_elev, lat, long) 
 
@@ -47,13 +55,14 @@ compute_spei <- function(df, sp_elev_sel, spei_scales){
   
   ## compute climate balance 
   aux <- aux |> 
-    mutate(pet = thornthwaite(Tave = tmed, lat = mylat)) |> 
+    mutate(monthly_pet = thornthwaite(Tave = tmed, lat = mylat)) |> 
     rowwise() |> 
-    mutate(climate_balance = prec - pet)
+    mutate(climate_balance = prec - monthly_pet)
   
   ## time series for SPEI 
   ## compute spei 
   ts_aux <- ts(aux$climate_balance, freq = 12, start=c(min(aux$year), min(aux$month)))
+  
   for (spei_scale in spei_scales) {
     speivar <- paste0("spei", sprintf("%02d",spei_scale))
     spei_aux <- spei(ts_aux, scale = spei_scale)
@@ -63,11 +72,14 @@ compute_spei <- function(df, sp_elev_sel, spei_scales){
   
   out <- aux |> 
     dplyr::select(sp_elev, month_yr, year, 
-                  month, pet, climate_balance,
+                  month, monthly_pet, monthly_tmed = tmed, monthly_prec = prec, 
+                  climate_balance, 
                   starts_with("spei"))
   return(out)
 }
 ```
+
+
 
 ```{r, results = 'hide'}
 spei_df <- map(unique(unique(raw_climate$sp_elev)), 
@@ -77,5 +89,7 @@ spei_df <- map(unique(unique(raw_climate$sp_elev)),
 write_csv(spei_df, "data/dendroadaptamed_spei_climate.csv")
 
 ```
+
+
 
 
