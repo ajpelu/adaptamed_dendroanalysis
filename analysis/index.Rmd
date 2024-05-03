@@ -42,5 +42,5 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 - [Climate features of site](figure_clima_sites.html)
 - [Temporal evolution ABI, EVI and NPP](figure_ts_dendro_remote.html)
 - [ABI, NPP, EVI vs. climate](figura_npp_etp.html)
-- [ABI vs NPP](figure_abi_npp.html)
+- [ABI vs NPP](figura_abi_npp.html)
 
