@@ -1,0 +1,500 @@
+---
+title: "Figure ABI NPP"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+## Prepare Data 
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(ggh4x)
+library(geomtextpath)
+library(metR)
+library(ggsci)
+library(patchwork)
+library(boot)
+library(ggforce)
+library(kableExtra)
+source("scripts/aux.R")
+```
+
+
+```{r}
+options(scipen=999)
+abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
+  rename(mean = IBT_ag_m2) |> 
+  mutate(se = NA, sd = NA, variable = "abi") 
+
+evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
+  filter(iv == "evi") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
+  mutate(variable = "evi_landsat")
+
+npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |> 
+  rename(mean = npp) |> 
+  mutate(se = NA, sd = NA, variable = "npp") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se, variable) 
+
+evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |> 
+  filter(variable == "evi") |> 
+  filter(season == "yearly") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
+  mutate(variable = "evi_modis")
+
+
+df_index <- bind_rows(
+  abi, evi_landsat, evi_modis, npp) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  rename(mean_y = mean, y_variable = variable) |> 
+  filter(year >= 1990) 
+
+# 
+# df_plot <- df |> filter(year > 1990) |> 
+#   mutate(y_variable2 = case_when(
+#       y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})",
+#       y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]",
+#       y_variable == "evi_modis" ~ "Annual~EVI[MODIS]",
+#       y_variable == "npp" ~"Annual~NPP[MODIS]~(g~C~m^2~year^{-1})")) 
+# 
+# 
+# |> 
+#   mutate(y_variable2 = fct_relevel(y_variable2, 
+#                                   "Annual~EVI[Landsat]", 
+#                                   "Annual~EVI[MODIS]",
+#                                   "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+#                                   "ABI~(g~C~m^2~year^{-1})")) |> 
+#   filter(y_variable != "evi_modis") 
+```
+
+
+
+```{r}
+abi_npp <- df_index |> 
+  filter(y_variable %in% c("abi", "npp")) |> 
+  dplyr::select(-se,-sd) |> 
+  pivot_wider(values_from = mean_y, names_from = y_variable) |> 
+  filter(!is.na(npp)) |> 
+  filter(!is.na(abi))
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+# ver https://cran.r-project.org/web/packages/nlraa/vignettes/Confidence-Bands.html
+fm1.P <- nls(npp ~ SSmicmen(abi, Vm, K), data = abi_npp)
+fm1.P.dm <- predict_nls(fm1.P, interval = "conf")
+d <- cbind(abi_npp$npp, fm1.P.dm) |> as.data.frame()
+names(d)[1] <- "npp"
+names(d)[2] <- "abi"
+
+
+```
+
+## NPP vs ABI
+```{r}
+alocation <- abi_npp |> 
+  ggplot(aes(x = abi, y = npp)) +
+  geom_point(aes(shape = elev_code, colour = Specie, fill = Specie)) +
+  geom_smooth(aes(group=sp_elev, colour = Specie), 
+              method = "lm", se=FALSE, linewidth = .7) +
+  geom_smooth(aes(),
+              method = "nls",
+              formula= y ~ SSmicmen(x, Vm, K),
+              # formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important
+              linewidth = 1.5, colour = "black") +
+  scale_x_continuous(limits = c(0,450)) +
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(), 
+    legend.position = c(.8,.2)
+  ) + 
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
+  xlab(expression(ABI~(g~C~m^2~year^{-1}))) + 
+  ylab(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1}))) 
+
+alocation
+```
+
+```{r}
+ggsave(
+  alocation, 
+  file = "output/alocation.png",
+  dpi = 300,
+  width = 8, height = 8
+)
+```
+
+## ABI vs NPP
+
+```{r}
+#| echo: false
+# Find an exponential relation
+# y ~ ae^bx 
+# ln(y) ~ ln(ae^bx)
+# ln(y) ~ ln(a) + bX 
+
+m <- lm(log(abi)~npp, data=abi_npp)
+# summary(m)
+# coef(m)
+
+# ln(a) = coef(m)[1] 
+# a = exp(ln(a))
+# a = exp(coef(m)[1] )
+
+init_exp <- list(a = exp(coef(m)[1]), 
+                 b = coef(m)[2])
+```
+
+```{r}
+# Generate a confidence interval with bootstrap 
+# Define a function to perform the bootstrapping
+boot_func <- function(data, indices) {
+  # Take a bootstrap sample
+  sample_df <- data[indices, ]
+  # Fit the non-linear model
+  nls_fit <- nls(abi ~ a * exp(b * npp), data = sample_df, start = list(a = 10, b = 0.002958839))
+  # Generate predicted values for a sequence of npp
+  npp_seq <- seq(min(data$npp), max(data$npp), length.out = 100)
+  pred <- predict(nls_fit, newdata = data.frame(npp = npp_seq))
+  return(pred)
+}
+
+library(boot)
+
+# Perform bootstrapping with 1000 resamples
+boot_res <- boot(data = abi_npp, statistic = boot_func, R = 1000)  # R is the number of resamples
+
+
+# Compute the 95% confidence intervals for each point
+ci_lower <- apply(boot_res$t, 2, quantile, probs = 0.025)  # Lower 2.5%
+ci_upper <- apply(boot_res$t, 2, quantile, probs = 0.975)  # Upper 97.5%
+
+# Predicted values from the original fit
+npp_seq <- seq(min(abi_npp$npp), max(abi_npp$npp), length.out = 100)
+pred <- apply(boot_res$t, 2, mean)  # Mean of the bootstrapped predictions
+
+# Create a data frame with predicted values and confidence intervals
+pred_df <- data.frame(
+  npp = npp_seq,
+  abi = pred,
+  ci_lower = ci_lower,
+  ci_upper = ci_upper
+)
+```
+
+
+```{r}
+#| fig.width: 8
+#| fig.height: 8
+
+alocation_inversa <-  abi_npp |> 
+  ggplot(aes(y = abi, x = npp)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_smooth(aes(group=sp_elev,colour = Specie), 
+              method = "lm", se=FALSE, linewidth = .7) +
+  # geom_smooth(aes(),
+  #             method = "nls",
+  #             formula=y~SSlogis(x, Asym, xmid, scal),
+  #             se =  FALSE, # this is important
+  #             linewidth = 1.5, colour = "black") +
+  # geom_smooth(aes(),
+  #             method = "nls",
+  #             formula = y~a*exp(b*x),
+  #             method.args = list(start=init_exp,
+  #                               control=nls.control(maxiter=1000)),
+  #             se = FALSE, # this is important
+  #             linewidth = 1.5, colour = "black") +
+  geom_line(data = pred_df, aes(x = npp, y = pred), color = "black",linewidth = 1.5) +  # Fitted model
+  geom_ribbon(data = pred_df, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) +  # CI
+  scale_y_continuous(limits = c(0,450)) +
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(), 
+    legend.position = c(.2,.8)
+  ) + 
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
+  ylab(expression(ABI~(g~C~m^2~year^{-1}))) + 
+  xlab(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1}))) 
+
+alocation_inversa
+```
+
+```{r}
+ggsave(
+  alocation_inversa, 
+  file = "output/alocation_inversa.png",
+  dpi = 300,
+  width = 8, height = 8
+)
+```
+
+## Plot by species 
+```{r}
+color_halepensis <- colours_Specie["P. halepensis"] 
+color_nigra <- colours_Specie["P. nigra"] 
+color_pinaster <- colours_Specie["P. pinaster"] 
+color_sylvestris <- colours_Specie["P. sylvestris"] 
+
+g <- ggplot(abi_npp, aes(y = abi, x = npp)) +
+  geom_point(aes(shape = elev_code), fill = "gray", colour = "gray", alpha = .3) +
+  geom_line(data = pred_df, aes(x = npp, y = pred), color = "black",linewidth = 1.5) +  # Fitted model
+  geom_ribbon(data = pred_df, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) +  # CI
+  scale_y_continuous(limits = c(0,450)) +
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(), 
+    legend.position = c(.1,.85), 
+    legend.background = element_blank()
+  ) + 
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  ylab(expression(ABI~(g~C~m^2~year^{-1}))) + 
+  xlab(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1}))) 
+
+
+halepensis <- g +
+  geom_point(data = (abi_npp |> filter(Specie == "P. halepensis")),
+             aes(shape = elev_code), fill = color_halepensis, colour = color_halepensis) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. halepensis")),
+              aes(group=sp_elev), 
+              method = "lm", se=FALSE, linewidth = .7, colour = color_halepensis) +
+  ggtitle(expression(italic("P. halepensis"))) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. halepensis")),
+              aes(), 
+              method = "lm", se=FALSE, linewidth = 1, colour = color_halepensis, linetype = 2) 
+
+nigra <- g +
+  geom_point(data = (abi_npp |> filter(Specie == "P. nigra")),
+             aes(shape = elev_code), fill = color_nigra, colour = color_nigra) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. nigra")),
+              aes(group=sp_elev), 
+              method = "lm", se=FALSE, linewidth = .7, colour = color_nigra) +
+  ggtitle(expression(italic("P. nigra"))) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. nigra")),
+              aes(), 
+              method = "lm", se=FALSE, linewidth = 1, colour = color_nigra, linetype = 2) 
+
+
+pinaster <- g +
+  geom_point(data = (abi_npp |> filter(Specie == "P. pinaster")),
+             aes(shape = elev_code), fill = color_pinaster, colour = color_pinaster) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. pinaster")),
+              aes(group=sp_elev), 
+              method = "lm", se=FALSE, linewidth = .7, colour = color_pinaster) +
+  ggtitle(expression(italic("P. pinaster"))) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. pinaster")),
+              aes(),
+              method = "lm", se=FALSE, linewidth = 1, colour = color_pinaster, linetype = 2) 
+
+
+sylvestris <- g +
+  geom_point(data = (abi_npp |> filter(Specie == "P. sylvestris")),
+             aes(shape = elev_code), fill = color_sylvestris, colour = color_sylvestris) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. sylvestris")),
+              aes(group=sp_elev), 
+              method = "lm", se=FALSE, linewidth = .7, colour = color_sylvestris) +
+  ggtitle(expression(italic("P. sylvestris"))) +
+  geom_smooth(data = (abi_npp |> filter(Specie == "P. sylvestris")),
+              aes(), 
+              method = "lm", se=FALSE, linewidth = 1, colour = color_sylvestris, linetype = 2) 
+  
+combo <- (halepensis + pinaster)/(nigra + sylvestris)
+```
+
+```{r}
+#| fig.width: 12
+#| fig.height: 12
+
+combo
+
+ggsave(
+  combo, 
+  file = "output/alocation_by_sp.png",
+  dpi = 300,
+  width = 12, height = 12
+)
+```
+
+## Plot by species (with ellipses)
+```{r}
+#| fig.width: 12
+#| fig.height: 12
+
+combo_ellipses <- (
+  (halepensis +
+     stat_ellipse(data = (abi_npp |> filter(Specie == "P. halepensis")),
+              aes(group=sp_elev), colour = color_halepensis)) + 
+  (pinaster +
+  stat_ellipse(data = (abi_npp |> filter(Specie == "P. pinaster")),
+              aes(group=sp_elev), colour = color_pinaster))
+) / (
+  (nigra + 
+     stat_ellipse(data = (abi_npp |> filter(Specie == "P. nigra")),
+              aes(group=sp_elev), colour = color_nigra)) + 
+  (sylvestris +
+  stat_ellipse(data = (abi_npp |> filter(Specie == "P. sylvestris")),
+              aes(group=sp_elev), colour = color_sylvestris) )
+)
+
+combo_ellipses
+
+ggsave(
+  combo_ellipses, 
+  file = "output/alocation_by_sp_ellipses.png",
+  dpi = 300,
+  width = 12, height = 12
+)
+```
+
+
+## Plot by species (with ellipses annotate)
+```{r}
+#| fig.width: 12
+#| fig.height: 12
+
+combo_ellipses_annotate <- (
+  (halepensis +
+     geom_mark_ellipse(data = (abi_npp |> filter(Specie == "P. halepensis")),
+              aes(group=sp_elev, label = elev_code), 
+              colour = color_halepensis, label.fill = color_halepensis,
+              label.fontsize = 10, con.type = "straight", 
+              label.colour = "white",
+              con.cap = 0)) + 
+  (pinaster +
+  geom_mark_ellipse(data = (abi_npp |> filter(Specie == "P. pinaster")),
+              aes(group=sp_elev, label = elev_code), 
+              colour = color_pinaster,
+              label.fill = color_pinaster,
+              label.fontsize = 10, con.type = "straight", 
+              label.colour = "white",
+              con.cap = 0))
+) / (
+  (nigra + 
+     geom_mark_ellipse(data = (abi_npp |> filter(Specie == "P. nigra")),
+              aes(group=sp_elev, label = elev_code), 
+              colour = color_nigra,
+              label.fill = color_nigra,
+              label.fontsize = 10, con.type = "straight", 
+              label.colour = "white",
+              con.cap = 0))
+              + 
+  (sylvestris +
+  geom_mark_ellipse(data = (abi_npp |> filter(Specie == "P. sylvestris")),
+              aes(group=sp_elev, label = elev_code), 
+              colour = color_sylvestris,
+              label.fill = color_sylvestris,
+              label.fontsize = 10, con.type = "straight", 
+              label.colour = "white", 
+              con.cap = 0))
+)
+
+
+ggsave(
+  combo_ellipses_annotate, 
+  file = "output/alocation_by_sp_ellipses_annotate.png",
+  dpi = 300,
+  width = 12, height = 12
+)
+
+combo_ellipses_annotate
+```
+
+
+
+
+## Linear models by site and specie
+```{r}
+library(broom)
+
+lms <- abi_npp |> 
+  nest(data = -sp_elev) |> 
+  mutate(
+    fit = map(data, ~lm(abi~npp, data = .x)),
+    tidied = map(fit, tidy)
+  ) |> 
+  unnest(tidied) |> 
+  inner_join(
+    abi_npp |> dplyr::select(sp_elev, elev_code, sp_code, Specie) |> unique())
+  
+slopes <- lms |> filter(term == "npp") |> 
+  mutate(p_value_string = symnum(p.value, corr = FALSE,
+               cutpoints = c(0,  .001,.01,.05, 1),
+               symbols = c("***","**","*",""))) 
+
+plot_slopes <- slopes |> 
+  ggplot(aes(x=elev_code, y = estimate, fill = Specie, colour = Specie)) +
+  geom_point(aes(shape = elev_code), size = 5) +
+  geom_linerange(aes(ymin = 0, ymax = estimate)) + 
+  coord_flip() + 
+  facet_wrap(~factor(Specie, levels = c("P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris")), 
+             ncol = 1, scales = "free_y") +
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  ylab("Slope") + 
+  theme_classic() + 
+  geom_vline(xintercept = as.numeric(levels(slopes$elev_code)[1]), linetype = "dashed", color = "gray") + 
+    theme(
+      # strip.text.y.left = element_text(angle = 0, vjust = 2),
+      axis.title.y = element_blank(),
+    panel.grid = element_blank(),
+    strip.background = element_blank(), 
+    strip.text = element_text(face="italic"),
+    panel.spacing = unit(0,'lines')) + 
+  geom_hline(aes(yintercept = 0)) +
+  scale_y_continuous(limits = c(0, 0.8), 
+                     expand = expand_scale(add = c(0,0))) +
+  geom_text(aes(y= estimate, label = p_value_string), nudge_y = 0.025, size = 10, show.legend = FALSE) 
+
+```
+
+```{r}
+plot_slopes
+```
+
+```{r}
+ggsave(
+  plot_slopes, 
+  file = "output/abi_npp_by_site.png",
+  dpi = 300,
+  width = 8, height = 8
+)
+```
+
+
+```{r}
+slopes |> 
+  dplyr::select(-data, -fit, -sp_code, -term, -sp_elev) |> 
+  relocate(Specie, elev_code) |> 
+  arrange(Specie,elev_code) |> 
+  kbl(
+    digits = c(0,0,3,3,3,4,0),
+    caption = "Slopes of the ABI ~ NPP by site") |> 
+    kable_paper("hover", full_width = F) |> 
+  column_spec(1, italic = TRUE) |> 
+  collapse_rows(columns = 1:2)
+```
+
