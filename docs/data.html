@@ -550,20 +550,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4a677048ac83a2022c41b12e874092592f1b3d9dtargetblank4a67704a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed004e2138d86355623e2db8925447ee33c82efaatargetblankd004e21a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4a677048ac83a2022c41b12e874092592f1b3d9d" target="_blank">4a67704</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d004e2138d86355623e2db8925447ee33c82efaa" target="_blank">d004e21</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4a677048ac83a2022c41b12e874092592f1b3d9dtargetblank4a67704a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed004e2138d86355623e2db8925447ee33c82efaatargetblankd004e21a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4a677048ac83a2022c41b12e874092592f1b3d9d" target="_blank">4a67704</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d004e2138d86355623e2db8925447ee33c82efaa" target="_blank">d004e21</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -585,7 +585,6 @@ Ignored files:
 
 Unstaged changes:
     Modified:   analysis/compile_database.Rmd
-    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -630,6 +629,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/d004e2138d86355623e2db8925447ee33c82efaa/analysis/data.Rmd" target="_blank">d004e21</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-05-07
+</td>
+<td>
+add info about Landsat
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/517dd48c7b15b0325c74db81d2cc575901064828/docs/data.html" target="_blank">517dd48</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-05-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -812,6 +845,12 @@ source(&quot;scripts/aux.R&quot;)</code></pre>
 </div>
 <div id="landsat-data" class="section level3" number="2.1.2">
 <h3><span class="header-section-number">2.1.2</span> Landsat Data</h3>
+<ul>
+<li>We used the Collection 2 of the Landsats products</li>
+<li>We combined <a href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LT05_C02_T1_L2">Landsat 5 TM</a>, <a href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LE07_C02_T1_L2">Landsat 7 ETM+</a>, and <a href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2">Landsat 8 OLI</a></li>
+<li>For all datasets we used the Level 2 Data, Tier 1 (Surface Reflectance)</li>
+<li>We applied different masks at pixelwise. See <a href="https://hendrik-wulf.gitbook.io/geo-717-earth-engine/day-2-time-series-analysis">this</a>. For this purpose we applied a <a href="https://www.usgs.gov/landsat-missions/cfmask-algorithm">CFMask Algorithm</a> that allow us to remove pixels flagged as clouds, cloud shadows, snow/ice, or water, allowing only clear pixels to remain for further analysis. See <a href="https://doi.org/10.1016/j.rse.2017.03.026">this</a>.</li>
+</ul>
 </div>
 </div>
 <div id="annual-net-primary-productivity" class="section level2" number="2.2">
@@ -837,6 +876,43 @@ source(&quot;scripts/aux.R&quot;)</code></pre>
 <p class="caption">
 Figure 2.1: Histogram of the quality values for NPP. The Npp_QC_500 % indicates the number of days filled due to contaminated data. Higher values indicated poorly data.
 </p>
+</div>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-qc-npp-1">
+Past versions of qc-npp-1.png
+</button>
+</p>
+<div id="fig-qc-npp-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/517dd48c7b15b0325c74db81d2cc575901064828/docs/figure/data.Rmd/qc-npp-1.png" target="_blank">517dd48</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-05-07
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
