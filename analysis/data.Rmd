@@ -1,11 +1,33 @@
 ---
-title: "Data"
+title: "Source Data"
 output: workflowr::wflow_html
 bibliography: references.bib
 cls: ecology-letters.csl
 editor_options:
   chunk_output_type: console
 ---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+
+```{r pkg}
+library(here)
+library(tidyverse)
+library(kableExtra)
+library(DT)
+
+source("scripts/aux.R")
+```
+
+
 
 # Data Sources
 
@@ -23,19 +45,57 @@ editor_options:
 
 -
 
-## Satellite data 
+# Satellite data 
 
-### Vegetation Indexes 
+## Vegetation Indexes 
 
 - We extracted temporal series of vegetation indexes as a surrogate of productivity. Several data sources were used: 
 
-  - MODIS. We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolution = 250 m). We used NDVI and EVI spectral index. For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot. 
+### MODIS 
+We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolution = 250 m). We used NDVI and EVI spectral index. For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot. 
   
-  - AV     
+### Landsat Data 
 
-### Annual Net Primary Productivity 
+## Annual Net Primary Productivity 
 
-- We extracted temporal series of yearly NPP from MODIS product MOD17A3HGF (temporal resolution: yearly; spatial resolution = 500 m). See [here](https://lpdaac.usgs.gov/products/mod17a3hgfv006/) for a description of the method to obtain the NPP. 
+- MODIS [MOD17A3HGF](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD17A3HGF)
+- Spatial resolution: 500 m pixel
+- The MOD17A3HGF V6.1 product provides information about annual Gross and Net Primary Productivity (GPP and NPP) at 500m pixel resolution. Annual NPP is derived from the sum of all 8-day Net Photosynthesis (PSN) products (MOD17A2H) from the given year. The PSN value is the difference of the Gross Primary Productivity (GPP) and the Maintenance Respiration (MR) (GPP-MR).
+- Detailed info [here](https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf)
+
+Data were obtained from GEE (see code) (TODO: improve code)
+
+- We extracted temporal series of yearly NPP from MODIS product MOD17A3HGF (temporal resolution: yearly; spatial resolution = 500 m). See [here](https://lpdaac.usgs.gov/products/mod17a3hgfv061/) for a description of the method to obtain the NPP. 
+
+### Quality Control 
+- We used the quality control band (`NPP_QC`). 
+- The values of this band range from 0 to 100. They indicate a percentage computed as the number of days during the growing season with filled MODIS LAI data due to contaminated data by the total number of days of the growing season. See section 4.2 of the [user guide](https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf)
+
+```{r qc-npp}
+#| fig.width: 8 
+#| fig.height: 8
+#| fig.cap: "Histogram of the quality values for NPP. The Npp_QC_500 % indicates the number of days filled due to contaminated data. Higher values indicated poorly data."
+#| echo: false
+
+
+dnpp <- read_csv("data/dendroadaptamed_npp_mod17a3_yearly_c61.csv") |> 
+  filter(year <= 2022) 
+
+q <- quantile(dnpp$npp_qc, probs = c(0.5, 0.75, 0.9))
+
+dnpp |> ggplot(aes(x=npp_qc)) + geom_histogram() +
+  geom_vline(xintercept = q[1]) +
+  geom_vline(xintercept = q[2]) +
+  geom_vline(xintercept = q[3]) +
+  geom_label(aes(x = q[1], y = 50, label = paste0("Percentil\n 50%\n QC=", q[1]))) +
+  geom_label(aes(x = q[2], y = 50, label = paste0("Percentil\n 75%\n QC=", q[2]))) +
+  geom_label(aes(x = q[3], y = 50, label = paste0("Percentil\n 90%\n QC=", q[3]))) +
+  theme_minimal() +
+  xlab("Npp_QC_500m (%)") + 
+  ylab("# pixels")
+
+```
+
 
 
 ## References
