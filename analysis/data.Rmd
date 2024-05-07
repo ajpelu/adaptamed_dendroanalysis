@@ -56,6 +56,11 @@ We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolut
   
 ### Landsat Data 
 
+- We used the Collection 2 of the Landsats products
+- We combined [Landsat 5 TM](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LT05_C02_T1_L2), [Landsat 7 ETM+](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LE07_C02_T1_L2), and [Landsat 8 OLI](https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC08_C02_T1_L2)
+- For all datasets we used the Level 2 Data, Tier 1 (Surface Reflectance)
+- We applied different masks at pixelwise. See [this](https://hendrik-wulf.gitbook.io/geo-717-earth-engine/day-2-time-series-analysis). For this purpose we applied a [CFMask Algorithm](https://www.usgs.gov/landsat-missions/cfmask-algorithm) that allow us to remove pixels flagged as clouds, cloud shadows, snow/ice, or water, allowing only clear pixels to remain for further analysis. See [this](https://doi.org/10.1016/j.rse.2017.03.026). 
+
 ## Annual Net Primary Productivity 
 
 - MODIS [MOD17A3HGF](https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD17A3HGF)
