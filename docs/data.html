@@ -11,7 +11,7 @@
 
 
 
-<title>Data</title>
+<title>Source Data</title>
 
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -393,7 +393,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Data</h1>
+<h1 class="title toc-ignore">Source Data</h1>
 
 </div>
 
@@ -402,7 +402,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -412,7 +412,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -422,14 +422,14 @@ Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidde
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-03
+<strong>Last updated:</strong> 2024-05-07
 </p>
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-1
+7
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-1
+0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -452,41 +452,118 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> uncommitted changes
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes.
-To know which version of the R Markdown file created these
-results, you’ll want to first commit it to the Git repo. If
-you’re still working on the analysis, you can ignore this
-warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and
-build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef80ab846bb7742b91809bd88e5cb8dc0dadc8c3atargetblankf80ab84a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f80ab846bb7742b91809bd88e5cb8dc0dadc8c3a" target="_blank">f80ab84</a>
+<strong>Environment:</strong> empty
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef80ab846bb7742b91809bd88e5cb8dc0dadc8c3atargetblankf80ab84a" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global
+environment can affect the analysis in your R Markdown file in unknown ways.
+For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220407code">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Seed:</strong> <code>set.seed(20220407)</code>
+</a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220407code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220407)</code> was run prior to running the code in the R Markdown file.
+Setting a seed ensures that any results that rely on randomness, e.g.
+subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Session information:</strong> recorded
+</a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is
+critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Cache:</strong> none
+</a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident
+that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>File paths:</strong> relative
+</a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project
+makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4a677048ac83a2022c41b12e874092592f1b3d9dtargetblank4a67704a">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4a677048ac83a2022c41b12e874092592f1b3d9d" target="_blank">4a67704</a>
+</a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree4a677048ac83a2022c41b12e874092592f1b3d9dtargetblank4a67704a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f80ab846bb7742b91809bd88e5cb8dc0dadc8c3a" target="_blank">f80ab84</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/4a677048ac83a2022c41b12e874092592f1b3d9d" target="_blank">4a67704</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -502,20 +579,13 @@ results were generated:
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    data/.DS_Store
-
-Untracked files:
-    Untracked:  test_withopts__/
+    Ignored:    data/geoinfo/grids/
+    Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/remote_sensing/old/
 
 Unstaged changes:
-    Modified:   analysis/data.Rmd
-    Modified:   analysis/scripts.Rmd
-    Modified:   analysis/temporal_iv_mod13.Rmd
-    Modified:   data/categories_elevation_site_code.csv
-    Modified:   data/dendroadaptamed_iv_mod13q1.csv
-    Modified:   data/dendroadaptamed_ndvicsic1km.csv
-    Modified:   data/dendroadaptamed_npp_mod17a3_yearly.csv
-    Modified:   data/dendroadaptamed_sentinel2.csv
+    Modified:   analysis/compile_database.Rmd
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -560,6 +630,74 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/4a677048ac83a2022c41b12e874092592f1b3d9d/analysis/data.Rmd" target="_blank">4a67704</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-05-07
+</td>
+<td>
+wflow_publish("analysis/data.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/bb74de542ddceb85ece7cbc5c6f118617a307e22/analysis/data.Rmd" target="_blank">bb74de5</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-08
+</td>
+<td>
+include climate source
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/63a13d1ab9bcdd8df4097c5be016d5525bf99d03/analysis/data.Rmd" target="_blank">63a13d1</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-03
+</td>
+<td>
+prepare spei data
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/d188e25583e39f7130bb78af20abc165f98065bc/docs/data.html" target="_blank">d188e25</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-03
+</td>
+<td>
+include descriptio data spei
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -635,40 +773,130 @@ wflow_publish("analysis/*")
 </div>
 </div>
 </div>
+<pre class="r"><code>library(here)
+library(tidyverse)
+library(kableExtra)
+library(DT)
+
+source(&quot;scripts/aux.R&quot;)</code></pre>
 <div id="data-sources" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Data Sources</h1>
-<div id="spei" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> SPEI</h2>
+<div id="climatic-data" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Climatic data</h2>
+<div id="daily-data" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Daily data</h3>
 <ul>
-<li>The Drought indices dataset for Spain was used through the <a href="https://monitordesequia.aemet.es/" class="uri">https://monitordesequia.aemet.es/</a> <span class="citation">(Vicente-Serrano et al. 2017)</span> See</li>
-<li>For each field site, we downloaded the time series using the web interface. It’s not the most efficient way, but we don’t want to download the entire <code>.nc</code> files and processing all (it’s a time-consuming task and also used a lot of space). If we want to process a lot of localities, donwload the <code>.nc</code> files from <a href="https://monitordesequia.csic.es/historico" class="uri">https://monitordesequia.csic.es/historico</a></li>
+<li>To characterize the climatic conditions at each of the sampling sites, we utilized high-resolution climatic maps (spatial resolution of 500 meters) sourced from the Andalusian Information Subsystem for Environmental Climatology, part of the Andalusian Environmental Information Network. These maps encompassed dialy averages of mean, minimum, and maximum temperatures, in addition to dialy cumulative rainfall data. These detailed maps were constructed by integrating data from over 200 meteorological stations. For each individual sampling site, we extracted temporal data series spanning from 1951 and 1971 for rainfall and temperature series respectively.</li>
 </ul>
 </div>
-<div id="satellite-data" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Satellite data</h2>
-<div id="vegetation-indexes" class="section level3" number="1.2.1">
-<h3><span class="header-section-number">1.2.1</span> Vegetation Indexes</h3>
+<div id="spei" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> SPEI</h3>
 <ul>
-<li><p>We extracted temporal series of vegetation indexes as a surrogate of productivity. Several data sources were used:</p>
-<ul>
-<li><p>MODIS. We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolution = 250 m). We used NDVI and EVI spectral index. For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot.</p></li>
-<li><p>AV</p></li>
-</ul></li>
-</ul>
-</div>
-<div id="annual-net-primary-productivity" class="section level3" number="1.2.2">
-<h3><span class="header-section-number">1.2.2</span> Annual Net Primary Productivity</h3>
-<ul>
-<li>We extracted temporal series of yearly NPP from MODIS product MOD17A3HGF (temporal resolution: yearly; spatial resolution = 500 m). See <a href="https://lpdaac.usgs.gov/products/mod17a3hgfv006/">here</a> for a description of the method to obtain the NPP.</li>
+<li><p>The Drought indices dataset for Spain was used through the <a href="https://monitordesequia.aemet.es/" class="uri">https://monitordesequia.aemet.es/</a> <span class="citation">(Vicente-Serrano et al. 2017)</span></p></li>
+<li><p>For each field site, we downloaded the time series using the web interface. It’s not the most efficient way, but we don’t want to download the entire <code>.nc</code> files and processing all (it’s a time-consuming task and also used a lot of space). If we want to process a lot of localities, donwload the <code>.nc</code> files from <a href="https://monitordesequia.csic.es/historico" class="uri">https://monitordesequia.csic.es/historico</a></p></li>
+<li></li>
 </ul>
 </div>
 </div>
-<div id="references" class="section level2 unnumbered">
-<h2>References</h2>
+</div>
+<div id="satellite-data" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Satellite data</h1>
+<div id="vegetation-indexes" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Vegetation Indexes</h2>
+<ul>
+<li>We extracted temporal series of vegetation indexes as a surrogate of productivity. Several data sources were used:</li>
+</ul>
+<div id="modis" class="section level3" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> MODIS</h3>
+<p>We used the MODIS product MOD13Q1 (temporal resolution: 16 days; spatial resolution = 250 m). We used NDVI and EVI spectral index. For each field plot, we extracted all the composite images of the MODIS product (using the centroid of the field plot). Then, a temporal series was created for each field plot.</p>
+</div>
+<div id="landsat-data" class="section level3" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Landsat Data</h3>
+</div>
+</div>
+<div id="annual-net-primary-productivity" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Annual Net Primary Productivity</h2>
+<ul>
+<li>MODIS <a href="https://developers.google.com/earth-engine/datasets/catalog/MODIS_061_MOD17A3HGF">MOD17A3HGF</a></li>
+<li>Spatial resolution: 500 m pixel</li>
+<li>The MOD17A3HGF V6.1 product provides information about annual Gross and Net Primary Productivity (GPP and NPP) at 500m pixel resolution. Annual NPP is derived from the sum of all 8-day Net Photosynthesis (PSN) products (MOD17A2H) from the given year. The PSN value is the difference of the Gross Primary Productivity (GPP) and the Maintenance Respiration (MR) (GPP-MR).</li>
+<li>Detailed info <a href="https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf">here</a></li>
+</ul>
+<p>Data were obtained from GEE (see code) (TODO: improve code)</p>
+<ul>
+<li>We extracted temporal series of yearly NPP from MODIS product MOD17A3HGF (temporal resolution: yearly; spatial resolution = 500 m). See <a href="https://lpdaac.usgs.gov/products/mod17a3hgfv061/">here</a> for a description of the method to obtain the NPP.</li>
+</ul>
+<div id="quality-control" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Quality Control</h3>
+<ul>
+<li>We used the quality control band (<code>NPP_QC</code>).</li>
+<li>The values of this band range from 0 to 100. They indicate a percentage computed as the number of days during the growing season with filled MODIS LAI data due to contaminated data by the total number of days of the growing season. See section 4.2 of the <a href="https://lpdaac.usgs.gov/documents/972/MOD17_User_Guide_V61.pdf">user guide</a></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:qc-npp"></span>
+<img src="figure/data.Rmd/qc-npp-1.png" alt="Histogram of the quality values for NPP. The Npp_QC_500 % indicates the number of days filled due to contaminated data. Higher values indicated poorly data." width="768" />
+<p class="caption">
+Figure 2.1: Histogram of the quality values for NPP. The Npp_QC_500 % indicates the number of days filled due to contaminated data. Higher values indicated poorly data.
+</p>
+</div>
+</div>
+</div>
+<div id="references" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-VicenteSerranoetal2017HighResolution" class="csl-entry">
 Vicente-Serrano, Sergio M., Miquel Tomas-Burguera, Santiago Beguería, Fergus Reig, Borja Latorre, Marina Peña-Gallardo, M. Yolanda Luna, Ana Morata, and José C. González-Hidalgo. 2017. <span>“A High Resolution Dataset of Drought Indices for <span>Spain</span>.”</span> <em>Data</em> 2 (3). <a href="https://doi.org/10.3390/data2030022">https://doi.org/10.3390/data2030022</a>.
 </div>
+</div>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] DT_0.32          kableExtra_1.4.0 lubridate_1.9.3  forcats_1.0.0   
+ [5] stringr_1.5.1    dplyr_1.1.4      purrr_1.0.2      readr_2.1.5     
+ [9] tidyr_1.3.1      tibble_3.2.1     ggplot2_3.5.0    tidyverse_2.0.0 
+[13] here_1.0.1       workflowr_1.7.1 
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.4      xfun_0.43         bslib_0.7.0       htmlwidgets_1.6.4
+ [5] processx_3.8.4    callr_3.7.6       tzdb_0.4.0        vctrs_0.6.5      
+ [9] tools_4.3.3       ps_1.7.6          generics_0.1.3    parallel_4.3.3   
+[13] fansi_1.0.6       highr_0.10        pkgconfig_2.0.3   lifecycle_1.0.4  
+[17] farver_2.1.1      compiler_4.3.3    git2r_0.33.0      munsell_0.5.0    
+[21] getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8.1 sass_0.4.9       
+[25] yaml_2.3.8        crayon_1.5.2      later_1.3.2       pillar_1.9.0     
+[29] jquerylib_0.1.4   whisker_0.4.1     cachem_1.0.8      tidyselect_1.2.1 
+[33] digest_0.6.35     stringi_1.8.3     bookdown_0.38     labeling_0.4.3   
+[37] rprojroot_2.0.4   fastmap_1.1.1     grid_4.3.3        colorspace_2.1-0 
+[41] cli_3.6.2         magrittr_2.0.3    utf8_1.2.4        withr_3.0.0      
+[45] scales_1.3.0      promises_1.2.1    bit64_4.0.5       timechange_0.3.0 
+[49] rmarkdown_2.26    httr_1.4.7        bit_4.0.5         hms_1.1.3        
+[53] evaluate_0.23     knitr_1.45        viridisLite_0.4.2 rlang_1.1.3      
+[57] Rcpp_1.0.12       glue_1.7.0        xml2_1.3.6        vroom_1.6.5      
+[61] svglite_2.1.3     rstudioapi_0.16.0 jsonlite_1.8.8    R6_2.5.1         
+[65] systemfonts_1.0.6 fs_1.6.3         </code></pre>
 </div>
 </div>
 </div>
