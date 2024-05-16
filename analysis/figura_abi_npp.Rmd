@@ -86,7 +86,9 @@ abi_npp <- df_index |>
   dplyr::select(-se,-sd) |> 
   pivot_wider(values_from = mean_y, names_from = y_variable) |> 
   filter(!is.na(npp)) |> 
-  filter(!is.na(abi))
+  filter(!is.na(abi)) |> 
+  rowwise() |> 
+  mutate(ratio = abi/npp)
 ```
 
 ```{r}
@@ -177,7 +179,6 @@ boot_func <- function(data, indices) {
   return(pred)
 }
 
-library(boot)
 
 # Perform bootstrapping with 1000 resamples
 boot_res <- boot(data = abi_npp, statistic = boot_func, R = 1000)  # R is the number of resamples
@@ -497,4 +498,117 @@ slopes |>
   column_spec(1, italic = TRUE) |> 
   collapse_rows(columns = 1:2)
 ```
+
+
+## Ratio ABI/NPP ~ NPP 
+
+```{r}
+#| echo: false
+
+```
+
+```{r}
+# Find an exponential relation
+# y ~ ae^bx 
+# ln(y) ~ ln(ae^bx)
+# ln(y) ~ ln(a) + bX 
+
+m <- lm(log(ratio)~npp, data=abi_npp)
+
+init_exp <- list(a = exp(coef(m)[1]), b = coef(m)[2])
+
+# Generate a confidence interval with bootstrap 
+# Define a function to perform the bootstrapping
+boot_func_ratio <- function(data, indices) {
+  # Take a bootstrap sample
+  sample_df <- data[indices, ]
+  # Fit the non-linear model
+  nls_fit <- nls(ratio ~ a * exp(b * npp), 
+                 data = sample_df, start = list(a = init_exp$a, b = init_exp$b))
+  # Generate predicted values for a sequence of npp
+  npp_seq <- seq(min(data$npp), max(data$npp), length.out = 100)
+  pred <- predict(nls_fit, newdata = data.frame(npp = npp_seq))
+  return(pred)
+}
+
+
+# Perform bootstrapping with 1000 resamples
+boot_res <- boot(data = abi_npp, statistic = boot_func, R = 1000)  # R is the number of resamples
+
+
+# Compute the 95% confidence intervals for each point
+ci_lower <- apply(boot_res$t, 2, quantile, probs = 0.025)  # Lower 2.5%
+ci_upper <- apply(boot_res$t, 2, quantile, probs = 0.975)  # Upper 97.5%
+
+# Predicted values from the original fit
+npp_seq <- seq(min(abi_npp$npp), max(abi_npp$npp), length.out = 100)
+pred <- apply(boot_res$t, 2, mean)  # Mean of the bootstrapped predictions
+
+# Create a data frame with predicted values and confidence intervals
+pred_df <- data.frame(
+  npp = npp_seq,
+  ratio = pred,
+  ci_lower = ci_lower,
+  ci_upper = ci_upper
+)
+```
+
+
+
+```{r}
+bragg <- function(x, b, c, d){
+  b * exp(- c * (x - d)^2)
+  }
+  
+mod.nls <- nls(ratio ~ bragg(npp, b, c, d),
+               start = list (b= 0.5, c= 0.00001, d= 650), 
+               data = abi_npp)
+summary(mod.nls)
+
+init_brag <- coef(mod.nls) |> as.list()
+```
+
+
+
+```{r}
+#| fig.width: 8
+#| fig.height: 8
+
+
+
+model_norm <- nls(ratio ~ N * dnorm(npp, m, s), start=c(m=600, s=12, N=sum(abi_npp$ratio)), data =abi_npp) 
+init_norm <- coef(model_norm) |> as.list()
+
+abi_npp |> 
+  ggplot(aes(y = ratio, x = npp)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_smooth(aes(group=sp_elev,colour = Specie), 
+              method = "lm", se=FALSE, linewidth = .7) +
+  scale_y_continuous(limits = c(0,0.6)) +
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(), 
+    legend.position = c(.1,.8)
+  ) + 
+  # geom_smooth(aes(),
+  #             method = "nls",
+  #             formula = y ~ N * dnorm(x, m, s),
+  #             method.args = list(start=init_norm,
+  #                               control=nls.control(maxiter=1000)),
+  #             se = FALSE, # this is important
+  #             linewidth = 1.5, colour = "black") +
+  scale_colour_manual(values = colours_Specie, name = "Species",
+                      labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_Specie, name = "Species",
+                    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))) + 
+  ylab(expression(ratio~ABI:NPP)) + 
+  xlab(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1}))) 
+
+
+
+formula = y ~ N * dnorm(x, m, s), se=F, 
+              start=list(m=20, s=5, N=300)) 
+```
+
 

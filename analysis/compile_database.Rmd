@@ -201,6 +201,9 @@ write_csv(iv_landsat, "data/dendroadaptamed_iv_landsat.csv")
 
 
 ### NPP 
+
+- We extracted temporal series of yearly NPP from MODIS product MOD17A3HGF (temporal resolution: yearly; spatial resolution = 500 m). See [here](https://lpdaac.usgs.gov/products/mod17a3hgfv006/) for a description of the method to obtain the NPP. 
+
 - NPP data original as $kg ~ C ~ m^2 ~ year^{-1}$ but with a scale factor of 0.0001, so to transform to $g ~ C ~ m^2 ~ year^{-1}$ apply 0.1 (0.0001*1000) 
 
 - Npp_QC: quality control (percentage)
