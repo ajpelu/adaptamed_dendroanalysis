@@ -33,8 +33,8 @@ abi <- read_csv("data/dendroadaptamed_abi.csv") |>
 
 npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |> 
   rename(mean = npp) |> 
-  mutate(se = NA, sd = NA, variable = "npp", year = lubridate::year(date)) |> 
-  dplyr::select(-npp_qc, -sp_elev, -date)
+  mutate(se = NA, sd = NA, variable = "npp") |> 
+  dplyr::select(-npp_qc, -sp_elev, -gpp, -Specie)
 
 evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
   filter(iv == "evi") |> 
@@ -50,7 +50,7 @@ evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |>
 
 df <- bind_rows(
   abi, evi_landsat, evi_modis, npp) |> 
-  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+ # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
 
 ```
@@ -72,21 +72,26 @@ mk_npp <- read_csv("data/dendroadaptamed_npp_modis_trend.csv") |>
     ypos == 1025 ~ 900, 
     ypos == 1050 ~ 1000, 
     ypos == 1075 ~ 1075)) |> 
-  dplyr::select(-ypos) |> rename(ypos = ypos2)
+  dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2)
+
+mk_abi <- read_csv("data/dendroadaptamed_abi_trend.csv") |> 
+    rename(tau = mean_tau, 
+         pvalue_mk = mean_pvalue_mk,
+         senslope = mean_senslope,
+         pvalue_sen = mean_pvalue_sen) |> 
+  mutate(variable = "abi") |> 
+  mutate(ypos2 = case_when(
+    ypos == 510 ~ 485, 
+    ypos == 540 ~ 530, 
+    ypos == 570 ~ 570, 
+    ypos == 480 ~ 440)) |> 
+  dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2)
 
 
-mk_abi <- abi |> 
-  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |> 
-  group_by(sp_elev, sp_code, elev_code) |> 
-  count() |> 
-  dplyr::select(-n) |> 
-  mutate(tau = NA, pvalue_mk =NA, senslope = NA, pvalue_sen = NA, 
-         ypos =NA, p_value_string = NA, taulabel = NA,
-         variable = "abi")
 
 mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |> 
   mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
-  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
 ```
 
@@ -145,8 +150,12 @@ ggsave(
 
 
 
-## Comparisons among variables
+
+
 ```{r, fig.height=5, fig.width=5}
+#| eval: false
+
+## Comparisons among variables
 ## Revisar 
 label_landsat <- "Annual~EVI[Landsat]"
 label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
@@ -156,8 +165,10 @@ label_abi <- "ABI~(g~C~m^2~year^{-1})"
 abi_npp <- df |> filter(variable %in% c("abi", "npp")) |> 
   pivot_wider(values_from = mean, names_from = variable) |> 
   filter(year > 1999) |> 
-  filter(!is.na(abi)) |> 
-  filter(!is.na(npp))
+  filter(!is.na(abi)) 
+
+|> 
+  # filter(!is.na(npp))
 
 
 lm_abi_npp <- lm(npp ~ abi, data=abi_npp)
@@ -259,10 +270,7 @@ abi_evi |>
  #  
 
 
-```
 
-
-```{r}
 npp_evi <- df |> 
   filter(variable %in% c("npp", "evi_landsat")) |> 
   dplyr::select(-se, -sd) |> 
