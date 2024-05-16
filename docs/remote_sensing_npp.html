@@ -402,7 +402,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-04-15
+<strong>Last updated:</strong> 2024-05-16
 </p>
 <p>
 <strong>Checks:</strong>
@@ -530,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeef12a0bdebc0e2b7e3aba85de172cb5560f10702targetblankef12a0ba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree50d74d70c5173bcfb3dae422828e06e6c9f2f471targetblank50d74d7a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ef12a0bdebc0e2b7e3aba85de172cb5560f10702" target="_blank">ef12a0b</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/50d74d70c5173bcfb3dae422828e06e6c9f2f471" target="_blank">50d74d7</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeef12a0bdebc0e2b7e3aba85de172cb5560f10702targetblankef12a0ba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree50d74d70c5173bcfb3dae422828e06e6c9f2f471targetblank50d74d7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/ef12a0bdebc0e2b7e3aba85de172cb5560f10702" target="_blank">ef12a0b</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/50d74d70c5173bcfb3dae422828e06e6c9f2f471" target="_blank">50d74d7</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -562,13 +562,16 @@ Ignored files:
     Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
     Ignored:    data/raw/remote_sensing/old/
+    Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/figura_compara_evi_npp.Rmd
+    Untracked:  analysis/dendro_ts.Rmd
 
 Unstaged changes:
-    Modified:   data/dendroadaptamed_npp_modis.csv
-    Modified:   data/dendroadaptamed_npp_modis_trend.csv
+    Modified:   analysis/compile_database.Rmd
+    Modified:   analysis/figura_abi_npp.Rmd
+    Modified:   analysis/figure_ts_dendro_remote.Rmd
+    Deleted:    output/test_abi.jpg
 
 </code></pre>
 <p>
@@ -613,6 +616,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/50d74d70c5173bcfb3dae422828e06e6c9f2f471/analysis/remote_sensing_npp.Rmd" target="_blank">50d74d7</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-05-16
+</td>
+<td>
+include time range of MK
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/a66c6bf4f0c8e04351cb8ee13e57c87ac4b1b625/docs/remote_sensing_npp.html" target="_blank">a66c6bf</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1104,6 +1141,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a66c6bf4f0c8e04351cb8ee13e57c87ac4b1b625/docs/figure/remote_sensing_npp.Rmd/plot-npp-avg-1.png" target="_blank">a66c6bf</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-15
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/0df3e55b91336f06b6bf6bec7f3d6e679c607e11/docs/figure/remote_sensing_npp.Rmd/plot-npp-avg-1.png" target="_blank">0df3e55</a>
 </td>
 <td>
@@ -1120,7 +1168,7 @@ ajpelu
 </div>
 <div id="compute-temporal-trends" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Compute Temporal trends</h1>
-<p>We explored the temporal trends for the NPP annual average (Table <a href="#tab:mk-mean">2.1</a>) along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen’s slope estimator.</p>
+<p>We explored the temporal trends for the NPP annual average (Table <a href="#tab:mk-mean">2.1</a>) along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen’s slope estimator. MK was computed from 2001 to 2022 of MODIS NPP.</p>
 <pre class="r"><code>mknpp &lt;- dnpp |&gt; 
   ungroup() |&gt; 
   group_by(Specie, elev_code, sp_elev, sp_code) |&gt; 
@@ -1459,6 +1507,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a66c6bf4f0c8e04351cb8ee13e57c87ac4b1b625/docs/figure/remote_sensing_npp.Rmd/plot-npp-1.png" target="_blank">a66c6bf</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-04-15
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/0df3e55b91336f06b6bf6bec7f3d6e679c607e11/docs/figure/remote_sensing_npp.Rmd/plot-npp-1.png" target="_blank">0df3e55</a>
 </td>
 <td>
@@ -1514,7 +1573,7 @@ loaded via a namespace (and not attached):
 [13] parallel_4.3.3    fansi_1.0.6       highr_0.10        janeaustenr_1.0.0
 [17] pkgconfig_2.0.3   tokenizers_0.3.0  Matrix_1.6-5      lifecycle_1.0.4  
 [21] farver_2.1.1      compiler_4.3.3    git2r_0.33.0      munsell_0.5.0    
-[25] getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8   SnowballC_0.7.1  
+[25] getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8.1 SnowballC_0.7.1  
 [29] sass_0.4.9        yaml_2.3.8        crayon_1.5.2      later_1.3.2      
 [33] pillar_1.9.0      jquerylib_0.1.4   whisker_0.4.1     cachem_1.0.8     
 [37] boot_1.3-29       tidyselect_1.2.1  digest_0.6.35     stringi_1.8.3    
