@@ -35,7 +35,7 @@ iv_modis <- read_csv("data/dendroadaptamed_iv_modis.csv")
 
 ## Compute Temporal trends
 
-We explored the temporal trends for both the seasonal averages (Table \@ref(tab:mk-season-table)) and also the standard deviation of the EVI along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator. 
+We explored the temporal trends for both the seasonal averages (Table \@ref(tab:mk-season-table)) and also the standard deviation of the EVI along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator. MK was computed from 2000 to 2022 of MODIS IV.
 
 
 ```{r mk-season}
@@ -206,7 +206,6 @@ iv_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv")
 ```
 
 
-
 ```{r plot-compare-landsat}
 #| fig.cap: "Comparison of Landsat EVI and NDVI annual series"
 #| fig.width: 8
@@ -228,6 +227,9 @@ iv_landsat |>
     scale_fill_manual(values=colours_elev, name="") +
   facet_wrap(~sp_code) 
 ```
+
+MK for EVI Landsat was computed from 1986 to 2022.
+
 
 ```{r}
 mkevi_landsat <- iv_landsat |> 
