@@ -1,0 +1,205 @@
+---
+title: "dendro_ts"
+author: "ajpelu"
+date: "2024-05-16"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE,
+  fig.width = 10, fig.height = 7
+)
+```
+
+
+## Introduction
+
+```{r pkg}
+library(here)
+library(tidyverse)
+library(tidytext)
+library(Kendall)
+library(trend)
+library(kableExtra)
+library(DT)
+
+source("scripts/aux.R")
+```
+
+```{r}
+abi <- read_csv("data/dendroadaptamed_abi.csv") |> rename(mean = IBT_ag_m2) |> mutate(se = NA, sd = NA, variable = "abi")
+
+bai <- read_csv("data/dendroadaptamed_bai.csv") |> 
+  rename(mean = BAI, se = BAIserror) |> 
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
+  mutate(sd = NA, variable = "bai") |> 
+  unite("sp_elev", sp_code:elev_code, remove = FALSE)
+
+dfdendro <- bind_rows(abi, bai) |> 
+    mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
+```
+
+## Compute Temporal trends
+
+We explored the temporal trends for both ABI and BAI. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator. MK was computed from 1986 to last year of each site (2017 to 2022) of ABI and BAI
+
+### BAI 
+```{r}
+
+mkbai <- dfdendro |> 
+  filter(variable == "bai")  |> 
+  filter(year > 1985) |> 
+  ungroup() |> 
+  group_by(sp_code, elev_code, sp_elev)|> 
+  summarise(across(c(mean), ~MannKendall(.)$tau, .names ="{.col}_tau"),
+            across(c(mean), ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
+            across(c(mean), ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
+            across(c(mean), ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen")) |> 
+  mutate(ypos =
+           case_when(
+             elev_code == "low" ~ 15,
+             elev_code == "low-Dec" ~ 14,
+             elev_code == "medium" ~ 16,
+             elev_code == "high" ~ 17),
+         p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
+               cutpoints = c(0,  .001,.01,.05, 1),
+               symbols = c("***","**","*",""))) |>
+  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 3), p_value_string, '"'))) |>
+  mutate(
+    Specie = paste0("P. ", sp_code)
+  ) |> 
+  mutate(taulabel = gsub("-", "\U2212", taulabel))
+  
+
+write_csv(mkbai, "data/dendroadaptamed_bai_trend.csv")
+```
+
+
+```{r}
+mkbai |> 
+  ungroup() |> 
+  dplyr::select(Specie,  elev_code, dplyr::starts_with("mean")) |>
+  rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) |> 
+  kbl(
+    digits = c(0,0,3,3,4,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for BAI") |> 
+    kable_paper("hover", full_width = F) |> 
+  column_spec(3:4, bold = ifelse(mkbai$mean_pvalue_mk < 0.05, TRUE, FALSE)) |> 
+   column_spec(1, italic = TRUE) |> 
+  collapse_rows(columns = 1:2)
+```
+
+
+```{r plot-bai}
+#| fig.cap: "Temporal evolution of BAI"
+#| fig.width: 8
+#| fig.height: 6  
+
+plot_bai <- dfdendro |>
+  filter(variable == "bai")  |> 
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
+  geom_line() +
+  theme_bw() +
+  ylab(expression(BAI~(cm^{-2}~year^{-1}))) + 
+  xlab("") + 
+  theme(
+    panel.grid = element_blank(),
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0), 
+                              face = "italic"),
+    plot.background = element_rect(fill = "transparent"), 
+    legend.position = "bottom"
+  ) +
+    scale_colour_manual(values = colours_elev, name = "") +
+    scale_fill_manual(values = colours_elev, name="") + 
+  facet_wrap(~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), nrow = 1) +
+  geom_text(x = 1990, aes(y = ypos, label = taulabel), data = mkbai, parse = TRUE, show.legend = FALSE, hjust = "left")
+
+plot_bai
+```
+
+
+
+### ABI 
+```{r}
+
+mkabi <- dfdendro |> 
+  filter(variable == "abi")  |> 
+  filter(year > 1985) |> 
+  ungroup() |> 
+  group_by(sp_code, elev_code, sp_elev)|> 
+  summarise(across(c(mean), ~MannKendall(.)$tau, .names ="{.col}_tau"),
+            across(c(mean), ~MannKendall(.)$sl, .names ="{.col}_pvalue_mk"),
+            across(c(mean), ~trend::sens.slope(.)$estimate, .names ="{.col}_senslope"),
+            across(c(mean), ~trend::sens.slope(.)$p.value, .names ="{.col}_pvalue_sen")) |> 
+  mutate(ypos =
+           case_when(
+             elev_code == "low" ~ 510,
+             elev_code == "low-Dec" ~ 480,
+             elev_code == "medium" ~ 540,
+             elev_code == "high" ~ 570),
+         p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
+               cutpoints = c(0,  .001,.01,.05, 1),
+               symbols = c("***","**","*",""))) |>
+  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 3), p_value_string, '"'))) |>
+  mutate(
+    Specie = paste0("P. ", sp_code)
+  ) |> 
+  mutate(taulabel = gsub("-", "\U2212", taulabel))
+  
+
+write_csv(mkabi, "data/dendroadaptamed_abi_trend.csv")
+```
+
+
+```{r}
+mkabi |> 
+  ungroup() |> 
+  dplyr::select(Specie,  elev_code, dplyr::starts_with("mean")) |>
+  rename_with(.cols=dplyr::starts_with("mean"),
+            ~str_replace(., "mean_", "")) |> 
+  kbl(
+    digits = c(0,0,3,3,4,5,4),
+    caption = "Mann-Kendall and Seil temporal trend test for ABI") |> 
+    kable_paper("hover", full_width = F) |> 
+  column_spec(3:4, bold = ifelse(mkabi$mean_pvalue_mk < 0.05, TRUE, FALSE)) |> 
+   column_spec(1, italic = TRUE) |> 
+  collapse_rows(columns = 1:2)
+```
+
+
+```{r plot-abi}
+#| fig.cap: "Temporal evolution of ABI"
+#| fig.width: 8
+#| fig.height: 6  
+
+plot_abi <- dfdendro |>
+  filter(variable == "abi")  |> 
+  ggplot(aes(x = year, y = mean, colour = elev_code)) +
+  geom_line() +
+  theme_bw() +
+  ylab(expression(ABI~(g~C~m^{-2}~year^{-1}))) + 
+  xlab("") + 
+  theme(
+    panel.grid = element_blank(),
+    strip.background = element_blank(),
+    strip.text = element_text(hjust = 0, vjust = 1, margin = margin(-0.05, 0.8, 0, 0), 
+                              face = "italic"),
+    plot.background = element_rect(fill = "transparent"), 
+    legend.position = "bottom"
+  ) +
+    scale_colour_manual(values = colours_elev, name = "") +
+  facet_wrap(~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), nrow = 1) +
+  geom_text(x = 1960, aes(y = ypos, label = taulabel), data = mkabi, parse = TRUE, show.legend = FALSE, hjust = "left")
+
+plot_abi
+```
+
