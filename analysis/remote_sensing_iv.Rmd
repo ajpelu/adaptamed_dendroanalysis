@@ -77,7 +77,8 @@ mk <- mkevi |>
          p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
                symbols = c("***","**","*",""))) |> 
-  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 2), p_value_string, '"'))) 
+  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 3), p_value_string, '"'))) |> 
+  mutate(taulabel = gsub("-", "\U2212", taulabel))
 ```
 
 
@@ -249,10 +250,11 @@ mkevi_landsat <- iv_landsat |>
          p_value_string = symnum(mean_pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
                symbols = c("***","**","*",""))) |> 
-  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 2), p_value_string, '"'))) |> 
+  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(mean_tau, 3), p_value_string, '"'))) |> 
   mutate(
     Specie = paste0("P. ", sp_code)
-  )
+  ) |> 
+  mutate(taulabel = gsub("-", "\U2212", taulabel))
   
 ```
 
