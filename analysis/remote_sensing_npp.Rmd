@@ -92,7 +92,7 @@ npp_summary |>
 
 # Compute Temporal trends
 
-We explored the temporal trends for the NPP annual average (Table \@ref(tab:mk-mean)) along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator.  
+We explored the temporal trends for the NPP annual average (Table \@ref(tab:mk-mean)) along study-period. For this purpose, we use non-parametric Mann-Kendall test. We also explored the magnitude of the trends using the Theil-Sen's slope estimator. MK was computed from 2001 to 2022 of MODIS NPP.
 
 ```{r}
 mknpp <- dnpp |> 
