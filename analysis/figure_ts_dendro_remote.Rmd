@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
 ```{r}
 library(tidyverse)
 library(kableExtra)
+library(ggh4x)
 
 source("scripts/aux.R")
 ```
@@ -240,6 +241,81 @@ ggsave(
 )
 
 ```
+
+
+### Mean values (along gradients)
+
+```{r}
+#| fig.height: 7 
+#| fig.width: 5
+df_summary <- df |> 
+  filter(variable != "evi_modis") |> 
+  group_by(variable, sp_code, elev_code) |> 
+  rename(value = mean) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm = TRUE), 
+            se = sd/sqrt(length(value))) |> 
+  mutate(variable2 = case_when(
+    variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})", 
+    variable == "npp" ~ "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+    variable == "evi_landsat" ~ "Annual~EVI[Landsat]"
+  )) |> 
+  ungroup()
+
+
+label_landsat <- "Annual~EVI[Landsat]"
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_abi <- "ABI~(g~C~m^2~year^{-1})"
+
+
+y_scales <- list(
+  scale_y_continuous(limits = c(0.15, 0.45)),
+  scale_y_continuous(limits = c(250,1000)),
+  scale_y_continuous(limits = c(0, 300))
+)
+
+
+
+plot_avg_values <- df_summary |> 
+   mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
+  ggplot(aes(x=sp_code,y=mean, group = elev_code, colour = elev_code)) + 
+  geom_point(size = 1.2) +
+  geom_errorbar(aes(ymin=mean-se, ymax=mean+se), width=.1) +  
+  geom_line() +
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(),
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "top", 
+    axis.text.x = element_text(face = "italic"),
+    strip.text = element_text(face = "bold", size = 9)
+  ) + 
+   scale_colour_manual(values = colours_elev, name = "") +
+  xlab("") + 
+  ylab("") + 
+    facet_wrap(~factor(variable2, c("Annual~EVI[Landsat]", 
+                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                    "ABI~(g~C~m^2~year^{-1})")),
+             scales = "free_y", 
+                     labeller = label_parsed, 
+                     strip.position = "left",
+             ncol = 1) 
+
+# + ggh4x::facetted_pos_scales(y = y_scales) # custom scales
+
+plot_avg_values
+ggsave(
+  plot_avg_values, 
+  file = "output/plot_avg_gradient.jpg",
+  dpi = 300,
+  width = 5, height = 7
+)
+
+```
+
+
+
 
 
 ```{r, fig.height=5, fig.width=5}
