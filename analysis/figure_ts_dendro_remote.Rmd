@@ -236,7 +236,7 @@ ggsave(
   tau_by_gradients, 
   file = "output/plot_trends_tau_gradients.jpg",
   dpi = 300,
-  width = 12, height = 8
+  width = 7, height = 7
 )
 
 ```
