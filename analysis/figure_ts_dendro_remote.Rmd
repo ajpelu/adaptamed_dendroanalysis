@@ -176,7 +176,7 @@ overview_trends
 
 ggsave(
   overview_trends, 
-  file = "output/plot_overview_trends.jpg",
+  file = "output/plot_trends_overview.jpg",
   dpi = 300,
   width = 12, height = 8
 )
@@ -210,7 +210,36 @@ mk |>
 
 
 
+### Explore tau by gradients 
+```{r}
+#| fig.height: 7 
+#| fig.width: 7
+tau_by_gradients <- mk |>
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
+  ggplot(aes(x=sp_code,y=tau, group = elev_code, colour = elev_code)) + 
+  geom_point(aes(size = tau)) +
+  geom_line() +
+  facet_wrap(~variable, ncol = 1, scales = "free_y") +
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(),
+    strip.background = element_rect(fill = "white"),
+    strip.text = element_text(face = "bold", size = 14)
+  ) +
+   scale_colour_manual(values = colours_elev, name = "") +
+  xlab("Species (sort by drought tolerance)")
 
+
+tau_by_gradients
+ggsave(
+  tau_by_gradients, 
+  file = "output/plot_trends_tau_gradients.jpg",
+  dpi = 300,
+  width = 12, height = 8
+)
+
+```
 
 
 ```{r, fig.height=5, fig.width=5}
