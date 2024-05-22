@@ -20,11 +20,12 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(tidyverse)
+library(kableExtra)
 
 source("scripts/aux.R")
 ```
 
-## Figure 2
+## Figure S1
 
 ```{r}
 abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
@@ -56,8 +57,7 @@ df <- bind_rows(
 ```
 
 ```{r}
-mk_evi_landsat <- read_csv("data/dendroadaptamed_iv_modis_trend.csv") |> 
-  filter(season == "yearly") |> 
+mk_evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat_trend.csv") |> 
   dplyr::select(sp_code, elev_code, sp_elev, tau = mean_tau, pvalue_mk = mean_pvalue_mk,  senslope = mean_senslope, pvalue_sen= mean_pvalue_sen, ypos, p_value_string, taulabel) |> 
    mutate(variable = "evi_landsat")
   
@@ -142,11 +142,72 @@ fig_ts
 ```{r}
 ggsave(
   fig_ts, 
-  file = "output/plot_ts_dendro_remote.png",
+  file = "output/plot_ts_dendro_remote.jpg",
   dpi = 300,
   width = 12, height = 8
 )
 ```
+
+
+
+
+### Explore trends
+
+```{r}
+overview_trends <- mk |>
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
+  mutate(var = fct_relevel(variable, "evi_landsat","npp", "abi")) |> 
+  mutate(border_color = ifelse(is.na(p_value_string), "transparent", "black")) |> 
+  ggplot(aes(x=sp_code, y=elev_code, fill = tau)) + 
+  geom_point(aes(size = tau, shape = var, colour = border_color), position = position_jitterdodge(jitter.width = 0, dodge.width = 0.4)) + 
+  scale_fill_gradientn(colours = c("#d7191c", "#ffffbf", "#2b83ba"), limits = c(-1, 1), breaks = c(-.75, 0, .75)) +
+  scale_colour_identity() + 
+  scale_size_continuous(range = c(1,10)) +
+  scale_shape_manual(values = c(21,22,24)) +
+  ylab("Elevation gradient") +
+  xlab("Drought tolerance gradient") +
+  theme_bw() +
+  theme(
+    axis.text.x = element_text(face = "italic")
+  )
+
+overview_trends
+
+ggsave(
+  overview_trends, 
+  file = "output/plot_overview_trends.jpg",
+  dpi = 300,
+  width = 12, height = 8
+)
+```
+
+
+
+```{r}
+df_increment <- mk |> 
+  dplyr::select(variable, sp_code, elev_code, sp_elev, tau) |> 
+  group_by(variable, sp_code) |> 
+  mutate(increment = abs(tau)/(abs(tau[elev_code == "low"]))) |> 
+  ungroup()
+```
+
+
+```{r}
+mk |> 
+  ungroup() |> 
+  relocate(variable) |> 
+  dplyr::select(-ypos, -p_value_string, -taulabel, -sp_elev, -senslope, -pvalue_sen) |> 
+  kbl(
+    digits = c(0,0,3,4,5,4),
+    caption = "Mann-Kendall temporal trend") |> 
+    column_spec(3:5, bold = ifelse(mk$pvalue_mk < 0.05, TRUE, FALSE)) |> 
+  column_spec(1, italic = TRUE) |> 
+  collapse_rows(columns = 1:2) |> 
+    kable_paper("hover", full_width = F)
+
+```
+
 
 
 
