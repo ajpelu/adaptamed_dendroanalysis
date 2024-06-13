@@ -1,0 +1,614 @@
+---
+title: "Modelling Ratio"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(sf)
+library(SPEI)
+library(ggh4x)
+library(geomtextpath)
+library(metR)
+library(ggsci)
+library(patchwork)
+library(fields)
+library(splines)
+library(likelihood)
+library(kableExtra)
+library(patchwork)
+source("scripts/aux.R")
+```
+
+```{r}
+annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |> 
+  dplyr::select(sp_elev, year, monthly_pet, monthly_tmed, monthly_prec) |> 
+  group_by(sp_elev, year) |>
+  summarise(pet = sum(monthly_pet), 
+            prec = sum(monthly_prec),
+            tmed = mean(monthly_tmed, na.rm = TRUE)) |> 
+  rowwise() |> 
+  mutate(water_balance = prec - pet)
+```
+
+
+```{r}
+ratio <- read_csv("data/dendroadaptamed_ratio_abinpp.csv") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, ratio_abi_npp = ratio) 
+
+df <- ratio |> 
+  inner_join(annual_pet) |> 
+  pivot_longer(pet:water_balance, values_to = "mean_climate", 
+               names_to = "climate_variable")
+```
+
+
+```{r}
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_ratio <- "ABI:NPP"
+label_wb <- "P-PET (mm)"
+```
+
+
+```{r}
+## Scales 
+y_scales <- list(
+  scale_y_continuous(limits = c(0, 0.5)),
+  scale_y_continuous(limits = c(0,1250)),
+  scale_y_continuous(limits = c(0, 700))
+)
+```
+
+
+# General plots: Water Balance
+```{r, fig.width=12, fig.height=6}
+plot_wb <- 
+  df |> 
+  filter(climate_variable == "water_balance") |>
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() + 
+  geom_smooth(method = "lm", se = FALSE, linewidth = .8) +
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") + 
+  xlab("Water balance (mm)")+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "top", 
+    strip.text = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(-900, 1200)) + 
+  ylab(label_ratio)
+
+
+# Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
+# https://derekogle.com/fishR/examples/oldFishRVignettes/VonBertalanffy.pdf
+plot_wb
+```
+
+
+# General plots: Tmed
+```{r, fig.width=12, fig.height=6}
+plot_tmed <- 
+  df |>
+  filter(climate_variable == "tmed") |> 
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .8) +
+  geom_smooth(aes(),
+              method = "nls", 
+              formula = y ~ SSasymp(x, Asym, R0, lrc),
+                #               SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") +
+  ylab(label_ratio) + 
+  xlab("Annual Mean Temperature (ºC)") +
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "none", 
+    strip.text = element_text(face = "bold", size = 14)) +
+  scale_x_continuous(limits = c(7.5, 17.5)) 
+
+plot_tmed
+```
+
+
+```{r}
+dtmed <- df |> filter(climate_variable == "tmed") |> dplyr::select(rat = ratio_abi_npp, tmed = mean_climate)
+```
+
+
+# Modelling
+## Temperature 
+
+$$(ABI:NPP)_i=MR \times g(T_{med}) + \epsilon_i$$
+where: 
+
+- $(ABI:NPP)_i$ es el valor del ratio de ABI:NPP para cada sitio y año
+- $MR$ es un parámetro que representa el máximo ratio ABI:NPP (adimensional)
+- $\epsilon_i$ es el error aleatorio para cada observación $i$ 
+- $g(T_{med})$ es una función con valores entre 0 y 1, que depende de la temperatura
+
+Esta $g(T_{med})$ puede tomar diferentes formas (es lo que tenemos que buscar)
+
+Al aumentar la temperatua, se disminuye el ratio, esto es, se distribuye menos cantidad de C a la parte aérea. ¿Que explicación le podemos dar a esto? 
+
+### Funciones propuestas
+
+- Gaussian (**mt1**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{T_{med}-OT_{med}} {b}\right)^2 \right]$$
+
+siendo $OT_{med}$ el valor óptimo de $T_{med}$ al cual ocurre el máximo Ratio $(ABI:NPP)_i$; y $b$ es la desviación estándar o amplitud de la función. 
+
+- Gaussian Extended (**mt2**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{T_{med}-OT_{med}} {b}\right)^a \right]$$
+con el parámetro $a$ que permite hacer a la función flexible para ajustar la kurtosis
+
+- Log-normal (**mt3**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{\log{(\frac{T_{med}}{OT_{med}}}) }{b}\right)^2 \right]$$ 
+
+- Logistic (**mt4**)
+
+$$g(T_{med})=a + \frac{b}{1+\exp \left(-c \times (T_{med} - d) \right) } $$ 
+
+where, $a$ es el valor de la asíntota inferior; $b$ es la distancia vertical entre la asíntota superior e inferior; $c$ es la la tasa de cambio, y $d$ es la localización del punto de inflexión. 
+
+
+
+```{r}
+mt1 <- function(MR, OTmed, b)
+{
+  tmed_effect <- exp(-0.5*((dtmed$tmed - OTmed)/b)^2)
+  MR * tmed_effect
+}
+
+mt2 <- function(MR, OTmed, b, a)
+{
+  tmed_effect <- exp(-0.5*((dtmed$tmed - OTmed)/b)^a)
+  MR * tmed_effect
+}
+
+mt3 <- function(MR, OTmed, b)
+{
+  tmed_effect <- exp(-0.5*(log(dtmed$tmed/OTmed)/b)^2)
+  MR * tmed_effect
+}
+
+# Logistic 
+mt4 <- function(MR, a, b, c, d)
+{
+  tmed_effect <- a + b /(1 + exp(- c *( dtmed$tmed - d )))
+  MR * tmed_effect
+}
+```
+
+The error term in the model 
+
+$$(ABI:NPP)_i=MR \times g(T_{med}) + \epsilon_i$$
+is assumed to follows a normal distribution $\epsilon_i \sim \mathcal{N}(0,1)$
+
+
+```{r}
+# a is the lower asymptote
+# b is the vertical distance between lower and upper asymptotes
+# c is the rate of change
+# d is the location of the inflection point
+
+
+# fit <- nls(rat ~ a + b /(1 + exp(- c *( tmed - d ))), 
+#                       data = dtmed, 
+#            start = list(a = 0.05, b = 0.65, c= -1.4, d = 10))
+
+
+############# OJO MIRAR las gráficas de lo SS Asym para entender los modelos 
+
+# modt_ssasymp_neg <- function(x, c, R0, d) {
+#   c - (c - R0) * exp(-exp(d) * x)
+# }
+# 
+# # c -> la asintota a la que se aproxima: 0 
+# # R0: Ratio inicial cuando. x = 0 (el valor inicial (x=0) de la variable respuesta)
+# # lrc: tasa a la cual la variable y se aproxima a la asintota es un log de la tasa costantes, así que exp(lrc) daría la tasa actaual. Valores mayores de lrc indica que y se aproxima mas rápidamente a la asintonta, valores mas bajos, que se aproxima mas lentamente
+# 
+# 
+
+
+```
+
+```{r}
+gamma_pdf <- function(x,mean,scale)
+{ shape <- mean/scale
+loglh <- log(dgamma(x,shape=shape,scale=scale,log=F))
+return(loglh)
+}
+```
+
+
+```{r}
+var=list(mean = "predicted", x = "rat", tmed = "tmed")  
+```
+
+
+```{r} 
+## Guassian model 
+set.seed(1234)
+par1 <- list(MR = 0.7, OTmed = 10.5, b = 1.5)
+par_hi1 <- list(MR = 1, OTmed = 20, b = 5)
+par_lo1 <- list(MR = 0, OTmed = 5, b = 0.01)
+
+start <- Sys.time()
+
+result_mt1 <- anneal(
+  model = mt1, par = par1,
+  var = var, source_data = dtmed,
+  par_lo = par_lo1, par_hi = par_hi1,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mt1 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mt1, "output/models/mt1.txt")
+```
+
+```{r}
+# Gaussian Extended 
+set.seed(21)
+par2 <- list(MR = 0.7, OTmed = 10, b = 2, a = 2)
+par_hi2 <- list(MR = 1, OTmed = 20, b = 5, a = 1.5)
+par_lo2 <- list(MR = 0, OTmed = 5, b = 1, a = 2.5)
+
+start <- Sys.time()
+
+result_mt2 <- anneal(
+  model = mt2, par = par2,
+  var = var, source_data = dtmed,
+  par_lo = par_lo2, par_hi = par_hi2,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 10, temp_red = 0.975, max_iter = 50000,
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mt2 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mt2, "output/models/mt2.txt")
+```
+
+
+```{r}
+#Log-normal
+set.seed(1234)
+par3 <- list(MR = 0.7, OTmed = 10.5, b = 1.5)
+par_hi3 <- list(MR = 1, OTmed = 20, b = 5)
+par_lo3 <- list(MR = 0, OTmed = 5, b = 0.01)
+
+start <- Sys.time()
+
+result_mt3 <- anneal(
+  model = mt3, par = par3,
+  var = var, source_data = dtmed,
+  par_lo = par_lo3, par_hi = par_hi3,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000,
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mt3 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mt3, "output/models/mt3.txt")
+```
+
+```{r}
+set.seed(1234)
+par4 <- list(MR = 0.7, a = 0, b = 0.5, c = -1, d = 10)
+par_hi4 <- list(MR = 1, a = .5, b = 1, c = 2, d = 20)
+par_lo4 <- list(MR = 0, a = -.5, b = 1.5, c = -2, d = 0)
+
+start <- Sys.time()
+
+result_mt4 <- anneal(
+  model = mt4, par = par4,
+  var = var, source_data = dtmed,
+  par_lo = par_lo4, par_hi = par_hi4,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000,
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mt4 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mt4, "output/models/mt4.txt")
+```
+
+```{r} 
+# Define custom functions to extract data from models 
+MLE_results_format <- function(x, yvar) {
+  
+  # compute RMSE 
+  x$source_data$residual <- x$source_data[[yvar]] - x$source_data[["predicted"]]
+  rmse <- sqrt(sum(x$source_data$residual^2)/(length(x$source_data$residual)-1))
+
+  out <- data.frame( 
+     max_likeli = x$max_likeli,
+     n_params = length(x$best_pars),
+     aic_cor = x$aic_corr, 
+     aic = x$aic,
+     R2 = x$R2,
+     slope = x$slope, 
+     RMSE = rmse
+     )
+  return(out)
+} 
+
+MLL_results_params <- function(x) {
+  params <- map_dfr(
+    seq_along(x$best_pars),
+    ~ {
+      data.frame(
+        name = names(x$best_pars)[.x],
+        value = x$best_pars[.x],
+        si_lower = x$lower_limits[.x],
+        si_upper = x$upper_limits[.x],
+        std_error = x$std_errs[.x],
+        bound_lower = x$par_lo[.x],
+        bound_upper = x$par_hi[.x]
+      )
+    }
+  )
+
+  return(params)
+}
+
+```
+
+
+```{r}
+all_results <- 
+  mget(
+    grep("^result", ls(), value = TRUE)) |> 
+  purrr::imap_dfr(~MLE_results_format(.x, yvar = "rat"), .id = "modelo") |> 
+  arrange(aic_cor) |> 
+  mutate(modelo = str_remove(modelo, "result_"))
+
+
+all_time <- mget(
+  grep("^time", ls(), value = TRUE)) |> 
+  map_dfr(~ tibble(exec_time_s = .x), .id = "modelo") |> 
+  mutate(modelo = str_remove(modelo, "time_"))
+
+
+models_results <- all_results |> inner_join(all_time)
+```
+
+
+```{r}
+op_plot <- function(x, yvar, title) { 
+  x$source_data$residual <- x$source_data[[yvar]] - x$source_data[["predicted"]]
+  out <- x$source_data |> rename(observed = yvar)
+  
+  out |> 
+    ggplot(aes(x=predicted, y = observed)) +
+    geom_point() + 
+    geom_abline() +
+    theme_bw() +
+    theme(
+      panel.grid = element_blank()) +
+    ggtitle(title) 
+}
+
+res_plot <- function(x, yvar, title) { 
+  x$source_data$residual <- x$source_data[[yvar]] - x$source_data[["predicted"]]
+  out <- x$source_data |> rename(observed = yvar)
+  
+  out |> 
+    ggplot(aes(x=predicted, y = residual)) +
+    geom_point() + 
+    theme_bw() +
+    geom_hline(yintercept = 0) +
+    theme(
+      panel.grid = element_blank()) +
+    ggtitle(title) 
+} 
+```
+
+```{r}
+
+mod <- "mt1"
+aux_text <- all_results |> filter(modelo == mod)
+
+op1 <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "rat", title = mod) + 
+  annotate(geom = "text", x= 0, y = .65, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = .6, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp1 <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "rat", title = mod)
+
+mod <- "mt2"
+aux_text <- all_results |> filter(modelo == mod)
+
+op2 <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "rat", title = mod) + 
+  annotate(geom = "text", x= 0, y = .65, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = .6, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp2 <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "rat", title = mod)  
+
+mod <- "mt3"
+aux_text <- all_results |> filter(modelo == mod)
+
+op3 <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "rat", title = mod) + 
+  annotate(geom = "text", x= 0, y = .65, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = .6, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp3 <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "rat", title = mod)  
+
+mod <- "mt4"
+aux_text <- all_results |> filter(modelo == mod)
+
+op4 <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "rat", title = mod) + 
+  annotate(geom = "text", x= 0, y = .65, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = .6, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp4 <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "rat", title = mod)  
+ 
+```
+
+### Resultados
+#### Gaussian model (**mt1**) 
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op1 / rp1
+```
+
+```{r}
+mod <- "mt1" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+
+#### Gaussian Extended (**mt2**)
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op2 / rp2
+```
+
+```{r}
+mod <- "mt2" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+#### Log-normal (**mt3**)
+
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op3 / rp3
+```
+
+```{r}
+mod <- "mt3" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+#### Logistic (**mt4**)
+
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op4 / rp4
+```
+
+```{r}
+mod <- "mt4" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+
+### All models 
+
+```{r}
+models_results |> 
+  kbl() |> 
+  kable_styling()
+```
+
+
+```{r}
+#| fig.height: 16
+(op1 + rp1) / (op2 + rp2) / (op3 + rp3) / (op4 + rp4)
+```
+
+## Comparing tmed curves 
+```{r}
+#| fig.height: 6 
+#| fig.width: 6
+#| 
+fit1 <- result_mt1$source_data |> mutate(modelo = "mt1")
+fit2 <- result_mt2$source_data |> mutate(modelo = "mt2")
+fit3 <- result_mt3$source_data |> mutate(modelo = "mt3")
+fit4 <- result_mt4$source_data |> mutate(modelo = "mt4")
+
+fit <- bind_rows(fit1, fit2, fit3, fit4) |> rename(ratio_abi_npp = predicted, 
+         mean_climate = tmed)
+
+colours_combined <- c("mt1" = "red", "mt2" = "blue", "mt3" = "green", "mt4" = "black")
+
+df |>
+  filter(climate_variable == "tmed") |> 
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp)) + 
+  geom_point(colour="gray") + 
+  geom_line(data = fit, aes(colour = modelo)) + 
+  ylab(label_ratio) + 
+  xlab("Annual Mean Temperature (ºC)") +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    strip.text = element_text(face = "bold", size = 14)) +
+    scale_colour_manual(values = colours_combined, name = "Models") 
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
