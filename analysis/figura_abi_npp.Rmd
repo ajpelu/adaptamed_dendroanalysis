@@ -148,6 +148,7 @@ ggsave(
 
 ```{r}
 #| echo: false
+
 # Find an exponential relation
 # y ~ ae^bx 
 # ln(y) ~ ln(ae^bx)
@@ -332,9 +333,7 @@ combo
 ggsave(
   combo, 
   file = "output/alocation_by_sp.png",
-  dpi = 300,
-  width = 12, height = 12
-)
+  dpi = 300, width = 12, height = 12)
 ```
 
 ## Plot by species (with ellipses)
@@ -467,7 +466,7 @@ plot_slopes <- slopes |>
     panel.spacing = unit(0,'lines')) + 
   geom_hline(aes(yintercept = 0)) +
   scale_y_continuous(limits = c(0, 0.8), 
-                     expand = expand_scale(add = c(0,0))) +
+                     expand = expansion(add = c(0,0))) +
   geom_text(aes(y= estimate, label = p_value_string), nudge_y = 0.025, size = 10, show.legend = FALSE) 
 
 ```
@@ -502,10 +501,6 @@ slopes |>
 
 ## Ratio ABI/NPP ~ NPP 
 
-```{r}
-#| echo: false
-
-```
 
 ```{r}
 # Find an exponential relation
@@ -605,10 +600,7 @@ abi_npp |>
   ylab(expression(ratio~ABI:NPP)) + 
   xlab(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1}))) 
 
-
-
-formula = y ~ N * dnorm(x, m, s), se=F, 
-              start=list(m=20, s=5, N=300)) 
+write_csv(abi_npp, "data/dendroadaptamed_ratio_abinpp.csv")
 ```
 
 

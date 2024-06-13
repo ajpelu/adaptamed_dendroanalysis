@@ -1,6 +1,5 @@
 ---
-title: "Figure NPP EVI ABI vs water balance"
-date: "2024-03-24"
+title: "Figure ratio ABI:NPP vs water balance"
 output: workflowr::wflow_html
 editor_options:
   chunk_output_type: console
@@ -44,71 +43,21 @@ annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |>
 
 
 ```{r}
-abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
-  rename(mean = IBT_ag_m2) |> 
-  mutate(se = NA, sd = NA, variable = "abi") 
+ratio <- read_csv("data/dendroadaptamed_ratio_abinpp.csv") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, ratio_abi_npp = ratio) 
 
-evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
-  filter(iv == "evi") |> 
-  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
-  mutate(variable = "evi_landsat")
-
-npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |> 
-  rename(mean = npp) |> 
-  mutate(se = NA, sd = NA, variable = "npp") |> 
-  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se, variable) 
-
-evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |> 
-  filter(variable == "evi") |> 
-  filter(season == "yearly") |> 
-  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
-  mutate(variable = "evi_modis")
-
-
-df_index <- bind_rows(
-  abi, evi_landsat, evi_modis, npp) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
-  mutate(Specie = paste0("P. ", sp_code)) |> 
-  rename(mean_y = mean, y_variable = variable)
-
-df <- df_index |> 
+df <- ratio |> 
   inner_join(annual_pet) |> 
   pivot_longer(pet:water_balance, values_to = "mean_climate", 
                names_to = "climate_variable")
-
-df_plot <- df |> filter(year > 1990) |> 
-  mutate(y_variable2 = case_when(
-      y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})",
-      y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]",
-      y_variable == "evi_modis" ~ "Annual~EVI[MODIS]",
-      y_variable == "npp" ~"Annual~NPP[MODIS]~(g~C~m^2~year^{-1})")) |> 
-  mutate(y_variable2 = fct_relevel(y_variable2, 
-                                  "Annual~EVI[Landsat]", 
-                                  "Annual~EVI[MODIS]",
-                                  "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
-                                  "ABI~(g~C~m^2~year^{-1})")) |> 
-  filter(y_variable != "evi_modis") 
 ```
 
 
 
 ```{r}
-label_landsat <- "Annual~EVI[Landsat]"
 label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
-label_abi <- "ABI~(g~C~m^2~year^{-1})"
+label_ratio <- "ABI:NPP"
 label_wb <- "P-PET (mm)"
-```
-
-
-
-```{r}
-# df_tmed <- df_plot |>
-#   filter(climate_variable == "tmed") |>
-#   filter(y_variable != "evi_modis") |>
-#   dplyr::select(tmed = mean_climate, y_variable, mean_y) |>
-#   pivot_wider(values_from = mean_y, names_from = y_variable)
-# 
-# write_csv(df_tmed, "/Users/ajpelu/Desktop/tmed.csv")
 ```
 
 
@@ -122,123 +71,13 @@ y_scales <- list(
 )
 ```
 
-```{r, echo=FALSE, eval=FALSE}
-# black: logis 
-# blue: asymp 
-
-## evi 
-wb_evi <- df_plot |> filter(climate_variable == "water_balance") |> 
-  filter(y_variable == "evi_landsat") 
-init_aysmp_evi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = wb_evi)))
-init_logis_evi <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = wb_evi)))
-
-
-## npp
-# asymp da error en NPP 
-wb_npp <- df_plot |> filter(climate_variable == "water_balance") |> 
-  filter(y_variable == "npp") 
-
-# init_aysmp_npp <- as.data.frame(t(getInitial(mffean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = wb_npp)))
-init_logis_npp <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = wb_npp)))
-
-## abi
-wb_abi <- df_plot |> filter(climate_variable == "water_balance") |> 
-  filter(y_variable == "abi") 
-init_logis_abi <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = wb_abi)))
-
-init_aysmp_abi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = wb_abi)))
-
-
-plot_wb <- 
-  df_plot|> 
-  filter(climate_variable == "water_balance") |> 
-  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code)) +
-  scale_colour_manual(values = colours_sp, name = "Species") +
-  scale_shape_manual(values = shape_elev, name = "Elevation") +
-  scale_fill_manual(values = colours_sp, name = "Species") + 
-  theme_bw() + 
-  geom_smooth(method = "lm", se = FALSE, linewidth = 1) +
-  ##### EVI 
-  # geom_smooth(aes(), 
-  #             data = wb_evi,
-  #             method = "nls", 
-  #             formula=y~SSasymp(x, Asym, R0, lrc),
-  #             se =  FALSE, # this is important 
-  #             method.args =list(start=init_aysmp_evi,
-  #                               control=nls.control(maxiter=1000)),
-  #             size = 1, colour = "blue") +
-  # geom_smooth(aes(), 
-  #             data = wb_evi,
-  #             method = "nls", 
-  #             formula= y ~ a + b * (exp(-exp(-c * (x - d)))),
-  #             se =  FALSE, # this is important 
-  #             method.args =list(start=list(a = -1, b =.4, c = 0.0065, d = -400),
-  #                               control=nls.control(maxiter=1000)),
-  #             size = 1, 
-  #             colour = "red") + 
-  geom_smooth(aes(), 
-              data = wb_evi,
-              method = "nls", 
-              formula=y~SSlogis(x, Asym, xmid, scal),
-              se =  FALSE, # this is important 
-              method.args =list(start=init_logis_evi,
-                                control=nls.control(maxiter=1000)),
-              size = 1, colour = "black") +
-  ##### NPP
-  geom_smooth(aes(), 
-              data = wb_npp,
-              method = "nls", 
-              formula=y~SSlogis(x, Asym, xmid, scal),
-              se =  FALSE, # this is important 
-              method.args =list(start=init_logis_npp,
-                                control=nls.control(maxiter=1000)),
-              size = 1, colour = "black") +
-  ##### ABI
-  geom_smooth(aes(), 
-              data = wb_abi,
-              method = "nls", 
-              formula=y~SSlogis(x, Asym, xmid, scal),
-              se =  FALSE, # this is important 
-              method.args =list(start=init_logis_abi,
-                                control=nls.control(maxiter=1000)),
-              size = 1, colour = "black") +
-  # geom_smooth(aes(), 
-  #             data = wb_abi,
-  #             method = "nls", 
-  #             formula=y~SSasymp(x, Asym, R0, lrc),
-  #             se =  FALSE, # this is important 
-  #             method.args =list(start=init_aysmp_abi,
-  #                               control=nls.control(maxiter=1000)),
-  #             size = 1, colour = "blue") +
-  ylab("") + 
-  xlab("Water balance (mm)")+
-  theme(
-    panel.grid = element_blank(), 
-    strip.background = element_blank(),
-    strip.placement = "outside",
-    legend.position = "top", 
-    strip.text = element_text(face = "bold", size = 14)
-  ) + 
-  scale_x_continuous(limits = c(-900, 1200)) +
-  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
-                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
-                                    "ABI~(g~C~m^2~year^{-1})")),
-             scales = "free_y", 
-                     labeller = label_parsed, 
-                     strip.position = "left") +
-    facetted_pos_scales(y = y_scales)
-  
-
-```
-
 
 ## Water-Balance 
 ```{r, fig.width=12, fig.height=6}
 plot_wb <- 
-  df_plot|> 
-  filter(climate_variable == "water_balance") |> 
-  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
+  df |> 
+  filter(climate_variable == "water_balance") |>
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
   geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
@@ -250,7 +89,6 @@ plot_wb <-
               formula=y~SSlogis(x, Asym, xmid, scal),
               se =  FALSE, # this is important 
               linewidth = 1, colour = "black") + 
-  ylab("") + 
   xlab("Water balance (mm)")+
   theme(
     panel.grid = element_blank(), 
@@ -259,15 +97,9 @@ plot_wb <-
     legend.position = "top", 
     strip.text = element_text(face = "bold", size = 14)
   ) + 
-  scale_x_continuous(limits = c(-900, 1200)) +
-  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
-                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
-                                    "ABI~(g~C~m^2~year^{-1})")),
-             scales = "free_y", 
-                     labeller = label_parsed, 
-                     strip.position = "left") +
-    facetted_pos_scales(y = y_scales)
-  
+  scale_x_continuous(limits = c(-900, 1200)) + 
+  ylab(label_ratio)
+
 
 # Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
 # https://derekogle.com/fishR/examples/oldFishRVignettes/VonBertalanffy.pdf
@@ -277,43 +109,297 @@ plot_wb
 
 ## Tmed
 ```{r, fig.width=12, fig.height=6}
-t_npp <- df_plot |> filter(climate_variable == "tmed") |> 
-  filter(y_variable == "npp") 
-
 plot_tmed <- 
-  df_plot |>
+  df |>
   filter(climate_variable == "tmed") |> 
-  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
   geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
   theme_bw() +
   geom_smooth(method = "lm", se = FALSE, size = .8) +
-      geom_smooth(aes(),
+  geom_smooth(aes(),
               method = "nls", 
-              formula = y ~ SSlogis(x, Asym, xmid, scal),
+              formula = y ~ SSasymp(x, Asym, R0, lrc),
+                #               SSlogis(x, Asym, xmid, scal),
               se =  FALSE, # this is important 
               linewidth = 1, colour = "black") +
-  ylab("") + 
-  xlab("Annual Mean Temperature (ºC)")+
+  ylab(label_ratio) + 
+  xlab("Annual Mean Temperature (ºC)") +
   theme(
     panel.grid = element_blank(), 
     strip.background = element_blank(),
     strip.placement = "outside",
     legend.position = "none", 
-    strip.text = element_text(face = "bold", size = 14)
-  ) + 
-  scale_x_continuous(limits = c(8, 16)) +
-  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
-                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
-                                    "ABI~(g~C~m^2~year^{-1})")),
-             scales = "free_y", 
-                     labeller = label_parsed, 
-                     strip.position = "left") +
-    facetted_pos_scales(y = y_scales)
+    strip.text = element_text(face = "bold", size = 14)) +
+  scale_x_continuous(limits = c(7.5, 17.5)) 
+
 plot_tmed
 ```
+
+
+
+
+```{r}
+install.packages("univariateML")
+library(univariateML)
+
+d <- dtmed
+
+hist(d$tmed)
+
+AIC(
+  mlbetapr(d$tmed),
+  mlexp(d$tmed),
+  mlinvgamma(d$tmed),
+  mlgamma(d$tmed),
+  mllnorm(d$tmed),
+  mlrayleigh(d$tmed),
+  mlinvgauss(d$tmed),
+  mlweibull(d$tmed),
+  mlinvweibull(d$tmed),
+  mllgamma(d$tmed)
+) |> arrange(AIC)
+
+
+mllnorm(d$tmed)
+
+```
+
+
+
+```{r}
+library(segmented)
+
+model <- lm(rat ~ tmed, data = dtmed)
+segmented_model <- segmented(model, seg.Z = ~tmed)
+
+
+seg_preds <- predict(segmented_model)
+dtmed$seg_res <-  dtmed$rat- seg_preds
+
+# Plot the original data with the fitted model
+plot(
+  dtmed$tmed, dtmed$rat,
+  main = "Piecewise Regression Fit",
+  xlab = "Independent Variable (x)",
+  ylab = "Dependent Variable (y)",
+  col = "blue"
+)
+lines(dtmed$tmed, seg_preds,col = "red", lwd = 2)
+```
+
+
+
+
+```{r}
+# Define the maximum ratio
+MR <- 0.6
+
+# Define the nonlinear model function
+model_formula <- rat ~ MR * exp(-0.5 * ((tmed - t) / b)^a)
+
+
+# Generate sequences of start values
+t_values <- seq(6, 15, by = 0.5)
+b_values <- seq(-2, 2, by = 0.1)
+a_values <- seq(-2, 2, by = 0.1)
+
+start_grid <- expand.grid(t = t_values, b = b_values, a = a_values)
+
+# Create a grid of starting values
+# Function to fit the model
+fit_model <- function(start) {
+  tryCatch({
+    nls(model_formula, data = dtmed, start = as.list(start))
+  }, error = function(e) NULL)
+}
+
+# Fit the model using the grid of starting values
+fits <- apply(start_grid, 1, fit_model)
+
+# Filter out unsuccessful fits
+successful_fits <- Filter(Negate(is.null), fits)
+
+# Check if any model was successfully fitted
+if (length(successful_fits) > 0) {
+  # Get the best fit (using the first successful fit in this case)
+  best_fit <- successful_fits[[1]]
+
+  # Print the summary of the model fit
+  summary(best_fit)
+
+  # Predict values
+  dtmed$rat_pred <- predict(best_fit)
+
+  # Plot the original data and fitted values
+  ggplot(dtmed, aes(x = tmed, y = rat)) +
+    geom_point() +
+    geom_line(aes(y = rat_pred), color = 'red') +
+    theme_minimal() +
+    labs(title = "Fitted Nonlinear Model using nls", x = "tmed", y = "rat")
+} else {
+  message("Model fitting failed with all starting values.")
+}
+
+
+
+```
+
+
+
+
+
+```{r}
+### Otros lios 
+dtmed <- df |> filter(climate_variable == "tmed") |> dplyr::select(rat = ratio_abi_npp, tmed = mean_climate)
+
+write_csv(dtmed, "/Users/ajpelu/Desktop/dtmed.csv")
+# rat ~ max(rat) * g2 + ej 
+
+# g2 = exp(-0.5*((tmed - t)/b)^a) 
+
+aux_max <- dtmed |> slice_max(rat)
+
+
+# 
+# rat ~ 0.626*(exp(-0.5*((tmed - 10.4)/b)^a)) 
+# 
+# g <- nls(dtmed$rat ~ c*exp(-0.5*(log(dtmed$tmed/a) / b)^2), data = dtmed, start = list(a = 10, b =1.5, c = 0.6))
+
+
+
+
+
+
+
+model <- nls(rat ~ c * dlnorm(tmed, meanlog, sdlog),
+             data = dtmed, 
+             start = list(c = .6, meanlog = 2.4, sdlog = 0.1),
+             control = nls.control(minFactor = 1/1000096,
+                                   maxiter=10000))
+
+
+plot(log(dtmed$rat) ~ dtmed$tmed)
+# compute log 
+dtmed$lograt <- log(dtmed$rat)
+
+fit <- nls(lograt ~ b * tmed, data = dtmed, start = list(b = 0.1))
+
+a <- coef(model)['a']
+b <- coef(model)['b']
+
+
+# Predict in log scale
+dtmed$log_rat_pred <- predict(fit)
+
+# Convert predictions back to original scale
+dtmed$rat_pred <- exp(dtmed$log_rat_pred)
+
+
+newdata <- data.frame(tmed = seq(0, 20, by = 0.5)) 
+newdata$log_rat_pred <- predict(fit, newdata = newdata)
+# Convert predictions back to original scale
+newdata$rat_pred <- exp(newdata$log_rat_pred)
+
+
+ggplot(dtmed, aes(x = tmed, y = rat)) +
+  geom_point() +
+  geom_line(data = newdata, aes(y = rat_pred), color = 'red') +
+  theme_minimal() +
+  labs(title = "Fitted Log-Normal NLS Model", x = "tmed", y = "rat")
+
+
+
+g <- nls(rat ~ a * dlnorm(tmed, mean, sd), data =dtmed, 
+         start = list(mean = 10, sd = 1.5, a = 0.62), algorithm = "plinear")
+
+
+
+0.626*(exp(-0.5*((10 - 10.4)/-2)^.5))
+
+
+temp.effect <- exp(-0.5*((tmed - tempX0)/tempXb)^2)
+
+gm <- nls(rat ~ a* tmed^b, data = dtmed, start = list(a = 2000, b = -4), alg = "plinear")
+summary(gm)
+
+fit_function <- function(tmed) {
+  a <- coef(gm)["a"]
+  b <- coef(gm)["b"]
+  return(a * tmed^b)
+}
+
+# Plot the data and the fitted curve
+ggplot(dtmed, aes(x = tmed, y = rat)) +
+  geom_point() +
+  stat_function(fun = fit_function, color = "blue", size = 1) +
+  labs(title = "Gamma NLS Fit",
+       x = "Temperature (tmed)",
+       y = "Ratios (rat)") +
+  theme_minimal()
+
+
+```
+
+
+
+
+```{r}
+# Define a self-starter function for a lognormal model
+# Define the lognormal self-starter function
+lognormal_start <- function(mCall, LHS, data, ...) {
+  xy <- sortedXyData(mCall[["x"]], LHS, data)
+  x <- xy$x
+  y <- xy$y
+  lm_fit <- lm(log(y) ~ x)
+  a <- exp(coef(lm_fit)[1])
+  b <- coef(lm_fit)[2]
+  setNames(c(a, b), mCall[c("a", "b")])
+}
+
+# Define the lognormal model with self-starter
+lognormal_model <- selfStart(~ a * exp(b * x), initial = lognormal_start, parameters = c("a", "b"))
+
+# Fit the model using nls with the self-starter
+nls_model <- nls(ratio_abi_npp ~ lognormal_model(mean_climate, a, b), data = df)
+
+df$predicted <- predict(nls_model, newdata = df)
+
+
+df |>
+  filter(climate_variable == "tmed") |> 
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(method = "lm", se = FALSE, size = .8) +
+  geom_smooth(aes(),
+              method = "nls", 
+              formula = y ~ SSasymp(x, Asym, R0, lrc),
+                #               SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") +
+  ylab(label_ratio) + 
+  xlab("Annual Mean Temperature (ºC)") +
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "none", 
+    strip.text = element_text(face = "bold", size = 14)) +
+  scale_x_continuous(limits = c(7.5, 17.5)) 
+
+
+
+
+
+```
+
+
 
 ```{r, eval=FALSE}
 # black: logis 
