@@ -205,6 +205,13 @@ mt4 <- function(MR, a, b, c, d)
   tmed_effect <- a + b /(1 + exp(- c *( dtmed$tmed - d )))
   MR * tmed_effect
 }
+
+mt5 <- function(MR, Asym, R0, lrc)
+{
+  tmed_effect <- Asym + (R0 - Asym)*exp(-exp(lrc)*dtmed$tmed)
+  MR * tmed_effect
+}
+
 ```
 
 The error term in the model 
@@ -241,11 +248,11 @@ is assumed to follows a normal distribution $\epsilon_i \sim \mathcal{N}(0,1)$
 ```
 
 ```{r}
-gamma_pdf <- function(x,mean,scale)
-{ shape <- mean/scale
-loglh <- log(dgamma(x,shape=shape,scale=scale,log=F))
-return(loglh)
-}
+# gamma_pdf <- function(x,mean,scale)
+# { shape <- mean/scale
+# loglh <- log(dgamma(x,shape=shape,scale=scale,log=F))
+# return(loglh)
+# }
 ```
 
 
@@ -350,6 +357,32 @@ time_mt4 <- as.numeric(end - start, units = "secs")
 likelihood::write_results(results = result_mt4, "output/models/mt4.txt")
 ```
 
+```{r}
+## Asymptotic model 
+set.seed(1234)
+par5 <- list(MR = 0.7, Asym = 0.1, R0 = 1, lrc = -1)
+par_hi5 <- list(MR = 1, Asym = 0.2, R0 = 10, lrc = 0)
+par_lo5 <- list(MR = 0, Asym = 0, R0 = 0.5, lrc = -2)
+
+start <- Sys.time()
+
+result_mt5 <- anneal(
+  model = mt5, par = par5,
+  var = var, source_data = dtmed,
+  par_lo = par_lo5, par_hi = par_hi5,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mt5 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mt5, "output/models/mt5.txt")
+```
+
+
+
 ```{r} 
 # Define custom functions to extract data from models 
 MLE_results_format <- function(x, yvar) {
@@ -407,7 +440,16 @@ all_time <- mget(
   mutate(modelo = str_remove(modelo, "time_"))
 
 
-models_results <- all_results |> inner_join(all_time)
+# compute deltaAIC
+dAIC <- function(x) { 
+  x <- x[!is.na(x)]
+  delta.aic <- x - min(x, na.rm = TRUE)
+  return(delta.aic)
+}
+
+models_results <- all_results |> 
+  inner_join(all_time) |> 
+  mutate(deltaAIC = dAIC(aic_cor))
 ```
 
 
@@ -494,6 +536,20 @@ op4 <- get(paste0("result_", mod)) |>
 
 rp4 <- get(paste0("result_", mod)) |> 
   res_plot(yvar = "rat", title = mod)  
+
+
+mod <- "mt5"
+aux_text <- all_results |> filter(modelo == mod)
+
+op5 <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "rat", title = mod) + 
+  annotate(geom = "text", x= 0, y = .65, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = .6, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp5 <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "rat", title = mod)  
  
 ```
 
@@ -550,6 +606,19 @@ all_results |> filter(modelo == mod) |> kable()
 ```
 
 
+#### Asymptotic Model (**mt5**)
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op5 / rp5
+```
+
+```{r}
+mod <- "mt5" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+
 ### All models 
 
 ```{r}
@@ -561,7 +630,7 @@ models_results |>
 
 ```{r}
 #| fig.height: 16
-(op1 + rp1) / (op2 + rp2) / (op3 + rp3) / (op4 + rp4)
+(op1 + rp1) / (op2 + rp2) / (op3 + rp3) / (op4 + rp4) / (op5 + rp5)
 ```
 
 ## Comparing tmed curves 
@@ -573,11 +642,13 @@ fit1 <- result_mt1$source_data |> mutate(modelo = "mt1")
 fit2 <- result_mt2$source_data |> mutate(modelo = "mt2")
 fit3 <- result_mt3$source_data |> mutate(modelo = "mt3")
 fit4 <- result_mt4$source_data |> mutate(modelo = "mt4")
+fit5 <- result_mt5$source_data |> mutate(modelo = "mt5")
 
-fit <- bind_rows(fit1, fit2, fit3, fit4) |> rename(ratio_abi_npp = predicted, 
+
+fit <- bind_rows(fit1, fit2, fit3, fit4, fit5) |> rename(ratio_abi_npp = predicted, 
          mean_climate = tmed)
 
-colours_combined <- c("mt1" = "red", "mt2" = "blue", "mt3" = "green", "mt4" = "black")
+colours_combined <- c("mt1" = "red", "mt2" = "blue", "mt3" = "green", "mt4" = "black", "mt5" = "darkgoldenrod4")
 
 df |>
   filter(climate_variable == "tmed") |> 
