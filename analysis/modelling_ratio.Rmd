@@ -247,13 +247,6 @@ is assumed to follows a normal distribution $\epsilon_i \sim \mathcal{N}(0,1)$
 
 ```
 
-```{r}
-# gamma_pdf <- function(x,mean,scale)
-# { shape <- mean/scale
-# loglh <- log(dgamma(x,shape=shape,scale=scale,log=F))
-# return(loglh)
-# }
-```
 
 
 ```{r}
@@ -633,7 +626,7 @@ models_results |>
 (op1 + rp1) / (op2 + rp2) / (op3 + rp3) / (op4 + rp4) / (op5 + rp5)
 ```
 
-## Comparing tmed curves 
+## Comparing tmed - rat curves 
 ```{r}
 #| fig.height: 6 
 #| fig.width: 6
@@ -665,6 +658,394 @@ df |>
 ```
 
 
+## Water Balance 
+
+... 
+
+# ABI 
+
+```{r}
+dfabi <- read_csv("data/dendroadaptamed_abi.csv") |> 
+  rename(abi = IBT_ag_m2) |> 
+  filter(year > 1990) 
+
+dfabi <- dfabi |> 
+  inner_join(annual_pet) |> 
+  pivot_longer(pet:water_balance, values_to = "mean_climate", 
+               names_to = "climate_variable")
+
+```
+
+
+## ABI vs Temperature
+
+```{r}
+dtmed_abi <- dfabi |> filter(climate_variable == "tmed") |> dplyr::select(abi, tmed = mean_climate)
+```
+
+
+$$(ABI)_i=MR \times g(T_{med}) + \epsilon_i$$
+where: 
+
+- $ABI_i$ es el valor de ABI para cada sitio y año
+- $MR$ es un parámetro que representa el máximo ratio ABI:NPP (adimensional)
+- $\epsilon_i$ es el error aleatorio para cada observación $i$ 
+- $g(T_{med})$ es una función con valores entre 0 y 1, que depende de la temperatura
+
+Esta $g(T_{med})$ puede tomar diferentes formas (es lo que tenemos que buscar)
+
+
+
+
+```{r}
+mtabi1 <- function(MA, OTmed, b)
+{
+  tmed_effect <- exp(-0.5*((dtmed_abi$tmed - OTmed)/b)^2)
+  MA * tmed_effect
+}
+
+mtabi2 <- function(MA, OTmed, b, a)
+{
+  tmed_effect <- exp(-0.5*((dtmed_abi$tmed - OTmed)/b)^a)
+  MA * tmed_effect
+}
+
+mtabi3 <- function(MA, OTmed, b)
+{
+  tmed_effect <- exp(-0.5*(log(dtmed_abi$tmed/OTmed)/b)^2)
+  MA * tmed_effect
+}
+
+# Logistic 
+mtabi4 <- function(MA, a, b, c, d)
+{
+  tmed_effect <- a + b /(1 + exp(- c *( dtmed_abi$tmed - d )))
+  MA * tmed_effect
+}
+
+mtabi5 <- function(MA, Asym, R0, lrc)
+{
+  tmed_effect <- Asym + (R0 - Asym)*exp(-exp(lrc)*dtmed_abi$tmed)
+  MA * tmed_effect
+}
+
+```
+
+The error term in the model 
+
+$$ABI_i=MR \times g(T_{med}) + \epsilon_i$$
+is assumed to follows a Gamma distribution
+
+```{r}
+gamma_pdf <- function(x,mean,scale)
+{ shape <- mean/scale
+loglh <- log(dgamma(x,shape=shape,scale=scale,log=F))
+return(loglh)
+}
+```
+
+
+
+```{r}
+var=list(mean = "predicted", x = "abi", tmed = "tmed")  
+```
+
+
+```{r} 
+## Guassian model 
+set.seed(1234)
+par1 <- list(MA = 400, OTmed = 10.5, b = 1.5, scale = 10)
+par_hi1 <- list(MA = 500, OTmed = 20, b = 5, scale = 70)
+par_lo1 <- list(MA = 0, OTmed = 5, b = 0.01, scale = 1)
+
+start <- Sys.time()
+
+result_mtabi1 <- anneal(
+  model = mtabi1, par = par1,
+  var = var, source_data = dtmed_abi,
+  par_lo = par_lo1, par_hi = par_hi1,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi1 <- as.numeric(end - start, units = "secs")
+
+likelihood::write_results(results = result_mtabi1, "output/models/mtabi1.txt")
+```
+
+```{r}
+# Gaussian Extended 
+set.seed(88)
+par2 <- list(MA = 400, OTmed = 10.5, b = 2, a= 2, scale = 10)
+par_hi2 <- list(MA = 700, OTmed = 20, b = 5, a = .5, scale = 100)
+par_lo2 <- list(MA = 0, OTmed = 5, b = 1, a = 2.5, scale = 1)
+
+start <- Sys.time()
+
+result_mtabi2 <- anneal(
+  model = mtabi2, par = par2,
+  var = var, source_data = dtmed_abi,
+  par_lo = par_lo2, par_hi = par_hi2,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 10, temp_red = 0.975, max_iter = 50000,
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi2  <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mtabi2, "output/models/mtabi2.txt")
+```
+
+
+```{r}
+#Log-normal
+set.seed(1234)
+par3 <- list(MA = 400, OTmed = 10.5, b = 1.5, scale = 10)
+par_hi3 <- list(MA = 700, OTmed = 20, b = 5, scale = 100)
+par_lo3 <- list(MA = 0, OTmed = 5, b = 0.01, scale = 1)
+
+start <- Sys.time()
+
+result_mtabi3 <- anneal(
+  model = mtabi3, par = par3,
+  var = var, source_data = dtmed_abi,
+  par_lo = par_lo3, par_hi = par_hi3,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000,
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi3 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mtabi3, "output/models/mtabi3.txt")
+```
+
+```{r}
+set.seed(1234)
+par4 <- list(MA = 400, a = 0, b = 0.5, c = -1, d = 10, scale = 10)
+par_hi4 <- list(MA = 700, a = .5, b = 1, c = 2, d = 20, scale = 100)
+par_lo4 <- list(MA = 0, a = -.5, b = 1.5, c = -2, d = 0, scale = 1)
+
+start <- Sys.time()
+
+result_mtabi4 <- anneal(
+  model = mtabi4, par = par4,
+  var = var, source_data = dtmed_abi,
+  par_lo = par_lo4, par_hi = par_hi4,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000,
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi4 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mtabi4, "output/models/mtabi4.txt")
+```
+
+```{r}
+## Asymptotic model 
+set.seed(1234)
+par5 <- list(MA = 400, Asym = 0.1, R0 = 1, lrc = -1, scale = 10)
+par_hi5 <- list(MA = 700, Asym = 0.2, R0 = 10, lrc = 0, scale = 100)
+par_lo5 <- list(MA = 0, Asym = 0, R0 = 0.5, lrc = -2, scale = 1)
+
+start <- Sys.time()
+
+result_mtabi5 <- anneal(
+  model = mtabi5, par = par5,
+  var = var, source_data = dtmed_abi,
+  par_lo = par_lo5, par_hi = par_hi5,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, temp_red = 0.975, max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi5 <- as.numeric(end - start, units = "secs")
+likelihood::write_results(results = result_mtabi5, "output/models/mtabi5.txt")
+```
+
+
+```{r}
+all_results <- 
+  mget(
+    grep("^result_mta", ls(), value = TRUE)) |> 
+  purrr::imap_dfr(~MLE_results_format(.x, yvar = "abi"), .id = "modelo") |> 
+  arrange(aic_cor) |> 
+  mutate(modelo = str_remove(modelo, "result_"))
+
+
+all_time <- mget(
+  grep("^time_mta", ls(), value = TRUE)) |> 
+  map_dfr(~ tibble(exec_time_s = .x), .id = "modelo") |> 
+  mutate(modelo = str_remove(modelo, "time_"))
+
+models_results <- all_results |> 
+  inner_join(all_time) |> 
+  mutate(deltaAIC = dAIC(aic_cor))
+```
+
+
+```{r}
+mod <- "mtabi1"
+aux_text <- all_results |> filter(modelo == mod)
+
+op1_abi <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "abi", title = mod) + 
+  xlim(0,600) + 
+  annotate(geom = "text", x= 0, y = 600, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = 500, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp1_abi <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "abi", title = mod)
+
+mod <- "mtabi2"
+aux_text <- all_results |> filter(modelo == mod)
+
+op2_abi <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "abi", title = mod) + 
+  xlim(0,600) + 
+  annotate(geom = "text", x= 0, y = 600, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = 500, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp2_abi <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "abi", title = mod)  
+
+mod <- "mtabi3"
+aux_text <- all_results |> filter(modelo == mod)
+
+op3_abi <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "abi", title = mod) + 
+  xlim(0,600) + 
+  annotate(geom = "text", x= 0, y = 600, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = 500, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp3_abi <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "abi", title = mod)  
+
+mod <- "mtabi4"
+aux_text <- all_results |> filter(modelo == mod)
+
+op4_abi <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "abi", title = mod) + 
+  xlim(0,600) + 
+  annotate(geom = "text", x= 0, y = 600, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = 500, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp4_abi <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "abi", title = mod)  
+
+
+mod <- "mtabi5"
+aux_text <- all_results |> filter(modelo == mod)
+
+op5_abi <- get(paste0("result_", mod)) |> 
+  op_plot(yvar = "abi", title = mod) + 
+  xlim(0,600) + 
+  annotate(geom = "text", x= 0, y = 600, 
+           label = bquote(R^2 == .(round(aux_text$R2,3))), hjust = 0) +
+  annotate(geom = "text", x= 0, y = 500, 
+           label = bquote(Slope == .(round(aux_text$slope,4))), hjust = 0) 
+
+rp5_abi <- get(paste0("result_", mod)) |> 
+  res_plot(yvar = "abi", title = mod)  
+ 
+```
+
+### Resultados
+#### Gaussian model (**mtabi1**) 
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op1_abi / rp1_abi
+```
+
+```{r}
+mod <- "mtabi1" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+
+#### Gaussian Extended (**mtabi2**)
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op2_abi / rp2_abi
+```
+
+```{r}
+mod <- "mtabi2" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+#### Log-normal (**mtabi3**)
+
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op3_abi / rp3_abi
+```
+
+```{r}
+mod <- "mtabi3" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+#### Logistic (**mtabi4**)
+
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op4_abi / rp4_abi
+```
+
+```{r}
+mod <- "mtabi4" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+
+#### Asymptotic Model (**mtabi4**)
+```{r}
+#| fig.height: 8 
+#| fig.width: 5
+op5_abi / rp5_abi
+```
+
+```{r}
+mod <- "mtabi5" 
+all_results |> filter(modelo == mod) |> kable()
+```
+
+
+### All models 
+
+```{r}
+models_results |> 
+  kbl() |> 
+  kable_styling()
+```
+
+
+```{r}
+#| fig.height: 16
+(op1_abi + rp1_abi) / (op2_abi + rp2_abi) / (op3_abi + rp3_abi) / (op4_abi + rp4_abi) / (op5_abi + rp5_abi)
+```
 
 
 
@@ -682,4 +1063,36 @@ df |>
 
 
 
+
+
+
+## Comparing tmed - abi curves 
+```{r}
+#| fig.height: 6 
+#| fig.width: 6
+#| 
+fit1 <- result_mtabi1$source_data |> mutate(modelo = "mtabi1")
+fit2 <- result_mtabi2$source_data |> mutate(modelo = "mtabi2")
+fit3 <- result_mtabi3$source_data |> mutate(modelo = "mtabi3")
+fit4 <- result_mtabi4$source_data |> mutate(modelo = "mtabi4")
+fit5 <- result_mtabi5$source_data |> mutate(modelo = "mtabi5")
+
+
+fit <- bind_rows(fit1, fit2, fit3, fit4, fit5) 
+  
+
+colours_combined <- c("mtabi1" = "red", "mtabi2" = "blue", "mtabi3" = "green", "mtabi4" = "black", "mtabi5" = "darkgoldenrod4")
+
+
+ggplot(fit, aes(x= tmed, y = abi, group = modelo, colour = modelo)) + 
+  geom_point(colour="gray") + 
+  geom_line(aes(y = predicted)) + 
+  xlab("Annual Mean Temperature (ºC)") +
+  ylab(expression(ABI~(g~C~m^2~year^{-1}))) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    strip.text = element_text(face = "bold", size = 14)) +
+    scale_colour_manual(values = colours_combined, name = "Models") 
+```
 
