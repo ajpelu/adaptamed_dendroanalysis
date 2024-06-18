@@ -3,7 +3,7 @@ Total # of Iterations:	50000
 Sample size:	253	
 Maximum likelihood:	# Parameters:	AIC corr:	AIC:	Slope:	R2:
 100.3843	3	-194.6722	-194.7686	1.017812	0.395379	
-Model:	mt3
+Model:	mtrat3
 PDF:	dnorm
 Support interval range:	2
 
