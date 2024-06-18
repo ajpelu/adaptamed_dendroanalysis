@@ -1,0 +1,424 @@
+---
+title: "Modelling ABI"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(patchwork)
+library(likelihood)
+library(kableExtra)
+library(patchwork)
+source("scripts/aux.R")
+```
+
+
+```{r}
+annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |> 
+  dplyr::select(sp_elev, year, monthly_pet, monthly_tmed, monthly_prec) |> 
+  group_by(sp_elev, year) |>
+  summarise(pet = sum(monthly_pet), 
+            prec = sum(monthly_prec),
+            tmed = mean(monthly_tmed, na.rm = TRUE)) |> 
+  rowwise() |> 
+  mutate(water_balance = prec - pet)
+```
+
+
+```{r}
+dfabi <- read_csv("data/dendroadaptamed_abi.csv") |> 
+  rename(abi = IBT_ag_m2) |> 
+  filter(year > 1990) 
+
+dfabi <- dfabi |> 
+  inner_join(annual_pet) |> 
+  pivot_longer(pet:water_balance, values_to = "mean_climate", 
+               names_to = "climate_variable")
+```
+
+
+# Modelling ABI vs Temperature
+
+```{r}
+dtmed_abi <- dfabi |> filter(climate_variable == "tmed") |> dplyr::select(abi, tmed = mean_climate)
+```
+
+$$(ABI)_i=MA \times g(T_{med}) + \epsilon_i$$
+where: 
+
+- $ABI_i$ es el valor de ABI para cada sitio y año
+- $MA$ es un parámetro que representa el máximo ABI ($g~C~m^2~year^{-1})$)
+- $\epsilon_i$ es el error aleatorio para cada observación $i$ 
+- $g(T_{med})$ es una función con valores entre 0 y 1, que depende de la temperatura
+
+Esta $g(T_{med})$ puede tomar diferentes formas (proponemos varios modelos): 
+
+- Gaussian (**mtabi1**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{T_{med}-OT_{med}} {b}\right)^2 \right]$$
+
+siendo $OT_{med}$ el valor óptimo de $T_{med}$ al cual ocurre el máximo Ratio $(ABI:NPP)_i$; y $b$ es la desviación estándar o amplitud de la función. 
+
+- Gaussian Extended (**mtabi2**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{T_{med}-OT_{med}} {b}\right)^a \right]$$
+con el parámetro $a$ que permite hacer a la función flexible para ajustar la kurtosis
+
+- Log-normal (**mtabi3**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{\log{(\frac{T_{med}}{OT_{med}}}) }{b}\right)^2 \right]$$ 
+
+- Logistic (**mtabi4**)
+
+$$g(T_{med})=a + \frac{b}{1+\exp \left(-c \times (T_{med} - d) \right) } $$ 
+
+where, $a$ es el valor de la asíntota inferior; $b$ es la distancia vertical entre la asíntota superior e inferior; $c$ es la la tasa de cambio, y $d$ es la localización del punto de inflexión. 
+
+- Asintótica (**mtabi5**) 
+
+$$g(T_{med})= Asym + \left(R0 - Asym\right) \times \exp(- \exp ^{lrc \times T_{med}})$$ 
+siendo $Asym$ el valor de asíntota horizontal; $R0$ el valor de la variable respuesta cuando la $T_{med}$ es cero; y $lrc$ es la tasa de cambio 
+
+
+```{r}
+mtabi1 <- function(MA, OTmed, b)
+{
+  tmed_effect <- exp(-0.5*((dtmed_abi$tmed - OTmed)/b)^2)
+  MA * tmed_effect
+}
+
+mtabi2 <- function(MA, OTmed, b, a)
+{
+  tmed_effect <- exp(-0.5*((dtmed_abi$tmed - OTmed)/b)^a)
+  MA * tmed_effect
+}
+
+mtabi3 <- function(MA, OTmed, b)
+{
+  tmed_effect <- exp(-0.5*(log(dtmed_abi$tmed/OTmed)/b)^2)
+  MA * tmed_effect
+}
+
+# Logistic 
+mtabi4 <- function(MA, a, b, c, d)
+{
+  tmed_effect <- a + b /(1 + exp(- c *( dtmed_abi$tmed - d )))
+  MA * tmed_effect
+}
+
+mtabi5 <- function(MA, Asym, R0, lrc)
+{
+  tmed_effect <- Asym + (R0 - Asym)*exp(-exp(lrc)*dtmed_abi$tmed)
+  MA * tmed_effect
+}
+
+name_models <- data.frame(
+  modelo = paste0("mtabi",c(1:5)), 
+  name_modelo = c("Gaussian",
+                  "Gaussian Extended", 
+                  "Log-normal",
+                  "Logistic",
+                  "Asymptotic")
+)
+```
+
+The error term in the model 
+
+$$ABI_i=MR \times g(T_{med}) + \epsilon_i$$
+is assumed to follows a Gamma distribution $\Gamma \sim \left(\mu, \mu\cdot\alpha\right)$ siendo $\mu$ la media, y $\mu \cdot \alpha$ la varianza. 
+
+```{r}
+gamma_pdf <- function(x,mean,scale)
+{ shape <- mean/scale
+loglh <- log(dgamma(x,shape=shape,scale=scale,log=F))
+return(loglh)
+}
+```
+
+
+```{r}
+var=list(mean = "predicted", x = "abi", tmed = "tmed")  
+```
+
+
+```{r} 
+## Guassian model 
+set.seed(1234)
+start <- Sys.time()
+
+# change model 
+result_mtabi1 <- anneal(
+  model = mtabi1, 
+  var = var, 
+  source_data = dtmed_abi,
+  par = list(MA = 400, OTmed = 10.5, b = 1.5, scale = 10), 
+  par_lo = list(MA = 0, OTmed = 5, b = 0.01, scale = 1),
+  par_hi = list(MA = 500, OTmed = 20, b = 5, scale = 70),
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi1 <- as.numeric(end - start, units = "secs")
+
+result_mtabi1 |> 
+  likelihood::write_results("output/models/mtabi1.txt")
+```
+
+```{r}
+# Gaussian Extended 
+set.seed(88)
+start <- Sys.time()
+result_mtabi2 <- anneal(
+  model = mtabi2, 
+  par = list(MA = 600, OTmed = 10.5, b = 2, a= 2, scale = 10),
+  par_lo = list(MA = 0, OTmed = 5, b = 1, a = 2.5, scale = 1),
+  par_hi = list(MA = 1000, OTmed = 20, b = 5, a = .5, scale = 100),
+  var = var, 
+  source_data = dtmed_abi,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi2  <- as.numeric(end - start, units = "secs")
+result_mtabi2 |> 
+  likelihood::write_results("output/models/mtabi2.txt")
+```
+
+
+```{r}
+#Log-normal
+set.seed(1234)
+start <- Sys.time()
+
+result_mtabi3 <- anneal(
+  model = mtabi3, 
+  par = list(MA = 400, OTmed = 10.5, b = 1.5, scale = 10),
+  par_lo = list(MA = 0, OTmed = 5, b = 0.01, scale = 1),
+  par_hi = list(MA = 700, OTmed = 20, b = 5, scale = 100),
+  var = var, 
+  source_data = dtmed_abi,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+
+end <- Sys.time()
+time_mtabi3 <- as.numeric(end - start, units = "secs")
+
+result_mtabi3 |>  
+  likelihood::write_results("output/models/mtabi3.txt")
+```
+
+```{r}
+set.seed(1234)
+start <- Sys.time()
+
+result_mtabi4 <- anneal(
+  model = mtabi4, 
+  par = list(MA = 400, a = 0, b = 0.5, c = -1, d = 10, scale = 10),
+  par_lo = list(MA = 0, a = -.5, b = 1.5, c = -2, d = 0, scale = 1),
+  par_hi = list(MA = 700, a = .5, b = 1, c = 2, d = 20, scale = 100),
+  var = var, 
+  source_data = dtmed_abi,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+
+end <- Sys.time()
+time_mtabi4 <- as.numeric(end - start, units = "secs")
+result_mtabi4 |> likelihood::write_results("output/models/mtabi4.txt")
+```
+
+```{r}
+## Asymptotic model 
+set.seed(1234)
+start <- Sys.time()
+
+result_mtabi5 <- anneal(
+  model = mtabi5, 
+  par = list(MA = 400, Asym = 0.1, R0 = 1, lrc = -1, scale = 10),
+  par_lo = list(MA = 0, Asym = 0, R0 = 0.5, lrc = -2, scale = 1),
+  par_hi = list(MA = 700, Asym = 0.2, R0 = 10, lrc = 0, scale = 100),
+  var = var, 
+  source_data = dtmed_abi,
+  pdf = gamma_pdf,
+  dep_var = "abi",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtabi5 <- as.numeric(end - start, units = "secs")
+result_mtabi5 |> 
+  likelihood::write_results("output/models/mtabi5.txt")
+```
+
+## Results
+
+```{r}
+all_results <-
+  mget(
+    grep("^result_mta", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ MLE_results_format(.x, yvar = "abi"), .id = "modelo") |>
+  arrange(aic_cor) |>
+  mutate(modelo = str_remove(modelo, "result_"))
+
+all_time <- mget(
+  grep("^time_mta", ls(), value = TRUE)
+) |>
+  map_dfr(~ tibble(exec_time_s = .x), .id = "modelo") |>
+  mutate(modelo = str_remove(modelo, "time_"))
+
+
+# compute delta AIC and add computation time
+models_results <- all_results |>
+  inner_join(all_time) |>
+  inner_join(name_models) |>
+  relocate(name_modelo, .after = modelo) |> 
+  mutate(deltaAIC = dAIC(aic_cor))
+
+models_results |> 
+  write_csv("data/models_abi_tmed_summary.csv")
+```
+
+```{r}
+models_results |> 
+  kbl() |> 
+  kable_styling()
+```
+
+
+```{r}
+#| fig.height: 10
+#| fig.width: 7
+prepare_data <- function(x, yvar) {
+  x$source_data |> 
+    mutate(residuals = !!sym(yvar)  - predicted) |> 
+    rename(observed = !!sym(yvar)) 
+}
+
+all_data <-
+  mget(
+    grep("^result_mta", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ prepare_data(.x, yvar = "abi"), .id = "modelo") |>
+  mutate(modelo = str_remove(modelo, "result_")) |> 
+  inner_join(name_models)
+
+
+p <- all_data |> 
+  ggplot(aes(x = predicted, y = observed)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_abline() + 
+  xlim(0,600) + 
+  facet_wrap(~modelo, ncol = 1) +
+  geom_text(data = models_results, 
+            x = 500, 
+            y = 300, 
+            aes(label = paste("R^2~'='", round(R2, 3), sep="~")), 
+            parse = TRUE) +
+  geom_text(data = models_results, 
+            x = 500, 
+            y = 100, 
+            aes(label = paste("Slope~'='", round(slope, 4), sep="~")),
+            parse = TRUE) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) 
+  
+
+
+g <- all_data |> 
+  ggplot(aes(x = predicted, y = residuals)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_hline(yintercept = 0) +  
+  facet_wrap(~modelo, ncol = 1) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) +
+   scale_y_continuous(position = "right", sec.axis = sec_axis(~., labels = NULL)) 
+
+p + g 
+```
+
+
+## Comparing tmed - abi curves 
+```{r}
+#| fig.height: 5 
+#| fig.width: 7
+colours_combined <- c("mtabi1" = "red", 
+                      "mtabi2" = "blue", 
+                      "mtabi3" = "green", 
+                      "mtabi4" = "black", 
+                      "mtabi5" = "darkgoldenrod4")
+
+colours_combined_name <- c("Gaussian" = "red", 
+                      "Gaussian Extended" = "blue", 
+                      "Log-normal" = "green", 
+                      "Logistic" = "black", 
+                      "Asymptotic" = "darkgoldenrod4")
+
+
+ggplot(all_data, 
+       aes(x= tmed, y = observed, 
+           group = name_modelo, colour = name_modelo)) +
+  geom_point(colour="gray") + 
+  geom_line(aes(y = predicted)) + 
+  xlab("Annual Mean Temperature (ºC)") +
+  ylab(expression(ABI~(g~C~m^2~year^{-1}))) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    strip.text = element_text(face = "bold", size = 14)) +
+    scale_colour_manual(values = colours_combined_name, name = "Models")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
