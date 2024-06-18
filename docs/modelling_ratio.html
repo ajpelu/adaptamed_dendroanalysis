@@ -11,7 +11,7 @@
 
 
 
-<title>Modelling Ratio</title>
+<title>Modelling Ratio ABI:NPP</title>
 
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -373,7 +373,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Modelling Ratio</h1>
+<h1 class="title toc-ignore">Modelling Ratio ABI:NPP</h1>
 
 </div>
 
@@ -402,7 +402,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-14
+<strong>Last updated:</strong> 2024-06-18
 </p>
 <p>
 <strong>Checks:</strong>
@@ -530,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed5a14c7548a2a4712f1208030d71b30e48131b3atargetblankd5a14c7a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreec5bb7243a14b83906b5eacbd9e1ab5ed854fd5ectargetblankc5bb724a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d5a14c7548a2a4712f1208030d71b30e48131b3a" target="_blank">d5a14c7</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/c5bb7243a14b83906b5eacbd9e1ab5ed854fd5ec" target="_blank">c5bb724</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreed5a14c7548a2a4712f1208030d71b30e48131b3atargetblankd5a14c7a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreec5bb7243a14b83906b5eacbd9e1ab5ed854fd5ectargetblankc5bb724a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/d5a14c7548a2a4712f1208030d71b30e48131b3a" target="_blank">d5a14c7</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/c5bb7243a14b83906b5eacbd9e1ab5ed854fd5ec" target="_blank">c5bb724</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -566,11 +566,23 @@ Ignored files:
     Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  output/models/mtabi1.txt
-    Untracked:  output/models/mtabi2.txt
-    Untracked:  output/models/mtabi3.txt
-    Untracked:  output/models/mtabi4.txt
-    Untracked:  output/models/mtabi5.txt
+    Untracked:  data/models_abi_tmed_summary.csv
+    Untracked:  data/models_ratio_tmed_summary.csv
+    Untracked:  output/models/mtrat1.txt
+    Untracked:  output/models/mtrat2.txt
+    Untracked:  output/models/mtrat3.txt
+    Untracked:  output/models/mtrat4.txt
+    Untracked:  output/models/mtrat5.txt
+
+Unstaged changes:
+    Deleted:    output/models/mt1.txt
+    Deleted:    output/models/mt1g.txt
+    Deleted:    output/models/mt2.txt
+    Deleted:    output/models/mt3.txt
+    Deleted:    output/models/mt4.txt
+    Deleted:    output/models/mt5.txt
+    Modified:   output/models/mtabi2.txt
+    Modified:   scripts/aux.R
 
 </code></pre>
 <p>
@@ -615,6 +627,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/c5bb7243a14b83906b5eacbd9e1ab5ed854fd5ec/analysis/modelling_ratio.Rmd" target="_blank">c5bb724</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-18
+</td>
+<td>
+wflow_publish("analysis/modelling_ratio.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/f29fd1fe5a6d7444e798f4737ad8d153dc0bf857/docs/modelling_ratio.html" target="_blank">f29fd1f</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -707,92 +753,8 @@ wflow_publish("analysis/modelling_ratio.Rmd")
 </div>
 </div>
 </div>
-<div id="general-plots-water-balance" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> General plots: Water Balance</h1>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-6-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/38791dedd6582dee4a95fcdda578ef2eab1721ff/docs/figure/modelling_ratio.Rmd/unnamed-chunk-6-1.png" target="_blank">38791de</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="general-plots-tmed" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> General plots: Tmed</h1>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-7-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
-Past versions of unnamed-chunk-7-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-7-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/38791dedd6582dee4a95fcdda578ef2eab1721ff/docs/figure/modelling_ratio.Rmd/unnamed-chunk-7-1.png" target="_blank">38791de</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="modelling" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Modelling</h1>
-<div id="temperature" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Temperature</h2>
+<div id="temperature" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Temperature</h1>
 <p><span class="math display">\[(ABI:NPP)_i=MR \times g(T_{med}) + \epsilon_i\]</span>
 where:</p>
 <ul>
@@ -803,429 +765,42 @@ where:</p>
 </ul>
 <p>Esta <span class="math inline">\(g(T_{med})\)</span> puede tomar diferentes formas (es lo que tenemos que buscar)</p>
 <p>Al aumentar la temperatua, se disminuye el ratio, esto es, se distribuye menos cantidad de C a la parte aérea. ¿Que explicación le podemos dar a esto?</p>
-<div id="funciones-propuestas" class="section level3" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Funciones propuestas</h3>
+<div id="funciones-propuestas" class="section level3" number="1.0.1">
+<h3><span class="header-section-number">1.0.1</span> Funciones propuestas</h3>
 <ul>
-<li>Gaussian (<strong>mt1</strong>)
+<li>Gaussian (<strong>mtrat1</strong>)
 <span class="math display">\[g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{T_{med}-OT_{med}} {b}\right)^2 \right]\]</span></li>
 </ul>
 <p>siendo <span class="math inline">\(OT_{med}\)</span> el valor óptimo de <span class="math inline">\(T_{med}\)</span> al cual ocurre el máximo Ratio <span class="math inline">\((ABI:NPP)_i\)</span>; y <span class="math inline">\(b\)</span> es la desviación estándar o amplitud de la función.</p>
 <ul>
-<li><p>Gaussian Extended (<strong>mt2</strong>)
+<li><p>Gaussian Extended (<strong>mtrat2</strong>)
 <span class="math display">\[g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{T_{med}-OT_{med}} {b}\right)^a \right]\]</span>
 con el parámetro <span class="math inline">\(a\)</span> que permite hacer a la función flexible para ajustar la kurtosis</p></li>
-<li><p>Log-normal (<strong>mt3</strong>)
+<li><p>Log-normal (<strong>mtrat3</strong>)
 <span class="math display">\[g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{\log{(\frac{T_{med}}{OT_{med}}}) }{b}\right)^2 \right]\]</span></p></li>
-<li><p>Logistic (<strong>mt4</strong>)</p></li>
+<li><p>Logistic (<strong>mtrat4</strong>)</p></li>
 </ul>
 <p><span class="math display">\[g(T_{med})=a + \frac{b}{1+\exp \left(-c \times (T_{med} - d) \right) } \]</span></p>
 <p>where, <span class="math inline">\(a\)</span> es el valor de la asíntota inferior; <span class="math inline">\(b\)</span> es la distancia vertical entre la asíntota superior e inferior; <span class="math inline">\(c\)</span> es la la tasa de cambio, y <span class="math inline">\(d\)</span> es la localización del punto de inflexión.</p>
+<ul>
+<li>Asintótica (<strong>mtrat5</strong>)</li>
+</ul>
+<p><span class="math display">\[g(T_{med})= Asym + \left(R0 - Asym\right) \times \exp(- \exp ^{lrc \times T_{med}})\]</span>
+siendo <span class="math inline">\(Asym\)</span> el valor de asíntota horizontal; <span class="math inline">\(R0\)</span> el valor de la variable respuesta cuando la <span class="math inline">\(T_{med}\)</span> es cero; y <span class="math inline">\(lrc\)</span> es la tasa de cambio</p>
 <p>The error term in the model</p>
 <p><span class="math display">\[(ABI:NPP)_i=MR \times g(T_{med}) + \epsilon_i\]</span>
 is assumed to follows a normal distribution <span class="math inline">\(\epsilon_i \sim \mathcal{N}(0,1)\)</span></p>
 </div>
-<div id="resultados" class="section level3" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Resultados</h3>
-<div id="gaussian-model-mt1" class="section level4" number="3.1.2.1">
-<h4><span class="header-section-number">3.1.2.1</span> Gaussian model (<strong>mt1</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-21-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-21-1">
-Past versions of unnamed-chunk-21-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-21-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/caf1a47ef3ef8c10aaca555bb9d71d96785f4fcb/docs/figure/modelling_ratio.Rmd/unnamed-chunk-21-1.png" target="_blank">caf1a47</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/38791dedd6582dee4a95fcdda578ef2eab1721ff/docs/figure/modelling_ratio.Rmd/unnamed-chunk-21-1.png" target="_blank">38791de</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<table>
-<colgroup>
-<col width="9%" />
-<col width="14%" />
-<col width="11%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mt1</td>
-<td align="right">100.3543</td>
-<td align="right">3</td>
-<td align="right">-194.6123</td>
-<td align="right">-194.7087</td>
-<td align="right">0.3624838</td>
-<td align="right">0.9983488</td>
-<td align="right">0.1079358</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="gaussian-extended-mt2" class="section level4" number="3.1.2.2">
-<h4><span class="header-section-number">3.1.2.2</span> Gaussian Extended (<strong>mt2</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-23-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-1">
-Past versions of unnamed-chunk-23-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-23-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/caf1a47ef3ef8c10aaca555bb9d71d96785f4fcb/docs/figure/modelling_ratio.Rmd/unnamed-chunk-23-1.png" target="_blank">caf1a47</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/38791dedd6582dee4a95fcdda578ef2eab1721ff/docs/figure/modelling_ratio.Rmd/unnamed-chunk-23-1.png" target="_blank">38791de</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="14%" />
-<col width="11%" />
-<col width="13%" />
-<col width="13%" />
-<col width="13%" />
-<col width="11%" />
-<col width="13%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mt2</td>
-<td align="right">100.3732</td>
-<td align="right">4</td>
-<td align="right">-192.5851</td>
-<td align="right">-192.7464</td>
-<td align="right">0.3831878</td>
-<td align="right">1.008361</td>
-<td align="right">0.1061687</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="log-normal-mt3" class="section level4" number="3.1.2.3">
-<h4><span class="header-section-number">3.1.2.3</span> Log-normal (<strong>mt3</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-25-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-25-1">
-Past versions of unnamed-chunk-25-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-25-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/caf1a47ef3ef8c10aaca555bb9d71d96785f4fcb/docs/figure/modelling_ratio.Rmd/unnamed-chunk-25-1.png" target="_blank">caf1a47</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/38791dedd6582dee4a95fcdda578ef2eab1721ff/docs/figure/modelling_ratio.Rmd/unnamed-chunk-25-1.png" target="_blank">38791de</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="14%" />
-<col width="12%" />
-<col width="13%" />
-<col width="13%" />
-<col width="12%" />
-<col width="12%" />
-<col width="13%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mt3</td>
-<td align="right">100.3843</td>
-<td align="right">3</td>
-<td align="right">-194.6722</td>
-<td align="right">-194.7686</td>
-<td align="right">0.395379</td>
-<td align="right">1.017812</td>
-<td align="right">0.1051142</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="logistic-mt4" class="section level4" number="3.1.2.4">
-<h4><span class="header-section-number">3.1.2.4</span> Logistic (<strong>mt4</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-27-1.png" width="480" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-27-1">
-Past versions of unnamed-chunk-27-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-27-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/caf1a47ef3ef8c10aaca555bb9d71d96785f4fcb/docs/figure/modelling_ratio.Rmd/unnamed-chunk-27-1.png" target="_blank">caf1a47</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/38791dedd6582dee4a95fcdda578ef2eab1721ff/docs/figure/modelling_ratio.Rmd/unnamed-chunk-27-1.png" target="_blank">38791de</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-13
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="14%" />
-<col width="11%" />
-<col width="13%" />
-<col width="13%" />
-<col width="13%" />
-<col width="11%" />
-<col width="13%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mt4</td>
-<td align="right">100.4421</td>
-<td align="right">5</td>
-<td align="right">-190.6413</td>
-<td align="right">-190.8843</td>
-<td align="right">0.4578123</td>
-<td align="right">1.025201</td>
-<td align="right">0.0995394</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="asymptotic-model-mt5" class="section level4" number="3.1.2.5">
-<h4><span class="header-section-number">3.1.2.5</span> Asymptotic Model (<strong>mt5</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-29-1.png" width="480" style="display: block; margin: auto;" /></p>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="14%" />
-<col width="12%" />
-<col width="13%" />
-<col width="13%" />
-<col width="12%" />
-<col width="12%" />
-<col width="13%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mt5</td>
-<td align="right">100.389</td>
-<td align="right">4</td>
-<td align="right">-192.6166</td>
-<td align="right">-192.7779</td>
-<td align="right">0.400617</td>
-<td align="right">1.020617</td>
-<td align="right">0.1046579</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="all-models" class="section level3" number="3.1.3">
-<h3><span class="header-section-number">3.1.3</span> All models</h3>
+<div id="results" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Results</h2>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
 modelo
+</th>
+<th style="text-align:left;">
+name_modelo
 </th>
 <th style="text-align:right;">
 max_likeli
@@ -1259,7 +834,10 @@ deltaAIC
 <tbody>
 <tr>
 <td style="text-align:left;">
-mt3
+mtrat3
+</td>
+<td style="text-align:left;">
+Log-normal
 </td>
 <td style="text-align:right;">
 100.3843
@@ -1283,7 +861,7 @@ mt3
 0.1051142
 </td>
 <td style="text-align:right;">
-2.682615
+6.166257
 </td>
 <td style="text-align:right;">
 0.0000000
@@ -1291,7 +869,10 @@ mt3
 </tr>
 <tr>
 <td style="text-align:left;">
-mt1
+mtrat1
+</td>
+<td style="text-align:left;">
+Gaussian
 </td>
 <td style="text-align:right;">
 100.3543
@@ -1315,7 +896,7 @@ mt1
 0.1079358
 </td>
 <td style="text-align:right;">
-2.501343
+2.625335
 </td>
 <td style="text-align:right;">
 0.0599381
@@ -1323,7 +904,10 @@ mt1
 </tr>
 <tr>
 <td style="text-align:left;">
-mt5
+mtrat5
+</td>
+<td style="text-align:left;">
+Asymptotic
 </td>
 <td style="text-align:right;">
 100.3890
@@ -1347,7 +931,7 @@ mt5
 0.1046579
 </td>
 <td style="text-align:right;">
-3.412726
+3.389624
 </td>
 <td style="text-align:right;">
 2.0555877
@@ -1355,7 +939,10 @@ mt5
 </tr>
 <tr>
 <td style="text-align:left;">
-mt2
+mtrat2
+</td>
+<td style="text-align:left;">
+Gaussian Extended
 </td>
 <td style="text-align:right;">
 100.3732
@@ -1364,30 +951,33 @@ mt2
 4
 </td>
 <td style="text-align:right;">
--192.5851
+-192.5852
 </td>
 <td style="text-align:right;">
 -192.7464
 </td>
 <td style="text-align:right;">
-0.3831878
+0.3832136
 </td>
 <td style="text-align:right;">
-1.0083612
+1.0059663
 </td>
 <td style="text-align:right;">
-0.1061687
+0.1061665
 </td>
 <td style="text-align:right;">
-3.743592
+3.546517
 </td>
 <td style="text-align:right;">
-2.0870795
+2.0870676
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-mt4
+mtrat4
+</td>
+<td style="text-align:left;">
+Logistic
 </td>
 <td style="text-align:right;">
 100.4421
@@ -1411,7 +1001,7 @@ mt4
 0.0995394
 </td>
 <td style="text-align:right;">
-4.521549
+4.370474
 </td>
 <td style="text-align:right;">
 4.0308751
@@ -1419,480 +1009,11 @@ mt4
 </tr>
 </tbody>
 </table>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-</div>
-<div id="comparing-tmed---rat-curves" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Comparing tmed - rat curves</h2>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-33-1.png" width="576" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-33-1">
-Past versions of unnamed-chunk-33-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-33-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/caf1a47ef3ef8c10aaca555bb9d71d96785f4fcb/docs/figure/modelling_ratio.Rmd/unnamed-chunk-33-1.png" target="_blank">caf1a47</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-06-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="water-balance" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Water Balance</h2>
-<p>…</p>
-</div>
-</div>
-<div id="abi" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> ABI</h1>
-<div id="abi-vs-temperature" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> ABI vs Temperature</h2>
-<p><span class="math display">\[(ABI)_i=MR \times g(T_{med}) + \epsilon_i\]</span>
-where:</p>
-<ul>
-<li><span class="math inline">\(ABI_i\)</span> es el valor de ABI para cada sitio y año</li>
-<li><span class="math inline">\(MR\)</span> es un parámetro que representa el máximo ratio ABI:NPP (adimensional)</li>
-<li><span class="math inline">\(\epsilon_i\)</span> es el error aleatorio para cada observación <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(g(T_{med})\)</span> es una función con valores entre 0 y 1, que depende de la temperatura</li>
-</ul>
-<p>Esta <span class="math inline">\(g(T_{med})\)</span> puede tomar diferentes formas (es lo que tenemos que buscar)</p>
-<p>The error term in the model</p>
-<p><span class="math display">\[ABI_i=MR \times g(T_{med}) + \epsilon_i\]</span>
-is assumed to follows a Gamma distribution</p>
-<div id="resultados-1" class="section level3" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Resultados</h3>
-<div id="gaussian-model-mtabi1" class="section level4" number="4.1.1.1">
-<h4><span class="header-section-number">4.1.1.1</span> Gaussian model (<strong>mtabi1</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-46-1.png" width="480" style="display: block; margin: auto;" /></p>
-<table>
-<colgroup>
-<col width="9%" />
-<col width="15%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mtabi1</td>
-<td align="right">-2130.568</td>
-<td align="right">4</td>
-<td align="right">4269.242</td>
-<td align="right">4269.137</td>
-<td align="right">0.374129</td>
-<td align="right">1.049441</td>
-<td align="right">86.11777</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="gaussian-extended-mtabi2" class="section level4" number="4.1.1.2">
-<h4><span class="header-section-number">4.1.1.2</span> Gaussian Extended (<strong>mtabi2</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-48-1.png" width="480" style="display: block; margin: auto;" /></p>
-<table>
-<colgroup>
-<col width="9%" />
-<col width="15%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="13%" />
-<col width="12%" />
-<col width="12%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mtabi2</td>
-<td align="right">-2126.37</td>
-<td align="right">5</td>
-<td align="right">4262.898</td>
-<td align="right">4262.739</td>
-<td align="right">0.4053944</td>
-<td align="right">1.034578</td>
-<td align="right">83.93922</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="log-normal-mtabi3" class="section level4" number="4.1.1.3">
-<h4><span class="header-section-number">4.1.1.3</span> Log-normal (<strong>mtabi3</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-50-1.png" width="480" style="display: block; margin: auto;" /></p>
-<table style="width:100%;">
-<colgroup>
-<col width="9%" />
-<col width="15%" />
-<col width="12%" />
-<col width="11%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mtabi3</td>
-<td align="right">-2119.382</td>
-<td align="right">4</td>
-<td align="right">4246.87</td>
-<td align="right">4246.764</td>
-<td align="right">0.412042</td>
-<td align="right">1.034716</td>
-<td align="right">83.46868</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="logistic-mtabi4" class="section level4" number="4.1.1.4">
-<h4><span class="header-section-number">4.1.1.4</span> Logistic (<strong>mtabi4</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-52-1.png" width="480" style="display: block; margin: auto;" /></p>
-<table>
-<colgroup>
-<col width="9%" />
-<col width="15%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="13%" />
-<col width="12%" />
-<col width="12%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mtabi4</td>
-<td align="right">-2108.398</td>
-<td align="right">6</td>
-<td align="right">4229.019</td>
-<td align="right">4228.795</td>
-<td align="right">0.4278503</td>
-<td align="right">1.000287</td>
-<td align="right">82.33893</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="asymptotic-model-mtabi4" class="section level4" number="4.1.1.5">
-<h4><span class="header-section-number">4.1.1.5</span> Asymptotic Model (<strong>mtabi4</strong>)</h4>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-54-1.png" width="480" style="display: block; margin: auto;" /></p>
-<table>
-<colgroup>
-<col width="9%" />
-<col width="15%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="13%" />
-<col width="12%" />
-<col width="12%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">modelo</th>
-<th align="right">max_likeli</th>
-<th align="right">n_params</th>
-<th align="right">aic_cor</th>
-<th align="right">aic</th>
-<th align="right">R2</th>
-<th align="right">slope</th>
-<th align="right">RMSE</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">mtabi5</td>
-<td align="right">-2115.235</td>
-<td align="right">5</td>
-<td align="right">4240.629</td>
-<td align="right">4240.469</td>
-<td align="right">0.4078613</td>
-<td align="right">1.047042</td>
-<td align="right">83.76491</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div id="all-models-1" class="section level3" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> All models</h3>
-<table class="table" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:left;">
-modelo
-</th>
-<th style="text-align:right;">
-max_likeli
-</th>
-<th style="text-align:right;">
-n_params
-</th>
-<th style="text-align:right;">
-aic_cor
-</th>
-<th style="text-align:right;">
-aic
-</th>
-<th style="text-align:right;">
-R2
-</th>
-<th style="text-align:right;">
-slope
-</th>
-<th style="text-align:right;">
-RMSE
-</th>
-<th style="text-align:right;">
-exec_time_s
-</th>
-<th style="text-align:right;">
-deltaAIC
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-mtabi4
-</td>
-<td style="text-align:right;">
--2108.398
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-4229.019
-</td>
-<td style="text-align:right;">
-4228.795
-</td>
-<td style="text-align:right;">
-0.4278503
-</td>
-<td style="text-align:right;">
-1.000287
-</td>
-<td style="text-align:right;">
-82.33893
-</td>
-<td style="text-align:right;">
-18.53769
-</td>
-<td style="text-align:right;">
-0.00000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-mtabi5
-</td>
-<td style="text-align:right;">
--2115.235
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-4240.629
-</td>
-<td style="text-align:right;">
-4240.469
-</td>
-<td style="text-align:right;">
-0.4078613
-</td>
-<td style="text-align:right;">
-1.047042
-</td>
-<td style="text-align:right;">
-83.76491
-</td>
-<td style="text-align:right;">
-15.30387
-</td>
-<td style="text-align:right;">
-11.60996
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-mtabi3
-</td>
-<td style="text-align:right;">
--2119.382
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4246.870
-</td>
-<td style="text-align:right;">
-4246.764
-</td>
-<td style="text-align:right;">
-0.4120420
-</td>
-<td style="text-align:right;">
-1.034716
-</td>
-<td style="text-align:right;">
-83.46868
-</td>
-<td style="text-align:right;">
-12.30468
-</td>
-<td style="text-align:right;">
-17.85115
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-mtabi2
-</td>
-<td style="text-align:right;">
--2126.370
-</td>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:right;">
-4262.898
-</td>
-<td style="text-align:right;">
-4262.739
-</td>
-<td style="text-align:right;">
-0.4053944
-</td>
-<td style="text-align:right;">
-1.034578
-</td>
-<td style="text-align:right;">
-83.93922
-</td>
-<td style="text-align:right;">
-14.40379
-</td>
-<td style="text-align:right;">
-33.87986
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-mtabi1
-</td>
-<td style="text-align:right;">
--2130.568
-</td>
-<td style="text-align:right;">
-4
-</td>
-<td style="text-align:right;">
-4269.242
-</td>
-<td style="text-align:right;">
-4269.137
-</td>
-<td style="text-align:right;">
-0.3741290
-</td>
-<td style="text-align:right;">
-1.049441
-</td>
-<td style="text-align:right;">
-86.11777
-</td>
-<td style="text-align:right;">
-12.16822
-</td>
-<td style="text-align:right;">
-40.22382
-</td>
-</tr>
-</tbody>
-</table>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-57-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="comparing-tmed---abi-curves" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Comparing tmed - abi curves</h2>
-<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-58-1.png" width="576" style="display: block; margin: auto;" /></p>
+<div id="comparing-ratio-abinpp-tmed" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Comparing Ratio ABI:NPP ~ Tmed</h2>
+<p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -1916,41 +1037,32 @@ time zone: Europe/Madrid
 tzcode source: internal
 
 attached base packages:
-[1] splines   stats     graphics  grDevices utils     datasets  methods  
-[8] base     
+[1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] kableExtra_1.4.0   likelihood_1.9     nlme_3.1-164       fields_15.2       
- [5] viridisLite_0.4.2  spam_2.10-0        patchwork_1.2.0    ggsci_3.0.3       
- [9] metR_0.15.0        geomtextpath_0.1.3 ggh4x_0.2.8        SPEI_1.8.1        
-[13] sf_1.0-16          lubridate_1.9.3    forcats_1.0.0      stringr_1.5.1     
-[17] dplyr_1.1.4        purrr_1.0.2        readr_2.1.5        tidyr_1.3.1       
-[21] tibble_3.2.1       ggplot2_3.5.1      tidyverse_2.0.0    workflowr_1.7.1   
+ [1] kableExtra_1.4.0 likelihood_1.9   nlme_3.1-164     patchwork_1.2.0 
+ [5] lubridate_1.9.3  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     
+ [9] purrr_1.0.2      readr_2.1.5      tidyr_1.3.1      tibble_3.2.1    
+[13] ggplot2_3.5.1    tidyverse_2.0.0  workflowr_1.7.1 
 
 loaded via a namespace (and not attached):
- [1] DBI_1.2.2          rlang_1.1.4        magrittr_2.0.3     TLMoments_0.7.5.3 
- [5] git2r_0.33.0       e1071_1.7-14       compiler_4.3.3     mgcv_1.9-1        
- [9] getPass_0.2-4      systemfonts_1.0.6  callr_3.7.6        vctrs_0.6.5       
-[13] maps_3.4.2         crayon_1.5.2       pkgconfig_2.0.3    fastmap_1.2.0     
-[17] backports_1.4.1    labeling_0.4.3     utf8_1.2.4         promises_1.3.0    
-[21] rmarkdown_2.26     tzdb_0.4.0         ps_1.7.6           bit_4.0.5         
-[25] xfun_0.43          cachem_1.1.0       jsonlite_1.8.8     goftest_1.2-3     
-[29] highr_0.10         later_1.3.2        reshape_0.8.9      parallel_4.3.3    
-[33] R6_2.5.1           bslib_0.7.0        stringi_1.8.3      jquerylib_0.1.4   
-[37] Rcpp_1.0.12        bookdown_0.38      knitr_1.45         zoo_1.8-12        
-[41] Lmoments_1.3-1     Matrix_1.6-5       httpuv_1.6.15      timechange_0.3.0  
-[45] tidyselect_1.2.1   rstudioapi_0.16.0  yaml_2.3.8         processx_3.8.4    
-[49] lattice_0.22-5     plyr_1.8.9         withr_3.0.0        evaluate_0.23     
-[53] units_0.8-5        proxy_0.4-27       xml2_1.3.6         pillar_1.9.0      
-[57] whisker_0.4.1      KernSmooth_2.23-22 checkmate_2.3.1    generics_0.1.3    
-[61] vroom_1.6.5        rprojroot_2.0.4    hms_1.1.3          munsell_0.5.1     
-[65] scales_1.3.0       class_7.3-22       glue_1.7.0         lmom_3.0          
-[69] tools_4.3.3        data.table_1.15.4  fs_1.6.4           dotCall64_1.1-1   
-[73] grid_4.3.3         colorspace_2.1-0   cli_3.6.2          textshaping_0.3.7 
-[77] fansi_1.0.6        svglite_2.1.3      gtable_0.3.5       sass_0.4.9        
-[81] digest_0.6.35      lmomco_2.4.14      classInt_0.4-10    farver_2.1.2      
-[85] memoise_2.0.1      htmltools_0.5.8.1  lifecycle_1.0.4    httr_1.4.7        
-[89] bit64_4.0.5        MASS_7.3-60.0.1   </code></pre>
+ [1] gtable_0.3.5      xfun_0.43         bslib_0.7.0       processx_3.8.4   
+ [5] lattice_0.22-5    callr_3.7.6       tzdb_0.4.0        vctrs_0.6.5      
+ [9] tools_4.3.3       ps_1.7.6          generics_0.1.3    parallel_4.3.3   
+[13] fansi_1.0.6       highr_0.10        pkgconfig_2.0.3   lifecycle_1.0.4  
+[17] farver_2.1.2      compiler_4.3.3    git2r_0.33.0      munsell_0.5.1    
+[21] getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8.1 sass_0.4.9       
+[25] yaml_2.3.8        crayon_1.5.2      later_1.3.2       pillar_1.9.0     
+[29] jquerylib_0.1.4   whisker_0.4.1     cachem_1.1.0      tidyselect_1.2.1 
+[33] digest_0.6.35     stringi_1.8.3     bookdown_0.38     labeling_0.4.3   
+[37] rprojroot_2.0.4   fastmap_1.2.0     grid_4.3.3        colorspace_2.1-0 
+[41] cli_3.6.2         magrittr_2.0.3    utf8_1.2.4        withr_3.0.0      
+[45] scales_1.3.0      promises_1.3.0    bit64_4.0.5       timechange_0.3.0 
+[49] rmarkdown_2.26    httr_1.4.7        bit_4.0.5         hms_1.1.3        
+[53] evaluate_0.23     knitr_1.45        viridisLite_0.4.2 rlang_1.1.4      
+[57] Rcpp_1.0.12       glue_1.7.0        xml2_1.3.6        vroom_1.6.5      
+[61] svglite_2.1.3     rstudioapi_0.16.0 jsonlite_1.8.8    R6_2.5.1         
+[65] systemfonts_1.0.6 fs_1.6.4         </code></pre>
 </div>
 </div>
 </div>
