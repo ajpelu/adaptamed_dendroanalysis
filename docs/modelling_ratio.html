@@ -382,7 +382,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -392,7 +392,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -407,9 +407,9 @@ Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidde
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-6
+7
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-1
+0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -432,21 +432,16 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> uncommitted changes
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes.
-To know which version of the R Markdown file created these
-results, you’ll want to first commit it to the Git repo. If
-you’re still working on the analysis, you can ignore this
-warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and
-build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -535,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeb3fe285e61ba0beeb254c26d139f10f97b909b65targetblankb3fe285a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree071893fc59a8cfa50ebcc5062e3f34ee66b195a3targetblank071893fa">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/b3fe285e61ba0beeb254c26d139f10f97b909b65" target="_blank">b3fe285</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/071893fc59a8cfa50ebcc5062e3f34ee66b195a3" target="_blank">071893f</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeb3fe285e61ba0beeb254c26d139f10f97b909b65targetblankb3fe285a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree071893fc59a8cfa50ebcc5062e3f34ee66b195a3targetblank071893fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/b3fe285e61ba0beeb254c26d139f10f97b909b65" target="_blank">b3fe285</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/071893fc59a8cfa50ebcc5062e3f34ee66b195a3" target="_blank">071893f</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -565,15 +560,10 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/figure/
     Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
     Ignored:    data/raw/remote_sensing/old/
     Ignored:    output/.DS_Store
-
-Unstaged changes:
-    Modified:   analysis/modelling_ratio.Rmd
-    Modified:   data/models_ratio_tmed_summary.csv
 
 </code></pre>
 <p>
@@ -618,6 +608,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/071893fc59a8cfa50ebcc5062e3f34ee66b195a3/analysis/modelling_ratio.Rmd" target="_blank">071893f</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-18
+</td>
+<td>
+wflow_publish("analysis/modelling_ratio.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/071893fc59a8cfa50ebcc5062e3f34ee66b195a3/docs/modelling_ratio.html" target="_blank">071893f</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-18
+</td>
+<td>
+wflow_publish("analysis/modelling_ratio.Rmd")
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -869,7 +893,7 @@ Log-normal
 0.1051142
 </td>
 <td style="text-align:right;">
-6.180194
+6.167040
 </td>
 <td style="text-align:right;">
 0.0000000
@@ -904,7 +928,7 @@ Gaussian
 0.1079358
 </td>
 <td style="text-align:right;">
-2.527077
+2.467416
 </td>
 <td style="text-align:right;">
 0.0599381
@@ -939,7 +963,7 @@ Asymptotic
 0.1046579
 </td>
 <td style="text-align:right;">
-3.437301
+3.370879
 </td>
 <td style="text-align:right;">
 2.0555877
@@ -974,7 +998,7 @@ Gaussian Extended
 0.1061665
 </td>
 <td style="text-align:right;">
-3.577357
+3.581664
 </td>
 <td style="text-align:right;">
 2.0870676
@@ -1009,7 +1033,7 @@ Logistic
 0.0995394
 </td>
 <td style="text-align:right;">
-4.281052
+4.304605
 </td>
 <td style="text-align:right;">
 4.0308751
@@ -1099,6 +1123,43 @@ ajpelu
 <div id="temperature-effect" class="section level3" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Temperature effect</h3>
 <p><img src="figure/modelling_ratio.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
+Past versions of unnamed-chunk-16-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/071893fc59a8cfa50ebcc5062e3f34ee66b195a3/docs/figure/modelling_ratio.Rmd/unnamed-chunk-16-1.png" target="_blank">071893f</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
