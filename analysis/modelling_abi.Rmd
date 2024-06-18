@@ -378,7 +378,7 @@ p + g
 ```
 
 
-## Comparing tmed - abi curves 
+## Comparing ABI ~ Tmed  
 ```{r}
 #| fig.height: 5 
 #| fig.width: 7
@@ -411,6 +411,45 @@ ggplot(all_data,
 
 
 
+### Temperature effect 
+```{r}
+#| fig.height: 5 
+#| fig.width: 7
+p1 <- result_mtabi1$best_pars |> as.data.frame()
+p2 <- result_mtabi2$best_pars |> as.data.frame()
+p3 <- result_mtabi3$best_pars |> as.data.frame()
+p4 <- result_mtabi4$best_pars |> as.data.frame()
+p5 <- result_mtabi5$best_pars |> as.data.frame()
+
+
+teffect <- data.frame(tmed = seq(0,25, by =.5)) |> 
+  mutate(
+    mtabi1 = exp(-0.5*((tmed - p1$OTmed)/p1$b)^2),
+    mtabi2 = exp(-0.5*((tmed - p2$OTmed)/p2$b)^p2$a),
+    mtabi3 = exp(-0.5*(log(tmed / p3$OTmed)/p3$b)^2),
+    mtabi4 = p4$a + p4$b /(1 + exp(- p4$c * (tmed - p4$d))),
+    mtabi5 = p5$Asym + (p5$R0 - p5$Asym)*exp(-exp(p5$lrc)*tmed)
+  )
+
+df_effect_tmed <- teffect |> pivot_longer(-tmed, names_to = "modelo", values_to = "pred") 
+
+ggplot(
+  df_effect_tmed,
+  aes(x = tmed, y = pred, colour = modelo)) +
+  geom_line(linetype = "dashed") + 
+  geom_line(
+    data = (df_effect_tmed |>
+      filter(tmed > 8.1) |> 
+      filter(tmed < 16.6)), size = 1.5) + 
+  scale_colour_manual(values = colours_combined, name = "Models") +
+  ylim(0,1) +
+  xlim(3,21) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Annual Mean Temperature (ºC)") +
+  ylab("Temperature effect") 
+  
+```
 
 
 
