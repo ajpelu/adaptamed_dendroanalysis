@@ -6,8 +6,6 @@ editor_options:
   chunk_output_type: console
 --- 
 
-## Prepare Data 
-
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(
   echo = FALSE,
@@ -97,6 +95,7 @@ label_landsat <- "Annual~EVI[Landsat]"
 label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
 label_abi <- "ABI~(g~C~m^2~year^{-1})"
 label_wb <- "P-PET (mm)"
+label_prec <- "Precipitation (mm)"
 ```
 
 
@@ -218,7 +217,8 @@ plot_wb <-
     strip.background = element_blank(),
     strip.placement = "outside",
     legend.position = "top", 
-    strip.text = element_text(face = "bold", size = 14)
+    strip.text = element_text(face = "bold", size = 14),
+    axis.title.x = element_text(face = "bold", size = 14)
   ) + 
   scale_x_continuous(limits = c(-900, 1200)) +
   facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
@@ -233,8 +233,9 @@ plot_wb <-
 ```
 
 
-## Water-Balance 
+
 ```{r, fig.width=12, fig.height=6}
+## Water-Balance 
 plot_wb <- 
   df_plot|> 
   filter(climate_variable == "water_balance") |> 
@@ -257,7 +258,8 @@ plot_wb <-
     strip.background = element_blank(),
     strip.placement = "outside",
     legend.position = "top", 
-    strip.text = element_text(face = "bold", size = 14)
+    strip.text = element_text(face = "bold", size = 14),
+    axis.title.x = element_text(face = "bold", size = 14)
   ) + 
   scale_x_continuous(limits = c(-900, 1200)) +
   facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
@@ -271,12 +273,53 @@ plot_wb <-
 
 # Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
 # https://derekogle.com/fishR/examples/oldFishRVignettes/VonBertalanffy.pdf
-plot_wb
 ```
 
 
-## Tmed
+
 ```{r, fig.width=12, fig.height=6}
+## Precipitation
+plot_prec <- 
+  df_plot|> 
+  filter(climate_variable == "prec") |> 
+  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() + 
+  geom_smooth(method = "lm", se = FALSE, linewidth = .8) +
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") + 
+  ylab("") + 
+  xlab("Precipitation (mm)")+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+     legend.position = "none", 
+    axis.title.x = element_text(face = "bold", size = 14),
+    strip.text = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(0, 1750)) +
+  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
+                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                    "ABI~(g~C~m^2~year^{-1})")),
+             scales = "free_y", 
+                     labeller = label_parsed, 
+                     strip.position = "left") +
+    facetted_pos_scales(y = y_scales)
+  
+
+# Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
+# https://derekogle.com/fishR/examples/oldFishRVignettes/VonBertalanffy.pdf
+```
+
+```{r, fig.width=12, fig.height=6}
+## Tmed
 t_npp <- df_plot |> filter(climate_variable == "tmed") |> 
   filter(y_variable == "npp") 
 
@@ -302,7 +345,8 @@ plot_tmed <-
     strip.background = element_blank(),
     strip.placement = "outside",
     legend.position = "none", 
-    strip.text = element_text(face = "bold", size = 14)
+    strip.text = element_text(face = "bold", size = 14), 
+    axis.title.x = element_text(face = "bold", size = 14)
   ) + 
   scale_x_continuous(limits = c(8, 16)) +
   facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
@@ -312,7 +356,6 @@ plot_tmed <-
                      labeller = label_parsed, 
                      strip.position = "left") +
     facetted_pos_scales(y = y_scales)
-plot_tmed
 ```
 
 ```{r, eval=FALSE}
@@ -345,6 +388,23 @@ init_aysmp_abi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym
 ```
 
 
+## Combined 
+```{r, fig.width=13, fig.height=13}
+
+wb_prec_tmed <- plot_wb / plot_prec / plot_tmed 
+wb_prec_tmed 
+
+ggsave(
+  wb_prec_tmed, 
+  file = "output/combined_wb_prec_tmed.png",
+  dpi = 300,
+  width = 13, height = 13
+)
+
+```
+
+
+
 ```{r, fig.width=12, fig.height=12}
 f <- plot_wb / plot_tmed
 f
@@ -357,7 +417,7 @@ ggsave(
 ```
 
 
-## Surfaces
+## Surfaces 
 ### Natural splines  
 ```{r, fig.width=12, fig.height=6}
 # Using natural splines 
@@ -748,7 +808,7 @@ surface_evi_e + surface_npp_e + surface_abi_e
 ```
 
 
-## Combined 
+## Combined surfaces
 ```{r, fig.width=13, fig.height=13}
 
 cp <- plot_wb / plot_tmed / (surface_evi + surface_npp + surface_abi)
