@@ -457,3 +457,552 @@ ggplot(
 
 
 
+
+# Water Balance 
+
+```{r}
+dwb <- df |> filter(climate_variable == "water_balance") |> dplyr::select(rat = ratio_abi_npp, wb = mean_climate)
+```
+
+
+```{r}
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_ratio <- "ABI:NPP"
+label_wb <- "P-PET (mm)"
+
+y_scales <- list(
+  scale_y_continuous(limits = c(0, 0.5)),
+  scale_y_continuous(limits = c(0,1250)),
+  scale_y_continuous(limits = c(0, 700))
+)
+
+
+df |> 
+  filter(climate_variable == "water_balance") |>
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() + 
+  geom_smooth(method = "lm", se = FALSE, linewidth = .8) +
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") + 
+  xlab("Water balance (mm)")+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "top", 
+    strip.text = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(-900, 1200)) + 
+  ylab(label_ratio)
+
+```
+
+
+
+$$(ABI:NPP)_i=MR \times g(WB) + \epsilon_i$$
+where: 
+
+- $(ABI:NPP)_i$ es el valor del ratio de ABI:NPP para cada sitio y año
+- $MR$ es un parámetro que representa el máximo ratio ABI:NPP (adimensional)
+- $\epsilon_i$ es el error aleatorio para cada observación $i$ 
+- $g(WB)$ es una función con valores entre 0 y 1, que depende del water balance
+
+Esta $g(WB)$ puede tomar diferentes formas (es lo que tenemos que buscar)
+
+### Funciones propuestas
+
+- Gaussian (**mwbrat1**)
+$$g(WB)=\exp \left[ -\frac{1}{2} \left(\frac{WB-WB_{med}} {WB_b}\right)^2 \right]$$
+
+siendo $WB_{med}$ el valor óptimo de $WB_{med}$ al cual ocurre el máximo Ratio $(ABI:NPP)_i$; y $WB_b$ es la desviación estándar o amplitud de la función. 
+
+
+```{r}
+#| eval: false
+dwb |> slice_max(rat)
+sd(dwb$wb)
+```
+
+- Gaussian Extended (**mwbrat2**)
+$$g(WB)=\exp \left[ -\frac{1}{2} \left(\frac{WB - WB_{med}} {WB_b}\right)^{WB_a} \right]$$
+con el parámetro $WB_a$ que permite hacer a la función flexible para ajustar la kurtosis
+
+
+
+
+
+- Log-normal (**mtrat3**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{\log{(\frac{T_{med}}{OT_{med}}}) }{b}\right)^2 \right]$$ 
+
+- Logistic (**mtrat4**)
+
+$$g(T_{med})=a + \frac{b}{1+\exp \left(-c \times (T_{med} - d) \right) } $$ 
+
+where, $a$ es el valor de la asíntota inferior; $b$ es la distancia vertical entre la asíntota superior e inferior; $c$ es la la tasa de cambio, y $d$ es la localización del punto de inflexión. 
+
+- Asintótica (**mtrat5**) 
+
+$$g(T_{med})= Asym + \left(R0 - Asym\right) \times \exp(- \exp ^{lrc \times T_{med}})$$ 
+siendo $Asym$ el valor de asíntota horizontal; $R0$ el valor de la variable respuesta cuando la $T_{med}$ es cero; y $lrc$ es la tasa de cambio 
+
+```{r}
+
+mwbrat3 <- function(MR, WBmed, WBb)
+{
+  wb_effect <- exp(-0.5*(log(dwb$wb / WBmed)/WBb)^2)
+   MR * wb_effect 
+}
+
+# Logistic 2 
+mwbrat4 <- function(MR, WBh, WBp)
+{
+  wb_effect <- 1/(1 + (dwb$wb / WBh)^WBp)
+  MR * wb_effect
+}
+
+
+
+
+mwbrat5 <- function(MR, Asym, R0, lrc)
+{
+  wb_effect <- Asym + (R0 - Asym)*exp(-exp(lrc)*dwb$wb)
+  MR * wb_effect
+}
+
+
+# name_models <- data.frame(
+#   modelo = paste0("mtrat",c(1:5)), 
+#   name_modelo = c("Gaussian",
+#                   "Gaussian Extended", 
+#                   "Log-normal",
+#                   "Logistic",
+#                   "Asymptotic")
+# )
+```
+
+The error term in the model 
+
+$$(ABI:NPP)_i=MR \times g(T_{med}) + \epsilon_i$$
+is assumed to follows a normal distribution $\epsilon_i \sim \mathcal{N}(0,1)$
+
+
+```{r}
+var=list(mean = "predicted", x = "rat", wb = "wb")  
+```
+
+
+```{r} 
+## Guassian model 
+
+mwbrat1 <- function(MR, WBmed, WBb)
+{
+  wb_effect <- exp(-0.5*((dwb$wb - WBmed)/WBb)^2)
+  MR * wb_effect 
+}
+
+
+set.seed(1234)
+start <- Sys.time()
+
+# change model 
+result_mwbrat1 <- anneal(
+  model = mwbrat1, 
+  var = var, 
+  source_data = dwb,
+  par = list(MR = 0.7, WBmed = -200, WBb = 100),
+  par_lo = list(MR = 0, WBmed = -700, WBb = 0 ),
+  par_hi = list(MR = 1, WBmed = 500, WBb = 800),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mwbrat1 <- as.numeric(end - start, units = "secs")
+
+result_mwbrat1 |> 
+  likelihood::write_results("output/models/mwbrat1.txt")
+```
+
+
+
+```{r}
+#| eval: false
+### Error GE 
+# Gaussian Extended 
+
+mwbrat2 <- function(MR, WBmed, WBb, WBa)
+{
+  wb_effect <- exp(-0.5*((dwb$wb - WBmed)/WBb)^WBa)
+  MR * wb_effect 
+
+}
+
+set.seed(111)
+start <- Sys.time()
+
+# change model 
+result_mwbrat2 <- anneal(
+  model = mwbrat2, 
+  var = var, 
+  source_data = dwb,
+  par = list(MR = 0.4, WBmed = 0, WBb = 100, WBa = 2),
+  par_lo = list(MR = 0.1, WBmed = -200, WBb = -200, WBa =-2),
+  par_hi = list(MR = .8, WBmed = 200, WBb = 300, WBa = 2),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = TRUE
+)
+
+end <- Sys.time()
+time_mwbrat2 <- as.numeric(end - start, units = "secs")
+
+result_mwbrat2 |> 
+  likelihood::write_results("output/models/mwbrat2.txt")
+```
+
+
+
+```{r} 
+## Log-normal 
+# no puede ser porque tenemos valores negativos, no? # solucion abs dentro del logaritmo 
+set.seed(1234)
+start <- Sys.time()
+
+mwbrat3 <- function(MR, WBmed, WBb)
+{
+  wb_effect <- exp(-0.5*(log(abs(dwb$wb/WBmed))/WBb)^2)
+   MR * wb_effect 
+}
+
+# change model 
+result_mwbrat3 <- anneal(
+  model = mwbrat3, 
+  var = var, 
+  source_data = dwb,
+  par = list(MR = 0.7, WBmed = -200, WBb = 10),
+  par_lo = list(MR = 0, WBmed = -300, WBb = -10),
+  par_hi = list(MR = 1, WBmed = 500, WBb = 80),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mwbrat3 <- as.numeric(end - start, units = "secs")
+
+result_mwbrat3 |> 
+  likelihood::write_results("output/models/mwbrat3.txt")
+```
+
+
+
+```{r}
+#Asym/(1+exp((xmid-input)/scal))
+
+mwbrat4 <- function(MR, WBmid, WBa, WBc)
+{
+  wb_effect <- WBa /( 1 + exp((WBmid - dwb$wb)/WBc))
+  MR * wb_effect
+}
+
+
+set.seed(1234)
+start <- Sys.time()
+result_mwbrat4 <- anneal(
+  model = mwbrat4, 
+  par = list(MR = 0.5, WBa = 0.5, WBmid = -100, WBc = 1),
+  par_lo = list(MR = 0.01, WBa = 0.2, WBmid = 0, WBc = 0.001),
+  par_hi = list(MR = 1, WBa = 1, WBmid = 500, WBc = 500),
+  var = var, 
+  source_data = dwb,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mwbrat4 <- as.numeric(end - start, units = "secs")
+result_mwbrat4 |> likelihood::write_results("output/models/mwbrat4.txt")
+```
+
+
+
+```{r}
+# ## Asymptotic model 
+# mwbrat5 <- function(MR, Asym, R0, lrc)
+# {
+#   wb_effect <- Asym + (R0 - Asym)*exp(-exp(lrc)*dwb$wb)
+#   MR * wb_effect
+# }
+# 
+# 
+# 
+# set.seed(1234)
+# 
+# start <- Sys.time()
+# 
+# result_mwbrat5 <- anneal(
+#   model = mwbrat5, 
+#   var = var, 
+#   source_data = dwb,
+#   par = list(MR = 0.7, Asym = 0.4, R0 = -200, lrc = 2),
+#   par_lo = list(MR = 0, Asym = 0, R0 = 100, lrc = 1),
+#   par_hi = list(MR = 1, Asym = 0.1, R0 = 500, lrc = 500),
+#   pdf = dnorm,
+#   dep_var = "rat",
+#   initial_temp = 5, 
+#   temp_red = 0.975, 
+#   max_iter = 50000, 
+#   show_display = FALSE
+# )
+# 
+# end <- Sys.time()
+# time_mtrat5 <- as.numeric(end - start, units = "secs")
+# 
+# result_mtrat5 |> 
+#   likelihood::write_results("output/models/mtrat5.txt")
+
+```
+
+
+
+
+```{r}
+# Gompertz # y <- a * exp(-b * exp(-c * x)) 
+
+mwbrat6 <-  function(MR, WBa, WBb, WBc)
+{
+  wb_effect <- WBa * exp(-WBb * exp (-WBc * dwb$wb))
+  MR * wb_effect
+}
+
+set.seed(1234)
+start <- Sys.time()
+result_mwbrat6 <- anneal(
+  model = mwbrat6, 
+  par = list(MR = 0.5, WBa = 0.4, WBb = 0.3, WBc = 0.003),
+  par_lo = list(MR = 0, WBa = 0.2, WBb = 0.01, WBc = 0.0001),
+  par_hi = list(MR = 1, WBa = 0.8, WBb = 3, WBc = 0.01), 
+  var = var, 
+  source_data = dwb,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+result_mwbrat6 |> 
+   likelihood::write_results("output/models/mwbrat6.txt")
+```
+
+
+
+## Results
+
+```{r}
+all_results <-
+  mget(
+    grep("^result_mwbrat", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ MLE_results_format(.x, yvar = "rat"), .id = "modelo") |>
+  arrange(aic_cor) |>
+  mutate(modelo = str_remove(modelo, "result_"))
+# 
+# all_time <- mget(
+#   grep("^time_mtrat", ls(), value = TRUE)
+# ) |>
+#   map_dfr(~ tibble(exec_time_s = .x), .id = "modelo") |>
+#   mutate(modelo = str_remove(modelo, "time_"))
+
+name_models <- data.frame(
+  modelo = paste0("mwbrat",c(1,3,4,6)),
+  name_modelo = c("Gaussian",
+                  "Log-normal",
+                  "Logistic",
+                  "Gompertz")
+)
+
+
+# compute delta AIC and add computation time
+models_results <- all_results |>
+  # inner_join(all_time) |>
+  inner_join(name_models) |>
+  relocate(name_modelo, .after = modelo) |> 
+  mutate(deltaAIC = dAIC(aic_cor))
+# 
+# models_results |> 
+#   write_csv("data/models_ratio_tmed_summary.csv")
+```
+
+
+```{r}
+models_results |> 
+  kbl() |> 
+  kable_styling()
+```
+
+
+```{r}
+#| fig.height: 10
+#| fig.width: 7
+prepare_data <- function(x, yvar) {
+  x$source_data |> 
+    mutate(residuals = !!sym(yvar)  - predicted) |> 
+    rename(observed = !!sym(yvar)) 
+}
+
+all_data <-
+  mget(
+    grep("^result_mwbrat", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ prepare_data(.x, yvar = "rat"), .id = "modelo") |>
+  mutate(modelo = str_remove(modelo, "result_")) |> 
+  inner_join(name_models)
+
+
+p <- all_data |> 
+  ggplot(aes(x = predicted, y = observed)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_abline() + 
+  facet_wrap(~modelo, ncol = 1) +
+  geom_text(data = models_results, 
+            x = .43, 
+            y = .25, 
+            aes(label = paste("R^2~'='", round(R2, 3), sep="~")), 
+            parse = TRUE) +
+  geom_text(data = models_results, 
+            x = .43, 
+            y = .1, 
+            aes(label = paste("Slope~'='", round(slope, 4), sep="~")),
+            parse = TRUE) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) 
+  
+
+
+g <- all_data |> 
+  ggplot(aes(x = predicted, y = residuals)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_hline(yintercept = 0) +  
+  facet_wrap(~modelo, ncol = 1) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) +
+   scale_y_continuous(position = "right", sec.axis = sec_axis(~., labels = NULL)) 
+
+p + g 
+```
+
+
+## Comparing Ratio ABI:NPP ~ Tmed 
+```{r}
+#| fig.height: 5 
+#| fig.width: 7
+colours_combined <- c("mwbrat1" = "red", 
+                      # "mwbrat2" = "blue", 
+                      "mwbrat3" = "green", 
+                      "mwbrat6" = "black", 
+                      "mwbrat4" = "darkgoldenrod4")
+
+colours_combined_name <- c("Gaussian" = "red", 
+                      # "Gaussian Extended" = "blue", 
+                      "Log-normal" = "green", 
+                      "Gompertz" = "black", 
+                      "Logistic" = "darkgoldenrod4")
+                      # "Asymptotic" = "darkgoldenrod4")
+
+
+ggplot(all_data, 
+       aes(x= wb, y = observed, 
+           group = name_modelo, colour = name_modelo)) +
+  geom_point(colour="gray") + 
+  geom_line(aes(y = predicted)) + 
+  xlab("Annual Mean Temperature (ºC)") +
+  ylab("ABI:NPP") + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    strip.text = element_text(face = "bold", size = 14)) +
+    scale_colour_manual(values = colours_combined_name, name = "Models")
+```
+
+### WB effect 
+```{r}
+#| fig.height: 5 
+#| fig.width: 7
+p1 <- result_mwbrat1$best_pars |> as.data.frame()
+p3 <- result_mwbrat3$best_pars |> as.data.frame()
+p4 <- result_mwbrat4$best_pars |> as.data.frame()
+p6 <- result_mwbrat6$best_pars |> as.data.frame()
+
+
+wbeffect <- data.frame(wb = seq(-1000,1000, by =1)) |> 
+  mutate(
+    mwbrat1= exp(-0.5*((wb - p1$WBmed)/p1$WBb)^2),
+   # mwbrat3 = exp(-0.5*(log(abs(wb/ p3$WBmed))/ p3$WBb)^2),
+    mwbrat4 = p4$WBa /( 1 + exp((p4$WBmid - wb)/p4$WBc)),
+    mwbrat6 = p6$WBa * exp(-p6$WBb * exp (-p6$WBc * wb))
+  )
+
+df_effect_wb <- wbeffect |> pivot_longer(-wb, names_to = "modelo", values_to = "pred") 
+
+ggplot(
+  df_effect_wb,
+  aes(x = wb, y = pred, colour = modelo)) +
+  geom_line(linetype = "dashed") + 
+  geom_line(
+     data = (df_effect_wb|>
+       filter(wb > -707) |> 
+       filter(wb < 857)), size = 1.5) + 
+  scale_colour_manual(values = colours_combined, name = "Models") +
+  # ylim(0,1) +
+  # xlim(3,21) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Water Balance") +
+  ylab("WB effect") 
+  
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
