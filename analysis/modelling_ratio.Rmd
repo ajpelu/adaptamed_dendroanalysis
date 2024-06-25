@@ -47,6 +47,15 @@ df <- ratio |>
 
 
 ```{r}
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_ratio <- "ABI:NPP"
+label_prec <- "Precipitation (mm)"
+label_tmed <- "Annual Mean Temperature (ºC)"
+label_wb <- "Water Balance (mm)"
+```
+
+
+```{r}
 dtmed <- df |> filter(climate_variable == "tmed") |> dplyr::select(rat = ratio_abi_npp, tmed = mean_climate)
 ```
 
@@ -110,11 +119,16 @@ mtrat3 <- function(MR, OTmed, b)
 }
 
 # Logistic 
-mtrat4 <- function(MR, p1, b, c, d)
+mtrat4 <- function(MR, b, c, d)
 {
   tmed_effect <-  b /(1 + exp(- c *( dtmed$tmed - d )))
-  p1 + (MR * tmed_effect)
+  (MR * tmed_effect)
 }
+
+
+
+
+
 
 mtrat5 <- function(MR, Asym, R0, lrc)
 {
@@ -123,13 +137,22 @@ mtrat5 <- function(MR, Asym, R0, lrc)
 }
 
 
+mtrat6 <- function(MR,k,t0, b){
+  tmed_effect <- (1-b)*(1 / (1 + exp(- k *( dtmed$tmed - t0)))) + b 
+  MR*tmed_effect
+}
+
+
+
+
 name_models <- data.frame(
-  modelo = paste0("mtrat",c(1:5)), 
+  modelo = paste0("mtrat",c(1:6)), 
   name_modelo = c("Gaussian",
                   "Gaussian Extended", 
                   "Log-normal",
                   "Logistic",
-                  "Asymptotic")
+                  "Asymptotic",
+                  "Logistic_Mod")
 )
 ```
 
@@ -288,6 +311,35 @@ result_mtrat5 |>
 
 ```
 
+
+```{r}
+set.seed(1234)
+
+
+start <- Sys.time()
+result_mtrat6 <- anneal(
+  model = mtrat6, 
+  var = var, 
+  source_data = dtmed,
+  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10),
+  par_lo = list(MR = 0, b = 0, k = -2, t0 = 0),
+  par_hi = list(MR = 1, b = 0.2, k = 2, t0 = 20),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mtrat6 <- as.numeric(end - start, units = "secs")
+
+result_mtrat6 |> 
+  likelihood::write_results("output/models/mtrat6.txt")
+```
+
+
 ## Results
 
 ```{r}
@@ -308,7 +360,7 @@ all_time <- mget(
 
 # compute delta AIC and add computation time
 models_results <- all_results |>
-  inner_join(all_time) |>
+ # inner_join(all_time) |>
   inner_join(name_models) |>
   relocate(name_modelo, .after = modelo) |> 
   mutate(deltaAIC = dAIC(aic_cor))
@@ -392,13 +444,15 @@ colours_combined <- c("mtrat1" = "red",
                       "mtrat2" = "blue", 
                       "mtrat3" = "green", 
                       "mtrat4" = "black", 
-                      "mtrat5" = "darkgoldenrod4")
+                      "mtrat5" = "darkgoldenrod4", 
+                      "mtrat6" = "orange") 
 
 colours_combined_name <- c("Gaussian" = "red", 
                       "Gaussian Extended" = "blue", 
                       "Log-normal" = "green", 
                       "Logistic" = "black", 
-                      "Asymptotic" = "darkgoldenrod4")
+                      "Asymptotic" = "darkgoldenrod4",
+                      "Logistic_Mod" = "orange")
 
 
 ggplot(all_data, 
@@ -412,9 +466,55 @@ ggplot(all_data,
   theme(
     panel.grid = element_blank(), 
     strip.text = element_text(face = "bold", size = 14)) +
-    scale_colour_manual(values = colours_combined_name, name = "Models") +
-  geom_hline(yintercept = 0.092)
+    scale_colour_manual(values = colours_combined_name, name = "Models") 
 ```
+
+
+```{r}
+# predicted_lines 
+p1 <- result_mtrat1$best_pars |> as.data.frame()
+p2 <- result_mtrat2$best_pars |> as.data.frame()
+p3 <- result_mtrat3$best_pars |> as.data.frame()
+p4 <- result_mtrat4$best_pars |> as.data.frame()
+p5 <- result_mtrat5$best_pars |> as.data.frame()
+p6 <- result_mtrat6$best_pars |> as.data.frame()
+
+
+df_predicted_tmed_mod <- data.frame(tmed = seq(0,25, by =.5)) |> 
+  mutate(
+    mtrat1 = p1$MR * exp(-0.5*((tmed - p1$OTmed)/p1$b)^2),
+    mtrat2 = p2$MR * exp(-0.5*((tmed - p2$OTmed)/p2$b)^p2$a),
+    mtrat3 = p3$MR * exp(-0.5*(log(tmed / p3$OTmed)/p3$b)^2),
+    mtrat4 = p4$MR * p4$b /(1 + exp(- p4$c * (tmed - p4$d))),
+    mtrat5 = p5$MR * p5$Asym + (p5$R0 - p5$Asym)*exp(-exp(p5$lrc)*tmed),
+    mtrat6 = p6$MR * (1-p6$b)*(1 / (1 + exp(- p6$k *(tmed - p6$t0)))) + p6$b
+  )
+
+
+df_predicted_tmed <- df_predicted_tmed_mod |> pivot_longer(-tmed, names_to = "modelo", values_to = "pred") 
+
+ggplot(df_predicted_tmed,
+  aes(x = tmed, y = pred, colour = modelo)) +
+  geom_point(
+    data = all_data, 
+    aes(x = tmed, y = observed), col = "gray"
+  ) + 
+  geom_line(linetype = "dashed") + 
+  geom_line(
+    data = (df_predicted_tmed |>
+      filter(tmed > 8.1) |> 
+      filter(tmed < 16.6)), size = 1.2) + 
+  scale_colour_manual(values = colours_combined, name = "Models") +
+  ylim(0,1) +
+  xlim(5,20) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab(label_tmed) +
+  ylab(label_ratio) 
+```
+
+
+
 
 ### Temperature effect 
 ```{r}
@@ -425,7 +525,7 @@ p2 <- result_mtrat2$best_pars |> as.data.frame()
 p3 <- result_mtrat3$best_pars |> as.data.frame()
 p4 <- result_mtrat4$best_pars |> as.data.frame()
 p5 <- result_mtrat5$best_pars |> as.data.frame()
-
+p6 <- result_mtrat6$best_pars |> as.data.frame()
 
 teffect <- data.frame(tmed = seq(0,25, by =.5)) |> 
   mutate(
@@ -433,7 +533,8 @@ teffect <- data.frame(tmed = seq(0,25, by =.5)) |>
     mtrat2 = exp(-0.5*((tmed - p2$OTmed)/p2$b)^p2$a),
     mtrat3 = exp(-0.5*(log(tmed / p3$OTmed)/p3$b)^2),
     mtrat4 = p4$b /(1 + exp(- p4$c * (tmed - p4$d))),
-    mtrat5 = p5$Asym + (p5$R0 - p5$Asym)*exp(-exp(p5$lrc)*tmed)
+    mtrat5 = p5$Asym + (p5$R0 - p5$Asym)*exp(-exp(p5$lrc)*tmed),
+    mtrat6 = (1-p6$b)*(1 / (1 + exp(- p6$k *(tmed - p6$t0)))) + p6$b
   )
 
 df_effect_tmed <- teffect |> pivot_longer(-tmed, names_to = "modelo", values_to = "pred") 
@@ -447,20 +548,498 @@ ggplot(
       filter(tmed > 8.1) |> 
       filter(tmed < 16.6)), size = 1.5) + 
   scale_colour_manual(values = colours_combined, name = "Models") +
-  ylim(0,3) +
-  xlim(3,21) +
+  ylim(0,1) +
+  xlim(5,21) +
   theme_bw() +
   theme(panel.grid = element_blank()) +
   xlab("Annual Mean Temperature (ºC)") +
   ylab("Temperature effect") +
   geom_hline(yintercept =1)
   
-
-  tmed_effect <-  b /(1 + exp(- c *( dtmed$tmed - d )))
-  p1 + (MR * tmed_effect)
 ```
 
 
+
+# Precipitation 
+
+```{r}
+dprec<- df |> filter(climate_variable == "prec") |> dplyr::select(rat = ratio_abi_npp, prec = mean_climate)
+```
+
+```{r}
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_ratio <- "ABI:NPP"
+label_prec <- "Precipitation (mm)"
+
+y_scales <- list(
+  scale_y_continuous(limits = c(0, 0.5)),
+  scale_y_continuous(limits = c(0,1250)),
+  scale_y_continuous(limits = c(0, 700))
+)
+
+df |> 
+  filter(climate_variable == "prec") |>
+  ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() + 
+  geom_smooth(method = "lm", se = FALSE, linewidth = .8) +
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") + 
+  xlab(label_prec)+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "top", 
+    strip.text = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(0, 1500)) + 
+  ylab(label_ratio)
+```
+
+
+$$(ABI:NPP)_i=MR \times g(P) + \epsilon_i$$
+where: 
+
+- $(ABI:NPP)_i$ es el valor del ratio de ABI:NPP para cada sitio y año
+- $MR$ es un parámetro que representa el máximo ratio ABI:NPP (adimensional)
+- $\epsilon_i$ es el error aleatorio para cada observación $i$ 
+- $g(P)$ es una función con valores entre 0 y 1, que depende del water balance
+
+Esta $g(P)$ puede tomar diferentes formas (es lo que tenemos que buscar)
+
+### Funciones propuestas
+
+- Gaussian (**mprecrat1**)
+$$g(P)=\exp \left[ -\frac{1}{2} \left(\frac{P-P_{opt}} {P_b}\right)^2 \right]$$
+
+siendo $P_{opt}$ el valor óptimo de $P$ al cual ocurre el máximo Ratio $(ABI:NPP)_i$; y $P_b$ es la desviación estándar o amplitud de la función. 
+
+
+```{r}
+#| eval: false
+dprec |> slice_max(rat)
+sd(dprec$prec)
+```
+
+
+
+
+```{r} 
+## Guassian model 
+
+mprecrat1 <- function(MR, Popt, Pb)
+{
+  prec_effect <- exp(-0.5*((dprec$prec - Popt)/Pb)^2)
+  MR * prec_effect 
+}
+
+
+set.seed(1234)
+start <- Sys.time()
+
+# change model 
+result_mprecrat1 <- anneal(
+  model = mprecrat1, 
+  var = var, 
+  source_data = dprec,
+  par = list(MR = 0.7, Popt = 500, Pb = 200),
+  par_lo = list(MR = 0, Popt = 300, Pb = 0 ),
+  par_hi = list(MR = 1, Popt = 1000, Pb = 600),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mprecrat1 <- as.numeric(end - start, units = "secs")
+
+result_mprecrat1 |> 
+  likelihood::write_results("output/models/mprecrat1.txt")
+```
+
+
+
+- Gaussian Extended (**mprecrat2**)
+$$g(P)=\exp \left[ -\frac{1}{2} \left(\frac{P - P_{opt}} {P_b}\right)^{P_a} \right]$$
+con el parámetro $P_a$ que permite hacer a la función flexible para ajustar la kurtosis
+
+
+```{r}
+#| eval: false
+### Error GE 
+# Gaussian Extended 
+# No converge 
+
+mprecrat2 <- function(MR, Popt, Pb, Pa)
+{
+  prec_effect <- exp(-0.5*((dprec$prec - Popt)/Pb)^Pa)
+  MR * prec_effect 
+
+}
+
+set.seed(2023)
+start <- Sys.time()
+
+# change model 
+result_mprecrat2 <- anneal(
+  model = mprecrat2, 
+  var = var, 
+  source_data = dprec,
+  par = list(MR = 0.7, Popt = 500, Pb = 200, Pa = 2),
+  par_lo = list(MR = 0, Popt = 300, Pb = 0, Pa = 1),
+  par_hi = list(MR = 1, Popt = 1000, Pb = 600, Pa = 3),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mprecrat2 <- as.numeric(end - start, units = "secs")
+
+result_mprecrat2 |> 
+  likelihood::write_results("output/models/mprecrat2.txt")
+```
+
+- Log-normal (**mprecrat3**)
+$$g(P)=\exp \left[ -\frac{1}{2} \left(\frac{\log{(\frac{P}{P{opt}}}) }{Pb}\right)^2 \right]$$ 
+
+
+
+```{r}
+## Log-normal 
+# no puede ser porque tenemos valores negativos, no? # solucion abs dentro del logaritmo 
+set.seed(1234)
+start <- Sys.time()
+
+mprecrat3 <- function(MR, Popt, Pb)
+{
+  prec_effect <- exp(-0.5*(log(dprec$prec/Popt)/Pb)^2)
+  MR * prec_effect 
+}
+
+
+# change model 
+result_mprecrat3 <- anneal(
+  model = mprecrat3, 
+  var = var, 
+  source_data = dprec,
+  par = list(MR = 0.7, Popt = 500, Pb = 2),
+  par_lo = list(MR = 0, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, Popt = 1000, Pb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mprecrat3 <- as.numeric(end - start, units = "secs")
+
+result_mprecrat3 |> 
+  likelihood::write_results("output/models/mprecrat3.txt")
+```
+
+- Asintótico 
+```{r}
+#Asym/(1+exp((xmid-input)/scal))
+
+mprecrat4 <- function(MR, Pmid, Pa, Pc)
+{
+  prec_effect <- Pa /( 1 + exp((Pmid - dprec$prec)/Pc))
+  MR * prec_effect
+}
+
+
+set.seed(1234)
+start <- Sys.time()
+result_mprecrat4 <- anneal(
+  model = mprecrat4, 
+  par = list(MR = 0.5, Pa = 0.5, Pmid = 300, Pc = 1),
+  par_lo = list(MR = 0.01, Pa = 0.2, Pmid = 0, Pc = 0.001),
+  par_hi = list(MR = 1, Pa = 1, Pmid = 100, Pc = 500),
+  var = var, 
+  source_data = dprec,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mprecrat4 <- as.numeric(end - start, units = "secs")
+result_mprecrat4 |> likelihood::write_results("output/models/mprecrat4.txt")
+```
+
+- Gompertz 
+
+```{r}
+# Gompertz # y <- a * exp(-b * exp(-c * x)) 
+
+mprecrat5 <-  function(MR, Pa, Pb, Pc)
+{
+  prec_effect <- Pa * exp(-Pb * exp (-Pc * dprec$prec))
+  MR * prec_effect
+}
+
+set.seed(1234)
+start <- Sys.time()
+result_mprecrat5 <- anneal(
+  model = mprecrat5, 
+  par = list(MR = 0.5, Pa = 0.4, Pb = 0.3, Pc = 0.003),
+  par_lo = list(MR = 0, Pa = 0.2, Pb = 0.01, Pc = 0.0001),
+  par_hi = list(MR = 1, Pa = 0.8, Pb = 5, Pc = 0.01), 
+  var = var, 
+  source_data = dprec,
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+result_mprecrat5 |> 
+   likelihood::write_results("output/models/mprecrat5.txt")
+```
+
+
+
+## Results
+
+```{r}
+all_results <-
+  mget(
+    grep("^result_mprecrat", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ MLE_results_format(.x, yvar = "rat"), .id = "modelo") |>
+  arrange(aic_cor) |>
+  mutate(modelo = str_remove(modelo, "result_"))
+# 
+# all_time <- mget(
+#   grep("^time_mtrat", ls(), value = TRUE)
+# ) |>
+#   map_dfr(~ tibble(exec_time_s = .x), .id = "modelo") |>
+#   mutate(modelo = str_remove(modelo, "time_"))
+
+name_models <- data.frame(
+  modelo = paste0("mprecrat",c(1,2,3,4,5)),
+  name_modelo = c("Gaussian",
+                  "Gaussian-Mod",
+                  "Log-normal",
+                  "Asymptotic",
+                  "Gompertz")
+)
+
+
+# compute delta AIC and add computation time
+models_results <- all_results |>
+  # inner_join(all_time) |>
+  inner_join(name_models) |>
+  relocate(name_modelo, .after = modelo) |> 
+  mutate(deltaAIC = dAIC(aic_cor))
+
+models_results |> 
+   write_csv("data/models_ratio_prec_summary.csv")
+```
+
+
+```{r}
+models_results |> 
+  kbl() |> 
+  kable_styling()
+```
+
+
+```{r}
+#| fig.height: 10
+#| fig.width: 7
+prepare_data <- function(x, yvar) {
+  x$source_data |> 
+    mutate(residuals = !!sym(yvar)  - predicted) |> 
+    rename(observed = !!sym(yvar)) 
+}
+
+all_data <-
+  mget(
+    grep("^result_mprecrat", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ prepare_data(.x, yvar = "rat"), .id = "modelo") |>
+  mutate(modelo = str_remove(modelo, "result_")) |> 
+  inner_join(name_models)
+
+
+p <- all_data |> 
+  ggplot(aes(x = predicted, y = observed)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_abline() + 
+  facet_wrap(~modelo, ncol = 1) +
+  geom_text(data = models_results, 
+            x = .43, 
+            y = .25, 
+            aes(label = paste("R^2~'='", round(R2, 3), sep="~")), 
+            parse = TRUE) +
+  geom_text(data = models_results, 
+            x = .43, 
+            y = .1, 
+            aes(label = paste("Slope~'='", round(slope, 4), sep="~")),
+            parse = TRUE) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) 
+  
+
+
+g <- all_data |> 
+  ggplot(aes(x = predicted, y = residuals)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_hline(yintercept = 0) +  
+  facet_wrap(~modelo, ncol = 1) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) +
+   scale_y_continuous(position = "right", sec.axis = sec_axis(~., labels = NULL)) 
+
+p + g 
+```
+
+
+## Comparing Ratio ABI:NPP ~ Prec
+```{r}
+#| fig.height: 5 
+#| fig.width: 7
+colours_combined <- c("mprecrat1" = "red", 
+                      "mprecrat2" = "blue", 
+                      "mprecrat3" = "green", 
+                      "mprecrat5" = "black", 
+                      "mprecrat4" = "darkgoldenrod4")
+
+colours_combined_name <- c("Gaussian" = "red", 
+                      "Gaussian-Mod" = "blue", 
+                      "Log-normal" = "green", 
+                      "Asymptotic" = "darkgoldenrod4",
+                      "Gompertz" = "black") 
+
+# 
+# ggplot(all_data,
+#        aes(x= prec, y = observed,
+#            group = name_modelo, colour = name_modelo)) +
+#   geom_point(colour="gray") +
+#   geom_line(aes(y = predicted)) +
+#   xlab("Prec (mm)") +
+#   ylab("ABI:NPP") +
+#   theme_bw() +
+#   theme(
+#     panel.grid = element_blank(),
+#     strip.text = element_text(face = "bold", size = 14)) +
+#     scale_colour_manual(values = colours_combined_name, name = "Models")
+```
+
+```{r}
+# predicted_lines 
+p1 <- result_mprecrat1$best_pars |> as.data.frame()
+# p2 <- result_mprecrat2$best_pars |> as.data.frame()
+p3 <- result_mprecrat3$best_pars |> as.data.frame()
+p4 <- result_mprecrat4$best_pars |> as.data.frame()
+p5 <- result_mprecrat5$best_pars |> as.data.frame()
+
+
+
+df_predicted <- data.frame(prec = seq(0, 1700, by =1)) |> 
+  mutate(
+    mprecrat1 = p1$MR * exp(-0.5*((prec - p1$Popt)/p1$Pb)^2),
+#    mprecrat2 = p2$MR * exp(-0.5*((prec - p2$Popt)/p2$Pb)^p2$Pa),
+    mprecrat3 = p3$MR * exp(-0.5*(log(prec/p3$Popt)/p3$Pb)^2),
+    mprecrat4 = p4$MR * p4$Pa / ( 1 + exp((p4$Pmid - prec)/p4$Pc)), 
+    mprecrat5 = p5$MR * p4$Pa * exp(-p5$Pb * exp (-p5$Pc * prec))
+  )
+
+df_predicted_prec <- df_predicted |> pivot_longer(-prec, names_to = "modelo", values_to = "pred") 
+
+ggplot(
+  (df_predicted_prec |> 
+     filter(modelo != "mprecrat2")),
+  aes(x = prec, y = pred, colour = modelo)) +
+  geom_point(
+    data = all_data, 
+    aes(x = prec, y=observed), col = "gray"
+  ) + 
+  geom_line(linetype = "dashed") + 
+  geom_line(
+     data = (df_predicted_prec|>
+               filter(modelo != "mprecrat2") |> 
+       filter(prec > 100) |>
+       filter(prec < 1450)), size = 1.2) +
+  scale_colour_manual(values = colours_combined, name = "Models") +
+  # ylim(0,1) +
+  # xlim(3,21) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab(label_prec) +
+  ylab(label_ratio) 
+```
+
+### Prec effect 
+```{r}
+#| fig.height: 5 
+#| fig.width: 7
+p1 <- result_mprecrat1$best_pars |> as.data.frame()
+# p2 <- result_mprecrat2$best_pars |> as.data.frame()
+p3 <- result_mprecrat3$best_pars |> as.data.frame()
+p4 <- result_mprecrat4$best_pars |> as.data.frame()
+p5 <- result_mprecrat5$best_pars |> as.data.frame()
+
+
+preceffect <- data.frame(prec = seq(0,1700, by =1)) |> 
+  mutate(
+    mprecrat1 = exp(-0.5*((prec - p1$Popt)/p1$Pb)^2),
+    # mprecrat2 = exp(-0.5*((prec - p2$Popt)/p2$Pb)^p2$Pa),
+    mprecrat3 = exp(-0.5*(log(prec/p3$Popt)/p3$Pb)^2),
+    mprecrat4 = p4$Pa / ( 1 + exp((p4$Pmid - prec)/p4$Pc)), 
+    mprecrat5 = p4$Pa * exp(-p5$Pb * exp (-p5$Pc * prec))
+  )
+
+df_effect_prec <- preceffect |> pivot_longer(-prec, names_to = "modelo", values_to = "pred") 
+
+ggplot(
+  df_effect_prec,
+  aes(x = prec, y = pred, colour = modelo)) +
+  geom_line(linetype = "dashed") + 
+  geom_line(
+     data = (df_effect_prec |>
+       filter(prec > 100) |> 
+       filter(prec < 1450)), size = 1.3) + 
+  scale_colour_manual(values = colours_combined, name = "Models") +
+  # ylim(0,1) +
+  # xlim(3,21) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Water Balance") +
+  ylab("WB effect") 
+  
+```
 
 
 # Water Balance 
@@ -471,17 +1050,6 @@ dwb <- df |> filter(climate_variable == "water_balance") |> dplyr::select(rat = 
 
 
 ```{r}
-label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
-label_ratio <- "ABI:NPP"
-label_wb <- "P-PET (mm)"
-
-y_scales <- list(
-  scale_y_continuous(limits = c(0, 0.5)),
-  scale_y_continuous(limits = c(0,1250)),
-  scale_y_continuous(limits = c(0, 700))
-)
-
-
 df |> 
   filter(climate_variable == "water_balance") |>
   ggplot(aes(x=mean_climate, y = ratio_abi_npp, colour = sp_code)) + 
@@ -591,12 +1159,6 @@ mwbrat5 <- function(MR, Asym, R0, lrc)
 #                   "Asymptotic")
 # )
 ```
-
-The error term in the model 
-
-$$(ABI:NPP)_i=MR \times g(T_{med}) + \epsilon_i$$
-is assumed to follows a normal distribution $\epsilon_i \sim \mathcal{N}(0,1)$
-
 
 ```{r}
 var=list(mean = "predicted", x = "rat", wb = "wb")  
@@ -928,7 +1490,7 @@ p + g
 ```
 
 
-## Comparing Ratio ABI:NPP ~ Tmed 
+## Comparing Ratio ABI:NPP ~ WB
 ```{r}
 #| fig.height: 5 
 #| fig.width: 7
@@ -951,7 +1513,7 @@ ggplot(all_data,
            group = name_modelo, colour = name_modelo)) +
   geom_point(colour="gray") + 
   geom_line(aes(y = predicted)) + 
-  xlab("Annual Mean Temperature (ºC)") +
+  xlab(label_wb) +
   ylab("ABI:NPP") + 
   theme_bw() +
   theme(
@@ -959,6 +1521,47 @@ ggplot(all_data,
     strip.text = element_text(face = "bold", size = 14)) +
     scale_colour_manual(values = colours_combined_name, name = "Models")
 ```
+
+```{r}
+p1 <- result_mwbrat1$best_pars |> as.data.frame()
+p3 <- result_mwbrat3$best_pars |> as.data.frame()
+p4 <- result_mwbrat4$best_pars |> as.data.frame()
+p6 <- result_mwbrat6$best_pars |> as.data.frame()
+
+df_predicted <- data.frame(wb = seq(-1000, 1000, by =1)) |> 
+  mutate(
+    mwbrat1 = p1$MR * exp(-0.5*((wb - p1$WBmed)/p1$WBb)^2),
+    mwbrat3 = p3$MR * exp(-0.5*(log(abs(wb/ p3$WBmed))/ p3$WBb)^2),
+    mwbrat4 = p4$MR * p4$WBa /( 1 + exp((p4$WBmid - wb)/p4$WBc)),
+    mwbrat6 = p6$MR * p6$WBa * exp(-p6$WBb * exp (-p6$WBc * wb))
+  )
+
+df_predicted_wb <- df_predicted |> pivot_longer(-wb, names_to = "modelo", values_to = "pred") 
+
+ggplot(
+  (df_predicted_wb |> filter(modelo != "mwbrat3")),
+  aes(x = wb, y = pred, colour = modelo)) +
+  geom_point(
+    data = all_data, 
+    aes(x = wb, y = observed), col = "gray"
+  ) + 
+  geom_line(linetype = "dashed") + 
+  geom_line(
+    data = (df_predicted_wb |>
+               filter(modelo != "mwbrat3") |> 
+       filter(wb > -707) |> 
+       filter(wb < 857)), size = 1.5) +
+  scale_colour_manual(values = colours_combined, name = "Models") +
+  # ylim(0,1) +
+  # xlim(3,21) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab(label_wb) +
+  ylab(label_ratio) 
+```
+
+
+
 
 ### WB effect 
 ```{r}
@@ -993,9 +1596,65 @@ ggplot(
   # xlim(3,21) +
   theme_bw() +
   theme(panel.grid = element_blank()) +
-  xlab("Water Balance") +
+  xlab(label_wb) +
   ylab("WB effect") 
   
+```
+
+
+
+# Temp & Prec models 
+
+
+```{r}
+dwb <- df |> filter(climate_variable == "water_balance") |> dplyr::select(rat = ratio_abi_npp, wb = mean_climate)
+
+d <- dtmed |> inner_join(dprec)
+```
+
+
+```{r}
+var=list(mean = "predicted", x = "rat", prec = "wb", tmed = "tmed")  
+```
+
+
+### Model comb1 
+- log-normal temperature
+- log-normal prec
+
+```{r}
+mcombrat1 <- function(MR, OTmed, Tb, Popt, Pb){
+  # log-normal temperature
+  # log-normal prec 
+  tmed_effect <- exp(-0.5*(log(d$tmed/OTmed)/Tb)^2) 
+  prec_effect <- exp(-0.5*(log(d$prec/Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+start <- Sys.time()
+
+# change model 
+result_mcombrat1 <- anneal(
+  model = mcombrat1, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5, Popt = 500, Pb = 2), 
+  par_lo = list(MR = 0, OTmed = 5, Tb = 0.01, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, OTmed = 20, Tb = 5, Popt = 1000, Pb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat1 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat1 |> 
+  likelihood::write_results("output/models/mcombrat1.txt")
 ```
 
 
@@ -1007,6 +1666,413 @@ ggplot(
 
 
 
+### Model comb2 
+- log-normal temperature
+- gauss prec
+
+```{r}
+mcombrat2 <- function(MR, OTmed, Tb, Popt, Pb){
+  # log-normal temperature
+  # gauss prec 
+  tmed_effect <- exp(-0.5*(log(d$tmed/OTmed)/Tb)^2) 
+  prec_effect <- exp(-0.5*((d$prec - Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+start <- Sys.time()
+
+# change model 
+result_mcombrat2 <- anneal(
+  model = mcombrat2, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5, Popt = 500, Pb = 200), 
+  par_lo = list(MR = 0, OTmed = 5, Tb = 0.01, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, OTmed = 20, Tb = 5, Popt = 1000, Pb = 600),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat2 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat2 |> 
+  likelihood::write_results("output/models/mcombrat2.txt")
+```
+
+
+
+### Model comb3 
+- log-normal temperature
+- gompertz prec
+
+```{r}
+mcombrat3 <- function(MR, OTmed, Tb, Pa, Pb, Pc){
+  # log-normal temperature
+  # gompertz prec 
+  tmed_effect <- exp(-0.5*(log(d$tmed/OTmed)/Tb)^2) 
+  prec_effect <- Pa * exp(-Pb * exp (-Pc * d$prec))
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(1234)
+start <- Sys.time()
+
+# change model 
+result_mcombrat3 <- anneal(
+  model = mcombrat3, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5, Pa = 0.4, Pb = 0.3, Pc = 0.003), 
+  par_lo = list(MR = 0, OTmed = 5, Tb = 0.01, Pa = 0.2, Pb = 0.01, Pc = 0.0001),
+  par_hi = list(MR = 1, OTmed = 20, Tb = 5, Pa = 0.8, Pb = 5, Pc = 0.01),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat3 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat3 |> 
+  likelihood::write_results("output/models/mcombrat2.txt")
+```
+
+
+
+
+
+
+### Model comb4 
+- gauss temperature
+- log-normal prec 
+```{r}
+mcombrat4 <- function(MR, OTmed, Tb, Popt, Pb){
+  # gauss temperature
+  # log-normal prec 
+  tmed_effect <- exp(-0.5*((d$tmed - OTmed)/Tb)^2)
+  prec_effect <- exp(-0.5*(log(d$prec/Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+start <- Sys.time()
+
+# change model 
+result_mcombrat4 <- anneal(
+  model = mcombrat4, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5, Popt = 500, Pb = 2), 
+  par_lo = list(MR = 0, OTmed = 5, Tb = 0.01, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, OTmed = 20, Tb = 5, Popt = 1000, Pb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat4 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat4 |> 
+  likelihood::write_results("output/models/mcombrat1.txt")
+```
+
+### Model comb5 
+- gauss temperature
+- gauss prec 
+```{r}
+mcombrat5 <- function(MR, OTmed, Tb, Popt, Pb){
+  # gauss temperature
+  # gauss prec 
+  tmed_effect <- exp(-0.5*((d$tmed - OTmed)/Tb)^2) 
+  prec_effect <- exp(-0.5*((d$prec - Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+start <- Sys.time()
+
+# change model 
+result_mcombrat5 <- anneal(
+  model = mcombrat5, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5, Popt = 500, Pb = 200), 
+  par_lo = list(MR = 0, OTmed = 5, Tb = 0.01, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, OTmed = 20, Tb = 5, Popt = 1000, Pb = 600),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat5 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat5 |> 
+  likelihood::write_results("output/models/mcombrat5.txt")
+```
+
+### Model comb6
+- gauss temperature
+- gompertz prec 
+```{r}
+mcombrat6 <- function(MR, OTmed, Tb, Pa, Pb, Pc){
+  # gauss temperature
+  # gompertz prec 
+  tmed_effect <- exp(-0.5*((d$tmed - OTmed)/Tb)^2)
+  prec_effect <- Pa * exp(-Pb * exp (-Pc * d$prec))
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(1234)
+start <- Sys.time()
+
+# change model 
+result_mcombrat6  <- anneal(
+  model = mcombrat6, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5, Pa = 0.4, Pb = 0.3, Pc = 0.003), 
+  par_lo = list(MR = 0, OTmed = 5, Tb = 0.01, Pa = 0.2, Pb = 0.01, Pc = 0.0001),
+  par_hi = list(MR = 1, OTmed = 20, Tb = 5, Pa = 0.8, Pb = 5, Pc = 0.01),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat6 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat6 |> 
+  likelihood::write_results("output/models/mcombrat6.txt")
+```
+
+
+
+
+
+
+
+
+
+### Model comb7 
+- log-mod temperature
+- log-normal prec 
+```{r}
+mcombrat7 <- function(MR, b, k, t0, Popt, Pb){
+  # log-mod temperature
+  # log-normal prec 
+  tmed_effect <- (1-b)*(1 / (1 + exp(- k *( d$tmed - t0)))) + b
+  prec_effect <- exp(-0.5*(log(d$prec/Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+start <- Sys.time()
+
+# change model 
+result_mcombrat7 <- anneal(
+  model = mcombrat7, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10, Popt = 500, Pb = 2), 
+  par_lo = list(MR = 0, b = 0, k = -2, t0 = 0, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, b = 0.2, k = 2, t0 = 20, Popt = 1000, Pb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat7 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat7 |> 
+  likelihood::write_results("output/models/mcombrat7.txt")
+```
+
+### Model comb8 
+- log-mod temperature
+- gauss prec 
+```{r}
+mcombrat8 <- function(MR, b, k, t0, Popt, Pb){
+  # log-mod temperature
+  # gauss prec 
+  tmed_effect <- (1-b)*(1 / (1 + exp(- k *( d$tmed - t0)))) + b
+  prec_effect <- exp(-0.5*((d$prec - Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+start <- Sys.time()
+
+# change model 
+result_mcombrat8 <- anneal(
+  model = mcombrat8, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10, Popt = 500, Pb = 200), 
+  par_lo = list(MR = 0, b = 0, k = -2, t0 = 0, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, b = 0.2, k = 2, t0 = 20, Popt = 1000, Pb = 600),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat8 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat8 |> 
+  likelihood::write_results("output/models/mcombrat8.txt")
+```
+
+### Model comb9 
+- log-mod temperature
+- gompertz prec 
+```{r}
+mcombrat9 <- function(MR, b, k, t0, Pa, Pb, Pc){
+  # log-mod temperature
+  # gompertz prec 
+  tmed_effect <- (1-b)*(1 / (1 + exp(- k *( d$tmed - t0)))) + b
+  prec_effect <- Pa * exp(-Pb * exp (-Pc * d$prec))
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(1234)
+start <- Sys.time()
+
+# change model 
+result_mcombrat9  <- anneal(
+  model = mcombrat9, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10, Pa = 0.4, Pb = 0.3, Pc = 0.003), 
+  par_lo = list(MR = 0, b = 0, k = -2, t0 = 0, Pa = 0.2, Pb = 0.01, Pc = 0.0001),
+  par_hi = list(MR = 1, b = 0.2, k = 2, t0 = 20, Pa = 0.8, Pb = 5, Pc = 0.01),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+end <- Sys.time()
+time_mcombrat9 <- as.numeric(end - start, units = "secs")
+
+result_mcombrat9 |> 
+  likelihood::write_results("output/models/mcombrat9.txt")
+```
+
+
+## Results
+
+```{r}
+all_results <-
+  mget(
+    grep("^result_mcombrat", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ MLE_results_format(.x, yvar = "rat"), .id = "modelo") |>
+  arrange(aic_cor) |>
+  mutate(modelo = str_remove(modelo, "result_"))
+# 
+# all_time <- mget(
+#   grep("^time_mtrat", ls(), value = TRUE)
+# ) |>
+#   map_dfr(~ tibble(exec_time_s = .x), .id = "modelo") |>
+#   mutate(modelo = str_remove(modelo, "time_"))
+
+name_models <- data.frame(
+  modelo = paste0("mcombrat",c(1:9)),
+  name_modelo = c("Temp (Log-normal) | Prec (Log-normal)", 
+                  "Temp (Log-normal) | Prec (Gaussian)", 
+                  "Temp (Log-normal) | Prec (Gompertz)", 
+                  "Temp (Gaussian) | Prec (Log-normal)", 
+                  "Temp (Gaussian) | Prec (Gaussian)", 
+                  "Temp (Gaussian) | Prec (Gompertz)", 
+                  "Temp (Logistic_Mod) | Prec (Log-normal)", 
+                  "Temp (Logistic_Mod) | Prec (Gaussian)", 
+                  "Temp (Logistic_Mod) | Prec (Gompertz)")
+  )
+                  
+                  
+
+
+# compute delta AIC and add computation time
+models_results <- all_results |>
+  # inner_join(all_time) |>
+  inner_join(name_models) |>
+  relocate(name_modelo, .after = modelo) |> 
+  mutate(deltaAIC = dAIC(aic_cor))
+
+models_results |>
+  write_csv("data/models_ratio_combined_summary.csv")
+```
+
+### Multiplicative Models
+```{r}
+models_results |> 
+  kbl(digits = c(0,0,2,0,2,2,3,3,2,3)) |> 
+  kable_styling()
+```
+
+### Multiplicative and Univariate models 
+```{r}
+models_tmed <- read_csv("data/models_ratio_tmed_summary.csv") |> 
+  dplyr::select(-deltaAIC) |> 
+  filter(name_modelo %in% c("Log-normal", "Gaussian", "Logistic_Mod")) |> 
+  mutate(name_modelo = paste0("Temp (", name_modelo, ")")) 
+
+models_prec <- read_csv("data/models_ratio_prec_summary.csv") |>  
+  dplyr::select(-deltaAIC) |> 
+  filter(name_modelo %in% c("Log-normal", "Gaussian", "Gompertz")) |> 
+  mutate(name_modelo = paste0("Prec (", name_modelo, ")"))
+```
+
+
+
+```{r}
+models <- bind_rows(
+  (models_results  |> dplyr::select(-deltaAIC)),
+  models_tmed, 
+  models_prec
+) |>
+  mutate(deltaAIC = dAIC(aic_cor)) |> 
+  arrange(deltaAIC) 
+
+models |>
+  write_csv("data/models_ratio_all_summary.csv")
+```
+
+
+```{r}
+models |> 
+  kbl(digits = c(0,0,2,0,2,2,3,3,2,3)) |> 
+  kable_styling()
+```
 
 
 
