@@ -36,6 +36,8 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
@@ -402,7 +404,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-06-19
+<strong>Last updated:</strong> 2024-06-27
 </p>
 <p>
 <strong>Checks:</strong>
@@ -530,20 +532,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeabf19d69429602fc35111bc8f544bd18de3fa181targetblankabf19d6a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea6a84ca528371c8ef6fa39641d151b69e3de2887targetblanka6a84caa">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/abf19d69429602fc35111bc8f544bd18de3fa181" target="_blank">abf19d6</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a6a84ca528371c8ef6fa39641d151b69e3de2887" target="_blank">a6a84ca</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreeabf19d69429602fc35111bc8f544bd18de3fa181targetblankabf19d6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea6a84ca528371c8ef6fa39641d151b69e3de2887targetblanka6a84caa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/abf19d69429602fc35111bc8f544bd18de3fa181" target="_blank">abf19d6</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a6a84ca528371c8ef6fa39641d151b69e3de2887" target="_blank">a6a84ca</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -565,14 +567,12 @@ Ignored files:
     Ignored:    data/raw/remote_sensing/old/
     Ignored:    output/.DS_Store
 
-Untracked files:
-    Untracked:  output/combined_wb_prec_tmed.png
-
 Unstaged changes:
     Modified:   analysis/modelling_ratio.Rmd
-    Modified:   data/models_ratio_tmed_summary.csv
     Modified:   output/combined_fig.png
     Modified:   output/combined_fig_extrapolated.png
+    Modified:   output/combined_wb_prec_tmed.png
+    Modified:   scripts/aux.R
 
 </code></pre>
 <p>
@@ -617,6 +617,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a6a84ca528371c8ef6fa39641d151b69e3de2887/analysis/figura_npp_etp.Rmd" target="_blank">a6a84ca</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-27
+</td>
+<td>
+wflow_publish("analysis/figura_npp_etp.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/a0a9a135d4a4f5a9d477da47e122ce1f39774b4c/docs/figura_npp_etp.html" target="_blank">a0a9a13</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -709,131 +743,1202 @@ update
 </div>
 </div>
 </div>
-<div id="combined" class="section level2" number="0.1">
-<h2><span class="header-section-number">0.1</span> Combined</h2>
-<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-12-1.png" width="1248" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
-Past versions of unnamed-chunk-12-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-12-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
+<div id="linear-regressions-for-plot" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Linear regressions for plot</h2>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th>
-Version
+<th style="text-align:left;">
+y_variable
 </th>
-<th>
-Author
+<th style="text-align:left;">
+climate_variable
 </th>
-<th>
-Date
+<th style="text-align:left;">
+sp_code
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:left;">
+p
+</th>
+<th style="text-align:left;">
+sig
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/60c88eab5873159161685a09332ba43b4b4b3df7/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-12-1.png" target="_blank">60c88ea</a>
+<td style="text-align:left;">
+abi
 </td>
-<td>
-ajpelu
+<td style="text-align:left;">
+prec
 </td>
-<td>
-2024-04-29
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.2093533
+</td>
+<td style="text-align:right;">
+0.0501568
+</td>
+<td style="text-align:right;">
+4.1739762
+</td>
+<td style="text-align:right;">
+0.0000690
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.2412264
+</td>
+<td style="text-align:right;">
+0.0710939
+</td>
+<td style="text-align:right;">
+3.3930683
+</td>
+<td style="text-align:right;">
+0.0010468
+</td>
+<td style="text-align:left;">
+0.001
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.4124045
+</td>
+<td style="text-align:right;">
+0.0854345
+</td>
+<td style="text-align:right;">
+4.8271403
+</td>
+<td style="text-align:right;">
+0.0000042
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0389845
+</td>
+<td style="text-align:right;">
+0.0407781
+</td>
+<td style="text-align:right;">
+0.9560157
+</td>
+<td style="text-align:right;">
+0.3418743
+</td>
+<td style="text-align:left;">
+0.342
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-12.2818859
+</td>
+<td style="text-align:right;">
+4.7113480
+</td>
+<td style="text-align:right;">
+-2.6068730
+</td>
+<td style="text-align:right;">
+0.0106946
+</td>
+<td style="text-align:left;">
+0.011
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-45.4986887
+</td>
+<td style="text-align:right;">
+11.4064000
+</td>
+<td style="text-align:right;">
+-3.9888737
+</td>
+<td style="text-align:right;">
+0.0001390
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-82.2965623
+</td>
+<td style="text-align:right;">
+8.8847560
+</td>
+<td style="text-align:right;">
+-9.2626700
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-68.3080486
+</td>
+<td style="text-align:right;">
+9.5075939
+</td>
+<td style="text-align:right;">
+-7.1845779
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.1729384
+</td>
+<td style="text-align:right;">
+0.0367112
+</td>
+<td style="text-align:right;">
+4.7107755
+</td>
+<td style="text-align:right;">
+0.0000089
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.2260521
+</td>
+<td style="text-align:right;">
+0.0584538
+</td>
+<td style="text-align:right;">
+3.8671951
+</td>
+<td style="text-align:right;">
+0.0002134
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.4220931
+</td>
+<td style="text-align:right;">
+0.0674544
+</td>
+<td style="text-align:right;">
+6.2574569
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0557196
+</td>
+<td style="text-align:right;">
+0.0377093
+</td>
+<td style="text-align:right;">
+1.4776092
+</td>
+<td style="text-align:right;">
+0.1433431
+</td>
+<td style="text-align:left;">
+0.143
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0000303
+</td>
+<td style="text-align:right;">
+0.0000271
+</td>
+<td style="text-align:right;">
+1.1166263
+</td>
+<td style="text-align:right;">
+0.2670003
+</td>
+<td style="text-align:left;">
+0.267
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0000426
+</td>
+<td style="text-align:right;">
+0.0000248
+</td>
+<td style="text-align:right;">
+1.7173914
+</td>
+<td style="text-align:right;">
+0.0892006
+</td>
+<td style="text-align:left;">
+0.089
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0001146
+</td>
+<td style="text-align:right;">
+0.0000534
+</td>
+<td style="text-align:right;">
+2.1445043
+</td>
+<td style="text-align:right;">
+0.0339122
+</td>
+<td style="text-align:left;">
+0.034
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-0.0000249
+</td>
+<td style="text-align:right;">
+0.0000140
+</td>
+<td style="text-align:right;">
+-1.7773846
+</td>
+<td style="text-align:right;">
+0.0787393
+</td>
+<td style="text-align:left;">
+0.079
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-0.0054340
+</td>
+<td style="text-align:right;">
+0.0023812
+</td>
+<td style="text-align:right;">
+-2.2820142
+</td>
+<td style="text-align:right;">
+0.0247444
+</td>
+<td style="text-align:left;">
+0.025
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0047611
+</td>
+<td style="text-align:right;">
+0.0036144
+</td>
+<td style="text-align:right;">
+1.3172634
+</td>
+<td style="text-align:right;">
+0.1909523
+</td>
+<td style="text-align:left;">
+0.191
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-0.0413642
+</td>
+<td style="text-align:right;">
+0.0053056
+</td>
+<td style="text-align:right;">
+-7.7962991
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-0.0146023
+</td>
+<td style="text-align:right;">
+0.0036520
+</td>
+<td style="text-align:right;">
+-3.9984126
+</td>
+<td style="text-align:right;">
+0.0001269
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0000352
+</td>
+<td style="text-align:right;">
+0.0000199
+</td>
+<td style="text-align:right;">
+1.7657593
+</td>
+<td style="text-align:right;">
+0.0806832
+</td>
+<td style="text-align:left;">
+0.081
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0000329
+</td>
+<td style="text-align:right;">
+0.0000209
+</td>
+<td style="text-align:right;">
+1.5782703
+</td>
+<td style="text-align:right;">
+0.1178630
+</td>
+<td style="text-align:left;">
+0.118
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.0001365
+</td>
+<td style="text-align:right;">
+0.0000440
+</td>
+<td style="text-align:right;">
+3.1040957
+</td>
+<td style="text-align:right;">
+0.0023573
+</td>
+<td style="text-align:left;">
+0.002
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-0.0000172
+</td>
+<td style="text-align:right;">
+0.0000132
+</td>
+<td style="text-align:right;">
+-1.2979279
+</td>
+<td style="text-align:right;">
+0.1974879
+</td>
+<td style="text-align:left;">
+0.197
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.2125737
+</td>
+<td style="text-align:right;">
+0.2269835
+</td>
+<td style="text-align:right;">
+0.9365162
+</td>
+<td style="text-align:right;">
+0.3525281
+</td>
+<td style="text-align:left;">
+0.353
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.1790667
+</td>
+<td style="text-align:right;">
+0.0889544
+</td>
+<td style="text-align:right;">
+2.0130162
+</td>
+<td style="text-align:right;">
+0.0483235
+</td>
+<td style="text-align:left;">
+0.048
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.2495068
+</td>
+<td style="text-align:right;">
+0.0916392
+</td>
+<td style="text-align:right;">
+2.7227072
+</td>
+<td style="text-align:right;">
+0.0078388
+</td>
+<td style="text-align:left;">
+0.008
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+prec
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-0.0088120
+</td>
+<td style="text-align:right;">
+0.0654631
+</td>
+<td style="text-align:right;">
+-0.1346101
+</td>
+<td style="text-align:right;">
+0.8933426
+</td>
+<td style="text-align:left;">
+0.893
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-101.0090414
+</td>
+<td style="text-align:right;">
+14.2212701
+</td>
+<td style="text-align:right;">
+-7.1026737
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-37.1260244
+</td>
+<td style="text-align:right;">
+11.4023475
+</td>
+<td style="text-align:right;">
+-3.2559983
+</td>
+<td style="text-align:right;">
+0.0018085
+</td>
+<td style="text-align:left;">
+0.002
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-56.9679648
+</td>
+<td style="text-align:right;">
+8.7910170
+</td>
+<td style="text-align:right;">
+-6.4802474
+</td>
+<td style="text-align:right;">
+0.0000000
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+tmed
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+70.2920860
+</td>
+<td style="text-align:right;">
+12.7495862
+</td>
+<td style="text-align:right;">
+5.5132837
+</td>
+<td style="text-align:right;">
+0.0000007
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.4220937
+</td>
+<td style="text-align:right;">
+0.1603019
+</td>
+<td style="text-align:right;">
+2.6331171
+</td>
+<td style="text-align:right;">
+0.0105947
+</td>
+<td style="text-align:left;">
+0.011
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.1983308
+</td>
+<td style="text-align:right;">
+0.0756510
+</td>
+<td style="text-align:right;">
+2.6216537
+</td>
+<td style="text-align:right;">
+0.0109211
+</td>
+<td style="text-align:left;">
+0.011
+</td>
+<td style="text-align:left;">
+no sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+0.2858412
+</td>
+<td style="text-align:right;">
+0.0745890
+</td>
+<td style="text-align:right;">
+3.8322158
+</td>
+<td style="text-align:right;">
+0.0002410
+</td>
+<td style="text-align:left;">
+&lt;0.001
+</td>
+<td style="text-align:left;">
+sig
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+water_balance
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+mean_climate
+</td>
+<td style="text-align:right;">
+-0.0413779
+</td>
+<td style="text-align:right;">
+0.0620146
+</td>
+<td style="text-align:right;">
+-0.6672284
+</td>
+<td style="text-align:right;">
+0.5070249
+</td>
+<td style="text-align:left;">
+0.507
+</td>
+<td style="text-align:left;">
+no sig
 </td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
-<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-13-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
-Past versions of unnamed-chunk-13-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-13-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/60c88eab5873159161685a09332ba43b4b4b3df7/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-13-1.png" target="_blank">60c88ea</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-04-29
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="surfaces" class="section level2" number="0.2">
-<h2><span class="header-section-number">0.2</span> Surfaces</h2>
-<div id="natural-splines" class="section level3" number="0.2.1">
-<h3><span class="header-section-number">0.2.1</span> Natural splines</h3>
-<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-14-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
-Past versions of unnamed-chunk-14-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-14-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/60c88eab5873159161685a09332ba43b4b4b3df7/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-14-1.png" target="_blank">60c88ea</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-04-29
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="thin-splines" class="section level3" number="0.2.2">
-<h3><span class="header-section-number">0.2.2</span> Thin splines</h3>
-<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-15-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<div id="combined" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Combined</h2>
+<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-15-1.png" width="1248" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
 Past versions of unnamed-chunk-15-1.png
@@ -858,6 +1963,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a0a9a135d4a4f5a9d477da47e122ce1f39774b4c/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-15-1.png" target="_blank">a0a9a13</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-19
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/60c88eab5873159161685a09332ba43b4b4b3df7/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-15-1.png" target="_blank">60c88ea</a>
 </td>
 <td>
@@ -871,9 +1987,6 @@ ajpelu
 </table>
 </div>
 </div>
-</div>
-<div id="thin-splines-expanded" class="section level3" number="0.2.3">
-<h3><span class="header-section-number">0.2.3</span> Thin splines expanded</h3>
 <p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-16-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
@@ -899,6 +2012,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a0a9a135d4a4f5a9d477da47e122ce1f39774b4c/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-16-1.png" target="_blank">a0a9a13</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-19
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/60c88eab5873159161685a09332ba43b4b4b3df7/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-16-1.png" target="_blank">60c88ea</a>
 </td>
 <td>
@@ -913,11 +2037,99 @@ ajpelu
 </div>
 </div>
 </div>
+<div id="surfaces" class="section level2" number="0.3">
+<h2><span class="header-section-number">0.3</span> Surfaces</h2>
+<div id="natural-splines" class="section level3" number="0.3.1">
+<h3><span class="header-section-number">0.3.1</span> Natural splines</h3>
+<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-17-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-1">
+Past versions of unnamed-chunk-17-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-17-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a0a9a135d4a4f5a9d477da47e122ce1f39774b4c/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-17-1.png" target="_blank">a0a9a13</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-19
+</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="combined-surfaces" class="section level2" number="0.3">
-<h2><span class="header-section-number">0.3</span> Combined surfaces</h2>
-<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-17-1.png" width="1248" style="display: block; margin: auto;" /></p>
-<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-18-1.png" width="1248" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="thin-splines" class="section level3" number="0.3.2">
+<h3><span class="header-section-number">0.3.2</span> Thin splines</h3>
+<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-18-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-1">
+Past versions of unnamed-chunk-18-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-18-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/a0a9a135d4a4f5a9d477da47e122ce1f39774b4c/docs/figure/figura_npp_etp.Rmd/unnamed-chunk-18-1.png" target="_blank">a0a9a13</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-06-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="thin-splines-expanded" class="section level3" number="0.3.3">
+<h3><span class="header-section-number">0.3.3</span> Thin splines expanded</h3>
+<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-19-1.png" width="1152" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="combined-surfaces" class="section level2" number="0.4">
+<h2><span class="header-section-number">0.4</span> Combined surfaces</h2>
+<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-20-1.png" width="1248" style="display: block; margin: auto;" /></p>
+<p><img src="figure/figura_npp_etp.Rmd/unnamed-chunk-21-1.png" width="1248" style="display: block; margin: auto;" /></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -945,37 +2157,38 @@ attached base packages:
 [8] base     
 
 other attached packages:
- [1] fields_15.2        viridisLite_0.4.2  spam_2.10-0        patchwork_1.2.0   
- [5] ggsci_3.0.3        metR_0.15.0        geomtextpath_0.1.3 ggh4x_0.2.8       
- [9] SPEI_1.8.1         sf_1.0-16          lubridate_1.9.3    forcats_1.0.0     
-[13] stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2        readr_2.1.5       
-[17] tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.1      tidyverse_2.0.0   
-[21] workflowr_1.7.1   
+ [1] kableExtra_1.4.0   fields_15.2        viridisLite_0.4.2  spam_2.10-0       
+ [5] patchwork_1.2.0    ggsci_3.0.3        metR_0.15.0        geomtextpath_0.1.3
+ [9] ggh4x_0.2.8        SPEI_1.8.1         sf_1.0-16          lubridate_1.9.3   
+[13] forcats_1.0.0      stringr_1.5.1      dplyr_1.1.4        purrr_1.0.2       
+[17] readr_2.1.5        tidyr_1.3.1        tibble_3.2.1       ggplot2_3.5.1     
+[21] tidyverse_2.0.0    workflowr_1.7.1   
 
 loaded via a namespace (and not attached):
  [1] DBI_1.2.2          rlang_1.1.4        magrittr_2.0.3     TLMoments_0.7.5.3 
- [5] git2r_0.33.0       e1071_1.7-14       compiler_4.3.3     getPass_0.2-4     
- [9] mgcv_1.9-1         systemfonts_1.0.6  callr_3.7.6        vctrs_0.6.5       
+ [5] git2r_0.33.0       e1071_1.7-14       compiler_4.3.3     mgcv_1.9-1        
+ [9] getPass_0.2-4      systemfonts_1.0.6  callr_3.7.6        vctrs_0.6.5       
 [13] maps_3.4.2         pkgconfig_2.0.3    crayon_1.5.2       fastmap_1.2.0     
 [17] backports_1.4.1    labeling_0.4.3     utf8_1.2.4         promises_1.3.0    
 [21] rmarkdown_2.26     tzdb_0.4.0         ps_1.7.6           ragg_1.3.0        
 [25] bit_4.0.5          xfun_0.43          cachem_1.1.0       jsonlite_1.8.8    
 [29] goftest_1.2-3      highr_0.10         later_1.3.2        reshape_0.8.9     
-[33] parallel_4.3.3     R6_2.5.1           bslib_0.7.0        stringi_1.8.3     
-[37] jquerylib_0.1.4    Rcpp_1.0.12        bookdown_0.38      knitr_1.45        
-[41] zoo_1.8-12         Lmoments_1.3-1     Matrix_1.6-5       httpuv_1.6.15     
-[45] timechange_0.3.0   tidyselect_1.2.1   rstudioapi_0.16.0  yaml_2.3.8        
-[49] processx_3.8.4     lattice_0.22-5     plyr_1.8.9         withr_3.0.0       
-[53] evaluate_0.23      isoband_0.2.7      units_0.8-5        proxy_0.4-27      
-[57] pillar_1.9.0       whisker_0.4.1      KernSmooth_2.23-22 checkmate_2.3.1   
-[61] generics_0.1.3     vroom_1.6.5        rprojroot_2.0.4    hms_1.1.3         
-[65] munsell_0.5.1      scales_1.3.0       class_7.3-22       glue_1.7.0        
-[69] lmom_3.0           tools_4.3.3        data.table_1.15.4  fs_1.6.4          
-[73] dotCall64_1.1-1    grid_4.3.3         colorspace_2.1-0   nlme_3.1-164      
-[77] cli_3.6.2          textshaping_0.3.7  fansi_1.0.6        gtable_0.3.5      
-[81] sass_0.4.9         digest_0.6.35      lmomco_2.4.14      classInt_0.4-10   
-[85] farver_2.1.2       memoise_2.0.1      htmltools_0.5.8.1  lifecycle_1.0.4   
-[89] httr_1.4.7         bit64_4.0.5        MASS_7.3-60.0.1   </code></pre>
+[33] broom_1.0.5        parallel_4.3.3     R6_2.5.1           bslib_0.7.0       
+[37] stringi_1.8.3      jquerylib_0.1.4    Rcpp_1.0.12        bookdown_0.38     
+[41] knitr_1.45         zoo_1.8-12         Lmoments_1.3-1     Matrix_1.6-5      
+[45] httpuv_1.6.15      timechange_0.3.0   tidyselect_1.2.1   rstudioapi_0.16.0 
+[49] yaml_2.3.8         processx_3.8.4     lattice_0.22-5     plyr_1.8.9        
+[53] withr_3.0.0        evaluate_0.23      isoband_0.2.7      units_0.8-5       
+[57] proxy_0.4-27       xml2_1.3.6         pillar_1.9.0       whisker_0.4.1     
+[61] KernSmooth_2.23-22 checkmate_2.3.1    generics_0.1.3     vroom_1.6.5       
+[65] rprojroot_2.0.4    hms_1.1.3          munsell_0.5.1      scales_1.3.0      
+[69] class_7.3-22       glue_1.7.0         lmom_3.0           tools_4.3.3       
+[73] data.table_1.15.4  fs_1.6.4           dotCall64_1.1-1    grid_4.3.3        
+[77] colorspace_2.1-0   nlme_3.1-164       cli_3.6.2          textshaping_0.3.7 
+[81] fansi_1.0.6        svglite_2.1.3      gtable_0.3.5       sass_0.4.9        
+[85] digest_0.6.35      lmomco_2.4.14      classInt_0.4-10    farver_2.1.2      
+[89] memoise_2.0.1      htmltools_0.5.8.1  lifecycle_1.0.4    httr_1.4.7        
+[93] bit64_4.0.5        MASS_7.3-60.0.1   </code></pre>
 </div>
 </div>
 
