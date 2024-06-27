@@ -2075,5 +2075,40 @@ models |>
 ```
 
 
+```{r}
+x <- result_mcombrat1$likeli_hist
+
+x |> slice_max(likeli) |> unique()
+
+x |> filter(MR > 0.6) |> 
+  ggplot(aes(x=MR, y=-likeli)) + geom_point()
+
+
+result_mcombrat9  <- anneal(
+  model = mcombrat9, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10, Pa = 0.4, Pb = 0.3, Pc = 0.003), 
+  par_lo = list(MR = 0, b = 0, k = -2, t0 = 0, Pa = 0.2, Pb = 0.01, Pc = 0.0001),
+  par_hi = list(MR = 1, b = 0.2, k = 2, t0 = 20, Pa = 0.8, Pb = 5, Pc = 0.01),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 50000, 
+  show_display = FALSE
+)
+
+support_limits(mcombrat1, result_mcombrat1$best_pars, 
+               var = var, source_data = d, pdf = dnorm)
+
+
+sqrt(diag(solve(-1*result_mcombrat1$hessian)))
+
+result_mcombrat1$std_errs$*1.96
+
+
+
+```
 
 

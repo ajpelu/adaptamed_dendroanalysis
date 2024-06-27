@@ -4,6 +4,11 @@ colours_elev <- c("low" = "red", "low-Dec" ="orange", "medium" = "blue", "high" 
 
 colours_temp <- c("tmin" = "#a6bddb", "tmed" = "#67a9cf", "tmax" = "#016c59")
 
+
+lines_lm <- c("sig" = "solid", "no sig" = "longdash")
+
+lines_lm_size <- c("sig" = .8, "no sig" = 1)
+
 # colours_sp <- c("pinaster" = "#f9e900", "nigra" = "darkgreen", "halepensis" = "orange", "sylvestris" = "#67a9cf")
 colours_sp <- c("halepensis" = "#c1666b",
                 "pinaster" = "#ecb42e",
