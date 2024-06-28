@@ -1,0 +1,1014 @@
+---
+title: "Figure NPP EVI ABI vs water balance"
+date: "2024-03-24"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(sf)
+library(SPEI)
+library(ggh4x)
+library(geomtextpath)
+library(metR)
+library(ggsci)
+library(patchwork)
+library(fields)
+library(splines)
+library(kableExtra)
+source("scripts/aux.R")
+```
+
+```{r}
+annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |> 
+  dplyr::select(sp_elev, year, monthly_pet, monthly_tmed, monthly_prec) |> 
+  group_by(sp_elev, year) |>
+  summarise(pet = sum(monthly_pet), 
+            prec = sum(monthly_prec),
+            tmed = mean(monthly_tmed, na.rm = TRUE)) |> 
+  rowwise() |> 
+  mutate(water_balance = prec - pet)
+```
+
+
+```{r}
+abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
+  rename(mean = IBT_ag_m2) |> 
+  mutate(se = NA, sd = NA, variable = "abi") 
+
+evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
+  filter(iv == "evi") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
+  mutate(variable = "evi_landsat")
+
+npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |> 
+  rename(mean = npp) |> 
+  mutate(se = NA, sd = NA, variable = "npp") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se, variable) 
+
+evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |> 
+  filter(variable == "evi") |> 
+  filter(season == "yearly") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
+  mutate(variable = "evi_modis")
+
+
+df_index <- bind_rows(
+  abi, evi_landsat, evi_modis, npp) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  rename(mean_y = mean, y_variable = variable)
+
+df <- df_index |> 
+  inner_join(annual_pet) |> 
+  pivot_longer(pet:water_balance, values_to = "mean_climate", 
+               names_to = "climate_variable")
+
+df_plot <- df |> filter(year > 1990) |> 
+  mutate(y_variable2 = case_when(
+      y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})",
+      y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]",
+      y_variable == "evi_modis" ~ "Annual~EVI[MODIS]",
+      y_variable == "npp" ~"Annual~NPP[MODIS]~(g~C~m^2~year^{-1})")) |> 
+  mutate(y_variable2 = fct_relevel(y_variable2, 
+                                  "Annual~EVI[Landsat]", 
+                                  "Annual~EVI[MODIS]",
+                                  "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                  "ABI~(g~C~m^2~year^{-1})")) |> 
+  filter(y_variable != "evi_modis") 
+```
+
+
+
+```{r}
+label_landsat <- "Annual~EVI[Landsat]"
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_abi <- "ABI~(g~C~m^2~year^{-1})"
+label_wb <- "P-PET (mm)"
+label_prec <- "Precipitation (mm)"
+```
+
+
+
+```{r}
+# df_tmed <- df_plot |>
+#   filter(climate_variable == "tmed") |>
+#   filter(y_variable != "evi_modis") |>
+#   dplyr::select(tmed = mean_climate, y_variable, mean_y) |>
+#   pivot_wider(values_from = mean_y, names_from = y_variable)
+# 
+# write_csv(df_tmed, "/Users/ajpelu/Desktop/tmed.csv")
+```
+
+
+
+```{r}
+## Scales 
+y_scales <- list(
+  scale_y_continuous(limits = c(0, 0.5)),
+  scale_y_continuous(limits = c(0,1250)),
+  scale_y_continuous(limits = c(0, 700))
+)
+```
+
+```{r, echo=FALSE, eval=FALSE}
+# black: logis 
+# blue: asymp 
+
+## evi 
+wb_evi <- df_plot |> filter(climate_variable == "water_balance") |> 
+  filter(y_variable == "evi_landsat") 
+init_aysmp_evi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = wb_evi)))
+init_logis_evi <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = wb_evi)))
+
+
+## npp
+# asymp da error en NPP 
+wb_npp <- df_plot |> filter(climate_variable == "water_balance") |> 
+  filter(y_variable == "npp") 
+
+# init_aysmp_npp <- as.data.frame(t(getInitial(mffean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = wb_npp)))
+init_logis_npp <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = wb_npp)))
+
+## abi
+wb_abi <- df_plot |> filter(climate_variable == "water_balance") |> 
+  filter(y_variable == "abi") 
+init_logis_abi <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = wb_abi)))
+
+init_aysmp_abi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = wb_abi)))
+
+
+plot_wb <- 
+  df_plot|> 
+  filter(climate_variable == "water_balance") |> 
+  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code)) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() + 
+  geom_smooth(method = "lm", se = FALSE, linewidth = 1) +
+  ##### EVI 
+  # geom_smooth(aes(), 
+  #             data = wb_evi,
+  #             method = "nls", 
+  #             formula=y~SSasymp(x, Asym, R0, lrc),
+  #             se =  FALSE, # this is important 
+  #             method.args =list(start=init_aysmp_evi,
+  #                               control=nls.control(maxiter=1000)),
+  #             size = 1, colour = "blue") +
+  # geom_smooth(aes(), 
+  #             data = wb_evi,
+  #             method = "nls", 
+  #             formula= y ~ a + b * (exp(-exp(-c * (x - d)))),
+  #             se =  FALSE, # this is important 
+  #             method.args =list(start=list(a = -1, b =.4, c = 0.0065, d = -400),
+  #                               control=nls.control(maxiter=1000)),
+  #             size = 1, 
+  #             colour = "red") + 
+  geom_smooth(aes(), 
+              data = wb_evi,
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              method.args =list(start=init_logis_evi,
+                                control=nls.control(maxiter=1000)),
+              size = 1, colour = "black") +
+  ##### NPP
+  geom_smooth(aes(), 
+              data = wb_npp,
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              method.args =list(start=init_logis_npp,
+                                control=nls.control(maxiter=1000)),
+              size = 1, colour = "black") +
+  ##### ABI
+  geom_smooth(aes(), 
+              data = wb_abi,
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              method.args =list(start=init_logis_abi,
+                                control=nls.control(maxiter=1000)),
+              size = 1, colour = "black") +
+  # geom_smooth(aes(), 
+  #             data = wb_abi,
+  #             method = "nls", 
+  #             formula=y~SSasymp(x, Asym, R0, lrc),
+  #             se =  FALSE, # this is important 
+  #             method.args =list(start=init_aysmp_abi,
+  #                               control=nls.control(maxiter=1000)),
+  #             size = 1, colour = "blue") +
+  ylab("") + 
+  xlab("Water balance (mm)")+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "top", 
+    strip.text = element_text(face = "bold", size = 14),
+    axis.title.x = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(-900, 1200)) +
+  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
+                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                    "ABI~(g~C~m^2~year^{-1})")),
+             scales = "free_y", 
+                     labeller = label_parsed, 
+                     strip.position = "left") +
+    facetted_pos_scales(y = y_scales)
+  
+
+```
+
+
+## Linear regressions for plot
+```{r}
+l <- df_plot |> 
+  filter(climate_variable != "pet") |> 
+  group_by(y_variable,climate_variable, sp_code) |> 
+  group_modify(
+     ~ broom::tidy(lm(mean_y ~ mean_climate, data = .x))
+  ) |>
+  filter(term != "(Intercept)") |> 
+  mutate(p = case_when(
+    p.value < 0.001 ~ "<0.001",
+    p.value >= 0.001 ~ as.character(round(p.value, 3))
+  )) |> 
+  mutate(sig = case_when(
+    p.value < 0.001 ~ "sig",
+    p.value >= 0.001 ~ "no sig"  
+  )) 
+```
+
+```{r}
+l |> kbl() |> kable_styling()
+```
+
+```{r}
+df_plot <- 
+  df_plot |> inner_join(
+    l |> dplyr::select(y_variable, climate_variable, sp_code, p, sig)) 
+```
+
+
+
+```{r, fig.width=12, fig.height=6}
+## Water-Balance 
+plot_wb <- 
+  df_plot|> 
+  filter(climate_variable == "water_balance") |> 
+  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() + 
+  geom_smooth(aes(linetype = sig, linewidth = sig), method = "lm", se = FALSE) +
+  scale_linetype_manual(values = lines_lm, guide = "none") +
+  scale_linewidth_manual(values = lines_lm_size, guide = "none") +
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") + 
+  ylab("") + 
+  xlab("Water balance (mm)")+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "top", 
+    strip.text = element_text(face = "bold", size = 14),
+    axis.title.x = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(-900, 1200)) +
+  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
+                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                    "ABI~(g~C~m^2~year^{-1})")),
+             scales = "free_y", 
+                     labeller = label_parsed, 
+                     strip.position = "left") +
+    facetted_pos_scales(y = y_scales)
+  
+
+# Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
+# https://derekogle.com/fishR/examples/oldFishRVignettes/VonBertalanffy.pdf
+```
+
+
+
+```{r, fig.width=12, fig.height=6}
+## Precipitation
+plot_prec <- 
+  df_plot|> 
+  filter(climate_variable == "prec") |> 
+  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() + 
+  geom_smooth(aes(linetype = sig, linewidth = sig), method = "lm", se = FALSE) +
+  scale_linetype_manual(values = lines_lm, guide = "none") +
+  scale_linewidth_manual(values = lines_lm_size, guide = "none") +
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula=y~SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") + 
+  ylab("") + 
+  xlab("Precipitation (mm)")+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+     legend.position = "none", 
+    axis.title.x = element_text(face = "bold", size = 14),
+    strip.text = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(0, 1750)) +
+  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
+                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                    "ABI~(g~C~m^2~year^{-1})")),
+             scales = "free_y", 
+                     labeller = label_parsed, 
+                     strip.position = "left") +
+    facetted_pos_scales(y = y_scales)
+  
+
+# Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
+# https://derekogle.com/fishR/examples/oldFishRVignettes/VonBertalanffy.pdf
+```
+
+```{r, fig.width=12, fig.height=6}
+## Tmed
+t_npp <- df_plot |> filter(climate_variable == "tmed") |> 
+  filter(y_variable == "npp") 
+
+plot_tmed <- 
+  df_plot |> 
+  filter(climate_variable == "tmed") |> 
+  ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = .5) +
+  scale_colour_manual(values = colours_sp, name = "Species") +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(values = colours_sp, name = "Species") + 
+  theme_bw() +
+  geom_smooth(aes(linetype = sig, linewidth = sig), method = "lm", se = FALSE) +
+  scale_linetype_manual(values = lines_lm, guide = "none") +
+  scale_linewidth_manual(values = lines_lm_size, guide = "none") +
+  geom_smooth(aes(),
+              method = "nls", 
+              formula = y ~ SSlogis(x, Asym, xmid, scal),
+              se =  FALSE, # this is important 
+              linewidth = 1, colour = "black") +
+  ylab("") + 
+  xlab("Annual Mean Temperature (ºC)")+
+  theme(
+    panel.grid = element_blank(), 
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = "none", 
+    strip.text = element_text(face = "bold", size = 14), 
+    axis.title.x = element_text(face = "bold", size = 14)
+  ) + 
+  scale_x_continuous(limits = c(8, 16)) +
+  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
+                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                    "ABI~(g~C~m^2~year^{-1})")),
+             scales = "free_y", 
+                     labeller = label_parsed, 
+                     strip.position = "left") +
+    facetted_pos_scales(y = y_scales)
+```
+
+```{r, eval=FALSE}
+# black: logis 
+# blue: asymp 
+
+## evi 
+t_evi <- df_plot |> filter(climate_variable == "tmed") |> 
+  filter(y_variable == "evi_landsat") 
+
+init_aysmp_evi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = t_evi)))
+init_logis_evi <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = t_evi)))
+
+
+## npp
+# asymp da error en NPP 
+t_npp <- df_plot |> filter(climate_variable == "tmed") |> 
+  filter(y_variable == "npp") 
+
+# init_aysmp_npp <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = wb_npp)))
+
+init_logis_npp <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = t_npp)))
+
+## abi
+t_abi <- df_plot |> filter(climate_variable == "tmed") |> 
+  filter(y_variable == "abi") 
+init_logis_abi <- as.data.frame(t(getInitial(mean_y ~ SSlogis(mean_climate, Asym, xmid, scal), data = t_abi)))
+
+init_aysmp_abi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym, R0, lrc), data = t_abi)))
+```
+
+
+## Combined 
+```{r, fig.width=13, fig.height=13}
+
+wb_prec_tmed <- plot_wb / plot_prec / plot_tmed 
+wb_prec_tmed 
+
+ggsave(
+  wb_prec_tmed, 
+  file = "output/combined_wb_prec_tmed.png",
+  dpi = 300,
+  width = 13, height = 13
+)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+```{r, fig.width=12, fig.height=12}
+f <- plot_wb / plot_tmed
+f
+ggsave(
+  f, 
+  file = "output/combined_fig.png",
+  dpi = 300,
+  width = 12, height = 8
+)
+```
+
+
+## Surfaces 
+### Natural splines  
+```{r, fig.width=12, fig.height=6}
+# Using natural splines 
+
+df_surfaces <- df_plot |>
+  dplyr::select(-p, -sig) |> 
+  filter(climate_variable %in% c("water_balance", "tmed")) |> 
+  filter(y_variable != "evi_modis") |> 
+  mutate(climate_variable = fct_relevel(climate_variable, "water_balance","tmed")) |> 
+  mutate(y_variable = fct_relevel(y_variable, "evi_landsat", "npp", "abi")) |> 
+  pivot_wider(names_from = climate_variable, values_from = mean_climate) 
+
+
+generate_predict <- function(data, v) { 
+  
+  surf <- data |> filter(y_variable == v)
+  grid <- expand.grid(water_balance = seq(min(data$water_balance), max(data$water_balance), 20), 
+                    tmed = seq(min(data$tmed), 
+                               max(data$tmed), 0.1))
+  grid[[v]] <- predict(lm(mean_y ~ ns(water_balance, df=5) + ns(tmed, df=5), data = surf), grid)
+  return(grid)
+  }
+
+predicted_values <- generate_predict(df_surfaces, v = "evi_landsat")  |> 
+  inner_join(generate_predict(df_surfaces, v = "npp")) |> 
+  inner_join(generate_predict(df_surfaces, v = "abi"))
+
+# |> 
+#   pivot_longer(evi_landsat:abi, values_to = "predict", names_to = "yvar")
+
+breaks <- seq(0.05, 0.6, by=0.025)
+
+## plot evi 
+surface_evi <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = evi_landsat), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") + 
+  #scale_fill_gradient(low = "#ffffe5", high = "#41ab5d") + 
+  scale_fill_material("blue-grey") + 
+  metR::geom_text_contour(aes(z = evi_landsat),
+                          breaks = breaks,  colour = "black", stroke = .1, stroke.colour = "white", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "evi_landsat")),
+    aes(x = water_balance, y = tmed), 
+    colour = "white",
+    size=.8
+  ) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
+  theme_bw() +
+  theme(panel.border = element_blank()) +
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") 
+# + ggtitle(expression(Annual~EVI[Landsat]))
+
+
+## plot npp
+breaks <- seq(125, 2100, by=75)
+surface_npp <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = npp), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") +
+  # scale_fill_material("brown") + 
+  scale_fill_material("blue-grey") + 
+  # scale_fill_gradient(low = "#fcfbfd", high = "#3f007d") + 
+  # scale_fill_gradientn(colours = heat.colors(14)) + 
+  metR::geom_text_contour(aes(z = npp),
+                          breaks = breaks,  colour = "black", stroke = .1, stroke.colour = "white", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "npp")),
+    aes(x = water_balance, y = tmed), 
+    colour = "white",
+    size=.8
+  ) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
+  theme_bw() +
+  theme(panel.border = element_blank()) +
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") 
+# + ggtitle(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1})))
+
+
+
+
+## plot abi
+breaks <- seq(-200, 600, by=50)
+surface_abi <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = abi), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") +
+  scale_fill_material("blue-grey") + 
+  # scale_fill_gradient(low = "#fcfbfd", high = "#3f007d") + 
+  # scale_fill_gradientn(colours = heat.colors(14)) + 
+  metR::geom_text_contour(aes(z = abi),
+                          breaks = breaks,  colour = "black", stroke = .1, stroke.colour = "white", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "npp")),
+    aes(x = water_balance, y = tmed), 
+    colour = "white",
+    size=.8
+  ) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
+  theme_bw() +
+  theme(panel.border = element_blank()) +
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") 
+# + ggtitle(expression(ABI~(g~C~m^2~year^{-1})))
+
+
+  
+### 
+surface_evi + surface_npp + surface_abi 
+  
+
+
+```
+
+### Thin splines
+```{r, fig.width=12, fig.height=6}
+# Using natural splines 
+df_surfaces <- df_plot |>
+  dplyr::select(-p, -sig) |> 
+  filter(climate_variable %in% c("water_balance", "tmed")) |> 
+  filter(y_variable != "evi_modis") |> 
+  mutate(climate_variable = fct_relevel(climate_variable, "water_balance","tmed")) |> 
+  mutate(y_variable = fct_relevel(y_variable, "evi_landsat", "npp", "abi")) |> 
+  pivot_wider(names_from = climate_variable, values_from = mean_climate) 
+
+
+predictTps <- function(data, v) { 
+  surf <- data |> filter(y_variable == v)
+  fit <- fields::Tps(cbind(surf$water_balance, surf$tmed), surf$mean_y)
+  pred <- predictSurface(fit) 
+  
+  g <- expand.grid(water_balance = pred$x,
+                            tmed = pred$y)
+  g[[v]] <- as.vector(pred$z)
+  
+  return(g)
+}
+
+ 
+point_size <- 0.6 
+point_colour <- "white"
+
+
+
+
+predicted_values <- predictTps(df_surfaces, v = "evi_landsat")
+
+breaks <- seq(0.05, 0.6, by=0.025)
+
+## plot evi 
+surface_evi <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = evi_landsat), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") + 
+  scale_fill_material("blue-grey") + 
+  # metR::geom_text_contour(aes(z = evi_landsat),
+  #                         breaks = breaks,  colour = "black", stroke = 0, stroke.colour = "white", 
+  #                         label.placer = label_placer_n(n=1)) + 
+  metR::geom_label_contour(aes(z = evi_landsat),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "evi_landsat")),
+    aes(x = water_balance, y = tmed), 
+    colour = point_colour,
+    size = point_size
+  ) +
+  theme_bw() +
+  theme(panel.grid = element_blank()
+  ) + xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(Annual~EVI[Landsat])) +
+  scale_x_continuous(limits = c(-750, 1000))  
+
+
+## plot npp
+breaks <- seq(150,950, by=50)
+predicted_values <- predictTps(df_surfaces, v = "npp")
+
+surface_npp <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = npp), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") +
+  scale_fill_material("blue-grey") + 
+  # metR::geom_text_contour(aes(z = npp),
+  #                         breaks = breaks,  colour = "black", stroke = 0, stroke.colour = "white", 
+  #                         label.placer = label_placer_n(n=1)) + 
+  metR::geom_label_contour(aes(z = npp),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "npp")),
+    aes(x = water_balance, y = tmed), 
+    colour = point_colour,
+    size = point_size
+  ) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) + 
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") +
+  ggtitle(expression(Annual~NPP[MODIS]~(g~C~m^2~year^-1))) +
+  scale_x_continuous(limits = c(-750, 1000))  
+
+
+
+
+## plot abi
+breaks <- seq(-200, 600, by=25)
+predicted_values <- predictTps(df_surfaces, v = "abi")
+surface_abi <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = abi), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") +
+  scale_fill_material("blue-grey") + 
+  # metR::geom_text_contour(aes(z = abi),
+  #                         breaks = breaks,  colour = "black", stroke = 0, stroke.colour = "white", 
+  #                         label.placer = label_placer_n(n=1)) + 
+  metR::geom_label_contour(aes(z = abi),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1)) +  
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "npp")),
+    aes(x = water_balance, y = tmed), 
+    colour = point_colour,
+    size = point_size
+  ) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) + 
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(ABI~(g~C~m^2~year^-1))) +
+  scale_x_continuous(limits = c(-750, 1000))  
+
+
+  
+### 
+surface_evi + surface_npp + surface_abi 
+  
+```
+
+### Thin splines expanded 
+```{r, fig.width=12, fig.height=6}
+# Using natural splines 
+df_surfaces <- df_plot |>
+  dplyr::select(-p, -sig) |> 
+  filter(climate_variable %in% c("water_balance", "tmed")) |> 
+  filter(y_variable != "evi_modis") |> 
+  mutate(climate_variable = fct_relevel(climate_variable, "water_balance","tmed")) |> 
+  mutate(y_variable = fct_relevel(y_variable, "evi_landsat", "npp", "abi")) |> 
+  pivot_wider(names_from = climate_variable, values_from = mean_climate) 
+
+
+predictTps <- function(data, v) { 
+  surf <- data |> filter(y_variable == v)
+  fit <- fields::Tps(cbind(surf$water_balance, surf$tmed), surf$mean_y)
+  pred <- predictSurface(fit, extrap = TRUE) 
+  
+  g <- expand.grid(water_balance = pred$x,
+                            tmed = pred$y)
+  g[[v]] <- as.vector(pred$z)
+  
+  return(g)
+}
+
+ 
+point_size <- 0.6 
+point_colour <- "white"
+
+
+
+
+predicted_values <- predictTps(df_surfaces, v = "evi_landsat")
+
+breaks <- seq(0.05, 0.6, by=0.025)
+
+## plot evi 
+surface_evi_e <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = evi_landsat), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") + 
+  scale_fill_material("blue-grey") + 
+  # metR::geom_text_contour(aes(z = evi_landsat),
+  #                         breaks = breaks,  colour = "black", stroke = 0, stroke.colour = "white", 
+  #                         label.placer = label_placer_n(n=1)) + 
+  metR::geom_label_contour(aes(z = evi_landsat),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "evi_landsat")),
+    aes(x = water_balance, y = tmed), 
+    colour = point_colour,
+    size = point_size
+  ) +
+  theme_bw() +
+  theme(panel.grid = element_blank()
+  ) + xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(Annual~EVI[Landsat])) +
+  scale_x_continuous(limits = c(-750, 1000))  
+
+
+## plot npp
+breaks <- seq(150,950, by=50)
+predicted_values <- predictTps(df_surfaces, v = "npp")
+
+surface_npp_e <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = npp), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") +
+  scale_fill_material("blue-grey") + 
+  # metR::geom_text_contour(aes(z = npp),
+  #                         breaks = breaks,  colour = "black", stroke = 0, stroke.colour = "white", 
+  #                         label.placer = label_placer_n(n=1)) + 
+  metR::geom_label_contour(aes(z = npp),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "npp")),
+    aes(x = water_balance, y = tmed), 
+    colour = point_colour,
+    size = point_size
+  ) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) + 
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") +
+  ggtitle(expression(Annual~NPP[MODIS]~(g~C~m^2~year^-1))) +
+  scale_x_continuous(limits = c(-750, 1000))  
+
+
+
+
+## plot abi
+breaks <- seq(-200, 600, by=25)
+predicted_values <- predictTps(df_surfaces, v = "abi")
+surface_abi_e <- predicted_values |> 
+  ggplot(aes(x = water_balance, y = tmed)) +
+  metR::geom_contour_fill(aes(z = abi), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") +
+  scale_fill_material("blue-grey") + 
+  # metR::geom_text_contour(aes(z = abi),
+  #                         breaks = breaks,  colour = "black", stroke = 0, stroke.colour = "white", 
+  #                         label.placer = label_placer_n(n=1)) + 
+  metR::geom_label_contour(aes(z = abi),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "npp")),
+    aes(x = water_balance, y = tmed), 
+    colour = point_colour,
+    size = point_size
+  ) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) + 
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(ABI~(g~C~m^2~year^-1))) +
+  scale_x_continuous(limits = c(-750, 1000))  
+
+
+  
+### 
+surface_evi_e + surface_npp_e + surface_abi_e 
+  
+
+
+
+```
+
+
+## Combined surfaces
+```{r, fig.width=13, fig.height=13}
+
+cp <- plot_wb / plot_tmed / (surface_evi + surface_npp + surface_abi)
+
+cp 
+ggsave(
+  cp, 
+  file = "output/combined_fig.png",
+  dpi = 300,
+  width = 13, height = 13
+)
+
+```
+
+
+```{r, fig.width=13, fig.height=13}
+cpe <- plot_wb / plot_tmed / (surface_evi_e + surface_npp_e + surface_abi_e)
+
+cpe
+ggsave(
+  cpe, 
+  file = "output/combined_fig_extrapolated.png",
+  dpi = 300,
+  width = 13, height = 13
+)
+  
+  
+```
+
+
+
+
+```{r, eval=FALSE, echo=FALSE}
+## Test Surfaces 
+
+### Simple linear combination 
+d <- df_surfaces |> 
+  filter(y_variable == "npp") |> 
+  dplyr::select(z = mean_y, wb = water_balance, tmed)
+
+## A 
+# https://stackoverflow.com/questions/77853257/ggplot2-geom-contour-how-to-remove-the-gray-panel-around-a-plot
+d_grid <- expand.grid(
+  wb = seq(min(d$wb), max(d$wb), 20),
+  tmed = seq(min(d$tmed), max(d$tmed), 0.1))
+
+d_grid$z <- predict(lm(z ~ wb * tmed, data = d), d_grid)
+
+breaks <- seq(125, 1675, by=75)
+d_grid |> 
+  ggplot(aes(x = wb, y = tmed)) + 
+  geom_contour_filled(aes(z=z), breaks = breaks,
+                      show.legend = FALSE) + 
+  geom_textcontour(aes(z=z), size = 3, breaks = breaks, colour = "white") +
+  geom_point(
+    data = 
+      (df_surfaces |> 
+         filter(y_variable == "npp")),
+    aes(x = water_balance, y = tmed), 
+    colour = "white",
+    size=.6
+  ) +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0)) +
+  theme_bw() +
+  theme(panel.border = element_blank()) +
+  xlab("Water Balance (mm)") +
+  ylab("Annual Mean Temperature (ºC)") +
+  ggtitle(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1})))
+
+```
+
+
+
+```{r, eval=FALSE, echo=FALSE}
+#### TEST ajustes
+
+g <- df_plot |> filter(climate_variable == "water_balance") |> 
+  filter(y_variable == "npp") |> 
+  pivot_wider(names_from = climate_variable, values_from = mean_climate) |> 
+  pivot_wider(names_from = y_variable, values_from = mean_y)
+
+# ver https://osf.io/7gkny/
+# https://mhasoba.github.io/TheMulQuaBio/notebooks/20-ModelFitting-NLLS.html 
+
+g |> dplyr::select(water_balance, evi_landsat) |> write_csv("/Users/ajpelu/Desktop/test.csv")
+
+# Get init 
+init_aysmpOff <- as.data.frame(t(getInitial(npp ~ SSasympOff(water_balance, Asym, lrc, c0), data = g)))
+init_aysmp <- as.data.frame(t(getInitial(npp ~ SSasymp(water_balance, Asym, R0, lrc), data = g)))
+init_gomp <- as.data.frame(t(getInitial(npp ~ SSgompertz(water_balance, Asym, b2, b3), data = g)))
+init_logist <-  as.data.frame(t(getInitial(npp ~ SSlogis(water_balance, Asym, xmid, scal), data = g)))
+  
+  
+
+
+g |> 
+  ggplot(aes(x = water_balance, y = evi_landsat)) + 
+  geom_point() +
+          geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~a + b * (exp(-exp(-c * (x - d)))), 
+              se =  FALSE, # this is important 
+              method.args =list(start = c(a = 0.15, b = 0.3, c = 0.005, d = -420),        
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "orange") +
+  
+  
+  geom_smooth(aes(), 
+              method = "nls", 
+              # formula = y~Asym/(1+exp(-(x-xmid)/scal)), 
+              formula = y~Asym*(1 - exp(-exp(lrc)*(x - c0))),
+              se =  FALSE, # this is important 
+              method.args =list(start=init_aysmpOff,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "black") +
+  geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym+(R0-Asym)*exp(-exp(lrc)*x),
+              se =  FALSE, # this is important 
+              method.args =list(start=init_aysmp,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "blue") +
+    geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym*exp(-b2*b3^x),
+              se =  FALSE, # this is important 
+              method.args =list(start=init_gomp,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "red") +
+      geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~Asym/(1+exp((xmid-x)/scal)),
+              se =  FALSE, # this is important 
+              method.args =list(start=init_logist,
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "green") 
+
++
+        geom_smooth(aes(), 
+              method = "nls", 
+              formula = y~a+b(exp(−exp(−c(x−d)))),
+              se =  FALSE, # this is important 
+              method.args =list(start=list(a = 0.15, b = .3, c = 0.005 , d = -420),
+                                control=nls.control(maxiter=1000)),
+              size = 1.5, 
+              colour = "orange") 
+  
+```
+
