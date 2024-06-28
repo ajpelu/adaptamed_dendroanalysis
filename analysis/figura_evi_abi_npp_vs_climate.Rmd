@@ -1,5 +1,5 @@
 ---
-title: "Figure NPP EVI ABI vs water balance"
+title: "Figure NPP EVI ABI vs climate"
 date: "2024-03-24"
 output: workflowr::wflow_html
 editor_options:
@@ -425,7 +425,7 @@ init_aysmp_abi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym
 ```
 
 
-## Combined 
+## Combined Figure (Fig 3) 
 ```{r, fig.width=13, fig.height=13}
 
 wb_prec_tmed <- plot_wb / plot_prec / plot_tmed 
