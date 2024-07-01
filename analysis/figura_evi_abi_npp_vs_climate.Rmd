@@ -750,9 +750,6 @@ predictTps <- function(data, v) {
 point_size <- 0.6 
 point_colour <- "white"
 
-
-
-
 predicted_values <- predictTps(df_surfaces, v = "evi_landsat")
 
 breaks <- seq(0.05, 0.6, by=0.025)
