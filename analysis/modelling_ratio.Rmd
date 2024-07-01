@@ -491,10 +491,11 @@ df_predicted_tmed_mod <- data.frame(tmed = seq(0,25, by =.5)) |>
   )
 
 
-df_predicted_tmed <- df_predicted_tmed_mod |> pivot_longer(-tmed, names_to = "modelo", values_to = "pred") 
+df_predicted_tmed <- df_predicted_tmed_mod |> pivot_longer(-tmed, names_to = "modelo", values_to = "pred") |> 
+  inner_join(name_models)
 
 ggplot(df_predicted_tmed,
-  aes(x = tmed, y = pred, colour = modelo)) +
+  aes(x = tmed, y = pred, colour = name_modelo)) +
   geom_point(
     data = all_data, 
     aes(x = tmed, y = observed), col = "gray"
@@ -504,15 +505,17 @@ ggplot(df_predicted_tmed,
     data = (df_predicted_tmed |>
       filter(tmed > 8.1) |> 
       filter(tmed < 16.6)), size = 1.2) + 
-  scale_colour_manual(values = colours_combined, name = "Models") +
+  scale_colour_manual(values = colours_combined_name, name = "Models") +
   ylim(0,1) +
   xlim(5,20) +
   theme_bw() +
   theme(panel.grid = element_blank()) +
   xlab(label_tmed) +
   ylab(label_ratio) 
-```
 
+df_predicted_tmed |> 
+  write_csv("data/models_ratio_predicted_temperature.csv")
+```
 
 
 
@@ -537,17 +540,18 @@ teffect <- data.frame(tmed = seq(0,25, by =.5)) |>
     mtrat6 = (1-p6$b)*(1 / (1 + exp(- p6$k *(tmed - p6$t0)))) + p6$b
   )
 
-df_effect_tmed <- teffect |> pivot_longer(-tmed, names_to = "modelo", values_to = "pred") 
+df_effect_tmed <- teffect |> pivot_longer(-tmed, names_to = "modelo", values_to = "pred") |> 
+    inner_join(name_models)
 
 ggplot(
   df_effect_tmed,
-  aes(x = tmed, y = pred, colour = modelo)) +
+  aes(x = tmed, y = pred, colour = name_modelo)) +
   geom_line(linetype = "dashed") + 
   geom_line(
     data = (df_effect_tmed |>
       filter(tmed > 8.1) |> 
       filter(tmed < 16.6)), size = 1.5) + 
-  scale_colour_manual(values = colours_combined, name = "Models") +
+  scale_colour_manual(values = colours_combined_name, name = "Models") +
   ylim(0,1) +
   xlim(5,21) +
   theme_bw() +
@@ -556,6 +560,8 @@ ggplot(
   ylab("Temperature effect") +
   geom_hline(yintercept =1)
   
+df_effect_tmed |> 
+  write_csv("data/models_ratio_effect_temperature.csv")
 ```
 
 
@@ -976,12 +982,12 @@ df_predicted <- data.frame(prec = seq(0, 1700, by =1)) |>
     mprecrat5 = p5$MR * p4$Pa * exp(-p5$Pb * exp (-p5$Pc * prec))
   )
 
-df_predicted_prec <- df_predicted |> pivot_longer(-prec, names_to = "modelo", values_to = "pred") 
+df_predicted_prec <- df_predicted |> pivot_longer(-prec, names_to = "modelo", values_to = "pred") |> inner_join(name_models)
 
 ggplot(
   (df_predicted_prec |> 
      filter(modelo != "mprecrat2")),
-  aes(x = prec, y = pred, colour = modelo)) +
+  aes(x = prec, y = pred, colour = name_modelo)) +
   geom_point(
     data = all_data, 
     aes(x = prec, y=observed), col = "gray"
@@ -992,13 +998,17 @@ ggplot(
                filter(modelo != "mprecrat2") |> 
        filter(prec > 100) |>
        filter(prec < 1450)), size = 1.2) +
-  scale_colour_manual(values = colours_combined, name = "Models") +
+  scale_colour_manual(values = colours_combined_name, name = "Models") +
   # ylim(0,1) +
   # xlim(3,21) +
   theme_bw() +
   theme(panel.grid = element_blank()) +
   xlab(label_prec) +
   ylab(label_ratio) 
+
+
+df_predicted_prec |> 
+  write_csv("data/models_ratio_predicted_precipitation.csv")
 ```
 
 ### Prec effect 
@@ -1018,30 +1028,35 @@ preceffect <- data.frame(prec = seq(0,1700, by =1)) |>
     # mprecrat2 = exp(-0.5*((prec - p2$Popt)/p2$Pb)^p2$Pa),
     mprecrat3 = exp(-0.5*(log(prec/p3$Popt)/p3$Pb)^2),
     mprecrat4 = p4$Pa / ( 1 + exp((p4$Pmid - prec)/p4$Pc)), 
-    mprecrat5 = p4$Pa * exp(-p5$Pb * exp (-p5$Pc * prec))
+    mprecrat5 = p5$Pa * exp(-p5$Pb * exp (-p5$Pc * prec))
   )
 
-df_effect_prec <- preceffect |> pivot_longer(-prec, names_to = "modelo", values_to = "pred") 
+df_effect_prec <- preceffect |> pivot_longer(-prec, names_to = "modelo", values_to = "pred") |> 
+  inner_join(name_models)
 
 ggplot(
   df_effect_prec,
-  aes(x = prec, y = pred, colour = modelo)) +
+  aes(x = prec, y = pred, colour = name_modelo)) +
   geom_line(linetype = "dashed") + 
   geom_line(
      data = (df_effect_prec |>
        filter(prec > 100) |> 
        filter(prec < 1450)), size = 1.3) + 
-  scale_colour_manual(values = colours_combined, name = "Models") +
+  scale_colour_manual(values = colours_combined_name, name = "Models") +
   # ylim(0,1) +
   # xlim(3,21) +
   theme_bw() +
   theme(panel.grid = element_blank()) +
-  xlab("Water Balance") +
-  ylab("WB effect") 
+  xlab("Precipitation (mm)") +
+  ylab("Precipitation effect") 
   
+df_effect_prec |> 
+  write_csv("data/models_ratio_effect_precipitation.csv")
 ```
 
 
+
+<!-- QUITAMOS WATER BALANCE DE LA VISUALIZACIÓN 
 # Water Balance 
 
 ```{r}
@@ -1601,26 +1616,25 @@ ggplot(
   
 ```
 
+FIN DEL COMMENT DE WATER BALANCE -->
+
 
 
 # Temp & Prec models 
 
 
 ```{r}
-dwb <- df |> filter(climate_variable == "water_balance") |> dplyr::select(rat = ratio_abi_npp, wb = mean_climate)
-
 d <- dtmed |> inner_join(dprec)
 ```
 
 
 ```{r}
-var=list(mean = "predicted", x = "rat", prec = "wb", tmed = "tmed")  
+var=list(mean = "predicted", x = "rat", prec = "prec", tmed = "tmed")  
 ```
 
-
-### Model comb1 
-- log-normal temperature
-- log-normal prec
+- ***Model comb1***
+    - log-normal temperature
+    - log-normal prec
 
 ```{r}
 mcombrat1 <- function(MR, OTmed, Tb, Popt, Pb){
@@ -1657,18 +1671,9 @@ result_mcombrat1 |>
   likelihood::write_results("output/models/mcombrat1.txt")
 ```
 
-
-
-
-
-
-
-
-
-
-### Model comb2 
-- log-normal temperature
-- gauss prec
+- ***Model comb2***
+    - log-normal temperature
+    - gaus prec
 
 ```{r}
 mcombrat2 <- function(MR, OTmed, Tb, Popt, Pb){
@@ -1705,11 +1710,9 @@ result_mcombrat2 |>
   likelihood::write_results("output/models/mcombrat2.txt")
 ```
 
-
-
-### Model comb3 
-- log-normal temperature
-- gompertz prec
+- ***Model comb3***
+    - log-normal temperature
+    - gompertz prec
 
 ```{r}
 mcombrat3 <- function(MR, OTmed, Tb, Pa, Pb, Pc){
@@ -1746,14 +1749,10 @@ result_mcombrat3 |>
   likelihood::write_results("output/models/mcombrat2.txt")
 ```
 
+- ***Model comb4***
+    - gauss temperature
+    - log-normal prec
 
-
-
-
-
-### Model comb4 
-- gauss temperature
-- log-normal prec 
 ```{r}
 mcombrat4 <- function(MR, OTmed, Tb, Popt, Pb){
   # gauss temperature
@@ -1789,9 +1788,10 @@ result_mcombrat4 |>
   likelihood::write_results("output/models/mcombrat1.txt")
 ```
 
-### Model comb5 
-- gauss temperature
-- gauss prec 
+- ***Model comb5***
+    - gauss temperature
+    - gauss prec
+
 ```{r}
 mcombrat5 <- function(MR, OTmed, Tb, Popt, Pb){
   # gauss temperature
@@ -1827,9 +1827,10 @@ result_mcombrat5 |>
   likelihood::write_results("output/models/mcombrat5.txt")
 ```
 
-### Model comb6
-- gauss temperature
-- gompertz prec 
+- ***Model comb6***
+    - gauss temperature
+    - gompertz prec
+
 ```{r}
 mcombrat6 <- function(MR, OTmed, Tb, Pa, Pb, Pc){
   # gauss temperature
@@ -1866,16 +1867,10 @@ result_mcombrat6 |>
 ```
 
 
+- ***Model comb7***
+    - log-mod  temperature
+    - log-normal prec
 
-
-
-
-
-
-
-### Model comb7 
-- log-mod temperature
-- log-normal prec 
 ```{r}
 mcombrat7 <- function(MR, b, k, t0, Popt, Pb){
   # log-mod temperature
@@ -1911,9 +1906,11 @@ result_mcombrat7 |>
   likelihood::write_results("output/models/mcombrat7.txt")
 ```
 
-### Model comb8 
-- log-mod temperature
-- gauss prec 
+
+- ***Model comb8***
+    - log-mod  temperature
+    - gauss prec
+    
 ```{r}
 mcombrat8 <- function(MR, b, k, t0, Popt, Pb){
   # log-mod temperature
@@ -1949,9 +1946,10 @@ result_mcombrat8 |>
   likelihood::write_results("output/models/mcombrat8.txt")
 ```
 
-### Model comb9 
-- log-mod temperature
-- gompertz prec 
+- ***Model comb8***
+    - log-mod  temperature
+    - gompertz prec
+
 ```{r}
 mcombrat9 <- function(MR, b, k, t0, Pa, Pb, Pc){
   # log-mod temperature
@@ -1988,7 +1986,7 @@ result_mcombrat9 |>
 ```
 
 
-## Results
+## Results Multiplicative models 
 
 ```{r}
 all_results <-
@@ -2075,40 +2073,80 @@ models |>
 ```
 
 
+
 ```{r}
-x <- result_mcombrat1$likeli_hist
+#| fig.height: 10
+#| fig.width: 10
+prepare_data <- function(x, yvar) {
+  x$source_data |> 
+    mutate(residuals = !!sym(yvar)  - predicted) |> 
+    rename(observed = !!sym(yvar)) 
+}
 
-x |> slice_max(likeli) |> unique()
-
-x |> filter(MR > 0.6) |> 
-  ggplot(aes(x=MR, y=-likeli)) + geom_point()
-
-
-result_mcombrat9  <- anneal(
-  model = mcombrat9, 
-  var = var, 
-  source_data = d,
-  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10, Pa = 0.4, Pb = 0.3, Pc = 0.003), 
-  par_lo = list(MR = 0, b = 0, k = -2, t0 = 0, Pa = 0.2, Pb = 0.01, Pc = 0.0001),
-  par_hi = list(MR = 1, b = 0.2, k = 2, t0 = 20, Pa = 0.8, Pb = 5, Pc = 0.01),
-  pdf = dnorm,
-  dep_var = "rat",
-  initial_temp = 5, 
-  temp_red = 0.975, 
-  max_iter = 50000, 
-  show_display = FALSE
-)
-
-support_limits(mcombrat1, result_mcombrat1$best_pars, 
-               var = var, source_data = d, pdf = dnorm)
+all_data <-
+  mget(
+    grep("^result_mcombrat", ls(), value = TRUE)
+  ) |>
+  purrr::imap_dfr(~ prepare_data(.x, yvar = "rat"), .id = "modelo") |>
+  mutate(modelo = str_remove(modelo, "result_")) |> 
+  inner_join(name_models)
 
 
-sqrt(diag(solve(-1*result_mcombrat1$hessian)))
+p <- all_data |> 
+  ggplot(aes(x = predicted, y = observed)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_abline() + 
+  facet_wrap(~modelo, ncol = 1) +
+  geom_text(data = models_results, 
+            x = .43, 
+            y = .25, 
+            aes(label = paste("R^2~'='", round(R2, 3), sep="~")), 
+            parse = TRUE) +
+  geom_text(data = models_results, 
+            x = .43, 
+            y = .1, 
+            aes(label = paste("Slope~'='", round(slope, 4), sep="~")),
+            parse = TRUE) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) 
+  
 
-result_mcombrat1$std_errs$*1.96
+
+g <- all_data |> 
+  ggplot(aes(x = predicted, y = residuals)) +
+  labs(x = "Predicted") + 
+  geom_point() +
+  geom_hline(yintercept = 0) +  
+  facet_wrap(~modelo, ncol = 1) +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white")) +
+   scale_y_continuous(position = "right", sec.axis = sec_axis(~., labels = NULL)) 
 
 
+h <- ggplot(all_data, aes(x = residuals)) +
+  geom_histogram(aes(y = ..density.., x = residuals), fill = "black", col = "white") +
+  facet_wrap(~modelo, ncol = 1) +
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(all_data$residuals, na.rm = TRUE), 
+                            sd = sd(all_data$residuals, na.rm = TRUE)), 
+                color = "blue") +
+  theme_bw() +
+  theme(panel.grid = element_blank(),
+        panel.spacing = unit(0, "lines"), 
+        strip.text = element_text(hjust = 0), 
+        strip.background = element_rect(fill="white"))
 
+
+p + g + h 
 ```
+
+
 
 
