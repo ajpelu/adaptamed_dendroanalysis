@@ -1,0 +1,150 @@
+---
+title: "Figure Model Effect"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+## mcombrat1
+Temp (Log-normal) Prec (Log-normal)
+
+```{r, message=FALSE}
+library(tidyverse)
+library(sf)
+library(SPEI)
+library(ggh4x)
+library(geomtextpath)
+library(metR)
+library(ggsci)
+library(patchwork)
+library(fields)
+library(splines)
+library(kableExtra)
+source("scripts/aux.R")
+```
+
+
+
+```{r}
+ef_prec <- read_csv("data/models_ratio_effect_precipitation.csv")
+ef_tmed <- read_csv("data/models_ratio_effect_temperature.csv")
+```
+
+
+
+```{r}
+aux_prec <- ef_prec |> filter(name_modelo == "Log-normal") |> 
+  mutate(effect = "prec") |> 
+  mutate(
+    data_range = case_when(
+      prec > 100 & prec < 1450 ~ "observed",
+      TRUE ~ "no observed")
+  ) |> 
+  rename(var_x = prec) 
+
+aux_temp <- ef_tmed |> filter(name_modelo == "Log-normal") |> 
+  mutate(effect = "tmed") |> 
+  mutate(
+    data_range = case_when(
+      tmed > 8 & tmed < 17 ~ "observed",
+      TRUE ~ "no observed")
+  ) |> 
+  rename(var_x = tmed) |> 
+  filter(var_x <= 20) |> 
+  filter(var_x >= 5)
+
+
+```
+
+```{r}
+label_temp <- "Annual Mean Temperature (ºC)"
+label_prec <- "Precipitation (mm)"
+
+aux <- bind_rows(aux_prec, aux_temp) |> 
+  mutate(effect_label = case_when(
+    effect == "prec" ~ label_prec, 
+    effect == "tmed" ~ label_temp))
+
+
+ggplot(
+  aux,
+  aes(x = var_x, y = pred)) + 
+  geom_line(linetype = "dashed") + 
+  geom_line(
+     data = (aux |>
+               filter(data_range == "observed")), size = 1.3) +
+  theme_bw() +
+  ylab("Value of the function") +
+  facet_wrap(~effect_label, scales = "free_x") +
+  theme(panel.grid = element_blank(), 
+        strip.background = element_blank(), 
+        axis.title.x = element_blank())
+
+```
+
+
+
+## mcombrat7
+Temp (Logistic_Mod) Prec (Log-normal)
+
+
+```{r}
+aux_prec <- ef_prec |> filter(name_modelo == "Log-normal") |> 
+  mutate(effect = "prec") |> 
+  mutate(
+    data_range = case_when(
+      prec > 100 & prec < 1450 ~ "observed",
+      TRUE ~ "no observed")
+  ) |> 
+  rename(var_x = prec) 
+
+aux_temp <- ef_tmed |> filter(name_modelo == "Logistic_Mod") |> 
+  mutate(effect = "tmed") |> 
+  mutate(
+    data_range = case_when(
+      tmed > 8 & tmed < 17 ~ "observed",
+      TRUE ~ "no observed")
+  ) |> 
+  rename(var_x = tmed) |> 
+  filter(var_x <= 20) |> 
+  filter(var_x >= 5)
+
+
+```
+
+```{r}
+label_temp <- "Annual Mean Temperature (ºC)"
+label_prec <- "Precipitation (mm)"
+
+aux <- bind_rows(aux_prec, aux_temp) |> 
+  mutate(effect_label = case_when(
+    effect == "prec" ~ label_prec, 
+    effect == "tmed" ~ label_temp))
+
+
+ggplot(
+  aux,
+  aes(x = var_x, y = pred)) + 
+  geom_line(linetype = "dashed") + 
+  geom_line(
+     data = (aux |>
+               filter(data_range == "observed")), size = 1.3) +
+  theme_bw() +
+  ylab("Value of the function") +
+  facet_wrap(~effect_label, scales = "free_x") +
+  theme(panel.grid = element_blank(), 
+        strip.background = element_blank(), 
+        axis.title.x = element_blank())
+
+```
+
