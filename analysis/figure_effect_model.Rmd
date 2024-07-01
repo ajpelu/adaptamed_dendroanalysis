@@ -34,12 +34,10 @@ source("scripts/aux.R")
 ```
 
 
-
 ```{r}
 ef_prec <- read_csv("data/models_ratio_effect_precipitation.csv")
 ef_tmed <- read_csv("data/models_ratio_effect_temperature.csv")
 ```
-
 
 
 ```{r}
@@ -76,19 +74,30 @@ aux <- bind_rows(aux_prec, aux_temp) |>
     effect == "tmed" ~ label_temp))
 
 
-ggplot(
-  aux,
+x_scales <- list(
+  scale_x_continuous(limits = c(5, 20)),
+  scale_x_continuous(limits = c(0,1500))
+)
+
+
+p_mcombrat1 <- ggplot(aux,
   aes(x = var_x, y = pred)) + 
   geom_line(linetype = "dashed") + 
-  geom_line(
-     data = (aux |>
-               filter(data_range == "observed")), size = 1.3) +
+  geom_line(data = (aux |> filter(data_range == "observed")), 
+            size = 1.3) +
   theme_bw() +
   ylab("Value of the function") +
-  facet_wrap(~effect_label, scales = "free_x") +
+  facet_wrap(~effect_label, 
+             scales = "free_x", 
+             strip.position = "bottom") +
   theme(panel.grid = element_blank(), 
         strip.background = element_blank(), 
-        axis.title.x = element_blank())
+        axis.title.x = element_blank(),
+        strip.placement = "outside") +
+  facetted_pos_scales(x = x_scales)
+
+
+
 
 ```
 
@@ -132,19 +141,134 @@ aux <- bind_rows(aux_prec, aux_temp) |>
     effect == "tmed" ~ label_temp))
 
 
-ggplot(
-  aux,
+p_mcombrat7 <- ggplot(aux,
   aes(x = var_x, y = pred)) + 
   geom_line(linetype = "dashed") + 
-  geom_line(
-     data = (aux |>
-               filter(data_range == "observed")), size = 1.3) +
+  geom_line(data = (aux |> filter(data_range == "observed")), 
+            size = 1.3) +
   theme_bw() +
   ylab("Value of the function") +
-  facet_wrap(~effect_label, scales = "free_x") +
+  facet_wrap(~effect_label, 
+             scales = "free_x", 
+             strip.position = "bottom") +
   theme(panel.grid = element_blank(), 
         strip.background = element_blank(), 
-        axis.title.x = element_blank())
+        axis.title.x = element_blank(),
+        strip.placement = "outside") +
+  facetted_pos_scales(x = x_scales)
 
 ```
+
+
+```{r}
+annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |> 
+  dplyr::select(sp_elev, year, monthly_pet, monthly_tmed, monthly_prec) |> 
+  group_by(sp_elev, year) |>
+  summarise(pet = sum(monthly_pet), 
+            prec = sum(monthly_prec),
+            tmed = mean(monthly_tmed, na.rm = TRUE)) |> 
+  rowwise() |> 
+  mutate(water_balance = prec - pet)
+```
+
+
+```{r}
+ratio <- read_csv("data/dendroadaptamed_ratio_abinpp.csv") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, ratio_abi_npp = ratio) 
+
+df <- ratio |> 
+  inner_join(annual_pet) |> 
+  pivot_longer(pet:water_balance, values_to = "mean_climate", 
+               names_to = "climate_variable")
+```
+
+
+```{r}
+# Using natural splines 
+df_surfaces <- df |>
+  filter(climate_variable %in% c("prec", "tmed")) |> 
+  pivot_wider(names_from = climate_variable, values_from = mean_climate) 
+
+
+
+predictTps <- function(data) { 
+  fit <- fields::Tps(cbind(data$prec, data$tmed), data$ratio_abi_npp)
+  pred <- predictSurface(fit, extrap = TRUE) 
+  
+  g <- expand.grid(prec = pred$x, tmed = pred$y)
+  g[["ratio"]] <- as.vector(pred$z)
+  
+  return(g)
+}
+
+ 
+point_size <- 0.6
+point_colour <- "white"
+
+predicted_values <- predictTps(df_surfaces)
+breaks <- seq(0, .75, by=0.05)
+
+
+
+## plot surface  
+p_surface <- predicted_values |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") + 
+  scale_fill_material("blue-grey") + 
+  metR::geom_label_contour(aes(z = ratio),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1)) + 
+  geom_point(
+    data = df_surfaces,
+    colour = point_colour,
+    size = point_size
+  ) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Precipitation (mm)") +
+  ylab("Annual Mean Temperature (ºC)") +
+  scale_y_continuous(breaks = c(8,10,12,14,16,18)) + 
+  scale_x_continuous(limits = c(100, 1500), 
+                     breaks = c(250,500,750,1000,1250,1400))
+```
+
+
+```{r}
+#| fig.height: 3
+library(cowplot)
+plot_combined_mcombrat1 <- plot_grid(p_mcombrat1, p_surface, 
+          labels = "AUTO", rel_widths = c(1.8,1.2)) 
+plot_combined_mcombrat1
+```
+
+
+```{r}
+#| fig.height: 3
+plot_combined_mcombrat7 <- plot_grid(p_mcombrat7, p_surface, 
+          labels = "AUTO", rel_widths = c(1.8,1.2)) 
+plot_combined_mcombrat7
+```
+
+```{r}
+ggsave(
+  plot_combined_mcombrat1, 
+  file = "output/figure_effect_combrat1.png",
+  dpi = 300,
+  width = 12, height = 4.5
+)
+
+
+ggsave(
+  plot_combined_mcombrat7, 
+  file = "output/figure_effect_combrat7.png",
+  dpi = 300,
+  width = 12, height = 4.5
+)
+```
+
+
+
+
+
 
