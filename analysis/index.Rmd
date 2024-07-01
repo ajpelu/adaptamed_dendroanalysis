@@ -47,8 +47,9 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 
 
 # Figures
+- [ABI, NPP, EVI vs. climate (temperature, precipitation, water balance)](figura_evi_abi_npp_vs_climate.html) (Figure 3)
 - [Climate features of site](figure_clima_sites.html)
 - [Temporal evolution ABI, EVI and NPP](figure_ts_dendro_remote.html)
-- [ABI, NPP, EVI vs. climate](figura_npp_etp.html)
 - [ABI vs NPP](figura_abi_npp.html)
+- [Model Ratio vs Tmed and Prec](figure_effect_model.html)
 
