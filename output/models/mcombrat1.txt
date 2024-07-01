@@ -19,7 +19,7 @@ Non-varying parameters:
 Label	Value
 mean	predicted	
 x	rat	
-prec	wb	
+prec	prec	
 tmed	tmed	
 
 

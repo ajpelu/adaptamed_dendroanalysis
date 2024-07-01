@@ -1,0 +1,407 @@
+---
+title: "Figure ABI NPP EVI"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+## Prepare Data 
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+```{r, message=FALSE}
+library(tidyverse)
+library(ggh4x)
+library(geomtextpath)
+library(metR)
+library(ggsci)
+library(patchwork)
+library(boot)
+library(ggforce)
+library(kableExtra)
+source("scripts/aux.R")
+```
+
+```{r}
+options(scipen = 999)
+abi <- read_csv("data/dendroadaptamed_abi.csv") |>
+  rename(mean = IBT_ag_m2) |>
+  mutate(se = NA, sd = NA, variable = "abi")
+
+evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |>
+  filter(iv == "evi") |>
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |>
+  mutate(variable = "evi_landsat")
+
+npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |>
+  rename(mean = npp) |>
+  mutate(se = NA, sd = NA, variable = "npp") |>
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se, variable)
+
+evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |>
+  filter(variable == "evi") |>
+  filter(season == "yearly") |>
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |>
+  mutate(variable = "evi_modis")
+
+
+df_index <- bind_rows(
+  abi, evi_landsat, evi_modis, npp
+) |>
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
+  mutate(Specie = paste0("P. ", sp_code)) |>
+  rename(mean_y = mean, y_variable = variable) |>
+  filter(year >= 1990)
+```
+
+
+```{r}
+abi_npp <- df_index |>
+  filter(y_variable %in% c("abi", "npp")) |>
+  dplyr::select(-se, -sd) |>
+  pivot_wider(values_from = mean_y, names_from = y_variable) |>
+  filter(!is.na(npp)) |>
+  filter(!is.na(abi)) |>
+  rowwise() |>
+  mutate(ratio = abi / npp)
+```
+
+## ABI vs NPP
+
+```{r}
+#| echo: false
+#| eval: false
+
+# Find an exponential relation
+# y ~ ae^bx
+# ln(y) ~ ln(ae^bx)
+# ln(y) ~ ln(a) + bX
+
+m <- lm(log(abi) ~ npp, data = abi_npp)
+# summary(m)
+# coef(m)
+
+# ln(a) = coef(m)[1]
+# a = exp(ln(a))
+# a = exp(coef(m)[1] )
+
+init_exp <- list(
+  a = exp(coef(m)[1]),
+  b = coef(m)[2]
+)
+```
+
+```{r}
+# Generate a confidence interval with bootstrap
+# Define a function to perform the bootstrapping
+boot_func_abi_npp <- function(data, indices) {
+  # Take a bootstrap sample
+  sample_df <- data[indices, ]
+  # Fit the non-linear model
+  nls_fit <- nls(abi ~ a * exp(b * npp), data = sample_df, start = list(a = 10, b = 0.002958839))
+  # Generate predicted values for a sequence of npp
+  npp_seq <- seq(min(data$npp), max(data$npp), length.out = 100)
+  pred <- predict(nls_fit, newdata = data.frame(npp = npp_seq))
+  return(pred)
+}
+
+
+# Perform bootstrapping with 1000 resamples
+boot_res_abi_npp <- boot(data = abi_npp, statistic = boot_func_abi_npp, R = 1000) # R is the number of resamples
+
+
+# Compute the 95% confidence intervals for each point
+ci_lower <- apply(boot_res_abi_npp$t, 2, quantile, probs = 0.025) # Lower 2.5%
+ci_upper <- apply(boot_res_abi_npp$t, 2, quantile, probs = 0.975) # Upper 97.5%
+
+# Predicted values from the original fit
+npp_seq <- seq(min(abi_npp$npp), max(abi_npp$npp), length.out = 100)
+pred_abi_npp <- apply(boot_res_abi_npp$t, 2, mean) # Mean of the bootstrapped predictions
+
+# Create a data frame with predicted values and confidence intervals
+pred_df_abi_npp <- data.frame(
+  npp = npp_seq,
+  abi = pred_abi_npp,
+  ci_lower = ci_lower,
+  ci_upper = ci_upper
+)
+```
+
+```{r}
+#| fig.width: 8
+#| fig.height: 8
+
+plot_abi_npp <- abi_npp |>
+  ggplot(aes(y = abi, x = npp)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_line(data = pred_df_abi_npp, aes(x = npp, y = abi), color = "black", linewidth = 1.5) + # Fitted model
+  geom_ribbon(data = pred_df_abi_npp, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
+  scale_y_continuous(limits = c(0, 450)) +
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    legend.position = "bottom"
+  ) +
+  scale_colour_manual(
+    values = colours_Specie, name = "Species",
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
+  ) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(
+    values = colours_Specie, name = "Species",
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
+  ) +
+  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{
+    -1
+  }))) +
+  xlab(expression(Annual ~ NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{
+    -1
+  }))) 
+
+
+plot_abi_npp
+```
+
+## ABI vs EVI
+
+```{r}
+abi_evi <- df_index |>
+  filter(y_variable %in% c("abi", "evi_landsat")) |>
+  dplyr::select(-se, -sd) |>
+  pivot_wider(values_from = mean_y, names_from = y_variable) |>
+  filter(!is.na(evi_landsat)) |>
+  filter(!is.na(abi))
+```
+
+```{r}
+#| echo: false
+#| eval: false
+# Find an exponential relation
+# y ~ ae^bx
+# ln(y) ~ ln(ae^bx)
+# ln(y) ~ ln(a) + bX
+
+m <- lm(log(abi) ~ evi_landsat, data = abi_evi)
+# summary(m)
+# coef(m)
+
+# ln(a) = coef(m)[1]
+# a = exp(ln(a))
+# a = exp(coef(m)[1] )
+
+init_exp <- list(
+  a = exp(coef(m)[1]),
+  b = coef(m)[2]
+)
+```
+
+```{r}
+# Generate a confidence interval with bootstrap
+# Define a function to perform the bootstrapping
+boot_func_abi_evi <- function(data, indices) {
+  # Take a bootstrap sample
+  sample_df <- data[indices, ]
+  # Fit the non-linear model
+  nls_fit <- nls(abi ~ a * exp(b * evi_landsat), data = sample_df, start = list(a = 15, b = 6.128))
+  # Generate predicted values for a sequence of npp
+  evi_seq <- seq(min(data$evi_landsat), max(data$evi_landsat), length.out = 100)
+  pred <- predict(nls_fit, newdata = data.frame(evi_landsat = evi_seq))
+  return(pred)
+}
+
+# Perform bootstrapping with 1000 resamples
+boot_res_abi_evi <- boot(data = abi_evi, statistic = boot_func_abi_evi, R = 1000) # R is the number of resamples
+
+# Compute the 95% confidence intervals for each point
+ci_lower <- apply(boot_res_abi_evi$t, 2, quantile, probs = 0.025) # Lower 2.5%
+ci_upper <- apply(boot_res_abi_evi$t, 2, quantile, probs = 0.975) # Upper 97.5%
+
+# Predicted values from the original fit
+evi_seq <- seq(min(abi_evi$evi_landsat), max(abi_evi$evi_landsat), length.out = 100)
+pred_abi_evi <- apply(boot_res_abi_evi$t, 2, mean) # Mean of the bootstrapped predictions
+
+# Create a data frame with predicted values and confidence intervals
+pred_df_abi_evi <- data.frame(
+  evi_landsat = evi_seq,
+  abi = pred_abi_evi,
+  ci_lower = ci_lower,
+  ci_upper = ci_upper
+)
+```
+
+```{r}
+plot_abi_evi <- abi_evi |>
+  ggplot(aes(y = abi, x = evi_landsat)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = abi), color = "black", linewidth = 1.5) + # Fitted model
+  geom_ribbon(data = pred_df_abi_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "bottom"
+  ) +
+  scale_colour_manual(
+    values = colours_Specie, name = "Species",
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
+  ) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(
+    values = colours_Specie, name = "Species",
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
+  ) +
+  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{
+    -1
+  }))) 
+
+plot_abi_evi
+```
+
+
+## NPP vs EVI
+
+```{r}
+npp_evi <- df_index |>
+  filter(y_variable %in% c("npp", "evi_landsat")) |>
+  dplyr::select(-se, -sd) |>
+  pivot_wider(values_from = mean_y, names_from = y_variable) |>
+  filter(!is.na(evi_landsat)) |>
+  filter(!is.na(npp))
+```
+
+
+```{r}
+#| eval: false
+#| echo: false
+f1 <- nls(npp ~ SSasymp(evi_landsat, Asym, R0, lrc), data = npp_evi)
+```
+
+```{r}
+boot_func_npp_evi <- function(data, indices) {
+  # Take a bootstrap sample
+  sample_df <- data[indices, ]
+  # Fit the non-linear model
+  nls_fit <- nls(npp ~ Asym + (R0 - Asym) * exp(-exp(lrc) * evi_landsat),
+    data = sample_df,
+    start = list(Asym = 700, R0 = -6000, lrc = 2.8)
+  )
+
+  # Generate predicted values for a sequence of npp
+  evi_seq <- seq(min(data$evi_landsat), max(data$evi_landsat), length.out = 100)
+  pred <- predict(nls_fit, newdata = data.frame(evi_landsat = evi_seq))
+  return(pred)
+}
+
+
+# Perform bootstrapping with 1000 resamples
+boot_res_npp_evi <- boot(data = npp_evi, statistic = boot_func_npp_evi, R = 1000) # R is the number of resamples
+
+
+# Compute the 95% confidence intervals for each point
+ci_lower <- apply(boot_res_npp_evi$t, 2, quantile, probs = 0.025) # Lower 2.5%
+ci_upper <- apply(boot_res_npp_evi$t, 2, quantile, probs = 0.975) # Upper 97.5%
+
+# Predicted values from the original fit
+evi_seq <- seq(min(abi_evi$evi_landsat), max(abi_evi$evi_landsat), length.out = 100)
+pred_npp_evi <- apply(boot_res_npp_evi$t, 2, mean) # Mean of the bootstrapped predictions
+
+# Create a data frame with predicted values and confidence intervals
+pred_df_npp_evi <- data.frame(
+  evi_landsat = evi_seq,
+  npp = pred_npp_evi,
+  ci_lower = ci_lower,
+  ci_upper = ci_upper
+)
+```
+
+```{r}
+plot_npp_evi <- npp_evi |>
+  ggplot(aes(y = npp, x = evi_landsat)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = npp), color = "black", linewidth = 1.5) + # Fitted model
+  geom_ribbon(data = pred_df_npp_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(),
+    legend.position = "bottom"
+  ) +
+  scale_colour_manual(
+    values = colours_Specie, name = "Species",
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
+  ) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(
+    values = colours_Specie, name = "Species",
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
+  ) +
+  ylab(expression(Annual ~ NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{
+    -1
+  }))) +
+  xlab(expression(Annual ~ EVI[Landsat])) 
+
+
+plot_npp_evi
+```
+
+```{r}
+p <- plot_abi_npp + plot_abi_evi + plot_npp_evi & theme(legend.position = "bottom")
+compare_plot <- p + plot_layout(guides = "collect")
+
+compare_plot
+ggsave(
+   compare_plot,
+   file = "output/compare_abi_npp_evi.png",
+   dpi = 300,
+   width = 12, height = 6
+ )
+```
+
+```{r}
+p_sp_elev <- (plot_abi_npp +  geom_smooth(aes(group = sp_elev, colour = Specie), 
+                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1)) + 
+  (plot_abi_evi +  geom_smooth(aes(group = sp_elev, colour = Specie), 
+                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1)) +
+  (plot_npp_evi +  geom_smooth(aes(group = sp_elev, colour = Specie), 
+                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1))  & theme(legend.position = "bottom")
+
+
+
+compare_plot_sp_elev <- p_sp_elev + plot_layout(guides = "collect")
+
+compare_plot_sp_elev
+
+ggsave(
+   compare_plot_sp_elev,
+   file = "output/compare_abi_npp_evi_sp_elev.png",
+   dpi = 300,
+   width = 12, height = 6
+ )
+```
+
+```{r}
+p_sp <- (plot_abi_npp +  geom_smooth(aes(group = Specie, colour = Specie), 
+                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1)) + 
+  (plot_abi_evi +  geom_smooth(aes(group = Specie, colour = Specie), 
+                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1)) +
+  (plot_npp_evi +  geom_smooth(aes(group = Specie, colour = Specie), 
+                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1))  & theme(legend.position = "bottom")
+
+
+
+compare_plot_sp <- p_sp + plot_layout(guides = "collect")
+
+compare_plot_sp
+
+ggsave(
+   compare_plot_sp,
+   file = "output/compare_abi_npp_evi_sp.png",
+   dpi = 300,
+   width = 12, height = 6
+ )
+```
+
