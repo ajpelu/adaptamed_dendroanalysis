@@ -72,6 +72,19 @@ abi_npp <- df_index |>
   mutate(ratio = abi / npp)
 ```
 
+
+
+```{r}
+# general_parameters
+
+alpha_points <- 0.3 
+main_line_width <- 1.3 
+main_line_color <- "black"
+partial_lines_width <- .85 
+
+```
+
+
 ## ABI vs NPP
 
 ```{r}
@@ -134,12 +147,35 @@ pred_df_abi_npp <- data.frame(
 ```
 
 ```{r}
+labi_npp <- abi_npp |> 
+  group_by(sp_code) |> 
+  group_modify(
+     ~ broom::tidy(lm(abi ~ npp, data = .x))
+  ) |> 
+  filter(term != "(Intercept)") |> 
+  mutate(p = case_when(
+    p.value < 0.001 ~ "<0.001",
+    p.value >= 0.001 ~ as.character(round(p.value, 3))
+  )) |> 
+  mutate(sig = case_when(
+    p.value < 0.001 ~ "sig",
+    p.value >= 0.001 ~ "no sig"  
+  )) 
+```
+
+
+
+```{r}
 #| fig.width: 8
 #| fig.height: 8
 
+abi_npp <- 
+  abi_npp |> inner_join(
+    labi_npp|> dplyr::select(sp_code, p, sig))
+
 plot_abi_npp <- abi_npp |>
   ggplot(aes(y = abi, x = npp)) +
-  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points) +
   geom_line(data = pred_df_abi_npp, aes(x = npp, y = abi), color = "black", linewidth = 1.5) + # Fitted model
   geom_ribbon(data = pred_df_abi_npp, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
   scale_y_continuous(limits = c(0, 450)) +
@@ -163,9 +199,6 @@ plot_abi_npp <- abi_npp |>
   xlab(expression(Annual ~ NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{
     -1
   }))) 
-
-
-plot_abi_npp
 ```
 
 ## ABI vs EVI
@@ -236,9 +269,34 @@ pred_df_abi_evi <- data.frame(
 ```
 
 ```{r}
+labi_evi <- abi_evi |> 
+  group_by(sp_code) |> 
+  group_modify(
+     ~ broom::tidy(lm(abi ~ evi_landsat, data = .x))
+  ) |> 
+  filter(term != "(Intercept)") |> 
+  mutate(p = case_when(
+    p.value < 0.001 ~ "<0.001",
+    p.value >= 0.001 ~ as.character(round(p.value, 3))
+  )) |> 
+  mutate(sig = case_when(
+    p.value < 0.001 ~ "sig",
+    p.value >= 0.001 ~ "no sig"  
+  )) 
+```
+
+
+
+
+```{r}
+
+abi_evi <- 
+  abi_evi |> inner_join(
+    labi_evi |> dplyr::select(sp_code, p, sig))
+
 plot_abi_evi <- abi_evi |>
   ggplot(aes(y = abi, x = evi_landsat)) +
-  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points) +
   geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = abi), color = "black", linewidth = 1.5) + # Fitted model
   geom_ribbon(data = pred_df_abi_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
   theme_bw() +
@@ -255,11 +313,9 @@ plot_abi_evi <- abi_evi |>
     values = colours_Specie, name = "Species",
     labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
   ) +
-  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{
-    -1
-  }))) 
+  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{-1}))) +
+  xlab(expression(Annual ~ EVI[Landsat]))
 
-plot_abi_evi
 ```
 
 
@@ -319,10 +375,34 @@ pred_df_npp_evi <- data.frame(
 )
 ```
 
+
 ```{r}
+lnpp_evi <- npp_evi |> 
+  group_by(sp_code) |> 
+  group_modify(
+     ~ broom::tidy(lm(npp ~ evi_landsat, data = .x))
+  ) |> 
+  filter(term != "(Intercept)") |> 
+  mutate(p = case_when(
+    p.value < 0.001 ~ "<0.001",
+    p.value >= 0.001 ~ as.character(round(p.value, 3))
+  )) |> 
+  mutate(sig = case_when(
+    p.value < 0.001 ~ "sig",
+    p.value >= 0.001 ~ "no sig"  
+  )) 
+```
+
+
+
+```{r}
+npp_evi <- 
+  npp_evi |> inner_join(
+    lnpp_evi |> dplyr::select(sp_code, p, sig))
+
 plot_npp_evi <- npp_evi |>
   ggplot(aes(y = npp, x = evi_landsat)) +
-  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points) +
   geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = npp), color = "black", linewidth = 1.5) + # Fitted model
   geom_ribbon(data = pred_df_npp_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
   theme_bw() +
@@ -339,20 +419,15 @@ plot_npp_evi <- npp_evi |>
     values = colours_Specie, name = "Species",
     labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
   ) +
-  ylab(expression(Annual ~ NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{
-    -1
-  }))) +
+  ylab(expression(Annual ~ NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{-1}))) +
   xlab(expression(Annual ~ EVI[Landsat])) 
 
-
-plot_npp_evi
 ```
 
 ```{r}
 p <- plot_abi_npp + plot_abi_evi + plot_npp_evi & theme(legend.position = "bottom")
 compare_plot <- p + plot_layout(guides = "collect")
 
-compare_plot
 ggsave(
    compare_plot,
    file = "output/compare_abi_npp_evi.png",
@@ -360,6 +435,67 @@ ggsave(
    width = 12, height = 6
  )
 ```
+
+
+```{r}
+#| fig.heigth: 6
+#| fig.width: 12
+p_sp <- 
+  ((plot_abi_npp +  
+     geom_smooth(aes(linetype = sig, group = Specie, colour = Specie), 
+              linewidth = partial_lines_width, method = "lm", se = FALSE) + 
+     scale_linetype_manual(values = lines_lm, guide = "none") +
+      scale_x_continuous(
+        limits = c(100,1100), 
+        breaks = c(100,300,500,700,900, 1100))) + 
+  (plot_abi_evi + 
+     geom_smooth(aes(linetype = sig, group = Specie, colour = Specie), 
+              linewidth = partial_lines_width, method = "lm", se = FALSE) +
+     scale_linetype_manual(values = lines_lm, guide = "none")+
+     scale_x_continuous(
+        limits = c(0.1,0.5), 
+        breaks = c(0.1, 0.2, 0.3, 0.4, 0.5))) +
+  (plot_npp_evi + 
+     geom_smooth(aes(linetype = sig, group = Specie, colour = Specie), 
+              linewidth = partial_lines_width, method = "lm", se = FALSE) +
+     scale_linetype_manual(values = lines_lm, guide = "none") +
+    scale_x_continuous(
+        limits = c(0.1,0.5), 
+        breaks = c(0.1, 0.2, 0.3, 0.4, 0.5)) + 
+    scale_y_continuous(
+        limits = c(0,1100), 
+        breaks = c(0,100,300,500,700,900, 1100)))) & theme(legend.position = "bottom")
+
+compare_plot_sp <- p_sp + plot_layout(guides = "collect")
+
+
+compare_plot_sp
+
+ggsave(
+   compare_plot_sp,
+   file = "output/compare_abi_npp_evi_sp.png",
+   dpi = 300,
+   width = 12, height = 6
+ )
+```
+
+### Linear regressions
+```{r}
+labi_npp |> kbl(
+  caption = "ABI vs NPP") |> kable_styling() 
+```
+
+```{r}
+labi_evi |> kbl(
+  caption = "ABI vs EVI") |> kable_styling() 
+```
+
+
+```{r}
+lnpp_evi |> kbl(
+  caption = "NPP vs EVI") |> kable_styling() 
+```
+
 
 ```{r}
 p_sp_elev <- (plot_abi_npp +  geom_smooth(aes(group = sp_elev, colour = Specie), 
@@ -372,9 +508,6 @@ p_sp_elev <- (plot_abi_npp +  geom_smooth(aes(group = sp_elev, colour = Specie),
 
 
 compare_plot_sp_elev <- p_sp_elev + plot_layout(guides = "collect")
-
-compare_plot_sp_elev
-
 ggsave(
    compare_plot_sp_elev,
    file = "output/compare_abi_npp_evi_sp_elev.png",
@@ -382,26 +515,3 @@ ggsave(
    width = 12, height = 6
  )
 ```
-
-```{r}
-p_sp <- (plot_abi_npp +  geom_smooth(aes(group = Specie, colour = Specie), 
-                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1)) + 
-  (plot_abi_evi +  geom_smooth(aes(group = Specie, colour = Specie), 
-                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1)) +
-  (plot_npp_evi +  geom_smooth(aes(group = Specie, colour = Specie), 
-                            method = "lm", se = FALSE, linetype = "solid", linewidth = 1))  & theme(legend.position = "bottom")
-
-
-
-compare_plot_sp <- p_sp + plot_layout(guides = "collect")
-
-compare_plot_sp
-
-ggsave(
-   compare_plot_sp,
-   file = "output/compare_abi_npp_evi_sp.png",
-   dpi = 300,
-   width = 12, height = 6
- )
-```
-
