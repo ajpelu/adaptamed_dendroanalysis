@@ -80,6 +80,13 @@ dAIC <- function(x) {
   return(delta.aic)
 }
 
+wAIC <- function(delta) {
+  delta <- delta[!is.na(delta)]
+  aux_w <- exp(-0.5*delta)
+  wi <- aux_w / sum(aux_w, na.rm = TRUE)
+  return(wi)
+}
+
 
 # Combined function to plot observed vs. predicted or residuals vs. predicted
 
