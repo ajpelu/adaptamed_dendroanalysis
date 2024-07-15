@@ -1,0 +1,873 @@
+---
+title: "Modelling Ratio Selected ABI:NPP"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(patchwork)
+library(likelihood)
+library(kableExtra)
+library(patchwork)
+library(ggnewscale)
+source("scripts/aux.R")
+library(sf)
+library(ggh4x)
+library(geomtextpath)
+library(metR)
+library(ggsci)
+library(fields)
+library(splines)
+
+```
+
+```{r}
+annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |> 
+  dplyr::select(sp_elev, year, monthly_pet, monthly_tmed, monthly_prec) |> 
+  group_by(sp_elev, year) |>
+  summarise(pet = sum(monthly_pet), 
+            prec = sum(monthly_prec),
+            tmed = mean(monthly_tmed, na.rm = TRUE)) |> 
+  rowwise() |> 
+  mutate(water_balance = prec - pet)
+```
+
+
+```{r}
+ratio <- read_csv("data/dendroadaptamed_ratio_abinpp.csv") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, ratio_abi_npp = ratio) 
+
+df <- ratio |> 
+  inner_join(annual_pet) |> 
+  pivot_longer(pet:water_balance, values_to = "mean_climate", 
+               names_to = "climate_variable")
+
+d <- df |> filter(climate_variable %in% c("tmed", "prec")) |> 
+  pivot_wider(values_from = mean_climate, names_from = climate_variable) |> 
+  dplyr::rename(rat = ratio_abi_npp) |> 
+  mutate(species = paste0("P. ", sp_code))
+```
+
+# Temperature 
+- Tmed: Log-normal and Log-modified
+
+$$(ABI:NPP)_i=MR \times g(T_{med}) + \epsilon_i$$
+
+- Log-normal (**mtrat3**)
+$$g(T_{med})=\exp \left[ -\frac{1}{2} \left(\frac{\log{(\frac{T_{med}}{OT_{med}}}) }{b}\right)^2 \right]$$ 
+siendo $OT_{med}$ el valor óptimo de $T_{med}$ al cual ocurre el máximo Ratio $(ABI:NPP)_i$; y $b$ es la desviación estándar o amplitud de la función. 
+
+- Logistic modified (**mtrat6*)
+
+$$g(T_{med})=\left(1 - b \right) \times \left[ \frac{1}{1+\exp \left(-k \times (T_{med} - t0) \right) } \right] + b$$ 
+
+
+
+
+```{r}
+var=list(mean = "predicted", x = "rat", tmed = "tmed", prec = "prec")  
+```
+
+```{r}
+# temp Log-normal
+set.seed(1234)
+
+mtrat3 <- function(MR, OTmed, Tb)
+{
+  tmed_effect <- exp(-0.5*(log(d$tmed/OTmed)/Tb)^2)
+  MR * tmed_effect
+}
+
+# change model 
+result_mtrat3 <- anneal(
+  model = mtrat3, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5),
+  par_lo = list(MR = 0, OTmed = 0, Tb = 0.1),
+  par_hi = list(MR = 1.2, OTmed = 20, Tb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 200000, 
+  show_display = FALSE
+)
+
+result_mtrat3 |> likelihood::write_results("output/models/univariate_temp_lognormal.txt")
+```
+
+
+
+```{r}
+# temp Logistic_mod
+set.seed(1234)
+
+mtrat6 <- function(MR,k,t0, b){
+  tmed_effect <- (1-b)*(1 / (1 + exp(- k *( d$tmed - t0)))) + b 
+  MR*tmed_effect
+}
+
+
+result_mtrat6 <- anneal(
+  model = mtrat6, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10),
+  par_lo = list(MR = 0, b = 0, k = -2.5, t0 = 0),
+  par_hi = list(MR = 1.2, b = 0.2, k = 2, t0 = 20),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 200000, 
+  show_display = FALSE
+)
+
+result_mtrat6 |> likelihood::write_results("output/models/univariate_temp_logisticmod.txt")
+```
+
+
+# Prec 
+- Precipitation: Log-normal 
+
+
+
+$$(ABI:NPP)_i=MR \times g(P) + \epsilon_i$$
+- Log-normal (**mprecrat3**)
+$$g(P)=\exp \left[ -\frac{1}{2} \left(\frac{\log{(\frac{P}{P{opt}}}) }{Pb}\right)^2 \right]$$ 
+
+```{r}
+## Log-normal 
+set.seed(1234)
+
+mprecrat3 <- function(MR, Popt, Pb)
+{
+  prec_effect <- exp(-0.5*(log(d$prec/Popt)/Pb)^2)
+  MR * prec_effect 
+}
+
+
+# change model 
+result_mprecrat3 <- anneal(
+  model = mprecrat3, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, Popt = 500, Pb = 2),
+  par_lo = list(MR = 0, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, Popt = 1000, Pb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 200000, 
+  show_display = FALSE
+)
+
+result_mprecrat3 |> likelihood::write_results("output/models/univariate_prec_lognormal.txt")
+```
+
+
+## Multiplicative 
+
+- ***Model combrat1***
+    - log-normal temperature
+    - log-normal prec
+
+```{r}
+mcombrat1 <- function(MR, OTmed, Tb, Popt, Pb){
+  # log-normal temperature
+  # log-normal prec 
+  tmed_effect <- exp(-0.5*(log(d$tmed/OTmed)/Tb)^2) 
+  prec_effect <- exp(-0.5*(log(d$prec/Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+
+# change model 
+result_mcombrat1 <- anneal(
+  model = mcombrat1, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, OTmed = 10.5, Tb = 1.5, Popt = 500, Pb = 2), 
+  par_lo = list(MR = 0, OTmed = 5, Tb = 0.01, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, OTmed = 20, Tb = 5, Popt = 1000, Pb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 200000, 
+  show_display = FALSE
+)
+
+result_mcombrat1 |> likelihood::write_results("output/models/multiplicative_tmed_lognormal_prec_lognormal.txt")
+```
+
+
+- ***Model combrat7***
+    - log-mod  temperature
+    - log-normal prec
+
+```{r}
+mcombrat7 <- function(MR, b, k, t0, Popt, Pb){
+  # log-mod temperature
+  # log-normal prec 
+  tmed_effect <- (1-b)*(1 / (1 + exp(- k *( d$tmed - t0)))) + b
+  prec_effect <- exp(-0.5*(log(d$prec/Popt)/Pb)^2)
+  MR * tmed_effect * prec_effect
+}
+
+set.seed(2023)
+
+# change model 
+result_mcombrat7 <- anneal(
+  model = mcombrat7, 
+  var = var, 
+  source_data = d,
+  par = list(MR = 0.7, b = 0.09, k = -1, t0 = 10, Popt = 500, Pb = 2), 
+  par_lo = list(MR = 0, b = 0, k = -2, t0 = 0, Popt = 300, Pb = 0),
+  par_hi = list(MR = 1, b = 0.9, k = 2, t0 = 20, Popt = 1000, Pb = 5),
+  pdf = dnorm,
+  dep_var = "rat",
+  initial_temp = 5, 
+  temp_red = 0.975, 
+  max_iter = 100000, 
+  show_display = FALSE
+)
+
+result_mcombrat7 |> likelihood::write_results("output/models/multiplicative_tmed_logisticmod_prec_lognormal.txt")
+```
+
+
+# Compare models 
+
+```{r}
+name_models <- data.frame(
+  modelo = c(paste0("mtrat",c(3,6)), "mprecrat3", "mcombrat1", "mcombrat7"), 
+  name_modelo = c("Temp (Log-normal)", "Temp (Logistic_Mod)", "Prec (Log-normal)",
+                  "Temp (Log-normal) | Prec (Log-normal)", 
+                  "Temp (Logistic_Mod) | Prec (Log-normal)"), 
+  type = c(rep("univariate",3), rep("multiplicative",2))
+)
+
+all_results <-
+  mget(paste0("result_", name_models$modelo)) |>
+  purrr::imap_dfr(~ MLE_results_format(.x, yvar = "rat"), .id = "modelo") |>
+  arrange(aic_cor) |>
+  mutate(modelo = str_remove(modelo, "result_")) |> 
+  inner_join(name_models) |>
+  relocate(name_modelo, type, .after = modelo) 
+```
+
+```{r}
+all_results |> 
+  mutate(deltaAIC = dAIC(aic_cor)) |> 
+  mutate(w = wAIC(deltaAIC)) |> 
+  kbl(digits = c(0,0,0,2,0,2,2,3,3,2,3,3)) |> 
+  kable_styling()
+```
+
+
+```{r}
+univariate <- all_results |> 
+  filter(type == "univariate") |> 
+  mutate(deltaAIC = dAIC(aic_cor)) |> 
+  mutate(w = wAIC(deltaAIC)) 
+
+univariate |> 
+  kbl(digits = c(0,0,0,2,0,2,2,3,3,2,3,3)) |> 
+  kable_styling()
+```
+
+
+```{r}
+multiplicative  <- all_results |> 
+  filter(type == "multiplicative") |> 
+  mutate(deltaAIC = dAIC(aic_cor)) |> 
+  mutate(w = wAIC(deltaAIC))
+
+multiplicative |> 
+  kbl(digits = c(0,0,0,2,0,2,2,3,3,2,3,3)) |> 
+  kable_styling()
+```
+
+<!-- 
+Cuando el likelihood es similar, aplicar el Ockham’s razor (mas parsimonioso)
+
+- Usar el modelo con menor valor de AIC (mas cercano a la "verdad")
+- Ojo el AIC, identifica el mejor modelo de un conjunto, aún cuando los modelos sean pobres 
+- Los modelos incluidos en el conjunto de modelos, tienen que ser modelos realistas, con sentido ecológico (no cualquier modelo) 
+- Usar AICc si n/k (size / nparams) es < 40 (ojo usar siempre o AIC o AICc, pero no mezclar)
+- BIC 
+
+- Differences in AIC (Δi’s) can be used to interpret strength of evidence for one model vs. another.
+- A model with a Δ value within 1-2 of the best model has substantial support in the data, and should be considered along with the best model.
+- A Δ value within only 4-7 units of the best model has considerably less support.
+- A Δ value > 10 indicates that the worse model has virtually no support and can be omitted from further consideration.
+
+- Akaike weights 
+--> 
+
+### Logistic mod & Log_normal 
+
+```{r}
+colours_combined_name <- c(
+                      "Temp (Log-normal)" = "red", 
+                      "Temp (Logistic_Mod)" = "black",
+                      "Prec (Log-normal)" = "black")
+
+colours_combined <- c(
+                      "mtrat3" = "red", 
+                      "mtrat6" = "black",
+                      "mprecrat3" = "black") 
+
+alpha_points <- 0.5 
+
+label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_ratio <- "ABI:NPP"
+label_prec <- "Precipitation (mm)"
+label_tmed <- "Annual Mean Temperature (ºC)"
+label_wb <- "Water Balance (mm)"
+```
+
+
+```{r}
+ptlognormal  <- result_mtrat3$best_pars |> as.data.frame()
+ptlogmod <- result_mtrat6$best_pars |> as.data.frame()
+pplognormal <- result_mprecrat3$best_pars |> as.data.frame()
+
+
+teffect <- data.frame(tmed = seq(5,25, by =.1)) |> 
+  mutate(
+    mtrat3_teffect = exp(-0.5*(log(tmed / ptlognormal$OTmed)/ptlognormal$Tb)^2),
+    mtrat6_teffect = (1-ptlogmod$b)*(1 / (1 + exp(- ptlogmod$k *(tmed - ptlogmod$t0)))) + ptlogmod$b,
+    mtrat3_predicted = ptlognormal$MR * mtrat3_teffect,
+    mtrat6_predicted = ptlogmod$MR * mtrat6_teffect
+  ) |> 
+  pivot_longer(-tmed) |> 
+  separate(name, into = c("modelo", "type_value")) |> 
+  inner_join(name_models)
+
+plot_tmed <- teffect |> 
+  filter(type_value == "predicted") |> 
+  ggplot(
+    aes(x = tmed, y = value)) + 
+  geom_line(linetype = "dashed", aes(colour = name_modelo)) + 
+  geom_line(
+    data = (teffect |>
+              filter(type_value == "predicted") |> 
+              filter(tmed > min(d$tmed)) |> 
+              filter(tmed < max(d$tmed))), 
+    aes(colour = name_modelo), 
+    size = 1.5) + 
+  scale_colour_manual(values = colours_combined_name, name = "Models") +
+  ylim(0, 0.7) +
+  xlim(7.5, 17.5) + 
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab(label_tmed) +
+  ylab(label_ratio) + 
+  new_scale_colour() +
+  geom_point(data = d, 
+             aes(x = tmed, 
+                 y = rat, 
+                 shape = elev_code, fill = species, colour = species), 
+             alpha = alpha_points) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") + 
+  scale_colour_manual(
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") + 
+  scale_fill_manual(
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species")
+```
+
+```{r}
+peffect <- data.frame(prec = seq(0,1700, by =1)) |> 
+  mutate(
+    mprecrat3_peffect = exp(-0.5*(log(prec/ pplognormal$Popt)/pplognormal$Pb)^2),
+    mprecrat3_predicted = pplognormal$MR *mprecrat3_peffect) |> 
+  pivot_longer(-prec) |> 
+  separate(name, into = c("modelo", "type_value")) |> 
+  inner_join(name_models)
+
+plot_prec <- peffect |> 
+  filter(type_value == "predicted") |> 
+  ggplot(
+    aes(x = prec, y = value)) + 
+  geom_line(linetype = "dashed", aes(colour = name_modelo)) + 
+  geom_line(
+    data = (peffect |>
+              filter(type_value == "predicted") |> 
+              filter(prec > min(d$prec)) |> 
+              filter(prec < max(d$prec))), 
+    aes(colour = name_modelo), 
+    size = 1.5) + 
+  scale_colour_manual(values = colours_combined_name, name = "Models") +
+  ylim(0, 0.7) +
+  # xlim(7.5, 17.5) + 
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab(label_prec) +
+  ylab(label_ratio) + 
+  new_scale_colour() +
+  geom_point(data = d, 
+             aes(x = prec, 
+                 y = rat, 
+                 shape = elev_code, fill = species, colour = species), 
+             alpha = alpha_points) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") + 
+  scale_colour_manual(
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") + 
+  scale_fill_manual(
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species")
+```
+
+
+```{r}
+plot_tmed + plot_prec & theme(legend.position = "bottom") + plot_layout(guides = "collect")
+```
+
+
+
+
+
+
+
+# Predicted 
+
+```{r}
+pcomb1 <- result_mcombrat1$best_pars |> as.data.frame()
+pcomb7 <- result_mcombrat7$best_pars |> as.data.frame()
+
+
+pred_mcombrat7<- expand.grid(tmed = seq(5,20, by =.5),
+                    prec = seq(100, 1500, by = 5)) |> 
+  mutate(
+    ratio_pred =   pcomb7$MR * ((1 - pcomb7$b)*(1 / (1 + exp(- pcomb7$k *(tmed - pcomb7$t0)))) + pcomb7$b) * (exp(-0.5*(log(prec/pcomb7$Popt)/pcomb7$Pb)^2) )
+  ) 
+
+breaks <- seq(0, .75, by=0.05)
+
+
+## plot surface  
+plot_surface_mcombrat7 <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") + 
+  geom_point(
+    data = d,
+    colour = "white",
+    size = 1.2
+  ) + 
+  scale_fill_material("blue-grey") + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1))  +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Precipitation (mm)") +
+  ylab("Annual Mean Temperature (ºC)") + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5)) + 
+  scale_x_continuous(limits = c(50, 1500), 
+                     breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500))
+```
+
+
+
+```{r}
+a <- plot_tmed + plot_prec & theme(legend.position = "bottom") + plot_layout(guides = "collect")
+
+combined7 <- a + plot_surface_mcombrat7
+```
+
+
+```{r}
+pcomb1 <- result_mcombrat1$best_pars |> as.data.frame()
+
+pred_mcombrat1<- expand.grid(tmed = seq(5,20, by =.5),
+                    prec = seq(100, 1500, by = 5)) |> 
+  mutate(
+    ratio_pred =   pcomb1$MR * (  exp(-0.5*(log(tmed/pcomb1$OTmed)/pcomb1$Tb)^2))* (exp(-0.5*(log(prec/pcomb1$Popt)/pcomb1$Pb)^2) )
+  ) 
+
+
+breaks <- seq(0, 1, by=0.05)
+
+
+## plot surface  
+plot_surface_mcombrat1 <- pred_mcombrat1 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred), 
+                          show.legend = FALSE, breaks = breaks, colour = "white") +
+  geom_point(
+    data = d,
+    colour = "white",
+    size = 1.2
+  ) + 
+  scale_fill_material("blue-grey") + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          breaks = breaks,  colour = "black", 
+                          label.placer = label_placer_n(n=1))  +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Precipitation (mm)") +
+  ylab("Annual Mean Temperature (ºC)") + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5)) + 
+  scale_x_continuous(limits = c(50, 1500), 
+                     breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500))
+```
+
+```{r}
+a <- plot_tmed + plot_prec & theme(legend.position = "bottom") + plot_layout(guides = "collect")
+
+combined1 <- a + plot_surface_mcombrat1
+```
+
+
+
+
+```{r}
+## Support limits duda 
+limits <- support_limits(mtrat6, result_mtrat6$best_pars, var = var, 
+                         source_data = d, pdf = dnorm,
+                         par_lo = list(MR = -.5, b = -1, k = -5, t0 = 0),
+                         par_hi = list(MR = 1.5, b = 1, k = 2, t0 = 20), 
+                         slimit = 2)
+
+```
+
+
+
+## Main figure 
+
+```{r}
+line_colour_model <- "black"
+
+
+custom_options <- list(
+  scale_shape_manual(
+    values = shape_elev, 
+    name = "Elevation"), 
+  scale_colour_manual(
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species"),
+  scale_fill_manual(
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species"),
+  theme_bw(),
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.title=element_text(size=12, face = "bold"), 
+    legend.text=element_text(size=12)
+    )
+)
+
+# plot temp 
+plot_tmed_m7 <- 
+  teffect |>
+  filter(type_value == "predicted") |> 
+  filter(modelo == "mtrat6") |> 
+  ggplot(
+    aes(x = tmed, y = value)) + 
+  geom_line(
+    linetype = "dashed",
+    colour = line_colour_model) + 
+  geom_point(data = d, 
+             aes(x = tmed, 
+                 y = rat, 
+                 shape = elev_code, fill = species, colour = species), 
+             alpha = alpha_points) +
+  geom_line(
+    data = (teffect |>
+              filter(type_value == "predicted") |> 
+              filter(modelo == "mtrat6") |> 
+              filter(tmed > min(d$tmed)) |> 
+              filter(tmed < max(d$tmed))),
+    colour = line_colour_model, 
+    size = 1.5) +
+  scale_y_continuous(limits = c(0,0.63), expand = expansion(add = c(0.005, 0.005))) + 
+  scale_x_continuous(limits = c(7.5,17.8), 
+                     expand = expansion(add = c(0.1, 0.1)),
+                     breaks = seq(7.5, 17.5, 2.5)) + 
+  xlab(label_tmed) +
+  ylab(label_ratio) +
+  custom_options + 
+  annotate(geom="text", 
+           x=15, y=.6, 
+           label= sprintf("R^2 == %.3g",round(result_mtrat6$R2,3)), 
+           color="black",
+           parse = TRUE, 
+           size = 6)
+  
+
+
+plot_prec_m7 <-
+  peffect |> 
+  filter(type_value == "predicted") |> 
+  ggplot(
+    aes(x = prec, y = value)) + 
+  geom_line(
+    linetype = "dashed",
+    colour = line_colour_model) + 
+  geom_point(data = d, 
+             aes(x = prec, 
+                 y = rat, 
+                 shape = elev_code, fill = species, colour = species), 
+             alpha = alpha_points) +
+  geom_line(
+    data = (peffect |>
+              filter(type_value == "predicted") |> 
+              filter(prec > min(d$prec)) |> 
+              filter(prec < max(d$prec))), 
+    colour = line_colour_model, 
+    size = 1.5) + 
+  scale_y_continuous(limits = c(0,0.63), expand = expansion(add = c(0.005, 0.005))) + 
+  scale_x_continuous(limits = c(50, 1550), 
+                     breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500)) + 
+  xlab(label_prec) + 
+  ylab("") + 
+  custom_options +
+  annotate(geom="text", 
+           x=1050, y=.6, 
+           label= sprintf("R^2 == %.3g",round(result_mprecrat3$R2,3)), 
+           color="black",
+           parse = TRUE, 
+           size = 6) 
+
+
+breaks <- seq(0, .8, by=0.05)
+
+# Generate clip 
+x <- d[chull(d$tmed, d$prec), c("rat","prec","tmed")] |> 
+  add_row(rat = 0.075, prec = 800, tmed = 12.5) |> 
+  mutate(prec = ifelse(prec < 150, prec - 30, 
+                        ifelse(prec > 1300, prec + 30, prec)))
+
+bb <- st_as_sf(x = x, 
+               coords = c("prec","tmed"), remove = FALSE) |> 
+  rename(ratio_pred = rat) |> 
+  st_combine() |>   # combine to generate polygon
+  st_cast("POLYGON") |> 
+  st_buffer(dist = 1)
+
+plot_surface_mcombrat7 <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = d,
+    colour = "black", alpha = 0.4, 
+    size = 1.2
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)
+                         ))) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.9,0.7)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) 
+
+```
+
+```{r}
+main_figure <- (
+  (plot_tmed_m7 + plot_prec_m7 & theme(
+    legend.position = "bottom",
+    legend.box = "vertical",
+    legend.box.just = "left"
+  )) + plot_layout(guides = "collect")
+    + (plot_surface_mcombrat7 + plot_layout(guides = "keep"))) +
+  plot_annotation(tag_levels = "A") & theme(
+    plot.tag = element_text(size = 14, face = "bold"))
+
+
+ggsave(
+   main_figure,
+   file = "output/figure_model_selected.png",
+   dpi = 500,
+   width = 15, height = 7
+ )
+```
+
+
+```{r}
+#| fig.height: 7
+#| fig.width: 15
+main_figure
+```
+
+
+### Model validation
+```{r}
+#| echo: false
+#| fig.show: hide
+
+plot_observed <- function(x, yvar, annotate = TRUE, 
+                          lab_x = "Observed", 
+                          lab_y = "Predicted", ...) { 
+  
+  d <- x$source_data |> 
+    mutate(residuals = !!sym(yvar)  - predicted) |> 
+    rename(observed = !!sym(yvar))
+  
+  model_results <- MLE_results_format(x, yvar = "rat")
+  
+  max_value <- max(max(d$predicted, na.rm = TRUE), max(d$observed, na.rm = TRUE))
+  max_range <- max(0, max_value)
+  
+  p <- ggplot(d, aes(x = predicted, y = observed)) +
+    labs(x = lab_x, y = lab_y) + 
+    geom_point() +
+    geom_abline() +
+    theme_bw() + 
+    theme(panel.grid = element_blank()) +
+    xlim(0, max_range) + 
+    ylim(0, max_range)
+  
+  if (annotate) { 
+    out_p <- p + 
+      annotate("text", 
+               x = 0.01 * max_range, y = 0.9 * max_range, 
+               label = paste("R^2~'='", sprintf("%.3f", model_results$R2), sep="~"), 
+               hjust = 0, vjust = 0, parse = TRUE) +
+      annotate("text", 
+               x = 0.01 * max_range, y = 0.85 * max_range, 
+              label = paste("Slope~'='", sprintf("%.4f", model_results$slope), sep="~"), 
+               hjust = 0, vjust = 0, parse = TRUE)
+  } else {
+    out_p <- p 
+  }
+  
+  print(out_p)
+}
+  
+  
+p_observed <- plot_observed(result_mcombrat7, yvar = "rat", 
+                            lab_y = "Observed ABI:NPP", 
+                            lab_x= "Predicted ABI:NPP") 
+```
+
+```{r}
+#| echo: false
+#| fig.show: hide
+plot_residuals <- function(x, yvar, lab_residuals = "Residuals", 
+                           lab_predicted = "Predicted", ...) { 
+  
+  d <- x$source_data |> 
+    mutate(residuals = !!sym(yvar)  - predicted) |> 
+    rename(observed = !!sym(yvar))
+  
+  
+  out <- ggplot(d, aes(x = predicted, y = residuals)) +
+    labs(x = lab_predicted, y = lab_residuals) + 
+    geom_point() +
+    geom_hline(yintercept = 0) +  
+    xlim(0, NA) +
+    theme_bw() + 
+    theme(panel.grid = element_blank()) 
+  
+  print(out)
+}
+
+
+p_residuos <- plot_residuals(result_mcombrat7, yvar = "rat", lab_residuals = "Residuals ABI:NPP", 
+               lab_predicted = "Predicted ABI:NPP") 
+
+```
+
+
+```{r}
+#| echo: false
+prepare_data <- function(x, yvar) {
+  x$source_data |> 
+    mutate(residuals = !!sym(yvar)  - predicted) |> 
+    rename(observed = !!sym(yvar)) 
+}
+
+h <- prepare_data(result_mcombrat7, yvar = "rat")
+
+dist_residuos <- ggplot(h, aes(x = residuals)) +
+  geom_histogram(aes(y = after_stat(density), x = residuals), fill = "gray", col = "white") +
+  stat_function(fun = dnorm, 
+                args = list(mean = mean(h$residuals, na.rm = TRUE), 
+                            sd = sd(h$residuals, na.rm = TRUE)), 
+                color = "black", size = .85) +
+  theme_bw() +
+  theme(panel.grid = element_blank()) +
+  xlab("Residuals") +
+  ylab("Density")
+```
+
+
+```{r}
+plot_validation <- (p_observed + p_residuos + dist_residuos +  plot_annotation(tag_levels = "A")) & 
+  theme(axis.title = element_text(size = 14, face = "bold"), 
+        axis.text = element_text(size = 11),
+        plot.tag = element_text(size = 14, face = "bold"))
+
+ggsave(
+   plot_validation,
+   file = "output/figure_model_validation.png",
+   dpi = 500,
+   width = 13, height = 5.5
+ )
+```
+
+```{r}
+#| fig.height: 5
+#| fig.width: 12
+plot_validation
+```
+
