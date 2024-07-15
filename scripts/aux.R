@@ -53,24 +53,24 @@ MLE_results_format <- function(x, yvar) {
   return(out)
 }
 
-MLL_results_params <- function(x) {
-  params <- map_dfr(
-    seq_along(x$best_pars),
-    ~ {
-      data.frame(
-        name = names(x$best_pars)[.x],
-        value = x$best_pars[.x],
-        si_lower = x$lower_limits[.x],
-        si_upper = x$upper_limits[.x],
-        std_error = x$std_errs[.x],
-        bound_lower = x$par_lo[.x],
-        bound_upper = x$par_hi[.x]
-      )
-    }
+MLE_results_params <- function(x) {
+
+  params <- list(
+    value = as.data.frame(x$best_pars),
+    support_interval_lower = as.data.frame(x$lower_limits),
+    support_interval_upper = as.data.frame(x$upper_limits),
+    std_error = as.data.frame(x$std_errs),
+    bound_lower = as.data.frame(x$par_lo),
+    bound_upper = as.data.frame(x$par_hi)
   )
 
-  return(params)
+  out <- bind_rows(params, .id = "var") |>
+    pivot_longer(cols = -var, names_to = "parameter", values_to = "value") |>
+    pivot_wider(names_from = var, values_from = value)
+
+  return(out)
 }
+
 
 
 # Function to compute deltaAIC
