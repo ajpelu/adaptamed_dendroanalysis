@@ -35,9 +35,10 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="site_libs/datatables-binding-0.31/datatables.js"></script>
+<script src="site_libs/datatables-binding-0.32/datatables.js"></script>
 <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
@@ -412,7 +413,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-01-30
+<strong>Last updated:</strong> 2024-07-17
 </p>
 <p>
 <strong>Checks:</strong>
@@ -540,20 +541,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree0acc07a97dd4b9461b572d7fdb65aa53a3075cd7targetblank0acc07aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree0617e38e5687d64ee0e5776c96cc8eca49fa3a39targetblank0617e38a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/0acc07a97dd4b9461b572d7fdb65aa53a3075cd7" target="_blank">0acc07a</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/0617e38e5687d64ee0e5776c96cc8eca49fa3a39" target="_blank">0617e38</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree0acc07a97dd4b9461b572d7fdb65aa53a3075cd7targetblank0acc07aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree0617e38e5687d64ee0e5776c96cc8eca49fa3a39targetblank0617e38a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/0acc07a97dd4b9461b572d7fdb65aa53a3075cd7" target="_blank">0acc07a</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/0617e38e5687d64ee0e5776c96cc8eca49fa3a39" target="_blank">0617e38</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -570,21 +571,18 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    data/.DS_Store
-    Ignored:    data/geoinfo/.DS_Store
+    Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/remote_sensing/old/
+    Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  Rplot.jpeg
-    Untracked:  analysis/site_forest_structure.Rmd
-    Untracked:  data/db_dendroadaptamed.xlsx
-    Untracked:  data/raw/soil/dicc_fq.csv
-    Untracked:  output/soil_fq_subsuperficial.jpg
-    Untracked:  output/soil_fq_superficial.jpg
-    Untracked:  output/soil_ternary.jpg
+    Untracked:  output/tables/
 
 Unstaged changes:
-    Modified:   scripts/aux.R
+    Modified:   output/soil_fq_subsuperficial.jpg
+    Modified:   output/soil_fq_superficial.jpg
+    Modified:   output/soil_ternary.jpg
 
 </code></pre>
 <p>
@@ -629,6 +627,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/0617e38e5687d64ee0e5776c96cc8eca49fa3a39/analysis/site_soil_analysis.Rmd" target="_blank">0617e38</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-07-17
+</td>
+<td>
+wflow_publish("analysis/site_soil_analysis.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/2752c315d01167746c7301d401ff8891d2537212/docs/site_soil_analysis.html" target="_blank">2752c31</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-30
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -750,8 +782,42 @@ library(DT)</code></pre>
 <h3><span class="header-section-number">0.1.2</span> Physico-Chemical features</h3>
 <div id="texture" class="section level4" number="0.1.2.1">
 <h4><span class="header-section-number">0.1.2.1</span> Texture</h4>
-<pre class="r"><code>soil_fq &lt;- read_csv(&quot;data/dendroadaptamed_soil_data.csv&quot;)</code></pre>
-<pre class="r"><code>gsup &lt;- soil_fq |&gt; 
+<pre class="r"><code>soil_fq &lt;- read_csv(&quot;data/dendroadaptamed_soil_data.csv&quot;) |&gt; 
+  mutate(species = paste0(&quot;P. &quot;, sp_code)) |&gt;
+  mutate(elev_code = case_when(
+    elev_code == &quot;low2&quot; ~ &quot;low-Dec&quot;, 
+    TRUE ~ elev_code
+  )) |&gt; 
+  mutate(elev_code = fct_relevel(elev_code, &quot;low-Dec&quot;, &quot;low&quot;, &quot;medium&quot;, &quot;high&quot;)) |&gt; 
+  mutate(sp_code = fct_relevel(sp_code, &quot;halepensis&quot;,&quot;pinaster&quot;, &quot;nigra&quot;, &quot;sylvestris&quot;)) </code></pre>
+<pre class="r"><code>custom_theme &lt;- list(
+  labs(yarrow = &quot;Clay (%)&quot;,
+       zarrow = &quot;Silt (%)&quot;, 
+       xarrow = &quot;Sand (%)&quot;),
+  theme_bw(),
+  ggplot2::xlab(&quot;&quot;),
+  ggplot2::ylab(&quot;&quot;), 
+  ggtern::zlab(&quot;&quot;),
+  theme_showarrows(),
+  theme_showgrid(),
+  scale_shape_manual(values = shape_elev, name = &quot;Elevation&quot;),
+  scale_colour_manual(values = colours_Specie, labels = expression(italic(&quot;P. halepensis&quot;), italic(&quot;P. pinaster&quot;), italic(&quot;P. nigra&quot;), italic(&quot;P. sylvestris&quot;)), name = &quot;Species&quot;),
+  scale_fill_manual(values = colours_Specie, labels = expression(italic(&quot;P. halepensis&quot;), italic(&quot;P. pinaster&quot;), italic(&quot;P. nigra&quot;), italic(&quot;P. sylvestris&quot;)),
+    name = &quot;Species&quot;),
+  # tern_limits(T=0.4, L = 0.8, R=0.5) 
+  tern_limits(T=1, L = 1, R=1),
+  theme(
+    tern.axis.arrow.text = element_text(size = 14, face = &quot;bold&quot;), 
+    tern.axis.arrow.text.T = element_text(vjust = -1), # clay
+    tern.axis.arrow.text.L = element_text(vjust = -1), # sand
+    tern.axis.arrow.text.R = element_text(vjust = 1), # silt
+    tern.axis.text = element_text(size = 14),
+    plot.title = element_text(face = &quot;bold&quot;)
+  )
+)
+
+
+gsup &lt;- soil_fq |&gt; 
   filter(type == &quot;Textura Superficial&quot;) |&gt; 
   dplyr::select(-res, -layer, -type) |&gt; 
   pivot_wider(values_from = value, 
@@ -759,91 +825,42 @@ library(DT)</code></pre>
 
 plot_sup &lt;- ggtern(data = gsup, 
        aes(x = arena_sup, y = arcilla_sup, z = limo_sup, 
-           color = sp_code, fill = sp_code)) +
+           color = species, fill = species)) +
   geom_point(size = 5, aes(shape = elev_code), alpha = 0.8) +
-  labs(yarrow = &quot;Arcilla (%)&quot;, 
-                zarrow = &quot;Limo (%)&quot;,
-                xarrow = &quot;Arena (%)&quot;) +
-  theme_bw() +
-  ggplot2::xlab(&quot;&quot;) +
-  ggplot2::ylab(&quot;&quot;) +
-  ggtern::zlab(&quot;&quot;) +
-  theme_showarrows() +
-  theme_showgrid() +
-  scale_colour_manual(values = colours_sp, name = &quot;Elevation&quot;) +
-  scale_fill_manual(values = colours_sp, name = &quot;Elevation&quot;) +
-  scale_shape_manual(values = shape_elev, name = &quot;Species&quot;) +
-  ggtitle(&quot;Soil texture surface (25-30 cm)&quot;) +
-  tern_limits(T=0.4, L = 0.8, R=0.5)
+  ggtitle(&quot;A&quot;, subtitle = &quot;Soil texture surface (25-30 cm)&quot;) +
+  custom_theme 
   
 
-plot_sup</code></pre>
-<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-5-1">
-Past versions of unnamed-chunk-5-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-5-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/b944fde39efdd948a2b1bfb7e8d10e5e1a941c50/docs/figure/site_soil_analysis.Rmd/unnamed-chunk-5-1.png" target="_blank">b944fde</a>
-</td>
-<td>
-ajpelu
-</td>
-<td>
-2024-01-21
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>gsub &lt;- soil_fq |&gt; 
+gsub &lt;- soil_fq |&gt; 
   filter(type == &quot;Textura Subsuperficial&quot;) |&gt; 
   dplyr::select(-res, -layer, -type) |&gt; 
   pivot_wider(values_from = value, 
               names_from = soil_var)
 
-
 plot_sub &lt;- ggtern(data = gsub, 
-       aes(x = arena_sub, y = arcilla_sub, z = limo_sub, 
-           color = sp_code, fill = sp_code)) +
+                 aes(x = arena_sub, y = arcilla_sub, z = limo_sub, 
+                    color = species, fill = species)) +
   geom_point(size = 5, aes(shape = elev_code), alpha = 0.8) +
-  labs(yarrow = &quot;Arcilla (%)&quot;, 
-                zarrow = &quot;Limo (%)&quot;,
-                xarrow = &quot;Arena (%)&quot;) +
-  theme_bw() +
-  ggplot2::xlab(&quot;&quot;) +
-  ggplot2::ylab(&quot;&quot;) +
-  ggtern::zlab(&quot;&quot;) +
-  theme_showarrows() +
-  theme_showgrid() +
-  scale_colour_manual(values = colours_sp, name = &quot;Elevation&quot;) +
-  scale_fill_manual(values = colours_sp, name = &quot;Elevation&quot;) +
-  scale_shape_manual(values = shape_elev, name = &quot;Species&quot;) +
-  ggtitle(&quot;Soil texture subsurface (&gt;30 cm)&quot;) +
-  tern_limits(T=0.4, L = 0.8, R=0.5) 
+  ggtitle(&quot;B&quot;, subtitle = &quot;Soil texture subsurface (&gt;30 cm)&quot;) +
+  custom_theme</code></pre>
+<pre class="r"><code>library(gridExtra)
+library(lemon)
 
-plot_sub </code></pre>
-<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+common_legend &lt;- lemon::g_legend(plot_sub + theme(legend.position = &quot;bottom&quot;, 
+                                                  legend.background = element_blank()))
+
+combined_ggtern &lt;- ggtern::grid.arrange(plot_sup + 
+                                          theme(legend.position = &quot;hidden&quot;,
+                                                plot.margin = unit(c(t=0.4, r=-5, b=-.6, l=0), &quot;cm&quot;)),
+                                        plot_sub + 
+                                          theme(legend.position = &quot;hidden&quot;,
+                                                plot.margin = unit(c(t=0.4, r=0, b=-.6, l=-5), &quot;cm&quot;)),
+                     common_legend,
+                     # nrow = 1, 
+                     # widths = c(2,2,0.5),
+                     layout_matrix = matrix(c(1, 3, 2, 3), nrow = 2), 
+                     heights = c(5,1))</code></pre>
+<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-6-1.png" width="1152" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
 Past versions of unnamed-chunk-6-1.png
@@ -868,6 +885,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2752c315d01167746c7301d401ff8891d2537212/docs/figure/site_soil_analysis.Rmd/unnamed-chunk-6-1.png" target="_blank">2752c31</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-30
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/b944fde39efdd948a2b1bfb7e8d10e5e1a941c50/docs/figure/site_soil_analysis.Rmd/unnamed-chunk-6-1.png" target="_blank">b944fde</a>
 </td>
 <td>
@@ -881,11 +909,545 @@ ajpelu
 </table>
 </div>
 </div>
-<pre class="r"><code>combined_ggtern &lt;- ggtern::grid.arrange(plot_sup, plot_sub, nrow = 1)
-
-ggsave(combined_ggtern, 
+<pre class="r"><code>combined_ggtern</code></pre>
+<pre><code>TableGrob (2 x 2) &quot;arrange&quot;: 3 grobs
+  z     cells    name              grob
+1 1 (1-1,1-1) arrange    gtable[layout]
+2 2 (1-1,2-2) arrange    gtable[layout]
+3 3 (2-2,1-2) arrange gtable[guide-box]</code></pre>
+<pre class="r"><code>ggsave(combined_ggtern, 
        filename = &quot;output/soil_ternary.jpg&quot;,
-       width = 10, height = 5)</code></pre>
+       dpi = 500, 
+       width = 12, height = 5)</code></pre>
+<pre class="r"><code>library(gtsummary)
+library(openxlsx)
+
+g &lt;- gsup |&gt; inner_join(gsub)
+
+ternary_tab &lt;- g |&gt; 
+  tbl_summary(by = species, 
+              statistic = list(all_continuous() ~ &quot;{mean}±{sd} ({min}-{max})&quot;),
+              include = c(arcilla_sup, arena_sup, limo_sup, 
+                          arcilla_sub, arena_sub, limo_sub))
+
+ternary_tab</code></pre>
+<div id="snjaprpcje" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#snjaprpcje table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#snjaprpcje thead, #snjaprpcje tbody, #snjaprpcje tfoot, #snjaprpcje tr, #snjaprpcje td, #snjaprpcje th {
+  border-style: none;
+}
+
+#snjaprpcje p {
+  margin: 0;
+  padding: 0;
+}
+
+#snjaprpcje .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#snjaprpcje .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#snjaprpcje .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#snjaprpcje .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#snjaprpcje .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#snjaprpcje .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#snjaprpcje .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#snjaprpcje .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#snjaprpcje .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#snjaprpcje .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#snjaprpcje .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#snjaprpcje .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#snjaprpcje .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#snjaprpcje .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#snjaprpcje .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snjaprpcje .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#snjaprpcje .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#snjaprpcje .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#snjaprpcje .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snjaprpcje .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#snjaprpcje .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snjaprpcje .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#snjaprpcje .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snjaprpcje .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#snjaprpcje .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#snjaprpcje .gt_left {
+  text-align: left;
+}
+
+#snjaprpcje .gt_center {
+  text-align: center;
+}
+
+#snjaprpcje .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#snjaprpcje .gt_font_normal {
+  font-weight: normal;
+}
+
+#snjaprpcje .gt_font_bold {
+  font-weight: bold;
+}
+
+#snjaprpcje .gt_font_italic {
+  font-style: italic;
+}
+
+#snjaprpcje .gt_super {
+  font-size: 65%;
+}
+
+#snjaprpcje .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#snjaprpcje .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#snjaprpcje .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#snjaprpcje .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#snjaprpcje .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#snjaprpcje .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#snjaprpcje .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#snjaprpcje .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#snjaprpcje div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Characteristic&lt;/strong&gt;&lt;/span&gt;"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;P. halepensis&lt;/strong&gt;, N = 3&lt;/span&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><span class='gt_from_md'><strong>P. halepensis</strong>, N = 3</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;P. nigra&lt;/strong&gt;, N = 3&lt;/span&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><span class='gt_from_md'><strong>P. nigra</strong>, N = 3</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;P. pinaster&lt;/strong&gt;, N = 4&lt;/span&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><span class='gt_from_md'><strong>P. pinaster</strong>, N = 4</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;P. sylvestris&lt;/strong&gt;, N = 3&lt;/span&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;"><span class='gt_from_md'><strong>P. sylvestris</strong>, N = 3</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="label" class="gt_row gt_left">arcilla_sup</td>
+<td headers="stat_1" class="gt_row gt_center">13.08±4.44 (8.29-17.06)</td>
+<td headers="stat_2" class="gt_row gt_center">13.92±1.60 (12.19-15.35)</td>
+<td headers="stat_3" class="gt_row gt_center">11.99±1.47 (10.04-13.62)</td>
+<td headers="stat_4" class="gt_row gt_center">10.53±0.20 (10.39-10.77)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">arena_sup</td>
+<td headers="stat_1" class="gt_row gt_center">62.8±7.6 (56.4-71.2)</td>
+<td headers="stat_2" class="gt_row gt_center">58.5±2.2 (57.3-61.1)</td>
+<td headers="stat_3" class="gt_row gt_center">63.5±2.0 (60.9-65.8)</td>
+<td headers="stat_4" class="gt_row gt_center">62.5±1.9 (60.4-63.8)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">limo_sup</td>
+<td headers="stat_1" class="gt_row gt_center">24.08±3.15 (20.54-26.57)</td>
+<td headers="stat_2" class="gt_row gt_center">27.53±0.91 (26.70-28.51)</td>
+<td headers="stat_3" class="gt_row gt_center">24.50±2.93 (20.58-26.86)</td>
+<td headers="stat_4" class="gt_row gt_center">26.98±1.66 (25.79-28.87)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">arcilla_sub</td>
+<td headers="stat_1" class="gt_row gt_center">19.2±6.2 (12.1-23.0)</td>
+<td headers="stat_2" class="gt_row gt_center">16.9±3.4 (13.0-19.5)</td>
+<td headers="stat_3" class="gt_row gt_center">15.8±3.4 (11.4-19.1)</td>
+<td headers="stat_4" class="gt_row gt_center">12.1±0.5 (11.5-12.5)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">arena_sub</td>
+<td headers="stat_1" class="gt_row gt_center">55.7±10.7 (48.9-68.0)</td>
+<td headers="stat_2" class="gt_row gt_center">53.7±3.2 (51.1-57.2)</td>
+<td headers="stat_3" class="gt_row gt_center">59.7±5.7 (52.8-66.2)</td>
+<td headers="stat_4" class="gt_row gt_center">64.6±1.4 (63.4-66.1)</td></tr>
+    <tr><td headers="label" class="gt_row gt_left">limo_sub</td>
+<td headers="stat_1" class="gt_row gt_center">25.08±4.53 (19.87-28.13)</td>
+<td headers="stat_2" class="gt_row gt_center">29.48±0.26 (29.24-29.76)</td>
+<td headers="stat_3" class="gt_row gt_center">24.54±3.31 (22.43-29.47)</td>
+<td headers="stat_4" class="gt_row gt_center">23.34±0.92 (22.35-24.17)</td></tr>
+  </tbody>
+  
+  <tfoot class="gt_footnotes">
+    <tr>
+      <td class="gt_footnote" colspan="5"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> <span class='gt_from_md'>Mean±SD (Minimum-Maximum)</span></td>
+    </tr>
+  </tfoot>
+</table>
+</div>
+<pre class="r"><code>ternary_tab |&gt; as_tibble() |&gt; openxlsx::write.xlsx(&quot;output/tables/soil_ternary_means.xlsx&quot;)</code></pre>
+<div id="comparison-ternary-composition" class="section level5" number="0.1.2.1.1">
+<h5><span class="header-section-number">0.1.2.1.1</span> Comparison Ternary composition</h5>
+<pre class="r"><code># anova(aov(arcilla_sub ~ species, data = g)) |&gt; broom::tidy()
+
+anova_ternary &lt;- g |&gt; 
+  dplyr::select(-ID) |&gt; 
+  select_if(is.numeric) |&gt; 
+  map(~ broom::tidy(anova(aov(. ~ g$species)))) |&gt; 
+  bind_rows(.id = &quot;var&quot;) 
+
+anova_ternary |&gt; openxlsx::write.xlsx(&quot;output/tables/soil_ternary_anova.xlsx&quot;)
+
+anova_ternary |&gt; DT::datatable() |&gt; 
+  formatRound(columns = c(4:7), digits=3)</code></pre>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-49a4f6994b5842ced6ae" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-49a4f6994b5842ced6ae">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12"],["arcilla_sup","arcilla_sup","arena_sup","arena_sup","limo_sup","limo_sup","arcilla_sub","arcilla_sub","arena_sub","arena_sub","limo_sub","limo_sub"],["g$species","Residuals","g$species","Residuals","g$species","Residuals","g$species","Residuals","g$species","Residuals","g$species","Residuals"],[3,9,3,9,3,9,3,9,3,9,3,9],[19.45985647456536,51.18079740132828,47.85787466043109,143.5494361628855,28.65474826414651,52.72825506735325,79.15665401927274,134.6809434290135,209.9810510783271,350.7598699854003,65.65288774435007,75.70109962523117],[6.486618824855121,5.686755266814253,15.95262488681036,15.94993735143173,9.551582754715504,5.858695007483694,26.38555133975758,14.96454926989039,69.99368369277572,38.9733188872667,21.88429591478335,8.411233291692351],[1.140653768363933,null,1.000168498177731,null,1.63032599282172,null,1.763203880309777,null,1.795938495647183,null,2.601793952903214,null],[0.3839892571326898,null,0.4362227702124686,null,0.2502580605251828,null,0.223903956619889,null,0.2179213636341257,null,0.1164374476391278,null]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>var<\/th>\n      <th>term<\/th>\n      <th>df<\/th>\n      <th>sumsq<\/th>\n      <th>meansq<\/th>\n      <th>statistic<\/th>\n      <th>p.value<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"targets":4,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":5,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":6,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"targets":7,"render":"function(data, type, row, meta) {\n    return type !== 'display' ? data : DTWidget.formatRound(data, 3, 3, \",\", \".\", null);\n  }"},{"className":"dt-right","targets":[3,4,5,6,7]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"var","targets":1},{"name":"term","targets":2},{"name":"df","targets":3},{"name":"sumsq","targets":4},{"name":"meansq","targets":5},{"name":"statistic","targets":6},{"name":"p.value","targets":7}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.columnDefs.0.render","options.columnDefs.1.render","options.columnDefs.2.render","options.columnDefs.3.render"],"jsHooks":[]}</script>
+</div>
 </div>
 </div>
 <div id="other-parameters" class="section level3" number="0.1.3">
@@ -931,10 +1493,9 @@ d &lt;- fq_notextura |&gt;
   
 
            
-
-
-mitabla &lt;- tt(d) |&gt; 
+mitabla &lt;- d |&gt; 
   dplyr::select(-sp_code) |&gt; 
+  tt() |&gt; 
   group_tt(
     i = list(
       &quot;halepensis&quot; = 1,
@@ -956,16 +1517,20 @@ mitabla &lt;- tt(d) |&gt;
       ) 
   ) 
 
+
 mitabla</code></pre>
 <!DOCTYPE html> 
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tinytable_nvdl836gkszuetx0wz85</title>
+    <title>tinytable_0wtfap1nbyxpnncj1185</title>
     <style>
-.table td.tinytable_css_lfw8fs0wtfap1nbyxpnn, .table th.tinytable_css_lfw8fs0wtfap1nbyxpnn {   padding-left: 1em; }
-.table td.tinytable_css_cj1185lekw9me6e2w9ik, .table th.tinytable_css_cj1185lekw9me6e2w9ik {    text-align: center; }
+.table td.tinytable_css_lekw9me6e2w9ikqb9usf, .table th.tinytable_css_lekw9me6e2w9ikqb9usf {    border-bottom: solid 0.1em #d3d8dc; }
+.table td.tinytable_css_gjowrcl3rd7gw3af5qjh, .table th.tinytable_css_gjowrcl3rd7gw3af5qjh {    text-align: center; }
+.table td.tinytable_css_wwtvidbv0f9qh57fduvk, .table th.tinytable_css_wwtvidbv0f9qh57fduvk {    border-bottom: solid 0.05em #d3d8dc; }
+.table td.tinytable_css_rucouvd920dpmd5kzdf7, .table th.tinytable_css_rucouvd920dpmd5kzdf7 {   padding-left: 1em; }
+.table td.tinytable_css_65dma048lo2qzttpharl, .table th.tinytable_css_65dma048lo2qzttpharl {    text-align: center; }
     </style>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -983,8 +1548,9 @@ mitabla</code></pre>
 
   <body>
     <div class="container">
-      <table class="table" id="tinytable_nvdl836gkszuetx0wz85" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
+      <table class="table table-borderless" id="tinytable_0wtfap1nbyxpnncj1185" style="width: auto; margin-left: auto; margin-right: auto;" data-quarto-disable-processing='true'>
         <thead>
+<tr>
 <th scope="col" align="center" colspan=1> </th>
 <th scope="col" align="center" colspan=2>Capacidad Campo (cm3/cm3)</th>
 <th scope="col" align="center" colspan=1>Retención de agua (mm)</th>
@@ -996,7 +1562,7 @@ mitabla</code></pre>
 <th scope="col" align="center" colspan=2>Conductividad Saturada Aparente (cm/día)</th>
 <th scope="col" align="center" colspan=2>Contenido de Agua Residual (cm3/cm3)</th>
 <th scope="col" align="center" colspan=2>Contenido de Agua Saturacion (cm3/cm3)</th>
-<th scope="col" align="center" colspan=1> </th>
+</tr>
         
               <tr>
                 <th scope="col">elev_code</th>
@@ -1024,7 +1590,7 @@ mitabla</code></pre>
         
         <tbody>
                 <tr>
-                  <td>low</td>
+                  <td>low    </td>
                   <td>0.2352</td>
                   <td>0.2909</td>
                   <td> 76.600</td>
@@ -1046,7 +1612,7 @@ mitabla</code></pre>
                   <td>0.4044460</td>
                 </tr>
                 <tr>
-                  <td>medium</td>
+                  <td>medium </td>
                   <td>0.2555</td>
                   <td>0.2904</td>
                   <td> 80.200</td>
@@ -1068,7 +1634,7 @@ mitabla</code></pre>
                   <td>0.4014645</td>
                 </tr>
                 <tr>
-                  <td>high</td>
+                  <td>high   </td>
                   <td>0.1927</td>
                   <td>0.2135</td>
                   <td>131.875</td>
@@ -1090,29 +1656,7 @@ mitabla</code></pre>
                   <td>0.3852737</td>
                 </tr>
                 <tr>
-                  <td>low2</td>
-                  <td>0.2453</td>
-                  <td>0.2781</td>
-                  <td>166.650</td>
-                  <td>0.0911</td>
-                  <td>0.1073</td>
-                  <td>1.262387</td>
-                  <td>1.379855</td>
-                  <td>6.607013</td>
-                  <td>6.493077</td>
-                  <td>2.485796</td>
-                  <td>1.2684363</td>
-                  <td> 71.36742</td>
-                  <td>24.27113</td>
-                  <td> 9.441479</td>
-                  <td> 3.218326</td>
-                  <td>0.02971572</td>
-                  <td>0.04195773</td>
-                  <td>0.4203775</td>
-                  <td>0.3904978</td>
-                </tr>
-                <tr>
-                  <td>low</td>
+                  <td>low    </td>
                   <td>0.2119</td>
                   <td>0.2594</td>
                   <td>144.525</td>
@@ -1134,7 +1678,7 @@ mitabla</code></pre>
                   <td>0.3938811</td>
                 </tr>
                 <tr>
-                  <td>medium</td>
+                  <td>medium </td>
                   <td>0.2371</td>
                   <td>0.2478</td>
                   <td>149.400</td>
@@ -1156,7 +1700,7 @@ mitabla</code></pre>
                   <td>0.3883589</td>
                 </tr>
                 <tr>
-                  <td>high</td>
+                  <td>high   </td>
                   <td>0.2473</td>
                   <td>0.2131</td>
                   <td>142.250</td>
@@ -1178,7 +1722,29 @@ mitabla</code></pre>
                   <td>0.3797774</td>
                 </tr>
                 <tr>
-                  <td>low</td>
+                  <td>low-Dec</td>
+                  <td>0.2453</td>
+                  <td>0.2781</td>
+                  <td>166.650</td>
+                  <td>0.0911</td>
+                  <td>0.1073</td>
+                  <td>1.262387</td>
+                  <td>1.379855</td>
+                  <td>6.607013</td>
+                  <td>6.493077</td>
+                  <td>2.485796</td>
+                  <td>1.2684363</td>
+                  <td> 71.36742</td>
+                  <td>24.27113</td>
+                  <td> 9.441479</td>
+                  <td> 3.218326</td>
+                  <td>0.02971572</td>
+                  <td>0.04195773</td>
+                  <td>0.4203775</td>
+                  <td>0.3904978</td>
+                </tr>
+                <tr>
+                  <td>low    </td>
                   <td>0.2402</td>
                   <td>0.2789</td>
                   <td>164.950</td>
@@ -1200,7 +1766,7 @@ mitabla</code></pre>
                   <td>0.3912886</td>
                 </tr>
                 <tr>
-                  <td>medium</td>
+                  <td>medium </td>
                   <td>0.2412</td>
                   <td>0.2869</td>
                   <td>165.800</td>
@@ -1222,7 +1788,7 @@ mitabla</code></pre>
                   <td>0.3959163</td>
                 </tr>
                 <tr>
-                  <td>high</td>
+                  <td>high   </td>
                   <td>0.2377</td>
                   <td>0.2532</td>
                   <td>155.525</td>
@@ -1244,7 +1810,7 @@ mitabla</code></pre>
                   <td>0.3803996</td>
                 </tr>
                 <tr>
-                  <td>low</td>
+                  <td>low    </td>
                   <td>0.2462</td>
                   <td>0.2101</td>
                   <td> 72.425</td>
@@ -1266,7 +1832,7 @@ mitabla</code></pre>
                   <td>0.3786756</td>
                 </tr>
                 <tr>
-                  <td>medium</td>
+                  <td>medium </td>
                   <td>0.2442</td>
                   <td>0.2179</td>
                   <td> 73.125</td>
@@ -1288,7 +1854,7 @@ mitabla</code></pre>
                   <td>0.3797774</td>
                 </tr>
                 <tr>
-                  <td>high</td>
+                  <td>high   </td>
                   <td>0.2514</td>
                   <td>0.2061</td>
                   <td> 72.375</td>
@@ -1314,61 +1880,134 @@ mitabla</code></pre>
     </div>
 
     <script>
-    function styleCell_tinytable_0fhy9pbo2emqc1pj0fom(i, j, css_id) {
-      var table = document.getElementById("tinytable_nvdl836gkszuetx0wz85");
-      table.rows[i].cells[j].classList.add(css_id);
-    }
-    function insertSpanRow_35fcleif5lty7gql7lic(i, colspan, content) {
-      var table = document.getElementById('tinytable_nvdl836gkszuetx0wz85');
-      var newRow = table.insertRow(i);
-      var newCell = newRow.insertCell(0);
-      newCell.setAttribute("colspan", colspan);
-      // newCell.innerText = content;
-      // this may be unsafe, but innerText does not interpret <br>
-      newCell.innerHTML = content;
-    }
-window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(12, 21, 'sylvestris') });
-window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(9, 21, 'nigra') });
-window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(5, 21, 'pinaster') });
-window.addEventListener('load', function () { insertSpanRow_35fcleif5lty7gql7lic(2, 21, 'halepensis') });
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(3, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(4, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(5, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(7, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(8, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(9, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(10, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(12, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(13, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(14, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(16, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(17, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(18, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(19, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(20, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(21, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(22, 0, 'tinytable_css_lfw8fs0wtfap1nbyxpnn') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 0, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 1, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 2, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 3, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 4, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 5, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 6, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 7, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 8, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 9, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 10, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 11, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 12, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 13, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 14, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 15, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 16, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 17, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 18, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 19, 'tinytable_css_cj1185lekw9me6e2w9ik') })
-window.addEventListener('load', function () { styleCell_tinytable_0fhy9pbo2emqc1pj0fom(0, 20, 'tinytable_css_cj1185lekw9me6e2w9ik') })
+      function styleCell_tinytable_6gkszuetx0wz8535fcle(i, j, css_id) {
+        var table = document.getElementById("tinytable_0wtfap1nbyxpnncj1185");
+        table.rows[i].cells[j].classList.add(css_id);
+      }
+      function insertSpanRow_h8zffs3twifaz7ahktnx(i, colspan, content) {
+        var table = document.getElementById('tinytable_0wtfap1nbyxpnncj1185');
+        var newRow = table.insertRow(i);
+        var newCell = newRow.insertCell(0);
+        newCell.setAttribute("colspan", colspan);
+        // newCell.innerText = content;
+        // this may be unsafe, but innerText does not interpret <br>
+        newCell.innerHTML = content;
+      }
+      function spanCell_tinytable_6gkszuetx0wz8535fcle(i, j, rowspan, colspan) {
+        var table = document.getElementById("tinytable_0wtfap1nbyxpnncj1185");
+        const targetRow = table.rows[i];
+        const targetCell = targetRow.cells[j];
+        for (let r = 0; r < rowspan; r++) {
+          // Only start deleting cells to the right for the first row (r == 0)
+          if (r === 0) {
+            // Delete cells to the right of the target cell in the first row
+            for (let c = colspan - 1; c > 0; c--) {
+              if (table.rows[i + r].cells[j + c]) {
+                table.rows[i + r].deleteCell(j + c);
+              }
+            }
+          }
+          // For rows below the first, delete starting from the target column
+          if (r > 0) {
+            for (let c = colspan - 1; c >= 0; c--) {
+              if (table.rows[i + r] && table.rows[i + r].cells[j]) {
+                table.rows[i + r].deleteCell(j);
+              }
+            }
+          }
+        }
+        // Set rowspan and colspan of the target cell
+        targetCell.rowSpan = rowspan;
+        targetCell.colSpan = colspan;
+      }
+
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 0, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 1, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 2, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 3, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 4, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 5, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 6, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 7, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 8, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 9, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 10, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 11, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 12, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 13, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 14, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 15, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 16, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 17, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 18, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(1, 19, 'tinytable_css_lekw9me6e2w9ikqb9usf') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 0, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 1, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 2, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 3, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 4, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 5, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 6, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 7, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 8, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 9, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 10, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 11, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 12, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 13, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 14, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 15, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 16, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 17, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 18, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 19, 'tinytable_css_gjowrcl3rd7gw3af5qjh') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 1, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 2, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 3, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 4, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 5, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 6, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 7, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 8, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 9, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 10, 'tinytable_css_wwtvidbv0f9qh57fduvk') })
+window.addEventListener('load', function () { insertSpanRow_h8zffs3twifaz7ahktnx(12, 20, 'sylvestris') });
+window.addEventListener('load', function () { insertSpanRow_h8zffs3twifaz7ahktnx(9, 20, 'nigra') });
+window.addEventListener('load', function () { insertSpanRow_h8zffs3twifaz7ahktnx(5, 20, 'pinaster') });
+window.addEventListener('load', function () { insertSpanRow_h8zffs3twifaz7ahktnx(2, 20, 'halepensis') });
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(3, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(4, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(5, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(7, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(8, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(9, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(10, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(12, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(13, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(14, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(16, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(17, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(18, 0, 'tinytable_css_rucouvd920dpmd5kzdf7') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 0, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 1, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 2, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 3, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 4, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 5, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 6, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 7, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 8, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 9, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 10, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 11, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 12, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 13, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 14, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 15, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 16, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 17, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 18, 'tinytable_css_65dma048lo2qzttpharl') })
+window.addEventListener('load', function () { styleCell_tinytable_6gkszuetx0wz8535fcle(0, 19, 'tinytable_css_65dma048lo2qzttpharl') })
     </script>
 
   </body>
@@ -1398,7 +2037,44 @@ par_sup &lt;- f |&gt;
   ggtitle(&quot;Superficial&quot;)
 
 par_sup</code></pre>
-<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
+Past versions of unnamed-chunk-11-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-11-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/2752c315d01167746c7301d401ff8891d2537212/docs/figure/site_soil_analysis.Rmd/unnamed-chunk-11-1.png" target="_blank">2752c31</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-01-30
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>ggsave(par_sup, 
        filename = &quot;output/soil_fq_superficial.jpg&quot;,
        width = 10, height = 10)</code></pre>
@@ -1421,7 +2097,7 @@ par_sup</code></pre>
   ggtitle(&quot;Subsuperficial&quot;)
 
 par_sub </code></pre>
-<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/site_soil_analysis.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>ggsave(par_sub, 
        filename = &quot;output/soil_fq_subsuperficial.jpg&quot;,
        width = 10, height = 10)</code></pre>
@@ -1434,46 +2110,59 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.3 (2023-03-15)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Big Sur ... 10.16
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.2/Resources/lib/libRlapack.dylib
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
 
 locale:
 [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DT_0.31         tinytable_0.0.1 patchwork_1.1.3 ggtern_3.4.2   
- [5] lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1   dplyr_1.1.4    
- [9] purrr_1.0.2     readr_2.1.4     tidyr_1.3.0     tibble_3.2.1   
-[13] ggplot2_3.4.4   tidyverse_2.0.0 workflowr_1.7.1
+ [1] openxlsx_4.2.5.2 gtsummary_1.7.2  lemon_0.4.9      gridExtra_2.3   
+ [5] DT_0.32          tinytable_0.2.1  patchwork_1.2.0  ggtern_3.5.0    
+ [9] lubridate_1.9.3  forcats_1.0.0    stringr_1.5.1    dplyr_1.1.4     
+[13] purrr_1.0.2      readr_2.1.5      tidyr_1.3.1      tibble_3.2.1    
+[17] ggplot2_3.5.1    tidyverse_2.0.0  workflowr_1.7.1 
 
 loaded via a namespace (and not attached):
- [1] httr_1.4.7         sass_0.4.8         bit64_4.0.5        vroom_1.6.5       
- [5] jsonlite_1.8.8     bslib_0.6.1        getPass_0.2-4      highr_0.10        
- [9] tensorA_0.36.2.1   yaml_2.3.8         robustbase_0.99-1  pillar_1.9.0      
-[13] lattice_0.22-5     glue_1.6.2         digest_0.6.33      promises_1.2.1    
-[17] colorspace_2.1-0   htmltools_0.5.7    httpuv_1.6.13      plyr_1.8.9        
-[21] pkgconfig_2.0.3    bookdown_0.37      scales_1.3.0       processx_3.8.3    
-[25] whisker_0.4.1      later_1.3.2        tzdb_0.4.0         timechange_0.2.0  
-[29] git2r_0.33.0       farver_2.1.1       generics_0.1.3     ellipsis_0.3.2    
-[33] cachem_1.0.8       withr_2.5.2        hexbin_1.28.3      cli_3.6.2         
-[37] proto_1.0.0        magrittr_2.0.3     crayon_1.5.2       evaluate_0.23     
-[41] ps_1.7.5           fs_1.6.3           fansi_1.0.6        MASS_7.3-60       
-[45] compositions_2.0-6 tools_4.2.3        hms_1.1.3          lifecycle_1.0.4   
-[49] munsell_0.5.0      callr_3.7.3        compiler_4.2.3     jquerylib_0.1.4   
-[53] rlang_1.1.2        grid_4.2.3         rstudioapi_0.15.0  htmlwidgets_1.6.4 
-[57] crosstalk_1.2.1    labeling_0.4.3     rmarkdown_2.25     gtable_0.3.4      
-[61] R6_2.5.1           bayesm_3.1-6       gridExtra_2.3      knitr_1.45        
-[65] fastmap_1.1.1      bit_4.0.5          utf8_1.2.4         rprojroot_2.0.4   
-[69] latex2exp_0.9.6    stringi_1.8.3      parallel_4.2.3     Rcpp_1.0.11       
-[73] vctrs_0.6.5        DEoptimR_1.1-3     tidyselect_1.2.0   xfun_0.41         </code></pre>
+ [1] tidyselect_1.2.1     farver_2.1.2         fastmap_1.2.0       
+ [4] latex2exp_0.9.6      tensorA_0.36.2.1     promises_1.3.0      
+ [7] broom.helpers_1.15.0 digest_0.6.35        timechange_0.3.0    
+[10] lifecycle_1.0.4      processx_3.8.4       magrittr_2.0.3      
+[13] compiler_4.3.3       rlang_1.1.4          sass_0.4.9          
+[16] tools_4.3.3          utf8_1.2.4           yaml_2.3.8          
+[19] gt_0.11.0            knitr_1.45           labeling_0.4.3      
+[22] htmlwidgets_1.6.4    bit_4.0.5            plyr_1.8.9          
+[25] xml2_1.3.6           withr_3.0.0          grid_4.3.3          
+[28] fansi_1.0.6          git2r_0.33.0         colorspace_2.1-0    
+[31] scales_1.3.0         MASS_7.3-60.0.1      cli_3.6.2           
+[34] rmarkdown_2.26       crayon_1.5.2         generics_0.1.3      
+[37] rstudioapi_0.16.0    robustbase_0.99-2    httr_1.4.7          
+[40] tzdb_0.4.0           commonmark_1.9.1     bayesm_3.1-6        
+[43] cachem_1.1.0         parallel_4.3.3       vctrs_0.6.5         
+[46] jsonlite_1.8.8       bookdown_0.38        callr_3.7.6         
+[49] hms_1.1.3            bit64_4.0.5          crosstalk_1.2.1     
+[52] jquerylib_0.1.4      hexbin_1.28.3        proto_1.0.0         
+[55] glue_1.7.0           DEoptimR_1.1-3       ps_1.7.6            
+[58] stringi_1.8.3        gtable_0.3.5         later_1.3.2         
+[61] munsell_0.5.1        pillar_1.9.0         compositions_2.0-8  
+[64] htmltools_0.5.8.1    R6_2.5.1             rprojroot_2.0.4     
+[67] vroom_1.6.5          evaluate_0.23        lattice_0.22-5      
+[70] markdown_1.13        highr_0.10           backports_1.4.1     
+[73] broom_1.0.5          httpuv_1.6.15        bslib_0.7.0         
+[76] zip_2.3.1            Rcpp_1.0.12          whisker_0.4.1       
+[79] xfun_0.43            fs_1.6.4             getPass_0.2-4       
+[82] pkgconfig_2.0.3     </code></pre>
 </div>
 </div>
 </div>
