@@ -76,7 +76,7 @@ $$g(T_{med})=\left(1 - b \right) \times \left[ \frac{1}{1+\exp \left(-k \times (
 
 
 ```{r}
-var=list(mean = "predicted", x = "rat", tmed = "tmed", prec = "prec")  
+var=list(mean = "predicted", x = "rat", tmed = "tmed", prec = "prec", log = TRUE)
 ```
 
 ```{r}
