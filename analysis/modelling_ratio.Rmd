@@ -163,7 +163,7 @@ is assumed to follows a normal distribution $\epsilon_i \sim \mathcal{N}(0,1)$
 
 
 ```{r}
-var=list(mean = "predicted", x = "rat", tmed = "tmed")  
+var=list(mean = "predicted", x = "rat", tmed = "tmed", log = TRUE)  
 ```
 
 
@@ -1630,7 +1630,7 @@ d <- dtmed |> inner_join(dprec)
 
 
 ```{r}
-var=list(mean = "predicted", x = "rat", prec = "prec", tmed = "tmed")  
+var=list(mean = "predicted", x = "rat", prec = "prec", tmed = "tmed", log = TRUE)  
 ```
 
 - ***Model comb1***
