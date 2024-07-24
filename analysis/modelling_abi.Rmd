@@ -45,6 +45,15 @@ dfabi <- dfabi |>
   inner_join(annual_pet) |> 
   pivot_longer(pet:water_balance, values_to = "mean_climate", 
                names_to = "climate_variable")
+
+dfbai <- read_csv("data/dendroadaptamed_bai.csv") |> dplyr::select(-BAIserror) |> 
+  unite(col="sp_elev", c("sp_code","elev_code"), remove = FALSE) |> 
+  rename(bai = BAI) |> inner_join(annual_pet) |> 
+  pivot_longer(pet:water_balance, values_to = "mean_climate", 
+               names_to = "climate_variable")
+
+write_csv(dfbai, "/Users/ajpelu/Desktop/bai_pinus.csv")
+
 ```
 
 
@@ -450,8 +459,6 @@ ggplot(
   ylab("Temperature effect") 
   
 ```
-
-
 
 
 
