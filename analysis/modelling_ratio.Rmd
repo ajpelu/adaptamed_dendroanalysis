@@ -1661,7 +1661,7 @@ result_mcombrat1 <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1700,7 +1700,7 @@ result_mcombrat2 <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1739,7 +1739,7 @@ result_mcombrat3 <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1778,7 +1778,7 @@ result_mcombrat4 <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1817,7 +1817,7 @@ result_mcombrat5 <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1856,7 +1856,7 @@ result_mcombrat6  <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1881,7 +1881,7 @@ mcombrat7 <- function(MR, b, k, t0, Popt, Pb){
   MR * tmed_effect * prec_effect
 }
 
-set.seed(2023)
+set.seed(123456)
 start <- Sys.time()
 
 # change model 
@@ -1896,7 +1896,7 @@ result_mcombrat7 <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 1000000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1936,7 +1936,7 @@ result_mcombrat8 <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
@@ -1975,7 +1975,7 @@ result_mcombrat9  <- anneal(
   dep_var = "rat",
   initial_temp = 5, 
   temp_red = 0.975, 
-  max_iter = 100000, 
+  max_iter = 200000, 
   show_display = FALSE
 )
 
