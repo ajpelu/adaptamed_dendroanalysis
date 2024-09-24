@@ -12,11 +12,18 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 ```{r}
 library(tidyverse)
+library(tinytable)
 ```
 
 
 ```{r}
-rawdata <- xlsx::read.xlsx(file = "data/db_dendroadaptamed.xlsx", sheetName = "tree_measurements") 
+rawdata <- readxl::read_excel("data/db_dendroadaptamed.xlsx", sheet = "tree_measurements") |> 
+  dplyr::filter(stringr::str_detect(sp, "Pinus")) 
+
+# |> 
+#   dplyr::filter(sp != "Pinus cf. radiata")
+# 
+
 
 # pi*r^2 = BA
 # dbh = 2r -> r = dbh/2
@@ -28,20 +35,11 @@ rawdata <- xlsx::read.xlsx(file = "data/db_dendroadaptamed.xlsx", sheetName = "t
 data <- rawdata |> 
   mutate(ba = (pi*(tree_dbh)^2)/40000) 
 
-plots <- xlsx::read.xlsx(file = "data/db_dendroadaptamed.xlsx", sheetName = "metadata_plots") |> 
-  dplyr::select(locality_code, radio_m)
-
 ```
 
 
 
 ```{r}
-ba <- data |> 
-  group_by(locality) |>
-  group_modify(~{ 
-    as.data.frame(
-      ba_plot(.x, ba_var = "ba", dist_var="tree_distance_m", fc=0.5))
-  }) 
 
 # Functions to compute the Basal Area and Basal Area corrected and tree density and tree density corrected 
 ba_plot<- function(x, ba_var, dist_var, ha = 10000, fc = 0.5){
@@ -56,7 +54,16 @@ ba_plot<- function(x, ba_var, dist_var, ha = 10000, fc = 0.5){
 }
 
 
+## Mean Basal Area 
+ba <- data |> 
+  group_by(locality) |>
+  group_modify(~{ 
+    as.data.frame(
+      ba_plot(.x, ba_var = "ba", dist_var="tree_distance_m", fc=0.5))
+  }) 
 
+
+## Mean Height, DBH (and sd)
 mean_sd <- function(x) {
     tibble(
       mean = mean(x, na.rm = TRUE),
@@ -64,12 +71,53 @@ mean_sd <- function(x) {
       )
 }
 
-data |>
-  reframe(across(tree_height:tree_dbh, mean_sd, .unpack = TRUE), .by = locality)
+h_dbh <- data |> reframe(across(tree_height:tree_dbh, mean_sd, .unpack = TRUE), .by = locality)
+ 
+  
 
+## Mean five tallest trees 
+h5 <- data |> 
+  group_by(locality) |> 
+  slice_max(tree_height, n = 5) |> 
+  ungroup() |> 
+  group_by(locality) |> 
+  summarise(h5 = mean(tree_height))
+  
 
-
-
-
+d <- ba |>  
+  inner_join(h_dbh) |> 
+  inner_join(h5)
 ```
+
+
+```{r}
+plots <- readxl::read_excel("data/db_dendroadaptamed.xlsx", sheet = "metadata_plots")
+p <- plots |> dplyr::select(sp_main, locality_code, sp_elev, elev_category, site_code, elev_m, radio_m, tree_number, lai)
+
+dd <- d |> inner_join(p, by=c("locality" = "locality_code")) |> 
+  mutate(species = paste0("P. ", sp_main)) |> 
+  dplyr::select(site_code, species, sp_elev, elev_category, elev_m, tree_number, radio_m, tree_dbh_mean, tree_dbh_sd, 
+                tree_height_mean, tree_height_sd, tree_height5_mean = h5, bac, dentreec, lai)
+  
+write_csv(dd, "data/dendroadaptamed_stand_summary.csv")
+```
+
+```{r}
+dd |> 
+  ungroup() |> 
+  arrange(species, elev_m) |> 
+  dplyr::select(-species, -locality, -site_code, -elev_category) |> 
+  tt() |> 
+  group_tt(
+    i = list(
+      "halepensis" = 1,
+      "pinaster" = 4, 
+      "nigra" = 8, 
+      "sylvestris" = 11
+    ))
+```
+
+
+
+
 
