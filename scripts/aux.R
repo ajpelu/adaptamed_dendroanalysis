@@ -30,7 +30,7 @@ colours_Specie <- c("P. halepensis" = "#c1666b",
 # shape
 # shape_elev <- c("low" = 16, "low2" = 18, "medium" = 15, "high" = 17)
 shape_elev <- c("low" = 21, "low-Dec" = 25, "medium" = 22, "high" = 24)
-
+shape_elev2 <- c("low" = 19, "low-Dec" = 18, "medium" = 15, "high" = 17)
 
 
 #### Functions to extract results from MLE

@@ -1,0 +1,4411 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Compare Drought events</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Dendrochronological and Satellite data analysis for Life-Adpatamed</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="data.html">Data</a>
+</li>
+<li>
+  <a href="scripts.html">Scripts</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ajpelu/adaptamed_dendroanalysis">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Compare Drought events</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks">
+Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-07-25
+</p>
+<p>
+<strong>Checks:</strong>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+6
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+1
+</p>
+<p>
+<strong>Knit directory:</strong>
+<code>adaptamed_dendroanalysis/</code>
+<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the
+reproducibility checks that were applied when the results were created.
+The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> uncommitted changes
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git.
+To know which version of the R Markdown file created these
+results, you’ll want to first commit it to the Git repo. If
+you’re still working on the analysis, you can ignore this
+warning. When you’re finished, you can run
+<code>wflow_publish</code> to commit the R Markdown file and
+build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Environment:</strong> empty
+</a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global
+environment can affect the analysis in your R Markdown file in unknown ways.
+For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220407code">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Seed:</strong> <code>set.seed(20220407)</code>
+</a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220407code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220407)</code> was run prior to running the code in the R Markdown file.
+Setting a seed ensures that any results that rely on randomness, e.g.
+subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Session information:</strong> recorded
+</a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is
+critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Cache:</strong> none
+</a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident
+that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>File paths:</strong> relative
+</a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project
+makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea91cc2dcc9a3f192cd9b281d613eba0527ee0d74targetblanka91cc2da">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a91cc2dcc9a3f192cd9b281d613eba0527ee0d74" target="_blank">a91cc2d</a>
+</a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea91cc2dcc9a3f192cd9b281d613eba0527ee0d74targetblanka91cc2da" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and
+connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a91cc2dcc9a3f192cd9b281d613eba0527ee0d74" target="_blank">a91cc2d</a>.
+See the <em>Past versions</em> tab to see a history of the changes made to the
+R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the
+analysis have been committed to Git prior to generating the results (you can
+use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only
+checks the R Markdown file, but you know if there are other scripts or data
+files that it depends on. Below is the status of the Git repository when the
+results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/geoinfo/grids/
+    Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/remote_sensing/old/
+    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/drought_events.Rmd
+
+Unstaged changes:
+    Modified:   analysis/modelling_ratio_selected.Rmd
+    Modified:   scripts/aux.R
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in
+this status report because it is ok for generated content to have uncommitted
+changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with
+<code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="compare-the-severe-drought-events." class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Compare the severe drought events.</h2>
+<p>A severe drought event starts when SPEI falls below the threshold of −1.28 (Páscoa et al 2017; Spinoni et al. 2018). A drought event is considered only when SPEI values fall below that threshold for at least two consecutive months. For each drought event, we computed:</p>
+<ul>
+<li>the duration as the number of consecutive months with the SPEI lower than a certain threshold</li>
+<li>the severity as the sum of the absolute SPEI values during the drought event</li>
+<li>the intensity and the Lowest SPEI refer to the mean and lowest value of SPEI, respectively, during the drought event.</li>
+</ul>
+<p>We computed the severe drought events (below -1.28) by site and per each index (i.e. SPEI-06 and SPEI-12) since 1960.</p>
+<div id="drought-events-spei-12" class="section level4" number="0.1.0.1">
+<h4><span class="header-section-number">0.1.0.1</span> Drought events SPEI-12</h4>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-6">Table 1: </span>Drought periods by site (SPEI-12)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+sp_elev
+</th>
+<th style="text-align:left;">
+spei
+</th>
+<th style="text-align:right;">
+index_events
+</th>
+<th style="text-align:right;">
+d_duration
+</th>
+<th style="text-align:right;">
+d_intensity
+</th>
+<th style="text-align:right;">
+d_severity
+</th>
+<th style="text-align:right;">
+lowest_spei
+</th>
+<th style="text-align:right;">
+month_peak
+</th>
+<th style="text-align:right;">
+minyear
+</th>
+<th style="text-align:right;">
+maxyear
+</th>
+<th style="text-align:left;">
+rangeDate
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.537766
+</td>
+<td style="text-align:right;">
+4.613297
+</td>
+<td style="text-align:right;">
+-1.744304
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:left;">
+Oct - Dec
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+-1.705657
+</td>
+<td style="text-align:right;">
+18.762223
+</td>
+<td style="text-align:right;">
+-2.315510
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Jul - May
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.839405
+</td>
+<td style="text-align:right;">
+9.197022
+</td>
+<td style="text-align:right;">
+-1.974858
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:left;">
+May - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.798310
+</td>
+<td style="text-align:right;">
+5.394931
+</td>
+<td style="text-align:right;">
+-2.112340
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.544370
+</td>
+<td style="text-align:right;">
+6.177482
+</td>
+<td style="text-align:right;">
+-1.660074
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.444645
+</td>
+<td style="text-align:right;">
+4.333934
+</td>
+<td style="text-align:right;">
+-1.655050
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:left;">
+Dec - Feb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.768157
+</td>
+<td style="text-align:right;">
+5.304470
+</td>
+<td style="text-align:right;">
+-1.800349
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.449330
+</td>
+<td style="text-align:right;">
+4.347989
+</td>
+<td style="text-align:right;">
+-1.570151
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.736100
+</td>
+<td style="text-align:right;">
+5.208301
+</td>
+<td style="text-align:right;">
+-1.955405
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Nov - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.407429
+</td>
+<td style="text-align:right;">
+2.814859
+</td>
+<td style="text-align:right;">
+-1.466423
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:left;">
+May - Jun
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+-2.056541
+</td>
+<td style="text-align:right;">
+12.339248
+</td>
+<td style="text-align:right;">
+-2.572686
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Jan - Jun
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-2.014519
+</td>
+<td style="text-align:right;">
+6.043557
+</td>
+<td style="text-align:right;">
+-2.672559
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Sep - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.628203
+</td>
+<td style="text-align:right;">
+3.256406
+</td>
+<td style="text-align:right;">
+-1.881689
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+Feb - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.838693
+</td>
+<td style="text-align:right;">
+7.354772
+</td>
+<td style="text-align:right;">
+-2.013497
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+May - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.622776
+</td>
+<td style="text-align:right;">
+4.868327
+</td>
+<td style="text-align:right;">
+-1.898304
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2014
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:left;">
+Dec - Feb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.748164
+</td>
+<td style="text-align:right;">
+3.496328
+</td>
+<td style="text-align:right;">
+-1.944061
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:left;">
+Jun - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.756953
+</td>
+<td style="text-align:right;">
+3.513907
+</td>
+<td style="text-align:right;">
+-1.866240
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Sep - Oct
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-2.107999
+</td>
+<td style="text-align:right;">
+4.215999
+</td>
+<td style="text-align:right;">
+-2.183648
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+-1.926620
+</td>
+<td style="text-align:right;">
+11.559718
+</td>
+<td style="text-align:right;">
+-2.481302
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:left;">
+Oct - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.498439
+</td>
+<td style="text-align:right;">
+4.495317
+</td>
+<td style="text-align:right;">
+-1.803905
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:left;">
+Jul - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.369445
+</td>
+<td style="text-align:right;">
+2.738890
+</td>
+<td style="text-align:right;">
+-1.411247
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:right;">
+1981
+</td>
+<td style="text-align:left;">
+May - Jun
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.455003
+</td>
+<td style="text-align:right;">
+2.910007
+</td>
+<td style="text-align:right;">
+-1.490328
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1985
+</td>
+<td style="text-align:right;">
+1985
+</td>
+<td style="text-align:left;">
+Aug - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+-2.076923
+</td>
+<td style="text-align:right;">
+12.461536
+</td>
+<td style="text-align:right;">
+-2.724514
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Jan - Jun
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.997499
+</td>
+<td style="text-align:right;">
+5.992497
+</td>
+<td style="text-align:right;">
+-2.627725
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Sep - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.743474
+</td>
+<td style="text-align:right;">
+3.486948
+</td>
+<td style="text-align:right;">
+-2.036281
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+Feb - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.720535
+</td>
+<td style="text-align:right;">
+5.161604
+</td>
+<td style="text-align:right;">
+-1.861991
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+May - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.564572
+</td>
+<td style="text-align:right;">
+3.129143
+</td>
+<td style="text-align:right;">
+-1.753897
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:left;">
+Jun - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.979596
+</td>
+<td style="text-align:right;">
+3.959192
+</td>
+<td style="text-align:right;">
+-2.073144
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+halepensis_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+-1.661812
+</td>
+<td style="text-align:right;">
+19.941746
+</td>
+<td style="text-align:right;">
+-2.337693
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+2019
+</td>
+<td style="text-align:right;">
+2020
+</td>
+<td style="text-align:left;">
+Oct - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.548782
+</td>
+<td style="text-align:right;">
+3.097564
+</td>
+<td style="text-align:right;">
+-1.684855
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:left;">
+Oct - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+-1.912939
+</td>
+<td style="text-align:right;">
+36.345834
+</td>
+<td style="text-align:right;">
+-3.138815
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+-1.946654
+</td>
+<td style="text-align:right;">
+21.413199
+</td>
+<td style="text-align:right;">
+-2.356858
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+May - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.512051
+</td>
+<td style="text-align:right;">
+7.560256
+</td>
+<td style="text-align:right;">
+-1.623162
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.462312
+</td>
+<td style="text-align:right;">
+4.386937
+</td>
+<td style="text-align:right;">
+-1.694489
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:left;">
+Dec - Feb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.571887
+</td>
+<td style="text-align:right;">
+4.715662
+</td>
+<td style="text-align:right;">
+-1.629714
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.415398
+</td>
+<td style="text-align:right;">
+4.246193
+</td>
+<td style="text-align:right;">
+-1.497252
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.646035
+</td>
+<td style="text-align:right;">
+3.292069
+</td>
+<td style="text-align:right;">
+-1.650872
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.529289
+</td>
+<td style="text-align:right;">
+3.058578
+</td>
+<td style="text-align:right;">
+-1.672129
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.596784
+</td>
+<td style="text-align:right;">
+3.193567
+</td>
+<td style="text-align:right;">
+-1.693721
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:left;">
+Oct - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+-1.908484
+</td>
+<td style="text-align:right;">
+36.261193
+</td>
+<td style="text-align:right;">
+-2.993151
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+-1.849129
+</td>
+<td style="text-align:right;">
+20.340417
+</td>
+<td style="text-align:right;">
+-2.275393
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+May - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.550276
+</td>
+<td style="text-align:right;">
+7.751382
+</td>
+<td style="text-align:right;">
+-1.659248
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.445464
+</td>
+<td style="text-align:right;">
+4.336391
+</td>
+<td style="text-align:right;">
+-1.674056
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:left;">
+Dec - Feb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.603882
+</td>
+<td style="text-align:right;">
+4.811647
+</td>
+<td style="text-align:right;">
+-1.660077
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.440578
+</td>
+<td style="text-align:right;">
+4.321733
+</td>
+<td style="text-align:right;">
+-1.519367
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.597397
+</td>
+<td style="text-align:right;">
+3.194794
+</td>
+<td style="text-align:right;">
+-1.624304
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.582916
+</td>
+<td style="text-align:right;">
+3.165832
+</td>
+<td style="text-align:right;">
+-1.689856
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:left;">
+Oct - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+-1.923782
+</td>
+<td style="text-align:right;">
+36.551848
+</td>
+<td style="text-align:right;">
+-3.076968
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+-1.897956
+</td>
+<td style="text-align:right;">
+20.877520
+</td>
+<td style="text-align:right;">
+-2.329078
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+May - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.549767
+</td>
+<td style="text-align:right;">
+7.748836
+</td>
+<td style="text-align:right;">
+-1.659973
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.454205
+</td>
+<td style="text-align:right;">
+4.362614
+</td>
+<td style="text-align:right;">
+-1.685887
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:left;">
+Dec - Feb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.577763
+</td>
+<td style="text-align:right;">
+4.733289
+</td>
+<td style="text-align:right;">
+-1.637389
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.416033
+</td>
+<td style="text-align:right;">
+4.248099
+</td>
+<td style="text-align:right;">
+-1.494352
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+nigra_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.596425
+</td>
+<td style="text-align:right;">
+3.192850
+</td>
+<td style="text-align:right;">
+-1.618940
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+-1.995944
+</td>
+<td style="text-align:right;">
+37.922932
+</td>
+<td style="text-align:right;">
+-3.157116
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+-1.929571
+</td>
+<td style="text-align:right;">
+23.154854
+</td>
+<td style="text-align:right;">
+-2.369143
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+Apr - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+-1.537897
+</td>
+<td style="text-align:right;">
+15.378975
+</td>
+<td style="text-align:right;">
+-1.716339
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:left;">
+May - Feb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.315933
+</td>
+<td style="text-align:right;">
+2.631866
+</td>
+<td style="text-align:right;">
+-1.326260
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.562747
+</td>
+<td style="text-align:right;">
+3.125493
+</td>
+<td style="text-align:right;">
+-1.581487
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.512998
+</td>
+<td style="text-align:right;">
+7.564989
+</td>
+<td style="text-align:right;">
+-1.742140
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:left;">
+Sep - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+-1.878024
+</td>
+<td style="text-align:right;">
+35.682451
+</td>
+<td style="text-align:right;">
+-2.765802
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.851405
+</td>
+<td style="text-align:right;">
+9.257025
+</td>
+<td style="text-align:right;">
+-1.989199
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:left;">
+May - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.624054
+</td>
+<td style="text-align:right;">
+4.872162
+</td>
+<td style="text-align:right;">
+-1.967369
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+-1.506292
+</td>
+<td style="text-align:right;">
+10.544045
+</td>
+<td style="text-align:right;">
+-1.653534
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.528860
+</td>
+<td style="text-align:right;">
+6.115440
+</td>
+<td style="text-align:right;">
+-1.660833
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+May - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.457876
+</td>
+<td style="text-align:right;">
+5.831504
+</td>
+<td style="text-align:right;">
+-1.562648
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Dec - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.600569
+</td>
+<td style="text-align:right;">
+3.201138
+</td>
+<td style="text-align:right;">
+-1.647459
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.330845
+</td>
+<td style="text-align:right;">
+2.661691
+</td>
+<td style="text-align:right;">
+-1.355191
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:left;">
+Apr - May
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.572513
+</td>
+<td style="text-align:right;">
+4.717539
+</td>
+<td style="text-align:right;">
+-1.751993
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:right;">
+1983
+</td>
+<td style="text-align:left;">
+Oct - Dec
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+-1.849243
+</td>
+<td style="text-align:right;">
+35.135623
+</td>
+<td style="text-align:right;">
+-2.833575
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.942959
+</td>
+<td style="text-align:right;">
+9.714796
+</td>
+<td style="text-align:right;">
+-2.053320
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:left;">
+May - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.820129
+</td>
+<td style="text-align:right;">
+5.460386
+</td>
+<td style="text-align:right;">
+-2.165930
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.531302
+</td>
+<td style="text-align:right;">
+7.656508
+</td>
+<td style="text-align:right;">
+-1.644012
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.655731
+</td>
+<td style="text-align:right;">
+4.967193
+</td>
+<td style="text-align:right;">
+-1.705586
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.506875
+</td>
+<td style="text-align:right;">
+4.520625
+</td>
+<td style="text-align:right;">
+-1.598671
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Jan - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_low-Dec
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+22
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.610038
+</td>
+<td style="text-align:right;">
+3.220077
+</td>
+<td style="text-align:right;">
+-1.645067
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+-1.980827
+</td>
+<td style="text-align:right;">
+37.635705
+</td>
+<td style="text-align:right;">
+-3.092047
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+May - Nov
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:right;">
+-1.865966
+</td>
+<td style="text-align:right;">
+20.525626
+</td>
+<td style="text-align:right;">
+-2.289667
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:left;">
+May - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+-1.581628
+</td>
+<td style="text-align:right;">
+15.816278
+</td>
+<td style="text-align:right;">
+-1.788430
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2006
+</td>
+<td style="text-align:left;">
+May - Feb
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.388037
+</td>
+<td style="text-align:right;">
+2.776073
+</td>
+<td style="text-align:right;">
+-1.397561
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.514762
+</td>
+<td style="text-align:right;">
+4.544285
+</td>
+<td style="text-align:right;">
+-1.664693
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Nov - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+pinaster_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1.408033
+</td>
+<td style="text-align:right;">
+7.040163
+</td>
+<td style="text-align:right;">
+-1.622063
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2021
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:left;">
+Sep - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+-2.193378
+</td>
+<td style="text-align:right;">
+28.513914
+</td>
+<td style="text-align:right;">
+-2.824337
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Oct - Oct
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+-2.065886
+</td>
+<td style="text-align:right;">
+16.527090
+</td>
+<td style="text-align:right;">
+-2.523136
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:left;">
+Feb - Sep
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.398665
+</td>
+<td style="text-align:right;">
+5.594660
+</td>
+<td style="text-align:right;">
+-1.425662
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.405437
+</td>
+<td style="text-align:right;">
+2.810874
+</td>
+<td style="text-align:right;">
+-1.423869
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.520379
+</td>
+<td style="text-align:right;">
+6.081514
+</td>
+<td style="text-align:right;">
+-1.673337
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Dec - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.584023
+</td>
+<td style="text-align:right;">
+3.168046
+</td>
+<td style="text-align:right;">
+-1.646559
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_high
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+16
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.467875
+</td>
+<td style="text-align:right;">
+4.403625
+</td>
+<td style="text-align:right;">
+-1.518947
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+-2.161643
+</td>
+<td style="text-align:right;">
+28.101365
+</td>
+<td style="text-align:right;">
+-2.792276
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Oct - Oct
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+-1.924082
+</td>
+<td style="text-align:right;">
+13.468575
+</td>
+<td style="text-align:right;">
+-2.247964
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:left;">
+Feb - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.376168
+</td>
+<td style="text-align:right;">
+5.504671
+</td>
+<td style="text-align:right;">
+-1.410281
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.409236
+</td>
+<td style="text-align:right;">
+2.818472
+</td>
+<td style="text-align:right;">
+-1.424750
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.556584
+</td>
+<td style="text-align:right;">
+6.226335
+</td>
+<td style="text-align:right;">
+-1.681623
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Dec - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.602931
+</td>
+<td style="text-align:right;">
+3.205862
+</td>
+<td style="text-align:right;">
+-1.669114
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_low
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.429412
+</td>
+<td style="text-align:right;">
+4.288235
+</td>
+<td style="text-align:right;">
+-1.482185
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+-2.168319
+</td>
+<td style="text-align:right;">
+28.188144
+</td>
+<td style="text-align:right;">
+-2.789837
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1994
+</td>
+<td style="text-align:right;">
+1995
+</td>
+<td style="text-align:left;">
+Oct - Oct
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+-1.925668
+</td>
+<td style="text-align:right;">
+13.479673
+</td>
+<td style="text-align:right;">
+-2.247730
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:right;">
+1999
+</td>
+<td style="text-align:left;">
+Feb - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.387556
+</td>
+<td style="text-align:right;">
+5.550225
+</td>
+<td style="text-align:right;">
+-1.418120
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:right;">
+2005
+</td>
+<td style="text-align:left;">
+May - Aug
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.398633
+</td>
+<td style="text-align:right;">
+2.797266
+</td>
+<td style="text-align:right;">
+-1.414604
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:right;">
+2012
+</td>
+<td style="text-align:left;">
+Jun - Jul
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1.533769
+</td>
+<td style="text-align:right;">
+6.135077
+</td>
+<td style="text-align:right;">
+-1.654944
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2015
+</td>
+<td style="text-align:right;">
+2016
+</td>
+<td style="text-align:left;">
+Dec - Mar
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-1.582707
+</td>
+<td style="text-align:right;">
+3.165413
+</td>
+<td style="text-align:right;">
+-1.647947
+</td>
+<td style="text-align:right;">
+12
+</td>
+<td style="text-align:right;">
+2017
+</td>
+<td style="text-align:right;">
+2018
+</td>
+<td style="text-align:left;">
+Dec - Jan
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sylvestris_medium
+</td>
+<td style="text-align:left;">
+spei12
+</td>
+<td style="text-align:right;">
+18
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+-1.442561
+</td>
+<td style="text-align:right;">
+4.327684
+</td>
+<td style="text-align:right;">
+-1.494365
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:right;">
+2022
+</td>
+<td style="text-align:left;">
+Jun - Aug
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="figure/drought_events.Rmd/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /></p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] data.table_1.15.4 kableExtra_1.4.0  likelihood_1.9    nlme_3.1-165     
+ [5] patchwork_1.2.0   lubridate_1.9.3   forcats_1.0.0     stringr_1.5.1    
+ [9] dplyr_1.1.4       purrr_1.0.2       readr_2.1.5       tidyr_1.3.1      
+[13] tibble_3.2.1      ggplot2_3.5.1     tidyverse_2.0.0   workflowr_1.7.1  
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.5      xfun_0.46         bslib_0.7.0       processx_3.8.4   
+ [5] lattice_0.22-6    callr_3.7.6       tzdb_0.4.0        vctrs_0.6.5      
+ [9] tools_4.3.3       ps_1.7.7          generics_0.1.3    parallel_4.3.3   
+[13] fansi_1.0.6       highr_0.11        pkgconfig_2.0.3   lifecycle_1.0.4  
+[17] farver_2.1.2      compiler_4.3.3    git2r_0.33.0      munsell_0.5.1    
+[21] getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8.1 sass_0.4.9       
+[25] yaml_2.3.9        crayon_1.5.3      later_1.3.2       pillar_1.9.0     
+[29] jquerylib_0.1.4   whisker_0.4.1     cachem_1.1.0      tidyselect_1.2.1 
+[33] digest_0.6.36     stringi_1.8.4     bookdown_0.40     labeling_0.4.3   
+[37] rprojroot_2.0.4   fastmap_1.2.0     grid_4.3.3        colorspace_2.1-0 
+[41] cli_3.6.3         magrittr_2.0.3    utf8_1.2.4        withr_3.0.0      
+[45] scales_1.3.0      promises_1.3.0    bit64_4.0.5       timechange_0.3.0 
+[49] rmarkdown_2.27    httr_1.4.7        bit_4.0.5         hms_1.1.3        
+[53] evaluate_0.24.0   knitr_1.48        viridisLite_0.4.2 rlang_1.1.4      
+[57] Rcpp_1.0.13       glue_1.7.0        xml2_1.3.6        vroom_1.6.5      
+[61] svglite_2.1.3     rstudioapi_0.16.0 jsonlite_1.8.8    R6_2.5.1         
+[65] systemfonts_1.1.0 fs_1.6.4         </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

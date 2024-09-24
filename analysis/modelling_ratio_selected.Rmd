@@ -872,8 +872,8 @@ support_limits_table <- function(x) {
 set.seed(123456)
 limits <- support_limits(mcombrat7, result_mcombrat7$best_pars, var = var, 
                          source_data = d, pdf = dnorm,
-                         par_lo = list(MR = 0, Tb = -1, k = 1, Topt = 5, Popt = 50, Pb = 0),
-                         par_hi = list(MR = 1, Tb = 1, k = 2, Topt = 20, Popt = 3500, Pb = 5),
+                         par_lo = list(MR = 0, Tb = -1, k = 1, Topt = , Popt = 50, Pb = 0),
+                         par_hi = list(MR = 1, Tb = 1, k = 2, Topt = 20, Popt = 3500, Pb = 2),
                          slimit = 2)
 
 
@@ -884,5 +884,37 @@ table_support_limits <- inner_join(
 table_support_limits
 
 table_support_limits |> write_csv("output/models/table_params_support_limit.csv")
+```
+
+
+```{r}
+#| eval: false
+#| echo: false
+
+# He generado un algoritmo de fuerza bruta para que me busque los SI de los parametros
+# que no alcanzan un valor (lower or upper limit = par_lo or par_hi)
+
+set.seed(123456)
+
+out <- c()
+for (j in seq(-50, 30, by = 0.5)){ 
+  
+  limits <- support_limits(mcombrat7, result_mcombrat7$best_pars, var = var, 
+                         source_data = d, pdf = dnorm,
+                         par_lo = list(MR = 0, Tb = -1, k = 1, Topt = j, Popt = 50, Pb = 0),
+                         par_hi = list(MR = 1, Tb = 1, k = 2, Topt = j+10, Popt = 3500, Pb = 2),
+                         slimit = 2)
+  
+  limits_out <- support_limits_table(limits) |> mutate(j_value = j)
+  
+  out <- rbind(out, limits_out)
+  }
+
+o <- out |> filter(parameter == "Topt") |> 
+  pivot_longer(c(lower_si, upper_si))
+
+o |> ggplot(aes(x = j_value, y = value, colour=name)) + geom_point()
+
+
 ```
 

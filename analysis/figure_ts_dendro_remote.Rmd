@@ -53,7 +53,8 @@ evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |>
 df <- bind_rows(
   abi, evi_landsat, evi_modis, npp) |> 
  # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  mutate(Specie = paste0("P. ", sp_code))
 
 ```
 
@@ -93,7 +94,8 @@ mk_abi <- read_csv("data/dendroadaptamed_abi_trend.csv") |>
 mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |> 
   mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
   # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  mutate(Specie = paste0("P. ", sp_code))
 ```
 
 
@@ -112,7 +114,7 @@ fig_ts <- df |>
   ggplot(aes(x = year, y = mean, group = elev_code, colour = elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
   geom_line() +
-  facet_grid(variable~factor(sp_code, levels = c("halepensis", "pinaster", "nigra", "sylvestris")), 
+  facet_grid(variable~factor(Specie, levels = c("P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris")), 
              scales = "free_y", 
              switch = "y", 
              labeller = labeller(variable = to_label)) + 
@@ -144,6 +146,13 @@ fig_ts
 ggsave(
   fig_ts, 
   file = "output/plot_ts_dendro_remote.jpg",
+  dpi = 300,
+  width = 12, height = 8
+)
+
+ggsave(
+  fig_ts, 
+  file = "output/plot_ts_dendro_remote.svg",
   dpi = 300,
   width = 12, height = 8
 )

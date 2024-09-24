@@ -1,0 +1,179 @@
+---
+title: "Compare Drought events "
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(patchwork)
+library(likelihood)
+library(kableExtra)
+library(patchwork)
+source("scripts/aux.R")
+```
+
+
+
+```{r}
+spei_data <- read_csv("data/dendroadaptamed_spei_climate.csv") 
+```
+
+
+## Compare the severe drought events. 
+A severe drought event starts when SPEI falls below the threshold of −1.28 (Páscoa et al 2017; Spinoni et al. 2018). A drought event is considered only when SPEI values fall below that threshold for at least two consecutive months. For each drought event, we computed: 
+
+- the duration as the number of consecutive months with the SPEI lower than a certain threshold
+- the severity as the sum of the absolute SPEI values during the drought event
+- the intensity and the Lowest SPEI refer to the mean and lowest value of SPEI, respectively, during the drought event.
+
+We computed the severe drought events (below -1.28) by site and per each index (i.e. SPEI-06 and SPEI-12) since 1960. 
+
+```{r}
+droughtIndicators <- function(df, vname, threshold) {
+
+  require(data.table)
+
+  # Add a new column indicating if the value is below the threshold and the following month is also below the threshold
+  out <- df |>
+    mutate(is_drought = ifelse(
+      .data[[vname]] < threshold & lead(.data[[vname]], default = .data[[vname]][n()]) < threshold, 1, 0
+    )) |>
+    mutate(date = lubridate::make_date(year, month))
+  
+  # Compute the drought duration of the events
+  out2 <- out |>
+    group_by(index_events = data.table::rleid(is_drought)) |>
+    mutate(drought_duration = sum(is_drought)) |>
+    as.data.frame()
+
+  # Filter events with drought duration > 1
+  out3 <- out2 |>
+    filter(drought_duration > 1) |>
+    as.data.frame()
+
+  # Compute several indicators (drought assessments)
+  da <- out3 |>
+    group_by(index_events) |>
+    summarise(
+      d_duration = unique(drought_duration),
+      d_intensity = mean(.data[[vname]], na.rm = TRUE),
+      d_severity = sum(abs(.data[[vname]]), na.rm = TRUE),
+      lowest_spei = min(.data[[vname]]),
+      month_peak = month[which.min(.data[[vname]])],
+      minyear = min(year),
+      maxyear = max(year),
+      rangeDate = paste(
+        lubridate::month(min(date), label = TRUE), "-",
+        (lubridate::month(max(date), label = TRUE))
+      )
+    ) |>
+    as.data.frame()
+
+  return(list(data = out2, drought_events = out3, drought_assessment = da))
+}
+
+```
+
+```{r}
+s <- spei_data |> 
+  dplyr::select(sp_elev, year, month, spei06, spei12) |> 
+  pivot_longer(c(spei06, spei12), names_to = "spei") |> 
+  filter(!is.na(value))
+
+
+spei_events <- s |> 
+  group_by(spei, sp_elev) |> 
+  nest() |> 
+  mutate(drought_results = map(data, ~droughtIndicators(., "value", -1.28)$drought_assessment)) |> 
+  unnest(drought_results) |> 
+  select(-data)
+```
+
+
+```{r}
+d <- spei_events |> 
+  separate(rangeDate, into = c("minmonth", "maxmonth"), remove = FALSE) |> 
+  unite("start_date", minyear, minmonth, sep="-", remove = FALSE) |> 
+  unite("end_date", maxyear, maxmonth,  sep="-", remove = FALSE) |> 
+  mutate(start_date = as.Date(paste0(start_date, "-01"), format="%Y-%b-%d")) |> 
+  mutate(end_date = as.Date(paste0(end_date, "-01"), format="%Y-%b-%d")) |> 
+  rowwise() |> 
+  mutate(middate = (start_date + ((end_date - start_date)/2))) 
+```
+
+
+#### Drought events SPEI-12 
+
+```{r}
+#| fig.width: 10
+#| fig.height: 12
+d12 <- d |> 
+  filter(spei == "spei12") |> 
+  ungroup() |> 
+  dplyr::select(sp_elev, d_duration, d_intensity, d_severity, lowest_spei, month_peak, start_date, end_date, middate) |> 
+  separate(sp_elev, c("sp_code", "elev_code"), sep = "_", remove = FALSE)
+
+d12 |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
+  ggplot(aes(y = elev_code)) +
+  geom_point(aes(x = middate, y = elev_code, size = d_severity, colour = sp_code)) + 
+  geom_segment(aes(x = start_date, xend = end_date, yend = elev_code), 
+               colour = "black", lineend = "butt", linewidth = 1.5) + 
+  labs(size = "Drougth's Severity", x="", y = "Elevation") + 
+  # facet_wrap(.~sp_code, ncol = 1, scales = "free_y") +
+  facet_wrap(~factor(sp_code, levels = c("sylvestris", "nigra", "pinaster","halepensis")), ncol = 1, scales = "free_y") +
+  theme_bw() +
+    scale_colour_manual(values = colours_sp, name = "Species") + 
+  scale_x_date(breaks = seq.Date(from = ymd("1980-01-01"), to = ymd("2022-01-01"), by = "5 years"),
+               date_labels = "%Y",
+               date_minor_breaks = "1 year") +
+  theme(strip.background = element_blank())
+
+```
+
+```{r}
+d12 |> 
+  kbl(caption = "Drought periods by site (SPEI-12)") |> 
+    kable_styling()
+```
+
+
+## Summary drought events
+
+```{r}
+events_sp_elev <- d12 |> 
+  group_by(sp_elev,sp_code) |> 
+  count()
+
+
+events_sp_elev |> 
+  group_by(sp_code) |> 
+  summarise(mean= mean(n))
+
+```
+
+
+
+```{r}
+events_by_site <- d12 |> 
+  group_by(
+    sp_code, sp_elev, elev_code) |> 
+  summarise(
+    across(c(starts_with("d"), "lowest_spei"),
+           list(mean = mean, sd = sd, n = length), .names = "{.col}.{.fn}"))
+```
+
+
+```{r}
