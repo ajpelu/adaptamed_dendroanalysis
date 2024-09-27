@@ -270,6 +270,7 @@ alpha_points <- 0.22
 main_line_width <- 1.3 
 main_line_color <- "black"
 partial_lines_width <- .85 
+size_points <- 1.9
 
 ```
 
@@ -278,11 +279,20 @@ partial_lines_width <- .85
 
 ```{r, fig.width=12, fig.height=6}
 ## Water-Balance 
+
+letras_wb <- data.frame(
+  y_variable2 = c("Annual~EVI[Landsat]", "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
+  label = c("a", "b", "c"),
+  x = c(-Inf, -Inf, -Inf),  # Ajusta las posiciones 'x' si es necesario
+  y = c(Inf, Inf, Inf)  # Inf para colocarlo en la parte superior
+)
+
+
 plot_wb <- 
   df_plot|> 
   filter(climate_variable == "water_balance") |> 
   ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code), alpha = alpha_points) +
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = alpha_points, size = size_points) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
@@ -311,7 +321,11 @@ plot_wb <-
              scales = "free_y", 
                      labeller = label_parsed, 
                      strip.position = "left") +
-    facetted_pos_scales(y = y_scales)
+    facetted_pos_scales(y = y_scales) +
+        geom_text(data = letras_wb, 
+              aes(x = x, y = y, label = label),
+              vjust = 1.2, hjust = -.5, size = 8, 
+              fontface = "bold", inherit.aes = FALSE)
   
 
 # Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
@@ -322,11 +336,19 @@ plot_wb <-
 
 ```{r, fig.width=12, fig.height=6}
 ## Precipitation
+
+letras_prec <- data.frame(
+  y_variable2 = c("Annual~EVI[Landsat]", "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
+  label = c("d", "e", "f"),
+  x = c(-Inf, -Inf, -Inf),  # Ajusta las posiciones 'x' si es necesario
+  y = c(Inf, Inf, Inf)  # Inf para colocarlo en la parte superior
+)
+
 plot_prec <- 
   df_plot|> 
   filter(climate_variable == "prec") |> 
   ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code), alpha = alpha_points) +
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = alpha_points, size = size_points) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
@@ -355,7 +377,11 @@ plot_prec <-
              scales = "free_y", 
                      labeller = label_parsed, 
                      strip.position = "left") +
-    facetted_pos_scales(y = y_scales)
+    facetted_pos_scales(y = y_scales) +
+      geom_text(data = letras_prec, 
+              aes(x = x, y = y, label = label),
+              vjust = 1.2, hjust = - .5, size = 8, 
+              fontface = "bold", inherit.aes = FALSE)
   
 
 # Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
@@ -367,11 +393,20 @@ plot_prec <-
 t_npp <- df_plot |> filter(climate_variable == "tmed") |> 
   filter(y_variable == "npp") 
 
+
+letras_temp <- data.frame(
+  y_variable2 = c("Annual~EVI[Landsat]", "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
+  label = c("g", "h", "i"),
+  x = c(-Inf, -Inf, -Inf),  # Ajusta las posiciones 'x' si es necesario
+  y = c(Inf, Inf, Inf)  # Inf para colocarlo en la parte superior
+)
+
+
 plot_tmed <- 
   df_plot |> 
   filter(climate_variable == "tmed") |> 
   ggplot(aes(x=mean_climate, y = mean_y, colour = sp_code)) + 
-  geom_point(aes(shape = elev_code, fill = sp_code), alpha = alpha_points) +
+  geom_point(aes(shape = elev_code, fill = sp_code), alpha = alpha_points, size = size_points) +
   scale_colour_manual(values = colours_sp, name = "Species") +
   scale_shape_manual(values = shape_elev, name = "Elevation") +
   scale_fill_manual(values = colours_sp, name = "Species") + 
@@ -400,7 +435,12 @@ plot_tmed <-
              scales = "free_y", 
                      labeller = label_parsed, 
                      strip.position = "left") +
-    facetted_pos_scales(y = y_scales)
+    facetted_pos_scales(y = y_scales) +
+    geom_text(data = letras_temp, 
+              aes(x = x, y = y, label = label),
+              vjust = 1.2, hjust = -.5, size = 8, 
+              fontface = "bold", inherit.aes = FALSE)
+
 ```
 
 ```{r, eval=FALSE}
@@ -442,7 +482,7 @@ wb_prec_tmed
 ggsave(
   wb_prec_tmed, 
   file = "output/combined_wb_prec_tmed.png",
-  dpi = 300,
+  dpi = 500,
   width = 13, height = 13
 )
 ```
