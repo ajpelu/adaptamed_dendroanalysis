@@ -1,0 +1,2455 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Summary EVI, NPP, ABI</title>
+
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Dendrochronological and Satellite data analysis for Life-Adpatamed</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="data.html">Data</a>
+</li>
+<li>
+  <a href="scripts.html">Scripts</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/ajpelu/adaptamed_dendroanalysis">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Summary EVI, NPP, ABI</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks">
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2024-09-27
+</p>
+<p>
+<strong>Checks:</strong>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+7
+<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+0
+</p>
+<p>
+<strong>Knit directory:</strong>
+<code>adaptamed_dendroanalysis/</code>
+<span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed.">
+</span>
+</p>
+<p>
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.1). The <em>Checks</em> tab describes the
+reproducibility checks that were applied when the results were created.
+The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
+</a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Environment:</strong> empty
+</a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global
+environment can affect the analysis in your R Markdown file in unknown ways.
+For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20220407code">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Seed:</strong> <code>set.seed(20220407)</code>
+</a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20220407code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20220407)</code> was run prior to running the code in the R Markdown file.
+Setting a seed ensures that any results that rely on randomness, e.g.
+subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Session information:</strong> recorded
+</a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is
+critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Cache:</strong> none
+</a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident
+that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>File paths:</strong> relative
+</a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project
+makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreedb4896acade71b3870ecabd416329dd098976f53targetblankdb4896aa">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/db4896acade71b3870ecabd416329dd098976f53" target="_blank">db4896a</a>
+</a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreedb4896acade71b3870ecabd416329dd098976f53targetblankdb4896aa" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and
+connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/db4896acade71b3870ecabd416329dd098976f53" target="_blank">db4896a</a>.
+See the <em>Past versions</em> tab to see a history of the changes made to the
+R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the
+analysis have been committed to Git prior to generating the results (you can
+use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only
+checks the R Markdown file, but you know if there are other scripts or data
+files that it depends on. Below is the status of the Git repository when the
+results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    data/geoinfo/grids/
+    Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/remote_sensing/old/
+    Ignored:    output/.DS_Store
+
+Untracked files:
+    Untracked:  analysis/dendro_sylvestris_med.Rmd
+    Untracked:  data/raw/correspondence_files.xlsx
+    Untracked:  data/raw/cronos/
+    Untracked:  data/rw/rwcore_sylvestris_med.csv
+    Untracked:  data/rw/rwtree_sylvestris_med.csv
+    Untracked:  output/tables/summary_evi_abi_npp.xlsx
+
+Unstaged changes:
+    Modified:   analysis/figura_evi_abi_npp_vs_climate.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in
+this status report because it is ok for generated content to have uncommitted
+changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made
+to the R Markdown (<code>analysis/summary_evi_npp_abi.Rmd</code>) and HTML (<code>docs/summary_evi_npp_abi.html</code>)
+files. If you’ve configured a remote Git repository (see
+<code>?wflow_git_remote</code>), click on the hyperlinks in the table below to
+view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/db4896acade71b3870ecabd416329dd098976f53/analysis/summary_evi_npp_abi.Rmd" target="_blank">db4896a</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-09-27
+</td>
+<td>
+add summary
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="summary-statistics" class="section level2" number="0.1">
+<h2><span class="header-section-number">0.1</span> Summary statistics</h2>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-11">Table 1: </span>Posthoc differences among species for average EVI
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+y_variable
+</th>
+<th style="text-align:left;">
+sp_code
+</th>
+<th style="text-align:left;">
+elev_code
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+emmean
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
+<th style="text-align:left;">
+.group
+</th>
+<th style="text-align:left;">
+pvalue
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+37.530
+</td>
+<td style="text-align:right;">
+36.400
+</td>
+<td style="text-align:right;">
+5.551
+</td>
+<td style="text-align:right;">
+37.530
+</td>
+<td style="text-align:right;">
+12.459
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+-3.641
+</td>
+<td style="text-align:right;">
+78.700
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+76.225
+</td>
+<td style="text-align:right;">
+64.156
+</td>
+<td style="text-align:right;">
+9.900
+</td>
+<td style="text-align:right;">
+76.225
+</td>
+<td style="text-align:right;">
+12.606
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+34.568
+</td>
+<td style="text-align:right;">
+117.883
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+55.754
+</td>
+<td style="text-align:right;">
+33.091
+</td>
+<td style="text-align:right;">
+4.136
+</td>
+<td style="text-align:right;">
+55.754
+</td>
+<td style="text-align:right;">
+10.212
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+22.008
+</td>
+<td style="text-align:right;">
+89.501
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+78.402
+</td>
+<td style="text-align:right;">
+40.264
+</td>
+<td style="text-align:right;">
+5.287
+</td>
+<td style="text-align:right;">
+78.402
+</td>
+<td style="text-align:right;">
+10.727
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+42.953
+</td>
+<td style="text-align:right;">
+113.852
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+68.667
+</td>
+<td style="text-align:right;">
+44.275
+</td>
+<td style="text-align:right;">
+5.764
+</td>
+<td style="text-align:right;">
+68.667
+</td>
+<td style="text-align:right;">
+10.636
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+33.519
+</td>
+<td style="text-align:right;">
+103.814
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+142.916
+</td>
+<td style="text-align:right;">
+96.256
+</td>
+<td style="text-align:right;">
+13.348
+</td>
+<td style="text-align:right;">
+142.916
+</td>
+<td style="text-align:right;">
+11.329
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+105.478
+</td>
+<td style="text-align:right;">
+180.355
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+48.876
+</td>
+<td style="text-align:right;">
+27.511
+</td>
+<td style="text-align:right;">
+3.494
+</td>
+<td style="text-align:right;">
+48.876
+</td>
+<td style="text-align:right;">
+10.375
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+14.590
+</td>
+<td style="text-align:right;">
+83.163
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.281
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+77.250
+</td>
+<td style="text-align:right;">
+45.168
+</td>
+<td style="text-align:right;">
+5.399
+</td>
+<td style="text-align:right;">
+77.250
+</td>
+<td style="text-align:right;">
+9.765
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+44.982
+</td>
+<td style="text-align:right;">
+109.518
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.281
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+167.705
+</td>
+<td style="text-align:right;">
+115.563
+</td>
+<td style="text-align:right;">
+15.045
+</td>
+<td style="text-align:right;">
+167.705
+</td>
+<td style="text-align:right;">
+10.636
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+132.557
+</td>
+<td style="text-align:right;">
+202.852
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+257.671
+</td>
+<td style="text-align:right;">
+158.973
+</td>
+<td style="text-align:right;">
+25.789
+</td>
+<td style="text-align:right;">
+257.671
+</td>
+<td style="text-align:right;">
+13.253
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+213.876
+</td>
+<td style="text-align:right;">
+301.467
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+87.516
+</td>
+<td style="text-align:right;">
+51.346
+</td>
+<td style="text-align:right;">
+6.861
+</td>
+<td style="text-align:right;">
+87.516
+</td>
+<td style="text-align:right;">
+10.917
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+51.440
+</td>
+<td style="text-align:right;">
+123.593
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+179.616
+</td>
+<td style="text-align:right;">
+102.904
+</td>
+<td style="text-align:right;">
+14.003
+</td>
+<td style="text-align:right;">
+179.616
+</td>
+<td style="text-align:right;">
+11.117
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+142.877
+</td>
+<td style="text-align:right;">
+216.355
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+226.002
+</td>
+<td style="text-align:right;">
+146.879
+</td>
+<td style="text-align:right;">
+20.772
+</td>
+<td style="text-align:right;">
+226.002
+</td>
+<td style="text-align:right;">
+11.554
+</td>
+<td style="text-align:right;">
+694
+</td>
+<td style="text-align:right;">
+187.822
+</td>
+<td style="text-align:right;">
+264.182
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+0.012
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+0.186
+</td>
+<td style="text-align:right;">
+0.029
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+0.186
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.168
+</td>
+<td style="text-align:right;">
+0.203
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+0.204
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+0.204
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.187
+</td>
+<td style="text-align:right;">
+0.222
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+0.318
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+0.192
+</td>
+<td style="text-align:right;">
+0.025
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.192
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.175
+</td>
+<td style="text-align:right;">
+0.210
+</td>
+<td style="text-align:left;">
+ab
+</td>
+<td style="text-align:left;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+0.231
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.231
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.214
+</td>
+<td style="text-align:right;">
+0.249
+</td>
+<td style="text-align:left;">
+ab
+</td>
+<td style="text-align:left;">
+0.074
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+0.241
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.241
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.223
+</td>
+<td style="text-align:right;">
+0.258
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+0.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+0.214
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+0.214
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.197
+</td>
+<td style="text-align:right;">
+0.232
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.618
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+0.215
+</td>
+<td style="text-align:right;">
+0.024
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.215
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.198
+</td>
+<td style="text-align:right;">
+0.233
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.018
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+0.238
+</td>
+<td style="text-align:right;">
+0.033
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+0.238
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.220
+</td>
+<td style="text-align:right;">
+0.255
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+0.353
+</td>
+<td style="text-align:right;">
+0.034
+</td>
+<td style="text-align:right;">
+0.006
+</td>
+<td style="text-align:right;">
+0.353
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.335
+</td>
+<td style="text-align:right;">
+0.370
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+0.344
+</td>
+<td style="text-align:right;">
+0.063
+</td>
+<td style="text-align:right;">
+0.010
+</td>
+<td style="text-align:right;">
+0.344
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.327
+</td>
+<td style="text-align:right;">
+0.362
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+0.358
+</td>
+<td style="text-align:right;">
+0.026
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.358
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.341
+</td>
+<td style="text-align:right;">
+0.376
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+0.416
+</td>
+<td style="text-align:right;">
+0.030
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+0.416
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.399
+</td>
+<td style="text-align:right;">
+0.434
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+0.424
+</td>
+<td style="text-align:right;">
+0.027
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+0.424
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+467
+</td>
+<td style="text-align:right;">
+0.406
+</td>
+<td style="text-align:right;">
+0.441
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+291.700
+</td>
+<td style="text-align:right;">
+56.247
+</td>
+<td style="text-align:right;">
+11.992
+</td>
+<td style="text-align:right;">
+291.700
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+245.203
+</td>
+<td style="text-align:right;">
+338.197
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+637.305
+</td>
+<td style="text-align:right;">
+56.993
+</td>
+<td style="text-align:right;">
+12.151
+</td>
+<td style="text-align:right;">
+637.305
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+590.808
+</td>
+<td style="text-align:right;">
+683.801
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+509.632
+</td>
+<td style="text-align:right;">
+59.907
+</td>
+<td style="text-align:right;">
+12.772
+</td>
+<td style="text-align:right;">
+509.632
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+463.135
+</td>
+<td style="text-align:right;">
+556.128
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+690.250
+</td>
+<td style="text-align:right;">
+68.047
+</td>
+<td style="text-align:right;">
+14.508
+</td>
+<td style="text-align:right;">
+690.250
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+643.753
+</td>
+<td style="text-align:right;">
+736.747
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.452
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+718.736
+</td>
+<td style="text-align:right;">
+70.079
+</td>
+<td style="text-align:right;">
+14.941
+</td>
+<td style="text-align:right;">
+718.736
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+672.240
+</td>
+<td style="text-align:right;">
+765.233
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.452
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+720.136
+</td>
+<td style="text-align:right;">
+71.862
+</td>
+<td style="text-align:right;">
+15.321
+</td>
+<td style="text-align:right;">
+720.136
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+673.640
+</td>
+<td style="text-align:right;">
+766.633
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.452
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low-Dec
+</td>
+<td style="text-align:right;">
+580.368
+</td>
+<td style="text-align:right;">
+60.299
+</td>
+<td style="text-align:right;">
+12.856
+</td>
+<td style="text-align:right;">
+580.368
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+533.872
+</td>
+<td style="text-align:right;">
+626.865
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+650.586
+</td>
+<td style="text-align:right;">
+68.523
+</td>
+<td style="text-align:right;">
+14.609
+</td>
+<td style="text-align:right;">
+650.586
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+604.090
+</td>
+<td style="text-align:right;">
+697.083
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+759.386
+</td>
+<td style="text-align:right;">
+77.945
+</td>
+<td style="text-align:right;">
+16.618
+</td>
+<td style="text-align:right;">
+759.386
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+712.890
+</td>
+<td style="text-align:right;">
+805.883
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+741.209
+</td>
+<td style="text-align:right;">
+68.329
+</td>
+<td style="text-align:right;">
+14.568
+</td>
+<td style="text-align:right;">
+741.209
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+694.713
+</td>
+<td style="text-align:right;">
+787.706
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+low
+</td>
+<td style="text-align:right;">
+913.482
+</td>
+<td style="text-align:right;">
+68.459
+</td>
+<td style="text-align:right;">
+14.596
+</td>
+<td style="text-align:right;">
+913.482
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+866.985
+</td>
+<td style="text-align:right;">
+959.978
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+medium
+</td>
+<td style="text-align:right;">
+845.050
+</td>
+<td style="text-align:right;">
+51.023
+</td>
+<td style="text-align:right;">
+10.878
+</td>
+<td style="text-align:right;">
+845.050
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+798.553
+</td>
+<td style="text-align:right;">
+891.547
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:left;">
+high
+</td>
+<td style="text-align:right;">
+636.918
+</td>
+<td style="text-align:right;">
+69.313
+</td>
+<td style="text-align:right;">
+14.778
+</td>
+<td style="text-align:right;">
+636.918
+</td>
+<td style="text-align:right;">
+13.978
+</td>
+<td style="text-align:right;">
+273
+</td>
+<td style="text-align:right;">
+590.422
+</td>
+<td style="text-align:right;">
+683.415
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+0.002
+</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Sonoma 14.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/4.3-arm64/Resources/lib/libRlapack.dylib;  LAPACK version 3.11.0
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+time zone: Europe/Madrid
+tzcode source: internal
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] kableExtra_1.4.0 emmeans_1.10.4   lubridate_1.9.3  forcats_1.0.0   
+ [5] stringr_1.5.1    dplyr_1.1.4      purrr_1.0.2      readr_2.1.5     
+ [9] tidyr_1.3.1      tibble_3.2.1     ggplot2_3.5.1    tidyverse_2.0.0 
+[13] workflowr_1.7.1 
+
+loaded via a namespace (and not attached):
+ [1] gtable_0.3.5        xfun_0.47           bslib_0.8.0        
+ [4] processx_3.8.4      lattice_0.22-6      callr_3.7.6        
+ [7] tzdb_0.4.0          vctrs_0.6.5         tools_4.3.3        
+[10] ps_1.8.0            generics_0.1.3      parallel_4.3.3     
+[13] sandwich_3.1-1      fansi_1.0.6         highr_0.11         
+[16] pkgconfig_2.0.3     Matrix_1.6-5        lifecycle_1.0.4    
+[19] compiler_4.3.3      git2r_0.33.0        munsell_0.5.1      
+[22] codetools_0.2-20    getPass_0.2-4       httpuv_1.6.15      
+[25] htmltools_0.5.8.1   sass_0.4.9          yaml_2.3.10        
+[28] crayon_1.5.3        later_1.3.2         pillar_1.9.0       
+[31] jquerylib_0.1.4     whisker_0.4.1       MASS_7.3-60.0.1    
+[34] cachem_1.1.0        multcomp_1.4-26     tidyselect_1.2.1   
+[37] digest_0.6.37       mvtnorm_1.3-1       stringi_1.8.4      
+[40] bookdown_0.40       splines_4.3.3       rprojroot_2.0.4    
+[43] fastmap_1.2.0       grid_4.3.3          colorspace_2.1-1   
+[46] cli_3.6.3           magrittr_2.0.3      survival_3.7-0     
+[49] utf8_1.2.4          TH.data_1.1-2       withr_3.0.1        
+[52] scales_1.3.0        promises_1.3.0      writexl_1.5.0      
+[55] bit64_4.5.2         timechange_0.3.0    estimability_1.5.1 
+[58] rmarkdown_2.28      httr_1.4.7          bit_4.5.0          
+[61] zoo_1.8-12          hms_1.1.3           coda_0.19-4.1      
+[64] evaluate_1.0.0      knitr_1.48          viridisLite_0.4.2  
+[67] rlang_1.1.4         Rcpp_1.0.13         xtable_1.8-4       
+[70] glue_1.7.0          xml2_1.3.6          vroom_1.6.5        
+[73] svglite_2.1.3       rstudioapi_0.16.0   jsonlite_1.8.9     
+[76] R6_2.5.1            multcompView_0.1-10 systemfonts_1.1.0  
+[79] fs_1.6.4           </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
