@@ -1,0 +1,202 @@
+---
+title: "Summary EVI, NPP, ABI"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+--- 
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+
+```{r, message=FALSE}
+library(tidyverse)
+library(emmeans)
+library(kableExtra)
+source("scripts/aux.R")
+```
+
+```{r}
+annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |> 
+  dplyr::select(sp_elev, year, monthly_pet, monthly_tmed, monthly_prec) |> 
+  group_by(sp_elev, year) |>
+  summarise(pet = sum(monthly_pet), 
+            prec = sum(monthly_prec),
+            tmed = mean(monthly_tmed, na.rm = TRUE)) |> 
+  rowwise() |> 
+  mutate(water_balance = prec - pet)
+```
+
+
+```{r}
+abi <- read_csv("data/dendroadaptamed_abi.csv") |> 
+  rename(mean = IBT_ag_m2) |> 
+  mutate(se = NA, sd = NA, variable = "abi") 
+
+evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat.csv") |> 
+  filter(iv == "evi") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
+  mutate(variable = "evi_landsat")
+
+npp <- read_csv("data/dendroadaptamed_npp_modis.csv") |> 
+  rename(mean = npp) |> 
+  mutate(se = NA, sd = NA, variable = "npp") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se, variable) 
+
+evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |> 
+  filter(variable == "evi") |> 
+  filter(season == "yearly") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
+  mutate(variable = "evi_modis")
+
+
+df <- bind_rows(
+  abi, evi_landsat, npp) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
+  mutate(Specie = paste0("P. ", sp_code)) |> 
+  rename(mean_y = mean, y_variable = variable)
+```
+
+
+
+## Summary statistics 
+
+
+```{r}
+# Function to generate comparisons and perform letter-based grouping
+generate_comparisons <- function(model, sp_code = NULL, elev_code = NULL, alpha = 0.001) {
+  emm <- emmeans(model, pairwise ~ sp_code * elev_code, adjust = "bonferroni", alpha = alpha,
+                 at = list(sp_code = sp_code, elev_code = elev_code))
+  
+  
+  cld_df <- multcomp::cld(emm, Letters = letters, level = 1 - alpha)
+  p_values <- summary(emm, infer = TRUE)$contrasts$'p.value'
+  result_df <- cld_df |> 
+    mutate(p_value = p_values[match(.group, cld_df$.group)])
+  return(result_df)
+}
+```
+
+
+```{r}
+df_avg <- df |> 
+  group_by(y_variable, sp_code, elev_code, sp_elev) |> 
+  summarise(mean = mean(mean_y), 
+            sd = sd(mean_y), 
+            se = sd/sqrt(length(mean_y))) |> ungroup()
+```
+
+
+
+```{r}
+variable <- "evi_landsat"
+
+x <- df |> filter(y_variable == variable)  
+  
+lm_evi <- lm(mean_y ~ sp_code*elev_code, data = x) 
+
+means_letters_lm_evi <- bind_rows(
+  generate_comparisons(lm_evi, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_evi, sp_code = "pinaster", elev_code = c("low", "low-Dec", "medium", "high")),
+  generate_comparisons(lm_evi, sp_code = "nigra", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_evi, sp_code = "sylvestris", elev_code = c("low", "medium", "high"))
+) |> 
+  mutate(y_variable = variable)
+
+```
+
+
+```{r}
+variable <- "evi_landsat"
+
+x <- df |> filter(y_variable == variable)  
+  
+lm_evi <- lm(mean_y ~ sp_code*elev_code, data = x) 
+
+means_letters_lm_evi <- bind_rows(
+  generate_comparisons(lm_evi, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_evi, sp_code = "pinaster", elev_code = c("low", "low-Dec", "medium", "high")),
+  generate_comparisons(lm_evi, sp_code = "nigra", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_evi, sp_code = "sylvestris", elev_code = c("low", "medium", "high"))
+) |> 
+  mutate(y_variable = variable)
+
+```
+
+
+```{r}
+variable <- "abi"
+
+x <- df |> filter(y_variable == variable)  
+  
+lm_abi <- lm(mean_y ~ sp_code*elev_code, data = x) 
+
+means_letters_lm_abi <- bind_rows(
+  generate_comparisons(lm_abi, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_abi, sp_code = "pinaster", elev_code = c("low", "low-Dec", "medium", "high")),
+  generate_comparisons(lm_abi, sp_code = "nigra", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_abi, sp_code = "sylvestris", elev_code = c("low", "medium", "high"))
+) |> 
+  mutate(y_variable = variable)
+
+```
+
+
+```{r}
+variable <- "npp"
+
+x <- df |> filter(y_variable == variable)  
+  
+lm_npp <- lm(mean_y ~ sp_code*elev_code, data = x) 
+
+means_letters_lm_npp <- bind_rows(
+  generate_comparisons(lm_npp, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_npp, sp_code = "pinaster", elev_code = c("low", "low-Dec", "medium", "high")),
+  generate_comparisons(lm_npp, sp_code = "nigra", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_npp, sp_code = "sylvestris", elev_code = c("low", "medium", "high"))
+) |> 
+  mutate(y_variable = variable)
+
+```
+
+
+```{r}
+df_letters <- bind_rows(means_letters_lm_abi, means_letters_lm_evi, means_letters_lm_npp) |> ungroup()
+
+out <- df_avg |> inner_join(df_letters) |> 
+   mutate(pvalue = ifelse(p_value < 0.0001, "<0.0001", round(p_value, 3))) 
+```
+
+
+```{r}
+out |> 
+  ungroup() |> 
+  dplyr::select(-sp_elev) |> 
+  dplyr::select(-p_value) |> 
+  arrange(y_variable, sp_code, elev_code) |> 
+  kbl(digits = c(0,0,0,3,3,3, 3,3,0,3,3,0,5), 
+      caption = "Posthoc differences among species for average EVI") |> 
+    kable_paper("hover", full_width = F)
+```
+
+```{r}
+writexl::write_xlsx(out, "output/tables/summary_evi_abi_npp.xlsx")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
