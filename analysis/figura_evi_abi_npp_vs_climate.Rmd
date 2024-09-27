@@ -488,11 +488,6 @@ ggsave(
 ```
 
 
-
-
-
-
-
 ```{r, eval=FALSE, fig.width=12, fig.height=12}
 f <- plot_wb / plot_tmed
 f
