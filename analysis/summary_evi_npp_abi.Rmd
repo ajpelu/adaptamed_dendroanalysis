@@ -180,13 +180,165 @@ out |>
   dplyr::select(-p_value) |> 
   arrange(y_variable, sp_code, elev_code) |> 
   kbl(digits = c(0,0,0,3,3,3, 3,3,0,3,3,0,5), 
-      caption = "Posthoc differences among species for average EVI") |> 
+      caption = "Posthoc differences within species for average ABI, EVI, NPP") |> 
     kable_paper("hover", full_width = F)
 ```
 
 ```{r}
 writexl::write_xlsx(out, "output/tables/summary_evi_abi_npp.xlsx")
 ```
+
+
+## Figure 
+
+
+```{r}
+df_plot <- df |> 
+  mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
+  mutate(variable2 = case_when(
+    y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})", 
+    y_variable == "npp" ~ "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+    y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]"
+  )) |> 
+  ungroup() 
+
+out_plot <- out |> 
+  mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
+  mutate(variable2 = case_when(
+    y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})", 
+    y_variable == "npp" ~ "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+    y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]"
+  )) |> 
+  ungroup() 
+
+
+y_scales <- list(
+  scale_y_continuous(limits = c(0, 0.5)),
+  scale_y_continuous(limits = c(0,1000)),
+  scale_y_continuous(limits = c(0, 600))
+)
+
+
+custom_position = position_dodge(width = 0.3)
+
+plot_avg_eviabinpp <- ggplot(data = out_plot, 
+       aes(y = mean, x = sp_code, group = elev_code, colour = elev_code)) + 
+  geom_jitter(data = df_plot,
+              aes(y = mean_y, x = sp_code, 
+                  group = elev_code, colour = elev_code), 
+              alpha = 0.3, size = .75, stroke = 0.5, 
+              position = custom_position, show.legend = FALSE) + 
+  geom_line(position = custom_position, size = .6) +
+  geom_errorbar(aes(ymin=mean-1.96*se, ymax=mean+1.96*se), 
+                colour = "black", width=.2, lwd = .7, position = custom_position) +  
+  geom_point(size = 2.2, position = custom_position, stroke = .1,
+             aes(fill = elev_code), show.legend = FALSE) +
+  facet_wrap(~factor(variable2, c("Annual~EVI[Landsat]", 
+                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                    "ABI~(g~C~m^2~year^{-1})")),
+             scales = "free_y", 
+                     labeller = label_parsed, 
+                     strip.position = "left",
+             ncol = 1) +
+  theme_bw() + 
+  theme(
+    panel.grid = element_blank(),
+    strip.background = element_blank(),
+    strip.placement = "outside",
+    legend.position = c(0.2, 0.23),
+    legend.background = element_blank(),
+    axis.text.x = element_text(face = "italic"),
+    strip.text = element_text(face = "bold", size = 9)
+  ) + 
+   scale_colour_manual(values = colours_elev, name = "") +
+  xlab("") + 
+  ylab("") + 
+  ggh4x::facetted_pos_scales(y = y_scales) # custom scales
+
+plot_avg_eviabinpp    
+```
+
+```{r}
+
+ggsave(
+  plot_avg_eviabinpp, 
+  file = "output/plot_evi_abi_npp_gradient.png",
+  dpi = 350,
+  width = 5, height = 6.5
+)   
+
+```
+
+
+
+
+
+
+```{r}
+
+generate_comparisons_sp <- function(model, sp_code = NULL, alpha = 0.001) {
+  emm <- emmeans(model, pairwise ~ sp_code , adjust = "bonferroni", alpha = alpha,
+                 at = list(sp_code = sp_code))
+  
+  
+  cld_df <- multcomp::cld(emm, Letters = letters, level = 1 - alpha)
+  p_values <- summary(emm, infer = TRUE)$contrasts$'p.value'
+  result_df <- cld_df |> 
+    mutate(p_value = p_values[match(.group, cld_df$.group)])
+  return(result_df)
+}
+
+
+
+x <- df |> filter(y_variable == "evi_landsat")  
+lm_evi <- lm(mean_y ~ sp_code , data = x) 
+
+x <- df |> filter(y_variable == "abi")  
+lm_abi <- lm(mean_y ~ sp_code , data = x) 
+
+x <- df |> filter(y_variable == "npp")  
+lm_npp <- lm(mean_y ~ sp_code , data = x) 
+
+
+
+letter_evi <- generate_comparisons_sp(lm_evi, sp_code = c("halepensis","pinaster", "nigra", "sylvestris")) |> mutate(y_variable = "evi_landsat")
+letter_abi <- generate_comparisons_sp(lm_abi, sp_code = c("halepensis","pinaster", "nigra", "sylvestris")) |> mutate(y_variable = "abi")
+letter_npp <- generate_comparisons_sp(lm_npp, sp_code = c("halepensis","pinaster", "nigra", "sylvestris")) |> mutate(y_variable = "npp")
+
+out_sp <- bind_rows(letter_abi, letter_evi, letter_npp)
+
+
+
+df_avg_sp <- df |> 
+  group_by(y_variable, sp_code) |> 
+  summarise(mean = mean(mean_y), 
+            sd = sd(mean_y), 
+            se = sd/sqrt(length(mean_y))) |> ungroup()
+
+
+out_sp <- df_avg_sp |> 
+  inner_join(
+    bind_rows(letter_abi, letter_evi, letter_npp)
+  ) |> 
+  mutate(pvalue = ifelse(p_value < 0.0001, "<0.0001", round(p_value, 3))) 
+```
+
+
+
+```{r}
+out_sp |> 
+  ungroup() |> 
+  dplyr::select(-p_value) |> 
+  arrange(y_variable, sp_code) |> 
+  kbl(digits = c(0,0,3,3,3, 3,3,0,3,3,0,5), 
+      caption = "Posthoc differences among species for average ABi, NPP and EVI") |> 
+    kable_paper("hover", full_width = F)
+```
+
+```{r}
+writexl::write_xlsx(out_sp, "output/tables/summary_evi_abi_npp_species.xlsx")
+```
+
 
 
 
