@@ -530,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreedb4896acade71b3870ecabd416329dd098976f53targetblankdb4896aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree66f3fc32836b1f26b2d10ace558fcceb7f4267d1targetblank66f3fc3a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/db4896acade71b3870ecabd416329dd098976f53" target="_blank">db4896a</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/66f3fc32836b1f26b2d10ace558fcceb7f4267d1" target="_blank">66f3fc3</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreedb4896acade71b3870ecabd416329dd098976f53targetblankdb4896aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree66f3fc32836b1f26b2d10ace558fcceb7f4267d1targetblank66f3fc3a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/db4896acade71b3870ecabd416329dd098976f53" target="_blank">db4896a</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/66f3fc32836b1f26b2d10ace558fcceb7f4267d1" target="_blank">66f3fc3</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -571,7 +571,9 @@ Untracked files:
     Untracked:  data/raw/cronos/
     Untracked:  data/rw/rwcore_sylvestris_med.csv
     Untracked:  data/rw/rwtree_sylvestris_med.csv
+    Untracked:  output/plot_evi_abi_npp_gradient.png
     Untracked:  output/tables/summary_evi_abi_npp.xlsx
+    Untracked:  output/tables/summary_evi_abi_npp_species.xlsx
 
 Unstaged changes:
     Modified:   analysis/figura_evi_abi_npp_vs_climate.Rmd
@@ -624,6 +626,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/66f3fc32836b1f26b2d10ace558fcceb7f4267d1/analysis/summary_evi_npp_abi.Rmd" target="_blank">66f3fc3</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-09-27
+</td>
+<td>
+wflow_publish("analysis/summary_evi_npp_abi.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/12a9e5bd5802cb58913b726b70ec20a1494af401/docs/summary_evi_npp_abi.html" target="_blank">12a9e5b</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-09-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/db4896acade71b3870ecabd416329dd098976f53/analysis/summary_evi_npp_abi.Rmd" target="_blank">db4896a</a>
 </td>
 <td>
@@ -647,7 +683,7 @@ add summary
 <h2><span class="header-section-number">0.1</span> Summary statistics</h2>
 <table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-11">Table 1: </span>Posthoc differences among species for average EVI
+<span id="tab:unnamed-chunk-11">Table 1: </span>Posthoc differences within species for average ABI, EVI, NPP
 </caption>
 <thead>
 <tr>
@@ -2294,6 +2330,513 @@ a
 </tr>
 </tbody>
 </table>
+</div>
+<div id="figure" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Figure</h2>
+<p><img src="figure/summary_evi_npp_abi.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<table class=" lightable-paper lightable-hover" style="font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-16">Table 2: </span>Posthoc differences among species for average ABi, NPP and EVI
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+y_variable
+</th>
+<th style="text-align:left;">
+sp_code
+</th>
+<th style="text-align:right;">
+mean
+</th>
+<th style="text-align:right;">
+sd
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+emmean
+</th>
+<th style="text-align:right;">
+SE
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+lower.CL
+</th>
+<th style="text-align:right;">
+upper.CL
+</th>
+<th style="text-align:left;">
+.group
+</th>
+<th style="text-align:left;">
+pvalue
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:right;">
+56.265
+</td>
+<td style="text-align:right;">
+46.878
+</td>
+<td style="text-align:right;">
+3.840
+</td>
+<td style="text-align:right;">
+56.265
+</td>
+<td style="text-align:right;">
+7.978
+</td>
+<td style="text-align:right;">
+703
+</td>
+<td style="text-align:right;">
+29.903
+</td>
+<td style="text-align:right;">
+82.627
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:right;">
+94.854
+</td>
+<td style="text-align:right;">
+71.335
+</td>
+<td style="text-align:right;">
+5.487
+</td>
+<td style="text-align:right;">
+94.854
+</td>
+<td style="text-align:right;">
+7.491
+</td>
+<td style="text-align:right;">
+703
+</td>
+<td style="text-align:right;">
+70.101
+</td>
+<td style="text-align:right;">
+119.607
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+0.003
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:right;">
+122.812
+</td>
+<td style="text-align:right;">
+118.300
+</td>
+<td style="text-align:right;">
+7.817
+</td>
+<td style="text-align:right;">
+122.812
+</td>
+<td style="text-align:right;">
+6.435
+</td>
+<td style="text-align:right;">
+703
+</td>
+<td style="text-align:right;">
+101.548
+</td>
+<td style="text-align:right;">
+144.076
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abi
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:right;">
+161.877
+</td>
+<td style="text-align:right;">
+120.157
+</td>
+<td style="text-align:right;">
+9.499
+</td>
+<td style="text-align:right;">
+161.877
+</td>
+<td style="text-align:right;">
+7.699
+</td>
+<td style="text-align:right;">
+703
+</td>
+<td style="text-align:right;">
+136.437
+</td>
+<td style="text-align:right;">
+187.316
+</td>
+<td style="text-align:left;">
+d
+</td>
+<td style="text-align:left;">
+0.029
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:right;">
+0.194
+</td>
+<td style="text-align:right;">
+0.028
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.194
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+476
+</td>
+<td style="text-align:right;">
+0.179
+</td>
+<td style="text-align:right;">
+0.210
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:right;">
+0.229
+</td>
+<td style="text-align:right;">
+0.029
+</td>
+<td style="text-align:right;">
+0.003
+</td>
+<td style="text-align:right;">
+0.229
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+476
+</td>
+<td style="text-align:right;">
+0.213
+</td>
+<td style="text-align:right;">
+0.245
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:right;">
+0.288
+</td>
+<td style="text-align:right;">
+0.074
+</td>
+<td style="text-align:right;">
+0.006
+</td>
+<td style="text-align:right;">
+0.288
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+476
+</td>
+<td style="text-align:right;">
+0.274
+</td>
+<td style="text-align:right;">
+0.301
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+evi_landsat
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:right;">
+0.399
+</td>
+<td style="text-align:right;">
+0.040
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+<td style="text-align:right;">
+0.399
+</td>
+<td style="text-align:right;">
+0.005
+</td>
+<td style="text-align:right;">
+476
+</td>
+<td style="text-align:right;">
+0.384
+</td>
+<td style="text-align:right;">
+0.415
+</td>
+<td style="text-align:left;">
+d
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+halepensis
+</td>
+<td style="text-align:right;">
+479.545
+</td>
+<td style="text-align:right;">
+154.609
+</td>
+<td style="text-align:right;">
+19.031
+</td>
+<td style="text-align:right;">
+479.545
+</td>
+<td style="text-align:right;">
+14.476
+</td>
+<td style="text-align:right;">
+282
+</td>
+<td style="text-align:right;">
+431.407
+</td>
+<td style="text-align:right;">
+527.684
+</td>
+<td style="text-align:left;">
+a
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+nigra
+</td>
+<td style="text-align:right;">
+709.708
+</td>
+<td style="text-align:right;">
+70.311
+</td>
+<td style="text-align:right;">
+8.655
+</td>
+<td style="text-align:right;">
+709.708
+</td>
+<td style="text-align:right;">
+14.476
+</td>
+<td style="text-align:right;">
+282
+</td>
+<td style="text-align:right;">
+661.569
+</td>
+<td style="text-align:right;">
+757.846
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+pinaster
+</td>
+<td style="text-align:right;">
+682.888
+</td>
+<td style="text-align:right;">
+99.328
+</td>
+<td style="text-align:right;">
+10.588
+</td>
+<td style="text-align:right;">
+682.888
+</td>
+<td style="text-align:right;">
+12.537
+</td>
+<td style="text-align:right;">
+282
+</td>
+<td style="text-align:right;">
+641.198
+</td>
+<td style="text-align:right;">
+724.577
+</td>
+<td style="text-align:left;">
+b
+</td>
+<td style="text-align:left;">
+&lt;0.0001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+npp
+</td>
+<td style="text-align:left;">
+sylvestris
+</td>
+<td style="text-align:right;">
+798.483
+</td>
+<td style="text-align:right;">
+133.986
+</td>
+<td style="text-align:right;">
+16.493
+</td>
+<td style="text-align:right;">
+798.483
+</td>
+<td style="text-align:right;">
+14.476
+</td>
+<td style="text-align:right;">
+282
+</td>
+<td style="text-align:right;">
+750.345
+</td>
+<td style="text-align:right;">
+846.622
+</td>
+<td style="text-align:left;">
+c
+</td>
+<td style="text-align:left;">
+0.975
+</td>
+</tr>
+</tbody>
+</table>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -2326,33 +2869,34 @@ other attached packages:
 [13] workflowr_1.7.1 
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.5        xfun_0.47           bslib_0.8.0        
- [4] processx_3.8.4      lattice_0.22-6      callr_3.7.6        
- [7] tzdb_0.4.0          vctrs_0.6.5         tools_4.3.3        
-[10] ps_1.8.0            generics_0.1.3      parallel_4.3.3     
-[13] sandwich_3.1-1      fansi_1.0.6         highr_0.11         
-[16] pkgconfig_2.0.3     Matrix_1.6-5        lifecycle_1.0.4    
-[19] compiler_4.3.3      git2r_0.33.0        munsell_0.5.1      
-[22] codetools_0.2-20    getPass_0.2-4       httpuv_1.6.15      
-[25] htmltools_0.5.8.1   sass_0.4.9          yaml_2.3.10        
-[28] crayon_1.5.3        later_1.3.2         pillar_1.9.0       
-[31] jquerylib_0.1.4     whisker_0.4.1       MASS_7.3-60.0.1    
-[34] cachem_1.1.0        multcomp_1.4-26     tidyselect_1.2.1   
-[37] digest_0.6.37       mvtnorm_1.3-1       stringi_1.8.4      
-[40] bookdown_0.40       splines_4.3.3       rprojroot_2.0.4    
-[43] fastmap_1.2.0       grid_4.3.3          colorspace_2.1-1   
-[46] cli_3.6.3           magrittr_2.0.3      survival_3.7-0     
-[49] utf8_1.2.4          TH.data_1.1-2       withr_3.0.1        
-[52] scales_1.3.0        promises_1.3.0      writexl_1.5.0      
-[55] bit64_4.5.2         timechange_0.3.0    estimability_1.5.1 
-[58] rmarkdown_2.28      httr_1.4.7          bit_4.5.0          
-[61] zoo_1.8-12          hms_1.1.3           coda_0.19-4.1      
-[64] evaluate_1.0.0      knitr_1.48          viridisLite_0.4.2  
-[67] rlang_1.1.4         Rcpp_1.0.13         xtable_1.8-4       
-[70] glue_1.7.0          xml2_1.3.6          vroom_1.6.5        
-[73] svglite_2.1.3       rstudioapi_0.16.0   jsonlite_1.8.9     
-[76] R6_2.5.1            multcompView_0.1-10 systemfonts_1.1.0  
-[79] fs_1.6.4           </code></pre>
+ [1] writexl_1.5.0       tidyselect_1.2.1    viridisLite_0.4.2  
+ [4] farver_2.1.2        fastmap_1.2.0       TH.data_1.1-2      
+ [7] promises_1.3.0      digest_0.6.37       estimability_1.5.1 
+[10] timechange_0.3.0    lifecycle_1.0.4     multcompView_0.1-10
+[13] survival_3.7-0      processx_3.8.4      magrittr_2.0.3     
+[16] compiler_4.3.3      rlang_1.1.4         sass_0.4.9         
+[19] tools_4.3.3         utf8_1.2.4          yaml_2.3.10        
+[22] knitr_1.48          labeling_0.4.3      bit_4.5.0          
+[25] xml2_1.3.6          multcomp_1.4-26     withr_3.0.1        
+[28] grid_4.3.3          ggh4x_0.2.8         fansi_1.0.6        
+[31] git2r_0.33.0        xtable_1.8-4        colorspace_2.1-1   
+[34] scales_1.3.0        MASS_7.3-60.0.1     cli_3.6.3          
+[37] mvtnorm_1.3-1       rmarkdown_2.28      crayon_1.5.3       
+[40] ragg_1.3.3          generics_0.1.3      rstudioapi_0.16.0  
+[43] httr_1.4.7          tzdb_0.4.0          cachem_1.1.0       
+[46] splines_4.3.3       parallel_4.3.3      vctrs_0.6.5        
+[49] Matrix_1.6-5        sandwich_3.1-1      jsonlite_1.8.9     
+[52] bookdown_0.40       callr_3.7.6         hms_1.1.3          
+[55] bit64_4.5.2         systemfonts_1.1.0   jquerylib_0.1.4    
+[58] glue_1.7.0          codetools_0.2-20    ps_1.8.0           
+[61] stringi_1.8.4       gtable_0.3.5        later_1.3.2        
+[64] munsell_0.5.1       pillar_1.9.0        htmltools_0.5.8.1  
+[67] R6_2.5.1            textshaping_0.4.0   rprojroot_2.0.4    
+[70] vroom_1.6.5         evaluate_1.0.0      lattice_0.22-6     
+[73] highr_0.11          httpuv_1.6.15       bslib_0.8.0        
+[76] Rcpp_1.0.13         svglite_2.1.3       coda_0.19-4.1      
+[79] whisker_0.4.1       xfun_0.47           fs_1.6.4           
+[82] zoo_1.8-12          getPass_0.2-4       pkgconfig_2.0.3    </code></pre>
 </div>
 </div>
 
