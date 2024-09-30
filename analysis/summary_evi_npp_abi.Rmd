@@ -222,6 +222,7 @@ writexl::write_xlsx(out, "output/tables/summary_evi_abi_npp_ratio.xlsx")
 
 
 ```{r}
+#| fig.height: 8
 df_plot <- df |> 
   mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
   mutate(variable2 = case_when(
@@ -250,10 +251,23 @@ y_scales <- list(
   scale_y_continuous(limits = c(0,.7))
 )
 
+letras_indicativo_plot <- data.frame(
+  variable2 = c("Annual~EVI[Landsat]", 
+                  "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                  "ABI~(g~C~m^2~year^{-1})",
+                  "ABI:NPP~ratio"), 
+  label = c("a", "b", "c", "d"),
+  x = c(-Inf, -Inf, -Inf, -Inf),  # Ajusta las posiciones 'x' si es necesario
+  y = c(Inf, Inf, Inf, Inf)  # Inf para colocarlo en la parte superior
+)
 
 custom_position = position_dodge(width = 0.3)
 
-plot_avg_eviabinpp <- ggplot(data = out_plot, 
+
+out_plot2 <- out_plot |> inner_join(letras_indicativo_plot, by="variable2")
+
+
+plot_avg_eviabinpp <- ggplot(data = out_plot2, 
        aes(y = mean, x = sp_code, group = elev_code, colour = elev_code)) + 
   geom_jitter(data = df_plot,
               aes(y = mean_y, x = sp_code, 
@@ -286,9 +300,17 @@ plot_avg_eviabinpp <- ggplot(data = out_plot,
    scale_colour_manual(values = colours_elev, name = "") +
   xlab("") + 
   ylab("") + 
-  ggh4x::facetted_pos_scales(y = y_scales) # custom scales
+  ggh4x::facetted_pos_scales(y = y_scales) +
+  geom_text(aes(label = label, x = x, y = y), 
+            vjust = 1.2, hjust = -.5, size = 6, 
+              fontface = "bold", inherit.aes = FALSE)
+# custom scales
 
 plot_avg_eviabinpp    
+
+
+
+
 ```
 
 ```{r}
