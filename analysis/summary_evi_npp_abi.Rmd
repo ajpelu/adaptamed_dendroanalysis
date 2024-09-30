@@ -54,12 +54,22 @@ evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |>
   dplyr::select(year, sp_code, elev_code, sp_elev, mean, sd, se) |> 
   mutate(variable = "evi_modis")
 
+# Compute ratio abi:npp
+
+ratio <- 
+  (npp |> rename(npp = mean) |> 
+  dplyr::select(-se, -sd, -variable) |> ungroup()) |> 
+  inner_join(
+    abi |> rename(abi = mean) |> dplyr::select(-se, -sd, -variable) |> ungroup()
+  ) |> rowwise() |> 
+  mutate(mean = abi/npp, se = NA, sd = NA, variable = "ratio")
 
 df <- bind_rows(
-  abi, evi_landsat, npp) |> 
+  abi, evi_landsat, npp, ratio) |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   mutate(Specie = paste0("P. ", sp_code)) |> 
   rename(mean_y = mean, y_variable = variable)
+
 ```
 
 
@@ -165,8 +175,27 @@ means_letters_lm_npp <- bind_rows(
 ```
 
 
+
 ```{r}
-df_letters <- bind_rows(means_letters_lm_abi, means_letters_lm_evi, means_letters_lm_npp) |> ungroup()
+variable <- "ratio"
+
+x <- df |> filter(y_variable == variable)  
+  
+lm_ratio <- lm(mean_y ~ sp_code*elev_code, data = x) 
+
+means_letters_lm_ratio <- bind_rows(
+  generate_comparisons(lm_ratio, sp_code = "halepensis", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_ratio, sp_code = "pinaster", elev_code = c("low", "low-Dec", "medium", "high")),
+  generate_comparisons(lm_ratio, sp_code = "nigra", elev_code = c("low", "medium", "high")),
+  generate_comparisons(lm_ratio, sp_code = "sylvestris", elev_code = c("low", "medium", "high"))
+) |> 
+  mutate(y_variable = variable)
+
+```
+
+
+```{r}
+df_letters <- bind_rows(means_letters_lm_abi, means_letters_lm_evi, means_letters_lm_npp, means_letters_lm_ratio) |> ungroup()
 
 out <- df_avg |> inner_join(df_letters) |> 
    mutate(pvalue = ifelse(p_value < 0.0001, "<0.0001", round(p_value, 3))) 
@@ -185,7 +214,7 @@ out |>
 ```
 
 ```{r}
-writexl::write_xlsx(out, "output/tables/summary_evi_abi_npp.xlsx")
+writexl::write_xlsx(out, "output/tables/summary_evi_abi_npp_ratio.xlsx")
 ```
 
 
@@ -198,7 +227,8 @@ df_plot <- df |>
   mutate(variable2 = case_when(
     y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})", 
     y_variable == "npp" ~ "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
-    y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]"
+    y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]",
+    y_variable == "ratio" ~ "ABI:NPP~ratio"
   )) |> 
   ungroup() 
 
@@ -207,7 +237,8 @@ out_plot <- out |>
   mutate(variable2 = case_when(
     y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})", 
     y_variable == "npp" ~ "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
-    y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]"
+    y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]",
+    y_variable == "ratio" ~ "ABI:NPP~ratio"
   )) |> 
   ungroup() 
 
@@ -215,7 +246,8 @@ out_plot <- out |>
 y_scales <- list(
   scale_y_continuous(limits = c(0, 0.5)),
   scale_y_continuous(limits = c(0,1000)),
-  scale_y_continuous(limits = c(0, 600))
+  scale_y_continuous(limits = c(0, 600)), 
+  scale_y_continuous(limits = c(0,.7))
 )
 
 
@@ -235,7 +267,8 @@ plot_avg_eviabinpp <- ggplot(data = out_plot,
              aes(fill = elev_code), show.legend = FALSE) +
   facet_wrap(~factor(variable2, c("Annual~EVI[Landsat]", 
                                     "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
-                                    "ABI~(g~C~m^2~year^{-1})")),
+                                    "ABI~(g~C~m^2~year^{-1})",
+                                    "ABI:NPP~ratio")),
              scales = "free_y", 
                      labeller = label_parsed, 
                      strip.position = "left",
@@ -245,7 +278,7 @@ plot_avg_eviabinpp <- ggplot(data = out_plot,
     panel.grid = element_blank(),
     strip.background = element_blank(),
     strip.placement = "outside",
-    legend.position = c(0.2, 0.23),
+    legend.position = c(0.85, 0.84),
     legend.background = element_blank(),
     axis.text.x = element_text(face = "italic"),
     strip.text = element_text(face = "bold", size = 9)
@@ -262,15 +295,12 @@ plot_avg_eviabinpp
 
 ggsave(
   plot_avg_eviabinpp, 
-  file = "output/plot_evi_abi_npp_gradient.png",
+  file = "output/plot_evi_abi_npp_ratio_gradient.png",
   dpi = 350,
-  width = 5, height = 6.5
+  width = 5, height = 8.5
 )   
 
 ```
-
-
-
 
 
 
@@ -299,13 +329,17 @@ lm_abi <- lm(mean_y ~ sp_code , data = x)
 x <- df |> filter(y_variable == "npp")  
 lm_npp <- lm(mean_y ~ sp_code , data = x) 
 
+x <- df |> filter(y_variable == "ratio")  
+lm_ratio <- lm(mean_y ~ sp_code , data = x) 
+
 
 
 letter_evi <- generate_comparisons_sp(lm_evi, sp_code = c("halepensis","pinaster", "nigra", "sylvestris")) |> mutate(y_variable = "evi_landsat")
 letter_abi <- generate_comparisons_sp(lm_abi, sp_code = c("halepensis","pinaster", "nigra", "sylvestris")) |> mutate(y_variable = "abi")
 letter_npp <- generate_comparisons_sp(lm_npp, sp_code = c("halepensis","pinaster", "nigra", "sylvestris")) |> mutate(y_variable = "npp")
+letter_ratio <- generate_comparisons_sp(lm_ratio, sp_code = c("halepensis","pinaster", "nigra", "sylvestris")) |> mutate(y_variable = "ratio")
 
-out_sp <- bind_rows(letter_abi, letter_evi, letter_npp)
+out_sp <- bind_rows(letter_abi, letter_evi, letter_npp, letter_ratio)
 
 
 
@@ -318,7 +352,7 @@ df_avg_sp <- df |>
 
 out_sp <- df_avg_sp |> 
   inner_join(
-    bind_rows(letter_abi, letter_evi, letter_npp)
+    bind_rows(letter_abi, letter_evi, letter_npp, letter_ratio)
   ) |> 
   mutate(pvalue = ifelse(p_value < 0.0001, "<0.0001", round(p_value, 3))) 
 ```
@@ -336,7 +370,7 @@ out_sp |>
 ```
 
 ```{r}
-writexl::write_xlsx(out_sp, "output/tables/summary_evi_abi_npp_species.xlsx")
+writexl::write_xlsx(out_sp, "output/tables/summary_evi_abi_npp_ratio_species.xlsx")
 ```
 
 
