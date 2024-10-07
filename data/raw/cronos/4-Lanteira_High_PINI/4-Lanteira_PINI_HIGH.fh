@@ -1,0 +1,4843 @@
+HEADER:
+DataFormat=HalfChrono
+Length=45
+DateBegin=1976
+DateEnd=2020
+KeyCode=LANH01
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=LANH01A,LANH01C
+ChronoMemberCount=2
+DATA:Double
+   243     1   171     2   153     2   133     2   183     2
+   111     2   156     2   168     2   253     2   287     2
+   405     2   251     2   267     2   334     2   364     2
+   179     2   225     2   189     2    87     2    59     2
+    55     2   234     2   175     2    26     2    86     2
+   136     2   121     2   112     2    72     2    14     2
+    27     2    32     2    29     2    97     2   132     2
+    98     2    31     2    85     2    42     2    88     2
+    28     2    61     2    53     2    28     2    73     2
+HEADER:
+DataFormat=Tree
+Length=44
+DateBegin=1977
+DateEnd=2020
+KeyCode=LANH01A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    54    78    52    83    43   106   161   278   383   615
+   375   338   445   534   236   266   201    95    62    75
+   297   216    36   132   183   170   161   117    20    37
+    41    24   133   159   106    24    90    35   117    34
+    92    67    24    82     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=45
+DateBegin=1976
+DateEnd=2020
+KeyCode=LANH01C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   243   289   228   214   284   179   207   176   228   191
+   196   128   197   224   195   123   185   178    80    56
+    36   171   135    16    41    89    72    64    28     9
+    18    24    35    61   105    91    39    81    49    60
+    23    31    39    32    64     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=LANH02
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH02C,LANH02D
+ChronoMemberCount=2
+DATA:Double
+   585     2   388     2   347     2   307     2   306     2
+   186     2   217     2   163     2    61     2    53     2
+    59     2   224     2   241     2    18     2    67     2
+    93     2    73     2   125     2   133     2    39     2
+    62     2    37     2    29     2    85     2    87     2
+    88     2    19     2    92     2    33     2    65     2
+    28     2    81     2    65     2    46     2    96     2
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=LANH02C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+650
+425
+380
+275
+306
+201
+210
+161
+59
+40
+59;;59+40
+263
+301;;275+26, supongo que es una IADF este radio... y que el muy pequeño es el 1999
+19
+76
+85
+71
+176
+146
+52
+81
+34
+29
+101
+88
+89
+18
+82
+30
+59
+24
+63
+57
+38
+80
+
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=LANH02D
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+521
+352
+314
+339
+306
+171
+224
+165
+63
+66
+60;;66+60
+185
+181
+17
+59
+102
+75
+75
+121
+26
+43
+40
+29
+69
+87
+88
+20
+103
+36
+71
+33
+100
+73
+54
+113
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH03
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH03A,LANH03B
+ChronoMemberCount=2
+DATA:Double
+   195     2   239     2   349     2   273     2   254     2
+   151     2   237     2   193     2   211     2   208     2
+   267     2   208     2   338     2   274     2   270     2
+   453     2   362     2   183     2   268     2   195     2
+    91     2    57     2    55     2   209     2   184     2
+    32     2   107     2   157     2    99     2   113     2
+   193     2    41     2    89     2    57     2    46     2
+   125     2   175     2   153     2    26     2   115     2
+    34     2    97     2    22     2    42     2    64     2
+    33     2   100     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH03A
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+194
+223
+297
+249
+213
+108
+198
+183
+191
+183
+275
+202
+261
+235
+247
+369
+287
+168
+256
+162
+81
+52;;102=52+50
+50
+178
+168
+33
+119
+158
+92
+124
+200
+43
+70
+55
+46
+106
+152
+118
+25
+88
+20
+64
+15
+28
+22
+22
+57
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH03B
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+196
+256
+401
+298
+295
+195
+276
+204
+232
+234
+259
+214
+415
+314
+294
+537
+438
+199
+281
+228
+102
+62
+60;;122=62+60
+240
+200
+31
+95
+156
+106
+103
+186
+39
+108
+60
+46
+144
+199
+188
+28
+142
+48
+131
+30
+57
+107
+45
+143
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH04
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH04A,LANH04B
+ChronoMemberCount=2
+DATA:Double
+   243     2   211     2   299     2   244     2   292     2
+   334     2   415     2   241     2   270     2   314     2
+   357     2   387     2   334     2   241     2   253     2
+   299     2   425     2   215     2   224     2   166     2
+    83     2    40     2    47     2   236     2   186     2
+    20     2    80     2   125     2    77     2   116     2
+   141     2    20     2    65     2    50     2    62     2
+   101     2   129     2    94     2    14     2    77     2
+    21     2    48     2    16     2    35     2    35     2
+    19     2    45     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH04A
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+234
+220
+303
+260
+317
+384
+474
+251
+276
+355
+364
+391
+364
+239
+230
+340
+435
+214
+241
+208
+90
+50
+55;;105=55+50, el 1995 era una banda sin LW
+260
+231
+23
+87
+150
+93
+131
+147
+19
+56
+47
+68
+126
+165
+116
+18
+117
+27
+69
+18
+45
+45
+24
+51
+
+HEADER:
+DataFormat=Tree
+Length=47
+DateBegin=1974
+DateEnd=2020
+KeyCode=LANH04B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+252
+202
+296
+229
+267
+284
+357
+231
+264
+273
+351
+383
+304
+243
+277
+258
+415
+216
+207
+125
+77
+31;;71=31+40, el 1995 era una banda sin LW
+40
+213
+141
+17
+73
+101
+61
+101
+135
+22
+75
+53
+57
+77
+93
+72
+10
+38
+16
+28
+14
+25
+25
+15
+39
+
+HEADER:
+DataFormat=HalfChrono
+Length=50
+DateBegin=1971
+DateEnd=2020
+KeyCode=LANH05
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH05A,LANH05B
+ChronoMemberCount=2
+DATA:Double
+   151     2   174     2   183     2   155     2   179     2
+   212     2   203     2   238     2   152     2   160     2
+    72     2    99     2   119     2   193     2   163     2
+   120     2   135     2   169     2   206     2   261     2
+   169     2   174     2   107     2    49     2    19     2
+    54     2   136     2   114     2     7     2    40     2
+    66     2    46     2    73     2    87     2    22     2
+    60     2    45     2    43     2    76     2   116     2
+    86     2    23     2    90     2    39     2    70     2
+    34     2    51     2    25     2    17     2    55     2
+HEADER:
+DataFormat=Tree
+Length=50
+DateBegin=1971
+DateEnd=2020
+DataType=Ringwidth
+KeyCode=LANH05A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+160
+166
+188
+168
+222
+230
+270
+308
+198
+200
+91
+102
+117
+212
+214
+120
+129
+136
+160
+250
+177
+170
+113
+39
+27
+31
+115
+93
+3;;ausente
+39
+51
+38
+67
+77
+17
+50
+32
+33
+84
+108
+88
+17
+92
+32
+79
+30
+39
+24
+15
+57
+
+HEADER:
+DataFormat=Tree
+Length=50
+DateBegin=1971
+DateEnd=2020
+KeyCode=LANH05B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+142
+182
+179
+142
+136
+195
+137
+168
+106
+121
+53
+96
+121
+174
+113
+121
+141
+202
+252
+272
+162
+178
+102
+60
+11;;71=11+60, debía ser ausente el 1995, estaba roto justo ahí además
+77
+157
+135
+11
+42
+82
+54
+79
+98
+27
+70
+59
+54
+69
+125
+85
+29
+88
+46
+61
+38
+64;;40+24, roto ese año
+27
+20
+54
+
+HEADER:
+DataFormat=HalfChrono
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=LANH06
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH06A,LANH06B
+ChronoMemberCount=2
+DATA:Double
+   276     2   202     2   248     2   360     2   336     2
+   164     2   152     2   126     2    83     2    31     2
+    69     2   114     2   116     2    22     2    75     2
+   113     2    94     2   100     2   151     2    45     2
+   105     2    64     2    70     2    97     2   152     2
+   190     2    43     2    99     2    38     2    60     2
+    22     2    17     2    12     2     9     2    26     2
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=LANH06A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+320
+206
+233
+448;;354+94
+365
+172
+173
+139
+112
+38
+106
+101
+127
+31
+97
+162
+156
+159
+232
+68
+138
+85
+89
+116
+156
+236
+57
+144
+46
+80
+26
+24
+17
+16
+39
+
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=LANH06B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+233
+198
+264
+273
+308
+157
+132
+114
+55
+24
+32
+128
+106
+14
+53
+65
+32
+42
+70
+23
+73
+44
+51
+79
+149
+144
+30
+55
+30
+41
+18
+10
+7
+3
+13;;16=3+13, EL 2019 ERA MUY Pequeño
+
+HEADER:
+DataFormat=HalfChrono
+Length=49
+DateBegin=1972
+DateEnd=2020
+KeyCode=LANH07
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=Tremenda IADF en 1998... investigar, asumo que es procesionaria en algunos pies... igual era año y no ausente el 1995, también, pero bueno
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH07A,LANH07B
+ChronoMemberCount=2
+DATA:Double
+   744     1   372     2   222     2   216     2   242     2
+   302     2   262     2   281     2   267     2   168     2
+   197     2   153     2   206     2   206     2   231     2
+   197     2   273     2   299     2   418     2   265     2
+   286     2   250     2   133     2    11     2   165     2
+   300     2   368     2    58     2   138     2   207     2
+   170     2   182     2   160     2    39     2   100     2
+    72     2    70     2   119     2   221     2   191     1
+    33     1    92     1    40     1    74     1    29     1
+    66     1    66     1    40     1    84     1     0     0
+HEADER:
+DataFormat=Tree
+Length=48
+DateBegin=1973
+DateEnd=2020
+KeyCode=LANH07A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=Tremenda IADF en 1998... investigar
+Dated=Dated
+DATA:Single
+439
+227
+235
+246
+289
+294
+313
+256
+164
+183
+172
+230
+243
+246
+205
+282
+326
+437
+247
+262
+236
+142
+11;;ausente
+178
+352
+390
+52
+162
+225
+188
+162
+172
+53
+119
+85
+73
+119
+281
+191
+33
+92
+40
+74
+29
+66
+66
+40
+84
+
+HEADER:
+DataFormat=Tree
+Length=39
+DateBegin=1972
+DateEnd=2010
+KeyCode=LANH07B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=roto al final
+Dated=Dated
+DATA:Single
+744
+306
+217
+198
+239
+315
+230
+249
+278
+173
+211
+135
+182
+169
+216
+190
+265
+273
+399
+284
+311
+264
+124
+11;;ausente
+152
+249
+347
+64
+115
+190
+152
+202
+149
+25
+82
+60
+68
+119
+161
+
+HEADER:
+DataFormat=HalfChrono
+Length=37
+DateBegin=1984
+DateEnd=2020
+KeyCode=LANH08
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=Tremendo el IADF 1998 ó 1999, ppm?
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH08A,LANH08B
+ChronoMemberCount=2
+DATA:Double
+   295     2   493     2   510     2   418     2   397     2
+   510     2   560     2   414     2   425     2   300     2
+   166     2    24     2   140     2   320     2   223     2
+    58     2   157     2   216     2   174     2   118     2
+   130     2    45     2    76     2    64     2    59     2
+    98     2   142     2    63     2    37     2    87     2
+    71     2    83     2    46     2    73     2    84     2
+    52     2    74     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1984
+DateEnd=2020
+KeyCode=LANH08A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=Tremendo el IADF 1998 ó 1999, ppm?
+Dated=Dated
+DATA:Single
+226
+537
+434
+371
+352
+242
+289
+183
+250
+164
+108
+11
+80;;80+11
+192
+151
+41
+128
+160
+127
+62
+80
+30
+76
+52
+48
+68
+98
+53
+29
+67
+50
+69
+31
+50
+69
+41
+69
+
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1984
+DateEnd=2020
+KeyCode=LANH08B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+Comment=el 1998 IADF considero
+DATA:Single
+365
+450
+586
+466
+442
+779
+831
+646
+601
+436
+224
+38
+200;;200+38
+449
+295
+76
+187
+273
+221
+174
+181
+61
+76
+76
+71
+128
+186
+74
+46
+108
+93
+97
+62
+96
+100
+63
+80
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH09
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+Comment=Tremenda IADF 1998-1999.... meto el 1995, difíciles estas muestras, la verdad
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH09C,LANH09D
+ChronoMemberCount=2
+DATA:Double
+   446     2   475     2   440     2   556     2   412     2
+   384     2   509     2   475     2   331     2   378     2
+   297     2   173     2    48     2   150     2   259     2
+   265     2    38     2   123     2   133     2   133     2
+   188     2   202     2    51     2   113     2    92     2
+    73     2   108     2   137     2   112     2    47     2
+    90     2    54     2    91     2    40     2    62     2
+    59     2    42     2   100     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH09C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+Comment=Tremenda IADF 1998-1999.... meto el 1995, difíciles estas muestras, la verdad
+DATA:Single
+342
+379
+329
+354
+331
+309
+319
+385
+265
+284
+232
+122
+47
+100;;147=47+100
+153
+192
+42
+101
+116
+123
+166
+186
+46
+93
+88
+57
+94
+114
+76
+39
+70
+49
+78
+35
+56
+45
+40
+95
+
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH09D
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=tremendo IADF en este radio y no en el otro, tremendo en 1998
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+551
+571
+551
+758
+493
+459
+700
+565
+398
+472
+363
+224
+49
+200;;249=49+200
+365
+339
+34
+145
+150
+144
+210
+219
+57
+133
+96
+90
+122
+161
+149
+56
+110
+60
+104
+45
+68
+73
+45
+106
+
+HEADER:
+DataFormat=HalfChrono
+Length=46
+DateBegin=1975
+DateEnd=2020
+KeyCode=LANH10
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH10C,LANH10D
+ChronoMemberCount=2
+DATA:Double
+   155     2   111     2   197     2   197     2   230     2
+   313     2   279     2   259     2   246     2   221     2
+   275     2   228     2   218     2   287     2   332     2
+   355     2   333     2   240     2   229     2   143     2
+    75     2    93     2   227     2   251     2   132     2
+   202     2   166     2   114     2   151     2   131     2
+    27     2    81     2    71     2    66     2    90     2
+   168     2   157     2    42     2   151     2    77     2
+   116     2    70     2    77     2    97     2    62     2
+   151     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=46
+DateBegin=1975
+DateEnd=2020
+KeyCode=LANH10C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+156
+116
+136
+146
+199
+286
+319
+275
+327
+262
+356
+304
+242
+289
+340
+388
+450
+268
+251
+187
+90
+122
+230
+277
+136
+262;;70+192.... supongo que PPM ese año e IADF, aunque puede ser un ausente en otros
+193
+147
+195
+140
+22
+83
+76
+86
+95
+214
+181
+53
+172
+89
+133
+75
+70
+93
+58
+139
+
+HEADER:
+DataFormat=Tree
+Length=46
+DateBegin=1975
+DateEnd=2020
+KeyCode=LANH10D
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=muy claro el 1998 también... aunque supongo que es una IADF...
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+155
+107
+258
+249
+261
+340
+240
+244
+166
+180
+195
+152
+195
+285
+324
+323
+217
+213
+207
+99
+60
+65;;125=65+60
+225
+225
+128
+143;;45+98, SUPONGO que es IADF el 1998
+139
+82
+107
+122
+32
+80
+67
+47
+85
+122
+133
+32
+131
+66
+100
+65
+84
+102
+66
+164
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH11
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH11C,LANH11D
+ChronoMemberCount=2
+DATA:Double
+   216     2   327     2   487     2   526     2   395     2
+   427     2   482     2   485     2   313     2   382     2
+   309     2   167     2    62     2   175     2   381     2
+   382     2    43     2   120     2   161     2   159     2
+   156     2   160     2    40     2    67     2    45     2
+    36     2    93     2   125     2   154     2    33     2
+    76     2    20     2    59     2    20     2    44     2
+    26     2    11     2    53     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH11C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=IADF 1998
+Dated=Dated
+DATA:Single
+196
+259
+488
+587
+404
+395
+420
+419
+317
+422
+331
+166
+72
+150;;222=72+150
+387
+381
+47
+112
+137
+149
+149
+159
+44
+77
+49
+47
+107
+110
+123
+32
+76
+16
+50
+15
+32
+19
+12
+31
+
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH11D
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=IADF 1998... puede ser un año perfectamente, lo asumo como iadf porque sincronizo... pero puede ser que haya que añadirlo de vuelta
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+236
+396
+487
+465
+387
+460
+544
+552
+309
+343
+288
+169
+52;;252=52+200
+200
+376
+384
+40
+129
+185
+169
+163
+162
+36
+58
+42
+25
+80
+140
+186
+34
+76
+25
+68
+25
+56
+34
+11
+75
+
+HEADER:
+DataFormat=HalfChrono
+Length=33
+DateBegin=1988
+DateEnd=2020
+DataType=Ringwidth
+KeyCode=LANH12
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH12C,LANH12D
+ChronoMemberCount=2
+DATA:Double
+   192     2   173     2   102     2   220     2   150     2
+   145     2   113     2    42     2   226     2   231     2
+    88     2    58     2   141     2   132     2    88     2
+   108     2   184     2    69     2    63     2    36     2
+    25     2    31     2    43     2    77     2    58     2
+    82     2    33     2    44     2    21     2    51     2
+    57     1    17     1    33     1     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1988
+DateEnd=2020
+DataType=Ringwidth
+KeyCode=LANH12C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   158   190   114   185   146   131   111    39   407   353
+    93    82   223   202   157   180   329   132   105    54
+    41    51    67   128   108   138    50    72    34    83
+    57    17    33     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=30
+DateBegin=1988
+DateEnd=2017
+KeyCode=LANH12D
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=muy dificil, no sé si mal pegada o qué
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+227
+157
+90
+256
+154
+160
+116
+46
+45
+110
+83
+35
+60
+62
+19
+36
+40;;46=40+6, podía haber una fila de traqueidas que era el 2005
+6
+22
+18
+10
+12
+20
+26
+8
+26
+17
+16
+8
+20
+
+HEADER:
+DataFormat=HalfChrono
+Length=40
+DateBegin=1981
+DateEnd=2020
+KeyCode=LANH13
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH13A,LANH13C
+ChronoMemberCount=2
+DATA:Double
+   156     2   167     2   176     2   197     2   377     2
+   299     2   219     2   331     2   387     2   397     2
+   269     2   262     2   215     2    99     2    40     2
+    40     2   261     2   336     2   141     2   152     2
+   142     2   120     2   163     2   154     2    32     2
+   101     2    69     2    62     2    89     2   175     2
+   143     2    36     2    97     2    48     2    77     2
+    33     2    57     2    58     2    38     2   101     2
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1981
+DateEnd=2020
+KeyCode=LANH13A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+150
+154
+161
+206
+421
+330
+249
+337
+460
+489
+332
+265
+244
+122
+43
+43;;86=43+43
+328
+396
+203;;143+60, supongo que fue PPM y me hizo un doble anillo
+174
+143
+127
+163
+191
+36
+108
+83
+77
+103
+232
+194
+46
+122
+59
+93
+40
+70
+63
+48
+145
+
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1981
+DateEnd=2020
+KeyCode=LANH13C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=IADF 1999, creo que es, no el 1998
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+163
+180
+192
+189
+334
+269
+189
+325
+314
+305
+207
+259
+186
+77
+37
+37;;74=37+37
+195
+277
+80
+131
+142
+114
+164
+117
+28
+95
+55
+48
+76
+118
+93
+27
+72
+38
+62
+27
+45
+54
+29
+58
+
+HEADER:
+DataFormat=HalfChrono
+Length=31
+DateBegin=1985
+DateEnd=2015
+KeyCode=LANH14
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH14A,LANH14B
+ChronoMemberCount=2
+DATA:Double
+    85     2    86     2    79     2    89     2   207     2
+   238     2   168     2   227     2   157     2    49     2
+    11     2    46     2   196     2   196     2    56     2
+    75     2   125     2    69     2   137     2   134     2
+    25     2    40     2    20     2    13     2    38     2
+    85     2    24     2     4     2    28     2     5     2
+     7     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1985
+DateEnd=2015
+KeyCode=LANH14A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+74
+80
+69
+77
+204
+203
+136
+260
+158
+60
+11;;ausente, imagino
+55
+238
+238
+68
+90
+167
+92
+191
+169
+29
+51
+31
+16
+46
+106
+28
+6
+30;;6+30, meto un anillo, debía ser un suprimido qu edejó de crecer
+6
+8
+
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1985
+DateEnd=2015
+KeyCode=LANH14B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=el 1998 parece enteramente un anillo...
+Dated=Dated
+DATA:Single
+97
+92
+90
+101
+210
+273
+201
+195
+157
+39
+11;;ausente
+37
+154
+154
+45;;20+25, parece enteramente un anillo, pero bueno
+61
+83
+47
+84
+99
+21
+29
+10
+10
+31
+64
+20
+3;;3+26=29
+26
+4
+6
+
+HEADER:
+DataFormat=HalfChrono
+Length=41
+DateBegin=1980
+DateEnd=2020
+KeyCode=LANH15
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH15A,LANH15B
+ChronoMemberCount=2
+DATA:Double
+   402     2   270     2   249     2   217     2   249     2
+   229     2   162     2   149     2   225     2   195     2
+   286     2   256     2   210     2   125     2    82     2
+    28     2    14     2   115     2   115     2    10     2
+    38     2    23     2    20     2    38     2    44     2
+    10     2     9     2    24     1    13     1    17     1
+    26     1    54     1    10     1    37     1     9     1
+    23     1     8     1    22     1    20     1    10     1
+    22     1     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=41
+DateBegin=1980
+DateEnd=2020
+KeyCode=LANH15A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   369   250   236   200   228   191   181   153   206   165
+   293   257   254   156    57    30    14   162   158    15
+    41    34    34    59    73     5     4    24    13    17
+    26    54    10    37     9    23     8    22    20    10
+    22     0     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=27
+DateBegin=1980
+DateEnd=2006
+KeyCode=LANH15B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   436   290   263   235   271   268   144   145   245   226
+   280   255   167    94   107    27    14    68    73     5
+    36    12     6    18    16    15    14     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=40
+DateBegin=1981
+DateEnd=2020
+KeyCode=LANH16
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH16A,LANH16B
+ChronoMemberCount=2
+DATA:Double
+    57     1    91     1    92     2   146     2   177     2
+   234     2   196     2   263     2   216     2   284     2
+   172     2   150     2   124     2    30     2    18     2
+    22     2   136     2   156     2    21     2    66     2
+    77     2    78     2   124     2   158     2    26     2
+    49     2    26     2    35     2    78     2    82     2
+   115     2    23     2    63     2    22     2    49     2
+    20     2    34     2    60     1    31     1    84     1
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1981
+DateEnd=2020
+KeyCode=LANH16A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    57    91    91   181   163   195   222   276   203   256
+   150   153   135    41    22    23   152   154    18    63
+    81    80   140   170    24    38    21    28    70    79
+   100    15    44    10    39    12    33    60    31    84
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1983
+DateEnd=2017
+KeyCode=LANH16B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    93   112   191   273   171   250   230   313   194   147
+   113    20    15    22   120   159    24    70    73    77
+   108   146    29    60    32    42    86    86   130    32
+    82    34    59    28    35     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH17
+Unit=1/100 mm
+Length=45
+DateBegin=1976
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH17A,LANH17C
+ChronoMemberCount=2
+DATA:Double
+   286     2   281     2   286     2   219     2   278     2
+   258     2   162     2   193     2   149     2   198     2
+   207     2   161     2   154     2   199     2   203     2
+   268     2   179     2   163     2   154     2    51     2
+    55     2   195     2   219     2    26     2    73     2
+    93     2    67     2   144     2   136     2    18     2
+    34     2    23     2    14     2    48     2    87     2
+    60     2    13     2    39     2     9     2    25     2
+    22     2    49     2    53     2    26     2    59     2
+HEADER:
+DataFormat=Tree
+KeyCode=LANH17A
+Unit=1/100 mm
+Length=45
+DateBegin=1976
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+266
+275
+313
+213
+274
+263
+181
+210
+149
+191
+167
+121
+147
+206
+178
+249
+161
+144
+130
+49
+55
+177
+213
+30
+69
+100
+72;;55+17
+129
+127
+19
+31
+17
+8
+28
+81
+51
+11
+29
+10
+31
+22
+42
+53
+25
+62
+
+HEADER:
+DataFormat=Tree
+Length=45
+DateBegin=1976
+DateEnd=2020
+KeyCode=LANH17C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   306   288   260   226   282   254   144   176   150   206
+   248   202   161   192   229   287   197   182   178    54
+    56   213   226    23    77    87    62   159   146    17
+    37    29    20    68    93    70    16    50     9    20
+    22    56    53    27    57     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH18
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH18A,LANH18B
+ChronoMemberCount=2
+DATA:Double
+   320     1   306     2   341     2   333     2   340     2
+   350     2   262     2   172     2   196     2   169     2
+   217     2   224     2   180     2   136     2   168     2
+   182     2   283     2   164     2   155     2   115     2
+    47     2    26     2    23     2   128     2   160     2
+    46     2   112     2   138     2   108     2   125     2
+   160     2    42     2    83     2    68     2    56     2
+    82     2   137     2   111     2    32     2    87     2
+    45     2    66     2    28     2    44     2    53     2
+    36     2    65     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH18A
+Unit=1/100 mm
+Length=46
+DateBegin=1974
+DateEnd=2019
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+320
+299
+347
+324
+309
+329
+261
+188
+218
+144
+213
+229
+171;;IADF, el 1986
+135
+163
+200
+316
+166
+152
+131
+54
+32
+25
+150
+206
+62
+118
+152
+121;;93+28, leyó un doble donde no era
+137
+183
+53
+97
+73
+66
+92
+161
+115
+32
+88
+53
+76
+25
+46
+69
+42
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH18B
+Unit=1/100 mm
+Length=46
+DateBegin=1975
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+314
+335
+343
+371;;343+28
+372
+263
+156
+174
+195
+221
+220
+189;;136+53
+138
+173
+164
+251
+163
+159
+100
+40
+20
+22
+107
+114
+30
+106
+124
+96;;78+18
+114
+138
+31
+70
+63
+47
+72
+113
+108
+32
+86
+37
+57
+31
+42
+38
+31
+65
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH19
+Unit=1/100 mm
+Length=48
+DateBegin=1973
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH19A,LANH19B
+ChronoMemberCount=2
+DATA:Double
+   260     1   253     2   290     2   378     2   326     2
+   374     2   414     2   435     2   233     2   245     2
+   233     2   298     2   292     2   303     2   212     2
+   265     2   336     2   410     2   233     2   259     2
+   186     2    57     2     7     2    61     2   182     2
+   213     2    17     2    76     2   131     2   108     2
+    95     2    61     2    17     2    58     2    38     2
+    33     2    82     2   145     2    56     2    16     2
+    57     2    25     2    67     2    23     2    39     2
+    72     2    54     2   100     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH19A
+Unit=1/100 mm
+Length=48
+DateBegin=1973
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+260
+284
+291
+318
+269
+383
+387
+387
+279
+300
+300
+330
+363
+332;;170+162, doble, IADF en medio del EW
+256
+305
+336
+448
+255
+281
+197
+65;;72=65+7
+7
+80
+194
+267
+22
+69
+126
+125
+112
+76
+17
+78
+45
+43
+105
+152
+75
+20
+69
+31
+69
+23
+41
+73
+60
+100
+
+HEADER:
+DataFormat=Tree
+Length=47
+DateBegin=1974
+DateEnd=2020
+KeyCode=LANH19B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+223
+289
+439
+384
+365
+441
+483
+187
+190
+167
+267
+221
+274
+168
+226
+336
+373
+211
+238
+175
+50;;57=50+7
+7
+42
+171
+160;;172=12+160, faltaba el 1999
+12
+84
+137
+92
+78
+46
+18
+38
+32
+24
+59
+138
+38
+12
+45
+20
+66
+23
+37
+71
+48
+101
+
+HEADER:
+DataFormat=HalfChrono
+Length=32
+DateBegin=1986
+DateEnd=2017
+KeyCode=LANH20
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=rodaja que habían dejado sin lijar, la lijo a mano, se ve mal pero debía ser un muerto o suprimido, sincroniza metiendo un año
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH20A,LANH20B
+ChronoMemberCount=2
+DATA:Double
+    77     1    57     2    66     2    99     2   102     2
+   138     2    93     2    98     2    84     2    25     2
+    77     2    85     2    63     2    40     2    71     2
+   160     2    72     2    65     2    59     2    26     2
+    34     2    36     2    10     2    40     2    36     2
+    19     2    15     2    31     2    21     2    31     2
+    25     1    20     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1987
+DateEnd=2017
+KeyCode=LANH20A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=rodaja que habían dejado sin lijar, la lijo a mano, se ve mal pero debía ser un muerto o suprimido, sincroniza metiendo un año
+Dated=Dated
+DATA:Single
+73
+44
+91
+89
+157
+84
+90
+70
+11;;81=11+70
+81
+73
+49
+23
+58
+166
+83
+44
+73
+43
+50
+41
+8
+45
+37
+28
+23
+43
+23
+40
+25
+20
+
+HEADER:
+DataFormat=Tree
+Length=30
+DateBegin=1986
+DateEnd=2015
+KeyCode=LANH20B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+77
+41
+88
+108
+115
+120
+102
+107
+99
+40
+74;;114=74+40
+98
+77
+57
+85
+154
+61
+87
+46
+10
+19
+31
+12
+36
+36
+11
+8
+19
+19
+23
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH21A
+Unit=1/100 mm
+Length=48
+DateBegin=1973
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=no había B, sólo un radio este árbol
+DATA:Single
+243
+221
+221
+329
+283
+328
+311
+303
+242
+277
+225
+255
+253
+177;;162+115, lo midió ana como dos pero era una IADF en EW
+159
+250
+307
+373
+295
+257
+257
+98
+79
+57
+187
+217
+31
+146
+184
+159
+123
+91
+24
+59
+39
+57
+113
+158
+110
+34
+107
+34
+67
+37
+57
+93
+45
+130
+
+HEADER:
+DataFormat=HalfChrono
+Length=48
+DateBegin=1973
+DateEnd=2020
+KeyCode=LANH22
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH22A,LANH22B
+ChronoMemberCount=2
+DATA:Double
+   311     2   261     2   346     2   414     2   389     2
+   406     2   354     2   247     2    91     2   106     2
+   151     2   214     2   231     2   165     2   118     2
+   185     2   249     2   312     2   154     2   162     2
+   124     2    50     2    30     2    32     2   147     2
+   172     2    13     2    52     2    88     2    59     2
+    81     2    28     2    12     2    31     2    26     2
+    30     2    49     2    99     2    24     2    13     2
+    31     2    37     2    68     2    28     2    62     2
+    82     2    63     2   124     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=48
+DateBegin=1973
+DateEnd=2020
+KeyCode=LANH22A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+318
+262
+376
+427
+406
+466
+303
+238
+100
+132
+199
+252
+289
+218
+133
+233
+306
+369
+190
+200
+149
+55
+35;;72=37+35
+37
+158
+175
+15
+54
+99
+68
+91
+32
+13
+41
+25
+33
+56
+114
+30
+20
+42
+55
+92
+34
+94
+115
+68
+135
+
+HEADER:
+DataFormat=Tree
+Length=48
+DateBegin=1973
+DateEnd=2020
+KeyCode=LANH22B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+305
+261
+317
+402
+372
+346
+405
+257
+83
+80
+103
+176
+174
+112
+104
+137
+192
+256
+118
+125
+99
+46
+25
+28;;53=28+25
+136
+170
+12
+51
+77
+51
+72
+24
+12
+21
+27
+28
+42
+84
+19
+6;;26=6+20, faltaba el 2012
+20
+20
+45
+22
+30
+49
+59
+114
+
+HEADER:
+DataFormat=HalfChrono
+Length=51
+DateBegin=1970
+DateEnd=2020
+KeyCode=LANH23
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH23A,LANH23B
+ChronoMemberCount=2
+DATA:Double
+   371     2   310     2   278     2   224     2   239     2
+   270     2   295     2   323     2   306     2   294     2
+   244     2   130     2   176     2   163     2   157     2
+   180     2   129     2   140     2   184     2   237     2
+   342     2   159     2   178     2   131     2    63     2
+    34     2    41     2   150     2   134     2    26     2
+    53     2   117     2   117     2   114     2    32     2
+    17     2    45     2    42     2    55     2    76     2
+   119     2   123     2    42     2    96     2    39     2
+    70     2    30     2    65     2    59     2    37     2
+    98     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=51
+DateBegin=1970
+DateEnd=2020
+KeyCode=LANH23A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   360   263   268   217   216   252   246   293   320   349
+   264   120   154   163   159   209   162   182   231   325
+   468   221   230   171    76    25    51   157   163    25
+    50   138   143   155    33    19    53    52    66    97
+   156   155    56   125    50    96    31    87    87    44
+   127     0     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH23B
+Unit=1/100 mm
+Length=51
+DateBegin=1970
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   382   358   289   231   262   289   345   354   292   239
+   224   141   198   164   156   151    97    98   137   149
+   216    98   127    91    51    44    31   143   106    27
+    56    97    91    74    31    15    37    32    45    56
+    82    91    28    68    28    44    30    43    31    30
+    70     0     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=47
+DateBegin=1974
+DateEnd=2020
+KeyCode=LANH24
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH24A,LANH24B
+ChronoMemberCount=2
+DATA:Double
+   320     2   329     2   387     2   334     2   392     2
+   335     2   301     2   211     2   167     2   114     2
+   170     2   151     2   103     2    55     2   110     2
+   119     2   143     2    81     2   106     2   103     2
+    45     2    19     2    35     2   106     2    82     2
+    12     2    74     2    79     2    58     2    72     2
+    40     2    25     2    27     2    19     2    13     2
+    49     2    90     2    43     2    10     2    78     2
+    20     2    39     2    19     2    30     2    35     2
+    21     2    42     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=47
+DateBegin=1974
+DateEnd=2020
+KeyCode=LANH24A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+299
+316
+386
+279
+336
+294
+327
+175
+172
+114
+173
+157
+112
+67
+117
+144
+182
+93
+110
+114
+53
+20;;60=20+04
+40
+131
+71
+11;;AUSETNE
+89
+88
+54
+64
+29
+19
+24
+18;;78=18+10+50
+10
+50
+116
+15
+7;;ausente
+108
+25
+40
+20
+27
+40
+19
+44
+
+HEADER:
+DataFormat=Tree
+Length=47
+DateBegin=1974
+DateEnd=2020
+KeyCode=LANH24B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+341
+342
+388
+390
+449
+376
+276
+247
+163
+114
+168
+145
+94
+43
+104
+94
+104
+69
+102
+93
+37
+18;;48=18+30
+30
+81
+94
+14
+60
+70
+62
+81
+51
+32
+30;;9+21, mal lijado, aismetrías, aquí pude medir cualquier cosa
+21
+17
+48
+64
+72
+13
+49
+15
+39
+18
+34
+31
+24
+41
+
+HEADER:
+DataFormat=HalfChrono
+Length=39
+DateBegin=1982
+DateEnd=2020
+KeyCode=LANH25
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH25A,LANH25B
+ChronoMemberCount=2
+DATA:Double
+    67     2    46     2    31     2    24     2    27     2
+    12     2    12     2    58     2    81     2   187     2
+   127     2   119     2    67     2    11     2    96     2
+    74     2   100     2    15     2    80     2   183     2
+   199     2   133     2    69     2    56     2    65     2
+    14     2     6     2    28     2    46     2    27     2
+    21     2    22     2    11     2    11     2    14     2
+    17     2    28     2    13     2    25     2     0     0
+HEADER:
+DataFormat=Tree
+Length=39
+DateBegin=1982
+DateEnd=2020
+DataType=Ringwidth
+KeyCode=LANH25A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+66
+42
+27
+27
+24
+9
+13
+66
+87
+192
+130
+118
+65
+11;;ausente
+118
+64
+80;;92=12+80
+12
+60
+131
+160
+114
+55
+43
+84
+20
+7
+14
+71
+38;;29+9
+25
+35
+8
+12
+15
+14
+22
+6
+18
+
+HEADER:
+DataFormat=Tree
+Length=39
+DateBegin=1982
+DateEnd=2020
+KeyCode=LANH25B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+69
+50
+35
+21
+30
+15
+11
+51
+75
+182
+125
+120
+70
+11;;ausente
+75
+85
+121
+19;;119=19+100
+100
+236
+239
+152
+84
+69
+47
+9
+6
+43
+22
+17
+17
+10
+14
+11
+14
+21
+34
+20
+33
+
+HEADER:
+DataFormat=HalfChrono
+Length=41
+DateBegin=1980
+DateEnd=2020
+KeyCode=LANH26
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH26A,LANH26B
+ChronoMemberCount=2
+DATA:Double
+   159     1    80     1    45     1   228     2   223     2
+   192     2   180     2   152     2   188     2   348     2
+   290     2   150     2   185     2   195     2    60     2
+    11     2   103     2   212     2   189     2    13     2
+    34     2    54     2    54     2    36     2    87     2
+    16     2   113     2    60     2    91     2   107     2
+   104     2   122     2   115     2   131     2    55     2
+    80     2    21     2    49     2    95     2    50     2
+    80     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=41
+DateBegin=1980
+DateEnd=2020
+KeyCode=LANH26A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+159
+80
+45
+267
+214;;113+62+39
+234
+252
+212
+284
+484
+463
+230
+288
+271
+84
+11;;se veía mal, supongo que faltaba el 1995
+143
+287
+289
+21
+41
+82
+87
+39
+133
+19;;189=19+170
+170
+77
+130
+117
+98
+174
+201
+198
+77
+90;;105=15+90
+15
+59
+122
+55
+79
+
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH26B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+190
+232
+150
+109
+92
+92
+212
+117
+70
+83
+119
+36
+11;;supongo que ausente
+64
+138
+90
+5
+27
+26
+22
+34
+42
+13
+57
+43
+52
+98
+110
+71
+30
+64
+33
+71
+28
+40
+68
+45
+82
+
+HEADER:
+DataFormat=HalfChrono
+Length=44
+DateBegin=1977
+DateEnd=2020
+KeyCode=LANH27
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH27A,LANH27B
+ChronoMemberCount=2
+DATA:Double
+   238     2   175     2   192     2   304     2   178     2
+   299     2   225     2   257     2   278     2   230     2
+   212     2   292     2   376     2   363     2   188     2
+   219     2   191     2    85     2     7     2    89     2
+   213     2   253     2    42     2   100     2   137     2
+   127     2   133     2   117     2    25     2    67     2
+    39     2    50     2    94     2    96     2    88     2
+    23     2    66     2    46     2    79     2    42     2
+    64     2    73     2    59     2   106     2     0     0
+HEADER:
+DataFormat=Tree
+Length=44
+DateBegin=1977
+DateEnd=2020
+KeyCode=LANH27A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+212
+170
+159
+282
+150
+270
+230
+240
+294
+232
+221
+315
+389
+353
+206
+213
+201
+104
+7;;ausente
+97
+251
+293
+52
+108
+151
+127
+126
+121
+23
+62
+40
+56
+95
+107
+86
+28
+71
+50
+76
+36
+56
+60
+64
+105
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH27B
+Unit=1/100 mm
+Length=44
+DateBegin=1977
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+264
+180
+225
+326
+206
+329
+220
+275
+262
+228
+203
+269
+363
+374
+171
+225
+182
+67
+7;;ausente
+82
+175
+213
+33
+92
+123
+128
+140
+114
+28
+72
+39
+44
+94
+85
+91
+19
+61
+42
+83
+48
+72
+87
+55
+108
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH28
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH28A,LANH28B
+ChronoMemberCount=2
+DATA:Double
+   304     1   353     2   473     2   433     2   470     2
+   465     2   385     2   179     2   238     2   202     2
+   283     2   314     2   224     2   225     2   278     2
+   352     2   334     2   178     2   173     2   128     2
+    78     2     3     1    80     2   140     2   157     2
+    25     2    81     2   150     2    94     2   122     2
+   154     2    44     2   116     2    73     2    89     2
+    94     2   180     2    62     2    24     2    47     2
+    44     2    48     2    34     2    39     2    42     2
+    29     2    68     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH28A
+Unit=1/100 mm
+Length=47
+DateBegin=1974
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+304
+393
+554
+446
+546
+552
+419
+229
+270
+195
+337
+320
+218
+249
+254
+371
+393
+179
+178
+139
+78
+3;;ausente
+73
+133
+137
+14
+71
+142
+83
+115
+145
+47
+120
+73
+91
+96
+201
+71
+24
+60
+69
+59
+42
+52
+69
+43
+104
+
+HEADER:
+DataFormat=Tree
+Length=46
+DateBegin=1975
+DateEnd=2020
+KeyCode=LANH28B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+313
+393
+421
+395
+378
+352
+130
+207
+209
+230
+308
+230
+202
+303
+333
+276
+178
+169
+118
+79
+3;;ausente
+87
+148
+178
+37
+91
+159
+106
+130
+164
+42
+113
+74
+88
+93
+160
+54
+25
+35
+20
+37
+26
+27
+16
+15
+33
+
+HEADER:
+DataFormat=HalfChrono
+Length=41
+DateBegin=1980
+DateEnd=2020
+KeyCode=LANH29
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH29A,LANH29B
+ChronoMemberCount=2
+DATA:Double
+   241     1   155     2   225     2   239     2   293     2
+   395     2   497     2   349     2   510     2   572     2
+   629     2   387     2   414     2   359     2   222     2
+     7     2   222     2   309     2   302     2   108     2
+   175     2   203     2   163     2   198     2   145     2
+    42     2   121     2   119     2   151     2   175     2
+   188     2   159     2    74     2   131     2    58     2
+    72     2    32     2    57     2    78     2    51     2
+    89     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=41
+DateBegin=1980
+DateEnd=2020
+KeyCode=LANH29A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+241
+118
+216
+232
+272
+341
+415
+320
+498
+511
+674
+407
+415
+378
+207
+7;;ausente
+209
+284
+307
+103;;supongo que IADF y ausente el 1995, sincornizaba mejor con todas; procesionaria en 1999?
+184
+211
+163
+199
+183
+41
+127
+102
+156
+172
+139
+167
+103
+152
+53
+64
+22
+43
+66
+38
+87
+
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1981
+DateEnd=2020
+KeyCode=LANH29B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+192
+234
+246
+314
+450
+579
+379
+522
+633
+584
+367
+413
+340
+238
+7;;ausente
+235
+334
+298
+113;;supongo que era una IADF, ausente el 1995, sincronizaba mejor con el resto de las cronos SN 
+167
+195
+163
+197
+107
+43
+115
+137
+146
+178
+238
+152
+45
+111
+64
+81
+43
+71
+91
+64
+92
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH30
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH30A,LANH30B
+ChronoMemberCount=2
+DATA:Double
+   398     1   416     2   408     2   367     2   336     2
+   307     2   342     2   257     2   194     2   217     2
+   169     2    70     2    80     2   164     2   200     2
+   108     2    44     2   117     2   145     2   102     2
+   110     2   129     2    35     2    71     2    52     2
+    38     2    79     2   107     2    86     2    19     2
+    51     2    24     2    49     2    15     2    32     2
+    26     2    10     2    33     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH30A
+Unit=1/100 mm
+Length=37
+DateBegin=1984
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+354
+343
+378
+315
+295
+350
+262
+201
+252
+240
+84
+124;;54+80, iadf
+187
+216
+138
+51
+144
+164
+94
+110
+136
+36
+79
+73
+56
+86
+132
+93
+17
+66
+30
+57
+15
+35
+33
+9
+38
+
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=LANH30B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   398   479   474   356   358   319   334   253   187   182
+    98    57    36   142   185    78    37    91   126   110
+   110   123    34    64    32    21    72    83    80    22
+    37    18    42    16    30    19    12    29     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH31
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH31A,LANH31B
+ChronoMemberCount=2
+DATA:Double
+   271     2   432     2   495     2   534     2   436     2
+   355     2   321     2   371     2   251     2   262     2
+   195     2    75     2    47     2    28     2   255     2
+   307     2    26     2    89     2   130     2    97     2
+   131     2   140     2    37     2    74     2    55     2
+    42     2    85     2   173     2   170     2    38     2
+   119     2    26     2    63     2    28     2    61     2
+    47     2    20     2    74     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH31A
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   286   438   512   515   446   343   335   361   263   251
+   198    81    45    33   299   374    25    74   131   110
+   147   165    40    71    51    37    69   150   155    37
+   108    24    54    19    45    29    13    53     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH31B
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   257   426   478   553   427   367   308   382   239   274
+   193    69    49    23   211   241    28   104   129    84
+   116   116    34    78    59    48   102   197   185    40
+   131    28    73    38    77    66    27    95     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=33
+DateBegin=1987
+DateEnd=2019
+KeyCode=LANH32
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=suprimida y mal lijada, difícil
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH32A,LANH32B
+ChronoMemberCount=2
+DATA:Double
+   105     1   112     2   137     2   149     2   203     2
+   245     2   109     2   189     2     3     2   196     2
+   206     2    55     2     3     2   100     2   116     2
+    63     2    68     2    48     2    20     2    42     2
+    23     2     3     2    22     2    32     2    38     2
+    15     2    30     2     7     2    11     2     7     2
+    10     2    19     1    17     1     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1987
+DateEnd=2017
+KeyCode=LANH32A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+105
+102
+135
+185
+235
+287
+168
+179
+3;;ausente
+179
+213
+79
+3;;ausente
+39
+50
+56
+90
+53
+19
+60
+32
+3;;ausente
+16
+24
+66
+13
+26
+8
+8
+8
+9
+
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1988
+DateEnd=2019
+KeyCode=LANH32B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=suprimida y mal lijada, difícil
+Dated=Dated
+DATA:Single
+123
+140
+114
+171
+203
+50
+200;;250=200+50
+3;;ausente
+214
+200;;232=200+32
+32
+3;;ausente
+162
+183
+70
+47
+43
+21
+25
+14
+3;;ausente
+28
+40
+10
+18
+34
+7
+15
+6
+11
+19
+17
+
+HEADER:
+DataFormat=HalfChrono
+Length=49
+DateBegin=1972
+DateEnd=2020
+KeyCode=LANH33
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH33A,LANH33B
+ChronoMemberCount=2
+DATA:Double
+   202     1   244     2   229     2   245     2   306     2
+   304     2   263     2   236     2   272     2   191     2
+   134     2   172     2   163     2   184     2   199     2
+   175     2   162     2   169     2   259     2   273     2
+   169     2   118     2    93     2    36     2    48     2
+   202     2   149     2    22     2    89     2   119     2
+    95     2   134     2    55     2     7     2    33     2
+    27     2    33     2    66     2   101     2    56     2
+    10     2    68     2    26     2    70     2    41     2
+    77     2    70     2    35     2    96     2     0     0
+HEADER:
+DataFormat=Tree
+Length=48
+DateBegin=1973
+DateEnd=2020
+KeyCode=LANH33A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+232
+255
+251
+273
+287
+216
+209
+311
+209
+115
+159
+128
+195
+232
+205
+132
+124
+211
+345
+192
+119
+140
+40
+71
+203
+136
+22
+84
+118
+100
+132
+60;;65=60+5, debía ser ausente el 2005
+5
+36
+28
+30
+69
+96
+48
+8
+64
+22
+67
+37
+69
+78
+32
+84
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH33B
+Unit=1/100 mm
+Length=49
+DateBegin=1972
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   202   257   204   240   339   322   310   263   234   173
+   154   186   198   174   166   146   192   214   307   201
+   146   118    47    33    26   201   163    22    94   121
+    90   136    51     9    31    27    36    64   107    65
+    12    73    31    74    46    85    63    39   109     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH34
+Unit=1/100 mm
+Length=41
+DateBegin=1980
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH34A,LANH34B
+ChronoMemberCount=2
+DATA:Double
+   184     1   130     2   149     2   155     2   353     2
+   324     2   313     2   291     2   314     2   332     2
+   412     2   181     2   253     2   201     2    84     2
+    36     2    37     2   177     2   256     2    42     2
+    66     2    80     2    48     2    84     2   146     2
+    31     2    62     2    42     2    35     2    70     2
+    88     2   112     2    17     2    80     2    18     2
+    56     2    21     2    42     2    64     2    27     2
+    87     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH34A
+Unit=1/100 mm
+Length=40
+DateBegin=1981
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+126
+179
+168
+352
+354
+330
+292
+339
+321
+413
+163
+229
+170
+68
+35
+44;;79=35+44
+187
+224
+16
+65
+82
+56
+95
+153
+40
+72
+37
+35
+59
+91
+91
+14
+71
+20
+71
+12
+38
+50
+14
+66
+
+HEADER:
+DataFormat=Tree
+Length=41
+DateBegin=1980
+DateEnd=2020
+KeyCode=LANH34B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+184
+134
+119
+142
+355
+295
+297
+291
+290
+343
+411
+199
+277
+232
+100
+37
+30;;67=37+30
+167
+288
+69;;40+29
+67
+78
+41
+74
+140
+22
+52
+47
+35
+82
+86
+133
+20
+89
+17
+41
+30
+46
+79
+40
+109
+
+HEADER:
+DataFormat=HalfChrono
+Length=52
+DateBegin=1969
+DateEnd=2020
+KeyCode=LANH35
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=tenía una inserción de rama al final, por eso medidos pocos años
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH35A,LANH35B
+ChronoMemberCount=2
+DATA:Double
+   214     2   160     2   162     2   177     2   215     2
+   167     2   183     2   320     2   352     2   343     2
+   301     2   261     2   147     2   167     2   138     2
+   141     2   192     2   197     1   116     1   205     1
+   236     1   259     1   194     1   196     1   169     1
+    56     1    29     1    25     1   151     1   144     1
+    27     1    99     1    95     1    61     1    72     1
+    67     1    19     1    46     1    27     1    19     1
+    62     1   119     1   145     1    35     1    98     1
+    41     1    56     1    29     1    45     1    50     1
+    35     1    55     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH35A
+Unit=1/100 mm
+Length=52
+DateBegin=1969
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+223
+171
+173
+194
+253
+205
+205
+378
+382
+457
+326
+280
+156
+201
+142
+156
+205
+197
+116
+205
+236
+259
+194
+196
+169
+56
+29;;54=29+25
+25
+151
+144
+27
+99
+95
+61
+72
+67
+19
+46
+27
+19
+62
+119
+145
+35
+98
+41
+56
+29
+45
+50
+35
+55
+
+HEADER:
+DataFormat=Tree
+Length=17
+DateBegin=1969
+DateEnd=1985
+KeyCode=LANH35B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=tenía una inserción de rama al final, por eso medidos pocos años
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   205   150   151   161   177   130   162   262   323   229
+   277   242   138   134   135   127   179     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=50
+DateBegin=1971
+DateEnd=2020
+KeyCode=LANH36
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH36A,LANH36B
+ChronoMemberCount=2
+DATA:Double
+   422     2   403     2   315     2   358     2   400     2
+   480     2   448     2   432     2   367     2   291     2
+   164     2   187     2   128     2   159     2   184     2
+   132     2   108     2   152     2   181     2   284     2
+   148     2   164     2    90     2    54     2    23     2
+    43     2   113     2   105     2    12     2    72     2
+    81     2    52     2    89     2    70     2    29     2
+    46     2    29     2    37     2    62     2    95     2
+    51     2    14     2    50     2    22     2    36     2
+    14     2    35     2    32     2    17     2    28     2
+HEADER:
+DataFormat=Tree
+Length=49
+DateBegin=1972
+DateEnd=2020
+KeyCode=LANH36A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   491   420   375   428   409   414   429   513   480   379
+   214   222   152   166   179   156   101   145   222   361
+   191   213   110    70    63   147   132    17    83   107
+    62    93    84    35    33    33    39    77   109    50
+    12    46    23    35    10    34    31    14    28     0
+HEADER:
+DataFormat=Tree
+Length=50
+DateBegin=1971
+DateEnd=2020
+KeyCode=LANH36B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   354   387   255   289   392   547   468   351   255   204
+   114   153   104   152   189   109   115   160   140   207
+   106   116    70    49    36    23    80    79     7    61
+    55    42    86    56    23    59    26    36    47    82
+    52    17    55    21    38    18    37    33    20    29
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH37
+Unit=1/100 mm
+Length=42
+DateBegin=1979
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH37A,LANH37B
+ChronoMemberCount=2
+DATA:Double
+   328     2   229     2   129     2   114     2   144     2
+   195     2   220     2   200     2   138     2   196     2
+   275     2   394     2   214     2   177     2   129     2
+    46     2    23     2    30     2   158     2   171     2
+    25     2    87     2   116     2    92     2   126     2
+   124     2    36     2    78     2    56     2    63     2
+   106     2   163     2    81     2    21     2    68     2
+    45     2    70     2    32     2    55     2    45     2
+    30     1    63     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH37A
+Unit=1/100 mm
+Length=42
+DateBegin=1979
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+359
+274
+146
+115
+153
+228
+262
+248
+172
+242
+332
+511
+280
+237
+161
+62
+27
+40;;67=27+40, eran dos, el 1995 más pequeño... una sombra
+202
+240
+20
+94
+155
+116
+147
+159
+48
+84
+62
+69
+98
+181
+71
+18
+55
+51
+69
+32
+45
+31
+30
+63
+
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1979
+DateEnd=2018
+KeyCode=LANH37B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=roto al final
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+297
+184
+113
+114
+136
+162
+179
+152
+104
+151
+218
+278
+149
+118
+98
+31
+20
+20;;44=24+20, eran dos anillos
+115
+102
+30
+80
+77
+68
+105
+89
+25
+72
+51
+58
+115
+145
+91
+25
+81
+39
+71
+32
+66
+60
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH38
+Unit=1/100 mm
+Length=40
+DateBegin=1981
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH38A,LANH38B
+ChronoMemberCount=2
+DATA:Double
+   224     2   194     2   197     2   250     2   243     2
+   243     2   200     2   232     2   251     2   271     2
+   177     2   170     2   154     2    66     2    35     2
+    38     2   140     2   160     2    11     2    62     2
+    92     2    79     2    88     2   128     2    31     2
+    81     2    67     2    42     2    80     2   114     2
+   147     2    32     2   114     2    45     2    87     2
+    20     2    46     2    41     2    18     2    53     2
+HEADER:
+DataFormat=Tree
+KeyCode=LANH38A
+Unit=1/100 mm
+Length=40
+DateBegin=1981
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+228
+182
+184
+220
+208
+253
+217
+228
+248
+263
+162
+172
+163
+66
+40
+43;;83=43+40, el 1996 parecía más grande, si era
+137
+160
+14
+85
+81
+74
+90
+146
+38
+93
+75
+46
+84
+118
+179
+34
+125
+43
+79
+19
+45
+41
+23
+66
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH38B
+Unit=1/100 mm
+Length=40
+DateBegin=1981
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+221
+207
+210
+281
+279
+234
+184
+237
+254
+279
+193
+169
+146
+66
+30
+34;;64=34+30
+144
+160
+8
+39
+104
+85
+87
+110
+25
+69
+60
+38
+77
+110
+116
+31
+103
+48
+95
+21
+47
+42
+14
+41
+
+HEADER:
+DataFormat=HalfChrono
+Length=44
+DateBegin=1977
+DateEnd=2020
+KeyCode=LANH39
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH39A,LANH39B
+ChronoMemberCount=2
+DATA:Double
+   279     2   287     2   243     2   255     2   172     2
+   167     2   158     2   196     2   203     2   165     2
+   178     2   190     2   269     2   324     2   158     2
+   174     2   164     2    59     2    25     2    54     2
+   227     2   197     2    50     2   104     2   135     2
+   117     2   121     2   114     2    31     2    41     2
+    38     2    34     2    86     2   146     2   119     2
+    28     2    72     2    34     2    77     2    35     2
+    76     2    79     2    50     2    96     2     0     0
+HEADER:
+DataFormat=Tree
+Length=44
+DateBegin=1977
+DateEnd=2020
+KeyCode=LANH39A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   259   343   213   244   177   175   168   206   237   206
+   208   193   319   400   169   228   199    69    37    41
+   249   214    57   114   166   154   152   137    34    57
+    39    35   103   197   150    36    83    43    80    40
+    88   104    61   102     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=44
+DateBegin=1977
+DateEnd=2020
+KeyCode=LANH39B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+300
+231
+273
+266
+167
+159
+149
+186
+169
+124
+149
+188
+219
+248
+148
+121
+129
+50;;63=50+13
+13
+67
+205
+180
+43
+95
+105
+80
+90
+91
+28
+25
+38
+33
+69
+96
+89
+20
+61
+26
+74
+31
+64
+55
+40
+91
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH40
+Unit=1/100 mm
+Length=51
+DateBegin=1970
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH40A,LANH40B
+ChronoMemberCount=2
+DATA:Double
+   266     2   257     2   258     2   272     2   217     2
+   214     2   256     2   327     2   332     2   385     2
+   302     2   213     2   209     2   180     2   223     2
+   246     2   176     2   151     2   174     2   205     2
+   277     2   162     2   184     2   149     2    75     2
+    19     2    73     2   177     2   203     2    29     2
+    81     2    90     2    67     2   115     2    95     2
+    27     2    58     2    42     2    78     2    97     2
+   145     2    42     2    20     2    50     2    28     2
+    70     2    43     2    57     2    49     2    37     2
+    71     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=LANH40A
+Unit=1/100 mm
+Length=51
+DateBegin=1970
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+270
+233
+244
+251
+206
+198
+275
+321
+314
+347
+315
+201
+209
+167
+198
+201
+140
+148
+179
+225
+302
+174
+196
+152
+90
+17;;97=80+17
+81
+186
+263
+27
+81
+88
+70
+118
+87
+23
+60
+38
+78
+112
+151
+60
+28
+55
+31
+93
+51
+62
+56
+50
+92
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH40B
+Unit=1/100 mm
+Length=51
+DateBegin=1970
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+262
+282
+272
+294
+229
+231
+237
+334
+350
+424
+289
+226
+210
+194
+248
+292
+212
+155
+169
+185
+253
+151
+173
+146
+60;;82=60+22, parecía IADF al final
+22
+65
+168
+143
+31
+82
+92
+65
+112
+104
+32
+57
+46
+79
+82
+140
+25
+13
+45
+26
+47
+35
+53
+42
+25
+50
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=LANH41
+Unit=1/100 mm
+Length=45
+DateBegin=1976
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=LANH41A,LANH41B
+ChronoMemberCount=2
+DATA:Double
+   254     2   286     2   234     2   236     2   284     2
+   173     2   208     2   174     2   207     2   199     2
+   191     2   140     2   198     2   244     2   228     2
+   142     2   194     2   178     2    70     2    39     2
+    36     2   154     2   154     2    12     2    49     2
+    79     2    60     2    61     2    28     2     6     2
+    30     2    27     2    36     2    66     2    82     2
+    88     2    32     2    75     2    32     2    49     2
+    21     2    22     2    39     2    25     2    78     2
+HEADER:
+DataFormat=Tree
+KeyCode=LANH41A
+Unit=1/100 mm
+Length=45
+DateBegin=1976
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+255
+287
+233
+254
+280
+159
+213
+165
+192
+211
+200
+142;;IADF, 113+29
+190
+233
+256
+158
+204
+174
+62
+36
+31
+135
+171
+12
+57
+66
+52
+57
+32
+6
+41
+28
+39
+60
+72
+72
+27
+65
+27
+42
+12
+16
+33
+23
+86
+
+HEADER:
+DataFormat=Tree
+KeyCode=LANH41B
+Unit=1/100 mm
+Length=45
+DateBegin=1976
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   254   285   236   219   289   187   203   184   223   187
+   183   139   207   256   201   127   185   182    79    43
+    42   174   138    12    42    92    68    65    24     6
+    19    27    33    72    92   105    38    86    37    56
+    31    28    46    28    71     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=52
+DateBegin=1969
+DateEnd=2020
+KeyCode=Media40_LANH
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=LANH01,LANH02,LANH03,LANH04,LANH05,LANH06,LANH07,LANH08,LANH09,LANH10,LANH11,LANH12,LANH13,LANH14,LANH15,LANH16,LANH17,LANH18,LANH19,LANH20,LANH22,LANH23,LANH24,LANH25,LANH26,LANH27,LANH28,LANH29,LANH30,LANH31,LANH32,LANH33,LANH34,LANH35,LANH36,LANH37,LANH38,LANH39,LANH40,LANH41
+ChronoMemberCount=40
+DATA:Double
+   214     1   265     3   260     5   319     7   266     9
+   248    14   262    15   313    18   302    20   301    20
+   285    21   276    25   170    28   177    29   194    33
+   241    34   262    35   261    38   204    39   235    40
+   283    40   315    40   210    40   215    40   170    40
+    88    40    31    40    77    40   192    40   186    40
+    35    40    91    40   122    40    94    40   113    40
+   111    40    29    40    64    40    46    40    44    40
+    78    40   117    40    95    40    28    40    76    40
+    33    40    60    40    27    39    47    39    52    38
+    31    38    72    37     0     0     0     0     0     0

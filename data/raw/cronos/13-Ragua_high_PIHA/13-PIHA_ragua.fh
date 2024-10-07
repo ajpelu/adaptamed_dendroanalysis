@@ -1,0 +1,5840 @@
+HEADER:
+DataFormat=HalfChrono
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG01
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=RAG0101,RAG0102
+ChronoMemberCount=2
+DATA:Double
+   484     1   382     2   315     2   356     2   382     2
+   263     2   286     2   322     2   315     2   280     1
+   220     1   173     1   148     1   135     1   132     1
+   142     1   125     1   126     1    30     1    33     1
+    71     1    65     1    45     1    25     1    43     1
+    59     1    53     1   138     1    79     1    97     1
+    99     1    39     1    24     1    77     1   112     1
+    95     1    24     1    63     1    63     1    84     1
+    87     1    98     1    29     1    43     1    57     1
+    21     1    49     1   113     1   127     1    30     1
+    71     1    42     1    42     1    14     1    56     1
+    65     1    83     1    57     1    26     1    45     1
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG0101
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+377
+269
+313
+411
+274
+293
+308
+330
+280
+220
+173
+148
+135
+132
+142
+125
+126;;104+22
+30
+33
+71
+65
+45
+25
+43
+59
+53
+138
+79
+97
+99
+39
+24
+77
+112
+95
+24
+63
+63
+84
+87
+98
+29
+43
+57
+21
+49
+113
+127
+30
+71
+42
+42
+14
+56
+65
+83
+57
+26
+45
+
+HEADER:
+DataFormat=Tree
+Length=9
+DateBegin=1963
+DateEnd=1971
+KeyCode=RAG0102
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+   484   388   362   400   354   253   279   337   300     0
+HEADER:
+DataFormat=HalfChrono
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG02
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG0201,RAG0202
+ChronoMemberCount=2
+DATA:Double
+   268     1   236     1   497     2   248     2   174     2
+   210     2   342     2   247     2   268     2   257     2
+   219     2   212     2   171     2   119     2   153     2
+   156     2    85     2    76     2    90     2    96     2
+    17     2    22     2    45     2    36     2    18     2
+     4     2    17     2    34     2   102     2    89     2
+    24     2    31     2    34     2    13     2    10     2
+    41     2    91     2    63     2    12     2    31     2
+    34     2    68     2    63     2    89     2    12     2
+    18     2    19     2    10     2    25     2    47     2
+    58     2    15     2    34     2     9     2    14     2
+    12     2    25     2    32     2    28     2    20     2
+     8     2    18     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG0201
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+268
+236
+507
+235
+180
+196
+261
+218
+219
+238
+192
+214
+161
+121
+143
+155
+81
+40
+57
+60;;67=06+7
+7
+14
+43
+39
+16
+3
+20;;23=20+3
+32
+91
+62
+17
+30
+33
+13
+10
+40
+104
+75
+14
+34
+43
+86
+89
+128
+18
+13
+19
+5
+32
+63
+79
+18
+39
+8
+14
+5
+23;;28=23+5
+36
+31
+22
+9
+19
+
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG0202
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+488
+262
+168
+224
+424
+276
+318
+277
+247
+211
+181
+118
+164
+158
+89
+112
+124
+132
+27
+31;25+6
+48
+33
+20;;26=20+6
+6
+14
+37
+113
+116
+32
+33
+36
+13
+11
+42
+78
+52
+11
+29
+26
+51
+38
+50;;56=50+6
+6
+23
+20
+15
+19
+32
+38
+12
+29
+11
+14
+19
+28
+29
+25
+18
+7
+17
+
+HEADER:
+DataFormat=HalfChrono
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG03
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG0301,RAG0302
+ChronoMemberCount=2
+DATA:Double
+   258     2   312     2   187     2   136     2   108     2
+   277     2   159     2   192     2   175     2   268     2
+   307     2   228     2   222     2   199     2   201     2
+   130     2   139     2   143     2   139     2    20     2
+    30     2    68     2    56     2    31     2    34     2
+    44     2    67     2    65     2   215     2    68     2
+    90     2    83     2    42     2    24     2    65     2
+   168     2   138     2    32     2    45     2    46     2
+    97     2   131     2   155     2    57     2    52     2
+    45     2    26     2    64     2   117     2   141     2
+    35     2    88     2    32     2    30     2    18     2
+    69     2    66     2    42     2    50     2    24     2
+    44     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG0301
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+260
+294
+187
+143
+112
+286
+171
+198
+179
+288
+320
+267
+262
+236
+213
+120
+134
+129
+133
+21
+30
+77
+67
+43
+34
+54
+78
+75
+292
+99
+113
+87
+41
+25
+66
+198
+167
+39
+54
+53
+117
+167
+177
+61
+58
+40;;64=24+40, eran dos anillos
+24
+58
+79
+119
+40
+95
+30
+36
+24
+71
+90
+61
+66
+38
+63
+
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG0302
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+257
+330
+187
+129
+105
+269
+148
+187
+172
+248
+294
+189
+183
+162
+189
+140
+144
+158
+145
+19
+30
+60
+46
+20
+34
+35
+56
+55
+139
+37
+68
+79
+44
+23;12+11
+64
+138
+110
+26
+36
+40
+77
+96
+133
+54
+47
+50;;79=29+50
+29
+71
+156
+163
+31
+82
+35
+24
+12
+68
+42
+24
+35
+11
+26
+
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG04
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAD0401,RAG0402
+ChronoMemberCount=2
+DATA:Double
+   374     2   179     2   191     2   347     2   238     2
+   242     2   214     2   216     2   262     2   196     2
+   130     2   122     2   138     2    81     2   117     2
+   145     2   108     2    17     2    22     2    32     2
+    61     2    28     2     8     2    15     2    33     2
+    62     2   141     2    53     2    69     2    64     2
+    20     2     9     2    70     2   106     2    79     2
+    19     2    33     2    31     2    65     2    89     2
+   126     2    28     2    28     2    23     2     9     2
+    37     2    69     2    87     2    21     2    78     2
+     3     2    29     2    13     2    30     2    34     2
+    24     2    24     2     8     2    15     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG0401
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   467   238   222   409   256   241   216   226   273   202
+   138   122   127    80   130   140   125    18    19    16
+    69    26    14    16    35    51   130    43    68    65
+    24     8    77   117    95    23    37    35    77    87
+   129    25    29    28     7    40    74    86    14    79
+     3    24    10    33    37    25    26    10    12     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG0402
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+281
+121
+160
+286
+221
+243
+213
+207
+251
+191
+123
+123
+150
+83
+104
+150
+92
+17
+25;;16+9
+49
+54
+30
+3
+15;;18=15+3
+32
+73
+152
+63
+71
+64
+16
+10
+63
+95
+64
+15
+29
+27
+54
+91
+123
+32
+27
+19
+11
+35
+64
+89
+29
+78;;81=78+3, un ausente
+3
+34
+16
+28
+32
+23
+22
+6
+19
+
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG0501
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   418   485   512   339   289   217   250   224   257   275
+   321   325   271   201   189   213   161   131   128   164
+    44    59    24    64    73    50    33    39    52    41
+    88    56    87    79    44    27    84   158   109    25
+    75    52    91    88   114    18    33    21    16    33
+    62    59    14    55    20    17    13    33    43    31
+    28    17    24     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG06
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG0601,RAG0602
+ChronoMemberCount=2
+DATA:Double
+   387     2   566     2   258     2   207     2   198     2
+   332     2   191     2   226     2   221     2   224     2
+   230     2   147     2    80     2   132     2   124     2
+    73     2    68     2    73     2   109     2     9     2
+    21     2    43     2    32     2    21     2    18     2
+    27     2    58     2    76     2   170     2    66     2
+    85     2    81     2    43     2    18     2    91     2
+   245     2   160     2    47     2    52     2    81     2
+   116     2   138     2   160     2    31     2    63     2
+    40     2    21     2    56     2    92     2   101     2
+    19     2    89     2    22     2    21     2    10     2
+    46     2   100     2    75     2    60     2    34     2
+    48     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG0601
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+427
+523
+248
+218
+215
+325
+173
+190
+209
+201
+232
+123
+67
+104
+104
+62
+76
+73
+111
+3;ausente
+30
+45
+24
+20;;26=20+2+4
+2
+4
+29
+82
+152
+63
+71
+66
+21
+8
+52
+171
+113
+23
+30
+48
+90
+125
+133
+27
+55
+38
+23
+33
+55
+77
+26
+81
+18
+17
+9
+43
+67
+54
+57
+36
+56
+
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG0602
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+348
+609
+269
+196
+181
+339
+209
+263
+234
+247
+228
+171
+93
+160
+145
+85
+61
+73
+107
+15
+12
+41
+41
+23
+34
+50
+87
+71
+189
+69
+99
+97
+66
+29
+131
+319
+208
+71
+74
+114
+143
+152
+188
+35
+72
+43
+19
+80
+130
+126
+12
+97
+27
+26
+12;;62=12+50
+50
+133
+96
+63
+33
+41
+
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG07
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG0701,RAG0702
+ChronoMemberCount=2
+DATA:Double
+   270     2   214     2   181     2   284     2   210     2
+   234     2   222     2   234     2   214     2   198     2
+   112     2   124     2   148     2   120     2   104     2
+    82     2    77     2    14     2    21     2    16     2
+    30     2    21     2    17     2    13     2    19     2
+    55     2    98     2    45     2    64     2    68     2
+    32     2    15     2    39     2    89     2    67     2
+    13     2    24     2    14     2    42     2    64     2
+    74     2    23     2    23     2    26     2    13     2
+    25     2    46     2    50     2    14     2    49     2
+     2     2     8     2     2     2     5     2     8     2
+     9     2    12     2     5     2     6     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG0701
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+273
+192
+169
+281
+182
+212
+209
+223
+229
+198
+108
+113
+142
+116
+106
+93
+69
+10
+17
+19
+28
+14;;17=14+3
+3
+13
+14
+56
+79
+46
+77
+77
+32
+14
+45
+104
+61
+9
+20
+11
+30
+53
+81
+26
+33
+32
+17
+31
+52
+42
+15
+60;;63=60+3
+3
+8
+3;;6=4+3
+4
+5
+6
+10;;16=10+6
+10
+11
+
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG0702
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+267
+237
+193
+288
+238
+257
+236
+246
+199
+198
+117
+136
+154
+124
+103
+72
+86;;81+5
+18
+25
+13
+32
+29
+31
+14
+25
+54
+117
+45
+52
+60
+32
+16
+34
+75
+73
+17
+29
+18
+54
+75
+68
+21
+14
+21
+9
+20
+40
+58
+14
+38
+1;ausente
+8
+1;;ausente
+7
+12
+12
+15
+1;;ausente
+1;;ausente
+
+HEADER:
+DataFormat=HalfChrono
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG08
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG0801,RAG0802
+ChronoMemberCount=2
+DATA:Double
+   476     2   297     2   247     2   222     2   326     2
+   256     2   291     2   267     2   284     2   242     2
+   215     2   181     2   164     2   144     2    88     2
+    74     2    69     2   115     2    13     2    12     2
+    37     2    35     2    17     2    15     2    28     2
+    33     2    31     2   148     2    62     2    73     2
+    69     2    25     2     4     2    48     2   127     2
+   120     2    22     2    59     2    47     2    88     2
+    94     2   122     2    18     2    34     2    21     2
+     2     2    22     2    76     2    92     2    18     2
+    61     2    15     2    21     2     1     2    27     2
+    35     2    12     2    30     2     3     2    15     2
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG0801
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+549
+342
+275
+235
+323
+243
+300
+282
+288
+235
+197
+169
+145
+136
+81
+77
+69
+117
+10
+11
+33
+25
+12
+13
+24
+22;;52=30+22
+30
+120
+64
+80
+71
+30
+3;;47=3+44
+44
+108
+105
+18
+56
+49
+85
+83
+122
+19
+31
+27
+1;;ausente
+26
+64
+89
+21
+63
+13
+11
+1;;ausente
+32
+48
+24
+31
+5
+18
+
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG0802
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+404
+253
+219
+209
+330
+269
+283
+252
+281
+249
+234
+194
+183
+153
+96
+72
+69
+113
+16
+13
+42
+45
+23
+17
+32
+44
+32
+176
+60
+67
+68
+20
+6
+52
+147
+135
+26
+63
+46
+91
+105
+123
+17
+37
+16;;19=16+3
+3
+19
+88
+96
+16
+59
+17
+32
+1;;ausejnte
+22
+22
+1;;ausente
+30
+1;;ausente
+13
+
+HEADER:
+DataFormat=HalfChrono
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG09
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG07,RAG10,RAG17,RAG23,RAG29
+ChronoMemberCount=5
+Comment=Faltaba esta muestra, me la construyo con la media del 7, 10, 19, 23, 29, los que estaban más cercas en la clase diamétrica
+DATA:Double
+   196     2   176     2   391     2   414     3   248     5
+   211     5   180     5   291     5   197     5   230     5
+   211     5   204     5   216     5   190     5   141     5
+   145     5   131     5    83     5    83     5    75     5
+    75     5    12     5    20     5    25     5    36     5
+    19     5    12     5    15     5    24     5    46     5
+    88     5    34     5    55     5    48     5    20     5
+     7     5    46     5    81     5    61     5     9     5
+    23     5    23     5    48     5    56     5    65     5
+    12     5    25     5    18     5     7     5    31     5
+    43     5    35     5     7     5    35     5    12     4
+    19     4     4     4    23     4    28     4    19     4
+    19     4     6     4    14     4     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG10
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1001,RAG1002
+ChronoMemberCount=2
+DATA:Double
+   266     2   257     2   209     2   404     2   240     2
+   252     2   288     2   273     2   276     2   226     2
+   170     2   140     2   130     2    73     2    78     2
+    57     2    55     2     7     2     4     2    21     2
+    18     2     9     2     9     2     5     2     8     2
+    21     2    52     2    25     2    47     2    33     2
+    15     2     4     2    26     2    74     2    47     2
+    15     2    28     2    22     2    43     2    32     2
+    49     2     7     2    35     2    14     2     4     2
+    13     2    14     2    15     2     4     2    23     2
+    17     2    22     2     8     2    20     2    18     2
+    15     2    14     2     3     2     5     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG1001
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+325
+260
+232
+433
+252
+272
+267
+298
+288
+219
+163
+142
+120
+61
+72
+47
+50
+1;;ausetnte
+1;ausente
+11
+21
+11
+6
+1;;ausente
+1;;ausente
+22
+43
+22
+50
+33
+10
+6
+26
+85
+45
+12
+27
+20
+42
+14
+39
+9
+60;;69=60+9
+13
+1;ausete
+18
+11
+7;;12=7+5
+5
+20
+26
+33
+14
+21
+16
+12
+16
+1;;ausente
+1;;ausente
+
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG1002
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+207
+254
+187
+376
+229
+233
+310
+249
+265
+233
+178
+138
+141
+86
+84
+67
+60
+13
+7
+32
+16
+7
+13
+10
+16
+21
+62
+29
+44
+33
+20
+3
+26;;29=26+3
+63
+49
+18
+30
+25
+45
+50
+60;;66=60+6
+6
+10
+15
+8
+9
+18
+23
+4;;31=27+4
+27
+8
+11
+3
+20;;23=20+3
+20
+18
+12
+5
+10
+
+HEADER:
+DataFormat=HalfChrono
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG11
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1101,RAG1102
+ChronoMemberCount=2
+DATA:Double
+   606     2   636     2   506     2   365     2   335     2
+   368     2   350     2   422     2   373     2   271     2
+   266     2   238     2   193     2   212     2   185     2
+   136     2   139     2   107     2   128     2    53     2
+    47     2    27     2    61     2    65     2    27     2
+    26     2    42     2    86     2   116     2    61     2
+    82     2    79     2    46     2    29     2    79     2
+   120     2   113     2    24     2    36     2    50     2
+    90     2    80     2   109     2    10     2    33     2
+    46     2    20     2    53     2   102     2    95     2
+    14     2    75     2    19     2    26     2    18     2
+    44     2    74     2    56     2    57     2    32     2
+    44     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG1101
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+579
+582
+440
+323
+293
+336
+321
+434
+387
+264
+275
+257
+202
+219
+193
+146
+150
+118
+141
+60
+44
+22
+55
+61
+23
+27
+41
+80;;49+31, iadf
+127
+74
+80
+87
+46
+31
+83
+118
+106
+21
+33
+55
+83
+69
+97;;108=97+11, el 2005 son 4 filas de traqueidas
+11
+27
+47
+22
+50
+91
+98
+14
+74
+11
+16;;9+7
+17
+54
+78
+65
+65
+33
+55
+
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG1102
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+634
+691
+573
+407
+377
+401
+380
+411
+359
+278
+257
+220
+184
+205
+177
+127
+128
+96
+116
+47
+50
+32
+68
+69
+32
+26
+43
+92
+106
+49
+84
+71
+47
+27
+75
+123
+121
+27
+39
+46
+97
+92
+122;;132=122+10, dos medidos
+10
+40
+45;;63=44+18, dos
+18
+57
+114
+93
+15
+76
+27
+37
+19
+35
+70
+48
+50
+32
+33
+
+HEADER:
+DataFormat=HalfChrono
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG12
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=edad real, centro
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1201,RAG1202
+ChronoMemberCount=2
+DATA:Double
+   161     2   212     2   447     2   435     2   240     2
+   221     2   255     2   405     2   229     2   280     2
+   284     2   337     2   308     2   197     2   195     2
+   215     2   160     2   110     2   136     2   139     2
+   146     2    41     2    54     2    57     2    74     2
+    47     2    37     2    51     2    62     2    51     2
+   171     2    56     2    91     2    84     2    40     2
+    16     2    62     2   146     2   115     2    27     2
+    37     2    36     2    75     2    61     2    87     2
+    14     2    55     2    64     2    10     2    30     2
+    37     2    50     2    33     2    70     2    21     2
+    59     2    11     2    28     2    38     2    38     2
+    39     2    27     2    35     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG1201
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+175
+183
+471
+455
+256
+234
+255
+438
+232
+289
+261
+405
+367
+181
+149
+187
+148
+114
+160
+148
+161
+47
+74;;52+22, iadf supongo
+55
+70
+49
+39
+51
+71
+56
+186
+57
+101
+98
+54
+14
+63
+113
+122
+32
+42
+45
+112
+89
+120
+23
+30
+32
+9
+31
+45
+72
+16
+79
+20
+35
+8
+29
+45
+41
+43
+16
+34
+
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG1202
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=edad real, centro
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+148
+241
+424
+416
+224
+209
+255
+373
+227
+271
+308
+270
+249
+214
+241
+244
+173
+107
+112
+131
+132
+35
+34
+60
+78
+46
+36
+51
+54
+47
+157
+56
+81
+71
+26
+19
+61
+180
+109
+22
+32
+27
+38
+33
+55;;60=55+5, eran dos
+5
+80
+97
+12
+29
+29
+29
+51
+62
+22
+84
+14
+27
+32
+36
+35
+38
+36;;15+21
+
+HEADER:
+DataFormat=HalfChrono
+Length=54
+DateBegin=1969
+DateEnd=2022
+KeyCode=RAG13
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1301,RAG1302
+ChronoMemberCount=2
+DATA:Double
+   337     2   319     2   293     2   257     2   292     2
+   233     2   184     2   196     2   144     2   140     2
+   167     2   204     2    62     2    77     2    35     2
+    80     2    90     2    45     2    40     2    55     2
+   120     2   160     2    63     2    83     2    80     2
+    37     2    24     2    66     2   175     2   139     2
+    41     2    55     2    52     2    97     2   113     2
+   123     2    30     2    39     2    39     2    18     2
+    44     2    79     2   106     2    30     2    68     2
+    28     2    21     2    21     2    42     2    55     2
+    47     2    47     2    20     2    38     2     0     0
+HEADER:
+DataFormat=Tree
+Length=54
+DateBegin=1969
+DateEnd=2022
+KeyCode=RAG1301
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+   350   325   289   217   280   226   194   204   140   105
+   122   120    18    34    25    71    51    38    25    47
+   104   141    34    55    51    41    17    65   185   141
+    45    52    50    87   123   140    42    39    31    14
+    36    64   105    28    68    37    24    12    47    57
+    49    46    21    39     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=54
+DateBegin=1969
+DateEnd=2022
+KeyCode=RAG1302
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+324
+314
+297
+298
+305
+240
+175
+188
+149
+176
+213
+289
+107
+120
+46
+89
+129
+53;;28+25, iadf
+56
+63
+137;;84+53, iadf
+180
+92
+111
+110
+33
+31;;16+15, iadf
+68
+166
+137
+38
+59
+55
+107
+103
+106
+19
+40
+47
+23
+52
+95
+108
+33
+69
+19
+18
+30
+37
+54
+46
+48
+20
+38
+
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG14
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1401,RAG1402
+ChronoMemberCount=2
+DATA:Double
+   318     2   278     2   331     2   392     2   255     2
+   275     2   258     2   199     2   202     2   169     2
+   120     2   132     2   150     2   103     2   168     2
+   123     2   120     2    14     2    12     2    39     2
+    42     2    30     2     9     2    11     2    28     2
+    93     2   120     2    37     2    69     2    55     2
+    21     2    17     2    70     2    81     2    79     2
+    11     2    40     2    23     2    51     2    49     2
+    71     2    13     2    23     2    20     2     7     2
+    32     2    78     2    59     2    12     2    45     2
+    20     2    39     2    13     2    41     2    37     2
+    24     2    24     2    11     2    26     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG1401
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+320
+306
+408
+486
+274
+300
+279
+169
+204
+182
+148
+148
+159
+106
+188
+97
+104
+14
+12
+54
+40
+14
+1;ausente
+10
+26
+89
+104
+34
+62
+46
+20
+15
+68
+70
+80
+10
+37
+28
+49
+42
+68
+12
+24
+19
+8
+31
+76
+57
+9
+45
+17
+29
+11
+39
+38
+27
+22
+11
+29
+
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG1402
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+317
+250
+254
+298
+236
+251
+238
+229
+201
+157
+93
+116
+142
+101
+149
+149
+137
+14
+13
+24
+45
+47
+17;;7+10
+12
+31
+98
+137
+40
+77
+65
+22
+19
+72
+93
+79
+13
+44
+19
+53
+57
+74
+14
+23
+21
+7
+34
+81
+61
+16
+46
+24
+49
+16
+44
+36
+22
+27
+12
+24
+
+HEADER:
+DataFormat=HalfChrono
+Length=62
+DateBegin=1961
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=RAG15
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1501,RAG1502
+ChronoMemberCount=2
+DATA:Double
+   269     2   717     2   559     2   367     2   251     2
+   241     2   345     2   192     2   244     2   255     2
+   160     2   159     2   159     2   147     2   158     2
+   146     2   101     2    99     2    86     2    66     2
+    15     2    16     2    21     2    37     2    41     2
+    18     2    28     2    45     2    53     2   132     2
+    58     2    76     2    80     2    35     2    18     2
+    46     2    88     2    54     2    12     2    32     2
+    53     2    67     2    43     2    68     2     8     2
+    35     2    18     2     8     2    22     2    29     2
+    20     2     6     2    32     2    17     2    35     2
+    10     2    41     2    59     2    33     2    28     2
+    17     2    32     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=RAG1501
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+252
+753
+619
+407
+243
+203
+366
+215
+245
+275
+199
+198
+161
+130
+153
+152
+115
+114
+72
+83
+18
+13
+12
+53
+42;;34+8
+18
+19
+40
+40
+145
+76
+97
+93
+38
+23
+62
+107
+73
+15
+51
+36
+67
+55
+70;;77=70+7
+7
+50
+13
+10
+20;;30=10+20
+30
+20;;28=8+20
+8
+18;;26=18+8
+8
+22
+8
+40;;48=8+40
+57
+35
+25
+16
+31
+
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG1502
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=Estaba pegada mal, por eso meto anillos ausentes a voluntad, no se veían bien, leí solo los evidentes
+Dated=Dated
+DATA:Single
+287
+682
+499
+328
+259
+279
+324
+169
+243
+236
+122
+121
+158
+164
+163
+140
+88
+85
+100
+50;;62=50+12
+12
+19
+31
+21
+40;;58=18+40
+18
+37
+51
+67
+119
+41
+56
+67
+33
+13
+30;;43=30+13
+69
+35;;45=35+10
+10
+13
+70
+68
+32
+67
+9;;29=9+20
+20
+23
+6
+25;;31=6+25
+29
+20;;25=20+5
+5
+46
+26
+49
+12
+43
+61
+32
+31
+19
+33
+
+HEADER:
+DataFormat=HalfChrono
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG16
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1601,RAG1602
+ChronoMemberCount=2
+DATA:Double
+   286     1   508     2   153     2   197     2   193     2
+   364     2   253     2   279     2   228     2   221     2
+   285     2   222     2   171     2   166     2   192     2
+   124     2    98     2    86     2   104     2     8     2
+    15     2    35     2    31     2    10     2     1     2
+    18     2    37     2    58     2    74     2    53     2
+    93     2    60     2    35     2    19     2    60     2
+   107     2    62     2    15     2    29     2    25     2
+    62     2    57     2    94     2    15     2    22     2
+    27     2     6     2    25     2    42     2    66     2
+    17     2    68     2    23     2    32     2    14     2
+    59     2    38     2    30     2    39     2    18     2
+    31     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG1601
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   519   151   220   195   356   242   267   223   217   257
+   201   162   172   198   119    97    83    93     6    11
+    28    22     4     0    13    34    54    40    75   115
+    78    51    23    79   136    66    15    38    33    76
+    73   103    26    30    19    10    27    60    66    15
+    67    22    41    13    45    37    32    46    21    34
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG1602
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+286
+497
+155
+175
+191
+372
+265
+292
+234
+226
+313
+243
+180
+161
+187
+130
+99
+90
+115
+11
+19
+43
+40
+16
+3;;AUSENTE
+23
+41
+63
+108
+31
+72
+42
+19
+15;;IADF, 7+8, 1995
+41
+79
+58
+15
+21
+18
+48
+41
+85;;90=85+5
+5
+15
+35;;38=35+3
+3
+24
+24
+67
+20
+70
+24
+24
+16
+73
+40
+29
+32
+16
+29
+
+HEADER:
+DataFormat=HalfChrono
+Length=51
+DateBegin=1963
+DateEnd=2013
+KeyCode=RAG17
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1703,RAG1704
+ChronoMemberCount=2
+DATA:Double
+   308     2   220     2   230     2   183     2   256     2
+   154     2   237     2   146     2   157     2   207     2
+   164     2   143     2   146     2   130     2    68     2
+    52     2    59     2    65     2     1     2    10     2
+    17     2    41     2    18     2     5     2    12     2
+    23     2    78     2   121     2    38     2    48     2
+    47     2    21     2     5     2    68     2    89     2
+    58     2     4     2    11     2    29     2    43     2
+    51     2    55     2    13     2    17     2     6     2
+    10     2    32     2    23     2     7     2     3     2
+    11     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=51
+DateBegin=1963
+DateEnd=2013
+KeyCode=RAG1703
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+314
+204
+216
+217
+269
+170
+281
+177
+210
+243
+197
+172
+163
+144
+78
+58
+49
+74
+1;;ausente
+11
+27
+52
+17
+1;;ausente
+11
+25
+77
+130
+35
+42
+43
+19
+9
+81
+98
+66
+8
+16
+47
+61
+61
+76
+14
+18
+11
+14
+38
+31
+11
+5
+16
+
+HEADER:
+DataFormat=Tree
+Length=51
+DateBegin=1963
+DateEnd=2013
+KeyCode=RAG1704
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+303
+236
+244
+150
+243
+138
+193
+116
+105
+171
+132
+115
+130
+116
+59
+47
+70
+57
+1;ausente
+10
+8
+31
+20
+9
+14
+21
+79
+112
+42
+54
+52
+24
+1;ausente
+56
+80
+50
+1;;ausente
+7
+12
+26
+42
+34
+13
+16
+1;;ausente
+7
+26
+15
+4
+1;;ausentte
+6
+
+HEADER:
+DataFormat=HalfChrono
+Length=64
+DateBegin=1959
+DateEnd=2022
+KeyCode=RAG18
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro, edad real
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1801,RAG1802
+ChronoMemberCount=2
+DATA:Double
+   155     2   202     2   215     2   342     2   505     2
+   189     2   161     2   126     2   261     2   193     2
+   221     2   219     2   238     2   255     2   176     2
+   131     2   123     2   144     2   116     2   149     2
+   138     2   130     2     5     2     6     2    46     2
+    50     2     9     2     4     2     2     2    11     2
+    24     2   109     2    29     2    49     2    66     2
+    17     2    10     2    50     2    88     2    80     2
+    15     2    27     2    45     2   104     2    88     2
+   114     2    20     2    32     2    32     2    15     2
+    23     2    94     2   125     2    16     2    37     2
+     9     2    11     2    11     2    27     2    49     2
+    29     2    31     2    15     2    17     2     0     0
+HEADER:
+DataFormat=Tree
+Length=64
+DateBegin=1959
+DateEnd=2022
+KeyCode=RAG1801
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro, edad real
+Dated=Dated
+DATA:Single
+158
+193
+204
+360
+500
+182
+159
+106
+294
+218
+234
+220
+240
+258
+184
+140
+126
+151
+102
+126
+142
+156
+10
+12
+65
+73
+11
+8
+4
+13
+21
+94
+35
+61
+98
+23
+15
+56
+107
+95
+15
+24
+38
+82
+72
+90;;97=90+7, ausente
+7
+23
+21
+18
+26
+72
+149
+21
+42
+15
+8
+18
+16
+21
+14
+19
+12
+14
+
+HEADER:
+DataFormat=Tree
+Length=64
+DateBegin=1959
+DateEnd=2022
+KeyCode=RAG1802
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+152
+212
+227
+325
+511
+197
+163
+146
+228
+169
+209
+219
+236
+252
+169
+122
+120
+137
+130
+172
+134
+105
+1;;ausente
+1;;ausente
+28
+28
+7
+1;;ausente
+1;;ausente
+10
+27
+124
+23
+38
+35
+11
+6
+45
+70
+65
+16
+31
+52
+126
+104
+139
+33
+41
+44
+13
+21
+116
+101
+12
+32;;36=32+4
+4
+15
+4
+38;;42=38+4, ausente
+77
+45
+43
+19
+20
+
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=RAG19
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG1901,RAG1902
+ChronoMemberCount=2
+DATA:Double
+   324     2   223     2   244     2   346     2   292     2
+   327     2   307     2   251     2   265     2   214     2
+   169     2   208     2   214     2   170     2   152     2
+   163     2   156     2    46     2    49     2    34     2
+   100     2   121     2    69     2    55     2    73     2
+   182     2   213     2    72     2    99     2   111     2
+    58     2    46     2    91     2   152     2   128     2
+    50     2    84     2   103     2   157     2   136     2
+   139     2    22     2    57     2    66     2    46     2
+    90     2   171     2   165     2    29     2   117     2
+    42     2    52     2    22     2    57     2    87     2
+    79     2    55     2    36     2    46     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=RAG1901
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+315
+233
+242
+356
+290
+296
+272
+219
+228
+176
+152
+193
+191
+156
+131
+159
+154
+42
+39
+23
+74
+79
+55
+48
+71
+171
+207
+80
+125
+133
+67
+55
+101
+148
+128
+53
+78
+90
+124;;108+16
+88
+109
+13
+52
+64
+45
+96
+153
+136
+19
+102
+38
+44
+29;;21+8
+56
+77
+62
+44
+29
+37
+
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG1902
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+   334   214   247   336   295   359   343   284   303   253
+   186   224   237   185   174   168   159    51    60    46
+   127   163    83    62    75   193   219    64    73    90
+    49    38    81   156   128    48    91   116   191   185
+   170    32    63    69    47    84   189   195    40   132
+    47    61    16    58    97    97    66    43    55     0
+HEADER:
+DataFormat=HalfChrono
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG20
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2001,RAG2002
+ChronoMemberCount=2
+DATA:Double
+   361     2   530     2   525     2   305     2   219     2
+   187     2   287     2   191     2   254     2   249     2
+   298     2   274     2   251     2   187     2   174     2
+   164     2   122     2   119     2    94     2   114     2
+    11     2    29     2    46     2    46     2    36     2
+    16     2    34     2    60     2    49     2   179     2
+    60     2    88     2    88     2    44     2    21     2
+    76     2   156     2   122     2    30     2    60     2
+    58     2   117     2   119     2   110     2    16     2
+    27     2    29     2    14     2    32     2    82     2
+   110     2    11     2    59     2    16     2    16     2
+     6     2    35     2    26     2    23     2    22     2
+     8     2    18     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG2001
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+336
+552
+488
+246
+181
+178
+261
+198
+241
+229
+288
+270
+248
+169
+175
+127
+100
+81
+69
+100
+11
+17
+36
+25
+27
+11
+24
+48
+40
+184
+58
+77
+101
+49
+19
+80
+156
+124
+18
+60
+43
+118
+120
+106;;116=106+10
+10
+21
+29
+18
+26
+69
+110
+12
+61
+16
+22;;25=22+3, igual había una línea de traqueidas
+3
+41
+32
+25
+27
+7
+17
+
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG2002
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+387
+509
+563
+365
+257
+197
+313
+185
+268
+269
+309
+278
+254
+205
+173
+202
+145
+158
+119
+128
+12
+42;;28+14
+56
+67
+46
+21
+45
+73
+59
+174
+63
+100
+75
+40
+24
+72
+157
+120
+42
+60
+74
+116
+118
+114
+23
+34
+30;;40=30+10
+10
+38
+96
+111
+11
+58
+16
+10
+9
+29
+21
+21
+18
+10;;30=10+20
+20
+
+HEADER:
+DataFormat=HalfChrono
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG21
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2101,RAG2102
+ChronoMemberCount=2
+DATA:Double
+   534     2   835     2   255     2   194     2   174     2
+   304     2   209     2   197     2   224     2   255     2
+   282     2   183     2   108     2   126     2   120     2
+    84     2   100     2    87     2    93     2    13     2
+    33     2    60     2    47     2    15     2     2     2
+    14     2    24     2    80     2   167     2    47     2
+    67     2    71     2    25     2     1     2    40     2
+   103     2    90     2    12     2    35     2    38     2
+    70     2    76     2   129     2    18     2    27     2
+    28     2     8     2    36     2    83     2    88     2
+    14     2    65     2    21     2    19     2     2     2
+    24     2    41     2    37     2    29     2     9     2
+    26     1     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG2101
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+591
+736
+280
+220
+196
+346
+210
+224
+270
+284
+311
+184
+123
+131
+114
+55
+83
+56
+80;;85=80+5
+5
+36
+46
+39
+10;;13=10+3
+3
+18
+23
+63
+136
+42
+60
+64
+20
+1;;ausente
+43
+79
+80
+9
+33
+39
+77
+81
+127
+17
+24
+27
+11
+35
+85
+101
+15
+70
+24
+30;;34=30+4
+4
+26
+49
+46
+29
+8
+26
+
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1962
+DateEnd=2021
+KeyCode=RAG2102
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+477
+934
+231
+168
+152
+262
+209
+170
+178
+227
+253
+183
+93
+121
+127
+114
+117
+119
+107
+21
+30
+74
+56
+21
+1;;ausente
+11
+25
+98
+198
+53
+74
+78
+30
+1;;ausente
+37
+127
+101
+15
+37
+38
+64
+72
+131
+19
+30
+29
+6
+38
+82
+76
+14
+61
+18
+9
+1;;ausente
+22
+33
+28
+30
+11
+
+HEADER:
+DataFormat=HalfChrono
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG22
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2201,RAG2202
+ChronoMemberCount=2
+DATA:Double
+   308     1   399     2   148     2   190     2   231     2
+   356     2   223     2   225     2   212     2   216     2
+   176     2   138     2    87     2   117     2    75     2
+    61     2    87     2   101     2    74     2    18     2
+    12     2    55     2    50     2    15     2     5     2
+    17     2    32     2    73     2   114     2    32     2
+    46     2    41     2    18     2     9     2    46     2
+    91     2    91     2    16     2    42     2    50     2
+    90     2    70     2    97     2    17     2    18     2
+    21     2     4     2    33     2    83     2    81     2
+    19     2    73     2    24     2    25     2     5     2
+    12     2    28     2    30     2    28     2    11     2
+    17     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG2201
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+398
+155
+201
+261
+399
+241
+262
+244
+226
+167
+149
+96
+129
+83
+53
+92
+85
+73
+17
+9
+48
+39
+12;;17=12+5
+5
+14
+34
+66
+114
+31
+38
+37
+14
+7
+44
+89
+73
+8
+26
+26
+54
+53
+66
+9
+15
+13
+6
+25;;31=25+6
+63
+63
+12
+62
+17
+14
+5
+10;;15=10+5
+17
+18
+18
+6
+15
+
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG2202
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+308
+400
+141
+180
+201
+313
+205
+189
+181
+206
+185
+128
+79
+106
+67
+69
+83
+118
+76
+19
+15
+62
+61
+19
+6
+20;;26=6+20
+30
+80
+114
+34
+55
+45
+22
+12
+49
+94
+110
+25
+58
+75
+126
+88
+128
+25
+22
+30;;33=30+3
+3
+42
+103
+99
+26
+84
+32
+37
+5
+15;;20=5+15
+39
+42
+39
+17
+19
+
+HEADER:
+DataFormat=HalfChrono
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG23
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2301,RAG2302
+ChronoMemberCount=2
+DATA:Double
+   206     1   148     1   341     1   458     1   211     1
+   183     1   191     2   320     2   202     2   215     2
+   153     2   158     2   179     2   128     2    96     2
+   118     2    89     2    51     2    68     2    67     2
+    62     2     1     2    14     2    38     2    36     2
+    25     2     7     2    26     2    41     2    30     2
+   121     2    35     2    54     2    54     2    14     2
+     2     2    49     2    93     2    84     2    11     2
+    32     2    30     2    59     2    75     2    85     2
+    10     2    26     2    25     2     3     2    32     2
+    95     2    69     2    11     2    62     2    16     2
+    23     2     4     2    35     2    66     2    42     2
+    30     2     9     2    25     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=57
+DateBegin=1966
+DateEnd=2022
+KeyCode=RAG2301
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+219
+342
+207
+206
+141
+123
+137
+108
+82
+103
+88
+46
+76
+71
+62
+1;;ausente
+10
+33
+33
+29
+1;;ausente
+19
+22
+27
+31
+20
+28
+33
+15
+1;;ausente
+40
+78
+70
+6
+24
+18
+50
+65
+78
+1;;ausente
+28
+24
+1;;ausente
+35
+67
+51
+8
+44
+6
+15
+1;;ausente
+18
+20
+25
+8
+1;;ausente
+25
+
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG2302
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+DATA:Single
+206
+148
+341
+458
+211
+183
+164
+299
+197
+224
+165
+194
+221
+148
+111
+134
+90
+56
+61
+64
+63
+1;ausente
+19
+43
+40
+22
+13
+34
+60;;93=33+60, lo medí como IADF, debían ser 2
+33
+211
+51
+81
+76
+13;;17=4+13, había tres microtraqueidas wedging ring
+4
+59
+109
+99
+17
+41
+43
+68
+86
+92
+20
+24
+27
+6
+30
+123
+88
+14
+80
+27
+31
+8
+53
+112
+59
+52
+17
+26
+
+HEADER:
+DataFormat=HalfChrono
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG24
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2401,RAG2402
+ChronoMemberCount=2
+DATA:Double
+   575     2   274     2   185     2   148     2   276     2
+   202     2   200     2   228     2   268     2   263     2
+   194     2   103     2   123     2   111     2    71     2
+    89     2    75     2    76     2     3     2     1     2
+     5     2    26     2    14     2     2     2    10     2
+    14     2    20     2    74     2    48     2    66     2
+    64     2    11     2    11     2    57     2   100     2
+   142     2    21     2    46     2    46     2    67     2
+    74     2   131     2    24     2    47     2    32     2
+     5     2    31     2    85     2   135     2    17     2
+    71     2    27     2    19     2     6     2    33     2
+    46     2    34     2    33     2    10     2    21     2
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG2401
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+584
+261
+166
+133
+280
+210
+231
+222
+242
+270
+205
+102
+129
+118
+77
+95
+76
+72
+5
+1;;ausente
+1;;ausente
+27
+14
+1;;ausente
+7
+8
+30
+59
+38
+61
+53
+9
+12
+53
+98
+133
+25
+49
+37
+60
+71
+149
+35
+51
+32
+9
+44
+105
+132
+20
+77
+31
+18
+11
+38
+38
+23
+24
+5
+16
+
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG2402
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+566
+287
+204
+164
+272
+195
+169
+235
+295
+257
+183
+105
+117
+105
+65
+83
+74
+80
+1;;ausente
+1;;ausente
+10
+26
+15
+3
+14
+20
+11
+90
+58
+72
+75
+14
+10
+62
+103
+152
+18
+44
+55
+74
+77
+113
+14
+43
+32
+1;;ausente
+18
+65
+138
+15
+65
+23
+20
+1;;ausent
+28
+55
+45
+43
+15
+27
+
+HEADER:
+DataFormat=HalfChrono
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG25
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2501,RAG2502
+ChronoMemberCount=2
+DATA:Double
+   385     2   505     2   207     2   176     2   188     2
+   309     2   210     2   255     2   264     2   178     2
+   198     2   157     2   121     2   131     2   120     2
+    62     2    63     2    55     2    67     2    10     2
+    12     2    39     2    26     2    13     2    18     2
+    18     2    36     2    28     2   106     2    32     2
+    56     2    41     2    15     2    11     2    37     2
+   106     2    73     2     7     2    30     2    20     2
+    49     2    45     2    61     2     4     2    14     2
+    17     2    19     2    39     2    42     2    30     2
+     4     2    25     2     5     2    21     2     1     2
+    21     2    17     2    13     2     8     2     1     2
+     4     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG2501
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+431
+504
+209
+178
+185
+282
+202
+215
+237
+159
+174
+147
+137
+142
+128
+84
+75
+64
+76
+10
+8
+35
+24
+11
+14
+22
+29
+16
+72
+18
+41
+32
+13
+11
+27
+93
+52
+4
+19
+18
+48
+32
+57
+1;;AUSENTE
+8
+16
+12
+23
+27
+30
+1;;ausente
+29
+9
+18
+1;;ausente
+19
+19
+17;;28=17+11
+11
+1;;ausente
+1;;ausentte
+
+HEADER:
+DataFormat=Tree
+Length=61
+DateBegin=1962
+DateEnd=2022
+KeyCode=RAG2502
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+339
+506
+205
+174
+192
+337
+219
+295
+291
+197
+223
+167
+105
+120
+112
+40
+52
+47
+59
+10
+17
+43
+28
+15
+23
+15
+44
+40
+140
+46
+71
+50
+18
+12
+48
+120
+94
+10
+42
+23
+51
+58
+66
+7
+20
+18
+27
+56
+57
+30
+7
+21
+1;;ausente
+25
+1;;ausente
+24
+15
+9
+6
+1;;ausente
+8
+
+HEADER:
+DataFormat=HalfChrono
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG26
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2601,RAG2602
+ChronoMemberCount=2
+DATA:Double
+   218     2   277     2   531     2   546     2   283     2
+   220     2   206     2   386     2   272     2   357     2
+   379     2   358     2   404     2   269     2   203     2
+   214     2   198     2    74     2    71     2    50     2
+    57     2    12     2    16     2    64     2    36     2
+    15     2    30     2    41     2    46     2    87     2
+   261     2    66     2   111     2    73     2    28     2
+    18     2    56     2   183     2   168     2    19     2
+    30     2    40     2   102     2    94     2   146     2
+    17     2    30     2    37     2    15     2    69     2
+   115     2   162     2    25     2   128     2    24     2
+    22     2    12     2    50     2    76     2    52     2
+    39     2    10     2    19     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG2601
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   222   276   526   524   265   223   177   319   233   340
+   384   343   375   280   187   219   177    60    52    30
+    43    10    13    60    27    12    34    38    44   108
+   295    72   129    79    30    21    55   153   154    16
+    23    26    60    66   132    19    29    42    14    72
+   104   163    33   159    36    36     9    60    80    57
+    37     9    22     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG2602
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   214   278   536   569   301   218   235   453   312   375
+   375   373   434   259   219   209   219    89    91    70
+    71    14    19    69    45    19    26    44    48    66
+   227    60    93    67    26    16    58   213   183    22
+    37    54   144   122   160    15    32    33    17    66
+   127   162    18    98    12     8    16    40    73    48
+    42    11    17     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG27
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2701,RAG2702
+ChronoMemberCount=2
+DATA:Double
+   146     2   145     2   112     2   321     2   185     2
+   216     2   201     2   172     2   201     2   177     2
+   124     2   148     2   133     2    91     2   171     2
+   178     2   155     2    12     2    17     2    71     2
+    48     2    20     2    19     2    38     2    52     2
+    60     2   131     2    50     2    86     2    64     2
+    24     2    11     2    62     2   114     2   110     2
+    14     2    52     2    47     2   104     2    94     2
+   119     2    22     2    39     2    30     2     6     2
+    42     2    59     2    64     2     8     2    61     2
+    13     2     8     2    11     2    25     2    25     2
+    22     2    30     2    13     2    22     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG2701
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+126
+160
+133
+254
+174
+183
+171
+164
+188
+186
+127
+145
+140
+121
+195
+214
+145;;151=145+6
+6
+13
+86
+60
+23
+29
+48
+65
+61
+175
+51
+95
+55
+24
+5
+47;;52=47+5
+95
+94
+11
+53
+34
+97
+82
+115
+22
+43
+36
+6
+45;;51=45+6
+74
+73
+9
+70
+15
+11;;16=11+5
+5
+19
+24
+24
+30
+15
+24
+
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG2702
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+167
+130
+91
+389
+197
+250
+232
+180
+215
+169
+121
+151
+127
+61
+148
+143
+166
+19
+21
+57
+37
+18
+9
+29
+39
+60
+88
+50
+78
+74
+24
+18
+78
+133
+127
+17
+52
+60
+111
+106;;94+12, IADF
+124
+22
+36
+24
+7
+39
+44
+55
+7
+53
+11
+5
+18
+31
+26
+20
+31
+12
+20
+
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=RAG28
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2801,RAG2802
+ChronoMemberCount=2
+DATA:Double
+   225     1   154     2   154     2   299     2   131     2
+   177     2   148     2   151     2   159     2   210     2
+   164     2   225     2   217     2   130     2   108     2
+   123     2   109     2    28     2    27     2    69     2
+    38     2    20     2    18     2    28     2    47     2
+    49     2    75     2    35     2    68     2    71     2
+    35     2    22     2    82     2   129     2    83     2
+    19     2    46     2    49     2   119     2   126     2
+    98     2    19     2    29     2    22     2    10     2
+    31     2    47     2    63     2    14     2    52     2
+    21     2    22     2    12     2    40     2    46     2
+    38     2    30     2    25     2    38     2     0     0
+HEADER:
+DataFormat=Tree
+Length=58
+DateBegin=1965
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=RAG2801
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    94   114   133    48    41    38    71    64   158   188
+   261   232   153   112   148   125    44    22    69    42
+    20     7    20    31    62    55    33    66    66    38
+    25    94   123    80    17    49    54   142   183   140
+    28    32    27    13    38    48    67    13    53    22
+    25    19    35    35    41    31    27    47     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG2802
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   225   215   195   466   215   314   258   232   255   262
+   141   190   203   107   105    98    94    12    33    70
+    34    20    29    37    64    36    96    37    71    77
+    33    20    71   136    86    22    44    44    97    70
+    56    11    27    18     8    25    47    60    15    51
+    20    20     6    46    58    35    30    24    29     0
+HEADER:
+DataFormat=HalfChrono
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG29
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=hasta el centro, edad real
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG2901,RAG2902
+ChronoMemberCount=2
+DATA:Double
+   187     2   205     2   441     2   477     2   275     2
+   173     2   140     2   195     2   182     2   215     2
+   249     2   200     2   205     2   234     2   186     2
+   201     2   159     2   104     2   116     2   112     2
+   119     2    38     2    51     2    33     2    59     2
+    26     2    23     2    22     2    32     2    46     2
+    52     2    28     2    64     2    39     2    21     2
+     9     2    50     2    61     2    50     2     5     2
+    24     2    24     2    57     2    60     2    62     2
+     8     2    27     2    21     2     8     2    56     2
+    40     2    34     2     6     2    31     2    15     2
+    25     2     4     2    32     2    21     2    13     2
+    23     2     9     2    23     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG2901
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+207
+209
+467
+517
+316
+184
+160
+195
+172
+224
+254
+234
+232
+227
+154
+196
+141
+88
+107
+97
+99
+23
+43
+36
+60;;72=60+12
+12
+7
+25;;32=7+25
+21
+17
+30;;39=9+30
+9
+51
+26
+16
+9
+37
+53
+39
+6
+27
+26
+57
+61
+76
+5
+27
+22
+7
+57
+45
+36
+7
+33
+18
+21
+6
+38
+21
+13
+22
+10
+22
+
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG2902
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=hasta el centro, edad real
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+168
+201
+416
+438
+235
+162
+121
+196
+193
+206
+245
+167
+179
+241
+218
+206
+178
+121
+126
+127
+139
+53
+59
+30
+58
+40
+39
+20
+44
+76
+74
+47
+77
+53
+27
+10
+63
+70
+61
+5
+21
+22
+58
+60
+49
+11
+28
+21
+10
+55
+35
+33;;39=33+5, ausente
+5
+30;;13=30+13, era una IADF
+13
+29;;32=29+3, debía haber un ausente
+3
+27
+21
+13
+25
+9
+24
+
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG30
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3001,RAG3002
+ChronoMemberCount=2
+DATA:Double
+   264     2   261     2   274     2   395     2   230     2
+   311     2   269     2   186     2   151     2   179     2
+   133     2   197     2   204     2   170     2   171     2
+   144     2   130     2    24     2    35     2    34     2
+   102     2    79     2    40     2    39     2    73     2
+   216     2   190     2    60     2   110     2    84     2
+    52     2    43     2   111     2   164     2   138     2
+    29     2    81     2    84     2   125     2   131     2
+   166     2    24     2    54     2    53     2    21     2
+    75     2    98     2   105     2    27     2    96     2
+    38     2    68     2    20     2    57     2    71     2
+    47     2    43     2    32     2    39     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG3001
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+271
+250
+251
+323
+225
+242
+229
+158
+111
+145
+105
+159
+154
+123
+159
+136
+116
+22
+27
+28
+92
+73
+28
+27
+57
+177;;102+75, IADF
+152
+45
+89
+69
+51
+40
+105
+147
+119
+23
+69
+63
+113
+119
+164
+24
+50
+49
+19
+70
+97
+103
+26
+86
+34
+70
+21
+55
+58
+45
+43
+33
+32
+
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG3002
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   258   272   297   467   235   380   309   214   191   213
+   162   235   254   218   183   153   144    26    44    40
+   113    85    52    51    89   255   229    76   132    99
+    54    47   117   182   158    36    94   106   137   144
+   169    25    58    57    24    81    99   108    28   107
+    42    67    20    60    84    50    43    31    46     0
+HEADER:
+DataFormat=HalfChrono
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG31
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3101,RAG3102
+ChronoMemberCount=2
+DATA:Double
+   372     2   529     2   418     2   259     2   229     2
+   240     2   320     2   184     2   282     2   258     2
+   208     2   229     2   188     2   138     2   165     2
+   174     2   131     2   147     2   155     2   172     2
+    32     2    32     2    17     2    62     2    93     2
+    40     2    45     2    48     2   155     2   160     2
+    52     2    72     2    60     2    35     2    20     2
+    66     2   136     2   102     2    14     2    35     2
+    50     2    79     2   107     2    90     2     8     2
+    52     2    20     2     8     2    22     2    29     2
+    45     2     7     2    63     2    15     2    45     2
+    14     2    15     2    30     2    20     2    29     2
+    14     2    24     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG3101
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+402
+484
+394
+236
+218
+212
+291
+165
+213
+203
+189
+214
+208
+157
+176
+184
+121
+128
+161
+156
+23
+27
+10
+55
+80
+29
+37
+34
+87
+138
+54
+85
+70
+36
+15
+60
+88
+95
+11
+42
+47
+99
+96
+101
+5;;30=5+25
+25
+18
+6
+23;;29=23+6
+32
+60
+8
+70;;78=70+8
+18
+53;;46+7
+19
+22
+22
+16
+25
+10
+16
+
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG3102
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+342
+574
+443
+282
+240
+269
+350
+203
+351
+313
+228
+245
+169
+119
+154
+164
+142
+166
+150
+189
+42
+38
+24
+70
+107
+51
+53
+62
+224;;99+125, era una IADF en muchos árboles
+183
+50
+60
+50
+35
+25
+73
+184
+110;;127=110+27
+17
+28
+54
+59
+119
+80
+12
+80;;92=80+12
+22
+11
+22
+26
+30;;36=30+6
+6
+56
+13
+38
+10
+9
+38
+25
+34
+19
+32
+
+HEADER:
+DataFormat=HalfChrono
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG32
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3201,RAG3202
+ChronoMemberCount=2
+Comment=Podría ser un doble anillo el 1988-1989, pero lo dejo así porque se veía perfecto
+DATA:Double
+   560     2   362     2   332     2   424     2   365     2
+   436     2   414     2   360     2   334     2   321     2
+   304     2   267     2   261     2   182     2   175     2
+   170     2   154     2    82     2    90     2    75     2
+   145     2   119     2    89     2    56     2    86     2
+   118     2    96     2   159     2    88     2   127     2
+   135     2    89     2    65     2   133     2   218     2
+   143     2    60     2   115     2   118     2   152     2
+   137     2   174     2    49     2    83     2    77     2
+    46     2    87     2   107     2   152     2    42     2
+   112     2    45     2    47     2    25     2    54     2
+    85     2    52     2    54     2    32     2    48     2
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=RAG3201
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   524   356   369   518   413   512   470   438   385   356
+   355   280   271   154   128   132   146    74    84    56
+   144   107    61    45    76   109    97   130    67   119
+   104    76    52    99   175   112    41   107    99   126
+   126   162    41    76    79    35    78    97   139    33
+    81    38    38    20    46    76    49    55    35    54
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG3202
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   596   369   295   331   317   361   358   283   283   286
+   254   254   252   210   222   208   162    90    97    95
+   147   131   117    67    96   128    96   189   110   135
+   166   103    79   167   262   174    80   124   137   179
+   149   187    57    91    75    58    96   118   165    51
+   143    53    57    30    62    94    56    53    30    43
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG33
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3301,RAG3302
+ChronoMemberCount=2
+DATA:Double
+   359     2   304     2   260     2   376     2   252     2
+   276     2   305     2   279     2   278     2   211     2
+   152     2   162     2   130     2    98     2   148     2
+    92     2    92     2     8     2     9     2    15     2
+    32     2    28     2    22     2    15     2    21     2
+    40     2   105     2    71     2    97     2    86     2
+    32     2    13     2    46     2   152     2   127     2
+    45     2    60     2    55     2    83     2    83     2
+   136     2    35     2    49     2    39     2    19     2
+    28     2    66     2   117     2    32     2    87     2
+    38     2    23     2    21     2    49     2    48     2
+    47     2    47     2    21     2    35     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG3301
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   341   281   297   402   287   292   307   256   269   202
+   161   166   143   124   192   102    95    11    10    18
+    36    31    27    16    27    50   132    91   113    99
+    34    15    52   184   116    52    64    65    93    99
+   161    36    59    47    26    28    75   129    41   106
+    50    26    23    56    59    56    54    19    44     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG3302
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   378   327   224   351   217   261   304   303   287   221
+   144   158   118    72   105    82    90     6     8    13
+    28    25    17    15    16    30    78    52    82    74
+    30    11    41   121   139    39    56    46    73    67
+   111    34    39    31    12    29    58   105    24    68
+    26    21    20    42    38    38    40    24    26     0
+HEADER:
+DataFormat=HalfChrono
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG34
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3401,RAG3402
+ChronoMemberCount=2
+DATA:Double
+   123     1   260     2   440     2   601     2   217     2
+   156     2   204     2   407     2   242     2   277     2
+   290     2   263     2   212     2   171     2   135     2
+   178     2   149     2    83     2    97     2   106     2
+   129     2    15     2    22     2    53     2    66     2
+    27     2    25     2    27     2    45     2    48     2
+   197     2    63     2    90     2    74     2    36     2
+    22     2    68     2   123     2   128     2    28     2
+    56     2    63     2   110     2    84     2   134     2
+    14     2    30     2    24     2    10     2    34     2
+    55     2    65     2    12     2    46     2    15     2
+    24     2    11     2    47     2    42     2    36     2
+    40     2    20     2    42     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=63
+DateBegin=1960
+DateEnd=2022
+KeyCode=RAG3401
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+123
+208
+363
+511
+251
+165
+219
+431
+304
+341
+374
+275
+206
+161
+125
+180
+167
+102
+96
+107
+144
+17;;9+8
+28
+59
+69
+26
+22
+21
+47
+52
+214
+71
+79
+72
+37
+9
+49
+98
+121
+29
+60
+55
+94
+75
+125
+14
+28
+25
+14
+38
+56
+55
+8
+31
+8
+15
+8
+40
+38
+34
+40
+22
+39
+
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG3402
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+   313   517   691   183   148   189   384   181   214   206
+   251   219   182   145   177   132    65    98   106   114
+    14    16    47    63    29    28    34    44    45   180
+    55   101    76    36    36    88   149   135    27    53
+    71   126    94   144    15    33    24     7    31    54
+    75    16    61    22    34    15    54    46    38    40
+    18    45     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=64
+DateBegin=1959
+DateEnd=2022
+KeyCode=RAG35
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3501b,RAG3502
+ChronoMemberCount=2
+DATA:Double
+   258     1   354     1   434     1   572     1   572     2
+   356     2   295     2   327     2   406     2   340     2
+   278     2   392     2   453     2   389     2   369     2
+   258     2   287     2   261     2   202     2   235     2
+   223     2   225     2    73     2   103     2    78     2
+   111     2   136     2    93     2    84     2    82     2
+   183     2   309     2   164     2   186     2   148     2
+    96     2    53     2    94     2   227     2   190     2
+    68     2   124     2   162     2   206     2   185     2
+   232     2    42     2    78     2    81     2    43     2
+   107     2   171     2   175     2    50     2   214     2
+    34     2    94     2    48     2    61     2    55     2
+    77     2    75     2    50     2    68     2     0     0
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG3501
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=Dificil, IADFs al final
+Dated=Dated
+DATA:Single
+473
+358
+295
+311
+385
+298
+256
+435
+536
+488
+450
+298
+361
+358
+282
+322
+286
+285
+99
+133
+97
+150
+195
+143
+128
+100
+305
+399
+191
+221
+168
+123
+79
+120
+266
+217
+72
+131
+155
+196;;166+30
+179
+222
+44
+73
+85
+53
+113
+158
+174
+48
+176
+40
+105
+72
+89;;38+32+19
+67
+94
+85
+75
+85;;40+45
+
+HEADER:
+DataFormat=Tree
+Length=64
+DateBegin=1959
+DateEnd=2022
+KeyCode=RAG3502
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+258
+354
+434
+572
+672
+354
+295
+344
+428
+382
+301
+349
+371
+291
+288
+218
+214
+164
+122
+148
+160
+166
+48
+74;;65+19
+59
+72
+77
+44
+40
+64
+62
+220
+138
+151
+128
+70
+27
+68
+188
+164
+65
+118
+170
+217;;183+34
+191
+243
+41
+84
+77
+34
+101
+184
+176
+52
+252;;197+55
+29
+84
+24
+34
+44
+61
+66
+26
+52
+
+HEADER:
+DataFormat=HalfChrono
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG36
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3601,RAG3602
+ChronoMemberCount=2
+DATA:Double
+   511     2   331     2   264     2   296     2   375     2
+   226     2   261     2   278     2   317     2   249     2
+   223     2   179     2   179     2   164     2   142     2
+   154     2   114     2   119     2    29     2    42     2
+    67     2    63     2    37     2    31     2    44     2
+    60     2    49     2   136     2    38     2    70     2
+    56     2    32     2    28     2    75     2   139     2
+   125     2    18     2    51     2    72     2   136     2
+   140     2   168     2    40     2    71     2    56     2
+    31     2    73     2   130     2   134     2    28     2
+   108     2    34     2    43     2    12     2    50     2
+    56     2    49     2    45     2    37     2    53     2
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG3601
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+589
+321
+264
+281
+395
+231
+263
+293
+311
+257
+225
+173
+164
+154
+133
+168
+122
+116
+34
+44;;31+13,  IADF
+76
+70
+41
+39
+47
+70
+54
+140
+39
+80
+64
+44
+32
+87
+164
+136
+18
+49
+67
+122
+110
+141
+41
+56
+44
+28
+64
+110
+107
+23
+93
+26;;18+8, IADF
+34
+4;;44=4+40, ausente?
+40
+44
+42
+35
+24
+39
+
+HEADER:
+DataFormat=Tree
+Length=60
+DateBegin=1963
+DateEnd=2022
+KeyCode=RAG3602
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+433
+341
+264
+311
+356
+221
+260
+264
+324
+241
+222
+185
+195
+174
+151
+140
+107
+122
+24
+41;;28+13, IADF
+58
+56
+34
+23
+42
+50
+44
+133
+38
+60
+48
+21
+24;;10+14, IADF
+64
+114
+114
+19
+53
+77
+151;;122+29, IADF
+170
+195
+40
+86
+68
+35
+82
+150
+162
+33
+123
+42;;28+14, IADF
+53
+21
+60
+68
+57
+56
+50
+68
+
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG37
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3701,RAG3702
+ChronoMemberCount=2
+DATA:Double
+   333     2   228     2   215     2   312     2   203     2
+   201     2   234     2   162     2   222     2   199     2
+   129     2   153     2   150     2   119     2    74     2
+    81     2    82     2    23     2    41     2    57     2
+    41     2    16     2     4     2    21     2    35     2
+   106     2   118     2    36     2    54     2    48     2
+    25     2    12     2    54     2   136     2    57     2
+    15     2    42     2    38     2    80     2    84     2
+    95     2    12     2    42     2    46     2    11     2
+    50     2   143     2   123     2    21     2    65     2
+    26     2    38     2     7     2    39     2    71     2
+    62     2    48     2    29     2    39     2     0     0
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG3701
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+350
+240
+238
+322
+220
+210
+207
+167
+227
+200
+137
+146
+122
+114
+86
+81
+90
+31
+55
+67
+59
+12;;18=6+12
+6
+20
+39
+93
+98
+34
+46
+45
+19
+9
+50
+122
+51
+11
+33
+33
+95
+84
+103
+10
+45
+56
+11
+56
+175
+139
+21
+64
+25
+38
+6
+30
+43
+44
+35
+27
+29
+
+HEADER:
+DataFormat=Tree
+Length=59
+DateBegin=1964
+DateEnd=2022
+KeyCode=RAG3702
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+316
+216
+193
+302
+187
+193
+261
+158
+217
+198
+122
+161
+179
+124
+63
+82
+75
+16
+27
+47
+23
+20;;23=20+3, igual habia una fila de traqueidas en el 1986
+3
+22
+32
+120
+138
+38
+63
+51
+32
+15
+59
+151
+63
+20
+52
+44
+66
+85
+88
+15
+39
+37
+12
+44
+112
+108
+21
+66
+27
+38
+8
+49
+100
+81
+61
+32
+49
+
+HEADER:
+DataFormat=HalfChrono
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG38
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3801,RAG3802
+ChronoMemberCount=2
+DATA:Double
+   130     2   172     2   318     2   154     2   102     2
+   147     2   284     2   226     2   219     2   346     2
+   371     2   421     2   299     2   254     2   260     2
+   224     2   105     2   143     2   131     2   168     2
+    44     2    40     2    47     2    86     2    65     2
+    35     2    49     2    78     2    91     2   220     2
+    81     2   153     2   112     2    46     2    30     2
+    80     2   192     2   123     2    21     2    46     2
+    64     2   140     2   119     2   122     2    12     2
+    42     2    39     2    18     2    49     2   147     2
+   145     2    30     2   113     2    44     2    55     2
+    14     2    32     2    53     2    37     2    41     2
+    27     2    33     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG3801
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+99
+162
+301
+124
+74
+123
+234
+170
+212
+282
+346
+368
+255
+198
+217
+188
+86
+97
+99
+121
+16
+12
+60
+74
+56
+33
+72
+100
+57;;157=100+57, ERAN DOS, lo había tomado como IADF
+224
+82
+156
+130
+45
+29
+70
+207
+136
+14
+45
+51
+109
+98
+110
+12
+48
+32
+16
+46
+156
+171
+38
+135
+47
+49
+9
+32
+68
+43
+42
+34
+29
+
+HEADER:
+DataFormat=Tree
+Length=62
+DateBegin=1961
+DateEnd=2022
+KeyCode=RAG3802
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=CENTRO
+Unit=1/100 mm
+DATA:Single
+   161   183   336   185   131   171   335   283   227   410
+   397   475   343   310   303   260   125   189   163   215
+    72    68    35    99    74    38    27    57   126   217
+    81   150    94    48    31    91   177   111    28    48
+    78   172   141   135    13    37    46    21    53   138
+   119    23    92    42    62    19    32    38    31    40
+    20    37     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=56
+DateBegin=1959
+DateEnd=2014
+KeyCode=RAG39
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG3901,RAG3902
+ChronoMemberCount=2
+DATA:Double
+   142     2   120     2   389     2   438     2   583     2
+   538     2   338     2   339     2   257     2    71     2
+   205     2   284     2   142     2    68     2    38     2
+   174     2    92     2   102     2    65     2   104     2
+   130     2    89     2     1     2     1     2    65     2
+    72     2    98     2     1     2    33     2    87     2
+   173     2   149     2     2     2    51     2    30     2
+     6     2     5     2    22     2    16     2    11     2
+    10     2     7     2     8     2     9     2     7     2
+    10     2     4     1     5     1    10     1     2     1
+     3     1     2     1     5     1     2     1     3     1
+     8     1     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=56
+DateBegin=1959
+DateEnd=2014
+KeyCode=RAG3901
+Comment=muerto
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+147
+122
+407
+428
+644
+574
+375
+302
+236
+63
+130
+219
+119
+72
+38
+140
+75
+76
+52
+79
+131
+92
+1;;ausente
+1;;ausente
+72
+65
+112
+1;;ausente
+65
+97
+126
+94
+4
+11
+44
+7
+4
+22
+14
+9
+15
+4
+4
+7
+2
+6
+4
+5
+10
+2
+3
+2
+5
+2
+3
+8
+
+HEADER:
+DataFormat=Tree
+Length=46
+DateBegin=1959
+DateEnd=2004
+KeyCode=RAG3902
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+137
+119
+371
+449
+522
+503;;347+28
+302
+376
+278
+80
+280
+350
+165
+65
+38
+209
+110
+129
+78
+130
+130
+87
+1;;ausente
+1;;ausente
+59
+79
+85
+1;;ausente
+1;;ausente
+77
+220
+204
+1;;ausente
+91
+17
+5
+6
+22
+18
+13
+6
+11
+13
+12
+12
+15
+
+HEADER:
+DataFormat=HalfChrono
+Length=55
+DateBegin=1968
+DateEnd=2022
+KeyCode=RAG40
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=RAG4001,RAG4002
+ChronoMemberCount=2
+DATA:Double
+   228     2   265     2   215     2   237     2   202     2
+   199     2   107     2   152     2   206     2   191     2
+   252     2   173     2   181     2    55     2    63     2
+    55     2   108     2    96     2    78     2    81     2
+   102     2   283     2   261     2    90     2   130     2
+   100     2    49     2    35     2   100     2   138     2
+   149     2    42     2    87     2   110     2   142     2
+   119     2   152     2    29     2    41     2    40     2
+    31     2    55     2    71     2   100     2    28     2
+   116     2    62     2    59     2    21     2    60     2
+    76     2    40     2    48     2    43     2    42     2
+HEADER:
+DataFormat=Tree
+Length=55
+DateBegin=1968
+DateEnd=2022
+KeyCode=RAG4001
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+228
+282
+233
+240
+194
+186
+104
+171
+233
+195
+243
+166
+164
+49
+69
+68
+133
+97
+77
+79
+88
+224;;IADF
+221
+85
+129
+83
+48
+34
+97
+140
+145
+42
+93
+123
+150
+123
+146
+23
+34
+31
+29
+44
+63
+74
+27
+91
+48
+38
+18
+38
+59
+36
+40
+38
+40
+
+HEADER:
+DataFormat=Tree
+Length=55
+DateBegin=1968
+DateEnd=2022
+KeyCode=RAG4002
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   228   248   197   235   210   212   110   133   180   188
+   262   180   199    61    58    42    84    95    79    84
+   117   342   302    96   132   117    50    36   103   136
+   154    42    82    97   135   116   159    36    48    50
+    34    67    80   127    30   142    76    80    24    83
+    94    45    57    49    45     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=64
+DateBegin=1959
+DateEnd=2022
+KeyCode=Ragua39
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=RAG0101,RAG0501,RAG02,RAG03,RAG04,RAG06,RAG07,RAG08,RAG10,RAG11,RAG12,RAG13,RAG14,RAG15,RAG16,RAG17,RAG18,RAG19,RAG20,RAG21,RAG22,RAG23,RAG24,RAG25,RAG26,RAG27,RAG28,RAG29,RAG30,RAG31,RAG32,RAG33,RAG34,RAG35,RAG36,RAG37,RAG38,RAG39,RAG40
+ChronoMemberCount=39
+DATA:Double
+   185     3   221     9   287    14   429    21   500    26
+   280    37   220    37   222    37   330    37   227    38
+   261    39   261    39   248    39   245    39   203    39
+   158    39   169    39   158    39   110    39   121    39
+   114    39   112    39    24    39    29    39    46    39
+    56    39    41    39    24    39    31    39    48    39
+    82    39   144    39    54    39    81    39    72    39
+    33    39    19    39    65    39   128    39   102    39
+    23    39    47    39    52    39    90    39    89    39
+   111    39    20    39    37    39    34    39    15    39
+    42    39    77    39    87    39    18    39    69    39
+    23    38    31    37    12    37    38    37    49    37
+    38    37    36    37    19    37    30    37     0     0

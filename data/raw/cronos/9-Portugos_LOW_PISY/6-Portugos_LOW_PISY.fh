@@ -1,0 +1,3422 @@
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL01
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL01A,PL01B
+ChronoMemberCount=2
+DATA:Double
+   200     2   289     2   141     2   454     2   274     2
+   445     2   526     2   596     2   572     2   510     2
+   636     2   699     2   623     2   583     2   601     2
+   444     2   545     2   377     2   399     2   190     2
+   121     2   149     2   186     2   229     2   235     2
+   160     2   148     2   144     2   121     2    40     2
+   140     2    93     2   174     2    90     2   221     2
+   233     2   122     2   145     2   177     2    51     2
+    69     2    47     2    58     2    48     2    74     2
+    94     2    38     2   106     2    46     2    69     2
+    57     2    64     2    58     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL01A
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   253   347   152   510   339   545   606   698   669   578
+   753   776   747   676   761   586   645   532   500   237
+   170   192   201   268   287   187   168   154   140    60
+   165   109   186    93   253   273   153   157   200    51
+    81    55    57    40    87    73    36   108    50    78
+    74    80    77     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL01B
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   147   231   130   398   210   345   446   494   476   443
+   519   623   499   491   442   303   446   222   299   144
+    72   106   172   190   184   133   128   134   102    20
+   115    77   162    87   189   194    92   133   155    52
+    58    39    59    56    61   115    40   105    42    61
+    41    48    40     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=52
+DateBegin=1967
+DateEnd=2018
+KeyCode=PL02
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=PL02c,PL02D
+ChronoMemberCount=2
+DATA:Double
+   134     1   206     2   354     2   113     2   288     2
+   381     2   383     2   372     2   325     2   419     2
+   405     2   455     2   371     2   347     2   348     2
+   333     2   239     2   246     2   175     2   108     2
+    88     2   155     2   182     2   180     2   146     2
+   136     2   120     2   105     2    49     2    94     2
+    86     2   158     2   125     2   162     2   156     2
+   107     2   104     2    83     2    31     2    44     2
+    52     2    66     2    36     2    39     2    60     2
+    22     2    71     2    47     2    59     2    41     2
+    43     2    32     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=51
+DateBegin=1968
+DateEnd=2018
+KeyCode=PL02C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   236   334   110   268   364   375   370   332   445   430
+   427   376   318   355   321   221   224   150   119    91
+   131   143   193   158   152   122   116    63   112    86
+   158   138   184   192   106   127    65    26    40    52
+    65    37    39    47    23    85    50    63    43    43
+    34     0     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=52
+DateBegin=1967
+DateEnd=2018
+KeyCode=PL02D
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   134   176   374   116   308   399   391   375   319   394
+   381   484   366   377   341   346   258   268   201    97
+    85   180   222   167   135   120   119    95    35    77
+    86   158   113   141   120   108    81   102    36    49
+    52    67    36    39    73    22    58    45    56    39
+    44    31     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=53
+DateBegin=1966
+DateEnd=2018
+KeyCode=PL03
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL03A,PL03B
+ChronoMemberCount=2
+DATA:Double
+   156     2   293     2   337     2   476     2   237     2
+   250     2   292     2   303     2   308     2   310     2
+   414     2   478     2   541     2   448     2   442     2
+   365     2   401     2   222     2   317     2   259     2
+   148     2   155     2   185     2   178     2   192     2
+   130     2   149     2   120     2    88     2    34     2
+   130     2   135     2   168     2   123     2   210     2
+   214     2   134     2   141     2   197     2   103     2
+   126     2   136     2   130     2   141     2   185     2
+   316     2   106     2   316     2   103     2   121     2
+    63     2    90     2   121     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=53
+DateBegin=1966
+DateEnd=2018
+KeyCode=PL03A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   156   291   388   542   291   300   348   366   386   372
+   454   490   563   424   406   363   376   235   270   247
+   133   162   157   144   189    96    92    83    66    15
+   114   129   196   119   231   222   155   141   208    92
+    83   115   109   144   195   317    93   305    90   101
+    61    96   122     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=53
+DateBegin=1966
+DateEnd=2018
+KeyCode=PL03B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   156   295   286   410   184   201   236   240   230   248
+   374   467   519   472   479   367   427   210   364   271
+   164   148   213   212   196   164   207   158   111    54
+   147   142   141   127   190   206   113   142   187   115
+   169   158   152   139   175   315   119   328   117   142
+    66    85   120     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL04
+Unit=1/100 mm
+Length=47
+DateBegin=1972
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL0401,PL0402
+ChronoMemberCount=2
+DATA:Double
+   407     1   625     1   518     2   420     2   747     2
+   628     2   673     2   461     2   417     2   319     2
+   288     2   227     2   249     2   169     2   136     2
+    99     2    91     2   108     2    91     2    81     2
+    81     2    64     2    54     2    19     2    55     2
+    71     2   117     2    57     2    92     2    84     2
+    56     2    55     2    63     2    28     2    37     2
+    27     2    39     2    21     2    19     2    31     2
+    12     2    43     2    30     2    42     2    22     2
+    26     2    31     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL0401
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   391   299   693   589   589   410   411   438   272   191
+   245   149   121    87    90   106    88    75    85    66
+    56    12    37    59   101    53    98    78    51    61
+    64    37    46    30    49    24    20    45    15    55
+    33    41    19    23    35     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL0402
+Unit=1/100 mm
+Length=47
+DateBegin=1972
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   407   625   646   541   802   668   757   513   423   201
+   305   264   254   190   152   112    92   110    95    87
+    78    63    53    27    73    84   133    62    87    91
+    61    50    62    20    28    24    29    19    19    18
+    10    31    27    43    26    29    28     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL05
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL0005_1,PL0005_2
+ChronoMemberCount=2
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Double
+   509     1   321     1   567     2   528     2   788     2
+   629     2   564     2   508     2   583     2   373     2
+   612     2   362     2   328     2   315     2   282     2
+   211     2   234     2   163     2   160     2   108     2
+   106     2    21     2   153     2   119     2   183     2
+   117     2   192     2   202     2   119     2   157     2
+   219     2   130     2   136     2    92     2   103     2
+    96     2    87     2   115     2    43     2   115     2
+    56     2    96     2    46     2    73     2    51     2
+HEADER:
+DataFormat=Tree
+KeyCode=PL0501
+Unit=1/100 mm
+Length=43
+DateBegin=1976
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   679   690   722   707   499   402   475   284   504   271
+   259   284   279   205   221   139   146   119   124    30
+   179   118   118    84   185   201   113   145   219    92
+   143    86   100    65    85    85    31    85    52    94
+    32    71    59     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL0502
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   509   321   456   366   855   552   630   615   691   462
+   720   454   397   346   286   218   248   187   174    97
+    88    13   127   121   249   151   200   204   125   170
+   220   168   130    98   107   128    90   146    56   146
+    61    98    61    75    44     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL06
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL06A,PL06B
+ChronoMemberCount=2
+DATA:Double
+   107     2    67     2   168     2   155     2   225     2
+   315     2   359     2   318     2   327     2   400     2
+   453     2   350     2   226     2   201     2   233     2
+   139     2   174     2   123     2   164     2   144     2
+    82     2    44     2   101     2   147     2   113     2
+   106     2    92     2    98     2    42     2    39     2
+    16     2    39     2    18     2    66     2    71     2
+    70     2    74     2    96     2    41     2    50     2
+   100     2    96     2    68     2    74     2   130     2
+    45     2   177     2    78     2    88     2    47     2
+    34     2    77     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL06A
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   108    86   202   147   246   382   429   405   453   462
+   558   453   306   225   308   189   234   148   197   205
+   110    57   124   211   156   154   120   124    59    63
+    21    64    25   105   100   102   103   128    54    55
+   125   134    93   106   182    56   221   104   119    57
+    52    79     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL06B
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   106    48   135   164   205   248   290   232   201   338
+   349   247   146   178   158    89   115    99   131    84
+    54    31    79    84    70    58    65    73    25    16
+    11    14    11    27    43    39    45    64    28    45
+    76    58    44    43    79    34   134    52    57    37
+    16    75     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL07
+Unit=1/100 mm
+Length=44
+DateBegin=1975
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL0701,PL0702
+ChronoMemberCount=2
+DATA:Double
+   275     1   554     1   434     2   524     2   370     2
+   419     2   295     2   379     2   237     2   313     2
+   207     2   223     2    85     2   246     2   236     2
+   235     2   104     2   131     2    93     2    80     2
+     3     2    67     2    33     2    85     2    38     2
+   116     2   111     2    75     2    97     2   109     2
+    68     2    78     2    87     2    81     2    44     2
+    68     2    78     2    46     2   136     2   102     2
+    73     2    41     2    46     2    31     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL0701
+Unit=1/100 mm
+Length=44
+DateBegin=1975
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+275
+554
+409
+520
+330
+452
+322
+383
+250
+408
+222
+226
+136
+231
+221
+216
+92
+124
+102
+85
+3;;ausente
+61
+34
+84
+38
+109
+91
+59
+63
+71
+45
+60
+64
+51
+28
+48
+64
+34
+108
+88
+66
+33
+26
+19
+
+HEADER:
+DataFormat=Tree
+KeyCode=PL0702
+Unit=1/100 mm
+Length=42
+DateBegin=1977
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+460
+529
+411
+387
+269
+376
+224
+219
+193
+220
+34
+262
+251
+255
+116
+138
+84
+75
+3;;ausenter
+74
+32
+86
+39
+123
+132
+91
+132
+147
+92
+97
+111
+112
+61
+89
+92
+59
+165
+117
+81
+50
+66
+44
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL08
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL08A,PL08B
+ChronoMemberCount=2
+DATA:Double
+   133     2   138     2   251     2   332     2   371     2
+   277     2   328     2   275     2   370     2   575     2
+   441     2   452     2   412     2   589     2   521     2
+   509     2   458     2   546     2   441     2   286     2
+   224     2   379     2   368     2   279     2   262     2
+   175     2   124     2   114     2     9     2    85     2
+    83     2   170     2   111     2   287     2   270     2
+   199     2   149     2   192     2    83     2   119     2
+   128     2   156     2    76     2    77     2    95     2
+    33     2    60     2    94     2    49     2    38     2
+    52     2    54     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL08A
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   158   130   209   245   279   247   293   282   297   422
+   322   307   422   623   608   507   494   646   483   278
+   191   368   319   251   234   142   124   110    19   101
+    92   172   108   211   196   122   139   174    77   110
+    93   107    97    70   101    38    65   109    66    40
+    66    56     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL08B
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   108   147   294   419   464   307   364   268   443   728
+   560   597   402   555   435   512   423   446   400   295
+   257   390   417   307   291   209   125   119     0    69
+    75   169   114   364   345   276   159   211    89   128
+   164   205    56    85    89    29    55    79    32    36
+    38    53     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL09
+Unit=1/100 mm
+Length=47
+DateBegin=1972
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL0009_1,PL0009_2
+ChronoMemberCount=2
+DATA:Double
+   273     1   324     1   373     1   378     1   710     1
+   626     2   661     2   486     2   566     2   435     2
+   486     2   300     2   393     2   240     2   244     2
+   128     2   169     2   181     2   182     2   127     2
+    97     2    81     2    55     2     3     2    29     2
+    52     2   131     2    62     2    99     2    56     2
+    52     2    51     2    55     2    28     2    39     2
+    26     2    38     2    19     2    25     2    39     2
+    22     2    26     2    21     2    21     2    17     2
+    22     2    25     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL0901
+Unit=1/100 mm
+Length=42
+DateBegin=1977
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   658   684   544   639   491   523   304   397   224   260
+   128   159   165   200   126   104    88    63     6    33
+    63   150    61    87    52    56    55    58    31    42
+    20    32    17    27    44    24    28    20    25    19
+    27    25     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL0902
+Unit=1/100 mm
+Length=47
+DateBegin=1972
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   273   324   373   378   710   594   638   429   493   379
+   449   296   389   257   229   128   180   198   164   129
+    90    74    48     0    26    41   113    64   112    61
+    49    47    52    26    36    32    44    21    24    35
+    20    25    22    17    15    18    25     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL10
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL0010_1,PL0010_2
+ChronoMemberCount=2
+DATA:Double
+   741     1   629     1   847     2   986     2   771     2
+   570     2   634     2   536     2   634     2   478     2
+   531     2   435     2   297     2   285     2   290     2
+   213     2   242     2   176     2   138     2   102     2
+    68     2    27     2    67     2    84     2   161     2
+   106     2   186     2   168     2   119     2   107     2
+   119     2    63     2    78     2    54     2    85     2
+    69     2   100     2   128     2    66     2   153     2
+   112     2    87     2    82     2    75     2    79     2
+HEADER:
+DataFormat=Tree
+KeyCode=PL1001
+Unit=1/100 mm
+Length=43
+DateBegin=1976
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   831   937   742   523   594   536   665   521   520   453
+   313   287   265   241   226   205   156   128    95    43
+    93   105   186   119   210   198   155   147   154    73
+    92    57    95    70   102   138    70   190   110    90
+    83    78    82     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL1002
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   741   629   863  1036   800   618   674   536   603   436
+   542   417   281   284   315   186   259   147   121    76
+    42    11    41    64   136    94   163   138    84    68
+    84    53    65    51    75    68    98   119    63   116
+   114    85    82    72    76     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL11
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL11A,PL11B
+ChronoMemberCount=2
+DATA:Double
+    59     2   188     2   221     2   388     2   296     2
+   371     2   448     2   367     2   302     2   341     2
+   494     2   462     2   406     2   272     2   337     2
+   260     2   331     2   199     2   278     2   191     2
+   138     2   162     2   223     2   237     2   212     2
+   165     2   109     2    77     2    46     2     8     2
+    90     2    81     2   132     2    38     2   187     2
+   200     2   191     2   199     2   244     2   122     2
+    92     2    87     2   144     2   153     2   124     2
+   178     2    74     2   155     2   118     2   108     2
+    49     2    60     2    54     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL11A
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    55   195   218   361   282   389   411   325   221   313
+   486   490   412   326   363   274   353   231   328   253
+   182   235   278   269   228   191   119    88    42     0
+    78    87   128    32   184   245   216   205   243   157
+    90    88   129   168   110   161    64   145   109   107
+    47    60    61     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL11B
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    63   181   225   415   310   354   485   410   383   370
+   503   434   401   219   312   246   310   168   228   130
+    94    90   169   206   197   139   100    66    51    17
+   102    76   136    44   191   156   166   194   246    87
+    95    87   160   138   139   195    84   165   127   109
+    52    60    48     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL12
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL12A,PL12B,PL12C
+ChronoMemberCount=3
+DATA:Double
+    64     2   164     3   200     3   309     3   377     3
+   318     3   452     3   411     3   314     3   294     3
+   383     3   424     3   323     3   248     3   301     3
+   199     3   287     3   173     3   208     3   193     3
+   123     3    98     3   111     3   109     3   152     3
+   123     3   106     3    89     3    54     3    63     3
+    61     3   110     3    37     3   169     3   279     3
+   208     3   247     3   257     3    99     3   103     3
+    78     3   127     3   104     3   115     3   167     3
+    67     3   182     3   141     3   102     3    88     3
+    99     3   110     3     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL12A
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    77   142   209   319   380   310   448   420   306   281
+   382   402   326   252   328   205   278   211   254   238
+   131   110   103    95   141   103    87    88    45    50
+    37    63    26   165   224   200   243   231    94    94
+    60    86    90   132   153    57   149    71    88    51
+    96    66     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL12B
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    51   151   195   340   395   281   457   410   320   295
+   391   461   300   229   268   212   307   152   161   167
+   114    85   106   119   154   137   121    81    57    55
+    55   117    45   117   257   200   245   237    71    90
+    54   117   120    76   139    41   103    95    69    98
+    84   101     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=51
+DateBegin=1968
+DateEnd=2018
+KeyCode=PL12C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   199   196   270   357   363   452   403   318   308   378
+   409   344   264   309   181   278   158   211   175   126
+    99   125   114   163   130   111    98    62    85    92
+   150    42   225   357   226   254   303   132   127   121
+   178   102   138   210   105   294   258   150   115   119
+   164     0     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL13
+Unit=1/100 mm
+Length=44
+DateBegin=1975
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL1301,PL1302
+ChronoMemberCount=2
+DATA:Double
+   505     1   587     2   690     2   745     2   672     2
+   497     2   377     2   332     2   199     2   213     2
+   221     2   175     2    95     2   138     2   149     2
+   152     2   158     2   100     2    89     2    53     2
+     5     2    54     2    26     2    56     2    25     2
+    78     2   122     2    94     2   115     2    96     2
+    43     2    52     2    51     2    78     2    55     2
+    79     2    96     2    45     2   109     2    70     2
+    75     2    62     2    75     2    79     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL1301
+Unit=1/100 mm
+Length=44
+DateBegin=1975
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+505
+442
+581
+738
+779
+610
+461
+312
+217
+207
+306
+195
+111
+109
+141
+110
+153
+73
+73
+37;;42=37+5, ausnete el 1995
+5
+30
+35
+44
+15
+67
+105
+50
+73
+53
+25
+32
+33
+60
+35
+54
+61
+22
+46
+43
+61
+67
+75
+91
+
+HEADER:
+DataFormat=Tree
+KeyCode=PL1302
+Unit=1/100 mm
+Length=43
+DateBegin=1976
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+733
+800
+753
+565
+384
+294
+353
+182
+219
+137
+156
+80
+168
+158
+194
+163
+127
+105
+70;;76=07+6
+6
+78
+17
+69
+36
+90
+139
+139
+157
+139
+61
+73
+70
+96
+76
+104
+132
+69
+172
+97
+89
+58
+75
+68
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL14
+Unit=1/100 mm
+Length=46
+DateBegin=1973
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL1401,PL1402
+ChronoMemberCount=2
+DATA:Double
+   551     1   513     1   418     1   696     1   967     2
+   780     2   574     2   486     2   389     2   465     2
+   232     2   343     2   260     2   226     2   249     2
+   283     2   230     2   255     2   166     2   206     2
+   152     2   130     2    32     2   176     2   187     2
+   307     2   167     2   353     2   360     2   250     2
+   225     2   222     2   136     2   143     2   136     2
+   151     2   193     2   189     2   305     2   163     2
+   273     2   157     2   137     2   112     2   136     2
+   140     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL1401
+Unit=1/100 mm
+Length=46
+DateBegin=1973
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   551   513   418   696   952   823   609   493   370   499
+   233   344   264   210   239   298   266   296   194   231
+   168   181    25   232   233   331   207   387   404   309
+   292   265   192   196   179   191   247   236   415   224
+   384   218   201   128   189   201     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL1402
+Unit=1/100 mm
+Length=42
+DateBegin=1977
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   982   737   539   479   409   431   231   343   257   242
+   259   268   195   214   138   181   137    79    40   120
+   142   283   128   320   317   191   159   179    80    91
+    93   111   139   142   196   102   162    96    73    96
+    84    80     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=52
+DateBegin=1967
+DateEnd=2018
+KeyCode=PL15
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=PL15A,PL15B
+ChronoMemberCount=2
+DATA:Double
+   105     2   139     2   285     2   131     2   244     2
+   340     2   248     2   283     2   289     2   434     2
+   421     2   487     2   306     2   320     2   193     2
+   317     2   187     2   249     2   208     2   127     2
+   126     2   116     2   150     2   166     2   117     2
+    84     2    75     2    35     2     6     2    57     2
+    51     2    72     2    36     2   108     2   112     2
+   109     2   141     2   155     2    60     2    74     2
+    83     2   131     2   112     2   117     2   144     2
+    75     2   157     2   109     2   123     2    91     2
+   110     2   162     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=52
+DateBegin=1967
+DateEnd=2018
+KeyCode=PL15A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+96
+137
+235
+118
+208
+339
+298
+284
+305
+414
+414
+451
+300
+266
+159
+275
+136
+240
+184
+107
+98
+119
+131
+165
+109
+81
+73
+35;;40=5+35, ausente 1995
+5
+56
+48
+63
+24
+115
+95
+108
+112
+138
+59
+68
+75
+156
+109
+121
+165
+70
+170
+104
+107
+91
+101
+171
+
+HEADER:
+DataFormat=Tree
+Length=52
+DateBegin=1967
+DateEnd=2018
+KeyCode=PL15B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+115
+141
+336
+144
+281
+341
+198
+283
+273
+455
+429
+524
+312
+374
+228
+359
+238
+258
+233
+147
+154
+114
+169
+168
+125
+88
+77
+35;;42=35+7
+7
+59
+54
+81
+48
+101
+130
+110
+170
+172
+61
+80
+92
+106
+115
+114
+124
+80
+145
+115
+139
+91
+119
+153
+
+HEADER:
+DataFormat=HalfChrono
+Length=53
+DateBegin=1966
+DateEnd=2018
+KeyCode=PL16
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=PL16A,PL16B
+ChronoMemberCount=2
+DATA:Double
+   138     2   296     2   421     2   725     2   485     2
+   670     2   886     2   810     2   607     2   413     2
+   487     2   480     2   602     2   402     2   348     2
+   189     2   151     2   127     2   128     2   173     2
+    88     2   133     2   105     2   120     2   150     2
+   153     2    96     2    80     2    47     2    42     2
+    40     2    55     2    89     2   104     2   107     2
+   147     2   121     2   107     2   111     2    66     2
+    70     2    55     2    57     2    64     2   107     2
+   139     2    83     2   133     2    74     2    57     2
+    40     2    56     2    70     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=53
+DateBegin=1966
+DateEnd=2018
+KeyCode=PL16A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   130   273   406   760   558   775  1077   925   645   416
+   408   426   585   442   357   215   165   116   125   167
+    80   146   124   137   148   156   104    84    44    29
+    34    54   103   140   118   185   132    99   128    67
+    72    67    63    50   100   128    84   145    76    57
+    35    44    56     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=53
+DateBegin=1966
+DateEnd=2018
+KeyCode=PL16B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   147   319   436   691   412   565   696   695   570   410
+   567   535   619   363   340   164   138   139   131   179
+    97   121    86   104   152   151    89    77    50    56
+    46    57    75    69    97   110   111   116    95    65
+    68    44    51    78   114   150    83   122    73    57
+    46    68    84     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL17
+Unit=1/100 mm
+Length=54
+DateBegin=1965
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL17A,PL17B
+ChronoMemberCount=2
+DATA:Double
+    87     2   182     2   356     2   380     2   454     2
+   165     2   274     2   454     2   270     2   304     2
+   316     2   444     2   480     2   609     2   397     2
+   365     2   334     2   255     2   270     2   253     2
+   280     2   155     2   170     2   140     2   179     2
+   157     2   162     2   119     2   135     2    70     2
+    41     2    74     2    71     2   203     2   128     2
+   180     2   150     2   167     2   127     2   172     2
+    71     2    77     2    71     2    82     2    96     2
+   128     2   101     2    64     2   129     2    86     2
+    62     2    46     2    93     2   116     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL17A
+Unit=1/100 mm
+Length=54
+DateBegin=1965
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    78   184   386   409   507   178   361   554   315   344
+   385   531   575   742   389   395   391   257   194   235
+   222   139   130   114   205   190   162   130   149    67
+    39    73    58   204   139   208   192   182   115   151
+    66    73    66    76    85   122    94    62   120    81
+    59    49   101   139     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL17B
+Unit=1/100 mm
+Length=54
+DateBegin=1965
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    96   180   326   352   401   153   187   354   225   264
+   248   358   385   477   406   336   278   253   346   272
+   339   171   211   166   153   124   162   109   121    73
+    44    75    84   203   117   153   109   153   139   193
+    76    82    77    89   108   135   109    67   138    91
+    65    43    85    94     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL18
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL18A,PL18B
+ChronoMemberCount=2
+DATA:Double
+   176     2   199     2   296     2    75     2   237     2
+   309     2   262     2   266     2   279     2   341     2
+   434     2   258     2   239     2   275     2   226     2
+   233     2   172     2   251     2   202     2   154     2
+   146     2   252     2   244     2   288     2   186     2
+   180     2   207     2   121     2    22     2   192     2
+   222     2   512     2   267     2   344     2   363     2
+   280     2   280     2   385     2   209     2   197     2
+   144     2   208     2   271     2   353     2   383     2
+   139     2   405     2   249     2   151     2   100     2
+   126     2   207     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL18A
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   187   201   306    83   240   314   278   271   275   398
+   503   349   313   371   265   251   216   294   258   201
+   180   297   249   329   238   213   234   150    31   208
+   262   562   300   300   328   278   261   336   197   167
+   138   168   211   331   276   132   234   170    79    72
+   108    87     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL18B
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   165   198   287    67   234   304   246   261   283   285
+   365   168   166   179   188   215   129   209   146   108
+   113   208   239   247   135   147   181    93    13   176
+   182   462   234   388   398   282   299   435   222   228
+   151   248   332   375   490   146   576   328   223   128
+   145   328     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL19
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL19A,PL19B,PL19C
+ChronoMemberCount=3
+DATA:Double
+   232     3   169     3   510     3   533     3   550     3
+   571     3   413     3   372     3   314     3   560     3
+   353     3   524     3   434     3   341     3   177     3
+   265     3   105     3   304     3   247     3   168     3
+   170     3   133     3   193     3   200     3   111     3
+    88     3    75     3    51     3     6     3   106     3
+    85     3   203     3    97     3   208     3   234     3
+   147     3   140     3   135     3    42     3    77     3
+    51     3    69     3    76     3   120     3   136     3
+    46     3   176     3    71     3    59     3    58     3
+    59     3    64     3     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL19B
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+219
+130
+505
+497
+527
+508
+397
+365
+237
+598
+464
+547
+333
+330
+166
+266
+104
+299
+206
+161
+162
+107
+168
+120
+87
+75
+84
+45;;50=5+45, ausente 1995
+5
+105
+60
+118
+62
+135
+176
+85
+106
+117
+33
+51
+36
+40
+52
+68
+119
+42
+143
+59
+40
+42
+44
+49
+
+HEADER:
+DataFormat=Tree
+Length=52
+DateBegin=1967
+DateEnd=2018
+KeyCode=PL19C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+236
+202
+521
+578
+585
+631
+411
+365
+364
+529
+276
+476
+525
+330
+180
+253
+112
+301
+284
+175
+183
+147
+219
+270
+137
+93
+71
+55;;62=7+55, ausente 1995
+7
+103
+108
+277
+125
+257
+262
+195
+165
+148
+48
+98
+69
+87
+97
+175
+147
+54
+212
+78
+81
+77
+75
+75
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL20
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL2001,PL2002
+ChronoMemberCount=2
+DATA:Double
+   549     1   531     2   836     2   657     2   685     2
+   509     2   494     2   338     2   388     2   211     2
+   299     2   213     2   134     2   185     2   196     2
+   179     2   203     2   126     2   119     2    98     2
+    76     2     4     2    91     2    86     2   143     2
+    88     2   173     2   151     2    98     2   129     2
+    93     2    36     2    57     2    48     2    63     2
+    49     2    45     2    77     2    22     2    63     2
+    37     2    47     2    44     2    46     2    10     2
+HEADER:
+DataFormat=Tree
+KeyCode=PL2001
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   549   457   896   693   732   513   541   314   346   197
+   273   237   152   209   183   169   195   130   129    99
+    64     9    88    71   136    72   147   142    81    88
+    85    30    44    47    73    58    38    55    19    58
+    40    45    28    35     4     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL2002
+Unit=1/100 mm
+Length=44
+DateBegin=1975
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   606   777   621   638   505   447   362   430   226   325
+   190   117   162   209   190   211   123   109    97    88
+     0    94   102   151   105   199   161   116   170   101
+    43    71    50    54    41    52    99    25    68    35
+    50    60    58    16     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=47
+DateBegin=1972
+DateEnd=2018
+KeyCode=PL21
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=PL2101,PL2102
+ChronoMemberCount=2
+DATA:Double
+   231     1   326     1   379     1   410     1   537     1
+   611     1   512     2   497     2   350     2   217     2
+   184     2   111     2   180     2    96     2    74     2
+    80     2    67     2    68     2    88     2    44     2
+    58     2    44     2    33     2    10     2    35     2
+    48     2    77     2    32     2   104     2    67     2
+    67     2    66     2    51     2    30     2    47     2
+    35     2    35     2    19     2    33     2    59     2
+    30     2    60     2    48     2    40     2    42     2
+    36     2    40     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=41
+DateBegin=1978
+DateEnd=2018
+KeyCode=PL2101
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+441
+505
+366
+210
+152
+84
+146
+64
+49
+47
+41
+43
+70
+32
+36
+31
+28
+8
+20
+51
+69
+16
+70;;86=70+16, , roto en esta zona y faltaba justo ese año
+73
+63
+54
+45
+30
+52
+31
+25
+19
+34
+60
+39
+56
+47
+37
+31
+33
+34
+
+HEADER:
+DataFormat=Tree
+Length=47
+DateBegin=1972
+DateEnd=2018
+KeyCode=PL2102
+Comment=mal pegada, mucha asimetría, y rota 
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+   231   326   379   410   537   611   583   490   335   224
+   216   139   215   129   100   113    93    94   106    56
+    80    57    39    12    51    45    85    48   139    61
+    71    79    58    30    42    39    46    19    33    58
+    22    65    50    43    53    39    47     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=55
+DateBegin=1964
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=PL22
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL00022A,PL00022B
+ChronoMemberCount=2
+DATA:Double
+   171     2   138     2   298     2   396     2   463     2
+   564     2   437     2   322     2   331     2   358     2
+   278     2   253     2   295     2   329     2   343     2
+   271     2   267     2   166     2   198     2   101     2
+   155     2   118     2    80     2   122     2   119     2
+   127     2   163     2   106     2    77     2    63     2
+    59     2     6     2   193     2   168     2   191     2
+    88     2   141     2   135     2   100     2   139     2
+   145     2    59     2    80     2    78     2    89     2
+   105     2   157     2   219     2    94     2   192     2
+    81     2    92     2    75     2   129     2   142     2
+HEADER:
+DataFormat=Tree
+Length=55
+DateBegin=1964
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=PL22A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   164   147   264   359   434   549   416   275   326   364
+   299   245   293   332   333   248   241   173   193    79
+   149    91    76   134   109   132   140    71    57    49
+    49     0   154    76   114    63   127    98    81   110
+   121    50    57    60    88   123   147   169    68   136
+    61    64    50    95   103     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=55
+DateBegin=1964
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=PL22B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   179   130   332   434   493   579   459   370   336   353
+   258   261   298   326   353   294   294   160   204   124
+   162   146    84   111   129   122   186   142    97    78
+    69    12   232   261   268   113   155   172   120   169
+   170    69   103    96    91    87   167   270   120   248
+   101   120   100   164   181     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL23
+Unit=1/100 mm
+Length=56
+DateBegin=1963
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL23A,PL23B
+ChronoMemberCount=2
+DATA:Double
+    81     2   159     2   175     2   324     2   439     2
+   388     2   390     2   492     2   370     2   404     2
+   306     2   209     2   203     2   229     2   318     2
+   342     2   232     2   220     2   193     2   270     2
+   124     2   170     2    94     2    95     2   109     2
+   119     2   195     2   185     2   100     2   108     2
+    76     2    80     2     1     2   107     2    60     2
+   129     2    82     2   148     2   196     2   116     2
+   167     2   125     2    48     2    86     2    80     2
+    83     2    62     2    57     2   184     2    81     2
+   231     2    89     2   128     2    66     2   110     2
+   124     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL23A
+Unit=1/100 mm
+Length=56
+DateBegin=1963
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+86
+201
+186
+328
+437
+395
+384
+535
+409
+420
+311
+243
+222
+273
+296
+416
+275
+302
+217
+308
+174
+173
+121
+117
+158
+138
+215
+223
+93
+110
+73
+89
+1;;ausente
+111
+85
+123
+76
+125
+243
+127
+163
+128
+47
+91
+87
+87
+78
+46
+192
+79
+279
+104
+130
+65
+118
+154
+
+HEADER:
+DataFormat=Tree
+KeyCode=PL23B
+Unit=1/100 mm
+Length=56
+DateBegin=1963
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+76
+117
+165
+321
+442
+382
+396
+450
+332
+388
+301
+175
+185
+185
+340
+269
+190
+138
+170
+233
+75
+168
+68
+73
+60
+100
+175
+147
+107
+106
+80
+72
+1;;ausente
+103
+36
+135
+88
+172
+150
+106
+172
+123
+49
+82
+74
+80
+47
+69
+177
+83
+183
+74
+126
+67
+102
+94
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL24
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL24A,PL24B
+ChronoMemberCount=2
+DATA:Double
+    87     2   212     2   317     2   373     2   336     2
+   395     2   442     2   356     2   309     2   233     2
+   315     2   201     2   197     2   227     2   212     2
+   133     2   139     2    66     2   143     2    84     2
+    66     2    74     2   106     2   133     2   195     2
+   146     2   103     2    75     2    54     2     1     2
+    96     2   143     2   208     2   128     2   160     2
+   166     2    96     2    96     2   120     2    70     2
+    92     2    78     2    81     2    77     2   104     2
+   164     2   105     2   202     2    71     2    70     2
+    63     2    42     2    54     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL24A
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+100
+228
+361
+372
+298
+341
+423
+393
+351
+261
+333
+219
+230
+248
+209
+168
+139
+71
+122
+82
+65
+79
+104
+119
+152
+108
+79
+61
+40
+1;;ausente
+43
+81
+143
+98
+132
+126
+95
+85
+111
+70
+87
+55
+58
+48
+82
+131
+63
+159
+55
+55
+44
+27
+39
+
+HEADER:
+DataFormat=Tree
+KeyCode=PL24B
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+74
+197
+274
+374
+375
+450
+461
+320
+267
+205
+298
+183
+164
+207
+215
+99
+139
+62
+164
+86
+67
+70
+109
+148
+238
+184
+128
+89
+68
+1;;ausente
+149
+206
+274
+159
+189
+207
+98
+107
+129
+70
+98
+101
+105
+106
+126
+198
+147
+246
+87
+86
+83
+58
+69
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL25
+Unit=1/100 mm
+Length=46
+DateBegin=1973
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL2502,PL2501
+ChronoMemberCount=2
+DATA:Double
+   598     1   541     2   405     2   556     2   501     2
+   564     2   433     2   329     2   270     2   262     2
+   132     2   194     2   111     2   111     2    98     2
+   106     2    97     2    93     2    54     2    52     2
+    41     2    37     2     8     2    29     2    21     2
+    72     2    54     2   172     2   145     2    82     2
+   109     2    81     2    43     2    75     2    46     2
+    72     2    60     2    46     2    79     2    37     2
+    96     2    62     2    49     2    48     2    47     2
+    44     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=46
+DateBegin=1973
+DateEnd=2018
+KeyCode=PL2501
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=rota, puede falta algún año
+Unit=1/100 mm
+DATA:Single
+598
+581
+376
+513
+532
+633
+472
+388
+307
+293
+133
+200
+154
+126
+126
+126
+114
+112
+75
+74
+55;;lo añado, rota
+40
+11;;11+40, rota, faltaban dos años por aquí
+39
+32
+91
+52
+219
+178
+80
+106
+83
+46
+85
+61
+73
+82
+47
+85
+52
+108
+74
+55
+51
+43
+53
+
+HEADER:
+DataFormat=Tree
+KeyCode=PL2502
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+502
+434
+599
+471
+496
+394
+270
+233
+231
+132
+189
+69
+96
+71
+86
+80
+74
+33
+30
+28
+34;;39=5+34, meto el 1995
+5
+19
+11
+54
+56
+125
+112
+85
+112
+80
+41
+66
+31
+72
+39
+45
+73
+23
+85
+51
+43
+45
+51
+35
+
+HEADER:
+DataFormat=HalfChrono
+Length=53
+DateBegin=1966
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=PL26
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL00026A,PL00026B
+ChronoMemberCount=2
+DATA:Double
+   114     2   222     2   215     2   297     2   119     2
+   198     2   403     2   315     2   346     2   334     2
+   490     2   348     2   606     2   349     2   316     2
+   199     2   213     2   123     2   253     2   238     2
+   142     2   133     2   155     2   144     2   206     2
+   107     2    98     2    83     2    58     2    12     2
+    85     2    83     2   248     2    89     2   262     2
+   201     2   146     2   150     2   193     2    66     2
+    97     2    79     2   156     2    89     2   199     2
+   184     2    69     2   270     2   122     2    64     2
+    44     2    94     2   120     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=53
+DateBegin=1966
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=PL26A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   114   217   197   326   126   204   406   311   238   294
+   447   250   660   387   316   229   256   140   264   247
+   179   154   178   177   260   119   112    89    72    21
+   107   105   295    91   293   196   167   176   231    87
+   121    93   200    99   234   204    56   345   120    75
+    51   121   149     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=53
+DateBegin=1966
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=PL26B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   115   227   233   269   112   193   400   320   454   374
+   534   446   553   312   317   170   170   107   243   229
+   106   112   132   112   153    95    84    78    45     4
+    64    61   202    88   232   206   125   125   156    45
+    73    65   112    79   164   165    83   195   125    53
+    38    67    91     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL27
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL2701,PL2702
+ChronoMemberCount=2
+DATA:Double
+   351     2   329     2   433     2   530     2   583     2
+   432     2   432     2   353     2   387     2   310     2
+   428     2   311     2   275     2   240     2   279     2
+   228     2   224     2   151     2   137     2   105     2
+    83     2     0     2    66     2    43     2   134     2
+    58     2   179     2   208     2   174     2   138     2
+   142     2    59     2    69     2    69     2    92     2
+    67     2    79     2    99     2    42     2    89     2
+    78     2    50     2    40     2    44     2    50     2
+HEADER:
+DataFormat=Tree
+KeyCode=PL2701
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   453   405   460   550   613   461   518   350   374   346
+   431   327   263   232   261   207   202   149   151    94
+    64     0    49    32   107    43   140   167   164   137
+   133    66    63    65    92    53    70    94    40    75
+    78    47    37    38    39     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL2702
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   250   254   407   511   554   404   346   356   401   274
+   426   296   288   248   297   250   247   154   123   117
+   103     0    83    55   161    73   218   249   185   139
+   152    52    75    73    92    81    88   105    44   103
+    79    54    44    50    61     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL28
+Unit=1/100 mm
+Length=48
+DateBegin=1971
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL2801,PL2802
+ChronoMemberCount=2
+DATA:Double
+   282     1   235     1   395     2   411     2   492     2
+   664     2   626     2   419     2   422     2   308     2
+   117     2   122     2    97     2   190     2   149     2
+   105     2    66     2    99     2    97     2   102     2
+    77     2    71     2    56     2    53     2     0     2
+    59     2    37     2    79     2    74     2   120     2
+   154     2   107     2   111     2   109     2    60     2
+    67     2    62     2    81     2    85     2    75     2
+    98     2    50     2   122     2    66     2    55     2
+    54     2    82     2    71     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL2801
+Unit=1/100 mm
+Length=48
+DateBegin=1971
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   282   235   417   457   520   680   682   307   380   271
+    90   148   114   216   150   105    75    96    93    76
+    63    64    55    50     0    48    27    74    61   111
+   153    96    99   104    58    71    72    85    76    80
+   116    47   134    76    48    53    79    85     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL2802
+Unit=1/100 mm
+Length=46
+DateBegin=1973
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   373   365   464   649   571   531   465   345   144    97
+    80   164   149   105    58   102   101   129    92    78
+    57    57     0    71    47    85    87   130   155   118
+   123   115    63    63    52    78    95    70    81    54
+   110    57    63    56    86    58     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL29
+Unit=1/100 mm
+Length=48
+DateBegin=1971
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL2901,PL2902
+ChronoMemberCount=2
+DATA:Double
+   298     1   393     1   517     2   433     2   396     2
+   428     2   478     2   488     2   303     2   302     2
+   106     2   128     2    47     2    85     2    67     2
+    74     2    90     2   108     2   142     2   153     2
+   112     2    93     2    73     2    54     2     6     2
+    82     2    72     2   144     2    80     2   164     2
+   180     2   144     2   134     2   179     2    95     2
+   100     2    90     2    99     2   113     2   123     2
+   178     2    69     2   162     2    87     2   106     2
+    59     2   103     2   107     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL2901
+Unit=1/100 mm
+Length=46
+DateBegin=1973
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   515   415   347   376   452   463   281   271    92   107
+    39    63    57    63    72    90   158   162   119    84
+    83    61     0    99    67   140    76   159   216   141
+   120   197   108   111    87   109   103   113   168    80
+   153    88   111    70    90    84     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL2902
+Unit=1/100 mm
+Length=48
+DateBegin=1971
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   298   393   520   452   445   480   504   513   326   334
+   120   150    56   108    78    86   109   127   126   144
+   106   103    63    47    12    66    78   148    85   170
+   145   148   149   162    83    90    94    90   124   134
+   188    59   172    86   102    49   116   130     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL30
+Unit=1/100 mm
+Length=48
+DateBegin=1971
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL3001,PL3002
+ChronoMemberCount=2
+DATA:Double
+   456     1   466     2   701     2   789     2   575     2
+   363     2   354     2   265     2   419     2   341     2
+   273     2   174     2   176     2    89     2   140     2
+   104     2    96     2   110     2   106     2   104     2
+   116     2    85     2    74     2    60     2    13     2
+    40     2    40     2   158     2    68     2   156     2
+   126     2    95     2    93     2    83     2    55     2
+    59     2    64     2    41     2    34     2    37     2
+    87     2    46     2   115     2    51     2    55     2
+    34     2    37     2    40     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL3001
+Unit=1/100 mm
+Length=47
+DateBegin=1972
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   531   755   823   592   382   407   295   203   234   263
+   149   183    68   134    99    91    89    88    89   104
+    72    66    59    22    32    52   140    63   142   120
+    71    73    76    49    59    68    47    38    34    73
+    41   105    52    55    32    39    47     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL3002
+Unit=1/100 mm
+Length=48
+DateBegin=1971
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+456
+402
+648
+756
+558
+344
+301
+236
+635
+448
+284
+200
+169
+110
+147
+109
+101
+131
+125
+119
+128
+99
+83
+62
+5;;53=48+5, ausente
+48
+29
+177
+74
+170
+132
+120
+113
+91
+62
+59
+60
+36
+31
+41
+102
+52
+125
+51
+56
+36
+35
+33
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL31
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL31A,PL31B,PL31C
+ChronoMemberCount=3
+DATA:Double
+    95     3   190     3   202     3   325     3   139     3
+   363     3   496     3   413     3   410     3   364     3
+   389     3   402     3   357     3   402     3   336     3
+   140     3   152     3    72     3   153     3    97     3
+    36     3    35     3    42     3    38     3    68     3
+    45     3    34     3    38     3    31     3     5     3
+    42     3    55     3   135     3    88     3   141     3
+   136     3    80     3    91     3   129     3    54     3
+    72     3    59     3    49     3   124     3   201     3
+   263     3   110     3   244     3   153     3   137     3
+   120     3   100     3    92     3     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL31A
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+103
+201
+194
+285
+103
+299
+456
+357
+383
+350
+388
+425
+342
+339
+331
+134
+157
+46
+125
+76
+44
+27
+37
+28
+53
+38
+27
+30
+25;;30=25+5
+5
+36
+44
+151
+71
+172
+172
+90
+96
+139
+50
+72
+60
+46
+170
+318
+315
+115
+323
+149
+174
+212
+140
+143
+
+HEADER:
+DataFormat=Tree
+KeyCode=PL31B
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+94
+199
+208
+353
+177
+408
+527
+456
+455
+340
+404
+406
+343
+418
+299
+123
+120
+55
+122
+74
+16
+15
+35
+38
+57
+40
+30
+39
+30;;36=30+6
+6
+47
+65
+114
+90
+118
+115
+79
+89
+94
+56
+72
+54
+47
+93
+123
+276
+130
+220
+163
+130
+85
+91
+82
+
+HEADER:
+DataFormat=Tree
+Length=53
+DateBegin=1966
+DateEnd=2018
+KeyCode=PL31C
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+89
+171
+204
+339
+138
+383
+507
+426
+394
+402
+375
+375
+388
+451
+379
+163
+181
+115
+213
+143
+49
+65
+56
+49
+96
+57
+46
+45
+40;;44=4+40, ausente el 1995
+4
+45
+58
+140
+103
+135
+123
+73
+89
+155
+58
+73
+65
+55
+110
+163
+200
+87
+189
+147
+108
+63
+71
+53
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL32
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL32A,PL32B
+ChronoMemberCount=2
+DATA:Double
+   100     2   163     2   332     2   421     2   488     2
+   579     2   422     2   608     2   638     2   457     2
+   307     2   433     2   357     2   344     2   237     2
+   239     2   130     2   158     2    73     2   160     2
+   173     2   140     2   187     2   113     2   118     2
+   104     2    80     2    64     2    55     2    57     2
+    33     2    63     2    20     2    86     2   113     2
+    74     2    98     2   157     2    62     2    58     2
+    58     2    75     2    58     2   106     2   166     2
+    69     2   129     2    70     2    56     2    53     2
+    56     2    63     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL32A
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    83   168   315   403   487   582   413   565   604   373
+   317   411   409   411   285   276   161   157    85   151
+   178   144   264   135   147   101   109    70    81    84
+    45    82    21    83   137   102   121   174    73    51
+    64    91    66   122   166    65   114    70    42    52
+    58    43     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL32B
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   118   159   350   439   490   577   432   652   672   542
+   297   456   306   278   189   202   100   160    61   170
+   169   137   111    91    90   107    52    59    29    31
+    22    45    20    89    89    47    75   140    51    66
+    52    59    50    91   166    73   145    70    70    55
+    55    84     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL33
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DataType=Ringwidth
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL33A,PL33B,PL33c
+ChronoMemberCount=3
+DATA:Double
+   107     2   204     3   280     3   201     3   437     3
+   488     3   289     3   405     3   374     3   555     3
+   325     3   464     3   433     3   354     3   309     3
+   425     3   220     3   350     3   323     3   252     3
+   231     3   302     3   281     3   312     3   191     3
+   193     3   141     3   103     3    16     3   149     3
+   103     3   273     3    69     3   232     3   240     3
+   176     3   200     3   214     3    73     3    73     3
+    63     3   109     3    88     3   122     3   170     3
+    61     3   160     3    98     3    78     3    72     3
+    86     3    85     3     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL33A
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DataType=Ringwidth
+DATA:Single
+99
+115
+179
+171
+414
+457
+297
+400
+404
+555
+387
+536
+451
+318
+257
+369
+195
+306
+232
+207
+185
+253
+189
+249
+162
+153
+102
+80;;80=10+70, no vio el 1995, que era un wedging ring
+10
+117
+70
+185
+60
+187
+190
+140
+166
+162
+40
+69
+62
+69
+53
+67
+128
+44
+136
+87
+68
+59
+75
+56
+
+HEADER:
+DataFormat=Tree
+KeyCode=PL33B
+Unit=1/100 mm
+Length=52
+DateBegin=1967
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+115
+179
+334
+230
+436
+451
+207
+367
+345
+451
+177
+335
+341
+360
+345
+394
+203
+323
+325
+284
+201
+304
+286
+311
+185
+174
+125
+100;;114=100+14, no vio el 1995, que era un wedging ring
+14
+144
+109
+286
+71
+223
+200
+179
+206
+200
+74
+81
+48
+119
+96
+107
+133
+67
+132
+83
+68
+62
+85
+76
+
+HEADER:
+DataFormat=Tree
+Length=51
+DateBegin=1968
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=PL33c
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+318
+329
+203
+462
+557
+365
+449
+373
+661
+412
+523
+509
+385
+325
+513
+263
+422
+414
+267
+309
+349
+368
+378
+228
+253
+197
+129;;175
+24
+187
+132
+348
+78
+286
+331
+210
+230
+281
+105
+70
+79
+140
+117
+192
+251
+73
+212
+124
+99
+97
+98
+124
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL34
+Unit=1/100 mm
+Length=42
+DateBegin=1977
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL3401,PL3402
+ChronoMemberCount=2
+DATA:Double
+   182     1   309     1   447     1   482     2   387     2
+   403     2   258     2   374     2   274     2   212     2
+   197     2   152     2   161     2   172     2    87     2
+    72     2    28     2    71     2    52     2    84     2
+    63     2    81     2    30     2    97     2   112     2
+   114     2   112     2    99     2    42     2    51     2
+    54     2    62     2    48     2    48     2    66     2
+    44     2   107     2    82     2    93     2    88     2
+    85     2    91     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL3401
+Unit=1/100 mm
+Length=42
+DateBegin=1977
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   182   309   447   515   413   378   251   321   268   209
+   171   136   155   176    94    76    31    72    62    86
+    57    84    37    97   106   112    96    80    48    54
+    55    60    67    48    69    45   137   106   106   106
+   107   114     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL3402
+Unit=1/100 mm
+Length=39
+DateBegin=1980
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   449   362   428   265   428   280   216   223   168   167
+   168    80    68    26    70    43    82    70    78    23
+    97   118   116   128   118    36    48    53    65    30
+    48    63    43    78    59    81    71    63    68     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL35
+Unit=1/100 mm
+Length=47
+DateBegin=1972
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL3501,PL3502
+ChronoMemberCount=2
+DATA:Double
+   371     1   522     1   497     2   474     2   632     2
+   633     2   742     2   517     2   629     2   471     2
+   492     2   380     2   438     2   349     2   312     2
+   226     2   232     2   199     2   218     2   133     2
+   136     2    85     2    58     2    13     2    63     2
+   100     2   228     2   167     2   233     2   199     2
+   151     2   158     2   185     2    92     2    70     2
+    57     2    83     2    76     2   104     2   135     2
+    97     2   184     2   142     2    97     2    79     2
+    75     2   104     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL3501
+Unit=1/100 mm
+Length=47
+DateBegin=1972
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   371   522   455   455   653   647   811   504   607   477
+   559   456   482   365   314   219   242   219   224   145
+   147    91    64    11    60   127   220   164   216   199
+   141   155   171    97    70    51    74    48   100    99
+    72   130   122    86    70    66    84     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL3502
+Unit=1/100 mm
+Length=45
+DateBegin=1974
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   539   493   612   619   673   530   651   466   425   305
+   394   334   311   233   222   179   213   122   125    79
+    53    16    66    74   236   171   251   200   161   162
+   200    88    70    63    92   105   108   171   123   238
+   163   108    88    85   124     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL36
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL36A,PL36B
+ChronoMemberCount=2
+DATA:Double
+    93     2   212     2   341     2   450     2   458     2
+   486     2   566     2   491     2   500     2   395     2
+   517     2   538     2   542     2   367     2   353     2
+   313     2   294     2   277     2   312     2   270     2
+   257     2   206     2   242     2   239     2   228     2
+   146     2   177     2   100     2    69     2    43     2
+    80     2   101     2   170     2   135     2   191     2
+   154     2   135     2   114     2   136     2    56     2
+    68     2    76     2   140     2    82     2   109     2
+   141     2    43     2   103     2   103     2    75     2
+    51     2    40     2    47     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL36A
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    94   252   381   456   445   446   484   433   452   428
+   578   564   649   431   412   361   372   345   344   294
+   259   189   191   196   166    97   122    72    56    28
+    75    77   157    87   161   124   125    95   120    37
+    54    67   135    78   125   166    41   118   119    78
+    66    31    57     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=PL36B
+Unit=1/100 mm
+Length=53
+DateBegin=1966
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+    93   172   301   444   472   527   649   549   549   363
+   457   512   435   303   295   266   217   209   281   246
+   255   224   293   282   290   195   232   129    83    58
+    86   125   183   183   222   184   146   134   153    75
+    83    86   145    87    94   116    46    89    88    72
+    37    49    37     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PL37
+Unit=1/100 mm
+Length=40
+DateBegin=1979
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL3701,PL3702
+ChronoMemberCount=2
+DATA:Double
+   477     1   327     1   428     2   380     2   333     2
+   291     2   292     2   248     2   197     2   268     2
+   257     2   244     2   139     2    95     2   117     2
+    98     2    56     2    93     2    80     2   129     2
+    84     2   115     2   228     2   172     2   222     2
+   162     2   121     2   114     2   126     2   111     2
+   129     2   139     2   209     1   127     1   282     1
+   169     1   166     1   146     1   176     1   149     1
+HEADER:
+DataFormat=Tree
+KeyCode=PL3701
+Unit=1/100 mm
+Length=40
+DateBegin=1979
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   477   327   378   348   315   187   250   176   207   299
+   297   296   205   119   147    98    62    98    86   179
+   103   175   320   237   275   197   137   115   150   162
+   191   191   209   127   282   169   166   146   176   149
+HEADER:
+DataFormat=Tree
+KeyCode=PL3702
+Unit=1/100 mm
+Length=30
+DateBegin=1981
+DateEnd=2010
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   479   412   352   396   335   320   187   238   218   193
+    74    72    88    98    50    88    74    80    66    56
+   137   108   169   127   105   113   102    61    68    88
+HEADER:
+DataFormat=HalfChrono
+KeyCode=PLmedia_final
+Unit=1/100 mm
+Length=56
+DateBegin=1963
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL01A,PL01B,PL02C,PL02D,PL03A,PL03B,PL0401,PL0402,PL0501,PL0502,PL06A,PL06B,PL0701,PL0702,PL08A,PL08B,PL0901,PL0902,PL1001,PL1002,PL11A,PL11B,PL12A,PL12B,PL12C,PL1301,PL1302,PL1401,PL1402,PL15A,PL15B,PL16A,PL16B,PL17A,PL17B,PL18A,PL18B,PL19B,PL19C,PL2001,PL2002,PL2101,PL2102,PL22A,PL22B,PL23A,PL23B,PL24A,PL24B,PL2501,PL2502,PL26A,PL26B,PL2701,PL2702,PL2801,PL2802,PL2901,PL2902,PL3001,PL3002,PL31A,PL31B,PL31C,PL32A,PL32B,PL33A,PL33B,PL33c,PL3401,PL3402,PL3501,PL3502,PL36A,PL36B,PL3701,PL3702,PLmedia29
+ChronoMemberCount=78
+DATA:Double
+    81     3   165     5   133     7   156    24   214    41
+   240    44   371    44   281    44   368    47   427    52
+   414    56   417    64   379    67   501    70   489    74
+   513    75   410    76   386    77   298    78   314    78
+   216    78   273    78   214    78   167    78   149    78
+   171    78   174    78   182    78   130    78   114    78
+    92    78    72    78    21    78    85    78    79    78
+   155    78    85    78   169    78   175    78   129    78
+   136    78   150    78    70    78    81    78    73    78
+    92    78    85    78   106    78   145    77    64    77
+   155    77    91    77    82    77    61    77    73    77
+    80    77     0     0     0     0     0     0     0     0

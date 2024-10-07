@@ -1,0 +1,2849 @@
+HEADER:
+DataFormat=HalfChrono
+Length=32
+DateBegin=1989
+DateEnd=2020
+KeyCode=JERH01
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=JERH01A,JERH01B
+ChronoMemberCount=2
+DATA:Double
+   951     2   903     2   593     2   575     2   312     2
+   126     2   132     2   386     2   497     2   345     2
+    49     2   168     2   221     2   169     2   202     2
+   193     2    26     2    69     2    27     2    23     2
+    30     2   111     2   188     2    39     2   129     2
+    45     2    69     2    41     2    60     2    90     2
+    23     2    42     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1989
+DateEnd=2020
+KeyCode=JERH01A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+  1007   990   730   673   358   148   153   452   597   436
+    73   220   253   217   273   255    34    70    25    38
+    42   146   285    61   200    63    89    55    73   102
+    31    68     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1989
+DateEnd=2020
+KeyCode=JERH01B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   895   816   457   478   266   105   111   321   398   255
+    25   117   190   122   132   132    19    68    30     9
+    19    77    91    18    58    27    50    28    47    79
+    16    16     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=33
+DateBegin=1988
+DateEnd=2020
+KeyCode=JERH02
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=JERH02A,JERH02B
+ChronoMemberCount=2
+DATA:Double
+   535     2   890     2   965     2   624     2   561     2
+   367     2   142     2   136     2   399     2   508     2
+   339     2    43     2   171     2   232     2   175     2
+   264     2   221     2    19     2    78     2    35     2
+    40     2    74     2   116     2   166     2    40     2
+   143     2    67     2    62     2    35     2    31     2
+    58     2    26     2    44     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1988
+DateEnd=2020
+KeyCode=JERH02A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   500   924  1010   673   560   375   137   132   372   498
+   352    47   201   280   184   297   212    23    85    41
+    47    76   116   156    36   144    56    53    33    25
+    53    25    46     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1988
+DateEnd=2020
+KeyCode=JERH02B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   570   857   920   575   563   360   147   140   426   519
+   326    39   141   184   167   231   231    16    71    29
+    34    73   117   176    45   143    79    72    37    38
+    63    28    43     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH03
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH03A,JERH03B
+ChronoMemberCount=2
+DATA:Double
+   641     2   760     2   844     2   562     2   546     2
+   337     2   216     2   147     2   336     2   441     2
+   399     2    63     2   192     2   217     2   136     2
+   195     2   187     2    19     2    53     2    38     2
+    45     2    88     2    90     2   147     2    47     2
+   125     2    53     2    61     2    37     2    42     2
+    69     2    23     2    45     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH03A
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+646
+794
+837
+559
+582
+366
+257
+174;;90+84, IADF en 1995
+346
+453
+396
+64
+204
+202
+146
+196
+186
+23
+60
+48
+57
+99
+100
+186
+51
+152
+58
+82
+49
+61
+100
+25
+48
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH03B
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   637   727   852   566   510   309   175   120   327   430
+   402    63   181   232   127   194   189    16    47    28
+    33    77    80   108    43    99    49    41    25    24
+    38    22    42     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1987
+DateEnd=2020
+KeyCode=JERH04
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=JERH04A,JERH04B
+ChronoMemberCount=2
+DATA:Double
+   261     1   426     1   615     1   718     1   450     1
+   375     1   232     1    98     1    57     1   265     1
+   370     1   233     1    44     1   133     1   180     1
+   103     2   123     2   126     2    27     2    69     2
+    44     2    45     2    70     2   108     2   143     2
+    60     2   126     2    35     2    52     2    28     2
+    32     2    44     2    16     2    31     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH04A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DataType=Ringwidth
+Comment=centro
+DATA:Single
+   261   426   615   718   450   375   232    98    57   265
+   370   233    44   133   180   138   160   172    44    93
+    68    60    86   117   199    90   182    52    81    38
+    44    56    21    38     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=19
+DateBegin=2002
+DateEnd=2020
+KeyCode=JERH04B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    69    86    81    10    45    21    31    55    99    87
+    30    70    19    23    19    20    32    11    25     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH05
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH05A,JERH05B
+ChronoMemberCount=2
+DATA:Double
+   813     2   394     2   708     2   791     2   564     2
+   551     2   326     2   169     2   147     2   498     2
+   588     2   421     2    80     2   298     2   366     2
+   271     2   327     2   315     2    44     2   121     2
+    59     2    80     2   101     2   275     2   289     2
+    80     2   193     2   104     2    81     2    45     2
+    51     1   187     1    94     1   127     1     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH05A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   747   432   690   835   640   580   341   184   164   543
+   676   428   108   359   445   302   375   341    43   128
+    62   114   126   340   364    93   224   103    98    56
+    51   187    94   127     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=30
+DateBegin=1987
+DateEnd=2016
+KeyCode=JERH05B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=rota al final parece
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   880   357   727   747   488   523   312   154   131   454
+   500   414    53   238   287   241   280   290    46   114
+    56    47    77   210   214    67   162   106    65    34
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH06
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH06A,JERH06B
+ChronoMemberCount=2
+DATA:Double
+   783     2   770     2   858     2   542     2   493     2
+   281     2   120     2   121     2   319     2   414     2
+   392     2    88     2   323     1   374     1   251     1
+   325     1   214     1    24     1   136     1    65     1
+    81     1   104     1   208     1   367     1    94     1
+   358     1   130     1    92     1    82     1    69     1
+   134     1    68     1    72     1     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH06A
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   864   813   901   591   565   331   126   141   378   482
+   534   137   323   374   251   325   214    24   136    65
+    81   104   208   367    94   358   130    92    82    69
+   134    68    72     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=12
+DateBegin=1988
+DateEnd=1999
+KeyCode=JERH06B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   702   728   816   494   422   231   115   101   261   347
+   251    39     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH07
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH07A,JERH07B
+ChronoMemberCount=2
+DATA:Double
+  1051     2   854     2   477     2   692     2   725     2
+   577     2   507     2   351     2   188     2   182     2
+   513     2   544     2   409     2    60     2   211     2
+   340     2   188     2   251     2   243     2    29     2
+   103     2    59     2    82     2   149     2   225     2
+   212     2    66     2   162     2    87     2   103     2
+    62     2    74     2   104     2    45     2    78     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH07A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+  1082   869   535   775   797   609   531   371   202   203
+   603   659   452    63   230   397   207   279   274    32
+   113    73    93   160   265   247    77   183    97   117
+    62    78   113    43    69     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH07B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+  1021   840   419   609   653   545   484   332   174   161
+   424   430   367    57   192   284   169   223   213    26
+    93    46    72   139   186   177    55   142    78    89
+    62    71    95    47    88     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=JERH08
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, suprimida?
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=JERH08A,JERH08B
+ChronoMemberCount=2
+DATA:Double
+   246     2   420     2   361     2   406     2   491     2
+   316     2   264     2   168     2    63     2    71     2
+   270     2   259     2   201     2    16     2    96     2
+   108     2    77     2   104     2   112     2    10     2
+    27     2    13     2     7     2    28     2    40     2
+    25     2    14     2    36     2    19     2    12     1
+     5     1    11     1    21     1    11     1     7     1
+HEADER:
+DataFormat=Tree
+Length=29
+DateBegin=1986
+DateEnd=2014
+KeyCode=JERH08A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, suprimida?
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+244
+428
+384
+501
+513
+330
+285
+184
+76
+79
+300
+273
+195
+15
+82
+105
+67
+75
+92
+14
+23
+16;;21=16+5, faltaba alguno por aquí
+5
+30
+45
+9
+12
+11
+9
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH08B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+DATA:Single
+248
+412
+338
+312
+469
+302
+243
+153
+50
+64
+241
+245
+207
+17
+110
+112
+87
+134
+132;;139=132+7, me había comido el 2005, diminuto, wedging
+7
+31
+10
+10
+27
+35
+42
+16
+61
+29
+12;;17=12+5, era un diminuto el 2012, wedging
+5
+11
+21
+11
+7
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH09
+Unit=1/100 mm
+Length=31
+DateBegin=1987
+DateEnd=2017
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH09A,JERH09B
+ChronoMemberCount=2
+DATA:Double
+   490     2   471     2   549     2   475     2   314     2
+   247     2   121     2    54     2    57     2   259     2
+   278     2   227     2    24     2   105     2   132     2
+   113     2   141     2    94     2     8     2    24     2
+    12     2    26     2    20     2    20     2    58     2
+    21     2    18     2    11     2    24     2    14     2
+    25     1     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH09A
+Unit=1/100 mm
+Length=30
+DateBegin=1987
+DateEnd=2016
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+459
+436
+507
+325
+257
+202
+57
+26
+40
+222
+261
+213
+18
+97
+99
+119
+114
+85;;91=6+85, ausente 2005
+6
+20;;31=11+20, ausente
+11
+27
+26
+21
+64
+24
+18
+6
+20
+20
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH09B
+Unit=1/100 mm
+Length=31
+DateBegin=1987
+DateEnd=2017
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=no está rota, es que tiene ausentes al final
+DATA:Single
+521
+506
+592
+626
+371
+293
+185
+83
+75
+297
+296
+242
+31
+114
+165
+107
+168
+103;;113=103+10, el 2005 debía estar por ahí
+10
+28
+14
+25
+14
+20
+52
+18
+19
+16
+28
+8
+25
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH10
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH10A,JERH10B
+ChronoMemberCount=2
+DATA:Double
+   414     1   716     2   949     2   902     2   860     2
+   418     2   603     2   659     2   402     2   382     2
+   293     2   174     2   145     2   407     2   500     2
+   364     2    86     2   256     2   292     2   275     2
+   302     2   261     2    34     2   109     2    77     2
+   119     2   144     2   251     2   263     2   109     2
+   172     2   104     2   121     2    97     2   108     2
+   235     2   119     2   114     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH10A
+Unit=1/100 mm
+Length=37
+DateBegin=1984
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   649   958   915   890   408   560   663   455   443   326
+   196   161   474   555   419    82   289   334   316   328
+   337    50   141   103   161   226   338   324   142   236
+   157   158   144   149   347   166   150     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH10B
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   414   783   941   890   830   429   647   655   350   321
+   261   153   129   341   446   310    91   223   250   234
+   276   186    18    77    52    77    63   164   202    77
+   109    51    85    50    67   123    72    79     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH11
+Unit=1/100 mm
+Length=37
+DateBegin=1984
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH11A,JERH11B
+ChronoMemberCount=2
+DATA:Double
+   797     2  1029     2  1069     2  1097     2   661     2
+   668     2   869     2   471     2   475     2   374     2
+   214     2   146     2   450     2   485     2   404     2
+    81     2   198     2   300     2   188     2   234     2
+   201     2    28     2    76     2    41     2    79     2
+   112     1   205     1   191     1    49     1   181     1
+    68     1   122     1    78     1    86     1   171     1
+    46     1    89     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH11A
+Unit=1/100 mm
+Length=25
+DateBegin=1984
+DateEnd=2008
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   787   998   990  1021   594   567   785   450   418   321
+   191   125   357   420   296    59   140   222   143   194
+   130    29    60    27    87     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH11B
+Unit=1/100 mm
+Length=37
+DateBegin=1984
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   808  1061  1149  1174   728   769   954   493   533   427
+   238   167   543   550   512   104   257   378   234   275
+   272    28    92    55    72   112   205   191    49   181
+    68   122    78    86   171    46    89     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=31
+DateBegin=1990
+DateEnd=2020
+KeyCode=JERH12
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=muy dificil, rodaja pocos marcados anillos, suprimidísimo
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=JERH12A,JERH12B
+ChronoMemberCount=2
+DATA:Double
+   335     1   337     2   461     2   549     2   350     2
+   139     2   465     2   373     2   351     2   177     2
+   329     2   267     2   208     2   151     2    68     2
+    16     2    44     2    28     2    27     2    32     2
+    44     2    34     2    21     2    21     2    32     2
+    18     2    10     2    14     2    18     2     9     2
+    22     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=30
+DateBegin=1991
+DateEnd=2020
+KeyCode=JERH12A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=muy dificil, rodaja pocos marcados anillos, suprimidísimo
+Dated=Dated
+DATA:Single
+273
+402
+470
+200;;291=200+91, meto un ausente aquí, pero vamos, podría ser cualquier cosa, joven y suprimido
+91
+395
+387
+295
+266
+296
+239
+164
+98
+26
+29
+69
+49
+28
+24
+33
+20
+22
+23
+37
+18
+10
+19
+23
+7;;27=7+20
+20
+
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1990
+DateEnd=2020
+KeyCode=JERH12B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+335
+402
+521
+628
+500;;688=188+500, supongo que iadf, pero difícil
+188
+536
+359
+408
+88
+362
+296
+252
+204
+110
+4
+20;;27=7+20
+7
+26
+40
+56
+48
+21
+19
+27
+18
+10
+9
+14
+11
+25
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH13
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH13A,JERH13B
+ChronoMemberCount=2
+DATA:Double
+   325     2   559     2   588     2   401     2   358     2
+   234     2    95     2   101     2   250     2   282     2
+   267     2    39     2   197     2   229     2   185     2
+   188     2   230     2    23     2    73     2    32     2
+    40     2    67     2   160     2   198     2    46     2
+   154     2    68     1    87     1    51     1    71     1
+   143     1    42     1    62     1     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH13A
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   362   715   695   418   341   236    97   107   238   269
+   225    42   206   239   175   201   258    29    74    36
+    42    72   151   193    36   159    68    87    51    71
+   143    42    62     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH13B
+Unit=1/100 mm
+Length=26
+DateBegin=1988
+DateEnd=2013
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   289   404   481   384   376   232    94    96   262   295
+   310    36   188   220   196   175   203    18    73    28
+    39    63   169   204    57   149     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH14
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH14A,JERH14B
+ChronoMemberCount=2
+DATA:Double
+  1040     2   909     2   594     2   665     2   723     2
+   507     2   457     2   291     2   124     2    97     2
+   324     2   331     2   275     2    56     2   140     2
+   187     2   108     2   159     2   125     2    24     2
+    70     2    41     2    60     2    93     2   108     1
+   144     1    63     1   177     1   103     1    83     1
+    90     1    71     1   112     1    54     1    88     1
+HEADER:
+DataFormat=Tree
+KeyCode=JERH14A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+  1110   909   547   684   795   545   497   308   120   104
+   354   360   289    57   156   205   104   167   121    28
+    77    43    66   119   108   144    63   177   103    83
+    90    71   112    54    88     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH14B
+Unit=1/100 mm
+Length=24
+DateBegin=1986
+DateEnd=2009
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   970   909   642   646   651   470   418   274   128    91
+   295   303   262    55   124   170   113   152   130    20
+    63    40    55    68     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH15
+Unit=1/100 mm
+Length=36
+DateBegin=1985
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH15A,JERH15B
+ChronoMemberCount=2
+DATA:Double
+   532     1   944     2   921     2   312     2   615     2
+   681     2   513     2   536     2   342     2   153     2
+   141     2   477     2   521     2   508     2    76     2
+   243     2   324     2   243     2   341     2   352     2
+    32     2   108     2    58     2    71     2   111     2
+   202     1   222     1    64     1   181     1    69     1
+    74     1    45     1    73     1   114     1    41     1
+    93     1     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH15A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+  1105   906   304   580   681   491   524   348   152   131
+   434   505   472    82   225   307   240   327   336    19
+   101    47    61    80   202   222    64   181    69    74
+    45    73   114    41    93     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=25
+DateBegin=1985
+DateEnd=2009
+KeyCode=JERH15B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   532   784   936   320   651   681   535   549   336   154
+   151   520   537   545    70   262   341   247   355   369
+    46   115    69    82   142     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH16
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH16A,JERH16B
+ChronoMemberCount=2
+DATA:Double
+   733     2   681     2   494     2   486     2   491     2
+   392     2   404     2   245     2   117     2    80     2
+   133     2   193     2   207     2    59     2   160     2
+   142     2   101     2   133     2    95     2    17     2
+    50     2    16     2    25     2    19     2    46     2
+    54     2    27     2    73     2    33     2    33     2
+    19     2    16     2    47     2    32     2    48     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH16A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   758   666   484   474   457   359   359   235   117    92
+   145   199   184    56   169   144    98   114    88     8
+    31    11    22    21    37    46    25    69    27    37
+    20    11    44    21    41     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=JERH16B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   709   696   504   498   525   426   450   255   118    69
+   121   188   230    63   152   141   104   152   102    27
+    70    21    28    18    55    63    29    78    40    29
+    19    22    50    43    56     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH17
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH17A,JERH17B
+ChronoMemberCount=2
+DATA:Double
+   789     2   621     2   659     2   758     2   509     2
+   478     2   287     2   160     2   131     2   350     2
+   289     2   268     2    79     2   182     2   178     2
+   132     2   200     2   189     2    31     2    63     2
+    45     2    66     2   116     2   119     2    91     2
+    42     2    87     2    47     2    67     2    58     2
+    70     2    89     2    35     2    45     1     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH17A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   795   607   630   766   520   454   310   159   128   401
+   262   254    56   145   144   104   156   169    31    67
+    45    79   140    95    66    36    92    49    48    46
+    46    59    30    45     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH17B
+Unit=1/100 mm
+Length=33
+DateBegin=1987
+DateEnd=2019
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   783   636   689   751   499   503   265   162   134   300
+   317   283   103   220   212   160   245   209    31    60
+    46    53    92   143   117    49    82    46    86    70
+    94   119    41     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH18
+Unit=1/100 mm
+Length=36
+DateBegin=1985
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH18A,JERH18B
+ChronoMemberCount=2
+DATA:Double
+   460     1   700     2   308     2   475     2   646     2
+   496     2   364     2   309     2   159     2    65     2
+   115     2   298     2   336     2   286     2    43     2
+   168     2   203     2   151     2   215     2   165     2
+    25     2    60     2    31     2    30     2    72     2
+   151     2   153     2    50     2   117     2    60     2
+    68     2    33     2    39     2    85     2    42     2
+    55     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH18A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   435   227   351   598   597   357   342   200    65   117
+   266   297   245    29   140   186   129   193   156    28
+    67    35    30    65   142   145    54   127    71    72
+    30    42    91    44    55     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH18B
+Unit=1/100 mm
+Length=36
+DateBegin=1985
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   460   965   390   599   694   396   371   276   119    66
+   114   331   376   327    57   197   221   174   237   175
+    23    54    28    31    80   160   161    46   108    49
+    64    37    36    80    40    55     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH19
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH19A,JERH19B
+ChronoMemberCount=2
+DATA:Double
+   838     2   426     2   728     2   745     2   445     2
+   375     2   225     2    95     2   195     2   403     2
+   385     2   286     2    40     2   140     2   150     2
+   118     2   173     2   129     2    16     2    57     2
+    20     2    17     2    39     2   118     2   127     2
+    42     2   120     2    36     2    63     2    25     2
+    28     2    77     2    25     2    50     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH19A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   957   478   807   761   500   454   264   129   268   483
+   447   336    57   176   181   148   227   181    20    55
+    23    21    39   141   156    50   147    43    69    32
+    23   105    35    62     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH19B
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   720   374   650   729   390   297   187    62   123   324
+   324   237    24   104   120    88   120    78    13    60
+    18    13    40    95    98    34    94    30    58    18
+    33    49    16    39     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH20
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH20A,JERH20B
+ChronoMemberCount=2
+DATA:Double
+   800     2   952     2   739     2   742     2   808     2
+   495     2   424     2   282     2   129     2   163     2
+   373     2   402     2   357     2    57     2   200     2
+   282     2   203     2   236     2   252     2    36     2
+    91     2    55     2    61     2   129     2   207     2
+   211     2    57     2   142     2    57     2   101     2
+    39     2    41     2    89     2    36     2    92     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH20A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   944   964   696   725   763   460   389   288   113   141
+   348   363   342    54   187   257   176   204   225    25
+    87    43    44    94   126   145    46   139    48    74
+    38    38    77    30    79     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=JERH20B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   656   941   783   760   853   530   460   276   146   185
+   399   442   372    60   213   307   231   268   280    47
+    96    68    78   165   288   278    69   145    66   128
+    40    44   102    43   105     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH21
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH21A,JERH21B
+ChronoMemberCount=2
+DATA:Double
+   762     2   825     2   906     2   612     2   629     2
+   363     2   213     2   224     2   444     2   444     2
+   329     2    71     2   295     2   334     2   245     2
+   322     2   278     2    39     2   115     2    77     2
+   114     2   140     2   209     2   227     2    72     2
+   201     2    91     2   103     2    68     2    85     2
+   152     2    70     2    95     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH21A
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   682   814   878   575   593   312   169   190   389   391
+   245    49   208   256   170   241   202    32   113    76
+    91   118   135   171    53   152    61    73    55    68
+    95    53    77     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH21B
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   843   837   934   649   665   415   257   258   500   497
+   414    94   382   412   320   403   354    47   118    78
+   138   162   283   283    91   251   122   134    82   102
+   209    88   113     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH22
+Unit=1/100 mm
+Length=36
+DateBegin=1985
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH22A,JERH22B
+ChronoMemberCount=2
+DATA:Double
+   412     2   623     2   858     2   719     2   776     2
+   917     2   675     2   610     2   437     2   327     2
+   206     2   388     2   396     2   301     2    93     2
+   207     2   218     2   136     2   188     2   144     2
+    31     2    84     2    34     2    51     2    74     2
+   100     2   157     2    82     2   156     2    73     2
+   104     2    63     2    69     2    86     2    35     2
+    63     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH22A
+Unit=1/100 mm
+Length=36
+DateBegin=1985
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   452   606   815   666   773   902   649   610   416   336
+   133   363   361   296    86   173   199   117   147   113
+    18    80    28    46    60    69   119    58   152    73
+    90    61    56    56    18    40     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH22B
+Unit=1/100 mm
+Length=36
+DateBegin=1985
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   372   641   901   773   780   932   702   611   458   319
+   279   413   432   306   100   242   238   155   229   176
+    45    89    41    57    88   132   195   107   161    73
+   119    66    83   117    53    87     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH23
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH23A,JERH23B
+ChronoMemberCount=2
+DATA:Double
+   349     2   741     2   926     2   922     2   928     2
+   624     2   742     2   767     2   585     2   506     2
+   367     2   279     2   195     2   378     2   456     2
+   389     2   121     2   241     2   286     2   199     2
+   241     2   232     2    35     2   108     2    49     2
+    73     2   151     2   203     2   238     2   105     2
+   201     2    83     2    97     2    55     2    73     2
+   128     2    54     2    82     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH23A
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+DATA:Single
+   361   746   886   905   894   613   816   844   667   560
+   388   289   202   408   493   410   123   241   299   217
+   255   247    37    96    42    75   148   218   224   105
+   201    85   107    61    82   147    53    90     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH23B
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DataType=Ringwidth
+Comment=centro
+DATA:Single
+   337   737   967   939   962   636   669   691   503   453
+   346   270   189   349   420   368   120   242   274   181
+   228   217    34   120    57    72   155   189   253   105
+   201    82    88    50    65   109    56    75     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH24
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH24A,JERH24B
+ChronoMemberCount=2
+DATA:Double
+   267     2   340     2   432     2   436     2   434     2
+   304     2   296     2   204     2   111     2    88     2
+   226     2   248     2   190     2    53     2   132     2
+   149     2   120     2   152     2   106     2    15     2
+    59     2    49     2    38     2    36     2    96     2
+    82     2    21     2    52     2    14     2    28     2
+    12     2    14     2    32     2    12     2    26     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH24A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+DATA:Single
+   263   350   422   378   412   305   293   191   106    79
+   200   192   119    25    83   102    82   137    84     8
+    42    42    27    29    92    76    13    52    12    20
+     7     9    27     8    22     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH24B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   271   331   443   495   456   304   299   217   117    97
+   252   305   262    81   182   196   159   167   129    23
+    76    57    50    44   101    89    30    53    16    37
+    18    19    38    17    31     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH25
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH25A,JERH25B
+ChronoMemberCount=2
+DATA:Double
+   836     2   680     2   502     2   674     2   694     2
+   467     2   403     2   280     2   157     2   122     2
+   360     2   432     2   401     2    86     2   200     2
+   320     2   183     2   198     2   232     2    27     2
+    70     2    34     2    50     2   102     2   214     2
+   183     2    52     2   127     2    52     2    74     2
+    36     2    47     2   101     2    25     2    52     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH25A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   815   756   538   747   736   507   423   309   180   142
+   409   471   451    88   195   326   178   219   239    27
+    70    31    44    70   207   226    55   129    50    66
+    27    37   103    22    55     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH25B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   857   604   466   601   652   428   383   251   134   103
+   312   393   351    84   205   314   188   178   226    28
+    71    37    56   134   222   141    50   126    55    83
+    46    57    99    28    50     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH26
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH26A,JERH26B
+ChronoMemberCount=2
+DATA:Double
+   557     2   773     2   928     2   525     2   503     2
+   328     2   174     2    93     2   273     2   421     2
+   395     2    96     2   212     2   312     2   189     2
+   256     2   248     2    20     2    73     2    48     2
+    58     2   100     2   144     2   202     2    66     2
+   176     2    79     2   107     2    47     2    39     2
+    82     2    35     2    54     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH26A
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   612   690   829   434   417   283   155    78   281   388
+   349    89   192   290   183   244   279    20    78    60
+    64   100   149   184    54   202    84   103    56    55
+    70    38    61     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH26B
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   503   856  1027   616   590   373   193   108   265   455
+   441   104   233   334   196   268   217    21    68    36
+    52   101   140   221    79   151    74   112    38    24
+    94    32    48     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH27
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH27A,JERH27B
+ChronoMemberCount=2
+DATA:Double
+   914     2  1029     2   894     2   765     2   703     2
+   508     2   505     2   346     2   232     2   132     2
+   446     2   430     2   350     2    72     2   207     2
+   312     2   196     2   277     2   246     2    19     2
+    92     2    39     2    77     2   114     2   243     2
+   285     2    69     2   217     2    82     2    90     2
+    58     2    65     2   134     2    50     2    95     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH27A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   791   959   888   739   671   464   507   330   214   158
+   417   371   300    55   169   249   166   236   198    16
+    77    36    59   103   246   311    73   220    80    87
+    63    61   126    47    99     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH27B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+  1037  1099   900   791   736   553   503   363   251   106
+   475   489   400    89   246   376   227   318   295    23
+   107    42    95   126   240   259    66   215    84    94
+    54    70   143    54    92     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1985
+DateEnd=2020
+KeyCode=JERH28
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=JERH28A,JERH28B
+ChronoMemberCount=2
+DATA:Double
+   947     1  1353     2  1225     2   438     2   657     2
+   607     2   420     2   462     2   314     2   187     2
+   189     2   416     2   470     2   419     2    70     2
+   227     2   323     2   179     2   240     2   275     2
+    28     2   101     2    71     2    90     2   157     2
+   235     2   304     2    76     2   215     2    77     2
+   124     2    62     2    90     2   154     2    53     2
+    84     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1986
+DateEnd=2020
+KeyCode=JERH28A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+  1319  1070   356   565   472   360   381   267   136   137
+   322   329   258    60   159   227   129   182   214    25
+    60    46    53   100   121   182    54   164    52    68
+    36    60   100    38    41     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH28B
+Unit=1/100 mm
+Length=36
+DateBegin=1985
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   947  1388  1381   521   749   742   481   544   361   238
+   242   511   612   580    80   295   420   230   298   336
+    32   142    96   127   214   349   427    99   267   102
+   181    88   121   209    68   128     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH29
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH29A,JERH29B
+ChronoMemberCount=2
+DATA:Double
+   782     2   381     2   596     2   783     2   502     2
+   430     2   242     2   100     2    76     2   395     2
+   468     2   415     2    69     2   207     2   395     2
+   276     2   308     2   300     2    30     2    90     2
+    55     2    60     2   116     2   215     2   271     2
+    40     2   154     2    38     1    62     1    40     1
+    42     1    96     1    40     1    66     1     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH29A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   719   302   560   656   456   377   197    81    45   345
+   341   331    49   139   246   180   250   228    23    79
+    40    53    70   141   187    31   117    38    62    40
+    42    96    40    66     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=27
+DateBegin=1987
+DateEnd=2013
+KeyCode=JERH29B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   846   461   632   910   549   484   287   120   107   446
+   595   500    89   276   545   373   367   372    37   102
+    70    68   162   289   355    49   191     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH30
+Unit=1/100 mm
+Length=32
+DateBegin=1989
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH30A,JERH30B
+ChronoMemberCount=2
+DATA:Double
+   511     2   680     2   439     2   351     2   195     2
+   146     2    83     2   383     2   537     2   375     2
+    61     2   131     2   158     2   135     2   140     2
+   111     2    12     2    32     2    21     2    16     2
+    13     2    56     2    59     2    12     2    81     2
+    42     2    41     2    19     2    16     2    30     2
+    21     2    36     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH30A
+Unit=1/100 mm
+Length=32
+DateBegin=1989
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   566   737   416   336   145   150    71   385   543   338
+    47   102   103    93    95    89     9    37    26    17
+    12    40    27     8    93    41    48    15    18    27
+    29    44     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH30B
+Unit=1/100 mm
+Length=32
+DateBegin=1989
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   456   623   463   366   246   142    95   382   531   412
+    76   160   214   178   185   133    15    27    17    16
+    15    72    91    17    70    43    35    24    14    34
+    14    28     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH31
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH31A,JERH31B
+ChronoMemberCount=2
+DATA:Double
+   600     2   500     2   344     2   503     2   562     2
+   337     2   286     2   179     2    61     2    63     2
+   249     2   316     2   219     2    45     2   141     2
+   140     2   102     2   163     2   164     2    19     2
+    81     2    48     2    46     2    96     2   133     2
+   136     2    36     2   153     2    56     2    83     2
+    44     2    32     2    64     2    34     2    42     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH31A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+643
+464
+369
+487
+454
+220
+236
+166
+44
+55
+161
+248
+141
+17
+78
+69
+63
+98
+116
+10
+36
+16
+6
+28
+23
+8
+4;;64=4+60, AUSENTE
+60
+12
+22
+4
+6
+17
+9
+4
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH31B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   558   536   319   519   671   454   336   193    79    72
+   338   384   297    73   204   212   141   229   213    28
+   127    81    87   164   243   264    68   246   100   145
+    84    59   112    60    80     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH32
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH32A,JERH32B
+ChronoMemberCount=2
+DATA:Double
+   930     2   351     2   730     2   700     2   439     2
+   460     2   322     2   156     2   185     2   379     2
+   323     2   289     2    50     2   180     2   236     2
+   169     2   206     2   172     2    29     2   106     2
+    48     2    55     2    72     2    96     2   174     2
+    38     2   150     2    74     2   110     2    49     2
+    46     2    89     2    45     2    94     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH32A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   947   335   750   698   416   456   318   139   161   305
+   250   243    42   156   220   126   194   163    28    94
+    44    47    67   105   169    40   152    76   120    51
+    54   102    46    99     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH32B
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   913   367   711   702   462   464   326   174   210   454
+   396   336    58   205   252   213   218   182    31   118
+    53    63    78    87   179    37   148    73   100    48
+    38    76    45    89     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH33
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH33A,JERH33B
+ChronoMemberCount=2
+DATA:Double
+   921     2   806     2   601     2   503     2   692     2
+   419     2   324     2   233     2    83     2    65     2
+   245     2   295     2   229     2    35     2   121     2
+   152     2    99     2   165     2   169     2    14     2
+    62     2    30     2    42     2    95     2   130     2
+   132     2    71     2   179     2    73     2   118     2
+    68     2    89     2   125     2    80     2    95     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH33A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   997   781   577   528   710   469   382   261    87    67
+   292   368   265    39   151   185   119   194   199    17
+    62    32    42    89   154   159    82   198    86   142
+    74    89   137    84   102     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH33B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   845   831   625   479   675   370   267   205    79    63
+   198   223   194    31    92   120    80   137   140    12
+    62    29    42   101   106   105    60   160    61    95
+    63    89   113    76    89     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH34
+Unit=1/100 mm
+Length=34
+DateBegin=1984
+DateEnd=2017
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=faltaba esta muestra, sincronizo a partir de las mediciones de Ana Parras, corrigiéndolas. Debía ser un suprimido que perdía años al final, o un muerto
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH34A,JERH34B
+ChronoMemberCount=2
+DATA:Double
+   631     1   452     1   450     2   475     2   368     2
+   272     2   285     2   123     2   181     2   101     2
+    31     2    44     2   158     2   228     2   139     2
+    46     2    72     2    55     2    22     2    55     2
+    90     2     5     2    58     2    21     2     8     2
+    21     2    17     2    43     2    18     2    28     2
+     9     2    20     2     7     1     7     1     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH34A
+Unit=1/100 mm
+Length=34
+DateBegin=1984
+DateEnd=2017
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=faltaba esta muestra, sincronizo a partir de las mediciones de Ana Parras, corrigiéndolas
+DATA:Single
+631
+452
+380
+480
+455
+219
+191
+46
+168
+41
+20
+36
+160
+254
+157
+74
+68
+51
+17
+100
+120;;126=120+6
+6
+38
+13
+8
+34
+27
+63
+14
+26
+6
+18
+7
+7
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH34B
+Unit=1/100 mm
+Length=30
+DateBegin=1986
+DateEnd=2015
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+521
+471
+282
+325
+379
+200
+194
+161
+42
+53
+157
+203
+122
+18
+76
+60
+28
+11
+60;;64=60+4
+4
+79
+30
+8
+9
+8
+23
+23
+30
+13
+22
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH35
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH35A,JERH35B
+ChronoMemberCount=2
+DATA:Double
+   504     2   350     2   415     2   484     2   253     2
+   250     2   193     2    54     2    65     2   170     2
+   243     2   198     2    33     2    92     2   116     2
+    80     2   121     2   121     2     2     2    44     2
+    21     2    12     2    12     2    21     2    35     2
+     7     2    81     2    31     2    29     2    17     2
+    17     2    21     2    16     2    12     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH35A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+508
+330
+367
+480
+240
+249
+207
+58
+58
+158
+209
+176
+26
+67
+111
+82
+103
+99
+1;;ausente
+39
+21
+12
+6
+24
+43
+7
+60
+26
+23
+9
+12
+9
+16
+14
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH35B
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+501
+371
+463
+488
+266
+252
+180
+51
+72
+182
+278
+221
+40
+118
+122
+79
+140
+143;;147=143+4, diminuto el 2005
+4
+49
+21
+13
+19
+18
+27
+7
+102
+37
+35
+26
+22
+34
+16
+10
+
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH36
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH36A,JERH36B
+ChronoMemberCount=2
+DATA:Double
+   927     2   734     2   607     2   586     2   739     2
+   429     2   407     2   258     2   101     2    79     2
+   319     2   435     2   348     2    98     2   236     2
+   296     2   200     2   231     2   216     2    27     2
+   104     2    76     2   104     2   135     2   236     2
+   273     2   101     2   201     2   114     2   130     2
+    70     2    97     2   155     2    74     2    98     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH36A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   983   739   629   573   754   432   385   242    91    63
+   279   430   348   109   253   367   257   300   286    36
+   114   101   111   156   309   343   113   219   120   115
+    65    86   137    69    98     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH36B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   871   729   586   600   725   427   429   275   111    96
+   360   440   349    87   219   225   143   163   146    18
+    94    51    98   115   163   204    90   183   108   146
+    76   109   174    79    99     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH37
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH37A,JERH37B
+ChronoMemberCount=2
+DATA:Double
+   772     2   618     2   653     2   715     2   416     2
+   377     2   208     2    98     2    91     2   228     2
+   263     2   264     2    72     2   162     2   203     2
+   147     2   169     2   154     2    23     2    58     2
+    27     2    41     2    65     2   104     2   122     2
+    38     2   118     2    37     2    37     2    31     2
+    31     2    75     2    25     2    40     2     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH37A
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   738   541   543   592   342   353   170    82    69   169
+   181   125    42   114   139   100   108   104    15    53
+    21    32    46    82    94    27   105    38    30    28
+    25    68    20    26     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH37B
+Unit=1/100 mm
+Length=34
+DateBegin=1987
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   806   695   763   839   490   401   247   115   114   288
+   345   403   103   211   268   194   231   204    32    64
+    33    51    85   127   151    50   131    36    45    35
+    38    82    30    54     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH38
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH38A,JERH38B
+ChronoMemberCount=2
+DATA:Double
+   404     2   856     2   935     2   805     2   728     2
+   670     2   701     2   508     2   347     2   290     2
+   176     2    94     2   127     2   318     2   342     2
+   281     2    73     2   174     2   227     2   188     2
+   202     2   184     2    31     2    79     2    41     2
+    47     2    73     2   115     2   169     2    56     2
+   153     2    87     2    79     2    49     2    66     2
+   103     2    54     2    89     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH38A
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   404  1013   983   831   819   635   616   618   351   335
+   201   108   133   282   294   244    60   172   233   192
+   191   173    33    74    47    52    76   104   159    47
+   143    78    69    44    53    86    52    90     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH38B
+Unit=1/100 mm
+Length=38
+DateBegin=1983
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   405   700   887   779   637   706   787   398   344   245
+   151    80   121   355   391   318    87   177   221   184
+   213   195    29    85    35    42    70   126   179    65
+   164    96    90    54    80   121    57    88     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH39
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH39A,JERH39B
+ChronoMemberCount=2
+DATA:Double
+   682     2   714     2   823     2   586     2   648     2
+   485     2   383     2   279     2   504     2   557     2
+   368     2   124     2   190     2   191     2   119     2
+   202     2   153     2     7     2    73     2    31     2
+    52     2    50     2    86     2    92     2    42     2
+   116     2    52     2    47     2    34     2    38     2
+    47     2    19     2    48     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+KeyCode=JERH39A
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+685
+692
+702
+505
+505
+367
+280
+198
+385
+350
+238
+84
+134
+140
+87
+164
+110;;118=110+8, 2005 son 2 traqueidas
+8
+71
+29
+46
+53
+84
+79
+50
+122
+59
+59
+37
+51
+58
+25
+54
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH39B
+Unit=1/100 mm
+Length=33
+DateBegin=1988
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+   680   736   944   667   791   603   486   360   624   765
+   499   165   247   242   152   240   197     7    76    33
+    58    47    88   105    34   111    46    35    31    25
+    36    13    42     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=JERH40
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERH40A,JERH40B
+ChronoMemberCount=2
+DATA:Double
+   919     2   565     2   363     2   452     2   446     2
+   289     2   298     2   214     2    91     2    94     2
+   259     2   268     2   187     2    33     2    94     2
+    85     2    74     2   101     2    83     2    12     2
+    40     2    17     2    17     2    26     2    53     2
+    65     2     3     2    52     2    22     2    32     2
+    16     2    22     2    42     2    11     2    37     2
+HEADER:
+DataFormat=Tree
+KeyCode=JERH40A
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+796
+488
+292
+337
+316
+231
+268
+203
+88
+92
+236
+244
+197
+39
+99
+78
+62;;50+12, IDADF el 2002
+88
+69
+11
+41
+15
+17
+25
+44
+56
+3;;diminuto wedging
+42
+18
+29
+14
+14
+28
+8
+39
+
+HEADER:
+DataFormat=Tree
+KeyCode=JERH40B
+Unit=1/100 mm
+Length=35
+DateBegin=1986
+DateEnd=2020
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+DATA:Single
+1043
+642
+435
+567
+576
+347
+329
+226
+95
+97
+282
+292
+178
+28
+89
+92
+86
+115
+98
+13
+39
+19
+17
+27
+62
+75
+3;;ausente
+62
+26
+35
+19
+30
+56
+15
+35
+
+HEADER:
+DataFormat=HalfChrono
+Length=32
+DateBegin=1989
+DateEnd=2020
+KeyCode=JERH41
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, roto al final
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=JERH41A,JERH41B
+ChronoMemberCount=2
+DATA:Double
+   363     2   747     2   429     2   397     2   255     2
+   131     2    70     2   136     2   220     2   172     2
+    34     2    67     2   119     2    63     2   162     2
+   135     2    12     2    52     2    21     2    17     2
+    39     2    45     2    51     2    16     2    54     2
+    14     2    27     2    10     2    28     2    50     1
+     9     1    38     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1989
+DateEnd=2020
+KeyCode=JERH41A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DataType=Ringwidth
+DATA:Single
+   340   684   431   418   306   158    83   148   257   188
+    32    69   116    83   210   163    22    68    29    22
+    47    42    45    14    75    24    40     9    27    50
+     9    38     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=29
+DateBegin=1989
+DateEnd=2017
+KeyCode=JERH41B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, roto al final
+Unit=1/100 mm
+DATA:Single
+387
+811
+428
+377
+205
+105
+58
+124
+184
+157
+36
+65
+122
+43
+114
+108
+3
+36
+13
+13
+32
+48
+58
+18
+34;;39=5+34
+5
+15
+11
+29
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=Media_JERH41
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=JERH01,JERH02,JERH03,JERH04,JERH05,JERH06,JERH07,JERH08,JERH09,JERH10,JERH11,JERH12,JERH13,JERH14,JERH15,JERH16,JERH17,JERH18,JERH19,JERH20,JERH21,JERH22,JERH23,JERH24,JERH25,JERH26,JERH27,JERH28,JERH29,JERH30,JERH31,JERH32,JERH33,JERH34,JERH35,JERH36,JERH37,JERH38,JERH39,JERH40,JERH41
+ChronoMemberCount=41
+DATA:Double
+   389     3   748     5   738     9   810    21   734    30
+   524    37   633    40   683    41   450    41   424    41
+   279    41   147    41   123    41   337    41   385    41
+   312    41    65    41   182    41   228    41   158    41
+   203    41   185    41    22    41    74    41    40    41
+    51    41    80    41   135    41   160    41    50    41
+   136    41    59    41    71    41    42    41    49    41
+    93    39    39    39    62    39     0     0     0     0

@@ -1,0 +1,4708 @@
+HEADER:
+DataFormat=HalfChrono
+Length=43
+DateBegin=1980
+DateEnd=2022
+KeyCode=NAC2_42
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC201,NAC202,NAC203,NAC204,NAC205,NAC206,NAC207,NAC208,NAC209,NAC210,NAC211,NAC212,NAC213,NAC214,NAC215,NAC216,NAC217,NAC218,NAC219,NAC220,NAC221,NAC222,NAC223,NAC224,NAC225,NAC226,NAC227,NAC228,NAC229,NAC230,NAC231,NAC232,NAC233,NAC234,NAC235,NAC236,NAC237,NAC238,NAC239,NAC240,NAC241,NAC242
+ChronoMemberCount=42
+DATA:Double
+    84     1    99     6    91     7   129    12   122    17
+   171    22   123    25   151    32   154    37   299    41
+   449    42   192    42   268    42   141    42   120    42
+    49    42   267    42   318    42   103    42    63    42
+    52    42    74    42   107    42    69    42   210    42
+    60    42    35    42    47    42    40    42    61    41
+   210    41   132    41     6    41    51    38    11    38
+    33    34    26    33    58    29    38    28    22    28
+    37    28    26    27    65    27     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC201
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC201A,NAC201B
+ChronoMemberCount=2
+DATA:Double
+   174     2   213     2   176     2   478     2   642     2
+   224     2   313     2   137     2   127     2    68     2
+   331     2   374     2   145     2    74     2    77     2
+    58     2   102     2    66     2   212     2    68     2
+    47     2    71     2    57     2    71     2   213     2
+   147     2     5     2    60     2    14     2    15     2
+    39     2    71     2    36     2    14     2    57     2
+    20     2    83     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1986
+DateEnd=2021
+KeyCode=NAC201A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+193
+244
+195
+583
+716
+280
+378;;178+200, IADF
+172
+175
+95
+384
+414
+162
+91
+115;;75+40, iadf
+78
+130
+94
+276
+91
+44
+61
+47
+57
+210
+172
+10
+58
+10
+11
+29
+60
+37
+1;;AUSENTE
+60
+1;;AUSENTE
+
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC201B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+155
+182
+157
+374
+568
+169
+248
+102
+80
+41
+278
+334
+128
+58
+39
+39
+75
+39
+148
+46
+50
+82
+67
+85
+217
+122
+1;;AUSENTE
+63
+18
+20
+49
+82
+35
+27
+54
+39
+83
+
+HEADER:
+DataFormat=HalfChrono
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC202
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC202A,NAC202B
+ChronoMemberCount=2
+DATA:Double
+   172     1   161     2   129     2   501     2   669     2
+   249     2   260     2   146     2   101     2    31     2
+   230     2   323     2   108     2    75     2    29     2
+    39     2    93     2    74     2   270     2    68     2
+    35     2    27     2    27     2    51     2   216     2
+   181     2     1     2    59     2    21     2    32     2
+     1     2    32     2    22     2    14     2    45     2
+    37     2    76     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC202A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+172
+127
+131
+470
+595
+271
+248
+132
+77
+22
+173
+300
+67
+58
+20
+16
+64
+32
+178
+57
+21
+17
+23
+39
+154
+145
+1;;ausente
+57
+26
+36
+1;;ausente
+22
+12
+1;;ausente
+30
+30
+63
+
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC202B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+196
+128
+532
+743
+227
+272
+160
+126
+40
+287
+346
+150
+93
+38
+63
+123
+116
+362
+80
+49
+37
+31
+63
+278
+217
+1;;AUSENTE
+62
+17;;11+6
+28
+1;;AUSENTE
+42
+33
+27
+61
+44
+89
+
+HEADER:
+DataFormat=HalfChrono
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC203
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC203A,NAC203B
+ChronoMemberCount=2
+DATA:Double
+   215     2   393     2   442     2   227     2   280     2
+   141     2   126     2    42     2   270     2   311     2
+   104     2    55     2    46     2    71     2   101     2
+    80     2   205     2    49     2    34     2    33     2
+    44     2    69     2   295     2   149     2     6     2
+    47     2    15     2    26     2    77     2   108     2
+    88     2    51     2    78     2    68     2    98     2
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC203A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   208   351   358   214   250   126   107    47   232   280
+    69    49    41    71    94    81   194    48    34    35
+    42    76   278   149     5    41     8    25    56    83
+    87    57    89    92   135     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC203B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   223   435   527   241   310   157   145    38   309   343
+   139    61    52    71   108    80   217    50    34    31
+    46    62   313   149     8    54    22    27    98   133
+    90    46    68    45    62     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC204
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC204A,NAC204B
+ChronoMemberCount=2
+DATA:Double
+   108     2   215     2   209     2   253     2   146     2
+   236     2   105     2    88     2    65     2   254     2
+   286     2   108     2    82     2    31     2    58     2
+   113     2    65     2   219     2    75     2    33     2
+    33     2    24     2    39     2   141     2   110     2
+     1     2    42     2    14     2    37     2     1     2
+    63     2    32     2     3     2    12     2     4     2
+    31     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC204A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+105
+199
+244
+248
+151
+272
+114
+104
+76
+290
+380
+140
+105
+40
+63
+132
+78
+274
+93
+34
+39
+31
+51
+198
+133
+1;;AUSENTE
+48
+8
+25
+1;;ausente
+102
+59
+1;;ausente
+11
+8
+42
+
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC204B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+112
+231
+174
+258
+142
+201
+97
+73
+55
+218
+192
+77
+59
+23
+53
+95
+53
+165
+57
+32
+27
+18
+28
+85
+88
+1;;AUSENTE
+36
+20
+49
+1;;ausente
+25
+6
+6
+14
+1;;ausente
+21
+
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC205
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC205A,NAC205B
+ChronoMemberCount=2
+DATA:Double
+   113     2   104     2   335     2   613     2   236     2
+   304     2   169     2    99     2    29     2   285     2
+   336     2   101     2    43     2    39     2    54     2
+    98     2    40     2   187     2    50     2    30     2
+    46     2    44     2    78     2   276     2   230     2
+     7     2    91     2    26     2    54     2     9     2
+    70     2    27     2    22     2    42     2    15     2
+    35     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC205A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+112
+116
+390
+661
+290
+355
+183
+113
+30
+349
+361
+134
+59
+46
+71
+124
+54
+215
+63
+36
+64
+67
+111
+370
+298
+9
+117
+33
+70;;81=70+11, HABÍA uno pequeño
+11
+80
+22
+21
+47
+17
+40;;57=40+17
+
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC205B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+114
+92
+280
+566
+183;;183=53+130, iadf había supuesto
+254
+155
+86
+29
+221
+312
+69
+27
+32
+37
+72
+27
+159
+38
+25
+29
+22
+46
+182
+163
+6;;71=65+6, había un diminuto
+65
+20
+38
+7;;estaba rota por ahí
+60
+32
+23
+37
+14;;44=14+30, poco marcado el 2021
+30
+
+HEADER:
+DataFormat=HalfChrono
+Length=33
+DateBegin=1990
+DateEnd=2022
+KeyCode=NAC206
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC206A,NAC206B
+ChronoMemberCount=2
+DATA:Double
+   612     2   210     2   279     2   143     2   120     2
+    30     2   209     2   260     2    97     2    48     2
+    62     2    80     2    98     2    64     2   136     2
+    35     2    36     2    43     2    69     2    68     2
+   230     2   110     2     1     2    92     2     5     2
+    38     2     1     2    22     2    15     2     8     2
+     9     2     1     2    35     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1990
+DateEnd=2022
+KeyCode=NAC206A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+642
+263
+347
+182
+159
+33
+242
+343
+143
+64
+72
+97
+116
+64;;41+23
+166
+38
+44
+53
+85
+82
+251
+48
+1;;ausente
+144
+1;;ausente
+46
+1;;ausente
+23
+17
+9
+9
+1;;ausente
+38
+
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1990
+DateEnd=2022
+KeyCode=NAC206B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+582
+158
+211;;114+97, IADF
+105
+81
+27
+176
+178
+52
+33
+53
+63
+80
+64
+107
+33
+29
+33
+54
+54
+209
+172
+1;;AUSENTE
+41
+10
+30
+1;ausente
+22
+14
+8
+10
+1;;ausente
+33
+
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC207
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC207A,NAC207B
+ChronoMemberCount=2
+DATA:Double
+   106     1   129     2   120     2   371     2   151     2
+   311     2   107     2   122     2    29     2   238     2
+   250     2    72     2    67     2    34     2   102     2
+   111     2    68     2   198     2    50     2    44     2
+    56     2    42     2    65     2   165     2   105     2
+     5     2    44     2    15     2    36     2     1     2
+    65     2    49     2    18     2    16     2    28     2
+    50     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC207A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+106
+97
+106
+225;;151+74
+70
+268;;114+154, IADF
+65
+79
+17
+165
+176
+36
+42
+29
+53
+65
+38
+151
+45
+35
+48
+40
+62
+114
+70
+1;;ausente
+40
+16
+45
+1;;ausente
+38
+16
+11
+14
+11
+48
+
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC207B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+162
+135
+518;;326+192
+232
+354;;149+195, IADF
+150
+166
+41
+312
+324
+109
+93
+40
+152
+157
+98
+245
+55
+54
+64
+45
+69
+217
+141
+10
+49
+14
+27
+1;;ausente
+93
+82
+26
+18
+45
+52
+
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC208
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC208A,NAC208B
+ChronoMemberCount=2
+DATA:Double
+   224     2   401     2   185     2   240     2   133     2
+   118     2    39     2   230     2   273     2    92     2
+    65     2    64     2    77     2   120     2    66     2
+   201     2    53     2    42     2    60     2    44     2
+    59     2   156     2    84     2     7     2    50     2
+    12     2    27     2    16     2    24     2    17     2
+    10     2     9     2     7     2    39     2     0     0
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC208A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+242;;155+87
+429;;323+61+65, iadf
+203
+235;;104+131
+133
+136
+49
+254
+266
+99
+67
+65
+89
+135
+79
+202
+46
+42
+78
+41
+66
+168
+90;;102=12+90
+12
+38
+19
+23
+4
+20;;24=20+4
+13
+11
+10
+6
+30
+
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1989
+DateEnd=2022
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+KeyCode=NAC208B
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+207;;149+58, IADF
+373
+168
+245;;112+133, IADF
+134
+100
+30
+207
+281
+85
+64
+64
+65
+106
+53
+200
+60
+43
+42
+47
+52
+144
+78;;81=78+3
+3
+63
+6
+31
+28
+29
+21
+10
+9
+9
+49
+
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC209
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC209A,NAC209B
+ChronoMemberCount=2
+DATA:Double
+   119     2   120     2   149     2   353     2   146     2
+   221     2   115     2   101     2    52     2   339     2
+   311     2   112     2    56     2    86     2   119     2
+   139     2    83     2   274     2    64     2    40     2
+    55     2    56     2    77     2   276     2   146     2
+     4     2    49     2    12     2    23     2    64     1
+    61     1    14     1    20     1    29     1    26     1
+    81     1     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=29
+DateBegin=1987
+DateEnd=2015
+KeyCode=NAC209A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+114
+120
+149
+321
+131
+195;;83+112, IADF
+111
+92
+42
+283
+241
+82
+39
+54
+85
+113
+87
+268
+71
+44
+60
+55
+65
+212
+107
+1;;ausente
+30
+17
+30
+
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC209B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+125
+121
+150
+386
+161
+247;;80+167, IADF
+120
+111
+62
+395
+382
+142
+73
+119
+153
+166
+80
+280
+58
+37
+50
+57
+89
+340
+186
+7
+68
+8
+16
+64
+61
+14
+20
+29
+26
+81
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC210
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC210A,NAC210B
+ChronoMemberCount=2
+DATA:Double
+   240     1   128     2   168     2   190     2   378     2
+   474     2   201     2   315     2   118     2   118     2
+    51     2   259     2   420     2   125     2    75     2
+    81     2   105     2   137     2   106     2   280     2
+    71     2    53     2    71     2    51     2    68     2
+   247     2   166     2     8     2    63     2     6     2
+     7     2    42     2    58     2    31     2    25     2
+    40     2    33     2    58     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC210A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   240   121   189   224   450   504   263   356   130   121
+    56   282   488   164   113   106   121   156   144   313
+   102    77   110    62    69   315   253    16    88    11
+    14    59    85    38    31    49    40    64     0     0
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC210B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+135
+148
+156
+307
+445
+139
+275
+106
+115
+46
+236
+353
+87
+37
+57
+89
+119
+68
+247
+40
+29
+33
+41
+67
+179
+80
+1;;ausente
+38
+1;;ausente
+1;;ausente
+26
+31
+25
+20
+31
+26
+52
+
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1981
+DateEnd=2014
+KeyCode=NAC211
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC211A,NAC211B
+ChronoMemberCount=2
+DATA:Double
+    57     1    79     2   155     2   124     2   228     2
+   161     2   223     2   203     2   320     2   452     2
+   197     2   238     2   112     2    57     2    46     2
+   200     2   213     2    94     2    50     2    15     2
+    59     2    93     2    17     2   101     2    27     2
+    15     2    37     2     8     2    54     2    44     2
+    47     2     0     2    12     2     7     2     0     0
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1981
+DateEnd=2014
+KeyCode=NAC211A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+57
+65
+159
+124
+235
+150
+227
+194
+255
+398
+158
+189
+83
+44
+34
+173
+191
+69
+30
+30
+37;;15+22
+47
+34;;16+18
+139
+37
+29
+27
+16
+36
+88
+94
+1;;ausente
+25
+15
+
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1982
+DateEnd=2014
+KeyCode=NAC211B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+94
+152
+125
+221
+173
+219
+213
+386
+506
+236
+288
+141
+71
+58
+227
+235
+120
+71
+1;;AUSENTE
+81
+140
+1;;ausente
+63
+17
+1;;ausente
+47
+1;;ausente
+73
+0
+0
+0
+0
+0
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC212
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC212A,NAC212B
+ChronoMemberCount=2
+DATA:Double
+   243     2   138     2   153     2   192     2   488     2
+   497     2   216     2   270     2   136     2   114     2
+    81     2   305     2   308     2   120     2    73     2
+    77     2   118     2   108     2   118     2   232     2
+    79     2    59     2   105     2    57     2   120     2
+   237     2   168     2    19     2    87     2    33     2
+    41     2   117     2   147     2    57     2    26     2
+    66     2    51     2    95     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC212A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   202   141   162   270   575   652   259   343   174   124
+   111   383   428   163   111    93   177   148   158   260
+    84    77   129    74    97   272   167    23    96    36
+    40   135   148    69    37    85    66    80     0     0
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC212B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+284;;237+48
+135
+145
+114
+401
+343
+173
+197
+99
+105
+52
+228
+189
+77
+36
+61
+59
+69
+78
+205
+74
+42
+81
+41
+144
+202
+169
+16
+79
+31
+42
+100
+146
+46
+16
+47
+37
+111
+
+HEADER:
+DataFormat=HalfChrono
+Length=33
+DateBegin=1980
+DateEnd=2012
+KeyCode=NAC213
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC213A,NAC213B
+ChronoMemberCount=2
+DATA:Double
+    84     2   159     2   132     2   181     2   146     2
+   209     2   142     2   107     2   149     2   407     2
+   448     2   201     2   368     2   174     2   171     2
+   105     2   454     2   477     2   138     2    61     2
+    17     2    99     2   126     2    59     2   183     2
+    84     2    12     2    14     2    16     2    26     2
+   194     2   178     2    21     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1980
+DateEnd=2012
+KeyCode=NAC213A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+76
+161
+167
+188
+160
+169
+149
+109
+127
+386
+457
+180
+336
+184
+217
+83
+437
+428
+145
+54
+15
+100;;115=15+100
+134
+62
+160
+83
+24
+10
+15
+30
+200
+177
+23
+
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1980
+DateEnd=2012
+KeyCode=NAC213B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+92
+158
+97
+174
+133
+250
+135;;53+82
+105
+172
+428
+440
+222
+400
+165
+125
+128
+472
+526
+131
+68;;40+28
+20
+99
+118
+56
+207
+85
+1;;AUSENTE
+18
+18
+22
+189
+180
+20
+
+HEADER:
+DataFormat=HalfChrono
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC214
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC214A,NAC214B
+ChronoMemberCount=2
+DATA:Double
+   109     1   119     2   350     2   153     2   218     2
+   123     2   106     2    38     2   269     2   331     2
+   118     2   119     2   105     2    77     2   120     2
+    85     2   166     2    60     2    46     2    65     2
+    62     2    82     2   256     2   113     2    12     2
+    98     2    22     2    41     2   121     2   101     2
+    67     2    39     2    66     2    45     2    62     2
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC214A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   109   114   309   152   173   103    79    40   267   319
+   140   124    97    68   127    78   203    69    45    65
+    65   105   300   118    10    99    25    34   104    93
+    70    32    78    35    73     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC214B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+125
+391
+155
+264
+143
+133
+36
+271
+344
+97
+114
+113
+87
+114
+92
+129
+51
+47
+65
+59
+60
+213
+108
+14
+98;;88+10, IADF
+20
+48
+139
+109
+65
+47
+54
+55
+51
+
+HEADER:
+DataFormat=HalfChrono
+Length=29
+DateBegin=1988
+DateEnd=2016
+KeyCode=NAC215
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, roto  al final
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC215A,NAC215b
+ChronoMemberCount=2
+DATA:Double
+    70     2   150     2   385     2   233     2   270     2
+   111     2    99     2    42     2   271     2   410     2
+   152     2    48     2    40     2    47     2   113     2
+    56     2   241     2    52     2    24     2    32     2
+    14     2    61     2   182     2   119     2    13     2
+    34     1     9     1    26     1    12     1     0     0
+HEADER:
+DataFormat=Tree
+Length=25
+DateBegin=1988
+DateEnd=2012
+KeyCode=NAC215A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, roto  al final
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+63
+157
+377
+240
+265
+119
+100;;117=100+17, era un diminuto que se me había pasado el 1995
+17;;ausente
+264
+456
+226
+57
+64
+72
+160
+87
+261
+51
+12
+19
+11
+40
+157
+110
+26
+
+HEADER:
+DataFormat=Tree
+Length=29
+DateBegin=1988
+DateEnd=2016
+KeyCode=NAC215b
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, debe ser un suprimido, esta esta entera. Debe llevar seis años sin crecer
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+78
+144
+394
+226
+276
+104
+98
+67
+278
+364
+79
+39
+16
+23
+67
+25
+222
+54
+37
+45
+18
+83
+208
+129
+1;;ausente
+34
+9
+26
+12
+
+HEADER:
+DataFormat=HalfChrono
+Length=30
+DateBegin=1988
+DateEnd=2017
+KeyCode=NAC216
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+DataType=Ringwidth
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC216A,NAC216B
+ChronoMemberCount=2
+DATA:Double
+   130     2   175     2   319     2   182     2   283     2
+   205     2   208     2    94     2   309     2   373     2
+   123     2    89     2    83     2    66     2   139     2
+    50     2   248     2    81     1    50     1    58     1
+    34     1    80     1   281     1   186     1     1     1
+    74     1    15     1    32     1     1     1    42     1
+HEADER:
+DataFormat=Tree
+Length=30
+DateBegin=1988
+DateEnd=2017
+KeyCode=NAC216A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=estaba roto el final o no crecía???
+Dated=Dated
+DATA:Single
+128
+184
+315
+200
+262;;148+214, IADF ese año en casi todas, supongo, el 1990 es un característico muy fuerte
+207
+279
+125
+382
+412
+139
+104
+94
+90
+178
+64
+348
+81
+50
+58
+34
+80
+281
+186
+1;;AUSENTE
+74
+15
+32
+1;;ausente
+42
+
+HEADER:
+DataFormat=Tree
+Length=17
+DateBegin=1988
+DateEnd=2004
+KeyCode=NAC216B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+DataType=Ringwidth
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+133
+167
+323;;275+48
+164
+305;;124+181
+204
+138
+63
+236
+335
+108
+75
+72
+42
+100
+36
+149
+
+HEADER:
+DataFormat=HalfChrono
+Length=32
+DateBegin=1984
+DateEnd=2015
+KeyCode=NAC217
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC217A,NAC217B
+ChronoMemberCount=2
+DATA:Double
+    88     1    82     1    38     1    92     1   117     1
+   136     2   405     2   134     2   212     2   124     2
+    80     2    32     2   210     2   284     2    72     2
+    26     2    11     2    17     2    50     2    25     2
+   180     2    51     2     8     2    13     2    16     2
+    41     2   263     2   127     2     5     2    17     2
+     2     1    15     1     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1984
+DateEnd=2015
+KeyCode=NAC217A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+88
+82
+38
+92
+117
+114
+422;;338+84, era un doble anillo
+138
+215
+129
+75
+29
+223
+285
+75
+27
+1;;AUSENTE
+26
+46
+31
+199
+61
+15
+12
+13
+48
+279
+133
+1;;AUSENTE
+14
+2
+15
+
+HEADER:
+DataFormat=Tree
+Length=25
+DateBegin=1989
+DateEnd=2013
+KeyCode=NAC217B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=Creo que no está roto. Hay dos testigos (4 radios), leo dos que parecen los más enteros y ambos dejan de crecer 10 años... lo acepto
+Dated=Dated
+DATA:Single
+158
+389
+130
+209
+119
+85
+35
+197
+283
+69
+25
+21
+9
+54
+19
+162
+42
+1;AUSENTE
+14
+20
+35
+247
+122
+9
+21
+
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1981
+DateEnd=2016
+KeyCode=NAC218
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC218A,NAC218B
+ChronoMemberCount=2
+DATA:Double
+    53     2    75     2    78     2   104     2   152     2
+   122     2   109     2    86     2   211     2   428     2
+   143     2   271     2   167     2    89     2    31     2
+   289     2   398     2   147     2    61     2    34     2
+    80     2    85     2    36     2   184     2    50     2
+    21     2    22     2    15     2    40     2   150     2
+   129     2     1     2    20     2     9     2    32     2
+     0     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1981
+DateEnd=2016
+KeyCode=NAC218A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+52
+80
+81
+106
+151
+131
+122
+89
+255
+517
+164
+292
+166
+85
+27
+294
+395
+135
+69
+37
+53;;21+32
+85
+41
+216
+49
+19
+26
+10
+30
+141
+116
+1;;ausente
+12
+11
+21
+0
+
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1981
+DateEnd=2016
+KeyCode=NAC218B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+55
+70
+75
+102
+153
+113
+97
+84
+168
+339
+122
+251
+168
+94
+36
+285
+401
+160
+54
+32
+108
+85
+31
+152
+51
+24
+19
+20
+51
+160
+143
+1;;AUSENTE
+28
+8
+44
+0;;ausente
+
+HEADER:
+DataFormat=HalfChrono
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC219
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC219A,NAC219B
+ChronoMemberCount=2
+Comment=CENTRO
+DATA:Double
+    92     2    77     2    95     2    59     2   120     2
+   178     2   178     2   300     2   172     2   308     2
+   142     2   137     2    19     2   232     2   314     2
+   106     2    91     2    76     2   110     2   144     2
+   116     2   291     2    75     2    51     2    84     2
+    89     2   108     2   281     2   198     2    10     2
+    98     2    10     2    19     2    38     2    39     2
+    39     2    25     2    49     2    41     2    70     2
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC219A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+92
+76
+104;;89+15, supongo que el pequeño es doble anillo
+47
+53
+72
+222
+203
+105
+213
+103
+80;;89=80+9, diminuto 1995
+9
+191
+276
+97
+76
+53
+75
+115
+84
+279
+61
+45
+81
+95
+106
+279
+211
+15
+121
+12
+25
+46
+41
+47
+32
+56
+40
+68
+
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC219B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    92    79    86    72   188   285   134   397   239   403
+   181   195    29   274   352   116   107    99   146   173
+   149   303    89    57    88    84   110   283   185     6
+    76     8    13    30    37    32    19    42    43    72
+HEADER:
+DataFormat=HalfChrono
+Length=33
+DateBegin=1984
+DateEnd=2016
+KeyCode=NAC220
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro, ver comentario en el B: asumo que deja de crecer, no es que esté rota
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC220A,NAC220B
+ChronoMemberCount=2
+DATA:Double
+    45     2    71     2    94     2    91     2    80     2
+   198     2   357     2   158     2   159     2    75     2
+    63     2    15     2   157     2   196     2    34     2
+    27     2    18     2    35     2    79     2    28     2
+   161     2    34     2    19     2    17     2    15     2
+    53     2   177     2    82     2     1     1    30     1
+    15     1    31     1     1     1     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1984
+DateEnd=2016
+KeyCode=NAC220A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro, ver comentario en el B: asumo que deja de crecer, no es que esté rota
+Dated=Dated
+DATA:Single
+50
+66
+93
+99
+83
+209
+422
+180
+175
+85
+70;;92=22+70
+22
+212
+225
+11
+35
+24
+49;;31+18
+96
+27
+167
+36
+15
+13
+20
+65
+212
+112
+1;;ausente
+30
+15
+31
+1;;ausente
+
+HEADER:
+DataFormat=Tree
+Length=28
+DateBegin=1984
+DateEnd=2011
+KeyCode=NAC220B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=CENTRO, supongo que no está rota, es que no crece más... (el árbol era diminuto)
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    41    76    95    84    77   187   292   136   144    66
+    57     9   102   167    58    19    13    21    62    30
+   156    33    24    21    11    41   143    52     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=39
+DateBegin=1984
+DateEnd=2022
+KeyCode=NAC221
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC221A,NAC221B
+ChronoMemberCount=2
+DATA:Double
+   301     1   485     2   147     2   164     2   170     2
+   395     2   312     2   114     2   178     2   108     2
+    83     2    27     2   188     2   281     2    81     2
+    45     2    49     2   107     2   136     2    96     2
+   238     2    54     2    31     2    54     2    46     2
+    61     2   214     2   129     2     1     2    76     2
+     8     2    11     2    14     2    34     2    25     2
+    17     2    14     2    13     2    46     2     0     0
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC221A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+609
+144
+169
+162
+324
+236
+93
+148;;75+73, iadf
+89
+52
+20
+130
+259
+67
+34
+36
+77
+114
+76
+191
+48
+27
+30
+27
+55
+196
+127
+1;;AUSENTE
+73
+1;;AUSENTE
+9
+8
+21
+14
+13
+7
+11
+39
+
+HEADER:
+DataFormat=Tree
+Length=39
+DateBegin=1984
+DateEnd=2022
+KeyCode=NAC221B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+301
+362
+150
+160
+178
+467
+389
+135
+208;;106+102, iadf
+128
+115
+35
+246
+304
+95
+56
+63
+137
+158
+116
+286
+60
+36
+78
+66
+67
+232
+132
+1;;AUSENTE
+79
+16
+14
+21
+48
+36;;26+10
+22
+21
+16
+54
+
+HEADER:
+DataFormat=HalfChrono
+Length=32
+DateBegin=1981
+DateEnd=2012
+KeyCode=NAC222
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro, muerta, rodaja. MUCHAS IADFs las muertas, tremendo, cuidado
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC222A,NAC222B
+ChronoMemberCount=2
+DATA:Double
+   126     2   118     2   257     2   213     2   191     2
+   133     2   199     2   142     2   368     2   491     2
+   152     2   287     2   195     2   150     2    32     2
+   215     2   355     2   125     2    43     2    31     2
+    49     2    62     2    55     2   159     2    59     2
+    23     2    39     2    43     2    68     2   166     2
+   102     2    12     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1981
+DateEnd=2012
+KeyCode=NAC222A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro, muerta, rodaja. MUCHAS IADFs las muertas, tremendo, cuidado
+Dated=Dated
+DATA:Single
+108
+110
+277
+268
+144
+152
+252
+164
+437
+586
+165
+405
+216
+200;;233=200+33
+33
+238
+361
+124;;90+34
+48
+37
+58;;23+35
+65
+51
+179
+65
+26
+59;;29+30
+43
+91
+258
+180
+23
+
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1981
+DateEnd=2012
+KeyCode=NAC222B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=esta debe ser de la base
+Dated=Dated
+DATA:Single
+144
+126
+238
+159
+239
+114
+146
+120
+300
+397
+139
+170
+175
+101
+31
+192
+349
+127
+39
+26
+41;;15+26
+59
+59;;26+33
+139
+54
+21
+19
+43
+46
+74
+25
+1;;ausente
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC223
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC223A,NAC223B
+ChronoMemberCount=2
+DATA:Double
+   282     1   119     2   130     2   113     2   345     2
+   479     2   153     2   204     2   129     2   118     2
+    26     2   251     2   350     2    46     2    49     2
+    51     2   102     2   105     2    72     2   232     2
+    60     2    39     2    50     2    55     2    83     2
+   252     2   152     2     4     2    47     2    16     2
+    53     2     6     2    54     2    45     2    24     2
+    38     2    43     2   122     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC223A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+113
+95
+105
+263
+368
+99
+178
+97
+70
+17
+176
+255
+47
+37
+47
+65
+93
+59
+175
+45
+31
+38
+46
+56
+155
+119
+1;ausente
+37
+10
+43
+11
+46
+40
+19
+32
+36
+112
+
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC223B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+282
+126
+165
+121
+427
+591
+207
+231;;146+185, un autentico doble anillo
+162
+167
+36
+326
+446
+46
+62
+56
+139
+117
+86
+290
+76
+47
+62
+65
+111
+350
+186
+7
+58
+23
+64
+1;;AUSENTE
+62
+51
+30
+44
+51
+132
+
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC224
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC224A,NAC224B
+ChronoMemberCount=2
+DATA:Double
+   246     1   201     2   315     2   394     2   235     2
+   301     2   121     2   135     2    43     2   264     2
+   271     2    67     2    54     2    45     2    61     2
+   130     2    74     2   214     2    61     2    35     2
+    44     2    38     2    48     2   228     2   130     2
+     1     2    44     2     5     2    17     2    31     2
+    50     2    46     2    19     1    21     1    21     1
+    63     1     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC224A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+195
+376
+454
+269
+300
+112
+125
+30
+233
+209
+28
+39
+49
+56
+111
+60
+165
+45
+32
+48
+40
+47
+246
+132
+1;AUSENTE
+40
+2
+14
+33
+50
+29
+19
+21
+21
+63
+
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1987
+DateEnd=2018
+KeyCode=NAC224B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=rota al final
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+246
+207
+255
+335
+202
+302
+130
+145
+56
+295
+334
+106
+70
+42
+67
+150
+89
+264
+78
+38
+40
+37
+50
+211
+129
+1;;ausente
+48
+8
+20
+29
+51
+64
+
+HEADER:
+DataFormat=HalfChrono
+Length=28
+DateBegin=1981
+DateEnd=2008
+KeyCode=NAC225
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC225A,NAC225B
+ChronoMemberCount=2
+DATA:Double
+   113     2    81     2   159     2   156     2   215     2
+    95     2   151     2   147     2   384     2   556     2
+   249     2   383     2   200     2   110     2    59     2
+   216     2   270     2    55     2    26     2    22     2
+    46     2    50     2    37     2   135     2    28     2
+    12     2    49     2    10     2     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=28
+DateBegin=1981
+DateEnd=2008
+KeyCode=NAC225A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro, rodaja, muerto
+Dated=Dated
+DATA:Single
+107
+80
+160
+132
+223
+103
+149
+156
+436
+584
+280
+451;;280+171
+263
+164
+103
+217
+291
+62
+41
+43
+72;;25+47
+51;;17+34
+65
+125
+27
+10
+21
+19
+
+HEADER:
+DataFormat=Tree
+Length=28
+DateBegin=1981
+DateEnd=2008
+KeyCode=NAC225B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+120
+83
+158
+180
+208
+87
+153
+138
+333
+528
+218
+316;;123+193
+137
+56
+15
+215
+249
+49
+11
+1;;AUSENTE
+20
+50;;59=50+9
+9
+145
+29
+14
+78
+1;;auisente
+
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1981
+DateEnd=2014
+KeyCode=NAC226
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC226A,NAC226B
+ChronoMemberCount=2
+DATA:Double
+    87     2    61     2   147     2   141     2   157     2
+   145     2   159     2   170     2   430     2   586     2
+   269     2   230     2   165     2   100     2    46     2
+   244     2   370     2    90     2    40     2    13     2
+    33     2    50     2    21     2   208     2    70     2
+    25     2    16     2    25     2    27     2   177     2
+   184     2     1     2    31     2     0     2     0     0
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1981
+DateEnd=2014
+KeyCode=NAC226A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+94
+65
+137
+128
+172;;130+42, supuse todo el rato que era un doble...
+135
+165
+167
+381
+686
+294
+139
+208
+141
+69
+285
+412
+75
+41
+11;;41=11+30
+30
+50
+27;;77=27+50
+186
+52
+31
+17
+26
+25
+183
+166
+1;;ause3nte
+37
+0
+
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1981
+DateEnd=2014
+KeyCode=NAC226B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+80
+58
+157
+155
+142
+156
+153
+173
+479
+487
+244
+321
+122
+60;;84=24+60
+24
+204
+329
+106
+40;;56=16+40
+16
+37
+50
+15;;65=15+50
+231
+89
+20
+15
+24
+29;;14+15
+171
+202
+1;;AUSENTE
+26
+0
+
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC227
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC227A,NAC227B
+ChronoMemberCount=2
+DATA:Double
+   139     2   417     2   193     2   203     2    72     2
+    90     2    35     2   217     2   238     2    48     2
+    33     1    42     1    96     1   100     1    46     1
+   194     1    52     1    32     1    34     1    41     1
+    40     1   203     1    64     1     9     1    16     1
+     1     1    36     1     1     1    53     1    30     1
+    18     1    21     1    15     1    55     1     0     0
+HEADER:
+DataFormat=Tree
+Length=10
+DateBegin=1989
+DateEnd=1998
+KeyCode=NAC227A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   135   456   178   213    76    72    27   185   221    19
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC227B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+144
+378
+209
+193
+69
+109
+43
+250
+256
+78
+33
+42
+96
+100
+46
+194
+52
+32
+34
+41
+40
+203
+64
+9
+16
+1;;ausente
+36
+1;;AUSENTE
+53
+30
+18
+21
+15
+55
+
+HEADER:
+DataFormat=HalfChrono
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC228
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC228A,NAC228B
+ChronoMemberCount=2
+DATA:Double
+    75     2    77     2    75     2    79     2    91     2
+   111     2   360     2   535     2   190     2   309     2
+   141     2   169     2    67     2   310     2   333     2
+   121     2    71     2    63     2    89     2   101     2
+    83     2   199     2    70     2    46     2    46     2
+    61     2    73     2   223     2   133     2     6     2
+    62     2     9     2    15     2    36     2    82     2
+    65     2    27     2    34     2    29     2    59     2
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC228A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+82
+90
+75
+85
+107
+132
+494
+718
+235
+428
+180
+216
+87
+401
+429
+162
+126
+96
+127
+119
+115
+241
+97
+58
+67
+71
+63
+194
+139
+12
+70;;64+6
+11
+12
+22
+75
+69
+32
+44
+43
+75
+
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC228B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+69
+65
+75
+73
+75
+90
+226
+353
+145
+190
+102
+123
+47
+219
+237
+80
+16
+31
+52
+84
+52
+158
+44
+35
+26
+51
+83
+252
+127
+1;;AUSENTE
+54
+8
+18
+50
+90
+62
+22
+24
+15
+43
+
+HEADER:
+DataFormat=HalfChrono
+Length=39
+DateBegin=1984
+DateEnd=2022
+KeyCode=NAC229
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC229A,NAC229B
+ChronoMemberCount=2
+DATA:Double
+    49     1    83     2    51     2    90     2   108     2
+   291     2   601     2   234     2   321     2   163     2
+   144     2    59     2   239     2   324     2   117     2
+    71     2    50     2    66     2   134     2    79     2
+   235     2    75     2    43     2    45     2    38     2
+    65     2   178     2   101     2     1     2    39     2
+     1     2    12     2     1     2    13     2    19     2
+     7     2    10     2    11     2    26     2     0     0
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC229A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+96;;72+24
+57
+110
+124
+237
+823
+254
+343;;146+197
+172
+132
+46
+241
+296
+114
+73
+70;;37+33
+62
+116
+71
+204
+64
+45
+46
+44
+75
+181
+91
+1;;ausente
+54
+1;;ausente
+9
+1;;ausente
+10
+22
+6
+6
+21
+26
+
+HEADER:
+DataFormat=Tree
+Length=39
+DateBegin=1984
+DateEnd=2022
+KeyCode=NAC229B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=centro
+Dated=Dated
+DATA:Single
+49
+70;;46+24
+45
+71
+93
+345;;217+128
+380
+214;;69+155, iadf
+300;;155+145
+154
+157
+73
+238
+353
+120
+69
+31
+71
+152
+87
+267
+86
+41
+45
+33;;14+19
+55
+176
+112
+1;;ausente
+25
+1;;ausente
+15
+1;;ausente
+17
+16
+9
+14
+1;;ausente
+27
+
+HEADER:
+DataFormat=HalfChrono
+Length=35
+DateBegin=1982
+DateEnd=2016
+KeyCode=NAC230
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, muerto, rodaja
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC230A,NAC230B
+ChronoMemberCount=2
+DATA:Double
+    91     2   115     2   112     2   156     2    98     2
+   115     2   121     2   348     2   641     2   273     2
+   280     2   179     2   135     2    36     2   302     2
+   369     2   136     2    73     2    29     2    52     2
+    89     2    67     2   178     2    52     2    31     2
+    39     2    24     2    39     2   122     2    84     2
+     1     2    19     2     1     1    29     1     1     1
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1982
+DateEnd=2013
+KeyCode=NAC230A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro, muerto, rodaja
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+94
+122
+130
+136
+99
+119
+134
+398
+650
+176
+329
+177
+110
+26
+281
+414
+175
+106
+36
+70
+120
+91;;54+37, muchas iadfs estas rodajs muertas
+188
+57
+38;;17+21
+31;;22+9
+16
+32
+125
+78
+1;;ausente
+20
+
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1982
+DateEnd=2016
+KeyCode=NAC230B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+89
+109
+95
+177
+97
+112
+109
+299
+633
+370;;240+130
+231
+181
+160
+47
+323
+325
+98
+40
+23;;14+9
+35
+59
+43;;24+19
+168
+47;;37+10
+24
+47;;24+23
+33
+47;;167=47+120
+120
+90;;109=90+19
+1;;ausente
+19
+1;;ausente
+29
+1;;ausente
+
+HEADER:
+DataFormat=HalfChrono
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC231
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC231A,NAC231B
+ChronoMemberCount=2
+DATA:Double
+   193     1   146     1   169     2    83     2   157     2
+    74     2    49     2    27     2   190     2   169     2
+    71     2    56     2    58     2    37     2    84     2
+    53     2   176     2    47     2    20     2    36     2
+    16     2    36     2   110     2   115     2     1     2
+    61     2     1     2    46     2     9     2    53     2
+    19     2    11     2    36     2     5     2    63     2
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1990
+DateEnd=2022
+KeyCode=NAC231A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+130
+80
+132;;71+61
+63
+48
+30
+218
+132
+49
+32
+61
+32
+70
+54;;33+21
+136
+34
+25
+35
+7
+21
+46
+73
+1;;ausente
+82
+1;;ausente
+31
+18
+52
+24
+12
+20
+10
+78
+
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC231B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+193
+146
+208
+86
+183;;75+66+42, IADF
+86
+50
+25
+163
+206
+94
+80
+56
+43
+98
+52
+216
+60;;53+7
+15
+37
+25
+52
+175
+157
+1;;ausente
+41
+1;;ausente
+61
+1;;ausente
+55
+14
+11
+53
+1;;ausente
+48
+
+HEADER:
+DataFormat=HalfChrono
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC232
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC232A,NAC232B
+ChronoMemberCount=2
+DATA:Double
+   229     1   222     2   454     2   485     2   225     2
+   299     2   152     2   159     2    51     2   263     2
+   303     2   149     2    99     2    86     2   143     2
+   164     2   166     2   316     2   118     2    86     2
+   105     2   117     2   121     2   249     2   143     2
+    18     2    68     2    32     2    45     2    47     2
+   108     2    99     2    57     2    78     2    60     2
+   112     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=36
+DateBegin=1987
+DateEnd=2022
+KeyCode=NAC232A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   229   195   386   326   160   222   116   109    44   209
+   224    98    71    63    92   112    74   199    81    55
+    63    80    90   203   130     9    59    35    53    69
+   132    99    52    48    45   122     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=35
+DateBegin=1988
+DateEnd=2022
+KeyCode=NAC232B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   249   522   645   291   377   188   209    59   317   383
+   201   128   109   194   216   258   434   155   118   148
+   155   153   295   156    27    77    29    37    25    84
+    99    63   108    76   102     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC233
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC233A,NAC233B
+ChronoMemberCount=2
+DATA:Double
+   296     2   560     2   177     2   365     2   162     2
+   181     2    42     2   348     2   388     2   120     2
+    46     2    25     2    80     2   122     2   108     2
+   248     2    74     2    50     2    80     2    71     2
+   109     2   360     2   165     2     1     2    35     2
+     8     2    42     2     1     2    64     2    56     2
+    25     2    33     2    34     2    85     2     0     0
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC233A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+330
+581
+196
+415
+173
+228
+68
+432
+476
+135
+64
+36
+85
+132
+108
+267
+76
+51
+93
+95
+147
+420
+162
+1;ausente
+42
+15
+51
+1;;ausente
+49
+36
+21
+31
+31
+67
+
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC233B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+263
+539
+158
+315
+152
+135
+16
+264
+301
+105
+28
+14
+75
+112
+109;;56+43
+229
+73
+49
+67;;58+9
+48
+71
+301
+168
+1;;ausente
+28
+1;;ausente
+33
+1;;ausente
+80
+76
+30
+36
+38
+103
+
+HEADER:
+DataFormat=HalfChrono
+Length=30
+DateBegin=1983
+DateEnd=2012
+KeyCode=NAC234
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC234A,NAC234B
+ChronoMemberCount=2
+DATA:Double
+    81     2    77     2   123     2   131     2   158     2
+   152     2   410     2   626     2   341     2   361     2
+   180     2   155     2    63     2   277     2   201     2
+    92     2    46     2    14     2    55     2    78     2
+    34     2   146     2    32     2    22     2     8     2
+     8     2    15     2    78     2    71     2     0     2
+HEADER:
+DataFormat=Tree
+Length=30
+DateBegin=1983
+DateEnd=2012
+KeyCode=NAC234A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+81
+70
+130
+137
+154
+146
+400
+670
+318
+383
+185
+160
+86
+284
+252
+93
+33
+11;;AUSENTE
+53
+90
+34
+124
+29
+22
+7
+10
+16
+70
+73
+0;AUSENTE;SE MUERE 2012
+
+HEADER:
+DataFormat=Tree
+Length=30
+DateBegin=1983
+DateEnd=2012
+KeyCode=NAC234B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+82
+84
+116
+125
+163
+158
+420
+583
+365
+339
+176
+150;;191=150+41
+41
+270
+150;;241=91+150
+91
+59
+17
+57
+66
+34
+168
+36
+22
+10
+7
+14
+87
+69
+0;;AUSENTE
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1985
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=NAC235
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC235A,NAC235B
+ChronoMemberCount=2
+DATA:Double
+   123     2   173     2   212     2   231     2   292     2
+   490     2   167     2   267     2   148     2   130     2
+    80     2   336     2   293     2    72     2    65     2
+    18     2    25     2    60     2    52     2   207     2
+    80     2    46     2    42     2    23     2    40     2
+   214     2   114     2     1     2    43     2    25     2
+    45     2     1     1    29     1    17     1     8     1
+    19     1     1     1    19     1     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1985
+DateEnd=2015
+DataType=Ringwidth
+KeyCode=NAC235A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=debía estar roto
+DATA:Single
+124
+174
+166
+180
+205
+305
+116
+158
+87
+98
+35
+220
+221
+69
+19
+11
+18
+44
+42
+175
+74
+42
+40
+20
+44
+212
+115
+1;;AUSENTE
+44
+31
+52
+
+HEADER:
+DataFormat=Tree
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC235B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+DATA:Single
+123
+173
+259
+282
+380
+676
+219
+377;;143+234
+210
+163
+126
+452
+366;;339+27
+76
+111
+25
+33;;11+13+9, debía ser una iadf multiple
+77
+62
+239
+87
+51
+44
+27
+36
+217
+114
+1;;ausente
+42
+19
+38
+1;;ausente
+29
+17
+8
+19
+1;;ausente
+19
+
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1987
+DateEnd=2020
+KeyCode=NAC236
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC236A,NAC236B
+ChronoMemberCount=2
+DATA:Double
+   134     2   145     2   519     2   249     2   135     2
+   160     2   152     2   126     2    53     2   297     2
+   342     2    77     2    54     2    42     2    67     2
+   129     2    64     2   245     2    52     2    27     2
+    34     2    24     2    40     2   175     2   102     2
+    15     2    28     2     1     2    19     2     1     2
+     9     2     8     2     3     2    29     2     0     0
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1987
+DateEnd=2020
+KeyCode=NAC236A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+103
+153
+451
+181
+138
+163
+146
+99
+25
+267
+322
+60
+25
+16
+36
+99
+53
+236
+45
+27
+29
+18
+37
+169
+100
+20
+43
+1;;ausente
+26
+1;;ausente
+9
+9
+5
+23
+
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1987
+DateEnd=2020
+KeyCode=NAC236B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+166
+138
+587
+317
+133
+157
+159
+153
+82
+327
+363
+95
+84
+69
+99
+160
+76
+255
+59
+27
+40
+31
+44
+182
+105
+11
+13
+1;;ausente
+13
+1;;ausente
+10
+7
+1;;ausente
+35
+
+HEADER:
+DataFormat=HalfChrono
+Length=31
+DateBegin=1984
+DateEnd=2014
+KeyCode=NAC237
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC237A,NAC237B
+ChronoMemberCount=2
+DATA:Double
+    61     2    43     2    94     2   117     2   148     2
+   347     2   477     2   180     2   239     2    98     2
+   103     2    35     2   235     2   307     2    78     2
+    56     2    49     2    73     2   111     2    55     2
+   194     2    56     2    21     2    26     2     7     2
+    21     2   186     2   108     2     5     2    19     2
+     2     2     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1984
+DateEnd=2014
+KeyCode=NAC237A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+    61    47    97   120   150   375   490   180   239    90
+    99    41   270   322    79    49    26    53   111    48
+   178    56    14    16    10    21   234   120     9    14
+     5     0     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=31
+DateBegin=1984
+DateEnd=2014
+KeyCode=NAC237B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+61
+39
+91
+114
+147
+319
+464
+180
+240
+106
+108
+29;;229=29+200
+200
+293
+78
+63
+72
+94
+111
+62
+211
+56
+28
+36
+5
+22
+139
+97
+1;;ASUENTE
+25
+0;ausente
+
+HEADER:
+DataFormat=HalfChrono
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC238
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC238A,NAC238B
+ChronoMemberCount=2
+DATA:Double
+   240     1   411     2   216     2   273     2   108     2
+    76     2    49     2   255     2   313     2    90     2
+    37     2    64     2    75     2   112     2    66     2
+   234     2    55     2    29     2    40     2    54     2
+    59     2   206     2    97     2    15     2    40     2
+    20     2    63     2     9     2    47     2    15     2
+    12     2    38     2    18     2    52     2     0     0
+HEADER:
+DataFormat=Tree
+Length=34
+DateBegin=1989
+DateEnd=2022
+KeyCode=NAC238A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+240
+405
+211
+231;;117+114, doble anillo
+95
+68
+28
+256
+295
+87
+30
+57
+62
+100
+68
+241
+63
+33
+41
+66
+56
+191
+100;;130=100+30
+30
+42
+21
+66
+17
+60;;77=17+60
+23
+19
+48
+29
+64
+
+HEADER:
+DataFormat=Tree
+Length=33
+DateBegin=1990
+DateEnd=2022
+KeyCode=NAC238B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+418
+222
+316;;161+155
+121
+85
+71
+254
+332
+94
+45
+72
+88
+124
+64
+227
+48
+25
+40
+43
+62
+221
+95
+1;;ausente
+38
+19
+60
+1;;ausente
+35
+8
+5
+29
+8;;48=8+40
+40
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1985
+DateEnd=2022
+KeyCode=NAC239
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=estaban rotas, me las compuse como creí que eran
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC239A,NAC239B
+ChronoMemberCount=2
+DATA:Double
+    85     2    83     2   167     2   109     2   147     2
+   197     2   159     2   201     2   157     2   166     2
+    88     2   375     2   329     2    89     2    66     2
+    86     2   112     2   117     2    62     2   222     2
+    61     2    36     2    50     2    64     2    72     2
+   141     2    88     2     1     2    36     2     1     2
+    25     2     1     2    15     2    12     2     5     2
+    44     2    11     2    54     1     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1985
+DateEnd=2021
+KeyCode=NAC239A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=estaban rotas, me las compuse como creí que eran
+Dated=Dated
+DATA:Single
+97
+89
+167
+106
+139
+204
+195
+245
+167
+189
+133
+449
+346
+82
+63
+83
+103
+91
+52
+158
+40
+31
+32
+43
+58
+119
+66
+1;ausente
+28
+1;;ausente
+20
+1;;ausente
+13
+12
+1;;ausente
+73
+1;;asuente
+
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1985
+DateEnd=2022
+DataType=Ringwidth
+KeyCode=NAC239B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=CENTRO
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC239B,NAC239B1
+ChronoMemberCount=2
+DATA:Double
+73
+1
+78
+1
+168
+1
+113
+1
+155
+1
+191
+1
+123
+1
+157
+1
+148
+1
+144
+1
+44
+1
+301
+1
+312
+1
+97
+1
+69
+1
+90
+1
+122
+1
+144
+1
+72
+1
+287
+1
+82
+1
+42
+1
+68
+1
+85
+1
+87
+1
+164
+1
+110
+1
+1;;ausente
+1
+44
+1
+1;;ausente
+1
+30
+1
+1;;ausente
+1
+18
+1
+12
+1
+9
+1
+16
+1
+22
+1
+54
+1
+
+HEADER:
+DataFormat=HalfChrono
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC240
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC240A,NAC240B
+ChronoMemberCount=2
+DATA:Double
+   250     2   312     2   255     2   384     2   540     2
+   191     2   265     2   170     2   127     2   113     2
+   319     2   355     2   159     2   129     2   120     2
+   140     2   163     2   103     2   247     2    67     2
+    37     2    55     2    55     2    76     2   296     2
+   172     2    36     2    88     2     7     2   107     2
+    91     2   113     2    97     2    81     2    57     2
+    25     2   127     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC240A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+259
+280
+227
+370;;264+106
+512;;478+34
+152
+191;;115+76, supongo que es iadf, aunque parece anillo claro
+110
+65
+58
+235
+251
+114
+50
+83
+131
+175
+89
+213
+70
+49
+82
+66
+88
+271
+154
+11
+100
+14
+48;;12+36
+87
+141
+109
+57
+58
+26
+112
+
+HEADER:
+DataFormat=Tree
+Length=37
+DateBegin=1986
+DateEnd=2022
+KeyCode=NAC240B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+241
+344
+284
+398
+568
+230
+339;;160+179, doble anillo
+230
+189
+168
+403
+459
+205
+209
+158
+149;;62+87
+152
+118
+281
+65
+26
+29
+44
+64
+322
+191
+61;;53+8
+77
+1;;AUSENTE
+166
+96
+86
+86
+106
+56
+25
+143
+
+HEADER:
+DataFormat=HalfChrono
+Length=32
+DateBegin=1983
+DateEnd=2014
+KeyCode=NAC241
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC241A,NAC241B
+ChronoMemberCount=2
+DATA:Double
+    93     2   160     2   117     2   127     2   145     2
+   192     2   341     2   571     2   248     2   404     2
+   276     2   230     2    61     2   293     2   470     2
+   200     2   130     2   106     2    68     2   141     2
+   121     2   271     2    80     2    57     2    83     2
+    47     2    70     2   324     2   251     2     1     2
+    57     2     1     2     0     0     0     0     0     0
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1983
+DateEnd=2014
+KeyCode=NAC241A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+111
+104
+115
+112
+146
+118
+460
+560
+284
+405
+296
+245
+31
+250;;281=250+31
+463
+204
+150
+142
+79
+144
+157
+272
+99
+57
+93
+44
+50
+261
+268
+1;;AUSENTE
+48
+1;;ausente
+
+HEADER:
+DataFormat=Tree
+Length=32
+DateBegin=1983
+DateEnd=2014
+KeyCode=NAC241B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+75
+217;;116+101
+120
+142
+145
+266
+222
+583
+213
+404
+257
+216
+91
+336
+478
+197
+110
+71;;37+34
+57
+138
+86;;52+34
+271
+62
+57
+73
+51
+90
+388
+234
+1;;ausente
+66
+1;;ausente
+
+HEADER:
+DataFormat=HalfChrono
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC242
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Undated
+ChronoMemberKeycodes=NAC242A,NAC242B
+ChronoMemberCount=2
+DATA:Double
+   120     1   155     2   327     2   130     2   131     2
+   178     2   148     2   328     2   151     2   241     2
+   106     2    93     2    39     2   255     2   315     2
+    97     2    83     2   100     2    97     2   111     2
+    93     2   190     2    58     2    50     2    66     2
+    63     2    53     2   242     2   137     2     9     2
+    63     2    20     2    33     2    67     2    75     2
+    34     2    32     2    47     2    42     2    76     2
+HEADER:
+DataFormat=Tree
+Length=39
+DateBegin=1984
+DateEnd=2022
+KeyCode=NAC242A
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Comment=centro
+Unit=1/100 mm
+Dated=Dated
+DATA:Single
+   163   325   131   130   188   143   306   150   256   124
+    98    40   281   361   106   102   121   122   149   134
+   210    62    57    79    81    63   280   138     7    69
+    19    29    81    94    44    49    68    49    77     0
+HEADER:
+DataFormat=Tree
+Length=40
+DateBegin=1983
+DateEnd=2022
+KeyCode=NAC242B
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Comment=CENTRO
+Dated=Dated
+DATA:Single
+   120   148   330   130   133   169   153   351   153   226
+    88    88    38   229   269    88    65    79    72    74
+    52   170    55    44    54    46    43   205   137    12
+    58    21    37    53    56    25    16    26    35    75

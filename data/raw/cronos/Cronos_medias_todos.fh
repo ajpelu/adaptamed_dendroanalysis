@@ -1,0 +1,356 @@
+HEADER:
+DataFormat=HalfChrono
+Length=42
+DateBegin=1977
+DateEnd=2018
+KeyCode=a1-NAC_PIHA
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC01,NAC02,NAC03,NAC04,NAC05,NAC06,NAC07,NAC08,NAC09,NAC10,NAC11,NAC12,NAC13,NAC14,NAC15,NAC16,NAC17,NAC18,NAC19,NAC20,NAC21,NAC22,NAC23,NAC24,NAC25,NAC26,NAC27,NAC28,NAC29,NAC30,NAC31,NAC32,NAC33,NAC34,NAC35,NAC36,NAC37,NAC38
+ChronoMemberCount=38
+DATA:Double
+    94     4   110    14   137    21   124    21   203    21
+   229    22   164    26   297    26   143    31   215    32
+   318    32   407    36   590    37   753    37   408    38
+   453    38   271    38   259    38   158    38   444    38
+   474    38   172    38    94    38   165    38   156    38
+   182    38   137    38   247    38    72    38    65    38
+   106    38   132    38    93    38   162    38   124    38
+    17    38    47    38    24    38    36    38    12    38
+    51    35    49    34     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1959
+DateEnd=2017
+KeyCode=b2-LAN_low_PINI
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=NIGL08,NIGL10,NIGL12,NIGL13,NIGL14,NIGL18,NIGL19,NIGL20,NIGL21,NIGL22,NIGL23,NIGL24,NIGL25,NIGL26,NIGL27,NIGL30,NIGL32,NIGL33,NIGL34,NIGL35,NIGL36,NIGL37,NIGL38,NIGL39,NIGL40,NIGL41,NIGL43,NIGL44,NIGL46,NIGL47,NIGL48,NIGL49,NIGL50,NIGL51,NIGL52,NIGL53,NIGL55,NIGL56,NIGL57
+ChronoMemberCount=39
+DATA:Double
+   155     8   156    21   168    33   221    38   327    39
+   375    39   257    39   336    39   323    39   275    39
+   334    39   310    39   321    39   263    39   248    39
+   231    39   212    39   208    39   237    39   305    39
+   277    39   192    39    98    39   109    39    82    39
+   131    39   135    39    77    39    36    39    56    39
+    96    39   175    39    98    39    73    39    75    39
+    22    39    24    39    76    39   105    39    72    39
+    16    39    55    39    59    39    51    39    60    39
+    41    39    10    39    27    39    23    38    12    38
+    52    38    88    37    90    36    14    36    32    36
+    16    34    32    34    14    32    38    31     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=58
+DateBegin=1964
+DateEnd=2021
+DataType=Ringwidth
+KeyCode=c3-LANlow2_pini
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NLW201,NLW202,NLW203,NLW204,NLW205,NLW206,NLW207,NLW208,NLW209,NLW210,NLW211,NLW212,NLW213,NLW214,NLW215,NLW216,NLW217,NLW218,NLW219,NLW220,NLW221,NLW222,NLW223,NLW224,NLW225,NLW226,NLW227,NLW228,NLW229,NLW230,NLW231,NLW232,NLW233,NLW234,NLW235,NLW236,NLW237,NLW238,NLW239,NLW240
+ChronoMemberCount=40
+DATA:Double
+   373     1   452     2   443     6   504    10   407    20
+   425    26   501    29   462    34   416    38   393    39
+   373    39   315    40   288    40   231    40   285    40
+   252    40   225    40   120    40   137    40   119    40
+   174    40   168    40   121    40    88    40   102    40
+   122    40   190    40   115    40   115    40   107    40
+    40    40    44    40   115    40   128    40   115    40
+    35    40   101    40    74    40    88    40    90    40
+    91    40    21    40    55    40    68    40    34    40
+   108    40   156    40   151    40    30    40    67    40
+    37    40    48    40    21    40    48    40    53    40
+    34    39    79    39    67    39     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=52
+DateBegin=1969
+DateEnd=2020
+KeyCode=d4-LANH_nigra
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=LANH01,LANH02,LANH03,LANH04,LANH05,LANH06,LANH07,LANH08,LANH09,LANH10,LANH11,LANH12,LANH13,LANH14,LANH15,LANH16,LANH17,LANH18,LANH19,LANH20,LANH22,LANH23,LANH24,LANH25,LANH26,LANH27,LANH28,LANH29,LANH30,LANH31,LANH32,LANH33,LANH34,LANH35,LANH36,LANH37,LANH38,LANH39,LANH40,LANH41
+ChronoMemberCount=40
+DATA:Double
+   214     1   265     3   260     5   319     7   266     9
+   248    14   262    15   313    18   302    20   301    20
+   285    21   276    25   170    28   177    29   194    33
+   241    34   262    35   261    38   204    39   235    40
+   283    40   315    40   210    40   215    40   170    40
+    88    40    31    40    77    40   192    40   186    40
+    35    40    91    40   122    40    94    40   113    40
+   111    40    29    40    64    40    46    40    44    40
+    78    40   117    40    95    40    28    40    76    40
+    33    40    60    40    27    39    47    39    52    38
+    31    38    72    37     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=62
+DateBegin=1960
+DateEnd=2021
+KeyCode=e5-LANlow2_pinaster
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=LA2L01,LA2L02,LA2L03,LA2L04,LA2L05,LA2L06,LA2L07,LA2L08,LA2L09,LA2L10,LA2L11,LA2L12,LA2L13,LA2L14,LA2L15,LA2L16,LA2L17,LA2L18,LA2L19,LA2L20,LA2L21,LA2L22,LA2L23,LA2L24,LA2L25,LA2L26,LA2L27,LA2L28,LA2L29,LA2L30,LA2L31,LA2L32,LA2L33,LA2L34,LA2L35,LA2L36,LA2L37
+ChronoMemberCount=37
+DATA:Double
+   238     1   378     1   292     4   443     7   338    12
+   272    17   444    22   429    27   304    32   406    34
+   320    35   296    36   278    36   225    36   175    37
+   163    37   161    37    78    37   110    37   123    37
+   106    37    41    37    66    37    39    37    57    37
+    74    37    58    37    37    37    32    37    66    37
+    97    37    70    37    81    37    46    37    20    37
+    16    37    65    37    80    37   115    37    38    37
+   108    37    80    37    93    37    99    37   111    37
+    26    37    58    37    51    37    27    37    56    37
+    74    37    91    37    19    36    90    36    34    34
+    63    34    20    34    27    32    58    31    31    29
+    71    27    60    26     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=70
+DateBegin=1952
+DateEnd=2021
+KeyCode=f6-JERL_pinaster
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=JERL01,JERL02,JERL03,JERL04,JERL05,JERL06,JERL07,JERL08,JERL09,JERL10,JERL11,JERL12,JERL13,JERL14,JERL15,JERL16,JERL17,JERL18,JERL19,JERL20,JERL21,JERL22,JERL23,JERL24,JERL25,JERL26,JERL27,JERL28,JERL29,JERL30,JERL31,JERL32,JERL33,JERL34,JERL35,JERL36,JERL37,JERL38,JERL39,JERL40,JERL41
+ChronoMemberCount=41
+DATA:Double
+   504     3   369     9   514    15   456    25   538    30
+   467    34   394    35   473    41   469    41   163    41
+   270    41   352    41   160    41    84    41   202    41
+   118    41   109    41   196    41   143    41   139    41
+   109    41    76    41    56    41    56    41    60    41
+    97    41   157    41   143    41    68    41    23    41
+    70    41    17    41    74    41    74    41    84    41
+    48    41    17    41    57    41    65    41    42    41
+    61    41    33    41    25    41    11    41    41    41
+    76    41    88    41    14    41    52    41    81    41
+    47    41    83    41    71    41    17    41    53    41
+    28    41    40    41    35    41    70    41    84    40
+    17    38   116    37    39    36    32    35    14    35
+    30    34    50    34    24    33    63    32    30    31
+HEADER:
+DataFormat=HalfChrono
+Length=59
+DateBegin=1959
+DateEnd=2017
+KeyCode=g7-JERMED_pinaster
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=JMED01,JMED02,JMED03,JMED04,JMED05,JMED06,JMED07,JMED08,JMED09,JMED10,JMED11,JMED12,JMED13,JMED15,JMED16,JMED17,JMED18,JMED19,JMED20,JMED21,JMED22,JMED23,JMED24,JMED25,JMED28,JMED29,JMED31,JMED32,JMED37,JMED39,JMED42,JMED45,JMED48
+ChronoMemberCount=33
+DATA:Double
+   157     3   239     9   321    21   457    27   557    30
+   662    32   509    33   765    33   584    33   460    33
+   621    33   666    33   614    33   524    33   530    33
+   446    33   394    33   286    33   372    33   493    33
+   444    33   258    33   117    33   216    33    90    33
+   156    33   242    33   259    33   110    33    70    33
+   110    33   124    33    78    33    71    33    51    33
+    27    33    16    33    79    33   111    33   130    33
+    25    33    86    33   155    33   111    33   149    33
+   146    33    17    33    56    33    31    33    57    33
+    70    33   128    33   163    33    32    32   133    32
+    58    31    56    31    31    31    41    31     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=38
+DateBegin=1983
+DateEnd=2020
+KeyCode=h8-JERH_pinaster
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=JERH01,JERH02,JERH03,JERH04,JERH05,JERH06,JERH07,JERH08,JERH09,JERH10,JERH11,JERH12,JERH13,JERH14,JERH15,JERH16,JERH17,JERH18,JERH19,JERH20,JERH21,JERH22,JERH23,JERH24,JERH25,JERH26,JERH27,JERH28,JERH29,JERH30,JERH31,JERH32,JERH33,JERH34,JERH35,JERH36,JERH37,JERH38,JERH39,JERH40,JERH41
+ChronoMemberCount=41
+DATA:Double
+   389     3   748     5   738     9   810    21   734    30
+   524    37   633    40   683    41   450    41   424    41
+   279    41   147    41   123    41   337    41   385    41
+   312    41    65    41   182    41   228    41   158    41
+   203    41   185    41    22    41    74    41    40    41
+    51    41    80    41   135    41   160    41    50    41
+   136    41    59    41    71    41    42    41    49    41
+    93    39    39    39    62    39     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=i9_PL_silvestre
+Unit=1/100 mm
+Length=56
+DateBegin=1963
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PL01A,PL01B,PL02C,PL02D,PL03A,PL03B,PL0401,PL0402,PL0501,PL0502,PL06A,PL06B,PL0701,PL0702,PL08A,PL08B,PL0901,PL0902,PL1001,PL1002,PL11A,PL11B,PL12A,PL12B,PL12C,PL1301,PL1302,PL1401,PL1402,PL15A,PL15B,PL16A,PL16B,PL17A,PL17B,PL18A,PL18B,PL19B,PL19C,PL2001,PL2002,PL2101,PL2102,PL22A,PL22B,PL23A,PL23B,PL24A,PL24B,PL2501,PL2502,PL26A,PL26B,PL2701,PL2702,PL2801,PL2802,PL2901,PL2902,PL3001,PL3002,PL31A,PL31B,PL31C,PL32A,PL32B,PL33A,PL33B,PL33c,PL3401,PL3402,PL3501,PL3502,PL36A,PL36B,PL3701,PL3702,PLmedia29
+ChronoMemberCount=78
+DATA:Double
+    81     3   165     5   133     7   156    24   214    41
+   240    44   371    44   281    44   368    47   427    52
+   414    56   417    64   379    67   501    70   489    74
+   513    75   410    76   386    77   298    78   314    78
+   216    78   273    78   214    78   167    78   149    78
+   171    78   174    78   182    78   130    78   114    78
+    92    78    72    78    21    78    85    78    79    78
+   155    78    85    78   169    78   175    78   129    78
+   136    78   150    78    70    78    81    78    73    78
+    92    78    85    78   106    78   145    77    64    77
+   155    77    91    77    82    77    61    77    73    77
+    80    77     0     0     0     0     0     0     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=54
+DateBegin=1965
+DateEnd=2018
+DataType=Ringwidth
+KeyCode=j10-PM_silvestre
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+SeriesType=Mean curve
+Dated=Dated
+ChronoMemberKeycodes=PM01,PM02,PM03,PM04,PM05,PM06,PM07,PM08,PM09,PM10,PM11,PM12,PM13,PM14,PM15,PM16,PM17,PM18,PM19,PM20,PM21,PM22,PM23,PM24,PM25,PM26,PM27,PM28,PM29,PM30,PM31,PM32,PM33,PM34,PM35,PM36,PM37,PM38,PM39,PM40,PM41,PM42,PM43
+ChronoMemberCount=43
+DATA:Double
+   165     4   121    11   155    20   187    21   228    26
+   280    27   308    29   374    30   391    36   365    40
+   322    40   389    41   476    41   461    43   424    43
+   351    43   294    43   246    43   261    43   250    43
+   280    43   214    43   171    43   169    43   160    43
+   180    43   180    43   136    43   124    43    94    43
+    44    43   101    43   111    43   143    43    73    43
+   198    43   203    43   132    43   166    43   162    43
+    62    43    64    43    54    43   101    43    88    43
+    90    42   114    42    42    42   119    42    74    41
+    53    40    44    40    53    40    82    38     0     0
+HEADER:
+DataFormat=HalfChrono
+KeyCode=k11-PH_silvestre
+Unit=1/100 mm
+Length=50
+DateBegin=1969
+DateEnd=2018
+Dated=Dated
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+SeriesType=Mean curve
+ChronoMemberKeycodes=PH01,PH02,PH03,PH04,PH05,PH06,PH07,PH08,PH09,PH10,PH11,PH12,PH13,PH14,PH15,PH16,PH17,PH18,PH19,PH20,PH21,PH22,PH23,PH25,PH26,PH27,PH28,PH29,PH30,PH32,PH33,PH34,PH35,PH36,PH37
+ChronoMemberCount=35
+DATA:Double
+    82     1   112     2    90     4   130     6   141     8
+   149    11   172    14   205    15   237    17   274    19
+   277    21   216    24   360    25   382    29   358    32
+   343    33   374    35   375    35   442    35   376    35
+   377    35   347    35   313    35   330    35   326    35
+   265    35    50    35   233    35   284    35   264    35
+   175    35   272    35   247    35   195    35   215    35
+   228    35   153    35   167    35   130    35   178    35
+   123    35   158    35   170    35    90    34   142    34
+   124    34   100    34   107    34   104    34   124    34
+HEADER:
+DataFormat=HalfChrono
+Length=64
+DateBegin=1959
+DateEnd=2022
+KeyCode=m13_PIHA_ragua
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=RAG0101,RAG0501,RAG02,RAG03,RAG04,RAG06,RAG07,RAG08,RAG10,RAG11,RAG12,RAG13,RAG14,RAG15,RAG16,RAG17,RAG18,RAG19,RAG20,RAG21,RAG22,RAG23,RAG24,RAG25,RAG26,RAG27,RAG28,RAG29,RAG30,RAG31,RAG32,RAG33,RAG34,RAG35,RAG36,RAG37,RAG38,RAG39,RAG40
+ChronoMemberCount=39
+DATA:Double
+   185     3   221     9   287    14   429    21   500    26
+   280    37   220    37   222    37   330    37   227    38
+   261    39   261    39   248    39   245    39   203    39
+   158    39   169    39   158    39   110    39   121    39
+   114    39   112    39    24    39    29    39    46    39
+    56    39    41    39    24    39    31    39    48    39
+    82    39   144    39    54    39    81    39    72    39
+    33    39    19    39    65    39   128    39   102    39
+    23    39    47    39    52    39    90    39    89    39
+   111    39    20    39    37    39    34    39    15    39
+    42    39    77    39    87    39    18    39    69    39
+    23    38    31    37    12    37    38    37    49    37
+    38    37    36    37    19    37    30    37     0     0
+HEADER:
+DataFormat=HalfChrono
+Length=43
+DateBegin=1980
+DateEnd=2022
+KeyCode=l12-PIHA_NAC2
+GlobalMathCommentCount=0
+ImageCount=0
+CommentCount=0
+BibliographyCount=0
+Unit=1/100 mm
+Dated=Dated
+SeriesType=Mean curve
+ChronoMemberKeycodes=NAC201,NAC202,NAC203,NAC204,NAC205,NAC206,NAC207,NAC208,NAC209,NAC210,NAC211,NAC212,NAC213,NAC214,NAC215,NAC216,NAC217,NAC218,NAC219,NAC220,NAC221,NAC222,NAC223,NAC224,NAC225,NAC226,NAC227,NAC228,NAC229,NAC230,NAC231,NAC232,NAC233,NAC234,NAC235,NAC236,NAC237,NAC238,NAC239,NAC240,NAC241,NAC242
+ChronoMemberCount=42
+DATA:Double
+    84     1    99     6    91     7   129    12   122    17
+   171    22   123    25   151    32   154    37   299    41
+   449    42   192    42   268    42   141    42   120    42
+    49    42   267    42   318    42   103    42    63    42
+    52    42    74    42   107    42    69    42   210    42
+    60    42    35    42    47    42    40    42    61    41
+   210    41   132    41     6    41    51    38    11    38
+    33    34    26    33    58    29    38    28    22    28
+    37    28    26    27    65    27     0     0     0     0

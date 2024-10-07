@@ -1,0 +1,624 @@
+---
+title: "dendro_sylvestris_high"
+author: "ajpelu"
+date: "2024-09-25"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r global-options, include=FALSE}
+knitr::opts_chunk$set( 
+                      warning=FALSE, message=FALSE)
+```
+
+```{r}
+library(dplR)
+library(tidyverse)
+```
+
+
+# Compute RingWidth, Basal Area Increment and Aboveground Biomass Increment
+
+- site: `sylvestris_med`
+
+```{r}
+sp_elev <- "sylvestris_high"
+```
+
+## Ring-Width
+```{r}
+rwl_file <- read.rwl('data/raw/cronos/11-Portugos_HIGH_PISY/11-PH_cores.rwl')
+
+### Year como columna 
+rwl_file$year <- as.numeric(rownames(rwl_file))
+
+### Genera dataframe rw by core and by tree
+rw <- rwl_file |> 
+  pivot_longer(-year, values_to = "RW", 
+               names_to = "sampleid", values_drop_na = TRUE) |> 
+  mutate(aux = str_remove(sampleid, "PH"), 
+         tree = as.numeric(substr(aux, 0,2)), 
+         core = substr(aux, 3,5), 
+         sp_elev = sp_elev) |> 
+  dplyr::select(-aux) |> relocate(sampleid, .after = sp_elev)
+
+rw_tree <- rw |> group_by(year, tree, sp_elev) |> summarise(rw = mean(RW)) 
+
+# write_csv(rw, file = paste0("data/rw/rwcore_",sp_elev, ".csv"))
+# write_csv(rw_tree, file = paste0("data/rw/rwtree_",sp_elev, ".csv"))
+```
+
+### Plot RW series
+```{r}
+plot_rw_serie <- function(rw_tree) {
+  avg_year <- rw_tree |>
+    group_by(year) |>
+    summarise(
+      rw_mean = mean(rw, na.rm = TRUE),
+      rw_sd = sd(rw, na.rm = TRUE),
+      n = length(rw)
+    ) |>
+    mutate(sp_elev = sp_elev) |>
+    rowwise() |>
+    mutate(
+      upper = rw_mean + (1.96 * rw_sd) / sqrt(n),
+      lower = rw_mean - (1.96 * rw_sd) / sqrt(n)
+    )
+  
+  ggplot(avg_year, 
+         aes(x=year, y = rw_mean)) + 
+  geom_ribbon(aes(ymin = lower, ymax = upper), fill = "gray") +
+  geom_line(lwd=1.1) +
+    theme_bw() +
+    theme(panel.grid = element_blank()) +
+    ylab(expression(bold(RW~(mm~year^-1))))
+}
+```
+
+```{r}
+plot_rw_serie(rw_tree)
+```
+
+
+
+
+
+
+```{r}
+bai_piovesan(rwl_file, pies)
+```
+
+
+```{r}
+colnames(rwl_file)
+
+rwdf <- rwl_file
+
+diam_df <- pies
+
+vec_ly <- seq_len(nrow(rwdf))
+
+cores <- colnames(rwdf)
+
+
+pies <- pies |> ungroup()
+```
+
+```{r}
+bai <- read_csv("data/bai/11BAI_PISY_high.csv")
+
+sd(bai$BAI)
+mean(bai$BAI)
+```
+
+
+
+
+## Compute BAI 
+
+
+```{r}
+# Read pies 
+
+pies = read.csv("/Users/ajpelu/Desktop/Desktop/Datos Sierra Nevada/Muestreos Sierra Nevada 2020-2021-2022/Pies_SN_LIFE.csv")
+pies = subset(pies, localidad=="POR_HIGH_SYLVESTRIS")
+
+
+# Leo los pies
+# Computo el dbhsc usando una ecuación 
+# Paso el dbhsc a mm 
+pies <- readxl::read_excel("data/db_dendroadaptamed.xlsx", sheet = "tree_measurements") |> 
+  dplyr::filter(locality == "POR_HIGH_SYLVESTRIS") |> 
+  rename(dbhcc = tree_dbh) |> 
+  rowwise() |> 
+  mutate(dbhsc = 10 * (dbhcc - (2 * (0.0809 * dbhcc - 0.00416)))) |> 
+  mutate(tree = as.numeric(str_remove(tree_code, "POH"))) |> 
+  dplyr::select(
+    tree_code, 
+    tree, 
+    dbhcc, 
+    dbhsc
+  )
+            
+```
+
+
+```{r}
+# daps = pies
+# rwls = rw
+```
+
+
+```{r}
+# Genero un df que tiene año y rw de cada árbol, y le uno los datos biométricos
+preBAI_tree <- rw_tree |> 
+  inner_join(pies, by = c("tree" = "tree")) |> 
+  arrange(tree, year) |> # ordeno por arbol y year 
+  ungroup() 
+
+
+
+
+BAIdata2 <- NULL
+arboles <- unique(preBAI_tree$tree)
+
+# bucle arbol a <- 1 
+a <- 1 
+  df_arbol <- preBAI_tree |> 
+    filter(tree == a) |> 
+    arrange(desc(year)) 
+  
+  # Compute rw_corr 
+  sum_rw <- sum(df_arbol$rw)
+  
+  df_arbol <- df_arbol |> 
+    mutate(rw_corr = rw * dbhsc /(2*sum_rw)) 
+  
+  if(sum_rw < max(df_arbol$dbhsc)) {
+   df_arbol <- df_arbol |> 
+     mutate(bai = (pi/4)*(dbhsc^2 - (dbhsc - 2*rw)^2) / 100)
+  } else {
+    df_arbol <- df_arbol |> 
+     mutate(bai = (pi/4)*(dbhsc^2 - (dbhsc - 2*rw_corr)^2) / 100)
+  }
+  
+
+  for (i in 2:nrow(df_arbol){ 
+    
+    df_arbol$dbhsc[i] <- ifelse(2*sum_rw < max(df_arbol$dbhsc), 
+                                df_arbol$dbhsc[i-1] - 2*df_arbol[i-1,"rw"], 
+                                df_arbol$dbhsc[i-1] - 2*df_arbol[i-1,"rw_corr"]) 
+    
+    
+    df_arbol$BAI[i] <- ifelse(2*sum_rw < max(df_arbol$dbhsc), 
+                                df_arbol$dbhsc[i-1] - 2*df_arbol[i-1,"rw"], 
+                                df_arbol$dbhsc[i-1] - 2*df_arbol[i-1,"rw_corr"])
+  }
+  
+  
+  
+    
+    
+    (pi/4)*(dbhsc^2 - (dbhsc - 2*rw)^2) / 100)
+    
+    
+    Var$BAI[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), 
+                          (pi / 4) * (Var$dapsc[vv]*2 - (Var$dapsc[vv] - 2 * Var[vv, 3])**2) / 100, 
+                          (pi / 4) * (Var$dapsc[vv]**2 - (Var$dapsc[vv] - 2 * Var[vv, 7])**2) / 100)
+    )
+    
+    Var$dapsc[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), Var$dapsc[vv - 1] - 2 * Var[vv - 1, 3], Var$dapsc[vv - 1] - 2 * Var[vv - 1, 7])
+    
+    
+    }
+  
+  
+  df_arbol$dbhsc[2]
+
+  for (vv in 2:nrow(Var))
+    {
+      Var$dapsc[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), 
+                              Var$dapsc[vv - 1] - 2 * Var[vv - 1, 3], 
+                              Var$dapsc[vv - 1] - 2 * Var[vv - 1, 7]) # en mm
+      
+      
+      Var$BAI[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), 
+                            (pi / 4) * (Var$dapsc[vv]**2 - (Var$dapsc[vv] - 2 * Var[vv, 3])**2) / 100, 
+                            (pi / 4) * (Var$dapsc[vv]**2 - (Var$dapsc[vv] - 2 * Var[vv, 7])**2) / 100) ## en cm2, podrÌa hacerse con pi r cuadrado, pero lo pongo como Piovesan et al 2008
+    }
+    #
+    BAIdata2 <- rbind(BAIdata2, Var)
+  
+
+  
+
+
+Var$BAI <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), 
+                  (pi / 4) * (Var$dapsc**2 - (Var$dapsc - 2 * Var[, 3])**2) / 100, (pi / 4) * (Var$dapsc**2 - (Var$dapsc - 2 * Var[, 7])**2) / 100)
+
+
+  mutate(rw_corr = rw * dbhsc / sm)
+
+sm <- (2*sum(df_arbol$rw))
+
+Var$RWcorr <- Var[, 3] * Var$dapsc / (2 * sum(Var[, 3]))
+
+
+  colnames(BAIdatatree)=c("year", "tree", "Growth", "age1", "dapcc", "dapsc")
+
+   Var <- Var[rev(order(Var$year)), ]
+
+
+### ahora me calculo el BAI por pie
+  BAIdata2 <- NULL
+  #
+  for (i in arboles)
+  {
+    ## Me calculo el BAI ahora
+    Var <- subset(BAIdatatree, tree == i)
+    Var <- Var[rev(order(Var$year)), ]
+    
+    Var$RWcorr <- Var[, 3] * Var$dapsc / (2 * sum(Var[, 3]))
+    Var$BAI <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), (pi / 4) * (Var$dapsc**2 - (Var$dapsc - 2 * Var[, 3])**2) / 100, (pi / 4) * (Var$dapsc**2 - (Var$dapsc - 2 * Var[, 7])**2) / 100) ## en cm2, podrÌa hacerse con pi r cuadrado, pero lo pongo como Piovesan et al 2008
+    # lo paso todo a cm ahora
+    for (vv in 2:nrow(Var))
+    {
+      Var$dapsc[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), Var$dapsc[vv - 1] - 2 * Var[vv - 1, 3], Var$dapsc[vv - 1] - 2 * Var[vv - 1, 7]) # en mm
+      Var$BAI[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), (pi / 4) * (Var$dapsc[vv]**2 - (Var$dapsc[vv] - 2 * Var[vv, 3])**2) / 100, (pi / 4) * (Var$dapsc[vv]**2 - (Var$dapsc[vv] - 2 * Var[vv, 7])**2) / 100) ## en cm2, podrÌa hacerse con pi r cuadrado, pero lo pongo como Piovesan et al 2008
+    }
+    #
+    BAIdata2 <- rbind(BAIdata2, Var)
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+```{r}
+
+preBAI <- pies |> 
+  
+
+
+
+
+
+pies <- pies 
+
+
+rwls 
+daps <- pies
+i = 1 
+Var=as.data.frame(cbind(as.numeric((rwls[,i])), as.numeric(rwls$year)))
+
+BAItree <- function(daps, rwls) {
+  BAIdata <- NULL
+  #
+  for (i in 1:(ncol(rwls) - 1)) # en cada columna excepto el año
+  {
+    Var <- as.data.frame(cbind(as.numeric((rwls[, i])), as.numeric(rwls$year))) # Genero un dt con la columna y el año
+    Var <- subset(Var, !is.na(Var[, 1])) # quito los na
+    colnames(Var) <- c("Growth", "year") # renombro
+    Var$age1 <- seq(1, nrow(Var), 1) # genero una variable llamada age1
+    # parcela2=as.numeric(substr(colnames(rwls[i]), 3,4))
+    arbol1 <- as.numeric(substr(colnames(rwls[i]), 3, 4))
+    checkage <- subset(daps, arbol == arbol1) #  checkage=subset(daps, id_tree==arbol1)
+    checkage <- subset(daps, code_tree == "POM01")
+    Var$dapcc <- as.numeric(c(checkage$dbh))
+    Var$dapsc <- 10 * (Var$dapcc - (2 * (0.0809 * Var$dapcc - 0.00416))) ### me la pas´ó dar´ío con datos de las parcelas que tomamos, lo paso todo a mm
+    Var$tree <- arbol1
+    #
+    BAIdata <- rbind(BAIdata, Var)
+    return(BAIdata)
+  }
+  
+  
+  
+  #
+  BAIdatatree <- aggregate(BAIdata, by = list(BAIdata$year, BAIdata$tree), mean)
+  BAIdatatree <- BAIdatatree[order(BAIdatatree$tree, BAIdatatree$year), -c(4, 8)]
+  colnames(BAIdatatree) <- c("year", "tree", "Growth", "age1", "dapcc", "dapsc")
+  #
+  arboles <- aggregate(BAIdatatree[, 2], by = list(arbol = BAIdatatree$tree), mean)
+  arboles <- arboles[, 1]
+
+  ### ahora me calculo el BAI por pie
+  BAIdata2 <- NULL
+  #
+  for (i in arboles)
+  {
+    ## Me calculo el BAI ahora
+    Var <- subset(BAIdatatree, tree == i)
+    Var <- Var[rev(order(Var$year)), ]
+    Var$RWcorr <- Var[, 3] * Var$dapsc / (2 * sum(Var[, 3]))
+    Var$BAI <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), (pi / 4) * (Var$dapsc**2 - (Var$dapsc - 2 * Var[, 3])**2) / 100, (pi / 4) * (Var$dapsc**2 - (Var$dapsc - 2 * Var[, 7])**2) / 100) ## en cm2, podrÌa hacerse con pi r cuadrado, pero lo pongo como Piovesan et al 2008
+    # lo paso todo a cm ahora
+    for (vv in 2:nrow(Var))
+    {
+      Var$dapsc[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), Var$dapsc[vv - 1] - 2 * Var[vv - 1, 3], Var$dapsc[vv - 1] - 2 * Var[vv - 1, 7]) # en mm
+      Var$BAI[vv] <- ifelse(2 * sum(Var[, 3]) < max(Var$dapsc), (pi / 4) * (Var$dapsc[vv]**2 - (Var$dapsc[vv] - 2 * Var[vv, 3])**2) / 100, (pi / 4) * (Var$dapsc[vv]**2 - (Var$dapsc[vv] - 2 * Var[vv, 7])**2) / 100) ## en cm2, podrÌa hacerse con pi r cuadrado, pero lo pongo como Piovesan et al 2008
+    }
+    #
+    BAIdata2 <- rbind(BAIdata2, Var)
+  }
+  #
+  # BAIdata2$plot=parcela2
+  #
+  Muestra <- NULL
+  for (i in min(BAIdata2$year):max(BAIdata2$year))
+  {
+    numer <- c(i, nrow(BAIdata2[BAIdata2$year == i, ]))
+    Muestra <- rbind(Muestra, numer)
+  }
+  Muestra <- Muestra
+  Muestra2 <- Muestra[Muestra[, 2] >= 3, ] ### 3 pies son como mínimo 6 radios
+  #
+  BAIdata2 <- BAIdata2[BAIdata2$year >= min(Muestra2[, 1]), ]
+  #
+  BAIdata_sd <- aggregate(BAIdata2[, 8], by = list(year1 = BAIdata2$year), sd)
+  # BAIdata_sd$year=BAIdata_sd$Group.1
+  BAIdata3 <- aggregate(BAIdata2[, 2:8], by = list(year = BAIdata2$year), mean) ### los NA son omitidos (na.action) y cuando hay sólo un radio coge el que hay como la media
+  #
+  BAIdata_sd[, 2] <- BAIdata_sd[, 2] / sqrt(Muestra2[, 2])
+  colnames(BAIdata_sd) <- c("year", "BAIserror")
+  #
+  BAIdata <<- as.data.frame(merge(BAIdata3, BAIdata_sd, by.x = "year", by.y = "year"))
+}
+
+```
+
+
+```{r}
+po <- pies[,c("dbh","bark_mm")]
+po <- subset(po, !is.na(bark_mm))
+
+lm
+
+```
+
+
+
+#### BAI
+####### BAI  #####
+###MACRO PARA CALCULARSE BAI POR PARCELA
+### CUIDADO CON SERIES QUE NO EMPIEZAN EN LA MISMA FECHA QUE EL FINAL (PUEDEN METER SESGO): por eso uso BAItree
+### BAI calculado por árbol para evitar sesgo de series que no lleguen hasta el final ("flotantes")
+##
+#### CALCULOS RW, BAI, IBIO
+
+
+BAItree=function(daps, rwls)
+{
+  BAIdata=NULL
+  #
+  for (i in 1:(ncol(rwls)-1)) # en cada columna excepto el año 
+  {
+    Var=as.data.frame(cbind(as.numeric((rwls[,i])), as.numeric(rwls$year))) # Genero un dt con la columna y el año 
+    Var=subset(Var, !is.na(Var[,1])) # quito los na 
+    colnames(Var)=c("Growth", "year") # renombro 
+    Var$age1=seq(1, nrow(Var), 1) # genero una variable llamada age1
+    #parcela2=as.numeric(substr(colnames(rwls[i]), 3,4))
+    arbol1=as.numeric(substr(colnames(rwls[i]),3,4))
+    checkage=subset(daps, arbol==arbol1)
+    Var$dapcc=as.numeric(c(checkage$dbh))
+    Var$dapsc=10*(Var$dapcc-(2*(0.0809*Var$dapcc-0.00416)))   ###me la pas´ó dar´ío con datos de las parcelas que tomamos, lo paso todo a mm
+    Var$tree=arbol1          
+    #
+    BAIdata=rbind(BAIdata, Var)
+  }
+  #
+  BAIdatatree=aggregate(BAIdata, by=list(BAIdata$year, BAIdata$tree), mean)
+  BAIdatatree=BAIdatatree[order(BAIdatatree$tree, BAIdatatree$year),-c(4, 8)]
+  colnames(BAIdatatree)=c("year", "tree", "Growth", "age1", "dapcc", "dapsc")
+  #  
+  arboles=aggregate(BAIdatatree[,2], by=list(arbol=BAIdatatree$tree), mean)  
+  arboles=arboles[,1]
+  
+  ###ahora me calculo el BAI por pie
+  BAIdata2=NULL
+  #
+  for (i in arboles)
+  {
+    ##Me calculo el BAI ahora
+    Var=subset(BAIdatatree, tree==i)
+    Var=Var[rev(order(Var$year)),]
+    Var$RWcorr=Var[,3]*Var$dapsc/(2*sum(Var[,3]))
+    Var$BAI=ifelse(2*sum(Var[,3])<max(Var$dapsc),(pi/4)*(Var$dapsc**2-(Var$dapsc-2*Var[,3])**2)/100,(pi/4)*(Var$dapsc**2-(Var$dapsc-2*Var[,7])**2)/100)   ##en cm2, podrÌa hacerse con pi r cuadrado, pero lo pongo como Piovesan et al 2008
+    #lo paso todo a cm ahora
+    for (vv in 2:nrow(Var))
+    {
+      Var$dapsc[vv]=ifelse(2*sum(Var[,3])<max(Var$dapsc),Var$dapsc[vv-1]-2*Var[vv-1,3], Var$dapsc[vv-1]-2*Var[vv-1,7]) #en mm
+      Var$BAI[vv]=ifelse(2*sum(Var[,3])<max(Var$dapsc),(pi/4)*(Var$dapsc[vv]**2-(Var$dapsc[vv]-2*Var[vv,3])**2)/100,(pi/4)*(Var$dapsc[vv]**2-(Var$dapsc[vv]-2*Var[vv,7])**2)/100)   ##en cm2, podrÌa hacerse con pi r cuadrado, pero lo pongo como Piovesan et al 2008
+    }
+    #
+    BAIdata2=rbind(BAIdata2, Var)
+  }
+  #
+  #BAIdata2$plot=parcela2
+  #
+  Muestra=NULL
+  for (i in min(BAIdata2$year):max(BAIdata2$year))
+  {
+    numer=c(i, nrow(BAIdata2[BAIdata2$year==i,]))
+    Muestra=rbind(Muestra,numer)
+  }
+  Muestra<-Muestra
+  Muestra2<-Muestra[Muestra[,2]>=3,]  ###3 pies son como mínimo 6 radios
+  #
+  BAIdata2<-BAIdata2[BAIdata2$year>=min(Muestra2[,1]),]
+  #
+  BAIdata_sd=aggregate(BAIdata2[,8], by=list(year1=BAIdata2$year), sd)
+  #BAIdata_sd$year=BAIdata_sd$Group.1
+  BAIdata3=aggregate(BAIdata2[, 2:8], by=list(year=BAIdata2$year), mean)   ###los NA son omitidos (na.action) y cuando hay sólo un radio coge el que hay como la media
+  #
+  BAIdata_sd[,2]=BAIdata_sd[,2]/sqrt(Muestra2[,2])
+  colnames(BAIdata_sd)=c("year", "BAIserror")
+  #
+  BAIdata<<-as.data.frame(merge(BAIdata3, BAIdata_sd, by.x="year", by.y="year"))
+}
+
+
+### BAI
+pisymedBAI=BAItree(pies, pisymed)
+#write.csv(pisymedBAI, "/Users/guigeiz/Documents/Proyectos/LIFE Granada Regino y Antonio/Tablas y datos analisis/10BAI_PISY_med.csv")
+
+#### Figure BAI
+#
+par(mgp=c(1.5,0.3,0), cex.lab=1, font.axis=2, font.lab=2, cex.lab=1, tck=0.2, tcl=0.2, las=1, mar=c(3,3,1,1))
+#
+plot(pisymedBAI$year, pisymedBAI$BAI, type="n", ylim=c(0, 15), xlim=c(1950,2022), xlab="Year", ylab=expression(bold(BAI~(cm^2~year^-1))))
+vv=seq(min(pisymedBAI$year), max(pisymedBAI$year),1)
+xxx=c(vv,rev(vv))
+yyy=c((pisymedBAI$BAI-(1.96*pisymedBAI$BAIserror)), rev(pisymedBAI$BAI+(1.96*pisymedBAI$BAIserror)))
+polygon(xxx, yyy, col=rgb(0,0,0,0.3), border=NA)
+lines(pisymedBAI$year, pisymedBAI$BAI, ylim=c(0, 13), lwd=1, col="black")
+#
+
+########## INCREMENTO BIOMASA
+############################################
+######## estimate  AGB  #############
+########################################################################################
+# Montero, G., Ruiz-Peinado, R. and Munoz, M., 2005. Producción de biomasa 
+# y fijación de CO2 por los bosques españoles. 
+# INIA-Instituto Nacional de Investigación y Tecnología Agraria y Alimentaria.
+########################################################################################
+Biomass<-function(dbh, SEE,a, b){
+  SEE_total=SEE
+  CF_total=exp((SEE_total^2)/2)
+  biomass= CF_total*(exp(a))*dbh^b
+  return(biomass)
+}
+########### IBIO 
+IBIOpisy=function(daps, rwls, carbono_perc, SEE, a, b, SEE1, a1, b1, SEE2, a2, b2)    ###a, b parámetros alometrís dap, pp es la parcela de donde se saca la distancia para calcular valores por m2
+{     
+  BIOdata=NULL
+  #
+  for (i in 1:(ncol(rwls)-1))
+  {
+    Var=as.data.frame(cbind(as.numeric((rwls[,i])), as.numeric(rwls$year)))
+    Var=subset(Var, !is.na(Var[,1]))
+    colnames(Var)=c("Growth", "year")
+    Var$age1=seq(1, nrow(Var), 1)
+    arbol1=as.numeric(substr(colnames(rwls[i]),3,4))
+    checkage=subset(daps, arbol==arbol1)
+    Var$dapcc=as.numeric(checkage$dbh)
+    Var$dapsc=10*(Var$dapcc-(2*(0.0809*Var$dapcc-0.00416)))   ###pongo las ecuaciones de dar´ío de datos que tomamos en parcelas dap-CORTEZA
+    #dapsc en mm porque growth esta en mm 
+    Var$tree=arbol1   
+    #
+    BIOdata=rbind(BIOdata, Var)
+  }
+  #
+  BIOdatatree=aggregate(BIOdata, by=list(BIOdata$year, BIOdata$tree), mean)
+  #
+  BIOdatatree=BIOdatatree[order(BIOdatatree$tree, BIOdatatree$year),-c(4, 8)]
+  colnames(BIOdatatree)=c("year", "tree", "Growth", "age1", "dapcc", "dapsc")
+  #  
+  arboles=aggregate(BIOdatatree[,2], by=list(arbol=BIOdatatree$tree), mean)  
+  arboles=arboles[,1]
+  #
+  ###ahora me calculo el IBIO por pie
+  BIOdata2=NULL
+  #
+  for (i in arboles)
+  {
+    ##
+    Var=subset(BIOdatatree, tree==i)
+    Var=Var[rev(order(Var$year)),]
+    Var$RWcorr=Var[,3]*Var$dapsc/(2*sum(Var[,3]))   # en mm
+    Var$dapcc_t1=(ifelse(2*sum(Var[,3])<max(Var$dapsc),0.1*(Var$dapsc-2*Var$Growth), 0.1*(Var$dapsc-2*Var$RWcorr))-0.00832)/0.8382   ###en cm el dap otra vez, supongo la relación corteza-diámetro ad-hoc PIHA SN
+    Var$dapcc_t1=ifelse(Var$dapcc_t1<0, 0, Var$dapcc_t1)  ##a veces en las estimaciones el año 1 salian negativas, asumo que entonces el año 0 era 0 el diametro, en este caso
+    # dap en las formulas en cm
+    BT1=Biomass(Var$dapcc, SEE, a,b)-Biomass(Var$dapcc_t1, SEE, a,b)
+    BT=Biomass(Var$dapcc, SEE, a,b)
+    ST1=Biomass(Var$dapcc, SEE1, a1,b1)-Biomass(Var$dapcc_t1, SEE1, a1,b1)
+    ST=Biomass(Var$dapcc, SEE1, a1,b1)
+    IBR=Biomass(Var$dapcc, SEE2, a2,b2)-Biomass(Var$dapcc_t1, SEE2, a2,b2)
+    BR=Biomass(Var$dapcc, SEE2, a2,b2)
+    #
+    Var$IBT_ag=BT1*carbono_perc*1000   ##en g C /año, biomasa a´érea total
+    Var$IST=ST1*carbono_perc*1000   ##en g C /año, biomasa a´érea total
+    Var$IBR=IBR*carbono_perc*1000  ###RA´ÍCES (pagina 33 Montero et al. tabla coeficientes)
+    Var$BT_ag=BT*carbono_perc*1000 
+    Var$ST=ST*carbono_perc*1000
+    Var$BR=BR*carbono_perc*1000
+    #
+    for (vv in 2:nrow(Var))
+    {
+      Var$dapsc[vv]=ifelse(2*sum(Var[,3])<max(Var$dapsc),Var$dapsc[vv-1]-2*Var[vv-1,3], Var$dapsc[vv-1]-2*Var[vv-1,7]) #en mm
+      Var$dapcc[vv]=((0.1*Var$dapsc[vv])-0.00832)/0.8382  ## en cm, y hay que meter en cm el dap en la formula de corteza que sale en mm, cuidado!
+      Var$dapcc_t1[vv]=(ifelse(2*sum(Var[,3])<max(Var$dapsc),0.1*(Var$dapsc[vv]-2*Var$Growth[vv]),0.1*(Var$dapsc[vv]-2*Var$RWcorr[vv]))-0.00832)/0.8382  ##en cm
+      Var$dapcc_t1[vv]=ifelse(Var$dapcc_t1[vv]<0, 0, Var$dapcc_t1[vv])
+      #
+      BT1[vv]=Biomass(Var$dapcc[vv], SEE, a,b)-Biomass(Var$dapcc_t1[vv],SEE, a,b)
+      BT[vv]=Biomass(Var$dapcc[vv], SEE, a,b)
+      ST1[vv]=Biomass(Var$dapcc[vv],SEE1, a1,b1)-Biomass(Var$dapcc_t1[vv], SEE1, a1,b1)
+      ST[vv]=Biomass(Var$dapcc[vv], SEE1, a1,b1)
+      IBR[vv]=Biomass(Var$dapcc[vv], SEE2, a2,b2)-Biomass(Var$dapcc_t1[vv], SEE2, a2,b2)
+      BR[vv]=Biomass(Var$dapcc[vv], SEE2, a2,b2)
+      #
+      Var$IBT_ag[vv]=BT1[vv]*carbono_perc*1000   ##en g C /año, biomasa a´érea total
+      Var$IST[vv]=ST1[vv]*carbono_perc*1000   ##en g C /año, biomasa a´érea total
+      Var$IBR[vv]=IBR[vv]*carbono_perc*1000  ###RA´ÍCES (pagina 33 Montero et al. tabla coeficientes)
+      Var$BT_ag[vv]=BT[vv]*carbono_perc*1000 
+      Var$ST[vv]=ST[vv]*carbono_perc*1000
+      Var$BR[vv]=BR[vv]*carbono_perc*1000
+    }
+    #
+    #plot(Var$year, Var$IBIO_stem, type="l", xlim=c(1959, 2017))
+    #lines(Var$year, Var$IBIO_root, col="red")
+    #par(new=TRUE)
+    #plot(BAI2$year, BAI2$BAI, ylim=c(0, 11), lwd=3, col="blue", type="l")
+    
+    BIOdata2=rbind(BIOdata2, Var)
+  }
+  #
+  #BIOdata2$plot=parcela2
+  #
+  if(FALSE)
+  {  
+    Muestra=NULL
+    for (i in min(BIOdata2$year):max(BIOdata2$year))
+    {
+      numer=c(i, nrow(BIOdata2[BIOdata2$year==i,]))
+      Muestra=rbind(Muestra,numer)
+    }
+    Muestra<-Muestra
+    Muestra2<-Muestra[Muestra[,2]>=3,]  ###3 pies son como mínimo 6 radios
+    #
+    BAIdata2<-BAIdata2[BAIdata2$year>=min(Muestra2[,1]),]
+    #
+  }
+  #
+  BIOdata=aggregate(BIOdata2[,9:14], by=list(year1=BIOdata2$year), sum)
+  #
+  BIOdata$IBT_ag_m2=BIOdata$IBT_ag*1/(pi*(max(daps$distance_m)^2)+(0.5*max(daps$distance_m)^2)/nrow(daps))   ###por m2 TOTAL ABOVEGROUND
+  BIOdata$IST_m2=BIOdata$IST*1/(pi*(max(daps$distance_m)^2)+(0.5*max(daps$distance_m)^2)/nrow(daps))   ###por m2 FUSTE (STEM)
+  BIOdata$IBR_m2=BIOdata$IBR*1/(pi*(max(daps$distance_m)^2)+(0.5*max(daps$distance_m)^2)/nrow(daps))  ### por m2 RA´ÍCES (ROOTS)
+  BIOdata$BT_m2=BIOdata$BT_ag*1/(pi*(max(daps$distance_m)^2)+(0.5*max(daps$distance_m)^2)/nrow(daps))   ###
+  BIOdata$ST_m2=BIOdata$ST*1/(pi*(max(daps$distance_m)^2)+(0.5*max(daps$distance_m)^2)/nrow(daps)) ###por m2
+  BIOdata$BR_m2=BIOdata$BR*1/(pi*(max(daps$distance_m)^2)+(0.5*max(daps$distance_m)^2)/nrow(daps))
+  #
+  return(BIOdata)
+}  
+### ABI 
+IBIO10=IBIOpisy(pies, pisymed, 0.5, SEE=0.246887, a=-2.50275, b=2.41194, SEE1=0.290498, a1=-3.80519, b1=2.70808, SEE2=0.283615, a2=-4.56044, b2=2.62841)
+#write.csv(IBIO10,"/Users/guigeiz/Documents/Proyectos/LIFE Granada Regino y Antonio/Tablas y datos analisis/10BIO_PISY_med.csv" )
+plot(IBIO10$year1, IBIO10$IBT_ag_m2, type="l", xlim=c(1950, 2022))
+par(new=TRUE, yaxt="n")
+plot(pisymedBAI$year, pisymedBAI$BAI, col="red", type="l", xlim=c(1950, 2022))
+par(yaxt="s")
+axis(4)
+cor.test(IBIO10$IBT_ag_m2, pisymedBAI$BAI)
+
+
+

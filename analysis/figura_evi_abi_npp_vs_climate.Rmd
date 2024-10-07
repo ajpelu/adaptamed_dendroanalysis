@@ -77,13 +77,13 @@ df <- df_index |>
 df_plot <- df |> filter(year > 1990) |> 
   mutate(y_variable2 = case_when(
       y_variable == "abi" ~ "ABI~(g~C~m^2~year^{-1})",
-      y_variable == "evi_landsat" ~ "Annual~EVI[Landsat]",
+      y_variable == "evi_landsat" ~ "EVI[Landsat]",
       y_variable == "evi_modis" ~ "Annual~EVI[MODIS]",
-      y_variable == "npp" ~"Annual~NPP[MODIS]~(g~C~m^2~year^{-1})")) |> 
+      y_variable == "npp" ~"NPP[MODIS]~(g~C~m^2~year^{-1})")) |> 
   mutate(y_variable2 = fct_relevel(y_variable2, 
-                                  "Annual~EVI[Landsat]", 
+                                  "EVI[Landsat]", 
                                   "Annual~EVI[MODIS]",
-                                  "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+                                  "NPP[MODIS]~(g~C~m^2~year^{-1})",
                                   "ABI~(g~C~m^2~year^{-1})")) |> 
   filter(y_variable != "evi_modis") 
 ```
@@ -91,8 +91,8 @@ df_plot <- df |> filter(year > 1990) |>
 
 
 ```{r}
-label_landsat <- "Annual~EVI[Landsat]"
-label_npp <- "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})"
+label_landsat <- "EVI[Landsat]"
+label_npp <- "NPP[MODIS]~(g~C~m^2~year^{-1})"
 label_abi <- "ABI~(g~C~m^2~year^{-1})"
 label_wb <- "P-PET (mm)"
 label_prec <- "Precipitation (mm)"
@@ -221,8 +221,8 @@ plot_wb <-
     axis.title.x = element_text(face = "bold", size = 14)
   ) + 
   scale_x_continuous(limits = c(-900, 1200)) +
-  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
-                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+  facet_wrap(~factor(y_variable2, c("EVI[Landsat]", 
+                                    "NPP[MODIS]~(g~C~m^2~year^{-1})",
                                     "ABI~(g~C~m^2~year^{-1})")),
              scales = "free_y", 
                      labeller = label_parsed, 
@@ -266,7 +266,7 @@ df_plot <-
 ```{r}
 # general_parameters
 
-alpha_points <- 0.22 
+alpha_points <- 0.35 
 main_line_width <- 1.3 
 main_line_color <- "black"
 partial_lines_width <- .85 
@@ -281,7 +281,7 @@ size_points <- 1.9
 ## Water-Balance 
 
 letras_wb <- data.frame(
-  y_variable2 = c("Annual~EVI[Landsat]", "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
+  y_variable2 = c("EVI[Landsat]", "NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
   label = c("a", "b", "c"),
   x = c(-Inf, -Inf, -Inf),  # Ajusta las posiciones 'x' si es necesario
   y = c(Inf, Inf, Inf)  # Inf para colocarlo en la parte superior
@@ -305,18 +305,21 @@ plot_wb <-
               se =  FALSE, # this is important 
               linewidth = main_line_width, colour = main_line_color) + 
   ylab("") + 
-  xlab("Water balance (mm)")+
+  xlab("Water balance (mm)") +
   theme(
+    text = element_text(family = "Helvetica"),
     panel.grid = element_blank(), 
     strip.background = element_blank(),
     strip.placement = "outside",
     legend.position = "top", 
     strip.text = element_text(face = "bold", size = 14),
-    axis.title.x = element_text(face = "bold", size = 14)
+    axis.title.x = element_text(face = "bold", size = 14),
+    axis.text = element_text(size = 10),
+    legend.text = element_text(size = 10)
   ) + 
   scale_x_continuous(limits = c(-900, 1200)) +
-  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
-                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+  facet_wrap(~factor(y_variable2, c("EVI[Landsat]", 
+                                    "NPP[MODIS]~(g~C~m^2~year^{-1})",
                                     "ABI~(g~C~m^2~year^{-1})")),
              scales = "free_y", 
                      labeller = label_parsed, 
@@ -324,9 +327,11 @@ plot_wb <-
     facetted_pos_scales(y = y_scales) +
         geom_text(data = letras_wb, 
               aes(x = x, y = y, label = label),
-              vjust = 1.2, hjust = -.5, size = 8, 
+              vjust = 1.2, hjust = -1.2, size = 5, 
               fontface = "bold", inherit.aes = FALSE)
-  
+ 
+
+
 
 # Mira esto para inspirarte y crear IC en las estimaciones de los modelos 
 # https://derekogle.com/fishR/examples/oldFishRVignettes/VonBertalanffy.pdf
@@ -338,7 +343,7 @@ plot_wb <-
 ## Precipitation
 
 letras_prec <- data.frame(
-  y_variable2 = c("Annual~EVI[Landsat]", "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
+  y_variable2 = c("EVI[Landsat]", "NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
   label = c("d", "e", "f"),
   x = c(-Inf, -Inf, -Inf),  # Ajusta las posiciones 'x' si es necesario
   y = c(Inf, Inf, Inf)  # Inf para colocarlo en la parte superior
@@ -363,16 +368,19 @@ plot_prec <-
   ylab("") + 
   xlab("Precipitation (mm)")+
   theme(
+    text = element_text(family = "Helvetica"),
     panel.grid = element_blank(), 
     strip.background = element_blank(),
     strip.placement = "outside",
-     legend.position = "none", 
+    legend.position = "none", 
     axis.title.x = element_text(face = "bold", size = 14),
-    strip.text = element_text(face = "bold", size = 14)
+    strip.text = element_text(face = "bold", size = 14),
+    axis.text = element_text(size = 10),
+    legend.text = element_text(size = 10)
   ) + 
   scale_x_continuous(limits = c(0, 1750)) +
-  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
-                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+  facet_wrap(~factor(y_variable2, c("EVI[Landsat]", 
+                                    "NPP[MODIS]~(g~C~m^2~year^{-1})",
                                     "ABI~(g~C~m^2~year^{-1})")),
              scales = "free_y", 
                      labeller = label_parsed, 
@@ -380,7 +388,7 @@ plot_prec <-
     facetted_pos_scales(y = y_scales) +
       geom_text(data = letras_prec, 
               aes(x = x, y = y, label = label),
-              vjust = 1.2, hjust = - .5, size = 8, 
+              vjust = 1.2, hjust = -1.2, size = 5, 
               fontface = "bold", inherit.aes = FALSE)
   
 
@@ -395,7 +403,7 @@ t_npp <- df_plot |> filter(climate_variable == "tmed") |>
 
 
 letras_temp <- data.frame(
-  y_variable2 = c("Annual~EVI[Landsat]", "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
+  y_variable2 = c("EVI[Landsat]", "NPP[MODIS]~(g~C~m^2~year^{-1})", "ABI~(g~C~m^2~year^{-1})"),
   label = c("g", "h", "i"),
   x = c(-Inf, -Inf, -Inf),  # Ajusta las posiciones 'x' si es necesario
   y = c(Inf, Inf, Inf)  # Inf para colocarlo en la parte superior
@@ -421,16 +429,19 @@ plot_tmed <-
   ylab("") + 
   xlab("Annual Mean Temperature (ºC)")+
   theme(
+    text = element_text(family = "Helvetica"),
     panel.grid = element_blank(), 
     strip.background = element_blank(),
     strip.placement = "outside",
     legend.position = "none", 
     strip.text = element_text(face = "bold", size = 14), 
-    axis.title.x = element_text(face = "bold", size = 14)
+    axis.title.x = element_text(face = "bold", size = 14),
+    axis.text = element_text(size = 10),
+    legend.text = element_text(size = 10)
   ) + 
   scale_x_continuous(limits = c(8, 16)) +
-  facet_wrap(~factor(y_variable2, c("Annual~EVI[Landsat]", 
-                                    "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+  facet_wrap(~factor(y_variable2, c("EVI[Landsat]", 
+                                    "NPP[MODIS]~(g~C~m^2~year^{-1})",
                                     "ABI~(g~C~m^2~year^{-1})")),
              scales = "free_y", 
                      labeller = label_parsed, 
@@ -438,7 +449,7 @@ plot_tmed <-
     facetted_pos_scales(y = y_scales) +
     geom_text(data = letras_temp, 
               aes(x = x, y = y, label = label),
-              vjust = 1.2, hjust = -.5, size = 8, 
+              vjust = 1.2, hjust = -1.2, size = 5, 
               fontface = "bold", inherit.aes = FALSE)
 
 ```
@@ -479,11 +490,22 @@ init_aysmp_abi <- as.data.frame(t(getInitial(mean_y ~ SSasymp(mean_climate, Asym
 wb_prec_tmed <- plot_wb / plot_prec / plot_tmed 
 wb_prec_tmed 
 
+# 180 mm figure size (width)
+# 1 inch = 25.4 mm
+# 180 mm = 7.09 inches
+
 ggsave(
   wb_prec_tmed, 
   file = "output/combined_wb_prec_tmed.png",
   dpi = 500,
-  width = 13, height = 13
+  width = 7.09*1.3, height = 7.09*1.3
+)
+
+ggsave(
+  wb_prec_tmed, 
+  file = "output/combined_wb_prec_tmed.pdf",
+  dpi = 500,
+  width = 7.09*1.3, height = 7.09*1.3
 )
 ```
 
@@ -497,6 +519,7 @@ ggsave(
   dpi = 300,
   width = 12, height = 8
 )
+
 ```
 
 
@@ -560,7 +583,7 @@ surface_evi <- predicted_values |>
   theme(panel.border = element_blank()) +
   xlab("Water Balance (mm)") +
   ylab("Annual Mean Temperature (ºC)") 
-# + ggtitle(expression(Annual~EVI[Landsat]))
+# + ggtitle(expression(EVI[Landsat]))
 
 
 ## plot npp
@@ -590,7 +613,7 @@ surface_npp <- predicted_values |>
   theme(panel.border = element_blank()) +
   xlab("Water Balance (mm)") +
   ylab("Annual Mean Temperature (ºC)") 
-# + ggtitle(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1})))
+# + ggtitle(expression(NPP[MODIS]~(g~C~m^2~year^{-1})))
 
 
 
@@ -690,7 +713,7 @@ surface_evi <- predicted_values |>
   theme_bw() +
   theme(panel.grid = element_blank()
   ) + xlab("Water Balance (mm)") +
-  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(Annual~EVI[Landsat])) +
+  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(EVI[Landsat])) +
   scale_x_continuous(limits = c(-750, 1000))  
 
 
@@ -817,7 +840,7 @@ surface_evi_e <- predicted_values |>
   theme_bw() +
   theme(panel.grid = element_blank()
   ) + xlab("Water Balance (mm)") +
-  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(Annual~EVI[Landsat])) +
+  ylab("Annual Mean Temperature (ºC)") + ggtitle(expression(EVI[Landsat])) +
   scale_x_continuous(limits = c(-750, 1000))  
 
 
@@ -962,7 +985,7 @@ d_grid |>
   theme(panel.border = element_blank()) +
   xlab("Water Balance (mm)") +
   ylab("Annual Mean Temperature (ºC)") +
-  ggtitle(expression(Annual~NPP[MODIS]~(g~C~m^2~year^{-1})))
+  ggtitle(expression(NPP[MODIS]~(g~C~m^2~year^{-1})))
 
 ```
 

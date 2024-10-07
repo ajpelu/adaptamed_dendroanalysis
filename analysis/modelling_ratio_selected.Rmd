@@ -731,6 +731,403 @@ main_figure
 ```
 
 
+
+```{r}
+surf2005 <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> dplyr::filter(year < 2006)),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle("2001-2005") 
+```
+
+```{r}
+surf2010 <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> 
+              dplyr::filter(year > 2005) |> 
+              dplyr::filter(year < 2011)
+            ),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle("2006-2010")
+```
+
+```{r}
+surf2015 <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> 
+              dplyr::filter(year > 2010) |> 
+              dplyr::filter(year < 2016)
+            ),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle("2011-2015")
+```
+
+```{r}
+surf2020 <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> 
+              dplyr::filter(year > 2015)
+            ),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle(">2015")
+```
+
+
+```{r}
+model_ratio_time <- (surf2005 + surf2010) / 
+  (surf2015 + surf2020)
+
+ggsave(
+   model_ratio_time,
+   file = "output/figure_model_ratio_time.jpg",
+   dpi = 600,
+   width = 12, height = 12
+ )
+```
+
+
+```{r}
+surf_hal <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> dplyr::filter(sp_code == "halepensis")),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle("P. halepensis") 
+```
+
+```{r}
+surf_pin <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> dplyr::filter(sp_code == "pinaster")),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle("P. pinaster") 
+```
+
+```{r}
+surf_nig <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> dplyr::filter(sp_code == "nigra")),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle("P. nigra") 
+```
+
+```{r}
+surf_syl <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  metR::geom_contour_fill(aes(z = ratio_pred, 
+                              fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE, 
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  geom_point(
+    data = (d |> dplyr::filter(sp_code == "sylvestris")),
+    colour = "black", alpha = 0.4, 
+    size = 1.7
+  ) + 
+  metR::geom_label_contour(aes(z = ratio_pred),
+                          colour = "black", 
+                          breaks = breaks, 
+                          label.placer = label_placer_n(n=1))  +
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#ffffe5", high = "#004529", 
+                         guide = guide_legend(theme = theme(
+                           legend.title=element_text(size=11, face = "bold"),
+                           legend.text=element_text(size=9)), 
+                           ncol = 2
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75,0.78)) + 
+  xlab(label_prec) + 
+  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))) +
+  ggtitle("P. sylvestris") 
+```
+
+```{r}
+model_ratio_sp <- (surf_hal + surf_pin) / 
+  (surf_nig + surf_syl)
+
+ggsave(
+   model_ratio_sp,
+   file = "output/figure_model_ratio_sp.jpg",
+   dpi = 600,
+   width = 12, height = 12
+ )
+```
+
+
+
 ### Model validation
 ```{r}
 #| echo: false
