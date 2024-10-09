@@ -402,7 +402,7 @@ Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></sp
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-09-27
+<strong>Last updated:</strong> 2024-10-09
 </p>
 <p>
 <strong>Checks:</strong>
@@ -448,20 +448,20 @@ know the exact version of the code that produced these results.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree2bec6d80e1dee8406edce213c6bcab2350b0558atargetblank2bec6d8a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef15f8a07bcb84182cdb22ed55b39a9ce057ca03ctargetblankf15f8a0a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/2bec6d80e1dee8406edce213c6bcab2350b0558a" target="_blank">2bec6d8</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f15f8a07bcb84182cdb22ed55b39a9ce057ca03c" target="_blank">f15f8a0</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistree2bec6d80e1dee8406edce213c6bcab2350b0558atargetblank2bec6d8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef15f8a07bcb84182cdb22ed55b39a9ce057ca03ctargetblankf15f8a0a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/2bec6d80e1dee8406edce213c6bcab2350b0558a" target="_blank">2bec6d8</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f15f8a07bcb84182cdb22ed55b39a9ce057ca03c" target="_blank">f15f8a0</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -480,19 +480,29 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/cronos/.DS_Store
+    Ignored:    data/raw/cronos/13-Ragua_high_PIHA/.DS_Store
+    Ignored:    data/raw/cronos/4-Lanteira_High_PINI/.DS_Store
+    Ignored:    data/raw/cronos/8-Jerez_High_PIPINASTER/.DS_Store
     Ignored:    data/raw/remote_sensing/old/
     Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/dendro_sylvestris_med.Rmd
-    Untracked:  data/raw/correspondence_files.xlsx
-    Untracked:  data/raw/cronos/
-    Untracked:  data/rw/rwcore_sylvestris_med.csv
-    Untracked:  data/rw/rwtree_sylvestris_med.csv
-    Untracked:  output/tables/summary_evi_abi_npp.xlsx
+    Untracked:  data/dendroapadtamed_final_model_peffect.csv
+    Untracked:  data/dendroapadtamed_final_model_pred_mcombrat7.csv
+    Untracked:  data/dendroapadtamed_final_model_results.csv
+    Untracked:  data/dendroapadtamed_final_model_teffect.csv
+    Untracked:  output/figure_model_selected.pdf
+    Untracked:  output/plot_ts_dendro_remote.pdf
 
 Unstaged changes:
-    Modified:   analysis/figura_evi_abi_npp_vs_climate.Rmd
+    Modified:   analysis/figure_ts_dendro_remote.Rmd
+    Modified:   analysis/modelling_ratio_selected.Rmd
+    Modified:   output/figure_model_selected.jpg
+    Modified:   output/plot_ts_dendro_remote.jpg
+    Modified:   output/plot_ts_dendro_remote.svg
+    Modified:   output/plot_ts_dendro_remote_mod.svg
+    Modified:   scripts/aux.R
 
 </code></pre>
 <p>
@@ -537,6 +547,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/f15f8a07bcb84182cdb22ed55b39a9ce057ca03c/analysis/index.Rmd" target="_blank">f15f8a0</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-10-09
+</td>
+<td>
+wflow_publish("analysis/index.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/26a38bedbfe798920489cb10396df4d906b4b5d7/docs/index.html" target="_blank">26a38be</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-09-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1351,6 +1395,7 @@ Start workflowr project.
 <li><a href="figure_ts_dendro_remote.html">Temporal evolution ABI, EVI and NPP</a></li>
 <li><a href="figura_abi_npp.html">ABI vs NPP</a></li>
 <li><a href="figure_effect_model.html">Model Ratio vs Tmed and Prec</a></li>
+<li><a href="figure_main.html">Figure Model selected</a></li>
 </ul>
 </div>
 
