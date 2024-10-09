@@ -72,19 +72,6 @@ abi_npp <- df_index |>
   mutate(ratio = abi / npp)
 ```
 
-
-
-```{r}
-# general_parameters
-
-alpha_points <- 0.3 
-main_line_width <- 1.3 
-main_line_color <- "black"
-partial_lines_width <- .85 
-
-```
-
-
 ## ABI vs NPP
 
 ```{r}
@@ -161,44 +148,11 @@ labi_npp <- abi_npp |>
     p.value < 0.001 ~ "sig",
     p.value >= 0.001 ~ "no sig"  
   )) 
-```
 
-
-
-```{r}
-#| fig.width: 8
-#| fig.height: 8
 
 abi_npp <- 
   abi_npp |> inner_join(
     labi_npp|> dplyr::select(sp_code, p, sig))
-
-plot_abi_npp <- abi_npp |>
-  ggplot(aes(y = abi, x = npp)) +
-  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points) +
-  geom_line(data = pred_df_abi_npp, aes(x = npp, y = abi), color = "black", linewidth = 1.5) + # Fitted model
-  geom_ribbon(data = pred_df_abi_npp, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
-  scale_y_continuous(limits = c(0, 450)) +
-  theme_bw() +
-  theme(
-    panel.grid = element_blank(), 
-    legend.position = "bottom"
-  ) +
-  scale_colour_manual(
-    values = colours_Specie, name = "Species",
-    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
-  ) +
-  scale_shape_manual(values = shape_elev, name = "Elevation") +
-  scale_fill_manual(
-    values = colours_Specie, name = "Species",
-    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
-  ) +
-  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{
-    -1
-  }))) +
-  xlab(expression(Annual ~ NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{
-    -1
-  }))) 
 ```
 
 ## ABI vs EVI
@@ -283,39 +237,10 @@ labi_evi <- abi_evi |>
     p.value < 0.001 ~ "sig",
     p.value >= 0.001 ~ "no sig"  
   )) 
-```
-
-
-
-
-```{r}
 
 abi_evi <- 
   abi_evi |> inner_join(
     labi_evi |> dplyr::select(sp_code, p, sig))
-
-plot_abi_evi <- abi_evi |>
-  ggplot(aes(y = abi, x = evi_landsat)) +
-  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points) +
-  geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = abi), color = "black", linewidth = 1.5) + # Fitted model
-  geom_ribbon(data = pred_df_abi_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
-  theme_bw() +
-  theme(
-    panel.grid = element_blank(),
-    legend.position = "bottom"
-  ) +
-  scale_colour_manual(
-    values = colours_Specie, name = "Species",
-    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
-  ) +
-  scale_shape_manual(values = shape_elev, name = "Elevation") +
-  scale_fill_manual(
-    values = colours_Specie, name = "Species",
-    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
-  ) +
-  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{-1}))) +
-  xlab(expression(Annual ~ EVI[Landsat]))
-
 ```
 
 
@@ -391,42 +316,95 @@ lnpp_evi <- npp_evi |>
     p.value < 0.001 ~ "sig",
     p.value >= 0.001 ~ "no sig"  
   )) 
-```
 
-
-
-```{r}
 npp_evi <- 
   npp_evi |> inner_join(
     lnpp_evi |> dplyr::select(sp_code, p, sig))
+```
 
-plot_npp_evi <- npp_evi |>
-  ggplot(aes(y = npp, x = evi_landsat)) +
-  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points) +
-  geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = npp), color = "black", linewidth = 1.5) + # Fitted model
-  geom_ribbon(data = pred_df_npp_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
-  theme_bw() +
-  theme(
-    panel.grid = element_blank(),
-    legend.position = "bottom"
-  ) +
+
+## Plots 
+
+```{r}
+# general_parameters
+
+alpha_points <- 0.5
+main_line_width <- 1.3 
+main_line_color <- "black"
+partial_lines_width <- .85 
+size_points <- 2
+
+custom_options <- list(
+  scale_shape_manual(
+    values = shape_elev, 
+    name = "Elevation"), 
   scale_colour_manual(
-    values = colours_Specie, name = "Species",
-    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
-  ) +
-  scale_shape_manual(values = shape_elev, name = "Elevation") +
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species"),
+  
   scale_fill_manual(
-    values = colours_Specie, name = "Species",
-    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris"))
-  ) +
-  ylab(expression(Annual ~ NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{-1}))) +
-  xlab(expression(Annual ~ EVI[Landsat])) 
-
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species"),
+  theme_bw(),
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.title=element_text(size=12, face = "bold"), 
+    legend.text=element_text(size=12)
+    )
+)
 ```
 
 ```{r}
+plot_abi_npp <- abi_npp |>
+  ggplot(aes(y = abi, x = npp)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points, size = size_points) +
+  geom_line(data = pred_df_abi_npp, aes(x = npp, y = abi), color = "black", linewidth = 1.5) + # Fitted model
+  geom_line(data = pred_df_abi_npp, aes(x = npp, y = ci_lower), color = "black", linetype = "dashed") + 
+  geom_line(data = pred_df_abi_npp, aes(x = npp, y = ci_upper), color = "black", linetype = "dashed") + 
+  # geom_ribbon(data = pred_df_abi_npp, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.2) + # CI
+  scale_y_continuous(limits = c(0, 450)) +
+  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{-1}))) +
+  xlab(expression(NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{-1}))) +
+  custom_options
+```
+
+```{r}
+plot_abi_evi <- abi_evi |>
+  ggplot(aes(y = abi, x = evi_landsat)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points, size = size_points)  +
+  geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = abi), color = "black", linewidth = 1.5) + # Fitted model
+  geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = ci_lower), color = "black", linetype = "dashed") + 
+  geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = ci_upper), color = "black", linetype = "dashed") + 
+  # geom_ribbon(data = pred_df_abi_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
+  ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{-1}))) +
+  xlab(expression(EVI[Landsat])) +
+    custom_options
+```
+
+
+```{r}
+plot_npp_evi <- npp_evi |>
+  ggplot(aes(y = npp, x = evi_landsat)) +
+  geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points, size = size_points) +
+  geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = npp), color = "black", linewidth = 1.5) + # Fitted model
+  geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = ci_lower), color = "black", linetype = "dashed") + 
+  geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = ci_upper), color = "black", linetype = "dashed") +
+  # geom_ribbon(data = pred_df_npp_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
+  ylab(expression(NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{-1}))) +
+  xlab(expression(EVI[Landsat])) +
+  custom_options
+```
+
+
+
+```{r}
 p <- plot_abi_npp + plot_abi_evi + plot_npp_evi & theme(legend.position = "bottom")
-compare_plot <- p + plot_layout(guides = "collect")
+compare_plot <- p + plot_layout(guides = "collect", ncol = 3)
 
 ggsave(
    compare_plot,
@@ -437,24 +415,30 @@ ggsave(
 ```
 
 
+### By species
+
 ```{r}
 #| fig.heigth: 6
 #| fig.width: 12
+
+
 p_sp <- 
-  ((plot_abi_npp +  
+  (plot_abi_npp +  
      geom_smooth(aes(linetype = sig, group = Specie, colour = Specie), 
               linewidth = partial_lines_width, method = "lm", se = FALSE) + 
      scale_linetype_manual(values = lines_lm, guide = "none") +
       scale_x_continuous(
-        limits = c(100,1100), 
-        breaks = c(100,300,500,700,900, 1100))) + 
+        limits = c(150,1050), 
+        breaks = c(150,300,450,600,750,900,1050))+
+     annotate(geom = "text", label = "a", x = 150, y = Inf, hjust = .2, vjust = 1.5, size = 7, fontface = "bold")) +
   (plot_abi_evi + 
      geom_smooth(aes(linetype = sig, group = Specie, colour = Specie), 
               linewidth = partial_lines_width, method = "lm", se = FALSE) +
      scale_linetype_manual(values = lines_lm, guide = "none")+
      scale_x_continuous(
         limits = c(0.1,0.5), 
-        breaks = c(0.1, 0.2, 0.3, 0.4, 0.5))) +
+        breaks = c(0.1, 0.2, 0.3, 0.4, 0.5)) +
+     annotate(geom = "text", label = "b", x = .1, y = Inf, hjust = .2, vjust = 1.5, size = 7, fontface = "bold")) +
   (plot_npp_evi + 
      geom_smooth(aes(linetype = sig, group = Specie, colour = Specie), 
               linewidth = partial_lines_width, method = "lm", se = FALSE) +
@@ -463,10 +447,11 @@ p_sp <-
         limits = c(0.1,0.5), 
         breaks = c(0.1, 0.2, 0.3, 0.4, 0.5)) + 
     scale_y_continuous(
-        limits = c(0,1100), 
-        breaks = c(0,100,300,500,700,900, 1100)))) & theme(legend.position = "bottom")
+        limits = c(0,1050), 
+        breaks = c(0,150,300,450,600,750,900,1050)) +
+     annotate(geom = "text", label = "c", x = .1, y = Inf, hjust = .2, vjust = 1.5, size = 7, fontface = "bold")) & theme(legend.position = "bottom")
 
-compare_plot_sp <- p_sp + plot_layout(guides = "collect")
+compare_plot_sp <- p_sp + plot_layout(guides = "collect") 
 
 
 compare_plot_sp
@@ -474,8 +459,8 @@ compare_plot_sp
 ggsave(
    compare_plot_sp,
    file = "output/compare_abi_npp_evi_sp.png",
-   dpi = 300,
-   width = 12, height = 6
+   dpi = 400,
+   width = 7.09*2.2, height = 7.09*1.8/2
  )
 ```
 
