@@ -54,4 +54,5 @@ En este repositorio vamos a ir incluyendo información sobre los análisis que r
 - [Temporal evolution ABI, EVI and NPP](figure_ts_dendro_remote.html)
 - [ABI vs NPP](figura_abi_npp.html)
 - [Model Ratio vs Tmed and Prec](figure_effect_model.html)
+- [Figure Model selected](figure_main.html)
 
