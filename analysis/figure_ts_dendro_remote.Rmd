@@ -61,7 +61,7 @@ df <- bind_rows(
 ```{r}
 mk_evi_landsat <- read_csv("data/dendroadaptamed_iv_landsat_trend.csv") |> 
   dplyr::select(sp_code, elev_code, sp_elev, tau = mean_tau, pvalue_mk = mean_pvalue_mk,  senslope = mean_senslope, pvalue_sen= mean_pvalue_sen, ypos, p_value_string, taulabel) |> 
-   mutate(variable = "evi_landsat")
+   mutate(variable = "evi_landsat") 
   
 mk_npp <- read_csv("data/dendroadaptamed_npp_modis_trend.csv") |> 
   rename(tau = npp_tau, 
@@ -70,8 +70,8 @@ mk_npp <- read_csv("data/dendroadaptamed_npp_modis_trend.csv") |>
          pvalue_sen = npp_pvalue_sen) |> 
   mutate(variable = "npp") |> 
   mutate(ypos2 = case_when(
-    ypos == 1000 ~ 800, 
-    ypos == 1025 ~ 900, 
+    ypos == 1000 ~ 850, 
+    ypos == 1025 ~ 925, 
     ypos == 1050 ~ 1000, 
     ypos == 1075 ~ 1075)) |> 
   dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2)
@@ -83,10 +83,10 @@ mk_abi <- read_csv("data/dendroadaptamed_abi_trend.csv") |>
          pvalue_sen = mean_pvalue_sen) |> 
   mutate(variable = "abi") |> 
   mutate(ypos2 = case_when(
-    ypos == 510 ~ 485, 
-    ypos == 540 ~ 530, 
+    ypos == 510 ~ 480, 
+    ypos == 540 ~ 525, 
     ypos == 570 ~ 570, 
-    ypos == 480 ~ 440)) |> 
+    ypos == 480 ~ 435)) |> 
   dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2)
 
 
@@ -96,15 +96,30 @@ mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |>
   # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   mutate(Specie = paste0("P. ", sp_code))
+
+# replace minus sign in taulabel (−) by unicode 
+mk$taulabel <- gsub("−", "-", mk$taulabel)
 ```
 
 
 ```{r, fig.height=9, fig.width=12}
 to_label <- as_labeller(c(
- "evi_landsat" = "Annual~EVI[Landsat]", 
- "npp" = "Annual~NPP[MODIS]~(g~C~m^2~year^{-1})",
+ "evi_landsat" = "EVI[Landsat]", 
+ "npp" = "NPP[MODIS]~(g~C~m^2~year^{-1})",
  "abi" = "ABI~(g~C~m^2~year^{-1})"
 ), default = label_parsed)
+
+
+# colours_elev <- c("low" = "#8F2720",
+#                    "low-Dec" ="#B7A073",
+#                    "medium" = "#154B8A",
+#                    "high" = "#72A55A")
+
+colours_elev <- c("low-Dec" = "#8c510a",
+                   "low" ="#fc8d59",
+                   "medium" = "#2166ac",
+                   "high" = "#72A55A")
+
 
 
 fig_ts <- df |> 
@@ -123,18 +138,21 @@ fig_ts <- df |>
   theme_bw() +
   ylab("") +  xlab("") + 
   theme(
+    text = element_text(family = "Helvetica"),
     panel.grid = element_blank(),
     panel.background = element_blank(),
-    strip.text.x = element_text(face = "italic", size = 10),
-    strip.text.y = element_text(face = "bold", size = 10),
+    strip.text.x = element_text(face = "italic", size = 13),
+    strip.text.y = element_text(face = "bold", size = 15),
     strip.background = element_blank(),
     strip.placement = "outside", 
-    legend.position = "bottom"
+    legend.position = "bottom",
+    legend.text = element_text(size = 11),
+    axis.text = element_text(size = 11)
   ) +
   scale_x_continuous(limits = c(1980, 2021), breaks = seq(1950, 2020, by = 10), 
                      sec.axis = dup_axis()) +
   scale_y_continuous(sec.axis = dup_axis()) +
-  geom_text(x = 1980, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = "left")
+  geom_text(x = 1980, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = "left", size = 4.5)
 
 
 fig_ts
@@ -143,19 +161,32 @@ fig_ts
 
 
 ```{r}
+
+# 180 mm figure size (width)
+# 1 inch = 25.4 mm
+# 180 mm = 7.09 inches 
+
 ggsave(
   fig_ts, 
   file = "output/plot_ts_dendro_remote.jpg",
-  dpi = 300,
-  width = 12, height = 8
+  dpi = 400,
+  width = 7.09*1.3*1.5, height = 7.09*1.3
 )
 
 ggsave(
   fig_ts, 
   file = "output/plot_ts_dendro_remote.svg",
-  dpi = 300,
-  width = 12, height = 8
+  dpi = 400,
+  width = 7.09*1.3*1.5, height = 7.09*1.3
 )
+
+ggsave(
+  fig_ts, 
+  file = "output/plot_ts_dendro_remote.pdf",
+  dpi = 400,
+  width = 7.09*1.3*1.5, height = 7.09*1.3
+)
+
 ```
 
 

@@ -1,6 +1,12 @@
 
 # colours
-colours_elev <- c("low" = "red", "low-Dec" ="orange", "medium" = "blue", "high" = "darkgreen")
+# colours_elev <- c("low" = "red", "low-Dec" ="orange", "medium" = "blue", "high" = "darkgreen")
+
+colours_elev <- c("low" = "#ef7159",
+                   "low-Dec" ="#FFCC3F",
+                   "medium" = "#1B1F47",
+                   "high" = "#53A049")
+
 
 colours_temp <- c("tmin" = "#a6bddb", "tmed" = "#67a9cf", "tmax" = "#016c59")
 

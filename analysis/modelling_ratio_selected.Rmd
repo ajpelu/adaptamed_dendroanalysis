@@ -360,6 +360,9 @@ teffect <- data.frame(tmed = seq(5,25, by =.1)) |>
   separate(name, into = c("modelo", "type_value")) |> 
   inner_join(name_models)
 
+write_csv(teffect, "data/dendroapadtamed_final_model_teffect.csv")
+
+
 plot_tmed <- teffect |> 
   filter(type_value == "predicted") |> 
   ggplot(
@@ -404,6 +407,8 @@ peffect <- data.frame(prec = seq(0,1700, by =1)) |>
   pivot_longer(-prec) |> 
   separate(name, into = c("modelo", "type_value")) |> 
   inner_join(name_models)
+
+write_csv(peffect, "data/dendroapadtamed_final_model_peffect.csv")
 
 plot_prec <- peffect |> 
   filter(type_value == "predicted") |> 
@@ -455,11 +460,14 @@ pcomb1 <- result_mcombrat1$best_pars |> as.data.frame()
 pcomb7 <- result_mcombrat7$best_pars |> as.data.frame()
 
 
+
 pred_mcombrat7<- expand.grid(tmed = seq(5,20, by =.5),
                     prec = seq(100, 1500, by = 5)) |> 
   mutate(
     ratio_pred =   pcomb7$MR * ((1 - pcomb7$Tb)*(1 / (1 + exp(- pcomb7$k *(tmed - pcomb7$Topt)))) + pcomb7$Tb) * (exp(-0.5*(log(prec/pcomb7$Popt)/pcomb7$Pb)^2) )
   ) 
+
+write_csv(pred_mcombrat7, "data/dendroapadtamed_final_model_pred_mcombrat7.csv")
 
 breaks <- seq(0, .75, by=0.05)
 
@@ -715,12 +723,12 @@ main_figure <- (
     plot.tag = element_text(size = 14, face = "bold"))
 
 
-ggsave(
-   main_figure,
-   file = "output/figure_model_selected.jpg",
-   dpi = 600,
-   width = 15, height = 7
- )
+# ggsave(
+#    main_figure,
+#    file = "output/figure_model_selected.jpg",
+#    dpi = 600,
+#    width = 15, height = 7
+#  )
 ```
 
 
