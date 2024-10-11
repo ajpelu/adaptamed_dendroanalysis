@@ -22,6 +22,8 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(kableExtra)
 library(ggh4x)
+library(Kendall)
+library(trend)
 
 source("scripts/aux.R")
 ```
@@ -49,12 +51,17 @@ evi_modis <- read_csv("data/dendroadaptamed_iv_modis.csv") |>
   dplyr::select(year, sp_code, elev_code, mean, sd, se) |> 
   mutate(variable = "evi_modis")
 
+ratio <- read_csv("data/dendroadaptamed_ratio_abinpp.csv") |> 
+  dplyr::select(year, sp_code, elev_code, sp_elev, mean = ratio) |> 
+  mutate(se = NA, sd = NA, variable = "ratio") 
+
 
 df <- bind_rows(
-  abi, evi_landsat, evi_modis, npp) |> 
+  abi, evi_landsat, evi_modis, npp, ratio) |> 
  # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   mutate(Specie = paste0("P. ", sp_code))
+
 
 ```
 
@@ -74,7 +81,8 @@ mk_npp <- read_csv("data/dendroadaptamed_npp_modis_trend.csv") |>
     ypos == 1025 ~ 925, 
     ypos == 1050 ~ 1000, 
     ypos == 1075 ~ 1075)) |> 
-  dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2)
+  dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2) |> 
+  mutate(p_value_string = as.character(p_value_string)) 
 
 mk_abi <- read_csv("data/dendroadaptamed_abi_trend.csv") |> 
     rename(tau = mean_tau, 
@@ -87,12 +95,36 @@ mk_abi <- read_csv("data/dendroadaptamed_abi_trend.csv") |>
     ypos == 540 ~ 525, 
     ypos == 570 ~ 570, 
     ypos == 480 ~ 435)) |> 
-  dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2)
+  dplyr::select(-ypos, -Specie) |> rename(ypos = ypos2) |> 
+  mutate(p_value_string = as.character(p_value_string)) 
 
 
+mk_ratio <- ratio |> 
+  ungroup() |> 
+  group_by(sp_code, elev_code, sp_elev)|> 
+  summarise(across(c(mean), ~MannKendall(.)$tau, .names ="tau"),
+            across(c(mean), ~MannKendall(.)$sl, .names ="pvalue_mk"),
+            across(c(mean), ~trend::sens.slope(.)$estimate, .names ="senslope"),
+            across(c(mean), ~trend::sens.slope(.)$p.value, .names ="pvalue_sen")) |> 
+  mutate(ypos = 
+           case_when(
+             elev_code == "low" ~ .44,
+             elev_code == "low-Dec" ~ .36,
+             elev_code == "medium" ~ .52,
+             elev_code == "high" ~ .6), 
+         p_value_string = as.character(symnum(pvalue_mk, corr = FALSE,
+               cutpoints = c(0,  .001,.01,.05, 1),
+               symbols = c("***","**","*",""))),
+         variable = "ratio") |> 
+  mutate(taulabel = paste(expression(tau), "==", paste0('"', round(tau, 3), p_value_string, '"'))) |> 
+  mutate(
+    Specie = paste0("P. ", sp_code)
+  ) |> 
+  mutate(taulabel = gsub("-", "\U2212", taulabel))
 
-mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi) |> 
-  mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
+
+mk <- bind_rows(mk_evi_landsat, mk_npp, mk_abi, mk_ratio) |> 
+  mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi", "ratio")) |> 
   # mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   mutate(Specie = paste0("P. ", sp_code))
@@ -106,7 +138,8 @@ mk$taulabel <- gsub("−", "-", mk$taulabel)
 to_label <- as_labeller(c(
  "evi_landsat" = "EVI[Landsat]", 
  "npp" = "NPP[MODIS]~(g~C~m^2~year^{-1})",
- "abi" = "ABI~(g~C~m^2~year^{-1})"
+ "abi" = "ABI~(g~C~m^2~year^{-1})", 
+ "ratio" = "ABI:NPP"
 ), default = label_parsed)
 
 
@@ -124,7 +157,7 @@ colours_elev <- c("low-Dec" = "#8c510a",
 
 fig_ts <- df |> 
   filter(variable != "evi_modis") |>
-  mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi")) |> 
+  mutate(variable = fct_relevel(variable, "evi_landsat", "npp", "abi", "ratio")) |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   ggplot(aes(x = year, y = mean, group = elev_code, colour = elev_code)) +
   geom_ribbon(aes(ymin = (mean - se), ymax=(mean+se), fill=elev_code), colour=NA, alpha=.2) + 
@@ -170,22 +203,22 @@ ggsave(
   fig_ts, 
   file = "output/plot_ts_dendro_remote.jpg",
   dpi = 400,
-  width = 7.09*1.3*1.5, height = 7.09*1.3
+  width = 7.09*1.3*1.5, height = 7.09*1.3*1.4
 )
 
-ggsave(
-  fig_ts, 
-  file = "output/plot_ts_dendro_remote.svg",
-  dpi = 400,
-  width = 7.09*1.3*1.5, height = 7.09*1.3
-)
-
-ggsave(
-  fig_ts, 
-  file = "output/plot_ts_dendro_remote.pdf",
-  dpi = 400,
-  width = 7.09*1.3*1.5, height = 7.09*1.3
-)
+# ggsave(
+#   fig_ts, 
+#   file = "output/plot_ts_dendro_remote.svg",
+#   dpi = 400,
+#    width = 7.09*1.3*1.5, height = 7.09*1.3*1.4
+# )
+# 
+# ggsave(
+#   fig_ts, 
+#   file = "output/plot_ts_dendro_remote.pdf",
+#   dpi = 400,
+#   width = 7.09*1.3*1.5, height = 7.09*1.3*1.4
+# )
 
 ```
 
@@ -198,14 +231,15 @@ ggsave(
 overview_trends <- mk |>
   mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |> 
   mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
-  mutate(var = fct_relevel(variable, "evi_landsat","npp", "abi")) |> 
+  mutate(var = fct_relevel(variable, "evi_landsat","npp", "abi", "ratio")) |> 
   mutate(border_color = ifelse(is.na(p_value_string), "transparent", "black")) |> 
   ggplot(aes(x=sp_code, y=elev_code, fill = tau)) + 
   geom_point(aes(size = tau, shape = var, colour = border_color), position = position_jitterdodge(jitter.width = 0, dodge.width = 0.4)) + 
-  scale_fill_gradientn(colours = c("#d7191c", "#ffffbf", "#2b83ba"), limits = c(-1, 1), breaks = c(-.75, 0, .75)) +
+  # scale_fill_gradientn(colours = c("#d7191c", "#ffffbf", "#2b83ba"), limits = c(-1, 1), breaks = c(-.75, 0, .75)) +
+  scale_fill_gradientn(colours = colours_elev, limits = c(-1, 1), breaks = c(-.75, 0, .75)) +
   scale_colour_identity() + 
   scale_size_continuous(range = c(1,10)) +
-  scale_shape_manual(values = c(21,22,24)) +
+  scale_shape_manual(values = c(21,22,24, 25)) +
   ylab("Elevation gradient") +
   xlab("Drought tolerance gradient") +
   theme_bw() +
