@@ -122,32 +122,51 @@ d12 <- d |>
   filter(spei == "spei12") |> 
   ungroup() |> 
   dplyr::select(sp_elev, d_duration, d_intensity, d_severity, lowest_spei, month_peak, start_date, end_date, middate) |> 
-  separate(sp_elev, c("sp_code", "elev_code"), sep = "_", remove = FALSE)
+  separate(sp_elev, c("sp_code", "elev_code"), sep = "_", remove = FALSE) |> 
+  mutate(species = paste0("P. ", sp_code)) 
 
-d12 |> 
-  mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
+plot_droughts <- d12 |> 
   mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
   ggplot(aes(y = elev_code)) +
-  geom_point(aes(x = middate, y = elev_code, size = d_severity, colour = sp_code)) + 
+  geom_point(aes(x = middate, y = elev_code, size = d_severity, colour = species)) + 
   geom_segment(aes(x = start_date, xend = end_date, yend = elev_code), 
                colour = "black", lineend = "butt", linewidth = 1.5) + 
-  labs(size = "Drougth's Severity", x="", y = "Elevation") + 
+  labs(size = "Drougth's Severity", x="Year", y = "Elevation") + 
   # facet_wrap(.~sp_code, ncol = 1, scales = "free_y") +
-  facet_wrap(~factor(sp_code, levels = c("sylvestris", "nigra", "pinaster","halepensis")), ncol = 1, scales = "free_y") +
+  facet_wrap(~factor(species, levels = c("P. sylvestris", "P. nigra", "P. pinaster","P. halepensis")), ncol = 1, scales = "free_y") +
   theme_bw() +
-    scale_colour_manual(values = colours_sp, name = "Species") + 
+    # scale_colour_manual(values = colours_sp, name = "Species") + 
+  scale_colour_manual(
+    values = colours_Specie, name = "Species", 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")), guide = "none") + 
   scale_x_date(breaks = seq.Date(from = ymd("1980-01-01"), to = ymd("2022-01-01"), by = "5 years"),
                date_labels = "%Y",
                date_minor_breaks = "1 year") +
-  theme(strip.background = element_blank())
+  theme(strip.background = element_blank(), 
+        strip.text = element_text(face = "italic"), 
+        legend.position = "bottom")
 
+plot_droughts
 ```
+
+```{r}
+ggsave(
+  plot_droughts, 
+  file = "output/figure_drouhgts.jpg",
+  dpi = 400,
+  width = 7.09*1, height = 7.09*1
+)
+```
+
 
 ```{r}
 d12 |> 
   kbl(caption = "Drought periods by site (SPEI-12)") |> 
-    kable_styling()
+    kable_styling() 
+
+d12 |> openxlsx::write.xlsx("output/tables/drought_events.xlsx")
 ```
+
 
 
 ## Summary drought events
@@ -162,8 +181,18 @@ events_sp_elev |>
   group_by(sp_code) |> 
   summarise(mean= mean(n))
 
-```
 
+# desde 2000 
+events_sp_elev2000 <- d12 |>
+  filter(start_date > as.Date("2000-01-01")) |> 
+  group_by(sp_elev,sp_code) |> 
+  count()
+
+events_sp_elev2000 |> 
+  group_by(sp_code) |> 
+  summarise(mean= mean(n))
+
+```
 
 
 ```{r}
@@ -173,7 +202,7 @@ events_by_site <- d12 |>
   summarise(
     across(c(starts_with("d"), "lowest_spei"),
            list(mean = mean, sd = sd, n = length), .names = "{.col}.{.fn}"))
+
+events_by_site |> openxlsx::write.xlsx("output/tables/drought_events_by_site.xlsx")
 ```
 
-
-```{r}
