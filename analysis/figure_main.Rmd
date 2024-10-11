@@ -74,6 +74,41 @@ summary_models <- read_csv("data/dendroapadtamed_final_model_results.csv")
 
 
 ```{r}
+# For lineal models, response variable 
+lm_temp <- d |> 
+  group_by(sp_code) |>
+    group_modify(
+     ~ broom::tidy(lm(rat ~ tmed, data = .x))
+  ) |> 
+  filter(term != "(Intercept)") |> 
+  mutate(p = case_when(
+    p.value < 0.001 ~ "<0.001",
+    p.value >= 0.001 ~ as.character(round(p.value, 3))
+  )) |> 
+  mutate(sig = case_when(
+    p.value < 0.001 ~ "sig",
+    p.value >= 0.001 ~ "no sig"  
+  )) 
+
+
+lm_prec <- d |> 
+  group_by(sp_code) |>
+    group_modify(
+     ~ broom::tidy(lm(rat ~ prec, data = .x))
+  ) |> 
+  filter(term != "(Intercept)") |> 
+  mutate(p = case_when(
+    p.value < 0.001 ~ "<0.001",
+    p.value >= 0.001 ~ as.character(round(p.value, 3))
+  )) |> 
+  mutate(sig = case_when(
+    p.value < 0.001 ~ "sig",
+    p.value >= 0.001 ~ "no sig"  
+  )) 
+```
+
+
+```{r}
 line_colour_model <- "black"
 alpha_points <- 0.35 
 size_points <- 2.5
@@ -115,6 +150,11 @@ plot_t <- teffect |>
   filter(modelo == "mtrat6") |> 
   ggplot(
     aes(x = tmed, y = value)) + 
+  # lineal 
+  geom_smooth(data = (d |> inner_join(lm_temp |> dplyr::select(sp_code, p, sig))),
+                     aes(x = tmed, y = rat, fill = species, colour = species, linetype = sig),
+              linewidth = 1, method = "lm", se = FALSE) +
+  scale_linetype_manual(values = lines_lm, guide = "none") + 
   geom_line(
     linetype = "dashed",
     colour = line_colour_model) + 
@@ -128,7 +168,7 @@ plot_t <- teffect |>
               filter(tmed > min(d$tmed)) |> 
               filter(tmed < max(d$tmed))),
     colour = line_colour_model, 
-    size = 1.5) +
+    size = 2.1) +
   scale_y_continuous(limits = c(0,0.63), expand = expansion(add = c(0.005, 0.005))) + 
   scale_x_continuous(limits = c(7.5,17.8), 
                      expand = expansion(add = c(0.1, 0.1)),
@@ -144,11 +184,18 @@ plot_t <- teffect |>
            size = 6)
 ```
 
+
+
 ```{r}
 plot_p <- peffect |> 
   filter(type_value == "predicted") |> 
   ggplot(
     aes(x = prec, y = value)) + 
+  geom_smooth(data = (d |> inner_join(lm_prec |> dplyr::select(sp_code, p, sig))),
+                     aes(x = prec, y = rat, fill = species, colour = species, linetype = sig),
+              linewidth = 1, method = "lm", se = FALSE) +
+  scale_linetype_manual(values = lines_lm, guide = "none") + 
+  
   geom_line(
     linetype = "dashed",
     colour = line_colour_model) + 
@@ -163,7 +210,7 @@ plot_p <- peffect |>
               filter(prec > min(d$prec)) |> 
               filter(prec < max(d$prec))), 
     colour = line_colour_model, 
-    size = 1.5) + 
+    size = 2.1) + 
   scale_y_continuous(limits = c(0,0.63), expand = expansion(add = c(0.005, 0.005)), position = "right") + 
   scale_x_continuous(limits = c(50, 1550), 
                      breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500)) + 
@@ -276,5 +323,192 @@ ggsave(
 #| fig.width: 15
 main_figure
 ```
+
+
+
+
+## New Proposal 
+
+```{r}
+library(ggnewscale)
+library(patchwork)
+
+plot_with_ABI_legend <- pred_mcombrat7 |> 
+  ggplot(aes(x = prec, y = tmed)) +
+  # Surface 
+  metR::geom_contour_fill(aes(z = ratio_pred, fill = after_stat(level)), 
+                          binwidth = 0.1,
+                          show.legend = TRUE,  
+                          breaks = breaks, 
+                          colour = "white", clip = bb) + 
+  # Colour scale surface
+  scale_fill_discretised(name = label_ratio, 
+                         low = "#f7f7f7", high = "#404040", 
+                         guide = guide_legend(
+                           override.aes = list(shape = NA),  # Remove points from legend
+                           theme = theme(
+                             legend.title = element_text(size = 11, face = "bold"),
+                             legend.text = element_text(size = 9)), ncol = 2 
+                         )) + 
+  theme_bw() +
+  theme(
+    panel.grid = element_blank(), 
+    axis.title = element_text(size = 14, face = "bold"), 
+    axis.text = element_text(size = 11),
+    axis.ticks.length = unit(.2, "cm"),
+    legend.position = c(0.75, 0.78)  
+  ) + 
+  # Add new scales 
+  ggnewscale::new_scale_color() + 
+  ggnewscale::new_scale_fill() + 
+  geom_point(
+    data = d, aes(shape = elev_code, colour = species, fill = species),  
+    size = 1.7, alpha = .8, show.legend = FALSE) +  # No show legend for 
+  # Shape scale (elevation)
+  scale_shape_manual(
+    values = shape_elev, name = "Elevation", 
+    guide = "none") +  # Remove black square in legend for shapes
+  scale_colour_manual(
+    values = colours_Specie, name = "Species", 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    guide = "none") +  # Remove black square in legend for fill
+  scale_fill_manual(
+    values = colours_Specie,  name = "Species", 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    guide = "none") +
+  metR::geom_label_contour(aes(z = ratio_pred),
+                           colour = "black", 
+                           breaks = breaks, 
+                           label.placer = label_placer_n(n = 1)) +
+
+  xlab(label_prec) +  ylab(label_tmed) + 
+  scale_y_continuous(
+    limits = c(7.5, 17.5), 
+    breaks = c(7.5, 10, 12.5, 15, 17.5),
+    expand = expansion(add = c(0.1, 0.01))
+  ) + 
+  scale_x_continuous(
+    limits = c(50, 1510), 
+    breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500),
+    expand = expansion(add = c(1, 1))
+  )
+
+plot_with_ABI_legend
+```
+
+
+```{r}
+main_figure2 <- (
+  (plot_t + theme(plot.margin = unit(c(0.5, 0, 0, .5), "cm")) + 
+     plot_p + theme(plot.margin = unit(c(0.5, .5, 0, 0), "cm")) & theme(
+    legend.position = "bottom",
+    legend.box = "vertical",
+    legend.box.just = "left"
+  )) + plot_layout(guides = "collect")
+    + (plot_with_ABI_legend + plot_layout(guides = "keep"))) +
+  plot_annotation(tag_levels = "a") & theme(
+    plot.tag = element_text(size = 14, face = "bold"))
+```
+
+```{r}
+ggsave(
+  main_figure2, 
+  file = "output/figure_model_selected2.jpg",
+  dpi = 400,
+  width = 7.09*2.2, height = 7.09*2.2/2
+)
+```
+
+
+
+```{r}
+# Crear datos ficticios solo para generar las leyendas
+dummy_data <- data.frame(
+  prec = 1:4,  # Valores ficticios para prec (no se usarán)
+  tmed = 1:4,  # Valores ficticios para tmed (no se usarán)
+  elev_code = factor(c("low-Dec", "low", "medium", "high"), levels = c("low-Dec", "low", "medium", "high")),
+  species = factor(c("P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris"), levels = c("P. halepensis", "P. pinaster", "P. nigra", "P. sylvestris"))
+)
+
+# Crear un gráfico vacío solo con las leyendas para Species y Elevation
+plot_vacio <- ggplot(dummy_data, aes(x = prec, y = tmed, shape = elev_code, colour = species)) + 
+  geom_point(size = 0, alpha = 0) + 
+  scale_shape_manual(
+    values = shape_elev, 
+    name = "Elevation", 
+    guide = guide_legend(override.aes = list(size = 3, alpha = 1, fill = NA))) +  
+  scale_colour_manual(
+    values = colours_Specie, 
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species", 
+    guide = guide_legend(override.aes = list(size = 3, alpha = 1, fill = NA))) +
+  theme_void() +  
+  theme(
+    legend.position = "bottom",
+    legend.box = "vertical",   # Organizar las leyendas en una fila
+    legend.title = element_text(face = "bold"), 
+    plot.margin = margin(-2, 0, 0, 0)
+  )
+
+```
+
+
+```{r}
+
+surface_plot  <- plot_with_ABI_legend / plot_vacio + 
+  plot_layout(heights = c(11, .4))  # Ajustar el espacio de las leyendas y el gráfico
+
+# Mostrar el gráfico final
+surface_plot
+```
+
+```{r}
+# 88 mm to inch 
+
+
+ggsave(
+  surface_plot, 
+  file = "output/figure_surface.jpg",
+  dpi = 300,
+  width = 3.46*1.5, height = 3.46*1.7
+)
+```
+
+
+
+
+
+#### Histogram 
+```{r}
+ggplot(d, aes(y = rat, fill = species)) +
+  geom_point(aes(x = 0, shape = elev_code),
+             position = position_jitter(width = 0.02, height = 0), size = 2) +  # Puntos apilados
+  geom_density(alpha = 0.6) +  # Curva de densidad
+  facet_wrap(~ species, ncol = 4) +  # Facetado por species
+  theme_minimal() +
+  scale_shape_manual(
+    values = shape_elev, 
+    name = "Elevation")
+```
+
+```{r}
+shape_elev <- c(21, 22, 23, 24)  # Puedes ajustar estos valores según las formas que desees usar
+
+# Crear el gráfico con puntos apilados y densidad por elevación, facetado por especie
+ggplot(d, aes(y = rat, fill = species)) +
+  geom_point(aes(x = 0, shape = elev_code), position = position_jitter(width = 0.02, height = 0), size = 2) +  # Puntos apilados
+  geom_density(aes(color = elev_code), alpha = 0.6, adjust = 1) +  # Curva de densidad por elev_code
+  facet_wrap(~ species, ncol = 4) +  # Facetado por species
+  labs(title = "Density Plot and Stacked Points of RAT by Species and Elevation", x = "RAT", y = "Density") +
+  theme_minimal() +
+  scale_shape_manual(values = shape_elev, name = "Elevation")  # Definir las formas para elev_code
+
+
+```
+
+
+
+
+
 
 
