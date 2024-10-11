@@ -382,7 +382,7 @@ div.tocify {
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
 <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
 workflowr
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -392,7 +392,7 @@ workflowr
 </li>
 <li>
 <a data-toggle="tab" href="#checks">
-Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </a>
 </li>
 <li>
@@ -402,14 +402,14 @@ Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidde
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-07-25
+<strong>Last updated:</strong> 2024-10-11
 </p>
 <p>
 <strong>Checks:</strong>
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-6
+7
 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-1
+0
 </p>
 <p>
 <strong>Knit directory:</strong>
@@ -432,21 +432,16 @@ The <em>Past versions</em> tab lists the development history.
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges">
-<span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
-<strong>R Markdown file:</strong> uncommitted changes
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<strong>R Markdown file:</strong> up-to-date
 </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown is untracked by Git.
-To know which version of the R Markdown file created these
-results, you’ll want to first commit it to the Git repo. If
-you’re still working on the analysis, you can ignore this
-warning. When you’re finished, you can run
-<code>wflow_publish</code> to commit the R Markdown file and
-build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you
+know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -535,20 +530,20 @@ makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea91cc2dcc9a3f192cd9b281d613eba0527ee0d74targetblanka91cc2da">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef2202b75dddae57cf7744ae6f8b94b6122e2c423targetblankf2202b7a">
 <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a91cc2dcc9a3f192cd9b281d613eba0527ee0d74" target="_blank">a91cc2d</a>
+<strong>Repository version:</strong> <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f2202b75dddae57cf7744ae6f8b94b6122e2c423" target="_blank">f2202b7</a>
 </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreea91cc2dcc9a3f192cd9b281d613eba0527ee0d74targetblanka91cc2da" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomajpeluadaptameddendroanalysistreef2202b75dddae57cf7744ae6f8b94b6122e2c423targetblankf2202b7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and
 connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/a91cc2dcc9a3f192cd9b281d613eba0527ee0d74" target="_blank">a91cc2d</a>.
+The results in this page were generated with repository version <a href="https://github.com/ajpelu/adaptamed_dendroanalysis/tree/f2202b75dddae57cf7744ae6f8b94b6122e2c423" target="_blank">f2202b7</a>.
 See the <em>Past versions</em> tab to see a history of the changes made to the
 R Markdown and HTML files.
 </p>
@@ -567,15 +562,25 @@ Ignored files:
     Ignored:    .Rproj.user/
     Ignored:    data/geoinfo/grids/
     Ignored:    data/raw/.DS_Store
+    Ignored:    data/raw/cronos/.DS_Store
+    Ignored:    data/raw/cronos/13-Ragua_high_PIHA/.DS_Store
+    Ignored:    data/raw/cronos/4-Lanteira_High_PINI/.DS_Store
+    Ignored:    data/raw/cronos/8-Jerez_High_PIPINASTER/.DS_Store
     Ignored:    data/raw/remote_sensing/old/
     Ignored:    output/.DS_Store
 
 Untracked files:
-    Untracked:  analysis/drought_events.Rmd
+    Untracked:  output/figure_drouhgts.jpg
+    Untracked:  output/figure_model_selected2.jpg
+    Untracked:  output/figure_surface.jpg
+    Untracked:  output/tables/drought_events.xlsx
+    Untracked:  output/tables/drought_events_by_site.xlsx
 
 Unstaged changes:
-    Modified:   analysis/modelling_ratio_selected.Rmd
-    Modified:   scripts/aux.R
+    Modified:   analysis/figure_main.Rmd
+    Modified:   analysis/index.Rmd
+    Modified:   output/figure_model_selected.jpg
+    Modified:   output/figure_model_selected.pdf
 
 </code></pre>
 <p>
@@ -590,10 +595,90 @@ changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
+
 <p>
-There are no past versions. Publish this analysis with
-<code>wflow_publish()</code> to start tracking its development.
+These are the previous versions of the repository in which changes were made
+to the R Markdown (<code>analysis/drought_events.Rmd</code>) and HTML (<code>docs/drought_events.html</code>)
+files. If you’ve configured a remote Git repository (see
+<code>?wflow_git_remote</code>), click on the hyperlinks in the table below to
+view the files as they were in that past version.
 </p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/f2202b75dddae57cf7744ae6f8b94b6122e2c423/analysis/drought_events.Rmd" target="_blank">f2202b7</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-10-11
+</td>
+<td>
+wflow_publish("analysis/drought_events.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/ajpelu/adaptamed_dendroanalysis/blob/345cbe7777c63dc287a585b8879890dc2cf6b2bd/analysis/drought_events.Rmd" target="_blank">345cbe7</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-09-24
+</td>
+<td>
+update stand features
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/ajpelu/adaptamed_dendroanalysis/345cbe7777c63dc287a585b8879890dc2cf6b2bd/docs/drought_events.html" target="_blank">345cbe7</a>
+</td>
+<td>
+ajpelu
+</td>
+<td>
+2024-09-24
+</td>
+<td>
+update stand features
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <hr>
 </div>
 </div>
@@ -609,9 +694,10 @@ There are no past versions. Publish this analysis with
 <p>We computed the severe drought events (below -1.28) by site and per each index (i.e. SPEI-06 and SPEI-12) since 1960.</p>
 <div id="drought-events-spei-12" class="section level4" number="0.1.0.1">
 <h4><span class="header-section-number">0.1.0.1</span> Drought events SPEI-12</h4>
+<p><img src="figure/drought_events.Rmd/unnamed-chunk-6-1.png" width="960" style="display: block; margin: auto;" /></p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-6">Table 1: </span>Drought periods by site (SPEI-12)
+<span id="tab:unnamed-chunk-8">Table 1: </span>Drought periods by site (SPEI-12)
 </caption>
 <thead>
 <tr>
@@ -619,10 +705,10 @@ There are no past versions. Publish this analysis with
 sp_elev
 </th>
 <th style="text-align:left;">
-spei
+sp_code
 </th>
-<th style="text-align:right;">
-index_events
+<th style="text-align:left;">
+elev_code
 </th>
 <th style="text-align:right;">
 d_duration
@@ -639,14 +725,17 @@ lowest_spei
 <th style="text-align:right;">
 month_peak
 </th>
-<th style="text-align:right;">
-minyear
-</th>
-<th style="text-align:right;">
-maxyear
+<th style="text-align:left;">
+start_date
 </th>
 <th style="text-align:left;">
-rangeDate
+end_date
+</th>
+<th style="text-align:left;">
+middate
+</th>
+<th style="text-align:left;">
+species
 </th>
 </tr>
 </thead>
@@ -656,10 +745,10 @@ rangeDate
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -676,14 +765,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-1983
-</td>
-<td style="text-align:right;">
-1983
+<td style="text-align:left;">
+1983-10-01
 </td>
 <td style="text-align:left;">
-Oct - Dec
+1983-12-01
+</td>
+<td style="text-align:left;">
+1983-10-31
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -691,10 +783,10 @@ Oct - Dec
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 11
@@ -711,14 +803,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-07-01
 </td>
 <td style="text-align:left;">
-Jul - May
+1995-05-01
+</td>
+<td style="text-align:left;">
+1994-11-30
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -726,10 +821,10 @@ Jul - May
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 5
@@ -746,14 +841,17 @@ spei12
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-1999
+<td style="text-align:left;">
+1999-05-01
 </td>
 <td style="text-align:left;">
-May - Sep
+1999-09-01
+</td>
+<td style="text-align:left;">
+1999-07-02
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -761,10 +859,10 @@ May - Sep
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -781,14 +879,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2000
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+2000-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+2000-01-31
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -796,10 +897,10 @@ Jan - Mar
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 4
@@ -816,14 +917,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Aug
+2005-08-01
+</td>
+<td style="text-align:left;">
+2005-06-16
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -831,10 +935,10 @@ May - Aug
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -851,14 +955,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2006
+<td style="text-align:left;">
+2005-12-01
 </td>
 <td style="text-align:left;">
-Dec - Feb
+2006-02-01
+</td>
+<td style="text-align:left;">
+2006-01-01
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -866,10 +973,10 @@ Dec - Feb
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-16
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -886,14 +993,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2012-08-01
+</td>
+<td style="text-align:left;">
+2012-07-01
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -901,10 +1011,10 @@ Jun - Aug
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-20
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -921,14 +1031,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2016-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-31
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -936,10 +1049,10 @@ Jan - Mar
 halepensis_high
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-24
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -956,14 +1069,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-11-01
 </td>
 <td style="text-align:left;">
-Nov - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-01
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -971,10 +1087,10 @@ Nov - Jan
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -991,14 +1107,17 @@ spei12
 <td style="text-align:right;">
 5
 </td>
-<td style="text-align:right;">
-1981
-</td>
-<td style="text-align:right;">
-1981
+<td style="text-align:left;">
+1981-05-01
 </td>
 <td style="text-align:left;">
-May - Jun
+1981-06-01
+</td>
+<td style="text-align:left;">
+1981-05-17
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1006,10 +1125,10 @@ May - Jun
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 6
@@ -1026,14 +1145,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1995
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1995-01-01
 </td>
 <td style="text-align:left;">
-Jan - Jun
+1995-06-01
+</td>
+<td style="text-align:left;">
+1995-03-18
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1041,10 +1163,10 @@ Jan - Jun
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -1061,14 +1183,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-1995
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1995-09-01
 </td>
 <td style="text-align:left;">
-Sep - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-10-01
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1076,10 +1201,10 @@ Sep - Nov
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -1096,14 +1221,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2000
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+2000-02-01
 </td>
 <td style="text-align:left;">
-Feb - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+2000-02-15
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1111,10 +1239,10 @@ Feb - Mar
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 4
@@ -1131,14 +1259,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-05-01
 </td>
 <td style="text-align:left;">
-May - Aug
+2012-08-01
+</td>
+<td style="text-align:left;">
+2012-06-16
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1146,10 +1277,10 @@ May - Aug
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-16
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -1166,14 +1297,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2014
-</td>
-<td style="text-align:right;">
-2015
+<td style="text-align:left;">
+2014-12-01
 </td>
 <td style="text-align:left;">
-Dec - Feb
+2015-02-01
+</td>
+<td style="text-align:left;">
+2015-01-01
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1181,10 +1315,10 @@ Dec - Feb
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-18
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -1201,14 +1335,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2015
-</td>
-<td style="text-align:right;">
-2015
+<td style="text-align:left;">
+2015-06-01
 </td>
 <td style="text-align:left;">
-Jun - Jul
+2015-07-01
+</td>
+<td style="text-align:left;">
+2015-06-16
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1216,10 +1353,10 @@ Jun - Jul
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-22
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -1236,14 +1373,17 @@ spei12
 <td style="text-align:right;">
 10
 </td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2016-09-01
 </td>
 <td style="text-align:left;">
-Sep - Oct
+2016-10-01
+</td>
+<td style="text-align:left;">
+2016-09-16
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1251,10 +1391,10 @@ Sep - Oct
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-24
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -1271,14 +1411,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1286,10 +1429,10 @@ Dec - Jan
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-26
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 6
@@ -1306,14 +1449,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-2019
-</td>
-<td style="text-align:right;">
-2020
+<td style="text-align:left;">
+2019-10-01
 </td>
 <td style="text-align:left;">
-Oct - Mar
+2020-03-01
+</td>
+<td style="text-align:left;">
+2019-12-16
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1321,10 +1467,10 @@ Oct - Mar
 halepensis_low
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-28
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -1341,14 +1487,17 @@ spei12
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-2020
-</td>
-<td style="text-align:right;">
-2020
+<td style="text-align:left;">
+2020-07-01
 </td>
 <td style="text-align:left;">
-Jul - Sep
+2020-09-01
+</td>
+<td style="text-align:left;">
+2020-08-01
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1356,10 +1505,10 @@ Jul - Sep
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -1376,14 +1525,17 @@ spei12
 <td style="text-align:right;">
 5
 </td>
-<td style="text-align:right;">
-1981
-</td>
-<td style="text-align:right;">
-1981
+<td style="text-align:left;">
+1981-05-01
 </td>
 <td style="text-align:left;">
-May - Jun
+1981-06-01
+</td>
+<td style="text-align:left;">
+1981-05-17
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1391,10 +1543,10 @@ May - Jun
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -1411,14 +1563,17 @@ spei12
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-1985
-</td>
-<td style="text-align:right;">
-1985
+<td style="text-align:left;">
+1985-08-01
 </td>
 <td style="text-align:left;">
-Aug - Sep
+1985-09-01
+</td>
+<td style="text-align:left;">
+1985-08-17
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1426,10 +1581,10 @@ Aug - Sep
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 6
@@ -1446,14 +1601,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1995
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1995-01-01
 </td>
 <td style="text-align:left;">
-Jan - Jun
+1995-06-01
+</td>
+<td style="text-align:left;">
+1995-03-18
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1461,10 +1619,10 @@ Jan - Jun
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 3
@@ -1481,14 +1639,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-1995
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1995-09-01
 </td>
 <td style="text-align:left;">
-Sep - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-10-01
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1496,10 +1657,10 @@ Sep - Nov
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -1516,14 +1677,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2000
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+2000-02-01
 </td>
 <td style="text-align:left;">
-Feb - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+2000-02-15
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1531,10 +1695,10 @@ Feb - Mar
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 3
@@ -1551,14 +1715,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-05-01
 </td>
 <td style="text-align:left;">
-May - Jul
+2012-07-01
+</td>
+<td style="text-align:left;">
+2012-05-31
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1566,10 +1733,10 @@ May - Jul
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-20
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -1586,14 +1753,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2015
-</td>
-<td style="text-align:right;">
-2015
+<td style="text-align:left;">
+2015-06-01
 </td>
 <td style="text-align:left;">
-Jun - Jul
+2015-07-01
+</td>
+<td style="text-align:left;">
+2015-06-16
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1601,10 +1771,10 @@ Jun - Jul
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-26
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -1621,14 +1791,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1636,10 +1809,10 @@ Dec - Jan
 halepensis_medium
 </td>
 <td style="text-align:left;">
-spei12
+halepensis
 </td>
-<td style="text-align:right;">
-28
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 12
@@ -1656,14 +1829,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-2019
-</td>
-<td style="text-align:right;">
-2020
+<td style="text-align:left;">
+2019-10-01
 </td>
 <td style="text-align:left;">
-Oct - Sep
+2020-09-01
+</td>
+<td style="text-align:left;">
+2020-03-17
+</td>
+<td style="text-align:left;">
+P. halepensis
 </td>
 </tr>
 <tr>
@@ -1671,10 +1847,10 @@ Oct - Sep
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 2
@@ -1691,14 +1867,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-1983
-</td>
-<td style="text-align:right;">
-1983
+<td style="text-align:left;">
+1983-10-01
 </td>
 <td style="text-align:left;">
-Oct - Nov
+1983-11-01
+</td>
+<td style="text-align:left;">
+1983-10-17
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1706,10 +1885,10 @@ Oct - Nov
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 19
@@ -1726,14 +1905,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-01-30
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1741,10 +1923,10 @@ May - Nov
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 11
@@ -1761,14 +1943,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+1999-05-01
 </td>
 <td style="text-align:left;">
-May - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+1999-09-30
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1776,10 +1961,10 @@ May - Mar
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 5
@@ -1796,14 +1981,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Sep
+2005-09-01
+</td>
+<td style="text-align:left;">
+2005-07-02
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1811,10 +1999,10 @@ May - Sep
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -1831,14 +2019,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2006
+<td style="text-align:left;">
+2005-12-01
 </td>
 <td style="text-align:left;">
-Dec - Feb
+2006-02-01
+</td>
+<td style="text-align:left;">
+2006-01-01
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1846,10 +2037,10 @@ Dec - Feb
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -1866,14 +2057,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2012-08-01
+</td>
+<td style="text-align:left;">
+2012-07-01
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1881,10 +2075,10 @@ Jun - Aug
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -1901,14 +2095,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2016-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-31
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1916,10 +2113,10 @@ Jan - Mar
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-16
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 2
@@ -1936,14 +2133,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1951,10 +2151,10 @@ Dec - Jan
 nigra_high
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-18
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 2
@@ -1971,14 +2171,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2021
-</td>
-<td style="text-align:right;">
-2022
+<td style="text-align:left;">
+2021-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2022-01-01
+</td>
+<td style="text-align:left;">
+2021-12-17
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -1986,10 +2189,10 @@ Dec - Jan
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -2006,14 +2209,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-1983
-</td>
-<td style="text-align:right;">
-1983
+<td style="text-align:left;">
+1983-10-01
 </td>
 <td style="text-align:left;">
-Oct - Nov
+1983-11-01
+</td>
+<td style="text-align:left;">
+1983-10-17
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2021,10 +2227,10 @@ Oct - Nov
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 19
@@ -2041,14 +2247,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-01-30
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2056,10 +2265,10 @@ May - Nov
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 11
@@ -2076,14 +2285,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+1999-05-01
 </td>
 <td style="text-align:left;">
-May - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+1999-09-30
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2091,10 +2303,10 @@ May - Mar
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 5
@@ -2111,14 +2323,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Sep
+2005-09-01
+</td>
+<td style="text-align:left;">
+2005-07-02
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2126,10 +2341,10 @@ May - Sep
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -2146,14 +2361,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2006
+<td style="text-align:left;">
+2005-12-01
 </td>
 <td style="text-align:left;">
-Dec - Feb
+2006-02-01
+</td>
+<td style="text-align:left;">
+2006-01-01
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2161,10 +2379,10 @@ Dec - Feb
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -2181,14 +2399,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2012-08-01
+</td>
+<td style="text-align:left;">
+2012-07-01
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2196,10 +2417,10 @@ Jun - Aug
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -2216,14 +2437,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2016-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-31
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2231,10 +2455,10 @@ Jan - Mar
 nigra_low
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-16
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -2251,14 +2475,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2266,10 +2493,10 @@ Dec - Jan
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -2286,14 +2513,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-1983
-</td>
-<td style="text-align:right;">
-1983
+<td style="text-align:left;">
+1983-10-01
 </td>
 <td style="text-align:left;">
-Oct - Nov
+1983-11-01
+</td>
+<td style="text-align:left;">
+1983-10-17
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2301,10 +2531,10 @@ Oct - Nov
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 19
@@ -2321,14 +2551,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-01-30
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2336,10 +2569,10 @@ May - Nov
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 11
@@ -2356,14 +2589,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+1999-05-01
 </td>
 <td style="text-align:left;">
-May - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+1999-09-30
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2371,10 +2607,10 @@ May - Mar
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 5
@@ -2391,14 +2627,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Sep
+2005-09-01
+</td>
+<td style="text-align:left;">
+2005-07-02
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2406,10 +2645,10 @@ May - Sep
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 3
@@ -2426,14 +2665,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2006
+<td style="text-align:left;">
+2005-12-01
 </td>
 <td style="text-align:left;">
-Dec - Feb
+2006-02-01
+</td>
+<td style="text-align:left;">
+2006-01-01
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2441,10 +2683,10 @@ Dec - Feb
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 3
@@ -2461,14 +2703,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2012-08-01
+</td>
+<td style="text-align:left;">
+2012-07-01
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2476,10 +2721,10 @@ Jun - Aug
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 3
@@ -2496,14 +2741,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2016-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-31
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2511,10 +2759,10 @@ Jan - Mar
 nigra_medium
 </td>
 <td style="text-align:left;">
-spei12
+nigra
 </td>
-<td style="text-align:right;">
-16
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -2531,14 +2779,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. nigra
 </td>
 </tr>
 <tr>
@@ -2546,10 +2797,10 @@ Dec - Jan
 pinaster_high
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 19
@@ -2566,14 +2817,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-01-30
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2581,10 +2835,10 @@ May - Nov
 pinaster_high
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 12
@@ -2601,14 +2855,17 @@ spei12
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+1999-04-01
 </td>
 <td style="text-align:left;">
-Apr - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+1999-09-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2616,10 +2873,10 @@ Apr - Mar
 pinaster_high
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 10
@@ -2636,14 +2893,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2006
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Feb
+2006-02-01
+</td>
+<td style="text-align:left;">
+2005-09-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2651,10 +2911,10 @@ May - Feb
 pinaster_high
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 2
@@ -2671,14 +2931,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Jul
+2012-07-01
+</td>
+<td style="text-align:left;">
+2012-06-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2686,10 +2949,10 @@ Jun - Jul
 pinaster_high
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 2
@@ -2706,14 +2969,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2721,10 +2987,10 @@ Dec - Jan
 pinaster_high
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 5
@@ -2741,14 +3007,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2021
-</td>
-<td style="text-align:right;">
-2022
+<td style="text-align:left;">
+2021-09-01
 </td>
 <td style="text-align:left;">
-Sep - Jan
+2022-01-01
+</td>
+<td style="text-align:left;">
+2021-11-01
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2756,10 +3025,10 @@ Sep - Jan
 pinaster_low
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 19
@@ -2776,14 +3045,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-01-30
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2791,10 +3063,10 @@ May - Nov
 pinaster_low
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 5
@@ -2811,14 +3083,17 @@ spei12
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-1999
+<td style="text-align:left;">
+1999-05-01
 </td>
 <td style="text-align:left;">
-May - Sep
+1999-09-01
+</td>
+<td style="text-align:left;">
+1999-07-02
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2826,10 +3101,10 @@ May - Sep
 pinaster_low
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -2846,14 +3121,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2000
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+2000-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+2000-01-31
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2861,10 +3139,10 @@ Jan - Mar
 pinaster_low
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 7
@@ -2881,14 +3159,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+2005-11-01
+</td>
+<td style="text-align:left;">
+2005-08-01
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2896,10 +3177,10 @@ May - Nov
 pinaster_low
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 4
@@ -2916,14 +3197,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-05-01
 </td>
 <td style="text-align:left;">
-May - Aug
+2012-08-01
+</td>
+<td style="text-align:left;">
+2012-06-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2931,10 +3215,10 @@ May - Aug
 pinaster_low
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 4
@@ -2951,14 +3235,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2015
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2015-12-01
 </td>
 <td style="text-align:left;">
-Dec - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -2966,10 +3253,10 @@ Dec - Mar
 pinaster_low
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-18
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -2986,14 +3273,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3001,10 +3291,10 @@ Dec - Jan
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 2
@@ -3021,14 +3311,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1983
-</td>
-<td style="text-align:right;">
-1983
+<td style="text-align:left;">
+1983-04-01
 </td>
 <td style="text-align:left;">
-Apr - May
+1983-05-01
+</td>
+<td style="text-align:left;">
+1983-04-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3036,10 +3329,10 @@ Apr - May
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 3
@@ -3056,14 +3349,17 @@ spei12
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-1983
-</td>
-<td style="text-align:right;">
-1983
+<td style="text-align:left;">
+1983-10-01
 </td>
 <td style="text-align:left;">
-Oct - Dec
+1983-12-01
+</td>
+<td style="text-align:left;">
+1983-10-31
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3071,10 +3367,10 @@ Oct - Dec
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 19
@@ -3091,14 +3387,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-01-30
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3106,10 +3405,10 @@ May - Nov
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 5
@@ -3126,14 +3425,17 @@ spei12
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-1999
+<td style="text-align:left;">
+1999-05-01
 </td>
 <td style="text-align:left;">
-May - Sep
+1999-09-01
+</td>
+<td style="text-align:left;">
+1999-07-02
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3141,10 +3443,10 @@ May - Sep
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 3
@@ -3161,14 +3463,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2000
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+2000-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+2000-01-31
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3176,10 +3481,10 @@ Jan - Mar
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 5
@@ -3196,14 +3501,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Sep
+2005-09-01
+</td>
+<td style="text-align:left;">
+2005-07-02
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3211,10 +3519,10 @@ May - Sep
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-16
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 3
@@ -3231,14 +3539,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2012-08-01
+</td>
+<td style="text-align:left;">
+2012-07-01
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3246,10 +3557,10 @@ Jun - Aug
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-18
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 3
@@ -3266,14 +3577,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-2016
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2016-01-01
 </td>
 <td style="text-align:left;">
-Jan - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-31
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3281,10 +3595,10 @@ Jan - Mar
 pinaster_low-Dec
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-22
+<td style="text-align:left;">
+low-Dec
 </td>
 <td style="text-align:right;">
 2
@@ -3301,14 +3615,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3316,10 +3633,10 @@ Dec - Jan
 pinaster_medium
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 19
@@ -3336,14 +3653,17 @@ spei12
 <td style="text-align:right;">
 4
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-05-01
 </td>
 <td style="text-align:left;">
-May - Nov
+1995-11-01
+</td>
+<td style="text-align:left;">
+1995-01-30
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3351,10 +3671,10 @@ May - Nov
 pinaster_medium
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 11
@@ -3371,14 +3691,17 @@ spei12
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-2000
+<td style="text-align:left;">
+1999-05-01
 </td>
 <td style="text-align:left;">
-May - Mar
+2000-03-01
+</td>
+<td style="text-align:left;">
+1999-09-30
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3386,10 +3709,10 @@ May - Mar
 pinaster_medium
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 10
@@ -3406,14 +3729,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2006
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Feb
+2006-02-01
+</td>
+<td style="text-align:left;">
+2005-09-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3421,10 +3747,10 @@ May - Feb
 pinaster_medium
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -3441,14 +3767,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Jul
+2012-07-01
+</td>
+<td style="text-align:left;">
+2012-06-16
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3456,10 +3785,10 @@ Jun - Jul
 pinaster_medium
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 3
@@ -3476,14 +3805,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-11-01
 </td>
 <td style="text-align:left;">
-Nov - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-01
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3491,10 +3823,10 @@ Nov - Jan
 pinaster_medium
 </td>
 <td style="text-align:left;">
-spei12
+pinaster
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 5
@@ -3511,14 +3843,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2021
-</td>
-<td style="text-align:right;">
-2022
+<td style="text-align:left;">
+2021-09-01
 </td>
 <td style="text-align:left;">
-Sep - Jan
+2022-01-01
+</td>
+<td style="text-align:left;">
+2021-11-01
+</td>
+<td style="text-align:left;">
+P. pinaster
 </td>
 </tr>
 <tr>
@@ -3526,10 +3861,10 @@ Sep - Jan
 sylvestris_high
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 13
@@ -3546,14 +3881,17 @@ spei12
 <td style="text-align:right;">
 10
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-10-01
 </td>
 <td style="text-align:left;">
-Oct - Oct
+1995-10-01
+</td>
+<td style="text-align:left;">
+1995-04-01
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3561,10 +3899,10 @@ Oct - Oct
 sylvestris_high
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 8
@@ -3581,14 +3919,17 @@ spei12
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-1999
+<td style="text-align:left;">
+1999-02-01
 </td>
 <td style="text-align:left;">
-Feb - Sep
+1999-09-01
+</td>
+<td style="text-align:left;">
+1999-05-18
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3596,10 +3937,10 @@ Feb - Sep
 sylvestris_high
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 4
@@ -3616,14 +3957,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Aug
+2005-08-01
+</td>
+<td style="text-align:left;">
+2005-06-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3631,10 +3975,10 @@ May - Aug
 sylvestris_high
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-8
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 2
@@ -3651,14 +3995,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Jul
+2012-07-01
+</td>
+<td style="text-align:left;">
+2012-06-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3666,10 +4013,10 @@ Jun - Jul
 sylvestris_high
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 4
@@ -3686,14 +4033,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2015
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2015-12-01
 </td>
 <td style="text-align:left;">
-Dec - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3701,10 +4051,10 @@ Dec - Mar
 sylvestris_high
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 2
@@ -3721,14 +4071,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3736,10 +4089,10 @@ Dec - Jan
 sylvestris_high
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-16
+<td style="text-align:left;">
+high
 </td>
 <td style="text-align:right;">
 3
@@ -3756,14 +4109,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2022
-</td>
-<td style="text-align:right;">
-2022
+<td style="text-align:left;">
+2022-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2022-08-01
+</td>
+<td style="text-align:left;">
+2022-07-01
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3771,10 +4127,10 @@ Jun - Aug
 sylvestris_low
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 13
@@ -3791,14 +4147,17 @@ spei12
 <td style="text-align:right;">
 10
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-10-01
 </td>
 <td style="text-align:left;">
-Oct - Oct
+1995-10-01
+</td>
+<td style="text-align:left;">
+1995-04-01
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3806,10 +4165,10 @@ Oct - Oct
 sylvestris_low
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 7
@@ -3826,14 +4185,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-1999
+<td style="text-align:left;">
+1999-02-01
 </td>
 <td style="text-align:left;">
-Feb - Aug
+1999-08-01
+</td>
+<td style="text-align:left;">
+1999-05-02
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3841,10 +4203,10 @@ Feb - Aug
 sylvestris_low
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 4
@@ -3861,14 +4223,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Aug
+2005-08-01
+</td>
+<td style="text-align:left;">
+2005-06-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3876,10 +4241,10 @@ May - Aug
 sylvestris_low
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -3896,14 +4261,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Jul
+2012-07-01
+</td>
+<td style="text-align:left;">
+2012-06-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3911,10 +4279,10 @@ Jun - Jul
 sylvestris_low
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 4
@@ -3931,14 +4299,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2015
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2015-12-01
 </td>
 <td style="text-align:left;">
-Dec - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3946,10 +4317,10 @@ Dec - Mar
 sylvestris_low
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 2
@@ -3966,14 +4337,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -3981,10 +4355,10 @@ Dec - Jan
 sylvestris_low
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-18
+<td style="text-align:left;">
+low
 </td>
 <td style="text-align:right;">
 3
@@ -4001,14 +4375,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2022
-</td>
-<td style="text-align:right;">
-2022
+<td style="text-align:left;">
+2022-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2022-08-01
+</td>
+<td style="text-align:left;">
+2022-07-01
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -4016,10 +4393,10 @@ Jun - Aug
 sylvestris_medium
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-2
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 13
@@ -4036,14 +4413,17 @@ spei12
 <td style="text-align:right;">
 10
 </td>
-<td style="text-align:right;">
-1994
-</td>
-<td style="text-align:right;">
-1995
+<td style="text-align:left;">
+1994-10-01
 </td>
 <td style="text-align:left;">
-Oct - Oct
+1995-10-01
+</td>
+<td style="text-align:left;">
+1995-04-01
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -4051,10 +4431,10 @@ Oct - Oct
 sylvestris_medium
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-4
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 7
@@ -4071,14 +4451,17 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-1999
-</td>
-<td style="text-align:right;">
-1999
+<td style="text-align:left;">
+1999-02-01
 </td>
 <td style="text-align:left;">
-Feb - Aug
+1999-08-01
+</td>
+<td style="text-align:left;">
+1999-05-02
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -4086,10 +4469,10 @@ Feb - Aug
 sylvestris_medium
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-6
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 4
@@ -4106,14 +4489,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2005
-</td>
-<td style="text-align:right;">
-2005
+<td style="text-align:left;">
+2005-05-01
 </td>
 <td style="text-align:left;">
-May - Aug
+2005-08-01
+</td>
+<td style="text-align:left;">
+2005-06-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -4121,10 +4507,10 @@ May - Aug
 sylvestris_medium
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-10
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -4141,14 +4527,17 @@ spei12
 <td style="text-align:right;">
 7
 </td>
-<td style="text-align:right;">
-2012
-</td>
-<td style="text-align:right;">
-2012
+<td style="text-align:left;">
+2012-06-01
 </td>
 <td style="text-align:left;">
-Jun - Jul
+2012-07-01
+</td>
+<td style="text-align:left;">
+2012-06-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -4156,10 +4545,10 @@ Jun - Jul
 sylvestris_medium
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-12
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 4
@@ -4176,14 +4565,17 @@ spei12
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-2015
-</td>
-<td style="text-align:right;">
-2016
+<td style="text-align:left;">
+2015-12-01
 </td>
 <td style="text-align:left;">
-Dec - Mar
+2016-03-01
+</td>
+<td style="text-align:left;">
+2016-01-16
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -4191,10 +4583,10 @@ Dec - Mar
 sylvestris_medium
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-14
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 2
@@ -4211,14 +4603,17 @@ spei12
 <td style="text-align:right;">
 12
 </td>
-<td style="text-align:right;">
-2017
-</td>
-<td style="text-align:right;">
-2018
+<td style="text-align:left;">
+2017-12-01
 </td>
 <td style="text-align:left;">
-Dec - Jan
+2018-01-01
+</td>
+<td style="text-align:left;">
+2017-12-17
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 <tr>
@@ -4226,10 +4621,10 @@ Dec - Jan
 sylvestris_medium
 </td>
 <td style="text-align:left;">
-spei12
+sylvestris
 </td>
-<td style="text-align:right;">
-18
+<td style="text-align:left;">
+medium
 </td>
 <td style="text-align:right;">
 3
@@ -4246,19 +4641,39 @@ spei12
 <td style="text-align:right;">
 8
 </td>
-<td style="text-align:right;">
-2022
-</td>
-<td style="text-align:right;">
-2022
+<td style="text-align:left;">
+2022-06-01
 </td>
 <td style="text-align:left;">
-Jun - Aug
+2022-08-01
+</td>
+<td style="text-align:left;">
+2022-07-01
+</td>
+<td style="text-align:left;">
+P. sylvestris
 </td>
 </tr>
 </tbody>
 </table>
-<p><img src="figure/drought_events.Rmd/unnamed-chunk-7-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="summary-drought-events" class="section level2" number="0.2">
+<h2><span class="header-section-number">0.2</span> Summary drought events</h2>
+<pre><code># A tibble: 4 × 2
+  sp_code     mean
+  &lt;chr&gt;      &lt;dbl&gt;
+1 halepensis  9.67
+2 nigra       8.33
+3 pinaster    7   
+4 sylvestris  7   </code></pre>
+<pre><code># A tibble: 4 × 2
+  sp_code     mean
+  &lt;chr&gt;      &lt;dbl&gt;
+1 halepensis  6   
+2 nigra       5.33
+3 pinaster    4   
+4 sylvestris  5   </code></pre>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -4285,30 +4700,30 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] data.table_1.15.4 kableExtra_1.4.0  likelihood_1.9    nlme_3.1-165     
- [5] patchwork_1.2.0   lubridate_1.9.3   forcats_1.0.0     stringr_1.5.1    
+ [1] data.table_1.16.0 kableExtra_1.4.0  likelihood_1.9    nlme_3.1-166     
+ [5] patchwork_1.3.0   lubridate_1.9.3   forcats_1.0.0     stringr_1.5.1    
  [9] dplyr_1.1.4       purrr_1.0.2       readr_2.1.5       tidyr_1.3.1      
 [13] tibble_3.2.1      ggplot2_3.5.1     tidyverse_2.0.0   workflowr_1.7.1  
 
 loaded via a namespace (and not attached):
- [1] gtable_0.3.5      xfun_0.46         bslib_0.7.0       processx_3.8.4   
+ [1] gtable_0.3.5      xfun_0.47         bslib_0.8.0       processx_3.8.4   
  [5] lattice_0.22-6    callr_3.7.6       tzdb_0.4.0        vctrs_0.6.5      
- [9] tools_4.3.3       ps_1.7.7          generics_0.1.3    parallel_4.3.3   
+ [9] tools_4.3.3       ps_1.8.0          generics_0.1.3    parallel_4.3.3   
 [13] fansi_1.0.6       highr_0.11        pkgconfig_2.0.3   lifecycle_1.0.4  
-[17] farver_2.1.2      compiler_4.3.3    git2r_0.33.0      munsell_0.5.1    
-[21] getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8.1 sass_0.4.9       
-[25] yaml_2.3.9        crayon_1.5.3      later_1.3.2       pillar_1.9.0     
-[29] jquerylib_0.1.4   whisker_0.4.1     cachem_1.1.0      tidyselect_1.2.1 
-[33] digest_0.6.36     stringi_1.8.4     bookdown_0.40     labeling_0.4.3   
-[37] rprojroot_2.0.4   fastmap_1.2.0     grid_4.3.3        colorspace_2.1-0 
-[41] cli_3.6.3         magrittr_2.0.3    utf8_1.2.4        withr_3.0.0      
-[45] scales_1.3.0      promises_1.3.0    bit64_4.0.5       timechange_0.3.0 
-[49] rmarkdown_2.27    httr_1.4.7        bit_4.0.5         hms_1.1.3        
-[53] evaluate_0.24.0   knitr_1.48        viridisLite_0.4.2 rlang_1.1.4      
-[57] Rcpp_1.0.13       glue_1.7.0        xml2_1.3.6        vroom_1.6.5      
-[61] svglite_2.1.3     rstudioapi_0.16.0 jsonlite_1.8.8    R6_2.5.1         
-[65] systemfonts_1.1.0 fs_1.6.4         </code></pre>
-</div>
+[17] compiler_4.3.3    farver_2.1.2      git2r_0.33.0      textshaping_0.4.0
+[21] munsell_0.5.1     getPass_0.2-4     httpuv_1.6.15     htmltools_0.5.8.1
+[25] sass_0.4.9        yaml_2.3.10       crayon_1.5.3      later_1.3.2      
+[29] pillar_1.9.0      jquerylib_0.1.4   whisker_0.4.1     cachem_1.1.0     
+[33] zip_2.3.1         tidyselect_1.2.1  digest_0.6.37     stringi_1.8.4    
+[37] bookdown_0.40     labeling_0.4.3    rprojroot_2.0.4   fastmap_1.2.0    
+[41] grid_4.3.3        colorspace_2.1-1  cli_3.6.3         magrittr_2.0.3   
+[45] utf8_1.2.4        withr_3.0.1       scales_1.3.0      promises_1.3.0   
+[49] bit64_4.5.2       timechange_0.3.0  rmarkdown_2.28    httr_1.4.7       
+[53] bit_4.5.0         ragg_1.3.3        hms_1.1.3         openxlsx_4.2.7.1 
+[57] evaluate_1.0.0    knitr_1.48        viridisLite_0.4.2 rlang_1.1.4      
+[61] Rcpp_1.0.13       glue_1.8.0        xml2_1.3.6        vroom_1.6.5      
+[65] svglite_2.1.3     rstudioapi_0.16.0 jsonlite_1.8.9    R6_2.5.1         
+[69] systemfonts_1.1.0 fs_1.6.4         </code></pre>
 </div>
 </div>
 
