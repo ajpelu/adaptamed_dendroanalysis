@@ -1,0 +1,219 @@
+# devtools::install_github("valentinitnelav/plotbiomes")
+library(plotbiomes)
+library(tidyverse)
+library(ggnewscale)
+library(sf)
+source("scripts/aux.R")
+
+annual_pet <- read_csv("data/dendroadaptamed_spei_climate.csv") |>
+  dplyr::select(sp_elev, year, monthly_pet, monthly_tmed, monthly_prec) |>
+  group_by(sp_elev, year) |>
+  summarise(pet = sum(monthly_pet),
+            prec = sum(monthly_prec),
+            tmed = mean(monthly_tmed, na.rm = TRUE)) |>
+  rowwise() |>
+  mutate(water_balance = prec - pet)
+
+ratio <- read_csv("data/dendroadaptamed_ratio_abinpp.csv") |>
+  dplyr::select(year, sp_code, elev_code, sp_elev, ratio_abi_npp = ratio)
+
+df <- ratio |>
+  inner_join(annual_pet) |>
+  pivot_longer(pet:water_balance, values_to = "mean_climate",
+               names_to = "climate_variable")
+
+d <- df |> filter(climate_variable %in% c("tmed", "prec")) |>
+  pivot_wider(values_from = mean_climate, names_from = climate_variable) |>
+  dplyr::rename(rat = ratio_abi_npp) |>
+  mutate(species = paste0("P. ", sp_code))
+
+avg_yearly <- read_csv("data/dendroadaptamed_climate_avg_yearly.csv") |>
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |>
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high")) |>
+  mutate(species = paste0("P. ", sp_code))
+
+geodf <- terra::vect( "data/geoinfo/geoinfo_dendro_adaptamed_pinus.shp") |> as.data.frame() |>
+  unite("sp_elev", c(sp_code, elev_code), remove = FALSE) |>
+  dplyr::select(sp_elev, elev) |>
+  separate(sp_elev, into = c("sp_code", "elev_code"), remove = FALSE) |>
+  mutate(elev_code = fct_recode(elev_code, `low-Dec` = "low2")) |>
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
+
+aux <- avg_yearly |>
+  dplyr::select(-annual_sd, -annual_se) |>
+  pivot_wider(names_from = var, values_from = annual_value)
+
+
+lower_ci <- function(mean, se, n, conf_level = 0.95){
+  lower_ci <- mean - qt(1 - ((1 - conf_level) / 2), n - 1) * se
+  return(lower_ci)
+}
+
+upper_ci <- function(mean, se, n, conf_level = 0.95){
+  upper_ci <- mean + qt(1 - ((1 - conf_level) / 2), n - 1) * se
+  return(upper_ci)
+}
+
+aux_avg <- aux |>
+  pivot_longer(tmed:prec, names_to = "var") |>
+  group_by(sp_code, elev_code, sp_elev, species, var) |>
+  summarise(
+    mean = mean(value, na.rm = TRUE),
+    sd = sd(value, na.rm = TRUE),
+    se = sd / sqrt(length(value)),
+    n = length(value)
+  ) |>
+  pivot_wider(values_from = c(mean, sd, se, n), names_from = var)
+
+aux_avg1 <- aux_avg |>
+  mutate(lower_prec = lower_ci(mean = mean_prec, se = se_prec, n = n_prec),
+         upper_prec = upper_ci(mean = mean_prec, se = se_prec, n = n_prec),
+         lower_tmed = lower_ci(mean = mean_tmed, se = se_tmed, n = n_tmed),
+         upper_tmed = upper_ci(mean = mean_tmed, se = se_tmed, n = n_tmed),
+  ) |>
+  inner_join(geodf) |>
+  rename(prec = mean_prec,
+         tmed = mean_tmed)
+
+## Ojo pero esto es todos los años, quizá tenga que coger los datos promedios
+color_palette <- Ricklefs_colors
+
+ggplot(Whittaker_biomes) +
+  geom_polygon(aes(x = temp_c,
+                   y = precp_cm*10,
+                   fill = biome),
+               colour = "gray98", size = 1) +
+  scale_fill_manual(name = "Whittaker biomes",
+                    breaks = names(color_palette),
+                    labels = names(color_palette),
+                    values = color_palette) +
+  scale_x_continuous(expression(`Temperature `(degree * C))) +
+  scale_y_continuous("Precipitation (cm)") +
+  theme_bw() +
+  ggnewscale::new_scale_color() +
+  ggnewscale::new_scale_fill() +
+  geom_point(data = d,
+             aes(x = tmed, y = prec, fill = species, colour = species,  shape = elev_code),
+             alpha = .5) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_colour_manual(
+    values = colours_Specie,
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") +
+  scale_fill_manual(
+    values = colours_Specie,
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") +
+  theme(
+    panel.grid = element_blank()
+  )
+
+
+p1 <- ggplot() +
+  geom_polygon(data = Whittaker_biomes,
+               aes(x = temp_c,
+                   y = precp_cm*10,
+                   fill = biome),
+               colour = "gray98", size = 1, alpha = .7) +
+  scale_fill_manual(name = "Whittaker biomes",
+                    breaks = names(color_palette),
+                    labels = names(color_palette),
+                    values = color_palette) +
+  scale_x_continuous(expression(`Temperature `(degree * C))) +
+  scale_y_continuous("Precipitation (cm)") +
+  theme_bw()
+
+p1 +
+  ggnewscale::new_scale_color() +
+  ggnewscale::new_scale_fill() +
+  geom_point(data = aux_avg1,
+             aes(x = tmed, y = prec, fill = species, color = species, shape = elev_code),
+             alpha = .5, size = 4, stroke = 1) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(
+    values = colours_Specie,
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") +
+  scale_colour_manual(
+    values = colours_Specie,
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") +
+  coord_fixed(ratio = 1/100) +
+  theme(
+    legend.justification = c(0, 1), # pick the upper left corner of the legend box and
+    legend.position = c(0, 1), # adjust the position of the corner as relative to axis
+    legend.background = element_rect(fill = NA), # transparent legend background
+    legend.box = "horizontal", # horizontal arrangement of multiple legends
+    legend.spacing.x = unit(0.5, units = "cm"), # horizontal spacing between legends
+    panel.grid = element_blank() # eliminate grids
+  )
+
+
+
+
+
+custom_palette <- c(
+  "Tundra" = "#C1E1DD",
+  "Boreal forest" = "#A5C790",
+  "Temperate seasonal forest" = "#97B669",
+  "Temperate rain forest" = "#75A95E",
+  "Tropical rain forest" = "#317A22",
+  "Tropical seasonal forest / savanna" = "#A09700",
+  "Subtropical desert" = "#DCBB50",
+  "Temperate grassland / desert" = "#FCD57A",
+  "Woodland / shrubland" = "#D16E3F"
+)
+
+plot_biome <-
+  sf::st_as_sf(Whittaker_biomes_poly) |>
+  mutate(biome = str_replace_all(biome, "/", " / ")) |>
+  ggplot() +
+  geom_sf(aes(fill = biome), alpha = .7) +
+  geom_sf_text(
+    aes(label = str_wrap(biome, 10)),
+    size = 3,
+    nudge_y = 2) +
+  scale_fill_manual(name = "Biomes (Whittaker)",
+                  values = custom_palette,
+                  guide = "none") +
+  scale_x_continuous(expression(`Temperature `(degree * C))) +
+  scale_y_continuous("Precipitation (cm)") +
+  theme_bw() +
+  theme(
+    aspect.ratio = 1/1,
+    panel.grid = element_blank(),
+    legend.justification = c(0, 1), # pick the upper left corner of the legend box and
+    legend.position = c(0, 1), # adjust the position of the corner as relative to axis
+    legend.background = element_rect(fill = NA), # transparent legend background
+    legend.box = "vertical", # horizontal arrangement of multiple legends
+    legend.spacing.x = unit(0.5, units = "cm"), # horizontal spacing between legends
+    legend.text = element_text(size = 9)
+    ) +
+  ggnewscale::new_scale_color() +
+  ggnewscale::new_scale_fill() +
+  geom_point(data = aux_avg1,
+             aes(x = tmed, y = prec/10, fill = species, color = species, shape = elev_code),
+             alpha = .5, size = 4, stroke = 1) +
+  scale_shape_manual(values = shape_elev, name = "Elevation") +
+  scale_fill_manual(
+    values = colours_Specie,
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") +
+  scale_colour_manual(
+    values = colours_Specie,
+    labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")),
+    name = "Species") +
+  ggtitle("Whittaker biomes")
+
+plot_biome
+
+ggsave(
+  plot_biome,
+  file = "output/biomes_whittaker.jpg",
+  dpi = 600,
+  width = 8, height = 8
+)
+
+
+
+
