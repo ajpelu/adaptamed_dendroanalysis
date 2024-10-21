@@ -83,8 +83,6 @@ aux_avg1 <- aux_avg |>
 ```
 
 
-
-
 ## Figure 1 v1 
 ```{r}
 ggplot(data = aux, 
@@ -261,6 +259,7 @@ ggsave(
 library(Kendall)
 library(trend)
 
+# Tmed 1971, Prec 1970 
 
 aux <- aux |> mutate(elev_code = case_when(
     elev_code == "low-D" ~ "low-Dec",
@@ -280,7 +279,7 @@ mk_tmed <- aux |>
   mutate(ypos = 
            case_when(
              elev_code == "low" ~ 14,
-             elev_code == "low-Dec" ~ 13,
+             elev_code == "low-Dec" ~ 8,
              elev_code == "medium" ~ 15,
              elev_code == "high" ~ 16), 
          p_value_string = symnum(pvalue_mk, corr = FALSE,
@@ -294,11 +293,17 @@ mk_tmed <- aux |>
   mutate(taulabel = gsub("-", "\U2212", taulabel))
 
 
-
+mk_tmed <- mk_tmed |> 
+  mutate(ypos = 
+           case_when(
+             sp_code == "halepensis" & elev_code == "low" ~ 8,
+             sp_code == "halepensis" & elev_code == "medium" ~ 9,
+             sp_code == "halepensis" & elev_code == "high" ~ 10,
+             TRUE ~ ypos)) 
 
 mk_prec <- aux |> 
   ungroup() |> 
-  filter(year > 1959) |> 
+  filter(year > 1969) |> 
   group_by(sp_code, elev_code, sp_elev)|> 
   summarise(across(c(prec), ~MannKendall(.)$tau, .names ="tau"),
             across(c(prec), ~MannKendall(.)$sl, .names ="pvalue_mk"),
@@ -306,9 +311,9 @@ mk_prec <- aux |>
             across(c(prec), ~trend::sens.slope(.)$p.value, .names ="pvalue_sen")) |> 
   mutate(ypos = 
            case_when(
-             elev_code == "low" ~ 1300,
-             elev_code == "low-Dec" ~ 1200,
-             elev_code == "medium" ~ 1400,
+             elev_code == "low" ~ 1200,
+             elev_code == "low-Dec" ~ 1050,
+             elev_code == "medium" ~ 1350,
              elev_code == "high" ~ 1500), 
          p_value_string = symnum(pvalue_mk, corr = FALSE,
                cutpoints = c(0,  .001,.01,.05, 1),
@@ -329,6 +334,7 @@ mk <- bind_rows(mk_prec, mk_tmed)
 
 ```{r}
 clima <- aux |> 
+  filter(year > 1969) |>
   dplyr::select(-tmax, -tmin) |> 
   pivot_longer(c(prec, tmed), names_to = "variable", values_to = "mean") |> 
   mutate(Specie = paste0("P. ", sp_code)) |> 
@@ -340,9 +346,9 @@ to_label <- as_labeller(c(
  "prec" = "Precipitation (mm)"))
 
 colours_elev <- c("low-Dec" = "#8c510a",
-                   "low" ="#fc8d59",
-                   "medium" = "#2166ac",
-                   "high" = "#72A55A")
+                  "low" ="#fc8d59",
+                  "medium" = "#2166ac",
+                  "high" = "#72A55A")
 
 figura_ts_clima <- clima |> 
   ggplot(aes(x = year, y = mean, group = elev_code, colour = elev_code)) +
@@ -351,7 +357,8 @@ figura_ts_clima <- clima |>
              scales = "free_y", 
              switch = "y",
              labeller = labeller(variable = to_label)) +
-  scale_colour_manual(values = colours_elev, name = "") +
+   scale_colour_manual(values = colours_elev, name = "",
+                      guide = guide_legend(override.aes = list(linewidth = 2))) + 
   scale_fill_manual(values = colours_elev, name="") + 
   theme_bw() +
   ylab("") +  xlab("") + 
@@ -367,8 +374,8 @@ figura_ts_clima <- clima |>
     legend.text = element_text(size = 11),
     axis.text = element_text(size = 11)
   ) +
-  scale_x_continuous(limits = c(1951, 2021), breaks = seq(1950, 2020, by = 10)) +
-  geom_text(x = 1950, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = "left", size = 4.5)
+  scale_x_continuous(limits = c(1970, 2021), breaks = seq(1971, 2020, by = 10)) +
+  geom_text(x = 1971, aes(y = ypos, label = taulabel), data = mk, parse = TRUE, show.legend = FALSE, hjust = "left", size = 4.5)
 
 figura_ts_clima 
 ```
