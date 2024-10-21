@@ -74,8 +74,8 @@ droughtIndicators <- function(df, vname, threshold) {
       minyear = min(year),
       maxyear = max(year),
       rangeDate = paste(
-        lubridate::month(min(date), label = TRUE), "-",
-        (lubridate::month(max(date), label = TRUE))
+        lubridate::month(min(date, na.rm = TRUE), label = TRUE), "-",
+        (lubridate::month(max(date, na.rm = TRUE), label = TRUE))
       )
     ) |>
     as.data.frame()
@@ -91,11 +91,10 @@ s <- spei_data |>
   pivot_longer(c(spei06, spei12), names_to = "spei") |> 
   filter(!is.na(value))
 
-
 spei_events <- s |> 
   group_by(spei, sp_elev) |> 
   nest() |> 
-  mutate(drought_results = map(data, ~droughtIndicators(., "value", -1.28)$drought_assessment)) |> 
+  mutate(drought_results = purrr::map(data, ~droughtIndicators(., "value", -1.28)$drought_assessment)) |> 
   unnest(drought_results) |> 
   select(-data)
 ```
@@ -129,8 +128,8 @@ plot_droughts <- d12 |>
   mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
   ggplot(aes(y = elev_code)) +
   geom_point(aes(x = middate, y = elev_code, size = d_severity, colour = species)) + 
-  geom_segment(aes(x = start_date, xend = end_date, yend = elev_code), 
-               colour = "black", lineend = "butt", linewidth = 1.5) + 
+  # geom_segment(aes(x = start_date, xend = end_date, yend = elev_code), 
+  #              colour = "black", lineend = "butt", linewidth = .7) + 
   labs(size = "Drougth's Severity", x="Year", y = "Elevation") + 
   # facet_wrap(.~sp_code, ncol = 1, scales = "free_y") +
   facet_wrap(~factor(species, levels = c("P. sylvestris", "P. nigra", "P. pinaster","P. halepensis")), ncol = 1, scales = "free_y") +
@@ -139,7 +138,9 @@ plot_droughts <- d12 |>
   scale_colour_manual(
     values = colours_Specie, name = "Species", 
     labels = expression(italic("P. halepensis"), italic("P. pinaster"), italic("P. nigra"), italic("P. sylvestris")), guide = "none") + 
-  scale_x_date(breaks = seq.Date(from = ymd("1980-01-01"), to = ymd("2022-01-01"), by = "5 years"),
+  scale_x_date(
+    limits = c(ymd("1970-01-01"),  ymd("2022-01-01")), 
+    breaks = seq.Date(from = ymd("1970-01-01"), to = ymd("2022-01-01"), by = "5 years"),
                date_labels = "%Y",
                date_minor_breaks = "1 year") +
   theme(strip.background = element_blank(), 
