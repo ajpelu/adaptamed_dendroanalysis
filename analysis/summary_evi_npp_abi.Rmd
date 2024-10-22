@@ -267,7 +267,8 @@ custom_position = position_dodge(width = 0.3)
 
 out_plot2 <- out_plot |> 
   inner_join(letras_indicativo_plot, by="variable2") |> 
-  mutate(Species = paste0("P. ", sp_code))
+  mutate(Species = paste0("P. ", sp_code)) |> 
+  mutate(Species = fct_relevel(Species, "P. halepensis","P. pinaster", "P. nigra", "P. sylvestris")) 
 
 
 colours_elev <- c("low-Dec" = "#8c510a",
