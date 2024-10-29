@@ -389,3 +389,109 @@ ggsave(
 )
 ```
 
+
+
+
+```{r}
+#| echo: false
+#| eval: false
+temp_all <- clima |>
+  filter(variable == "tmed") |> 
+  rename(value = mean) |>
+  mutate(decade = floor(year/10)*10) 
+
+temp_decade_mean <- temp_all |>
+  group_by(decade, variable, Specie, elev_code) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm=TRUE), 
+            se = sd/sqrt(length(value))) |> 
+  ungroup() |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
+
+
+
+t7010_mean <- temp_decade_mean |> 
+  filter(decade %in% c(1970, 2010)) |> 
+  mutate(decade = as.factor(decade)) |> 
+  mutate(decade = fct_relevel(decade, "1970", "2010"))
+
+t7010_all <- temp_all |> 
+  filter(decade %in% c(1970, 2010)) |> 
+  mutate(decade = as.factor(decade)) |> 
+  mutate(decade = fct_relevel(decade, "1970", "2010"))
+
+
+temp_mean_sp <- temp_all |>
+    filter(decade %in% c(1970, 2010)) |> 
+  group_by(decade, variable, Specie) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm=TRUE), 
+            se = sd/sqrt(length(value))) |> 
+  ungroup() 
+
+
+
+
+
+
+custom_position = position_dodge(width = 0.3)
+
+
+
+
+
+ggplot(t7010_mean, 
+       aes(y = mean, x = decade, 
+                  group = elev_code, colour = elev_code)) + 
+  geom_jitter(data = t7010_all, 
+              aes(y = value, x = as.factor(decade), 
+                  group = elev_code, colour = elev_code), 
+              alpha = 0.3, size = .75, stroke = 0.5, 
+              position = custom_position, show.legend = FALSE) +
+  geom_errorbar(aes(ymin =mean-1.96*se, ymax=mean+1.96*se), position = custom_position) +
+  facet_wrap(~Specie) 
+  
+  
+  
+  
+
+
+
+
+clima_decade <- temp_all |>
+  group_by(decade, variable, Specie, elev_code) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm=TRUE), 
+            se = sd/sqrt(length(value))) |> 
+  ungroup() |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec","low", "medium", "high"))
+
+
+clima_decade_all <- clima_decade |> 
+  rename(value = mean) |>
+  group_by(decade, variable, Specie) |> 
+  summarise(mean = mean(value, na.rm = TRUE), 
+            sd = sd(value, na.rm=TRUE), 
+            se = sd/sqrt(length(value))) |> 
+  ungroup() 
+
+colours_elev <- c("low-Dec" = "#8c510a",
+                  "low" ="#fc8d59",
+                  "medium" = "#2166ac",
+                  "high" = "#72A55A")
+
+
+
+
+
+
+ggplot(data = (clima_decade |> 
+                 filter(variable == "tmed") |> 
+                 filter(decade %in% c(1970, 2010))), 
+       aes(y = mean, x = Specie, group = decade, colour = decade)) + 
+  geom_point()
+  geom_errorbar(aes(ymin=mean-1.96*se, ymax=mean+1.96*se))
+
+   
+```
+
