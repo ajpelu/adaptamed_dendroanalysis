@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 --- 
 
-## Prepare Data 
+## Figure 2 
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(
@@ -55,7 +55,9 @@ df_index <- bind_rows(
   abi, evi_landsat, evi_modis, npp
 ) |>
   mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
+  mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
   mutate(Specie = paste0("P. ", sp_code)) |>
+  mutate(Specie = fct_relevel(Specie, "P. halepensis","P. pinaster", "P. nigra", "P. sylvestris")) |> 
   rename(mean_y = mean, y_variable = variable) |>
   filter(year >= 1990)
 ```
@@ -364,9 +366,9 @@ plot_abi_npp <- abi_npp |>
   ggplot(aes(y = abi, x = npp)) +
   geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points, size = size_points) +
   geom_line(data = pred_df_abi_npp, aes(x = npp, y = abi), color = "black", linewidth = 1.5) + # Fitted model
-  geom_line(data = pred_df_abi_npp, aes(x = npp, y = ci_lower), color = "black", linetype = "dashed") + 
-  geom_line(data = pred_df_abi_npp, aes(x = npp, y = ci_upper), color = "black", linetype = "dashed") + 
-  # geom_ribbon(data = pred_df_abi_npp, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.2) + # CI
+  # geom_line(data = pred_df_abi_npp, aes(x = npp, y = ci_lower), color = "black", linetype = "dashed") + 
+  # geom_line(data = pred_df_abi_npp, aes(x = npp, y = ci_upper), color = "black", linetype = "dashed") + 
+  geom_ribbon(data = pred_df_abi_npp, aes(x = npp, ymin = ci_lower, ymax = ci_upper), alpha = 0.3) + # CI
   scale_y_continuous(limits = c(0, 450)) +
   ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{-1}))) +
   xlab(expression(NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{-1}))) +
@@ -378,9 +380,9 @@ plot_abi_evi <- abi_evi |>
   ggplot(aes(y = abi, x = evi_landsat)) +
   geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points, size = size_points)  +
   geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = abi), color = "black", linewidth = 1.5) + # Fitted model
-  geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = ci_lower), color = "black", linetype = "dashed") + 
-  geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = ci_upper), color = "black", linetype = "dashed") + 
-  # geom_ribbon(data = pred_df_abi_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
+  # geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = ci_lower), color = "black", linetype = "dashed") + 
+  # geom_line(data = pred_df_abi_evi, aes(x = evi_landsat, y = ci_upper), color = "black", linetype = "dashed") + 
+  geom_ribbon(data = pred_df_abi_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.3) + # CI
   ylab(expression(ABI ~ (g ~ C ~ m^2 ~ year^{-1}))) +
   xlab(expression(EVI[Landsat])) +
     custom_options
@@ -392,9 +394,9 @@ plot_npp_evi <- npp_evi |>
   ggplot(aes(y = npp, x = evi_landsat)) +
   geom_point(aes(shape = elev_code, fill = Specie, colour = Specie), alpha = alpha_points, size = size_points) +
   geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = npp), color = "black", linewidth = 1.5) + # Fitted model
-  geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = ci_lower), color = "black", linetype = "dashed") + 
-  geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = ci_upper), color = "black", linetype = "dashed") +
-  # geom_ribbon(data = pred_df_npp_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.1) + # CI
+  # geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = ci_lower), color = "black", linetype = "dashed") + 
+  # geom_line(data = pred_df_npp_evi, aes(x = evi_landsat, y = ci_upper), color = "black", linetype = "dashed") +
+  geom_ribbon(data = pred_df_npp_evi, aes(x = evi_landsat, ymin = ci_lower, ymax = ci_upper), alpha = 0.3) + # CI
   ylab(expression(NPP[MODIS] ~ (g ~ C ~ m^2 ~ year^{-1}))) +
   xlab(expression(EVI[Landsat])) +
   custom_options
@@ -403,7 +405,13 @@ plot_npp_evi <- npp_evi |>
 
 
 ```{r}
-p <- plot_abi_npp + plot_abi_evi + plot_npp_evi & theme(legend.position = "bottom")
+p <- plot_abi_npp + plot_abi_evi + plot_npp_evi & 
+  theme(legend.position = "bottom")
+
+p <- p & guides(
+  shape = guide_legend(override.aes = list(stroke = .5, size = 3, colour = "black")),
+  fill = guide_legend(override.aes = list(size = 3)))
+  
 compare_plot <- p + plot_layout(guides = "collect", ncol = 3)
 
 ggsave(
@@ -449,9 +457,11 @@ p_sp <-
     scale_y_continuous(
         limits = c(0,1050), 
         breaks = c(0,150,300,450,600,750,900,1050)) +
-     annotate(geom = "text", label = "c", x = .1, y = Inf, hjust = .2, vjust = 1.5, size = 7, fontface = "bold")) & theme(legend.position = "bottom")
+     annotate(geom = "text", label = "c", x = .1, y = Inf, hjust = .2, vjust = 1.5, size = 7, fontface = "bold")) & theme(legend.position = "bottom", legend.text = element_text(size = 14))
 
-compare_plot_sp <- p_sp + plot_layout(guides = "collect") 
+compare_plot_sp <- p_sp + plot_layout(guides = "collect") & guides(
+  shape = guide_legend(override.aes = list(stroke = .5, size = 3, colour = "black")),
+  fill = guide_legend(override.aes = list(size = 3)))
 
 
 compare_plot_sp
@@ -459,6 +469,14 @@ compare_plot_sp
 ggsave(
    compare_plot_sp,
    file = "output/compare_abi_npp_evi_sp.png",
+   dpi = 400,
+   width = 7.09*2.2, height = 7.09*1.8/2
+ )
+
+
+ggsave(
+   compare_plot_sp,
+   file = "output/compare_abi_npp_evi_sp.pdf",
    dpi = 400,
    width = 7.09*2.2, height = 7.09*1.8/2
  )
@@ -499,4 +517,5 @@ ggsave(
    dpi = 300,
    width = 12, height = 6
  )
+
 ```
