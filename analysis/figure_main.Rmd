@@ -13,6 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Figure 3
 
 ```{r, message=FALSE}
 library(tidyverse)
@@ -60,7 +61,12 @@ df <- ratio |>
 d <- df |> filter(climate_variable %in% c("tmed", "prec")) |> 
   pivot_wider(values_from = mean_climate, names_from = climate_variable) |> 
   dplyr::rename(rat = ratio_abi_npp) |> 
-  mutate(species = paste0("P. ", sp_code))
+  mutate(species = paste0("P. ", sp_code)) |> 
+  mutate(elev_code = fct_relevel(elev_code, "low-Dec", "low", "medium", "high")) |>
+  mutate(sp_code = fct_relevel(sp_code, "halepensis","pinaster", "nigra", "sylvestris")) |> 
+  mutate(species = fct_relevel(species, "P. halepensis","P. pinaster", "P. nigra", "P. sylvestris")) 
+
+
 
 # Read data from modelling # see modelling ratio selected.rmd
 
@@ -168,7 +174,7 @@ plot_t <- teffect |>
               filter(tmed > min(d$tmed)) |> 
               filter(tmed < max(d$tmed))),
     colour = line_colour_model, 
-    size = 2.1) +
+    linewidth = 2.1) +
   scale_y_continuous(limits = c(0,0.63), expand = expansion(add = c(0.005, 0.005))) + 
   scale_x_continuous(limits = c(7.5,17.8), 
                      expand = expansion(add = c(0.1, 0.1)),
@@ -210,7 +216,7 @@ plot_p <- peffect |>
               filter(prec > min(d$prec)) |> 
               filter(prec < max(d$prec))), 
     colour = line_colour_model, 
-    size = 2.1) + 
+    linewidth = 2.1) + 
   scale_y_continuous(limits = c(0,0.63), expand = expansion(add = c(0.005, 0.005)), position = "right") + 
   scale_x_continuous(limits = c(50, 1550), 
                      breaks = c(150, 300, 450, 600, 750, 900, 1050, 1200, 1350, 1500)) + 
@@ -226,7 +232,7 @@ plot_p <- peffect |>
 ```
 
 ```{r}
-# Surface plot 
+# Surface plot (old proposal)
 breaks <- seq(0, .8, by=0.05)
 
 # Generate clip 
@@ -286,7 +292,7 @@ plot_surface <- pred_mcombrat7 |>
 ```
 
 
-```{r}
+```{r, old_fig, eval=FALSE, echo=FALSE}
 main_figure <- (
   (plot_t + theme(plot.margin = unit(c(0.5, 0, 0, .5), "cm")) + 
      plot_p + theme(plot.margin = unit(c(0.5, .5, 0, 0), "cm")) & theme(
@@ -298,32 +304,6 @@ main_figure <- (
   plot_annotation(tag_levels = "a") & theme(
     plot.tag = element_text(size = 14, face = "bold"))
 ```
-
-
-
-```{r}
-ggsave(
-  main_figure, 
-  file = "output/figure_model_selected.jpg",
-  dpi = 400,
-  width = 7.09*2.2, height = 7.09*2.2/2
-)
-
-ggsave(
-  main_figure, 
-  file = "output/figure_model_selected.pdf",
-  dpi = 400,
-  width = 7.09*2.2, height = 7.09*2.2/2
-)
-```
-
-
-```{r}
-#| fig.height: 7
-#| fig.width: 15
-main_figure
-```
-
 
 
 
@@ -393,7 +373,6 @@ plot_with_ABI_legend <- pred_mcombrat7 |>
     expand = expansion(add = c(1, 1))
   )
 
-plot_with_ABI_legend
 ```
 
 
@@ -408,16 +387,32 @@ main_figure2 <- (
     + (plot_with_ABI_legend + plot_layout(guides = "keep"))) +
   plot_annotation(tag_levels = "a") & theme(
     plot.tag = element_text(size = 14, face = "bold"))
+
+main_figure2 
 ```
+
 
 ```{r}
 ggsave(
   main_figure2, 
-  file = "output/figure_model_selected2.jpg",
+  file = "output/figure_model_selected.jpg",
+  dpi = 400,
+  width = 7.09*2.2, height = 7.09*2.2/2
+)
+
+ggsave(
+  main_figure2, 
+  file = "output/figure_model_selected.pdf",
   dpi = 400,
   width = 7.09*2.2, height = 7.09*2.2/2
 )
 ```
+
+
+
+
+
+
 
 
 
