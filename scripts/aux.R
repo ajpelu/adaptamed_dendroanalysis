@@ -122,7 +122,7 @@ plot_mle <- function(x, yvar, title = NULL, plot_type = c("observed", "residuals
   return(p)
 }
 
-
+# ejemplo de funciones
 # plot_mle(x = result_mtabi1, yvar = "abi",  plot_type = "observed")
 # plot_mle(x = result_mtabi1, yvar = "abi",  plot_type = "residuals")
 

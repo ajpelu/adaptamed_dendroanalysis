@@ -72,6 +72,31 @@ df <- bind_rows(
 
 ```
 
+```{r}
+data_s <- df |> 
+  group_by(Specie, npp) |> 
+  count(npp)
+
+
+df |> 
+  mutate(Specie = fct_relevel(Specie, "P. halepensis","P. pinaster", "P. nigra", "P. sylvestris")) |> 
+  ggplot(aes(x = npp, y = Specie, fill = Specie, colour = Specie)) +
+  geom_density_ridges(alpha = .5) + 
+  scale_fill_manual(
+    values = colours_Specie, name = "Species", guide = "none") + 
+  scale_colour_manual(
+    values = colours_Specie, name = "Species", guide = "none") +
+  xlab(expression(NPP ~ (g ~ C ~ m^2 ~ year^{-1}))) +
+  ylab("") + 
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank()
+  ) 
+
+
+
+```
+
 
 
 ## Summary statistics 
